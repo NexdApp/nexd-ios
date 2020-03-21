@@ -12,6 +12,7 @@ import UIKit
 class LoginViewController: UIViewController {
     lazy var username = UITextField()
     lazy var password = UITextField()
+    lazy var loginButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,18 +20,33 @@ class LoginViewController: UIViewController {
         view.backgroundColor = .white
 
         view.addSubview(username)
-        view.addSubview(password)
+        username.placeholder = R.string.localizable.login_PLACEHOLDER_USERNAME()
 
-        username.placeholder = "Username"
         username.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
-            make.centerY.equalTo(self.view)
+            make.topMargin.equalTo(50)
         }
 
-        password.placeholder = "Password"
+        view.addSubview(password)
+        password.placeholder = R.string.localizable.login_PLACEHOLDER_PASSWORD()
         password.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.top.equalTo(username.snp_bottom).offset(16)
         }
+
+        view.addSubview(loginButton)
+        loginButton.backgroundColor = .gray
+        loginButton.setTitle(R.string.localizable.login_BUTTON_TITLE_LOGIN(), for: .normal)
+        loginButton.addTarget(self, action: #selector(pressed(sender:)), for: .touchUpInside)
+        loginButton.snp.makeConstraints { make in
+            make.leftMargin.rightMargin.equalTo(8)
+            make.top.equalTo(password.snp_bottom).offset(16)
+        }
+    }
+}
+
+extension LoginViewController {
+    @objc func pressed(sender: UIButton!) {
+        log.debug("Hello World")
     }
 }

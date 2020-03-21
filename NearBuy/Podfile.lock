@@ -1,16 +1,36 @@
 PODS:
+  - ObjcExceptionBridging (1.0.1):
+    - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
+  - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - R.swift (5.1.0):
+    - R.swift.Library (~> 5.1.0)
+  - R.swift.Library (5.1.0)
   - SnapKit (4.2.0)
+  - XCGLogger (7.0.1):
+    - XCGLogger/Core (= 7.0.1)
+  - XCGLogger/Core (7.0.1):
+    - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - R.swift
   - SnapKit
+  - XCGLogger
 
 SPEC REPOS:
   trunk:
+    - ObjcExceptionBridging
+    - R.swift
+    - R.swift.Library
     - SnapKit
+    - XCGLogger
 
 SPEC CHECKSUMS:
+  ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
+  R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 0a9f89bf83dd07f2343503aa8914ed308e2f2546
+PODFILE CHECKSUM: fbd015ba581e63c31c4271c37eae56184982531e
 
 COCOAPODS: 1.8.4
