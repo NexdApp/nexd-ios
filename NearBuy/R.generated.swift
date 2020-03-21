@@ -105,24 +105,33 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 2 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
-    /// Image `baseline_check_black_24pt`.
-    static let baseline_check_black_24pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_24pt")
     /// Image `baseline_check_black_48pt`.
     static let baseline_check_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_48pt")
-
-    #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "baseline_check_black_24pt", bundle: ..., traitCollection: ...)`
-    static func baseline_check_black_24pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.baseline_check_black_24pt, compatibleWith: traitCollection)
-    }
-    #endif
+    /// Image `outline_directions_walk_black_48pt`.
+    static let outline_directions_walk_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_directions_walk_black_48pt")
+    /// Image `outline_shopping_cart_black_48pt`.
+    static let outline_shopping_cart_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_shopping_cart_black_48pt")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_check_black_48pt", bundle: ..., traitCollection: ...)`
     static func baseline_check_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.baseline_check_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "outline_directions_walk_black_48pt", bundle: ..., traitCollection: ...)`
+    static func outline_directions_walk_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.outline_directions_walk_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "outline_shopping_cart_black_48pt", bundle: ..., traitCollection: ...)`
+    static func outline_shopping_cart_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.outline_shopping_cart_black_48pt, compatibleWith: traitCollection)
     }
     #endif
 
@@ -147,8 +156,10 @@ struct R: Rswift.Validatable {
       static let error_title = Rswift.StringResource(key: "error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: First name
       static let registration_placeholer_firstname = Rswift.StringResource(key: "registration_placeholer_firstname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Helper
+      /// Value: I can help
       static let role_selection_helper = Rswift.StringResource(key: "role_selection_helper", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: I need something
+      static let role_selection_seeker = Rswift.StringResource(key: "role_selection_seeker", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Last name
       static let registration_placeholer_lastname = Rswift.StringResource(key: "registration_placeholer_lastname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
@@ -171,8 +182,6 @@ struct R: Rswift.Validatable {
       static let login_button_title_register = Rswift.StringResource(key: "login_button_title_register", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Role
       static let role_selection_screen_title = Rswift.StringResource(key: "role_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Seeker
-      static let role_selection_seeker = Rswift.StringResource(key: "role_selection_seeker", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Send
       static let registration_button_title_send = Rswift.StringResource(key: "registration_button_title_send", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Sign-up
@@ -275,7 +284,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholer_firstname", bundle: bundle, comment: "")
       }
 
-      /// Value: Helper
+      /// Value: I can help
       static func role_selection_helper(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("role_selection_helper", bundle: hostingBundle, comment: "")
@@ -286,6 +295,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("role_selection_helper", bundle: bundle, comment: "")
+      }
+
+      /// Value: I need something
+      static func role_selection_seeker(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("role_selection_seeker", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_selection_seeker"
+        }
+
+        return NSLocalizedString("role_selection_seeker", bundle: bundle, comment: "")
       }
 
       /// Value: Last name
@@ -429,19 +451,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("role_selection_screen_title", bundle: bundle, comment: "")
-      }
-
-      /// Value: Seeker
-      static func role_selection_seeker(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("role_selection_seeker", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "role_selection_seeker"
-        }
-
-        return NSLocalizedString("role_selection_seeker", bundle: bundle, comment: "")
       }
 
       /// Value: Send

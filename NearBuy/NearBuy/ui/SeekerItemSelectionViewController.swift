@@ -93,8 +93,6 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        log.debug("ZEFIX - \(indexPath)")
-
         guard let content = self.content else { return }
 
         var items = content.items

@@ -45,6 +45,8 @@ class LoginViewController: UIViewController {
 
         view.addSubview(loginButton)
         loginButton.backgroundColor = Style.buttonBackgroundColor
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
         loginButton.setTitle(R.string.localizable.login_button_title_login(), for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
@@ -54,6 +56,10 @@ class LoginViewController: UIViewController {
 
         view.addSubview(registerButton)
         registerButton.backgroundColor = Style.buttonBackgroundColor
+        
+        loginButton.layer.cornerRadius = 10
+        loginButton.clipsToBounds = true
+
         registerButton.setTitle(R.string.localizable.login_button_title_register(), for: .normal)
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in

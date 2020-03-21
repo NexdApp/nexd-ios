@@ -21,8 +21,8 @@
 "registration_button_title_send" = "Send";
 
 "role_selection_screen_title" = "Role";
-"role_selection_seeker" = "Seeker";
-"role_selection_helper" = "Helper";
+"role_selection_seeker" = "I need something";
+"role_selection_helper" = "I can help";
 
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
