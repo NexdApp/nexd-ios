@@ -8,6 +8,7 @@
 
 import UIKit
 import XCGLogger
+import SwaggerClient
 
 let log = XCGLogger.default
 
@@ -27,6 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.levelDescriptions[.severe] = "🖤"
 
         log.logAppDetails()
+
+        SwaggerClientAPI.basePath = "http://localhost:3001/api"
+        AuthenticationAPI.authControllerLogin(body: LoginPayload(email: "test@test.de", password: "asdf")) { _, error in
+            guard error == nil else {
+                log.error("Error: \(error)")
+                return
+            }
+
+            log.debug("JUHU")
+        }
+
         return true
     }
 }
