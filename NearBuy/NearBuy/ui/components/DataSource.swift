@@ -31,28 +31,4 @@ class DataSource<ItemType>: NSObject, UICollectionViewDataSource {
         cellBinder(items[indexPath.row], cell)
         return cell
     }
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        // 1
-        switch kind {
-        // 2
-        case UICollectionView.elementKindSectionHeader:
-            // 3
-            guard
-                let headerView = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: SectionHeaderView.reuseIdentifier,
-                    for: indexPath
-                ) as? SectionHeaderView
-            else {
-                fatalError("Invalid view type")
-            }
-
-            headerView.label.text = "Hello World"
-            return headerView
-        default:
-            // 4
-            assert(false, "Invalid element type")
-        }
-    }
 }

@@ -24,7 +24,9 @@
 "role_selection_seeker" = "Seeker";
 "role_selection_helper" = "Helper";
 
-"buyer_request_overview_screen_title" = "Overview";
+"helper_request_overview_screen_title" = "Overview";
+"helper_request_overview_heading_accepted_section" = "Accepted requests:";
+"helper_request_overview_heading_available_section" = "Available requests:";
 
 "error_title" = "Error";
 "error_message_login_failed" = "Login failed. Please try again.";

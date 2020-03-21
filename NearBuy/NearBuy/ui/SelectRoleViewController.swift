@@ -15,7 +15,7 @@ class SelectRoleViewController: UIViewController {
     }
 
     lazy var helperRoleButton = UIButton()
-    lazy var affectedRoleButton = UIButton()
+    lazy var seekerRoleButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +32,14 @@ class SelectRoleViewController: UIViewController {
         }
         helperRoleButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
 
-        view.addSubview(affectedRoleButton)
-        affectedRoleButton.backgroundColor = Style.buttonBackgroundColor
-        affectedRoleButton.setTitle(R.string.localizable.role_selection_seeker(), for: .normal)
-        affectedRoleButton.snp.makeConstraints { make -> Void in
+        view.addSubview(seekerRoleButton)
+        seekerRoleButton.backgroundColor = Style.buttonBackgroundColor
+        seekerRoleButton.setTitle(R.string.localizable.role_selection_seeker(), for: .normal)
+        seekerRoleButton.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.top.equalTo(helperRoleButton.snp_bottom).offset(16)
         }
-        affectedRoleButton.addTarget(self, action: #selector(affectedRoleButtonPressed(sender:)), for: .touchUpInside)
+        seekerRoleButton.addTarget(self, action: #selector(seekerRoleButtonPressed(sender:)), for: .touchUpInside)
     }
 }
 
@@ -48,8 +48,8 @@ extension SelectRoleViewController {
         self.navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
     }
 
-    @objc func affectedRoleButtonPressed(sender: UIButton!) {
-        log.debug("Affected role selected")
+    @objc func seekerRoleButtonPressed(sender: UIButton!) {
+        self.navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
     }
 }
 

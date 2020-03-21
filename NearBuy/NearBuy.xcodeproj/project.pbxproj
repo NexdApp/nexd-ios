@@ -29,6 +29,8 @@
 		AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */; };
 		AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */; };
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
+		AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */; };
+		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NearBuy.swift"; sourceTree = "<group>"; };
 		AEF3D6702426785C005C77CE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSectionedDataSource.swift; sourceTree = "<group>"; };
+		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
 		F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -161,6 +165,7 @@
 				AEF3D66824263149005C77CE /* RegistrationViewController.swift */,
 				AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
+				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 				AEF3D66024260500005C77CE /* DefaultDataSource.swift */,
 				AEF3D66224260574005C77CE /* DefaultCellItem.swift */,
 				AEF3D66424261131005C77CE /* SectionHeaderView.swift */,
+				AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -413,12 +419,14 @@
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
 				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,
+				AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */,
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,

@@ -107,8 +107,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 24 localization keys.
     struct localizable {
+      /// Value: Accepted requests:
+      static let helper_request_overview_heading_accepted_section = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Available requests:
+      static let helper_request_overview_heading_available_section = Rswift.StringResource(key: "helper_request_overview_heading_available_section", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Confirm password
       static let registration_placeholer_confirm_password = Rswift.StringResource(key: "registration_placeholer_confirm_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: E-Mail
@@ -130,7 +134,7 @@ struct R: Rswift.Validatable {
       /// Value: OK
       static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Overview
-      static let buyer_request_overview_screen_title = Rswift.StringResource(key: "buyer_request_overview_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let helper_request_overview_screen_title = Rswift.StringResource(key: "helper_request_overview_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Password
       static let login_placeholer_password = Rswift.StringResource(key: "login_placeholer_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Password
@@ -153,6 +157,32 @@ struct R: Rswift.Validatable {
       static let error_message_registration_failed = Rswift.StringResource(key: "error_message_registration_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Username
       static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: Accepted requests:
+      static func helper_request_overview_heading_accepted_section(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_heading_accepted_section", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_heading_accepted_section"
+        }
+
+        return NSLocalizedString("helper_request_overview_heading_accepted_section", bundle: bundle, comment: "")
+      }
+
+      /// Value: Available requests:
+      static func helper_request_overview_heading_available_section(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_heading_available_section", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_heading_available_section"
+        }
+
+        return NSLocalizedString("helper_request_overview_heading_available_section", bundle: bundle, comment: "")
+      }
 
       /// Value: Confirm password
       static func registration_placeholer_confirm_password(preferredLanguages: [String]? = nil) -> String {
@@ -285,16 +315,16 @@ struct R: Rswift.Validatable {
       }
 
       /// Value: Overview
-      static func buyer_request_overview_screen_title(preferredLanguages: [String]? = nil) -> String {
+      static func helper_request_overview_screen_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("buyer_request_overview_screen_title", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("helper_request_overview_screen_title", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "buyer_request_overview_screen_title"
+          return "helper_request_overview_screen_title"
         }
 
-        return NSLocalizedString("buyer_request_overview_screen_title", bundle: bundle, comment: "")
+        return NSLocalizedString("helper_request_overview_screen_title", bundle: bundle, comment: "")
       }
 
       /// Value: Password

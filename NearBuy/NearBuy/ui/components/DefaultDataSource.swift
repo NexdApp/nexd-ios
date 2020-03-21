@@ -9,8 +9,8 @@
 import Foundation
 
 class DefaultDataSource: DataSource<DefaultCellItem> {
-    init(items: [DefaultCellItem], reuseIdentifier: String) {
-        super.init(reuseIdentifier: reuseIdentifier, items: items) { item, cell in
+    init(items: [DefaultCellItem]) {
+        super.init(reuseIdentifier: DefaultCell.reuseIdentifier, items: items) { item, cell in
             if let cell = cell as? DefaultCell {
                 cell.bind(to: item)
             }
