@@ -9,7 +9,7 @@
 import SnapKit
 import UIKit
 
-class BuyerRequestOverviewViewController: UIViewController {
+class HelperRequestOverviewViewController: UIViewController {
     private var collectionView: UICollectionView?
     private var dataSource: DefaultDataSource? {
         didSet {
@@ -53,14 +53,14 @@ class BuyerRequestOverviewViewController: UIViewController {
     }
 }
 
-extension BuyerRequestOverviewViewController: UICollectionViewDelegate {
+extension HelperRequestOverviewViewController: UICollectionViewDelegate {
     func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         log.debug("TODO")
 //        viewModel.prefetch(index: indexPath.row)
     }
 }
 
-extension BuyerRequestOverviewViewController: UICollectionViewDelegateFlowLayout {
+extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: 60)
     }

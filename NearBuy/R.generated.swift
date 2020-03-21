@@ -109,8 +109,6 @@ struct R: Rswift.Validatable {
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
     struct localizable {
-      /// Value: Buyer
-      static let role_selection_buyer = Rswift.StringResource(key: "role_selection_buyer", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Confirm password
       static let registration_placeholer_confirm_password = Rswift.StringResource(key: "registration_placeholer_confirm_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: E-Mail
@@ -119,6 +117,8 @@ struct R: Rswift.Validatable {
       static let error_title = Rswift.StringResource(key: "error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: First name
       static let registration_placeholer_firstname = Rswift.StringResource(key: "registration_placeholer_firstname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Helper
+      static let role_selection_helper = Rswift.StringResource(key: "role_selection_helper", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Last name
       static let registration_placeholer_lastname = Rswift.StringResource(key: "registration_placeholer_lastname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
@@ -153,19 +153,6 @@ struct R: Rswift.Validatable {
       static let error_message_registration_failed = Rswift.StringResource(key: "error_message_registration_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Username
       static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-
-      /// Value: Buyer
-      static func role_selection_buyer(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("role_selection_buyer", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "role_selection_buyer"
-        }
-
-        return NSLocalizedString("role_selection_buyer", bundle: bundle, comment: "")
-      }
 
       /// Value: Confirm password
       static func registration_placeholer_confirm_password(preferredLanguages: [String]? = nil) -> String {
@@ -217,6 +204,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_placeholer_firstname", bundle: bundle, comment: "")
+      }
+
+      /// Value: Helper
+      static func role_selection_helper(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("role_selection_helper", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_selection_helper"
+        }
+
+        return NSLocalizedString("role_selection_helper", bundle: bundle, comment: "")
       }
 
       /// Value: Last name

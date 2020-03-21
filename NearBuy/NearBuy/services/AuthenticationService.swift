@@ -13,8 +13,6 @@ import RxSwift
 class AuthenticationService {
     static let shared = AuthenticationService()
 
-    private let disposeBat = DisposeBag()
-
     func register(email: String, firstName: String, lastName: String, password: String) -> Completable {
         AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: .helper, password: password))
             .ignoreElements()

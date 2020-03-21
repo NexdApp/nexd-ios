@@ -73,6 +73,7 @@ extension LoginViewController {
         AuthenticationService.shared.login(email: email, password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
+                Storage.shared.loggedInUserEmail = email
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
             }) { [weak self] error in
                 log.error("Login failed: \(error)")

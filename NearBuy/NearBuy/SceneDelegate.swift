@@ -21,7 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 
-        let navigationVC = UINavigationController(rootViewController: LoginViewController())
+        let rootVC = Storage.shared.loggedInUserEmail == nil ? LoginViewController() : SelectRoleViewController()
+        let navigationVC = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
     }
