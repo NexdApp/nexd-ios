@@ -32,6 +32,7 @@
 		AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
+		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSectionedDataSource.swift; sourceTree = "<group>"; };
 		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
+		AEF3D6782426B970005C77CE /* CheckableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableCell.swift; sourceTree = "<group>"; };
 		F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF3D65C242604C6005C77CE /* DefaultCell.swift */,
+				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
 				AEF3D65E242604DE005C77CE /* DataSource.swift */,
 				AEF3D66024260500005C77CE /* DefaultDataSource.swift */,
 				AEF3D66224260574005C77CE /* DefaultCellItem.swift */,
@@ -427,6 +430,7 @@
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */,
+				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,

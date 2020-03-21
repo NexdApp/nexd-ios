@@ -21,13 +21,14 @@ class SelectRoleViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        self.title = R.string.localizable.role_selection_screen_title()
+        title = R.string.localizable.role_selection_screen_title()
 
         view.addSubview(helperRoleButton)
         helperRoleButton.backgroundColor = Style.buttonBackgroundColor
         helperRoleButton.setTitle(R.string.localizable.role_selection_helper(), for: .normal)
         helperRoleButton.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.topMargin.equalTo(50)
         }
         helperRoleButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
@@ -36,7 +37,8 @@ class SelectRoleViewController: UIViewController {
         seekerRoleButton.backgroundColor = Style.buttonBackgroundColor
         seekerRoleButton.setTitle(R.string.localizable.role_selection_seeker(), for: .normal)
         seekerRoleButton.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(helperRoleButton.snp_bottom).offset(16)
         }
         seekerRoleButton.addTarget(self, action: #selector(seekerRoleButtonPressed(sender:)), for: .touchUpInside)
@@ -45,10 +47,10 @@ class SelectRoleViewController: UIViewController {
 
 extension SelectRoleViewController {
     @objc func helperRoleButtonPressed(sender: UIButton!) {
-        self.navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
+        navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
     }
 
     @objc func seekerRoleButtonPressed(sender: UIButton!) {
-        self.navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
+        navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
     }
 }

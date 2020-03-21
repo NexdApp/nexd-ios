@@ -17,6 +17,7 @@ class SeekerItemSelectionViewController: UIViewController {
     }
 
     struct Item {
+        let isSelected: Bool
         let id: Int
         let title: String
     }
@@ -28,7 +29,7 @@ class SeekerItemSelectionViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     private var collectionView: UICollectionView?
-    private var dataSource: DefaultDataSource? {
+    private var dataSource: DataSource<CheckableCell.Item>? {
         didSet {
             collectionView?.dataSource = dataSource
         }
@@ -36,7 +37,12 @@ class SeekerItemSelectionViewController: UIViewController {
 
     private var content: Content? {
         didSet {
-            dataSource = DefaultDataSource(items: content?.items.map { DefaultCellItem(iconColor: .yellow, text: $0.title) } ?? [])
+            dataSource = DataSource(reuseIdentifier: CheckableCell.reuseIdentifier,
+                                    items: content?.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) } ?? []) { item, cell in
+                if let cell = cell as? CheckableCell {
+                    cell.bind(to: item)
+                }
+            }
         }
     }
 
@@ -45,13 +51,12 @@ class SeekerItemSelectionViewController: UIViewController {
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.headerReferenceSize = CGSize(width: view.frame.size.width, height: Style.headerHeight)
         layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .white
         list.delegate = self
-        list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
+        list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
         view.backgroundColor = .white
@@ -67,11 +72,14 @@ class SeekerItemSelectionViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        loadArticles()
+    }
 
+    private func loadArticles() {
         ArticlesService.shared.allArticles()
             .subscribe(onSuccess: { [weak self] articles in
                 log.debug("Articles: \(articles)")
-                self?.content = Content(items: articles.map { Item(id: $0._id, title: $0.name) })
+                self?.content = Content(items: articles.map { Item(isSelected: false, id: $0._id, title: $0.name) })
             }) { error in
                 log.error("Error occurred: \(error)")
             }
@@ -86,6 +94,13 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         log.debug("ZEFIX - \(indexPath)")
+
+        guard let content = self.content else { return }
+
+        var items = content.items
+        let item = items[indexPath.row]
+        items[indexPath.row] = Item(isSelected: !item.isSelected, id: item.id, title: item.title)
+        self.content = Content(items: items)
     }
 }
 

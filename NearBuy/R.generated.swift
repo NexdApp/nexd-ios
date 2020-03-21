@@ -105,6 +105,30 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.image` struct is generated, and contains static references to 2 images.
+  struct image {
+    /// Image `baseline_check_black_24pt`.
+    static let baseline_check_black_24pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_24pt")
+    /// Image `baseline_check_black_48pt`.
+    static let baseline_check_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_48pt")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_check_black_24pt", bundle: ..., traitCollection: ...)`
+    static func baseline_check_black_24pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_check_black_24pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_check_black_48pt", bundle: ..., traitCollection: ...)`
+    static func baseline_check_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_check_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
     /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
