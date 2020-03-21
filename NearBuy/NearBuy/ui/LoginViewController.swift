@@ -10,6 +10,10 @@ import SnapKit
 import UIKit
 
 class LoginViewController: UIViewController {
+    enum Style {
+        static let buttonBackgroundColor: UIColor = .gray
+    }
+
     lazy var username = UITextField()
     lazy var password = UITextField()
     lazy var loginButton = UIButton()
@@ -18,6 +22,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
+        self.title = R.string.localizable.login_SCREEN_TITLE()
 
         view.addSubview(username)
         username.placeholder = R.string.localizable.login_PLACEHOLDER_USERNAME()
@@ -35,7 +40,7 @@ class LoginViewController: UIViewController {
         }
 
         view.addSubview(loginButton)
-        loginButton.backgroundColor = .gray
+        loginButton.backgroundColor = Style.buttonBackgroundColor
         loginButton.setTitle(R.string.localizable.login_BUTTON_TITLE_LOGIN(), for: .normal)
         loginButton.addTarget(self, action: #selector(pressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
@@ -48,5 +53,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
     @objc func pressed(sender: UIButton!) {
         log.debug("Hello World")
+
+        self.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
     }
 }

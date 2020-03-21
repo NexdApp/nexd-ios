@@ -5,6 +5,14 @@
   Created by Tobias Schröpf on 21.03.20.
   Copyright © 2020 Tobias Schröpf. All rights reserved.
 */
+"LOGIN_SCREEN_TITLE" = "Login";
 "LOGIN_PLACEHOLDER_USERNAME" = "Username";
 "LOGIN_PLACEHOLDER_PASSWORD" = "Password";
 "LOGIN_BUTTON_TITLE_LOGIN" = "Login";
+
+"ROLE_SELECTION_SCREEN_TITLE" = "Role";
+"ROLE_SELECTION_AFFECTED_PERSON" = "Brauche hilfe";
+"ROLE_SELECTION_BUYER" = "Will helfen";
+
+"BUYER_REQUEST_OVERVIEW_SCREEN_TITLE" = "Overview";
+

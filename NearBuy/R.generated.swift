@@ -107,14 +107,37 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 3 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
     struct localizable {
+      /// Value: Brauche hilfe
+      static let role_SELECTION_AFFECTED_PERSON = Rswift.StringResource(key: "ROLE_SELECTION_AFFECTED_PERSON", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
       static let login_BUTTON_TITLE_LOGIN = Rswift.StringResource(key: "LOGIN_BUTTON_TITLE_LOGIN", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Login
+      static let login_SCREEN_TITLE = Rswift.StringResource(key: "LOGIN_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Overview
+      static let buyer_REQUEST_OVERVIEW_SCREEN_TITLE = Rswift.StringResource(key: "BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Password
       static let login_PLACEHOLDER_PASSWORD = Rswift.StringResource(key: "LOGIN_PLACEHOLDER_PASSWORD", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Role
+      static let role_SELECTION_SCREEN_TITLE = Rswift.StringResource(key: "ROLE_SELECTION_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Username
       static let login_PLACEHOLDER_USERNAME = Rswift.StringResource(key: "LOGIN_PLACEHOLDER_USERNAME", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Will helfen
+      static let role_SELECTION_BUYER = Rswift.StringResource(key: "ROLE_SELECTION_BUYER", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+
+      /// Value: Brauche hilfe
+      static func role_SELECTION_AFFECTED_PERSON(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ROLE_SELECTION_AFFECTED_PERSON", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ROLE_SELECTION_AFFECTED_PERSON"
+        }
+
+        return NSLocalizedString("ROLE_SELECTION_AFFECTED_PERSON", bundle: bundle, comment: "")
+      }
 
       /// Value: Login
       static func login_BUTTON_TITLE_LOGIN(preferredLanguages: [String]? = nil) -> String {
@@ -127,6 +150,32 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("LOGIN_BUTTON_TITLE_LOGIN", bundle: bundle, comment: "")
+      }
+
+      /// Value: Login
+      static func login_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("LOGIN_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "LOGIN_SCREEN_TITLE"
+        }
+
+        return NSLocalizedString("LOGIN_SCREEN_TITLE", bundle: bundle, comment: "")
+      }
+
+      /// Value: Overview
+      static func buyer_REQUEST_OVERVIEW_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "BUYER_REQUEST_OVERVIEW_SCREEN_TITLE"
+        }
+
+        return NSLocalizedString("BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", bundle: bundle, comment: "")
       }
 
       /// Value: Password
@@ -142,6 +191,19 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("LOGIN_PLACEHOLDER_PASSWORD", bundle: bundle, comment: "")
       }
 
+      /// Value: Role
+      static func role_SELECTION_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ROLE_SELECTION_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ROLE_SELECTION_SCREEN_TITLE"
+        }
+
+        return NSLocalizedString("ROLE_SELECTION_SCREEN_TITLE", bundle: bundle, comment: "")
+      }
+
       /// Value: Username
       static func login_PLACEHOLDER_USERNAME(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
@@ -153,6 +215,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("LOGIN_PLACEHOLDER_USERNAME", bundle: bundle, comment: "")
+      }
+
+      /// Value: Will helfen
+      static func role_SELECTION_BUYER(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ROLE_SELECTION_BUYER", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ROLE_SELECTION_BUYER"
+        }
+
+        return NSLocalizedString("ROLE_SELECTION_BUYER", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

@@ -10,12 +10,14 @@
 		4A2249BB540F14859C4A57A1 /* Pods_NearBuyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
-		AEF3D620242584C9005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61F242584C9005C77CE /* LoginViewController.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
 		AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */; };
 		AEF3D633242584CC005C77CE /* NearBuyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NearBuyTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
-		AEF3D6432425909F005C77CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D6422425909F005C77CE /* Localizable.strings */; };
+		AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* LoginViewController.swift */; };
+		AEF3D64F24259AE5005C77CE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D64E24259AE5005C77CE /* Localizable.strings */; };
+		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
+		AEF3D6532425A138005C77CE /* BuyerRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* BuyerRequestOverviewViewController.swift */; };
 		CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +40,6 @@
 		AEF3D618242584C9005C77CE /* NearBuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearBuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		AEF3D61F242584C9005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF3D627242584CC005C77CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEF3D629242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,7 +47,10 @@
 		AEF3D632242584CC005C77CE /* NearBuyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBuyTests.swift; sourceTree = "<group>"; };
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		AEF3D6422425909F005C77CE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/Localizable.strings; sourceTree = "<group>"; };
+		AEF3D64B24259ACE005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AEF3D64E24259AE5005C77CE /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoleViewController.swift; sourceTree = "<group>"; };
+		AEF3D6522425A138005C77CE /* BuyerRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyerRequestOverviewViewController.swift; sourceTree = "<group>"; };
 		F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -102,11 +106,11 @@
 		AEF3D61A242584C9005C77CE /* NearBuy */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D6422425909F005C77CE /* Localizable.strings */,
+				AEF3D64A24259ACE005C77CE /* ui */,
 				AEF3D61B242584C9005C77CE /* AppDelegate.swift */,
 				AEF3D61D242584C9005C77CE /* SceneDelegate.swift */,
-				AEF3D61F242584C9005C77CE /* LoginViewController.swift */,
 				AEF3D63E24258FDA005C77CE /* R.generated.swift */,
+				AEF3D64D24259AE5005C77CE /* Resources */,
 				AEF3D624242584CC005C77CE /* Assets.xcassets */,
 				AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */,
 				AEF3D629242584CC005C77CE /* Info.plist */,
@@ -121,6 +125,24 @@
 				AEF3D634242584CC005C77CE /* Info.plist */,
 			);
 			path = NearBuyTests;
+			sourceTree = "<group>";
+		};
+		AEF3D64A24259ACE005C77CE /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				AEF3D64B24259ACE005C77CE /* LoginViewController.swift */,
+				AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */,
+				AEF3D6522425A138005C77CE /* BuyerRequestOverviewViewController.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		AEF3D64D24259AE5005C77CE /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AEF3D64E24259AE5005C77CE /* Localizable.strings */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		B7FBC32D851855F768588401 /* Pods */ = {
@@ -220,7 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */,
-				AEF3D6432425909F005C77CE /* Localizable.strings in Resources */,
+				AEF3D64F24259AE5005C77CE /* Localizable.strings in Resources */,
 				AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,9 +344,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF3D620242584C9005C77CE /* LoginViewController.swift in Sources */,
+				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				AEF3D6532425A138005C77CE /* BuyerRequestOverviewViewController.swift in Sources */,
+				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
