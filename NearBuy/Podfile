@@ -6,6 +6,7 @@ target 'NearBuy' do
   use_frameworks!
 
   # Pods for NearBuy
+  pod 'SwaggerClient', :path => '../'
   pod 'SnapKit'
   pod 'R.swift'
   pod 'XCGLogger'

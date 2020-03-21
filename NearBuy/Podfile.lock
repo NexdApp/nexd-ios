@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.9.1)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
@@ -6,6 +7,8 @@ PODS:
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
   - SnapKit (4.2.0)
+  - SwaggerClient (0.0.1):
+    - Alamofire (~> 4.9.0)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -14,23 +17,31 @@ PODS:
 DEPENDENCIES:
   - R.swift
   - SnapKit
+  - SwaggerClient (from `../`)
   - XCGLogger
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
     - SnapKit
     - XCGLogger
 
+EXTERNAL SOURCES:
+  SwaggerClient:
+    :path: "../"
+
 SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwaggerClient: 8807c56e1eaa8789d1a0f9c6bb6e10de5e7260a8
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: fbd015ba581e63c31c4271c37eae56184982531e
+PODFILE CHECKSUM: 930fa7d66fca58303be6b744d59a4ad79a2b120f
 
 COCOAPODS: 1.8.4
