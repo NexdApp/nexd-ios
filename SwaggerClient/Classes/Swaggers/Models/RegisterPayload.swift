@@ -11,15 +11,21 @@ import Foundation
 
 public struct RegisterPayload: Codable {
 
+    public enum Role: String, Codable { 
+        case helper = "helper"
+        case seeker = "seeker"
+    }
     public var email: String
     public var firstName: String
     public var lastName: String
+    public var role: Role?
     public var password: String
 
-    public init(email: String, firstName: String, lastName: String, password: String) {
+    public init(email: String, firstName: String, lastName: String, role: Role?, password: String) {
         self.email = email
         self.firstName = firstName
         self.lastName = lastName
+        self.role = role
         self.password = password
     }
 

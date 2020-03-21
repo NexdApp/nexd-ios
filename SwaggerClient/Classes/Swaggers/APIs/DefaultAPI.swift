@@ -43,7 +43,7 @@ open class DefaultAPI {
     }
 
     /**
-     - GET /
+     - GET /api
      - 
 
      - :
@@ -53,7 +53,7 @@ open class DefaultAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func appControllerRootWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/"
+        let path = "/api"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 

@@ -45,7 +45,7 @@ open class AuthenticationAPI {
     }
 
     /**
-     - POST /auth/login
+     - POST /api/auth/login
      - 
 
      - parameter body: (body)  
@@ -53,7 +53,7 @@ open class AuthenticationAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func authControllerLoginWithRequestBuilder(body: LoginPayload) -> RequestBuilder<Void> {
-        let path = "/auth/login"
+        let path = "/api/auth/login"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
@@ -98,7 +98,7 @@ open class AuthenticationAPI {
     }
 
     /**
-     - POST /auth/register
+     - POST /api/auth/register
      - 
 
      - parameter body: (body)  
@@ -106,7 +106,7 @@ open class AuthenticationAPI {
      - returns: RequestBuilder<Void> 
      */
     open class func authControllerRegisterWithRequestBuilder(body: RegisterPayload) -> RequestBuilder<Void> {
-        let path = "/auth/register"
+        let path = "/api/auth/register"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 

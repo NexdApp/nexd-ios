@@ -16,7 +16,7 @@ class AuthenticationService {
     private let disposeBat = DisposeBag()
 
     func register(email: String, firstName: String, lastName: String, password: String) {
-        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, password: password))
+        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: nil, password: password))
             .subscribe(onError: { error in
                 log.error("User registration failed: \(error)")
             }) {

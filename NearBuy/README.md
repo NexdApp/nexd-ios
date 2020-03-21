@@ -14,4 +14,3 @@ $ swagger-codegen generate -i http://localhost:3001/api/docs-json -l swift5  --a
 # TODOs:
 
 - https support
--
