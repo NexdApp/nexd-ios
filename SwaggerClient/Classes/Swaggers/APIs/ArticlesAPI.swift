@@ -44,10 +44,10 @@ open class ArticlesAPI {
 
      - examples: [{contentType=application/json, example=[ {
   "name" : "name",
-  "id" : 0.8008281904610115
+  "id" : 0
 }, {
   "name" : "name",
-  "id" : 0.8008281904610115
+  "id" : 0
 } ]}]
 
      - returns: RequestBuilder<[Article]> 

@@ -52,4 +52,3 @@ extension SelectRoleViewController {
         self.navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
     }
 }
-

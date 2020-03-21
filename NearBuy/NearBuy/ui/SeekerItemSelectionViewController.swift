@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import RxSwift
 import SnapKit
 import UIKit
 
@@ -16,12 +17,15 @@ class SeekerItemSelectionViewController: UIViewController {
     }
 
     struct Item {
+        let id: Int
         let title: String
     }
 
     struct Content {
         let items: [Item]
     }
+
+    private let disposeBag = DisposeBag()
 
     private var collectionView: UICollectionView?
     private var dataSource: DefaultDataSource? {
@@ -59,8 +63,19 @@ class SeekerItemSelectionViewController: UIViewController {
         }
 
         collectionView = list
+    }
 
-        content = Content(items: [Item(title: "Klopapier (Pkg.)"), Item(title: "Butter (Pkg.)")])
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        ArticlesService.shared.allArticles()
+            .subscribe(onSuccess: { [weak self] articles in
+                log.debug("Articles: \(articles)")
+                self?.content = Content(items: articles.map { Item(id: $0._id, title: $0.name) })
+            }) { error in
+                log.error("Error occurred: \(error)")
+            }
+            .disposed(by: disposeBag)
     }
 }
 

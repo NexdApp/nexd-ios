@@ -12,11 +12,11 @@ import Foundation
 public struct Article: Codable {
 
     /** Auto-incremented id of an article. */
-    public var _id: BigDecimal
+    public var _id: Int
     /** Name of the article, should also contain the unit. */
     public var name: String
 
-    public init(_id: BigDecimal, name: String) {
+    public init(_id: Int, name: String) {
         self._id = _id
         self.name = name
     }

@@ -31,6 +31,7 @@
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
 		AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
+		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
 		CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		AEF3D6702426785C005C77CE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSectionedDataSource.swift; sourceTree = "<group>"; };
 		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
+		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -203,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */,
+				AEF3D6762426AD56005C77CE /* ArticlesService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
+				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
 				AEF3D658242603C8005C77CE /* User.swift in Sources */,
