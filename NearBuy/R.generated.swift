@@ -107,127 +107,262 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 8 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
     struct localizable {
-      /// Value: Brauche hilfe
-      static let role_SELECTION_AFFECTED_PERSON = Rswift.StringResource(key: "ROLE_SELECTION_AFFECTED_PERSON", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Buyer
+      static let role_selection_buyer = Rswift.StringResource(key: "role_selection_buyer", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Confirm password
+      static let registration_placeholer_confirm_password = Rswift.StringResource(key: "registration_placeholer_confirm_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: E-Mail
+      static let registration_placeholer_email = Rswift.StringResource(key: "registration_placeholer_email", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: First name
+      static let registration_placeholer_firstname = Rswift.StringResource(key: "registration_placeholer_firstname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Last name
+      static let registration_placeholer_lastname = Rswift.StringResource(key: "registration_placeholer_lastname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
-      static let login_BUTTON_TITLE_LOGIN = Rswift.StringResource(key: "LOGIN_BUTTON_TITLE_LOGIN", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let login_button_title_login = Rswift.StringResource(key: "login_button_title_login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
-      static let login_SCREEN_TITLE = Rswift.StringResource(key: "LOGIN_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let login_screen_title = Rswift.StringResource(key: "login_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Overview
-      static let buyer_REQUEST_OVERVIEW_SCREEN_TITLE = Rswift.StringResource(key: "BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let buyer_request_overview_screen_title = Rswift.StringResource(key: "buyer_request_overview_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Password
-      static let login_PLACEHOLDER_PASSWORD = Rswift.StringResource(key: "LOGIN_PLACEHOLDER_PASSWORD", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let login_placeholer_password = Rswift.StringResource(key: "login_placeholer_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Password
+      static let registration_placeholer_password = Rswift.StringResource(key: "registration_placeholer_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Phone
+      static let registration_placeholer_phone = Rswift.StringResource(key: "registration_placeholer_phone", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Register
+      static let login_button_title_register = Rswift.StringResource(key: "login_button_title_register", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Role
-      static let role_SELECTION_SCREEN_TITLE = Rswift.StringResource(key: "ROLE_SELECTION_SCREEN_TITLE", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let role_selection_screen_title = Rswift.StringResource(key: "role_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Seeker
+      static let role_selection_seeker = Rswift.StringResource(key: "role_selection_seeker", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Send
+      static let registration_button_title_send = Rswift.StringResource(key: "registration_button_title_send", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Sign-up
+      static let registration_screen_title = Rswift.StringResource(key: "registration_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Username
-      static let login_PLACEHOLDER_USERNAME = Rswift.StringResource(key: "LOGIN_PLACEHOLDER_USERNAME", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
-      /// Value: Will helfen
-      static let role_SELECTION_BUYER = Rswift.StringResource(key: "ROLE_SELECTION_BUYER", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
-      /// Value: Brauche hilfe
-      static func role_SELECTION_AFFECTED_PERSON(preferredLanguages: [String]? = nil) -> String {
+      /// Value: Buyer
+      static func role_selection_buyer(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("ROLE_SELECTION_AFFECTED_PERSON", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("role_selection_buyer", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "ROLE_SELECTION_AFFECTED_PERSON"
+          return "role_selection_buyer"
         }
 
-        return NSLocalizedString("ROLE_SELECTION_AFFECTED_PERSON", bundle: bundle, comment: "")
+        return NSLocalizedString("role_selection_buyer", bundle: bundle, comment: "")
+      }
+
+      /// Value: Confirm password
+      static func registration_placeholer_confirm_password(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_confirm_password", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_confirm_password"
+        }
+
+        return NSLocalizedString("registration_placeholer_confirm_password", bundle: bundle, comment: "")
+      }
+
+      /// Value: E-Mail
+      static func registration_placeholer_email(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_email", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_email"
+        }
+
+        return NSLocalizedString("registration_placeholer_email", bundle: bundle, comment: "")
+      }
+
+      /// Value: First name
+      static func registration_placeholer_firstname(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_firstname", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_firstname"
+        }
+
+        return NSLocalizedString("registration_placeholer_firstname", bundle: bundle, comment: "")
+      }
+
+      /// Value: Last name
+      static func registration_placeholer_lastname(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_lastname", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_lastname"
+        }
+
+        return NSLocalizedString("registration_placeholer_lastname", bundle: bundle, comment: "")
       }
 
       /// Value: Login
-      static func login_BUTTON_TITLE_LOGIN(preferredLanguages: [String]? = nil) -> String {
+      static func login_button_title_login(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LOGIN_BUTTON_TITLE_LOGIN", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("login_button_title_login", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "LOGIN_BUTTON_TITLE_LOGIN"
+          return "login_button_title_login"
         }
 
-        return NSLocalizedString("LOGIN_BUTTON_TITLE_LOGIN", bundle: bundle, comment: "")
+        return NSLocalizedString("login_button_title_login", bundle: bundle, comment: "")
       }
 
       /// Value: Login
-      static func login_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+      static func login_screen_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LOGIN_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("login_screen_title", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "LOGIN_SCREEN_TITLE"
+          return "login_screen_title"
         }
 
-        return NSLocalizedString("LOGIN_SCREEN_TITLE", bundle: bundle, comment: "")
+        return NSLocalizedString("login_screen_title", bundle: bundle, comment: "")
       }
 
       /// Value: Overview
-      static func buyer_REQUEST_OVERVIEW_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+      static func buyer_request_overview_screen_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("buyer_request_overview_screen_title", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "BUYER_REQUEST_OVERVIEW_SCREEN_TITLE"
+          return "buyer_request_overview_screen_title"
         }
 
-        return NSLocalizedString("BUYER_REQUEST_OVERVIEW_SCREEN_TITLE", bundle: bundle, comment: "")
+        return NSLocalizedString("buyer_request_overview_screen_title", bundle: bundle, comment: "")
       }
 
       /// Value: Password
-      static func login_PLACEHOLDER_PASSWORD(preferredLanguages: [String]? = nil) -> String {
+      static func login_placeholer_password(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LOGIN_PLACEHOLDER_PASSWORD", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("login_placeholer_password", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "LOGIN_PLACEHOLDER_PASSWORD"
+          return "login_placeholer_password"
         }
 
-        return NSLocalizedString("LOGIN_PLACEHOLDER_PASSWORD", bundle: bundle, comment: "")
+        return NSLocalizedString("login_placeholer_password", bundle: bundle, comment: "")
+      }
+
+      /// Value: Password
+      static func registration_placeholer_password(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_password", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_password"
+        }
+
+        return NSLocalizedString("registration_placeholer_password", bundle: bundle, comment: "")
+      }
+
+      /// Value: Phone
+      static func registration_placeholer_phone(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_placeholer_phone", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_placeholer_phone"
+        }
+
+        return NSLocalizedString("registration_placeholer_phone", bundle: bundle, comment: "")
+      }
+
+      /// Value: Register
+      static func login_button_title_register(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("login_button_title_register", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "login_button_title_register"
+        }
+
+        return NSLocalizedString("login_button_title_register", bundle: bundle, comment: "")
       }
 
       /// Value: Role
-      static func role_SELECTION_SCREEN_TITLE(preferredLanguages: [String]? = nil) -> String {
+      static func role_selection_screen_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("ROLE_SELECTION_SCREEN_TITLE", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("role_selection_screen_title", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "ROLE_SELECTION_SCREEN_TITLE"
+          return "role_selection_screen_title"
         }
 
-        return NSLocalizedString("ROLE_SELECTION_SCREEN_TITLE", bundle: bundle, comment: "")
+        return NSLocalizedString("role_selection_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: Seeker
+      static func role_selection_seeker(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("role_selection_seeker", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_selection_seeker"
+        }
+
+        return NSLocalizedString("role_selection_seeker", bundle: bundle, comment: "")
+      }
+
+      /// Value: Send
+      static func registration_button_title_send(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_button_title_send", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_button_title_send"
+        }
+
+        return NSLocalizedString("registration_button_title_send", bundle: bundle, comment: "")
+      }
+
+      /// Value: Sign-up
+      static func registration_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("registration_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_screen_title"
+        }
+
+        return NSLocalizedString("registration_screen_title", bundle: bundle, comment: "")
       }
 
       /// Value: Username
-      static func login_PLACEHOLDER_USERNAME(preferredLanguages: [String]? = nil) -> String {
+      static func login_placeholer_username(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("LOGIN_PLACEHOLDER_USERNAME", bundle: hostingBundle, comment: "")
+          return NSLocalizedString("login_placeholer_username", bundle: hostingBundle, comment: "")
         }
 
         guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "LOGIN_PLACEHOLDER_USERNAME"
+          return "login_placeholer_username"
         }
 
-        return NSLocalizedString("LOGIN_PLACEHOLDER_USERNAME", bundle: bundle, comment: "")
-      }
-
-      /// Value: Will helfen
-      static func role_SELECTION_BUYER(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("ROLE_SELECTION_BUYER", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "ROLE_SELECTION_BUYER"
-        }
-
-        return NSLocalizedString("ROLE_SELECTION_BUYER", bundle: bundle, comment: "")
+        return NSLocalizedString("login_placeholer_username", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

@@ -17,15 +17,16 @@ class LoginViewController: UIViewController {
     lazy var username = UITextField()
     lazy var password = UITextField()
     lazy var loginButton = UIButton()
+    lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        self.title = R.string.localizable.login_SCREEN_TITLE()
+        self.title = R.string.localizable.login_screen_title()
 
         view.addSubview(username)
-        username.placeholder = R.string.localizable.login_PLACEHOLDER_USERNAME()
+        username.placeholder = R.string.localizable.login_placeholer_username()
 
         username.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
@@ -33,7 +34,7 @@ class LoginViewController: UIViewController {
         }
 
         view.addSubview(password)
-        password.placeholder = R.string.localizable.login_PLACEHOLDER_PASSWORD()
+        password.placeholder = R.string.localizable.login_placeholer_password()
         password.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.top.equalTo(username.snp_bottom).offset(16)
@@ -41,19 +42,30 @@ class LoginViewController: UIViewController {
 
         view.addSubview(loginButton)
         loginButton.backgroundColor = Style.buttonBackgroundColor
-        loginButton.setTitle(R.string.localizable.login_BUTTON_TITLE_LOGIN(), for: .normal)
-        loginButton.addTarget(self, action: #selector(pressed(sender:)), for: .touchUpInside)
+        loginButton.setTitle(R.string.localizable.login_button_title_login(), for: .normal)
+        loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
             make.leftMargin.rightMargin.equalTo(8)
             make.top.equalTo(password.snp_bottom).offset(16)
+        }
+
+        view.addSubview(registerButton)
+        registerButton.backgroundColor = Style.buttonBackgroundColor
+        registerButton.setTitle(R.string.localizable.login_button_title_register(), for: .normal)
+        registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
+        registerButton.snp.makeConstraints { make in
+            make.leftMargin.rightMargin.equalTo(8)
+            make.top.equalTo(loginButton.snp_bottom).offset(16)
         }
     }
 }
 
 extension LoginViewController {
-    @objc func pressed(sender: UIButton!) {
-        log.debug("Hello World")
-
+    @objc func loginButtonPressed(sender: UIButton!) {
         self.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+    }
+
+    @objc func registerButtonPressed(sender: UIButton!) {
+        self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
     }
 }

@@ -36,7 +36,7 @@ class BuyerRequestOverviewViewController: UIViewController {
 
 
         view.backgroundColor = .white
-        title = R.string.localizable.buyer_REQUEST_OVERVIEW_SCREEN_TITLE()
+        title = R.string.localizable.buyer_request_overview_screen_title()
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in

@@ -21,11 +21,11 @@ class SelectRoleViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        self.title = R.string.localizable.role_SELECTION_SCREEN_TITLE()
+        self.title = R.string.localizable.role_selection_screen_title()
 
         view.addSubview(buyerRoleButton)
         buyerRoleButton.backgroundColor = Style.buttonBackgroundColor
-        buyerRoleButton.setTitle(R.string.localizable.role_SELECTION_BUYER(), for: .normal)
+        buyerRoleButton.setTitle(R.string.localizable.role_selection_buyer(), for: .normal)
         buyerRoleButton.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.topMargin.equalTo(50)
@@ -34,7 +34,7 @@ class SelectRoleViewController: UIViewController {
 
         view.addSubview(affectedRoleButton)
         affectedRoleButton.backgroundColor = Style.buttonBackgroundColor
-        affectedRoleButton.setTitle(R.string.localizable.role_SELECTION_AFFECTED_PERSON(), for: .normal)
+        affectedRoleButton.setTitle(R.string.localizable.role_selection_seeker(), for: .normal)
         affectedRoleButton.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.top.equalTo(buyerRoleButton.snp_bottom).offset(16)

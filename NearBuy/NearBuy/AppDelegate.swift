@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         log.logAppDetails()
 
-        SwaggerClientAPI.basePath = "http://localhost:3001/api"
+        SwaggerClientAPI.basePath = AppConfiguration.baseUrl
         AuthenticationAPI.authControllerLogin(body: LoginPayload(email: "test@test.de", password: "asdf")) { _, error in
             guard error == nil else {
                 log.error("Error: \(error)")

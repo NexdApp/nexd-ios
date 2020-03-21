@@ -5,14 +5,24 @@
   Created by Tobias Schröpf on 21.03.20.
   Copyright © 2020 Tobias Schröpf. All rights reserved.
 */
-"LOGIN_SCREEN_TITLE" = "Login";
-"LOGIN_PLACEHOLDER_USERNAME" = "Username";
-"LOGIN_PLACEHOLDER_PASSWORD" = "Password";
-"LOGIN_BUTTON_TITLE_LOGIN" = "Login";
+"login_screen_title" = "Login";
+"login_placeholer_username" = "Username";
+"login_placeholer_password" = "Password";
+"login_button_title_login" = "Login";
+"login_button_title_register" = "Register";
 
-"ROLE_SELECTION_SCREEN_TITLE" = "Role";
-"ROLE_SELECTION_AFFECTED_PERSON" = "Brauche hilfe";
-"ROLE_SELECTION_BUYER" = "Will helfen";
+"registration_screen_title" = "Sign-up";
+"registration_placeholer_email" = "E-Mail";
+"registration_placeholer_firstname" = "First name";
+"registration_placeholer_lastname" = "Last name";
+"registration_placeholer_phone" = "Phone";
+"registration_placeholer_password" = "Password";
+"registration_placeholer_confirm_password" = "Confirm password";
+"registration_button_title_send" = "Send";
 
-"BUYER_REQUEST_OVERVIEW_SCREEN_TITLE" = "Overview";
+"role_selection_screen_title" = "Role";
+"role_selection_seeker" = "Seeker";
+"role_selection_buyer" = "Buyer";
+
+"buyer_request_overview_screen_title" = "Overview";
 
