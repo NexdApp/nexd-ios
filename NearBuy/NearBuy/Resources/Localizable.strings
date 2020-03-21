@@ -26,3 +26,9 @@
 
 "buyer_request_overview_screen_title" = "Overview";
 
+"error_title" = "Error";
+"error_message_login_failed" = "Login failed. Please try again.";
+
+"error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
+"error_message_registration_failed" = "User registration failed. Please try again.";
+"error_button_ok" = "OK";

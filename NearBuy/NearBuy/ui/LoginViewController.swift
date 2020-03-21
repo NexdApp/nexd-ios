@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import RxSwift
 import SnapKit
 import UIKit
 
@@ -13,6 +14,8 @@ class LoginViewController: UIViewController {
     enum Style {
         static let buttonBackgroundColor: UIColor = .gray
     }
+
+    private let disposeBag = DisposeBag()
 
     lazy var username = UITextField()
     lazy var password = UITextField()
@@ -23,7 +26,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .white
-        self.title = R.string.localizable.login_screen_title()
+        title = R.string.localizable.login_screen_title()
 
         view.addSubview(username)
         username.placeholder = R.string.localizable.login_placeholer_username()
@@ -62,10 +65,30 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     @objc func loginButtonPressed(sender: UIButton!) {
-        self.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+        guard let email = username.text, let password = password.text else {
+            log.warning("Missing mandatory login information!")
+            return
+        }
+
+        AuthenticationService.shared.login(email: email, password: password)
+            .subscribe(onCompleted: { [weak self] in
+                log.debug("Login successful!")
+                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+            }) { [weak self] error in
+                log.error("Login failed: \(error)")
+                self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
+            }
+            .disposed(by: disposeBag)
     }
 
     @objc func registerButtonPressed(sender: UIButton!) {
-        self.navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        let registrationVC = RegistrationViewController()
+        registrationVC.onRegistrationFinished = { [weak self] result in
+            self?.username.text = result.email
+            self?.password.text = result.password
+            self?.navigationController?.popViewController(animated: true)
+        }
+
+        navigationController?.pushViewController(registrationVC, animated: true)
     }
 }

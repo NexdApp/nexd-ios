@@ -107,7 +107,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 17 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 22 localization keys.
     struct localizable {
       /// Value: Buyer
       static let role_selection_buyer = Rswift.StringResource(key: "role_selection_buyer", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -115,6 +115,8 @@ struct R: Rswift.Validatable {
       static let registration_placeholer_confirm_password = Rswift.StringResource(key: "registration_placeholer_confirm_password", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: E-Mail
       static let registration_placeholer_email = Rswift.StringResource(key: "registration_placeholer_email", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Error
+      static let error_title = Rswift.StringResource(key: "error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: First name
       static let registration_placeholer_firstname = Rswift.StringResource(key: "registration_placeholer_firstname", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Last name
@@ -123,6 +125,10 @@ struct R: Rswift.Validatable {
       static let login_button_title_login = Rswift.StringResource(key: "login_button_title_login", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Login
       static let login_screen_title = Rswift.StringResource(key: "login_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Login failed. Please try again.
+      static let error_message_login_failed = Rswift.StringResource(key: "error_message_login_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: OK
+      static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Overview
       static let buyer_request_overview_screen_title = Rswift.StringResource(key: "buyer_request_overview_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Password
@@ -141,6 +147,10 @@ struct R: Rswift.Validatable {
       static let registration_button_title_send = Rswift.StringResource(key: "registration_button_title_send", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Sign-up
       static let registration_screen_title = Rswift.StringResource(key: "registration_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: User registration failed. Please make sure you input valid data.
+      static let error_message_registration_validation_failed = Rswift.StringResource(key: "error_message_registration_validation_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: User registration failed. Please try again.
+      static let error_message_registration_failed = Rswift.StringResource(key: "error_message_registration_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Username
       static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
 
@@ -181,6 +191,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_placeholer_email", bundle: bundle, comment: "")
+      }
+
+      /// Value: Error
+      static func error_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_title"
+        }
+
+        return NSLocalizedString("error_title", bundle: bundle, comment: "")
       }
 
       /// Value: First name
@@ -233,6 +256,32 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("login_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: Login failed. Please try again.
+      static func error_message_login_failed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_login_failed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_login_failed"
+        }
+
+        return NSLocalizedString("error_message_login_failed", bundle: bundle, comment: "")
+      }
+
+      /// Value: OK
+      static func error_button_ok(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_button_ok", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_button_ok"
+        }
+
+        return NSLocalizedString("error_button_ok", bundle: bundle, comment: "")
       }
 
       /// Value: Overview
@@ -350,6 +399,32 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: User registration failed. Please make sure you input valid data.
+      static func error_message_registration_validation_failed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_registration_validation_failed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_registration_validation_failed"
+        }
+
+        return NSLocalizedString("error_message_registration_validation_failed", bundle: bundle, comment: "")
+      }
+
+      /// Value: User registration failed. Please try again.
+      static func error_message_registration_failed(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_registration_failed", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_registration_failed"
+        }
+
+        return NSLocalizedString("error_message_registration_failed", bundle: bundle, comment: "")
       }
 
       /// Value: Username

@@ -10,6 +10,7 @@ target 'NearBuy' do
   pod 'SnapKit'
   pod 'R.swift'
   pod 'XCGLogger'
+  pod 'AlamofireNetworkActivityLogger'
 
   target 'NearBuyTests' do
     inherit! :search_paths

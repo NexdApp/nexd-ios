@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import AlamofireNetworkActivityLogger
 import UIKit
 import XCGLogger
 import SwaggerClient
@@ -29,15 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         log.logAppDetails()
 
-        SwaggerClientAPI.basePath = AppConfiguration.baseUrl
-        AuthenticationAPI.authControllerLogin(body: LoginPayload(email: "test@test.de", password: "asdf")) { _, error in
-            guard error == nil else {
-                log.error("Error: \(error)")
-                return
-            }
+        #if DEBUG
+        NetworkActivityLogger.shared.level = .debug
+        NetworkActivityLogger.shared.startLogging()
+        #endif
 
-            log.debug("JUHU")
-        }
+        SwaggerClientAPI.basePath = AppConfiguration.baseUrl
 
         return true
     }

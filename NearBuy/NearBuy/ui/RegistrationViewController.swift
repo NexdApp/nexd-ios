@@ -8,11 +8,19 @@
 
 import SnapKit
 import UIKit
+import RxSwift
 
 class RegistrationViewController: UIViewController {
     enum Style {
         static let buttonBackgroundColor: UIColor = .gray
     }
+
+    struct Result {
+        let email: String
+        let password: String
+    }
+
+    private let disposeBag = DisposeBag()
 
     lazy var email = UITextField()
     lazy var firstName = UITextField()
@@ -22,6 +30,8 @@ class RegistrationViewController: UIViewController {
     lazy var confirmPassword = UITextField()
 
     lazy var registerButton = UIButton()
+
+    var onRegistrationFinished: ((Result) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,6 +98,7 @@ extension RegistrationViewController {
 
         guard let email = email.text, let firstName = firstName.text, let lastName = lastName.text, let password = password.text else {
             log.warning("Cannot register user, mandatory field is missing!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
             return
         }
 
@@ -95,5 +106,14 @@ extension RegistrationViewController {
                                               firstName: firstName,
                                               lastName: lastName,
                                               password: password)
+            .subscribe(onCompleted: { [weak self] in
+                log.debug("User registration successful")
+                self?.onRegistrationFinished?(Result(email: email, password: password))
+            }, onError: { [weak self] error in
+                log.error("User registration failed: \(error)")
+
+                self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
+            })
+            .disposed(by: disposeBag)
     }
 }

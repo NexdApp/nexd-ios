@@ -15,12 +15,13 @@ class AuthenticationService {
 
     private let disposeBat = DisposeBag()
 
-    func register(email: String, firstName: String, lastName: String, password: String) {
-        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: nil, password: password))
-            .subscribe(onError: { error in
-                log.error("User registration failed: \(error)")
-            }) {
-                log.debug("User registration successful")
-        }
+    func register(email: String, firstName: String, lastName: String, password: String) -> Completable {
+        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: .helper, password: password))
+            .ignoreElements()
+    }
+
+    func login(email: String, password: String) -> Completable {
+        return AuthenticationAPI.authControllerLogin(body: LoginPayload(email: email, password: password))
+            .ignoreElements()
     }
 }
