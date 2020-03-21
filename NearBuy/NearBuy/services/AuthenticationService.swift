@@ -8,18 +8,19 @@
 
 import Foundation
 import SwaggerClient
+import RxSwift
 
 class AuthenticationService {
     static let shared = AuthenticationService()
 
-    func register(email: String, firstName: String, lastName: String, password: String) {
-        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, password: password)) { _, error in
-            guard error == nil else {
-                log.error("User registration failed: \(error)")
-                return
-            }
+    private let disposeBat = DisposeBag()
 
-            log.debug("User registration successful")
+    func register(email: String, firstName: String, lastName: String, password: String) {
+        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, password: password))
+            .subscribe(onError: { error in
+                log.error("User registration failed: \(error)")
+            }) {
+                log.debug("User registration successful")
         }
     }
 }
