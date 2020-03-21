@@ -1,0 +1,5 @@
+# Install Dependencies
+
+```
+$ pod install
+```
