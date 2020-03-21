@@ -7,8 +7,8 @@ Pod::Spec.new do |s|
   s.source = { :git => 'git@github.com:swagger-api/swagger-mustache.git', :tag => 'v1.0.0' }
   s.authors = 'Swagger Codegen'
   s.license = 'Proprietary'
-  s.homepage = 'https://github.com/NearBuyVsVirus/nearbuy-ios'
-  s.summary = 'SwaggerClient'
+  s.homepage = 'https://example.com'
+  s.summary = 'Client'
   s.source_files = 'SwaggerClient/Classes/**/*.swift'
   s.dependency 'RxSwift', '~> 4.0'
   s.dependency 'Alamofire', '~> 4.9.0'

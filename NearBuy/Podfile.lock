@@ -6,9 +6,11 @@ PODS:
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
+  - RxSwift (4.5.0)
   - SnapKit (4.2.0)
   - SwaggerClient (0.0.1):
     - Alamofire (~> 4.9.0)
+    - RxSwift (~> 4.0)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -26,6 +28,7 @@ SPEC REPOS:
     - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
+    - RxSwift
     - SnapKit
     - XCGLogger
 
@@ -38,10 +41,11 @@ SPEC CHECKSUMS:
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwaggerClient: 8807c56e1eaa8789d1a0f9c6bb6e10de5e7260a8
+  SwaggerClient: 98b8e63e61d9798177e64d631dbd7d0c34c6d5cb
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 930fa7d66fca58303be6b744d59a4ad79a2b120f
+PODFILE CHECKSUM: 0b99bb3dc0b805091dfb6cdcafde83e4e6f7e8b2
 
 COCOAPODS: 1.8.4
