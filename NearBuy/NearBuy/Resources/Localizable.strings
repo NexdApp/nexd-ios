@@ -28,6 +28,8 @@
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
 "helper_request_overview_heading_available_section" = "Available requests:";
 
+"seeker_item_selection_screen_title" = "Chose items";
+
 "error_title" = "Error";
 "error_message_login_failed" = "Login failed. Please try again.";
 

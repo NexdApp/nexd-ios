@@ -51,7 +51,7 @@ class SeekerItemSelectionViewController: UIViewController {
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
         view.backgroundColor = .white
-        title = R.string.localizable.helper_request_overview_screen_title()
+        title = R.string.localizable.seeker_item_selection_screen_title()
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in
