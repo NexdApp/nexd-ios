@@ -23,6 +23,7 @@ class HelperRequestOverviewViewController: UIViewController {
         let availableRequests: [Request]
     }
 
+    private var gradient = GradientView()
     private var collectionView: UICollectionView?
     private var dataSource: DefaultSectionedDataSource<DefaultCellItem>? {
         didSet {
@@ -62,13 +63,17 @@ class HelperRequestOverviewViewController: UIViewController {
         layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        list.backgroundColor = .white
+        list.backgroundColor = .clear
         list.delegate = self
         list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
-        view.backgroundColor = .white
         title = R.string.localizable.helper_request_overview_screen_title()
+
+        view.addSubview(gradient)
+        gradient.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in

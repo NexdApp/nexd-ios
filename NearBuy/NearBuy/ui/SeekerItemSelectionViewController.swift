@@ -60,7 +60,7 @@ class SeekerItemSelectionViewController: UIViewController {
         layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        list.backgroundColor = .white
+        list.backgroundColor = .clear
         list.delegate = self
         list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
