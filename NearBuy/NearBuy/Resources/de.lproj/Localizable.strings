@@ -29,6 +29,7 @@
 "helper_request_overview_screen_title" = "Übersicht";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_available_section" = "Suchen:";
+"helper_request_overview_unknown_requester" = "- UNBEKANNT -";
 
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";

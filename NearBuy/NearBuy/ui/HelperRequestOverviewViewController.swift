@@ -86,32 +86,28 @@ class HelperRequestOverviewViewController: UIViewController {
         }
 
         collectionView = list
-
-        content = Content(acceptedRequests: [Request(title: "accepted eins"), Request(title: "accepted zwei")],
-                          availableRequests: [Request(title: "available eins"), Request(title: "available zwei")])
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         RequestService.shared.openRequests()
-            .subscribe(onSuccess: { requests in
-                log.debug("Requests: \(requests)")
+            .subscribe(onSuccess: { [weak self] openRequests in
+                log.debug("Open requests: \(openRequests)")
+
+                let content = Content(acceptedRequests: [],
+                                      availableRequests: openRequests.map {
+//                                        let name = $0.requester?.lastName ?? R.string.localizable.helper_request_overview_unknown_requester()
+
+                                        let name = "Requester: \($0.requesterId)"
+                                        return Request(title: name)
+                })
+
+                self?.content = content
             }) { error in
-                log.error("Error: \(error)")
+                log.error("Request failed: \(error)")
             }
             .disposed(by: disposeBag)
-
-//        Single.zip(RequestService.shared.openRequests(onlyMine: true), RequestService.shared.openRequests())
-//            .subscribe(onSuccess: { [weak self] myRequests, allRequests in
-//                log.debug("My requests: \(myRequests)")
-//                log.debug("All requests: \(allRequests)")
-//
-//                let content = Content(acceptedRequests: myRequests.map { Request(title: "Requester: \($0.phoneNumber)") },
-//                                      availableRequests: allRequests.map { Request(title: "Requester: \($0.phoneNumber)") })
-//            }) { error in
-//                log.error("Request failed: \(error)")
-//        }
     }
 }
 

@@ -29,6 +29,7 @@
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
 "helper_request_overview_heading_available_section" = "Available requests:";
+"helper_request_overview_unknown_requester" = "- unknown -";
 
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_submit_button_title" = "Submit";
