@@ -59,7 +59,7 @@ class CheckoutViewController: UIViewController {
             let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
                 let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
                 return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                              title: request.userId,
+                                                                              title: "\(request.userId)",
                                                                               items: items)
             }
 

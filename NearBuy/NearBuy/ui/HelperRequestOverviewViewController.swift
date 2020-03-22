@@ -109,7 +109,7 @@ class HelperRequestOverviewViewController: UIViewController {
         RequestService.shared.openRequests()
             .flatMap { requests -> Single<[(Int, String)]> in
                 return Single.zip(requests
-                    .filter { $0.status == "new" }
+                    .filter { $0.status == "pending" }
                     .map { request in  UserService.shared.fetchUserInfo(id: request.requesterId).map{ (request._id, "\($0.lastName) (\(request.articles.count))" ) } })
 
             }

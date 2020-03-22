@@ -34,8 +34,9 @@ $ docker-compose up -d db
 ## Reset db
 
 ```
-$ docker-compose stop db
-$ docker-compose rm db
+$ docker-compose down
+$ docker volume ls
+$ docker volume remove nearbuy-backend_data-volume
 $ docker-compose up -d db
 ```
 
