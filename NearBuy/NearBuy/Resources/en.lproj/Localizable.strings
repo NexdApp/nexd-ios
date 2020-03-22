@@ -31,6 +31,13 @@
 "helper_request_overview_heading_available_section" = "Available requests:";
 "helper_request_overview_unknown_requester" = "- unknown -";
 "helper_request_overview_button_title_start" = "Start";
+"helper_request_overview_error_title" = "Error!";
+"helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
+
+"shopping_list_screen_title" = "Shopping list";
+"shopping_list_button_title_checkout" = "Checkout";
+"shopping_list_overview_error_title" = "Error!";
+"shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
 
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_submit_button_title" = "Submit";

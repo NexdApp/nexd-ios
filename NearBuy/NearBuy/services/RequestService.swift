@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import SwaggerClient
 import RxSwift
+import SwaggerClient
 
 class RequestService {
     struct RequestItem {
@@ -38,5 +38,10 @@ class RequestService {
         }
 
         return RequestAPI.requestControllerGetAll().asSingle()
+    }
+
+    func fetchRequest(id: Int) -> Single<RequestEntity> {
+        return RequestAPI.requestControllerGetSingleRequest(requestId: id)
+            .asSingle()
     }
 }

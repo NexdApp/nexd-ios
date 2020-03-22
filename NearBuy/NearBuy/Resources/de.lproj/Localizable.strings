@@ -31,6 +31,13 @@
 "helper_request_overview_heading_available_section" = "Suchen:";
 "helper_request_overview_unknown_requester" = "- UNBEKANNT -";
 "helper_request_overview_button_title_start" = "Start";
+"helper_request_overview_error_title" = "Fehler!";
+"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
+
+"shopping_list_screen_title" = "Einkaufsliste";
+"shopping_list_button_title_checkout" = "Zur Kasse";
+"shopping_list_overview_error_title" = "Fehler!";
+"shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
 
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";

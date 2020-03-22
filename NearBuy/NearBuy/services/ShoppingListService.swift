@@ -13,8 +13,13 @@ import SwaggerClient
 class ShoppingListService {
     static let shared = ShoppingListService()
 
-    func createShoppingList(requestIds: [Int]) -> Completable {
+    func createShoppingList(requestIds: [Int]) -> Single<ShoppingList> {
         return ShoppingListAPI.shoppingListControllerInsertNewShoppingList(body: ShoppingListFormDto(requests: requestIds, status: nil))
-            .ignoreElements()
+            .asSingle()
+    }
+
+    func fetchShoppingLists() -> Single<[ShoppingList]> {
+        return ShoppingListAPI.shoppingListControllerGetUserLists()
+        .asSingle()
     }
 }

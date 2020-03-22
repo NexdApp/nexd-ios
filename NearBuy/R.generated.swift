@@ -185,7 +185,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 40 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -199,6 +199,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_available_section = Rswift.StringResource(key: "helper_request_overview_heading_available_section", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Checkout
+      ///
+      /// Locales: en, de
+      static let shopping_list_button_title_checkout = Rswift.StringResource(key: "shopping_list_button_title_checkout", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Chose items
       ///
       /// Locales: en, de
@@ -226,7 +230,15 @@ struct R: Rswift.Validatable {
       /// en translation: Error!
       ///
       /// Locales: en, de
+      static let helper_request_overview_error_title = Rswift.StringResource(key: "helper_request_overview_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
       static let seeker_error_title = Rswift.StringResource(key: "seeker_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
+      static let shopping_list_overview_error_title = Rswift.StringResource(key: "shopping_list_overview_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: First name
       ///
       /// Locales: en, de
@@ -287,6 +299,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_button_title_send = Rswift.StringResource(key: "registration_button_title_send", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Shopping list
+      ///
+      /// Locales: en, de
+      static let shopping_list_screen_title = Rswift.StringResource(key: "shopping_list_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Shopping list could not be loaded. Please try again!
+      ///
+      /// Locales: en, de
+      static let shopping_list_overview_error_loading_failed_message = Rswift.StringResource(key: "shopping_list_overview_error_loading_failed_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Sign-up
       ///
       /// Locales: en, de
@@ -311,6 +331,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Your request could not be sent! Please try again.
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_error_message = Rswift.StringResource(key: "helper_request_overview_error_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Your request could not be sent! Please try again.
       ///
       /// Locales: en, de
@@ -367,6 +391,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helper_request_overview_heading_available_section", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Checkout
+      ///
+      /// Locales: en, de
+      static func shopping_list_button_title_checkout(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("shopping_list_button_title_checkout", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "shopping_list_button_title_checkout"
+        }
+
+        return NSLocalizedString("shopping_list_button_title_checkout", bundle: bundle, comment: "")
       }
 
       /// en translation: Chose items
@@ -462,6 +501,21 @@ struct R: Rswift.Validatable {
       /// en translation: Error!
       ///
       /// Locales: en, de
+      static func helper_request_overview_error_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_error_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_error_title"
+        }
+
+        return NSLocalizedString("helper_request_overview_error_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
       static func seeker_error_title(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("seeker_error_title", bundle: hostingBundle, comment: "")
@@ -472,6 +526,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_error_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
+      static func shopping_list_overview_error_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("shopping_list_overview_error_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "shopping_list_overview_error_title"
+        }
+
+        return NSLocalizedString("shopping_list_overview_error_title", bundle: bundle, comment: "")
       }
 
       /// en translation: First name
@@ -699,6 +768,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_button_title_send", bundle: bundle, comment: "")
       }
 
+      /// en translation: Shopping list
+      ///
+      /// Locales: en, de
+      static func shopping_list_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("shopping_list_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "shopping_list_screen_title"
+        }
+
+        return NSLocalizedString("shopping_list_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Shopping list could not be loaded. Please try again!
+      ///
+      /// Locales: en, de
+      static func shopping_list_overview_error_loading_failed_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("shopping_list_overview_error_loading_failed_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "shopping_list_overview_error_loading_failed_message"
+        }
+
+        return NSLocalizedString("shopping_list_overview_error_loading_failed_message", bundle: bundle, comment: "")
+      }
+
       /// en translation: Sign-up
       ///
       /// Locales: en, de
@@ -787,6 +886,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("login_placeholer_username", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Your request could not be sent! Please try again.
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_error_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_error_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_error_message"
+        }
+
+        return NSLocalizedString("helper_request_overview_error_message", bundle: bundle, comment: "")
       }
 
       /// en translation: Your request could not be sent! Please try again.

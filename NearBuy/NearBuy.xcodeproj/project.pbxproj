@@ -11,6 +11,7 @@
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* ShoppingListService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+NearBuy.swift */; };
+		AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690272427BC46009A8892 /* ShoppingListViewController.swift */; };
 		AE2A9A872426D1D5006066B4 /* UIButton+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */; };
 		AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */; };
 		AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* RequestService.swift */; };
@@ -64,6 +65,7 @@
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
 		AE2690252427B3BA009A8892 /* UILabel+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+NearBuy.swift"; sourceTree = "<group>"; };
+		AE2690272427BC46009A8892 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A8A2426DF09006066B4 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
@@ -185,8 +187,9 @@
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
 				AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */,
-				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
+				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
+				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+NearBuy.swift in Sources */,
 				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
+				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,
 				AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */,
 				AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */,

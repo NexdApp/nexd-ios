@@ -162,10 +162,15 @@ extension HelperRequestOverviewViewController {
     @objc func startButtonPressed(sender: UIButton!) {
         guard let content = content else { return }
         ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
-            .subscribe(onCompleted: {
-                log.debug("Shoppping list created!")
-            }, onError: { error in
+            .subscribe(onSuccess: { [weak self] shoppingList in
+                log.debug("Shoppping list created: \(shoppingList)")
+                let shoppingListVC = ShoppingListViewController()
+                shoppingListVC.shoppingList = shoppingList
+                self?.navigationController?.pushViewController(shoppingListVC, animated: true)
+            }, onError: { [weak self] error in
                 log.error("Failed to create shopping list: \(error)")
+                self?.showError(title: R.string.localizable.helper_request_overview_error_title(),
+                                message: R.string.localizable.helper_request_overview_error_message())
             })
             .disposed(by: disposeBag)
     }
