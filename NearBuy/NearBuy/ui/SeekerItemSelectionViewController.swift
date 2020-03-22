@@ -28,6 +28,7 @@ class SeekerItemSelectionViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
+    private lazy var gradient = GradientView()
     private var collectionView: UICollectionView?
     private var dataSource: DataSource<CheckableCell.Item>? {
         didSet {
@@ -48,6 +49,11 @@ class SeekerItemSelectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        view.addSubview(gradient)
+        gradient.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical

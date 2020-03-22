@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
+    lazy var gradient = GradientView()
     lazy var username = UITextField()
     lazy var password = UITextField()
     lazy var loginButton = UIButton()
@@ -27,6 +28,11 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = .white
         title = R.string.localizable.login_screen_title()
+
+        view.addSubview(gradient)
+        gradient.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         view.addSubview(username)
         username.placeholder = R.string.localizable.login_placeholer_username()

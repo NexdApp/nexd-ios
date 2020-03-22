@@ -11,9 +11,9 @@ import Foundation
 
 public struct Request: Codable {
 
-    public var _id: BigDecimal
+    public var _id: Int
     public var createdAt: Date
-    public var requester: BigDecimal
+    public var requester: Int
     public var priority: String
     public var additionalRequest: String
     public var address: String
@@ -23,7 +23,7 @@ public struct Request: Codable {
     public var phoneNumber: String
     public var articles: [RequestArticle]
 
-    public init(_id: BigDecimal, createdAt: Date, requester: BigDecimal, priority: String, additionalRequest: String, address: String, zipCode: String, city: String, deliveryComment: String, phoneNumber: String, articles: [RequestArticle]) {
+    public init(_id: Int, createdAt: Date, requester: Int, priority: String, additionalRequest: String, address: String, zipCode: String, city: String, deliveryComment: String, phoneNumber: String, articles: [RequestArticle]) {
         self._id = _id
         self.createdAt = createdAt
         self.requester = requester

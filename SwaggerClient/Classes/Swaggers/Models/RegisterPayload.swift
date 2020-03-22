@@ -14,6 +14,7 @@ public struct RegisterPayload: Codable {
     public enum Role: String, Codable { 
         case helper = "helper"
         case seeker = "seeker"
+        case _none = "none"
     }
     public var email: String
     public var firstName: String

@@ -22,6 +22,7 @@ class RegistrationViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
+    lazy var gradient = GradientView()
     lazy var email = UITextField()
     lazy var firstName = UITextField()
     lazy var lastName = UITextField()
@@ -38,6 +39,11 @@ class RegistrationViewController: UIViewController {
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
+
+        view.addSubview(gradient)
+        gradient.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         view.addSubview(email)
         email.placeholder = R.string.localizable.registration_placeholer_email()
