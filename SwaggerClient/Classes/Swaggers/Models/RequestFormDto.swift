@@ -13,15 +13,15 @@ public struct RequestFormDto: Codable {
 
     public var street: String?
     public var number: String?
-    public var zipCode: String
-    public var city: String
+    public var zipCode: String?
+    public var city: String?
     /** List of articles */
     public var articles: [CreateRequestArticleDto]
     public var additionalRequest: String
     public var deliveryComment: String
     public var phoneNumber: String
 
-    public init(street: String?, number: String?, zipCode: String, city: String, articles: [CreateRequestArticleDto], additionalRequest: String, deliveryComment: String, phoneNumber: String) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, articles: [CreateRequestArticleDto], additionalRequest: String, deliveryComment: String, phoneNumber: String) {
         self.street = street
         self.number = number
         self.zipCode = zipCode

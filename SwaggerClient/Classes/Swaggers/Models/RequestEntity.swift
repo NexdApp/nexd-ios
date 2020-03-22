@@ -13,8 +13,8 @@ public struct RequestEntity: Codable {
 
     public var street: String?
     public var number: String?
-    public var zipCode: String
-    public var city: String
+    public var zipCode: String?
+    public var city: String?
     public var _id: Int
     public var createdAt: Date
     public var requesterId: Int
@@ -24,9 +24,9 @@ public struct RequestEntity: Codable {
     public var phoneNumber: String
     public var status: String
     public var articles: [RequestArticle]
-    public var requester: User
+    public var requester: User?
 
-    public init(street: String?, number: String?, zipCode: String, city: String, _id: Int, createdAt: Date, requesterId: Int, priority: String, additionalRequest: String, deliveryComment: String, phoneNumber: String, status: String, articles: [RequestArticle], requester: User) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, _id: Int, createdAt: Date, requesterId: Int, priority: String, additionalRequest: String, deliveryComment: String, phoneNumber: String, status: String, articles: [RequestArticle], requester: User?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode
@@ -36,6 +36,7 @@ public struct RequestEntity: Codable {
         self.requesterId = requesterId
         self.priority = priority
         self.additionalRequest = additionalRequest
+        
         self.deliveryComment = deliveryComment
         self.phoneNumber = phoneNumber
         self.status = status

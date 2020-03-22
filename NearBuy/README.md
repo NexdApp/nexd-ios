@@ -4,6 +4,10 @@
 $ pod install
 ```
 
+# Chose backend url
+
+- change `baseUrl` in `AppConfiguration`
+
 # Update REST client
 
 ## From localhost
@@ -18,6 +22,22 @@ $ cd NearBuy
 $ pod install
 ```
 
+
+# Local backend
+
+## Launch db
+
+```
+$ docker-compose up -d db
+```
+
+## Reset db
+
+```
+$ docker-compose stop db
+$ docker-compose rm db
+$ docker-compose up -d db
+```
 
 ## Known issues
 

@@ -16,6 +16,7 @@ class HelperRequestOverviewViewController: UIViewController {
         static let rowHeight: CGFloat = 40
         static let buttonHeight: CGFloat = 52
     }
+
     struct Request {
         let title: String
     }
@@ -93,17 +94,24 @@ class HelperRequestOverviewViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        Single.zip(RequestService.shared.openRequests(onlyMine: true), RequestService.shared.openRequests())
-            .subscribe(onSuccess: { [weak self] myRequests, allRequests in
-                log.debug("My requests: \(myRequests)")
-                log.debug("All requests: \(allRequests)")
-
-                let content = Content(acceptedRequests: myRequests.map { Request(title: "Requester: \($0.phoneNumber)") },
-                                      availableRequests: allRequests.map { Request(title: "Requester: \($0.phoneNumber)") })
+        RequestService.shared.openRequests()
+            .subscribe(onSuccess: { requests in
+                log.debug("Requests: \(requests)")
             }) { error in
-                log.error("Request failed: \(error)")
-        }
+                log.error("Error: \(error)")
+            }
+            .disposed(by: disposeBag)
 
+//        Single.zip(RequestService.shared.openRequests(onlyMine: true), RequestService.shared.openRequests())
+//            .subscribe(onSuccess: { [weak self] myRequests, allRequests in
+//                log.debug("My requests: \(myRequests)")
+//                log.debug("All requests: \(allRequests)")
+//
+//                let content = Content(acceptedRequests: myRequests.map { Request(title: "Requester: \($0.phoneNumber)") },
+//                                      availableRequests: allRequests.map { Request(title: "Requester: \($0.phoneNumber)") })
+//            }) { error in
+//                log.error("Request failed: \(error)")
+//        }
     }
 }
 

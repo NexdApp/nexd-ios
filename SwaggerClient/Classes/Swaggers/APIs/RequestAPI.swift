@@ -14,21 +14,23 @@ open class RequestAPI {
     /**
 
      - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
+     - parameter zipCode: (query) if set, only requests within the same zip code will be replied (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func requestControllerGetAll(onlyMine: String? = nil, completion: @escaping ((_ data: [RequestEntity]?,_ error: Error?) -> Void)) {
-        requestControllerGetAllWithRequestBuilder(onlyMine: onlyMine).execute { (response, error) -> Void in
+    open class func requestControllerGetAll(onlyMine: String? = nil, zipCode: String? = nil, completion: @escaping ((_ data: [RequestEntity]?,_ error: Error?) -> Void)) {
+        requestControllerGetAllWithRequestBuilder(onlyMine: onlyMine, zipCode: zipCode).execute { (response, error) -> Void in
             completion(response?.body, error)
         }
     }
 
     /**
      - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
+     - parameter zipCode: (query) if set, only requests within the same zip code will be replied (optional)
      - returns: Observable<[RequestEntity]>
      */
-    open class func requestControllerGetAll(onlyMine: String? = nil) -> Observable<[RequestEntity]> {
+    open class func requestControllerGetAll(onlyMine: String? = nil, zipCode: String? = nil) -> Observable<[RequestEntity]> {
         return Observable.create { observer -> Disposable in
-            requestControllerGetAll(onlyMine: onlyMine) { data, error in
+            requestControllerGetAll(onlyMine: onlyMine, zipCode: zipCode) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -115,16 +117,18 @@ open class RequestAPI {
   "status" : "status"
 } ]}]
      - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
+     - parameter zipCode: (query) if set, only requests within the same zip code will be replied (optional)
 
      - returns: RequestBuilder<[RequestEntity]> 
      */
-    open class func requestControllerGetAllWithRequestBuilder(onlyMine: String? = nil) -> RequestBuilder<[RequestEntity]> {
+    open class func requestControllerGetAllWithRequestBuilder(onlyMine: String? = nil, zipCode: String? = nil) -> RequestBuilder<[RequestEntity]> {
         let path = "/api/request"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
-                        "onlyMine": onlyMine
+                        "onlyMine": onlyMine, 
+                        "zipCode": zipCode
         ])
 
         let requestBuilder: RequestBuilder<[RequestEntity]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()

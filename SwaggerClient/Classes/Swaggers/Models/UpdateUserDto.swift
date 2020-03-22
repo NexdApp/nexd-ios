@@ -17,14 +17,14 @@ public struct UpdateUserDto: Codable {
     }
     public var street: String?
     public var number: String?
-    public var zipCode: String
-    public var city: String
+    public var zipCode: String?
+    public var city: String?
     public var firstName: String
     public var lastName: String
     public var role: Role
     public var telephone: String?
 
-    public init(street: String?, number: String?, zipCode: String, city: String, firstName: String, lastName: String, role: Role, telephone: String?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role, telephone: String?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode
