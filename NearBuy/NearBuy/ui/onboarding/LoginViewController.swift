@@ -14,13 +14,16 @@ import UIKit
 class LoginViewController: UIViewController {
     enum Style {
         static let buttonBackgroundColor: UIColor = .gray
+        static let logoSize = CGSize(width: 256, height: 256)
+        static let buttonHeight: CGFloat = 52
     }
 
     private let disposeBag = DisposeBag()
 
     lazy var gradient = GradientView()
-    lazy var username = UITextField()
-    lazy var password = UITextField()
+    lazy var logo = UIImageView()
+    lazy var username = TextField()
+    lazy var password = TextField()
     lazy var loginButton = UIButton()
     lazy var registerButton = UIButton()
 
@@ -35,41 +38,49 @@ class LoginViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        view.addSubview(username)
-        username.placeholder = R.string.localizable.login_placeholer_username()
+        view.addSubview(logo)
+        logo.image = R.image.logo()
+        logo.snp.makeConstraints { make -> Void in
+            make.size.equalTo(Style.logoSize)
+            make.centerX.equalToSuperview()
+            make.topMargin.equalTo(16)
+        }
 
+        view.addSubview(username)
+        username.styled(placeholder: R.string.localizable.login_placeholer_username())
         username.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
-            make.topMargin.equalTo(50)
+            make.height.equalTo(36)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.top.equalTo(logo.snp.bottom).offset(16)
         }
 
         view.addSubview(password)
-        password.placeholder = R.string.localizable.login_placeholer_password()
+        password.styled(placeholder: R.string.localizable.login_placeholer_password())
         password.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(36)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(username.snp_bottom).offset(16)
         }
 
         view.addSubview(loginButton)
-        loginButton.style()
-        loginButton.setTitle(R.string.localizable.login_button_title_login(), for: .normal)
+        loginButton.style(text: R.string.localizable.login_button_title_login())
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.buttonHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp_bottom).offset(16)
         }
 
         view.addSubview(registerButton)
-        registerButton.style()
-        registerButton.backgroundColor = Style.buttonBackgroundColor
-
-        loginButton.layer.cornerRadius = 10
-        loginButton.clipsToBounds = true
-
-        registerButton.setTitle(R.string.localizable.login_button_title_register(), for: .normal)
+        registerButton.style(text: R.string.localizable.login_button_title_register())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.buttonHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(loginButton.snp_bottom).offset(16)
         }
     }

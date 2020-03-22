@@ -10,10 +10,18 @@ import UIKit
 
 extension UIButton {
 
-    func style() {
-        backgroundColor = .gray
-        layer.cornerRadius = 10
-        clipsToBounds = true
+    func style(text: String) {
+        backgroundColor = .white
+        layer.cornerRadius = 26
+
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.buttonTextColor,
+            .font: UIFont.boldSystemFont(ofSize: 24)
+        ]
+
+        setAttributedTitle(NSAttributedString(string: text, attributes: attributes), for: .normal)
+
+        addShadow()
     }
 
     func addShadow() {

@@ -6,14 +6,16 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import SnapKit
-import UIKit
 import RxSwift
+import SnapKit
 import SwaggerClient
+import UIKit
 
 class RegistrationViewController: UIViewController {
     enum Style {
         static let buttonBackgroundColor: UIColor = .gray
+        static let textFieldHeight: CGFloat = 36
+        static let buttonHeight: CGFloat = 52
     }
 
     struct Result {
@@ -24,12 +26,12 @@ class RegistrationViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     lazy var gradient = GradientView()
-    lazy var email = UITextField()
-    lazy var firstName = UITextField()
-    lazy var lastName = UITextField()
-    lazy var phone = UITextField()
-    lazy var password = UITextField()
-    lazy var confirmPassword = UITextField()
+    lazy var email = TextField()
+    lazy var firstName = TextField()
+    lazy var lastName = TextField()
+    lazy var phone = TextField()
+    lazy var password = TextField()
+    lazy var confirmPassword = TextField()
 
     lazy var registerButton = UIButton()
 
@@ -47,54 +49,67 @@ class RegistrationViewController: UIViewController {
         }
 
         view.addSubview(email)
-        email.placeholder = R.string.localizable.registration_placeholer_email()
+        email.styled(placeholder: R.string.localizable.registration_placeholer_email())
         email.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.topMargin.equalTo(50)
         }
 
         view.addSubview(firstName)
-        firstName.placeholder = R.string.localizable.registration_placeholer_firstname()
+        firstName.styled(placeholder: R.string.localizable.registration_placeholer_firstname())
         firstName.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(email.snp_bottom).offset(16)
         }
 
         view.addSubview(lastName)
-        lastName.placeholder = R.string.localizable.registration_placeholer_lastname()
+        lastName.styled(placeholder: R.string.localizable.registration_placeholer_lastname())
         lastName.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(firstName.snp_bottom).offset(16)
         }
 
         view.addSubview(phone)
-        phone.placeholder = R.string.localizable.registration_placeholer_phone()
+        phone.styled(placeholder: R.string.localizable.registration_placeholer_phone())
         phone.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(lastName.snp_bottom).offset(16)
         }
 
         view.addSubview(password)
-        password.placeholder = R.string.localizable.registration_placeholer_password()
+        password.styled(placeholder: R.string.localizable.registration_placeholer_password())
         password.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(phone.snp_bottom).offset(16)
         }
 
         view.addSubview(confirmPassword)
-        confirmPassword.placeholder = R.string.localizable.registration_placeholer_confirm_password()
+        confirmPassword.styled(placeholder: R.string.localizable.registration_placeholer_confirm_password())
         confirmPassword.snp.makeConstraints { make -> Void in
-            make.leftMargin.rightMargin.equalTo(8)
+            make.height.equalTo(Style.textFieldHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp_bottom).offset(16)
         }
 
         view.addSubview(registerButton)
-        registerButton.backgroundColor = Style.buttonBackgroundColor
-        registerButton.setTitle(R.string.localizable.registration_button_title_send(), for: .normal)
+        registerButton.style(text: R.string.localizable.registration_button_title_send())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
-            make.leftMargin.rightMargin.equalTo(8)
-            make.top.equalTo(password.snp_bottom).offset(16)
+            make.height.equalTo(Style.buttonHeight)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.top.equalTo(confirmPassword.snp_bottom).offset(16)
         }
     }
 }

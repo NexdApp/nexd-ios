@@ -12,6 +12,8 @@
 		AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */; };
 		AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* RequestService.swift */; };
 		AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2A9A932426FA50006066B4 /* Localizable.strings */; };
+		AE2A9A9624275E14006066B4 /* UITextField+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */; };
+		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -61,7 +63,9 @@
 		AE2A9A8A2426DF09006066B4 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		AE2A9A922426FA50006066B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A942426FA67006066B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		AEF3D618242584C9005C77CE /* NearBuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearBuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+NearBuy.swift"; sourceTree = "<group>"; };
+		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		AEF3D618242584C9005C77CE /* Nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -136,7 +140,7 @@
 		AEF3D619242584C9005C77CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D618242584C9005C77CE /* NearBuy.app */,
+				AEF3D618242584C9005C77CE /* Nexd.app */,
 				AEF3D62E242584CC005C77CE /* NearBuyTests.xctest */,
 			);
 			name = Products;
@@ -209,6 +213,7 @@
 				AEF3D66424261131005C77CE /* SectionHeaderView.swift */,
 				AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */,
 				AEF3D67A2426C88B005C77CE /* GradientView.swift */,
+				AE2A9A97242763CF006066B4 /* TextField.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				AEF3D6702426785C005C77CE /* Storage.swift */,
 				AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */,
 				AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */,
+				AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -274,7 +280,7 @@
 			);
 			name = NearBuy;
 			productName = NearBuy;
-			productReference = AEF3D618242584C9005C77CE /* NearBuy.app */;
+			productReference = AEF3D618242584C9005C77CE /* Nexd.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AEF3D62D242584CC005C77CE /* NearBuyTests */ = {
@@ -458,11 +464,13 @@
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
+				AE2A9A9624275E14006066B4 /* UITextField+NearBuy.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
@@ -638,8 +646,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NearBuy;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.nexdapp;
+				PRODUCT_NAME = Nexd;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,8 +665,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NearBuy;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.nexdapp;
+				PRODUCT_NAME = Nexd;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

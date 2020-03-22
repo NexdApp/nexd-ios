@@ -14,7 +14,27 @@
                     <view key="view" contentMode="scaleToFill" id="cBs-80-Idn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="r77-fL-paU">
+                                <rect key="frame" x="79" y="320" width="256" height="256"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="256" id="xeJ-87-0eU"/>
+                                    <constraint firstAttribute="width" constant="256" id="ysx-IA-fUq"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="Jnz-f1-H2p">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Jnz-f1-H2p" firstAttribute="top" secondItem="PkD-hS-Pad" secondAttribute="top" id="1vw-mU-lYk"/>
+                            <constraint firstItem="PkD-hS-Pad" firstAttribute="trailing" secondItem="Jnz-f1-H2p" secondAttribute="trailing" id="GPn-YW-tjJ"/>
+                            <constraint firstItem="Jnz-f1-H2p" firstAttribute="leading" secondItem="PkD-hS-Pad" secondAttribute="leading" id="LaM-s0-pEN"/>
+                            <constraint firstItem="r77-fL-paU" firstAttribute="centerY" secondItem="cBs-80-Idn" secondAttribute="centerY" id="ML6-lJ-vQf"/>
+                            <constraint firstAttribute="bottom" secondItem="Jnz-f1-H2p" secondAttribute="bottom" id="PTx-Rm-J2K"/>
+                            <constraint firstItem="r77-fL-paU" firstAttribute="centerX" secondItem="cBs-80-Idn" secondAttribute="centerX" id="iJh-Li-FCj"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PkD-hS-Pad"/>
                     </view>
                 </viewController>
@@ -23,4 +43,8 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gradient" width="64" height="1024"/>
+        <image name="icon" width="512" height="512"/>
+    </resources>
 </document>

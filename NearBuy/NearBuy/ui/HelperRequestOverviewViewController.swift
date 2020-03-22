@@ -13,6 +13,7 @@ class HelperRequestOverviewViewController: UIViewController {
     enum Style {
         static let headerHeight: CGFloat = 60
         static let rowHeight: CGFloat = 40
+        static let buttonHeight: CGFloat = 52
     }
     struct Request {
         let title: String

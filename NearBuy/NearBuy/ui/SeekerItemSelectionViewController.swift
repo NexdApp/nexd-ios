@@ -14,6 +14,7 @@ class SeekerItemSelectionViewController: UIViewController {
     enum Style {
         static let headerHeight: CGFloat = 60
         static let rowHeight: CGFloat = 40
+        static let buttonHeight: CGFloat = 52
     }
 
     struct Item {
@@ -70,13 +71,13 @@ class SeekerItemSelectionViewController: UIViewController {
         view.backgroundColor = .white
         title = R.string.localizable.seeker_item_selection_screen_title()
 
-        submitButton.setTitle(R.string.localizable.seeker_submit_button_title(), for: .normal)
         submitButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
-        submitButton.style()
+        submitButton.style(text: R.string.localizable.seeker_submit_button_title())
         view.addSubview(submitButton)
         submitButton.snp.makeConstraints { make in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
+            make.height.equalTo(Style.buttonHeight)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
         }
 
