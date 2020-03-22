@@ -16,8 +16,10 @@
 "registration_placeholer_firstname" = "First name";
 "registration_placeholer_lastname" = "Last name";
 "registration_placeholer_phone" = "Phone";
+"registration_placeholer_zip" = "ZIP code";
 "registration_placeholer_password" = "Password";
 "registration_placeholer_confirm_password" = "Confirm password";
+"registration_button_title_continue" = "Continue";
 "registration_button_title_send" = "Send";
 
 "role_selection_screen_title" = "Role";

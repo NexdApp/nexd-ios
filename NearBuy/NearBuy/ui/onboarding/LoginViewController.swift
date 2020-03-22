@@ -99,9 +99,7 @@ extension LoginViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("Login successful!")
 
-                if let token = Storage.shared.authorizationToken {
-                    SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
-                }
+                SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
                 Storage.shared.userId = response._id
@@ -114,13 +112,6 @@ extension LoginViewController {
     }
 
     @objc func registerButtonPressed(sender: UIButton!) {
-        let registrationVC = RegistrationViewController()
-        registrationVC.onRegistrationFinished = { [weak self] result in
-            self?.username.text = result.email
-            self?.password.text = result.password
-            self?.navigationController?.popViewController(animated: true)
-        }
-
-        navigationController?.pushViewController(registrationVC, animated: true)
+        navigationController?.pushViewController(RegistrationViewController(), animated: true)
     }
 }

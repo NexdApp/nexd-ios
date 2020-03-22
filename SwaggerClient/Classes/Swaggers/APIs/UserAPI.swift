@@ -16,21 +16,17 @@ open class UserAPI {
      - parameter _id: (path) user id 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userControllerFindOne(_id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func userControllerFindOne(_id: Int, completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
         userControllerFindOneWithRequestBuilder(_id: _id).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter _id: (path) user id 
-     - returns: Observable<Void>
+     - returns: Observable<User>
      */
-    open class func userControllerFindOne(_id: Int) -> Observable<Void> {
+    open class func userControllerFindOne(_id: Int) -> Observable<User> {
         return Observable.create { observer -> Disposable in
             userControllerFindOne(_id: _id) { data, error in
                 if let error = error {
@@ -51,11 +47,22 @@ open class UserAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example={
+  "number" : "number",
+  "zipCode" : "zipCode",
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "role" : "role",
+  "city" : "city",
+  "street" : "street",
+  "telephone" : "telephone",
+  "email" : "email"
+}}]
      - parameter _id: (path) user id 
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<User> 
      */
-    open class func userControllerFindOneWithRequestBuilder(_id: Int) -> RequestBuilder<Void> {
+    open class func userControllerFindOneWithRequestBuilder(_id: Int) -> RequestBuilder<User> {
         var path = "/api/user/{id}"
         let _idPreEscape = "\(_id)"
         let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -65,7 +72,7 @@ open class UserAPI {
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -74,20 +81,16 @@ open class UserAPI {
 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userControllerGetAll(completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func userControllerGetAll(completion: @escaping ((_ data: [User]?,_ error: Error?) -> Void)) {
         userControllerGetAllWithRequestBuilder().execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
-     - returns: Observable<Void>
+     - returns: Observable<[User]>
      */
-    open class func userControllerGetAll() -> Observable<Void> {
+    open class func userControllerGetAll() -> Observable<[User]> {
         return Observable.create { observer -> Disposable in
             userControllerGetAll() { data, error in
                 if let error = error {
@@ -108,17 +111,38 @@ open class UserAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example=[ {
+  "number" : "number",
+  "zipCode" : "zipCode",
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "role" : "role",
+  "city" : "city",
+  "street" : "street",
+  "telephone" : "telephone",
+  "email" : "email"
+}, {
+  "number" : "number",
+  "zipCode" : "zipCode",
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "role" : "role",
+  "city" : "city",
+  "street" : "street",
+  "telephone" : "telephone",
+  "email" : "email"
+} ]}]
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<[User]> 
      */
-    open class func userControllerGetAllWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func userControllerGetAllWithRequestBuilder() -> RequestBuilder<[User]> {
         let path = "/api/user"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<[User]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -129,22 +153,18 @@ open class UserAPI {
      - parameter _id: (path) user id 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func userControllerUpdate(body: UpdateUserDto, _id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func userControllerUpdate(body: UpdateUserDto, _id: Int, completion: @escaping ((_ data: User?,_ error: Error?) -> Void)) {
         userControllerUpdateWithRequestBuilder(body: body, _id: _id).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter body: (body)  
      - parameter _id: (path) user id 
-     - returns: Observable<Void>
+     - returns: Observable<User>
      */
-    open class func userControllerUpdate(body: UpdateUserDto, _id: Int) -> Observable<Void> {
+    open class func userControllerUpdate(body: UpdateUserDto, _id: Int) -> Observable<User> {
         return Observable.create { observer -> Disposable in
             userControllerUpdate(body: body, _id: _id) { data, error in
                 if let error = error {
@@ -165,12 +185,23 @@ open class UserAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example={
+  "number" : "number",
+  "zipCode" : "zipCode",
+  "firstName" : "firstName",
+  "lastName" : "lastName",
+  "role" : "role",
+  "city" : "city",
+  "street" : "street",
+  "telephone" : "telephone",
+  "email" : "email"
+}}]
      - parameter body: (body)  
      - parameter _id: (path) user id 
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<User> 
      */
-    open class func userControllerUpdateWithRequestBuilder(body: UpdateUserDto, _id: Int) -> RequestBuilder<Void> {
+    open class func userControllerUpdateWithRequestBuilder(body: UpdateUserDto, _id: Int) -> RequestBuilder<User> {
         var path = "/api/user/{id}"
         let _idPreEscape = "\(_id)"
         let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -180,7 +211,7 @@ open class UserAPI {
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<User>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

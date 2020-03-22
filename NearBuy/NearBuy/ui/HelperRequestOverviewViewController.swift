@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import RxSwift
 import SnapKit
 import UIKit
 
@@ -23,6 +24,8 @@ class HelperRequestOverviewViewController: UIViewController {
         let acceptedRequests: [Request]
         let availableRequests: [Request]
     }
+
+    private let disposeBag = DisposeBag()
 
     private var gradient = GradientView()
     private var collectionView: UICollectionView?
@@ -85,6 +88,22 @@ class HelperRequestOverviewViewController: UIViewController {
 
         content = Content(acceptedRequests: [Request(title: "accepted eins"), Request(title: "accepted zwei")],
                           availableRequests: [Request(title: "available eins"), Request(title: "available zwei")])
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        Single.zip(RequestService.shared.openRequests(onlyMine: true), RequestService.shared.openRequests())
+            .subscribe(onSuccess: { [weak self] myRequests, allRequests in
+                log.debug("My requests: \(myRequests)")
+                log.debug("All requests: \(allRequests)")
+
+                let content = Content(acceptedRequests: myRequests.map { Request(title: "Requester: \($0.phoneNumber)") },
+                                      availableRequests: allRequests.map { Request(title: "Requester: \($0.phoneNumber)") })
+            }) { error in
+                log.error("Request failed: \(error)")
+        }
+
     }
 }
 

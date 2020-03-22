@@ -13,12 +13,16 @@ public struct ShoppingList: Codable {
 
     public var _id: Int
     public var owner: Int
+    public var createdAt: Date
+    public var updatedAt: Date
     public var status: String
     public var requests: [ShoppingListRequest]
 
-    public init(_id: Int, owner: Int, status: String, requests: [ShoppingListRequest]) {
+    public init(_id: Int, owner: Int, createdAt: Date, updatedAt: Date, status: String, requests: [ShoppingListRequest]) {
         self._id = _id
         self.owner = owner
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
         self.status = status
         self.requests = requests
     }
@@ -26,6 +30,8 @@ public struct ShoppingList: Codable {
     public enum CodingKeys: String, CodingKey { 
         case _id = "id"
         case owner
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
         case status
         case requests
     }

@@ -18,24 +18,17 @@ class RegistrationViewController: UIViewController {
         static let buttonHeight: CGFloat = 52
     }
 
-    struct Result {
-        let email: String
-        let password: String
-    }
-
     private let disposeBag = DisposeBag()
 
     lazy var gradient = GradientView()
+
     lazy var email = TextField()
     lazy var firstName = TextField()
     lazy var lastName = TextField()
-    lazy var phone = TextField()
     lazy var password = TextField()
     lazy var confirmPassword = TextField()
 
     lazy var registerButton = UIButton()
-
-    var onRegistrationFinished: ((Result) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,16 +69,6 @@ class RegistrationViewController: UIViewController {
             make.top.equalTo(firstName.snp_bottom).offset(16)
         }
 
-        view.addSubview(phone)
-        phone.keyboardType = .phonePad
-        phone.styled(placeholder: R.string.localizable.registration_placeholer_phone())
-        phone.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(lastName.snp_bottom).offset(16)
-        }
-
         view.addSubview(password)
         password.styled(placeholder: R.string.localizable.registration_placeholer_password())
         password.isSecureTextEntry = true
@@ -93,7 +76,7 @@ class RegistrationViewController: UIViewController {
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(phone.snp_bottom).offset(16)
+            make.top.equalTo(lastName.snp_bottom).offset(16)
         }
 
         view.addSubview(confirmPassword)
@@ -107,7 +90,7 @@ class RegistrationViewController: UIViewController {
         }
 
         view.addSubview(registerButton)
-        registerButton.style(text: R.string.localizable.registration_button_title_send())
+        registerButton.style(text: R.string.localizable.registration_button_title_continue())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
@@ -135,14 +118,14 @@ extension RegistrationViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("User registration successful")
 
-                if let token = Storage.shared.authorizationToken {
-                    SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
-                }
+                SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
                 Storage.shared.userId = response._id
 
-                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+                let userDetailsVC = UserDetailsViewController()
+                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response._id, firstName: firstName, lastName: lastName)
+                self?.navigationController?.pushViewController(userDetailsVC, animated: true)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")
 

@@ -11,7 +11,15 @@ import Foundation
 
 public struct RequestArticle: Codable {
 
+    public var articleId: Int
+    public var articleCount: Int
+    public var articleDone: Bool
 
+    public init(articleId: Int, articleCount: Int, articleDone: Bool) {
+        self.articleId = articleId
+        self.articleCount = articleCount
+        self.articleDone = articleDone
+    }
 
 
 }

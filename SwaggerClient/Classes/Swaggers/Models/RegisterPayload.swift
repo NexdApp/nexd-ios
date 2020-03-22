@@ -30,6 +30,5 @@ public struct RegisterPayload: Codable {
         self.password = password
     }
 
-
 }
 

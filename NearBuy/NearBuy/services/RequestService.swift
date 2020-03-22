@@ -18,16 +18,25 @@ class RequestService {
 
     static let shared = RequestService()
 
-    func submitRequest(items: [RequestItem]) -> Single<Request> {
+    func submitRequest(items: [RequestItem]) -> Single<RequestEntity> {
         let articles = items.map { CreateRequestArticleDto(articleId: $0.id, articleCount: $0.articleCount) }
 
-        let dto = CreateRequestDto(articles: articles,
-                                   address: "",
-                                   zipCode: "",
-                                   city: "",
-                                   additionalRequest: "",
-                                   deliveryComment: "",
-                                   phoneNumber: "")
+        let dto = RequestFormDto(street: nil,
+                                 number: nil,
+                                 zipCode: "12345",
+                                 city: "München",
+                                 articles: articles,
+                                 additionalRequest: "",
+                                 deliveryComment: "",
+                                 phoneNumber: "")
         return RequestAPI.requestControllerInsertRequestWithArticles(body: dto).asSingle()
+    }
+
+    func openRequests(onlyMine: Bool = false) -> Single<[RequestEntity]> {
+        guard !onlyMine else {
+            return RequestAPI.requestControllerGetAll(onlyMine: "true").asSingle()
+        }
+
+        return RequestAPI.requestControllerGetAll().asSingle()
     }
 }

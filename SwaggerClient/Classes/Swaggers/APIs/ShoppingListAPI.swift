@@ -13,28 +13,24 @@ import RxSwift
 open class ShoppingListAPI {
     /**
 
-     - parameter _id: (path)  
+     - parameter shoppingListId: (path)  
      - parameter requestId: (path)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func shoppingListControllerAddRequestToList(_id: Int, requestId: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        shoppingListControllerAddRequestToListWithRequestBuilder(_id: _id, requestId: requestId).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+    open class func shoppingListControllerAddRequestToList(shoppingListId: Int, requestId: Int, completion: @escaping ((_ data: ShoppingList?,_ error: Error?) -> Void)) {
+        shoppingListControllerAddRequestToListWithRequestBuilder(shoppingListId: shoppingListId, requestId: requestId).execute { (response, error) -> Void in
+            completion(response?.body, error)
         }
     }
 
     /**
-     - parameter _id: (path)  
+     - parameter shoppingListId: (path)  
      - parameter requestId: (path)  
-     - returns: Observable<Void>
+     - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerAddRequestToList(_id: Int, requestId: Int) -> Observable<Void> {
+    open class func shoppingListControllerAddRequestToList(shoppingListId: Int, requestId: Int) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
-            shoppingListControllerAddRequestToList(_id: _id, requestId: requestId) { data, error in
+            shoppingListControllerAddRequestToList(shoppingListId: shoppingListId, requestId: requestId) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -47,22 +43,34 @@ open class ShoppingListAPI {
     }
 
     /**
-     - PUT /api/shopping-list/{id}/{requestId}
+     - PUT /api/shopping-list/{shoppingListId}/{requestId}
      - 
 
      - :
        - type: http
        - name: bearer
-     - parameter _id: (path)  
+     - examples: [{contentType=application/json, example={
+  "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0.8008281904610115,
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
+  "status" : "status"
+}}]
+     - parameter shoppingListId: (path)  
      - parameter requestId: (path)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<ShoppingList> 
      */
-    open class func shoppingListControllerAddRequestToListWithRequestBuilder(_id: Int, requestId: Int) -> RequestBuilder<Void> {
-        var path = "/api/shopping-list/{id}/{requestId}"
-        let _idPreEscape = "\(_id)"
-        let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: _idPostEscape, options: .literal, range: nil)
+    open class func shoppingListControllerAddRequestToListWithRequestBuilder(shoppingListId: Int, requestId: Int) -> RequestBuilder<ShoppingList> {
+        var path = "/api/shopping-list/{shoppingListId}/{requestId}"
+        let shoppingListIdPreEscape = "\(shoppingListId)"
+        let shoppingListIdPostEscape = shoppingListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{shoppingListId}", with: shoppingListIdPostEscape, options: .literal, range: nil)
         let requestIdPreEscape = "\(requestId)"
         let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
@@ -71,7 +79,7 @@ open class ShoppingListAPI {
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -81,21 +89,17 @@ open class ShoppingListAPI {
      - parameter _id: (path)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func shoppingListControllerFindOne(_id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func shoppingListControllerFindOne(_id: Int, completion: @escaping ((_ data: ShoppingList?,_ error: Error?) -> Void)) {
         shoppingListControllerFindOneWithRequestBuilder(_id: _id).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter _id: (path)  
-     - returns: Observable<Void>
+     - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerFindOne(_id: Int) -> Observable<Void> {
+    open class func shoppingListControllerFindOne(_id: Int) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerFindOne(_id: _id) { data, error in
                 if let error = error {
@@ -116,11 +120,23 @@ open class ShoppingListAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example={
+  "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0.8008281904610115,
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
+  "status" : "status"
+}}]
      - parameter _id: (path)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<ShoppingList> 
      */
-    open class func shoppingListControllerFindOneWithRequestBuilder(_id: Int) -> RequestBuilder<Void> {
+    open class func shoppingListControllerFindOneWithRequestBuilder(_id: Int) -> RequestBuilder<ShoppingList> {
         var path = "/api/shopping-list/{id}"
         let _idPreEscape = "\(_id)"
         let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -130,7 +146,7 @@ open class ShoppingListAPI {
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -139,20 +155,16 @@ open class ShoppingListAPI {
 
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func shoppingListControllerGetUserLists(completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func shoppingListControllerGetUserLists(completion: @escaping ((_ data: [ShoppingList]?,_ error: Error?) -> Void)) {
         shoppingListControllerGetUserListsWithRequestBuilder().execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
-     - returns: Observable<Void>
+     - returns: Observable<[ShoppingList]>
      */
-    open class func shoppingListControllerGetUserLists() -> Observable<Void> {
+    open class func shoppingListControllerGetUserLists() -> Observable<[ShoppingList]> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerGetUserLists() { data, error in
                 if let error = error {
@@ -173,17 +185,40 @@ open class ShoppingListAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example=[ {
+  "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0.8008281904610115,
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
+  "status" : "status"
+}, {
+  "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0.8008281904610115,
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
+  "status" : "status"
+} ]}]
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<[ShoppingList]> 
      */
-    open class func shoppingListControllerGetUserListsWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func shoppingListControllerGetUserListsWithRequestBuilder() -> RequestBuilder<[ShoppingList]> {
         let path = "/api/shopping-list"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<[ShoppingList]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -226,8 +261,14 @@ open class ShoppingListAPI {
        - name: bearer
      - examples: [{contentType=application/json, example={
   "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
   "id" : 0.8008281904610115,
-  "requests" : [ { }, { } ],
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
   "status" : "status"
 }}]
      - parameter body: (body)  
@@ -250,98 +291,20 @@ open class ShoppingListAPI {
 
      - parameter body: (body)  
      - parameter _id: (path)  
-     - parameter requestId: (path)  
-     - parameter articleId: (path)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func shoppingListControllerMarkArticleAsDone(body: RequestArticleStatusDto, _id: Int, requestId: Int, articleId: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        shoppingListControllerMarkArticleAsDoneWithRequestBuilder(body: body, _id: _id, requestId: requestId, articleId: articleId).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
-        }
-    }
-
-    /**
-     - parameter body: (body)  
-     - parameter _id: (path)  
-     - parameter requestId: (path)  
-     - parameter articleId: (path)  
-     - returns: Observable<Void>
-     */
-    open class func shoppingListControllerMarkArticleAsDone(body: RequestArticleStatusDto, _id: Int, requestId: Int, articleId: Int) -> Observable<Void> {
-        return Observable.create { observer -> Disposable in
-            shoppingListControllerMarkArticleAsDone(body: body, _id: _id, requestId: requestId, articleId: articleId) { data, error in
-                if let error = error {
-                    observer.on(.error(error))
-                } else {
-                    observer.on(.next(data!))
-                }
-                observer.on(.completed)
-            }
-            return Disposables.create()
-        }
-    }
-
-    /**
-     - PUT /api/shopping-list/{id}/{requestId}/{articleId}
-     - 
-
-     - :
-       - type: http
-       - name: bearer
-     - parameter body: (body)  
-     - parameter _id: (path)  
-     - parameter requestId: (path)  
-     - parameter articleId: (path)  
-
-     - returns: RequestBuilder<Void> 
-     */
-    open class func shoppingListControllerMarkArticleAsDoneWithRequestBuilder(body: RequestArticleStatusDto, _id: Int, requestId: Int, articleId: Int) -> RequestBuilder<Void> {
-        var path = "/api/shopping-list/{id}/{requestId}/{articleId}"
-        let _idPreEscape = "\(_id)"
-        let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: _idPostEscape, options: .literal, range: nil)
-        let requestIdPreEscape = "\(requestId)"
-        let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
-        let articleIdPreEscape = "\(articleId)"
-        let articleIdPostEscape = articleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{articleId}", with: articleIdPostEscape, options: .literal, range: nil)
-        let URLString = SwaggerClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
-
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
-    }
-
-    /**
-
-     - parameter body: (body)  
-     - parameter _id: (path)  
-     - parameter completion: completion handler to receive the data and the error objects
-     */
-    open class func shoppingListControllerUpdateShoppingList(body: ShoppingListFormDto, _id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func shoppingListControllerUpdateShoppingList(body: ShoppingListFormDto, _id: Int, completion: @escaping ((_ data: ShoppingList?,_ error: Error?) -> Void)) {
         shoppingListControllerUpdateShoppingListWithRequestBuilder(body: body, _id: _id).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter body: (body)  
      - parameter _id: (path)  
-     - returns: Observable<Void>
+     - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerUpdateShoppingList(body: ShoppingListFormDto, _id: Int) -> Observable<Void> {
+    open class func shoppingListControllerUpdateShoppingList(body: ShoppingListFormDto, _id: Int) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerUpdateShoppingList(body: body, _id: _id) { data, error in
                 if let error = error {
@@ -362,12 +325,24 @@ open class ShoppingListAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example={
+  "owner" : 6.027456183070403,
+  "updated_at" : "2000-01-23T04:56:07.000+00:00",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0.8008281904610115,
+  "requests" : [ {
+    "requestId" : 1.4658129805029452
+  }, {
+    "requestId" : 1.4658129805029452
+  } ],
+  "status" : "status"
+}}]
      - parameter body: (body)  
      - parameter _id: (path)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<ShoppingList> 
      */
-    open class func shoppingListControllerUpdateShoppingListWithRequestBuilder(body: ShoppingListFormDto, _id: Int) -> RequestBuilder<Void> {
+    open class func shoppingListControllerUpdateShoppingListWithRequestBuilder(body: ShoppingListFormDto, _id: Int) -> RequestBuilder<ShoppingList> {
         var path = "/api/shopping-list/{id}"
         let _idPreEscape = "\(_id)"
         let _idPostEscape = _idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -377,7 +352,7 @@ open class ShoppingListAPI {
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

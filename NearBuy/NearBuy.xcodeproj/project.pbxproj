@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4A2249BB540F14859C4A57A1 /* Pods_NearBuyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */; };
+		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2A9A872426D1D5006066B4 /* UIButton+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */; };
 		AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */; };
 		AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* RequestService.swift */; };
 		AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2A9A932426FA50006066B4 /* Localizable.strings */; };
 		AE2A9A9624275E14006066B4 /* UITextField+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */; };
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
+		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -23,7 +25,6 @@
 		AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* LoginViewController.swift */; };
 		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
-		AEF3D658242603C8005C77CE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D657242603C8005C77CE /* User.swift */; };
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65E242604DE005C77CE /* DataSource.swift */; };
 		AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66024260500005C77CE /* DefaultDataSource.swift */; };
@@ -58,6 +59,7 @@
 		216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.debug.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.release.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.release.xcconfig"; sourceTree = "<group>"; };
+		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A8A2426DF09006066B4 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		AE2A9A942426FA67006066B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* Nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +81,6 @@
 		AEF3D64B24259ACE005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoleViewController.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
-		AEF3D657242603C8005C77CE /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D65E242604DE005C77CE /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		AEF3D66024260500005C77CE /* DefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
@@ -151,7 +153,6 @@
 			children = (
 				AEF3D66D24266460005C77CE /* utilities */,
 				AEF3D64A24259ACE005C77CE /* ui */,
-				AEF3D656242603C8005C77CE /* model */,
 				AEF3D66A24263A7F005C77CE /* services */,
 				AEF3D61B242584C9005C77CE /* AppDelegate.swift */,
 				AEF3D666242630C3005C77CE /* AppConfiguration.swift */,
@@ -194,14 +195,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AEF3D656242603C8005C77CE /* model */ = {
-			isa = PBXGroup;
-			children = (
-				AEF3D657242603C8005C77CE /* User.swift */,
-			);
-			path = model;
-			sourceTree = "<group>";
-		};
 		AEF3D65B242604C6005C77CE /* components */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,6 +217,7 @@
 				AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */,
 				AEF3D6762426AD56005C77CE /* ArticlesService.swift */,
 				AE2A9A8A2426DF09006066B4 /* RequestService.swift */,
+				AE26902124278BFC009A8892 /* UserService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -245,6 +239,7 @@
 			children = (
 				AEF3D64B24259ACE005C77CE /* LoginViewController.swift */,
 				AEF3D66824263149005C77CE /* RegistrationViewController.swift */,
+				AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
@@ -458,12 +453,14 @@
 				AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */,
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
+				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
@@ -474,7 +471,6 @@
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
-				AEF3D658242603C8005C77CE /* User.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+NearBuy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

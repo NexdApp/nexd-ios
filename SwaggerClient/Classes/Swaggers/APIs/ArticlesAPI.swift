@@ -69,21 +69,17 @@ open class ArticlesAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func articlesControllerInsertOne(body: CreateArticleDto, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func articlesControllerInsertOne(body: CreateArticleDto, completion: @escaping ((_ data: Article?,_ error: Error?) -> Void)) {
         articlesControllerInsertOneWithRequestBuilder(body: body).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter body: (body)  
-     - returns: Observable<Void>
+     - returns: Observable<Article>
      */
-    open class func articlesControllerInsertOne(body: CreateArticleDto) -> Observable<Void> {
+    open class func articlesControllerInsertOne(body: CreateArticleDto) -> Observable<Article> {
         return Observable.create { observer -> Disposable in
             articlesControllerInsertOne(body: body) { data, error in
                 if let error = error {
@@ -101,18 +97,22 @@ open class ArticlesAPI {
      - POST /api/articles
      - 
 
+     - examples: [{contentType=application/json, example={
+  "name" : "name",
+  "id" : 0
+}}]
      - parameter body: (body)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<Article> 
      */
-    open class func articlesControllerInsertOneWithRequestBuilder(body: CreateArticleDto) -> RequestBuilder<Void> {
+    open class func articlesControllerInsertOneWithRequestBuilder(body: CreateArticleDto) -> RequestBuilder<Article> {
         let path = "/api/articles"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Article>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

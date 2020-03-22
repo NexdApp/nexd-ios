@@ -11,7 +11,11 @@ import Foundation
 
 public struct ShoppingListRequest: Codable {
 
+    public var requestId: Int
 
+    public init(requestId: Int) {
+        self.requestId = requestId
+    }
 
 
 }
