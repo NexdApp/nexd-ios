@@ -28,7 +28,11 @@ class ShoppingListViewController: UIViewController {
         let items: [Item]
     }
 
-    var shoppingList: ShoppingList?
+    var shoppingList: ShoppingList? {
+        didSet {
+            log.debug("ZEFIX - \(shoppingList)")
+        }
+    }
 
     private let disposeBag = DisposeBag()
 
@@ -94,7 +98,6 @@ class ShoppingListViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         loadContent()
     }
 
@@ -102,10 +105,10 @@ class ShoppingListViewController: UIViewController {
         let getShoppingList = shoppingList != nil ?
             Single.just(shoppingList) :
             ShoppingListService.shared.fetchShoppingLists()
-            .map { lists -> ShoppingList? in
-                var orderedLists = lists
-                orderedLists.sort { first, second in first.createdAt < second.createdAt }
-                return orderedLists.last
+            .map { lists in
+                var activeList = lists.filter { $0.status == "active" }
+                activeList.sort { first, second in first.createdAt < second.createdAt }
+                return activeList.first
             }
 
         getShoppingList
@@ -136,17 +139,7 @@ class ShoppingListViewController: UIViewController {
     }
 
     private func loadAllArticles(for shoppingList: ShoppingList) -> Single<[RequestArticle]> {
-        return ShoppingListService.shared.fetchShoppingLists()
-            .map {
-                $0.filter { $0.status == "active" }.first
-            }
-            .flatMap { list -> Single<[RequestEntity]> in
-                guard let list = list else {
-                    return Single.just([])
-                }
-
-                return Single.zip(list.requests.map { RequestService.shared.fetchRequest(id: $0.requestId) })
-            }
+        return Single.zip(shoppingList.requests.map { RequestService.shared.fetchRequest(id: $0.requestId) })
             .map { $0.flatMap { request in request.articles } }
     }
 }
