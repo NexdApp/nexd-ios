@@ -9,6 +9,6 @@
 import Foundation
 
 struct User {
-    let name: String
+    let token: String
     let location: String
 }

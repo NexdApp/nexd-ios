@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 
-        let rootVC = Storage.shared.loggedInUserEmail == nil ? LoginViewController() : SelectRoleViewController()
+        let rootVC = Storage.shared.authorizationToken == nil ? LoginViewController() : SelectRoleViewController()
         let navigationVC = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()
@@ -54,7 +54,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
-

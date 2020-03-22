@@ -16,21 +16,17 @@ open class AuthenticationAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func authControllerLogin(body: LoginPayload, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func authControllerLogin(body: LoginPayload, completion: @escaping ((_ data: ResponseTokenDto?,_ error: Error?) -> Void)) {
         authControllerLoginWithRequestBuilder(body: body).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter body: (body)  
-     - returns: Observable<Void>
+     - returns: Observable<ResponseTokenDto>
      */
-    open class func authControllerLogin(body: LoginPayload) -> Observable<Void> {
+    open class func authControllerLogin(body: LoginPayload) -> Observable<ResponseTokenDto> {
         return Observable.create { observer -> Disposable in
             authControllerLogin(body: body) { data, error in
                 if let error = error {
@@ -48,18 +44,23 @@ open class AuthenticationAPI {
      - POST /api/auth/login
      - 
 
+     - examples: [{contentType=application/json, example={
+  "expiresIn" : 0,
+  "id" : 6,
+  "accessToken" : "accessToken"
+}}]
      - parameter body: (body)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<ResponseTokenDto> 
      */
-    open class func authControllerLoginWithRequestBuilder(body: LoginPayload) -> RequestBuilder<Void> {
+    open class func authControllerLoginWithRequestBuilder(body: LoginPayload) -> RequestBuilder<ResponseTokenDto> {
         let path = "/api/auth/login"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
@@ -69,21 +70,17 @@ open class AuthenticationAPI {
      - parameter body: (body)  
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func authControllerRegister(body: RegisterPayload, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
+    open class func authControllerRegister(body: RegisterPayload, completion: @escaping ((_ data: ResponseTokenDto?,_ error: Error?) -> Void)) {
         authControllerRegisterWithRequestBuilder(body: body).execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+            completion(response?.body, error)
         }
     }
 
     /**
      - parameter body: (body)  
-     - returns: Observable<Void>
+     - returns: Observable<ResponseTokenDto>
      */
-    open class func authControllerRegister(body: RegisterPayload) -> Observable<Void> {
+    open class func authControllerRegister(body: RegisterPayload) -> Observable<ResponseTokenDto> {
         return Observable.create { observer -> Disposable in
             authControllerRegister(body: body) { data, error in
                 if let error = error {
@@ -101,18 +98,23 @@ open class AuthenticationAPI {
      - POST /api/auth/register
      - 
 
+     - examples: [{contentType=application/json, example={
+  "expiresIn" : 0,
+  "id" : 6,
+  "accessToken" : "accessToken"
+}}]
      - parameter body: (body)  
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<ResponseTokenDto> 
      */
-    open class func authControllerRegisterWithRequestBuilder(body: RegisterPayload) -> RequestBuilder<Void> {
+    open class func authControllerRegisterWithRequestBuilder(body: RegisterPayload) -> RequestBuilder<ResponseTokenDto> {
         let path = "/api/auth/register"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: body)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

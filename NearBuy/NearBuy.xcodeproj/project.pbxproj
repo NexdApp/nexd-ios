@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A2249BB540F14859C4A57A1 /* Pods_NearBuyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */; };
-		AE2A9A872426D1D5006066B4 /* UIButton+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+Shadow.swift */; };
+		AE2A9A872426D1D5006066B4 /* UIButton+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */; };
 		AE2A9A892426D992006066B4 /* UIColor+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */; };
 		AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* RequestService.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
@@ -56,7 +56,7 @@
 		216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.debug.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.release.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.release.xcconfig"; sourceTree = "<group>"; };
-		AE2A9A862426D1D5006066B4 /* UIButton+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Shadow.swift"; sourceTree = "<group>"; };
+		AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A8A2426DF09006066B4 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* NearBuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearBuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,7 +227,7 @@
 			children = (
 				AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */,
 				AEF3D6702426785C005C77CE /* Storage.swift */,
-				AE2A9A862426D1D5006066B4 /* UIButton+Shadow.swift */,
+				AE2A9A862426D1D5006066B4 /* UIButton+NearBuy.swift */,
 				AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */,
 			);
 			path = utilities;
@@ -465,7 +465,7 @@
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
 				AEF3D658242603C8005C77CE /* User.swift in Sources */,
-				AE2A9A872426D1D5006066B4 /* UIButton+Shadow.swift in Sources */,
+				AE2A9A872426D1D5006066B4 /* UIButton+NearBuy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

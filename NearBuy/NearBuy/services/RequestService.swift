@@ -11,18 +11,23 @@ import SwaggerClient
 import RxSwift
 
 class RequestService {
+    struct RequestItem {
+        let id: Int
+        let articleCount: Int
+    }
+
     static let shared = RequestService()
 
-    func submitRequest() -> Single<Request> {
-        let articles = [CreateRequestArticleDto(articleId: 1, articleCount: 1)]
+    func submitRequest(items: [RequestItem]) -> Single<Request> {
+        let articles = items.map { CreateRequestArticleDto(articleId: $0.id, articleCount: $0.articleCount) }
 
         let dto = CreateRequestDto(articles: articles,
-                                   address: "test",
-                                   zipCode: "hallo",
-                                   city: "stadt",
-                                   additionalRequest: "nix",
-                                   deliveryComment: "dahoam",
-                                   phoneNumber: "123456")
+                                   address: "",
+                                   zipCode: "",
+                                   city: "",
+                                   additionalRequest: "",
+                                   deliveryComment: "",
+                                   phoneNumber: "")
         return RequestAPI.requestControllerInsertRequestWithArticles(body: dto).asSingle()
     }
 }

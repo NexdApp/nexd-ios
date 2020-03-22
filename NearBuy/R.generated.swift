@@ -140,7 +140,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 25 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 26 localization keys.
     struct localizable {
       /// Value: Accepted requests:
       static let helper_request_overview_heading_accepted_section = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
@@ -186,6 +186,8 @@ struct R: Rswift.Validatable {
       static let registration_button_title_send = Rswift.StringResource(key: "registration_button_title_send", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: Sign-up
       static let registration_screen_title = Rswift.StringResource(key: "registration_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
+      /// Value: Submit
+      static let seeker_submit_button_title = Rswift.StringResource(key: "seeker_submit_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: User registration failed. Please make sure you input valid data.
       static let error_message_registration_validation_failed = Rswift.StringResource(key: "error_message_registration_validation_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: [], comment: nil)
       /// Value: User registration failed. Please try again.
@@ -477,6 +479,19 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// Value: Submit
+      static func seeker_submit_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_submit_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_submit_button_title"
+        }
+
+        return NSLocalizedString("seeker_submit_button_title", bundle: bundle, comment: "")
       }
 
       /// Value: User registration failed. Please make sure you input valid data.

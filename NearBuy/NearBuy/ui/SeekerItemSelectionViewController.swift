@@ -28,8 +28,10 @@ class SeekerItemSelectionViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
-    private lazy var gradient = GradientView()
+    private var gradient = GradientView()
     private var collectionView: UICollectionView?
+    private var submitButton = UIButton()
+
     private var dataSource: DataSource<CheckableCell.Item>? {
         didSet {
             collectionView?.dataSource = dataSource
@@ -68,9 +70,20 @@ class SeekerItemSelectionViewController: UIViewController {
         view.backgroundColor = .white
         title = R.string.localizable.seeker_item_selection_screen_title()
 
+        submitButton.setTitle(R.string.localizable.seeker_submit_button_title(), for: .normal)
+        submitButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
+        submitButton.style()
+        view.addSubview(submitButton)
+        submitButton.snp.makeConstraints { make in
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+        }
+
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in
-            make.edges.equalToSuperview()
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalTo(submitButton.snp.top).offset(8)
         }
 
         collectionView = list
@@ -112,4 +125,15 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout 
 //    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        return CGSize(width: collectionView.frame.size.width, height: Style.rowHeight)
 //    }
+}
+
+extension SeekerItemSelectionViewController {
+    @objc func submitButtonPressed(sender: UIButton!) {
+        RequestService.shared.submitRequest().subscribe(onSuccess: { request in
+            log.debug("Succesful: \(request)")
+        }) { error in
+            log.error("Error: \(error)")
+        }
+        .disposed(by: disposeBag)
+    }
 }

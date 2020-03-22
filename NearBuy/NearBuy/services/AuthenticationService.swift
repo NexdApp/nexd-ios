@@ -13,13 +13,13 @@ import RxSwift
 class AuthenticationService {
     static let shared = AuthenticationService()
 
-    func register(email: String, firstName: String, lastName: String, password: String) -> Completable {
-        AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: .helper, password: password))
-            .ignoreElements()
+    func register(email: String, firstName: String, lastName: String, password: String) -> Single<ResponseTokenDto> {
+        return AuthenticationAPI.authControllerRegister(body: RegisterPayload(email: email, firstName: firstName, lastName: lastName, role: .helper, password: password))
+            .asSingle()
     }
 
-    func login(email: String, password: String) -> Completable {
+    func login(email: String, password: String) -> Single<ResponseTokenDto> {
         return AuthenticationAPI.authControllerLogin(body: LoginPayload(email: email, password: password))
-            .ignoreElements()
+            .asSingle()
     }
 }

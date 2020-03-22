@@ -9,6 +9,7 @@
 import SnapKit
 import UIKit
 import RxSwift
+import SwaggerClient
 
 class RegistrationViewController: UIViewController {
     enum Style {
@@ -112,9 +113,17 @@ extension RegistrationViewController {
                                               firstName: firstName,
                                               lastName: lastName,
                                               password: password)
-            .subscribe(onCompleted: { [weak self] in
+            .subscribe(onSuccess: { [weak self] response in
                 log.debug("User registration successful")
-                self?.onRegistrationFinished?(Result(email: email, password: password))
+
+                if let token = Storage.shared.authorizationToken {
+                    SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
+                }
+
+                Storage.shared.authorizationToken = response.accessToken
+                Storage.shared.userId = response._id
+
+                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")
 

@@ -101,7 +101,7 @@ open class RequestAPI {
        - type: http
        - name: bearer
      - examples: [{contentType=application/json, example={
-  "requester" : 6.027456183070403,
+  "requester" : 6,
   "zipCode" : "zipCode",
   "address" : "address",
   "phoneNumber" : "phoneNumber",
@@ -109,7 +109,7 @@ open class RequestAPI {
   "city" : "city",
   "deliveryComment" : "deliveryComment",
   "created_at" : "2000-01-23T04:56:07.000+00:00",
-  "id" : 0.8008281904610115,
+  "id" : 0,
   "priority" : "priority",
   "articles" : [ { }, { } ]
 }}]

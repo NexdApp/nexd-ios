@@ -10,6 +10,12 @@ import UIKit
 
 extension UIButton {
 
+    func style() {
+        backgroundColor = .gray
+        layer.cornerRadius = 10
+        clipsToBounds = true
+    }
+
     func addShadow() {
         layer.shadowColor = UIColor.gray.cgColor
         layer.shadowOpacity = 0.3;

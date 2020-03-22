@@ -13,7 +13,7 @@ import RxSwift
 open class UserAPI {
     /**
 
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func userControllerFindOne(_id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
@@ -27,7 +27,7 @@ open class UserAPI {
     }
 
     /**
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
      - returns: Observable<Void>
      */
     open class func userControllerFindOne(_id: Int) -> Observable<Void> {
@@ -51,7 +51,7 @@ open class UserAPI {
      - :
        - type: http
        - name: bearer
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
 
      - returns: RequestBuilder<Void> 
      */
@@ -126,7 +126,7 @@ open class UserAPI {
     /**
 
      - parameter body: (body)  
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
      - parameter completion: completion handler to receive the data and the error objects
      */
     open class func userControllerUpdate(body: UpdateUserDto, _id: Int, completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
@@ -141,7 +141,7 @@ open class UserAPI {
 
     /**
      - parameter body: (body)  
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
      - returns: Observable<Void>
      */
     open class func userControllerUpdate(body: UpdateUserDto, _id: Int) -> Observable<Void> {
@@ -166,7 +166,7 @@ open class UserAPI {
        - type: http
        - name: bearer
      - parameter body: (body)  
-     - parameter _id: (path)  
+     - parameter _id: (path) user id 
 
      - returns: RequestBuilder<Void> 
      */

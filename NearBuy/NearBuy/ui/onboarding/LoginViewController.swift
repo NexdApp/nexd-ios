@@ -8,6 +8,7 @@
 
 import RxSwift
 import SnapKit
+import SwaggerClient
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -50,9 +51,7 @@ class LoginViewController: UIViewController {
         }
 
         view.addSubview(loginButton)
-        loginButton.backgroundColor = Style.buttonBackgroundColor
-        loginButton.layer.cornerRadius = 10
-        loginButton.clipsToBounds = true
+        loginButton.style()
         loginButton.setTitle(R.string.localizable.login_button_title_login(), for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
@@ -61,8 +60,9 @@ class LoginViewController: UIViewController {
         }
 
         view.addSubview(registerButton)
+        registerButton.style()
         registerButton.backgroundColor = Style.buttonBackgroundColor
-        
+
         loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
 
@@ -83,14 +83,20 @@ extension LoginViewController {
         }
 
         AuthenticationService.shared.login(email: email, password: password)
-            .subscribe(onCompleted: { [weak self] in
+            .subscribe(onSuccess: { [weak self] response in
                 log.debug("Login successful!")
-                Storage.shared.loggedInUserEmail = email
+
+                if let token = Storage.shared.authorizationToken {
+                    SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
+                }
+
+                Storage.shared.authorizationToken = response.accessToken
+                Storage.shared.userId = response._id
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
-            }) { [weak self] error in
+            }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
-            }
+            })
             .disposed(by: disposeBag)
     }
 

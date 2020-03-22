@@ -14,12 +14,21 @@ class Storage {
 
     private let defaults = UserDefaults.standard
 
-    var loggedInUserEmail: String? {
+    var authorizationToken: String? {
         get {
-            defaults.string(forKey: "loggedInUserEmail")
+            defaults.string(forKey: "authorizationToken")
         }
         set(email) {
-            defaults.setValue(email, forKey: "loggedInUserEmail")
+            defaults.setValue(email, forKey: "authorizationToken")
+        }
+    }
+
+    var userId: Int? {
+        get {
+            defaults.integer(forKey: "userId")
+        }
+        set(id) {
+            defaults.setValue(id, forKey: "userId")
         }
     }
 }
