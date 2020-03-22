@@ -39,6 +39,9 @@
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
 
+"checkout_screen_title" = "An der Kasse";
+"checkout_button_title_complete" = "Fertig";
+
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";
 "seeker_success_title" = "Fertig!";

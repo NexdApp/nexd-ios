@@ -39,6 +39,9 @@
 "shopping_list_overview_error_title" = "Error!";
 "shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
 
+"checkout_screen_title" = "Checkout";
+"checkout_button_title_complete" = "Complete";
+
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_submit_button_title" = "Submit";
 "seeker_success_title" = "Done!";

@@ -20,19 +20,16 @@ class ShoppingListViewController: UIViewController {
 
     struct Item {
         let isSelected: Bool
-        let id: Int
         let title: String
+        let id: Int
+        let orderedBy: Int
     }
 
     struct Content {
         let items: [Item]
     }
 
-    var shoppingList: ShoppingList? {
-        didSet {
-            log.debug("ZEFIX - \(shoppingList)")
-        }
-    }
+    var shoppingList: ShoppingList?
 
     private let disposeBag = DisposeBag()
 
@@ -112,19 +109,26 @@ class ShoppingListViewController: UIViewController {
             }
 
         getShoppingList
-            .flatMap { [weak self] list -> Single<[RequestArticle]> in
+            .flatMap { [weak self] list -> Single<[RequestEntity]> in
                 guard let self = self, let list = list else {
                     return Single.just([])
                 }
-                return self.loadAllArticles(for: list)
+                return self.loadAllRequests(for: list)
             }
-            .flatMap { articles in
+            .flatMap { requests in
                 ArticlesService.shared.allArticles()
-                    .map { allArticles -> [ShoppingListViewController.Item] in
-                        articles.map { article in
-                            let details = allArticles.first { $0._id == article.articleId }
-                            return ShoppingListViewController.Item(isSelected: false, id: article.articleId, title: details?.name ?? "-")
-                        }
+                    .map { allArticles -> [Item] in
+                        requests
+                            .flatMap { request in
+                                request.articles.map { article in
+                                    let details = allArticles.first { $0._id == article.articleId }
+
+                                    return Item(isSelected: false,
+                                                title: details?.name ?? "-",
+                                                id: article.articleId,
+                                                orderedBy: request.requesterId)
+                                }
+                            }
                     }
             }
             .subscribe(onSuccess: { [weak self] items in
@@ -138,9 +142,8 @@ class ShoppingListViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func loadAllArticles(for shoppingList: ShoppingList) -> Single<[RequestArticle]> {
+    private func loadAllRequests(for shoppingList: ShoppingList) -> Single<[RequestEntity]> {
         return Single.zip(shoppingList.requests.map { RequestService.shared.fetchRequest(id: $0.requestId) })
-            .map { $0.flatMap { request in request.articles } }
     }
 }
 
@@ -154,7 +157,7 @@ extension ShoppingListViewController: UICollectionViewDelegate {
 
         var items = content.items
         let item = items[indexPath.row]
-        items[indexPath.row] = Item(isSelected: !item.isSelected, id: item.id, title: item.title)
+        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, id: item.id, orderedBy: item.orderedBy)
         self.content = Content(items: items)
     }
 }
@@ -162,6 +165,14 @@ extension ShoppingListViewController: UICollectionViewDelegate {
 extension ShoppingListViewController {
     @objc func checkoutButtonPressed(sender: UIButton!) {
         guard let content = content else { return }
+        let checkoutVC = CheckoutViewController()
+
+        let allUserIds = Array(Set(content.items.map { $0.orderedBy }))
+        let checkoutItems = allUserIds.map { userId in CheckoutViewController.UserRequest(userId: userId,
+                                                                      items: content.items.filter { $0.orderedBy == userId }.map { CheckoutViewController.Item.from(item: $0) }) }
+        checkoutVC.content = CheckoutViewController.Content(requests: checkoutItems)
+
+        navigationController?.pushViewController(checkoutVC, animated: true)
 //        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
 //            .subscribe(onCompleted: {
 //                log.debug("Shoppping list created!")

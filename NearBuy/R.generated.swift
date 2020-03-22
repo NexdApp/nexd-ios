@@ -185,7 +185,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 40 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -202,11 +202,19 @@ struct R: Rswift.Validatable {
       /// en translation: Checkout
       ///
       /// Locales: en, de
+      static let checkout_screen_title = Rswift.StringResource(key: "checkout_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Checkout
+      ///
+      /// Locales: en, de
       static let shopping_list_button_title_checkout = Rswift.StringResource(key: "shopping_list_button_title_checkout", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Chose items
       ///
       /// Locales: en, de
       static let seeker_item_selection_screen_title = Rswift.StringResource(key: "seeker_item_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Complete
+      ///
+      /// Locales: en, de
+      static let checkout_button_title_complete = Rswift.StringResource(key: "checkout_button_title_complete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Confirm password
       ///
       /// Locales: en, de
@@ -396,6 +404,21 @@ struct R: Rswift.Validatable {
       /// en translation: Checkout
       ///
       /// Locales: en, de
+      static func checkout_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("checkout_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "checkout_screen_title"
+        }
+
+        return NSLocalizedString("checkout_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Checkout
+      ///
+      /// Locales: en, de
       static func shopping_list_button_title_checkout(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("shopping_list_button_title_checkout", bundle: hostingBundle, comment: "")
@@ -421,6 +444,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_item_selection_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Complete
+      ///
+      /// Locales: en, de
+      static func checkout_button_title_complete(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("checkout_button_title_complete", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "checkout_button_title_complete"
+        }
+
+        return NSLocalizedString("checkout_button_title_complete", bundle: bundle, comment: "")
       }
 
       /// en translation: Confirm password
