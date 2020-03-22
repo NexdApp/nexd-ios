@@ -11,7 +11,7 @@ import Foundation
 
 public struct CreateRequestArticleDto: Codable {
 
-    /** Article Id received from the article list */
+    /** Article ID received from the article list */
     public var articleId: Int
     /** Number of items */
     public var articleCount: Int

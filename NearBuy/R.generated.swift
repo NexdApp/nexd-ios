@@ -176,7 +176,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 26 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 30 localization keys.
     struct localizable {
       /// en translation: Accepted requests:
       ///
@@ -194,6 +194,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholer_confirm_password = Rswift.StringResource(key: "registration_placeholer_confirm_password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Done!
+      ///
+      /// Locales: en, de
+      static let seeker_success_title = Rswift.StringResource(key: "seeker_success_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: E-Mail
       ///
       /// Locales: en, de
@@ -202,6 +206,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_title = Rswift.StringResource(key: "error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
+      static let seeker_error_title = Rswift.StringResource(key: "seeker_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: First name
       ///
       /// Locales: en, de
@@ -282,6 +290,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let login_placeholer_username = Rswift.StringResource(key: "login_placeholer_username", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Your request could not be sent! Please try again.
+      ///
+      /// Locales: en, de
+      static let seeker_error_message = Rswift.StringResource(key: "seeker_error_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Your request was sent successfully.
+      ///
+      /// Locales: en, de
+      static let seeker_success_message = Rswift.StringResource(key: "seeker_success_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
 
       /// en translation: Accepted requests:
       ///
@@ -343,6 +359,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholer_confirm_password", bundle: bundle, comment: "")
       }
 
+      /// en translation: Done!
+      ///
+      /// Locales: en, de
+      static func seeker_success_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_success_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_success_title"
+        }
+
+        return NSLocalizedString("seeker_success_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: E-Mail
       ///
       /// Locales: en, de
@@ -371,6 +402,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Error!
+      ///
+      /// Locales: en, de
+      static func seeker_error_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_error_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_error_title"
+        }
+
+        return NSLocalizedString("seeker_error_title", bundle: bundle, comment: "")
       }
 
       /// en translation: First name
@@ -671,6 +717,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("login_placeholer_username", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Your request could not be sent! Please try again.
+      ///
+      /// Locales: en, de
+      static func seeker_error_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_error_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_error_message"
+        }
+
+        return NSLocalizedString("seeker_error_message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Your request was sent successfully.
+      ///
+      /// Locales: en, de
+      static func seeker_success_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_success_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_success_message"
+        }
+
+        return NSLocalizedString("seeker_success_message", bundle: bundle, comment: "")
       }
 
       fileprivate init() {}

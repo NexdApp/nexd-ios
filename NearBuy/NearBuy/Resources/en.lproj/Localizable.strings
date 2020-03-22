@@ -30,6 +30,10 @@
 
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_submit_button_title" = "Submit";
+"seeker_success_title" = "Done!";
+"seeker_success_message" = "Your request was sent successfully.";
+"seeker_error_title" = "Error!";
+"seeker_error_message" = "Your request could not be sent! Please try again.";
 
 "error_title" = "Error";
 "error_message_login_failed" = "Login failed. Please try again.";

@@ -49,6 +49,7 @@ class RegistrationViewController: UIViewController {
         }
 
         view.addSubview(email)
+        email.keyboardType = .emailAddress
         email.styled(placeholder: R.string.localizable.registration_placeholer_email())
         email.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
@@ -76,6 +77,7 @@ class RegistrationViewController: UIViewController {
         }
 
         view.addSubview(phone)
+        phone.keyboardType = .phonePad
         phone.styled(placeholder: R.string.localizable.registration_placeholer_phone())
         phone.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
@@ -86,6 +88,7 @@ class RegistrationViewController: UIViewController {
 
         view.addSubview(password)
         password.styled(placeholder: R.string.localizable.registration_placeholer_password())
+        password.isSecureTextEntry = true
         password.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
@@ -95,6 +98,7 @@ class RegistrationViewController: UIViewController {
 
         view.addSubview(confirmPassword)
         confirmPassword.styled(placeholder: R.string.localizable.registration_placeholer_confirm_password())
+        confirmPassword.isSecureTextEntry = true
         confirmPassword.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)

@@ -21,9 +21,10 @@ public struct Request: Codable {
     public var city: String
     public var deliveryComment: String
     public var phoneNumber: String
+    public var status: String
     public var articles: [RequestArticle]
 
-    public init(_id: Int, createdAt: Date, requester: Int, priority: String, additionalRequest: String, address: String, zipCode: String, city: String, deliveryComment: String, phoneNumber: String, articles: [RequestArticle]) {
+    public init(_id: Int, createdAt: Date, requester: Int, priority: String, additionalRequest: String, address: String, zipCode: String, city: String, deliveryComment: String, phoneNumber: String, status: String, articles: [RequestArticle]) {
         self._id = _id
         self.createdAt = createdAt
         self.requester = requester
@@ -34,6 +35,7 @@ public struct Request: Codable {
         self.city = city
         self.deliveryComment = deliveryComment
         self.phoneNumber = phoneNumber
+        self.status = status
         self.articles = articles
     }
 
@@ -48,6 +50,7 @@ public struct Request: Codable {
         case city
         case deliveryComment
         case phoneNumber
+        case status
         case articles
     }
 

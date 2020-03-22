@@ -13,24 +13,22 @@ import RxSwift
 open class RequestAPI {
     /**
 
+     - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
      - parameter completion: completion handler to receive the data and the error objects
      */
-    open class func requestControllerGetAll(completion: @escaping ((_ data: Void?,_ error: Error?) -> Void)) {
-        requestControllerGetAllWithRequestBuilder().execute { (response, error) -> Void in
-            if error == nil {
-                completion((), error)
-            } else {
-                completion(nil, error)
-            }
+    open class func requestControllerGetAll(onlyMine: String? = nil, completion: @escaping ((_ data: [Request]?,_ error: Error?) -> Void)) {
+        requestControllerGetAllWithRequestBuilder(onlyMine: onlyMine).execute { (response, error) -> Void in
+            completion(response?.body, error)
         }
     }
 
     /**
-     - returns: Observable<Void>
+     - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
+     - returns: Observable<[Request]>
      */
-    open class func requestControllerGetAll() -> Observable<Void> {
+    open class func requestControllerGetAll(onlyMine: String? = nil) -> Observable<[Request]> {
         return Observable.create { observer -> Disposable in
-            requestControllerGetAll() { data, error in
+            requestControllerGetAll(onlyMine: onlyMine) { data, error in
                 if let error = error {
                     observer.on(.error(error))
                 } else {
@@ -49,17 +47,47 @@ open class RequestAPI {
      - :
        - type: http
        - name: bearer
+     - examples: [{contentType=application/json, example=[ {
+  "requester" : 6,
+  "zipCode" : "zipCode",
+  "address" : "address",
+  "phoneNumber" : "phoneNumber",
+  "additionalRequest" : "additionalRequest",
+  "city" : "city",
+  "deliveryComment" : "deliveryComment",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0,
+  "priority" : "priority",
+  "articles" : [ { }, { } ],
+  "status" : "status"
+}, {
+  "requester" : 6,
+  "zipCode" : "zipCode",
+  "address" : "address",
+  "phoneNumber" : "phoneNumber",
+  "additionalRequest" : "additionalRequest",
+  "city" : "city",
+  "deliveryComment" : "deliveryComment",
+  "created_at" : "2000-01-23T04:56:07.000+00:00",
+  "id" : 0,
+  "priority" : "priority",
+  "articles" : [ { }, { } ],
+  "status" : "status"
+} ]}]
+     - parameter onlyMine: (query) if \&quot;true\&quot;, only the requesting user requests will be replied. (optional)
 
-     - returns: RequestBuilder<Void> 
+     - returns: RequestBuilder<[Request]> 
      */
-    open class func requestControllerGetAllWithRequestBuilder() -> RequestBuilder<Void> {
+    open class func requestControllerGetAllWithRequestBuilder(onlyMine: String? = nil) -> RequestBuilder<[Request]> {
         let path = "/api/request"
         let URLString = SwaggerClientAPI.basePath + path
         let parameters: [String:Any]? = nil
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+                        "onlyMine": onlyMine
+        ])
 
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Void>.Type = SwaggerClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<[Request]>.Type = SwaggerClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -111,7 +139,8 @@ open class RequestAPI {
   "created_at" : "2000-01-23T04:56:07.000+00:00",
   "id" : 0,
   "priority" : "priority",
-  "articles" : [ { }, { } ]
+  "articles" : [ { }, { } ],
+  "status" : "status"
 }}]
      - parameter body: (body)  
 

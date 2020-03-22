@@ -47,6 +47,7 @@ class LoginViewController: UIViewController {
         }
 
         view.addSubview(username)
+        username.keyboardType = .emailAddress
         username.styled(placeholder: R.string.localizable.login_placeholer_username())
         username.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
@@ -57,6 +58,7 @@ class LoginViewController: UIViewController {
 
         view.addSubview(password)
         password.styled(placeholder: R.string.localizable.login_placeholer_password())
+        password.isSecureTextEntry = true
         password.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
             make.leftMargin.equalTo(8)

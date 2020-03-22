@@ -133,10 +133,14 @@ extension SeekerItemSelectionViewController {
         guard let content = content else { return }
 
         let selectedItems = content.items.filter { $0.isSelected }.map { RequestService.RequestItem(id: $0.id, articleCount: 1) }
-        RequestService.shared.submitRequest(items: selectedItems).subscribe(onSuccess: { request in
+        RequestService.shared.submitRequest(items: selectedItems).subscribe(onSuccess: { [weak self] request in
             log.debug("Succesful: \(request)")
-        }) { error in
+            self?.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }) { [weak self] error in
             log.error("Error: \(error)")
+            self?.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message())
         }
         .disposed(by: disposeBag)
     }

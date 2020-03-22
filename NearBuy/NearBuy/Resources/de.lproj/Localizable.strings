@@ -30,6 +30,10 @@
 
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";
+"seeker_success_title" = "Fertig!";
+"seeker_success_message" = "Die Anfrage wurde erfolgreich aufgegeben.";
+"seeker_error_title" = "Fehler!";
+"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
 
 "error_title" = "Fehler";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
