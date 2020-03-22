@@ -110,7 +110,9 @@ class ShoppingListViewController: UIViewController {
 
         getShoppingList
             .flatMap { [weak self] list -> Single<[RequestArticle]> in
-                guard let self = self, let list = list else { return Single.just([]) }
+                guard let self = self, let list = list else {
+                    return Single.just([])
+                }
                 return self.loadAllArticles(for: list)
             }
             .flatMap { articles in
@@ -123,7 +125,7 @@ class ShoppingListViewController: UIViewController {
                     }
             }
             .subscribe(onSuccess: { [weak self] items in
-                log.debug("List loaded successfully... updating content")
+                log.debug("List loaded successfully... updating content (items: \(items.count))")
                 self?.content = Content(items: items)
             }) { [weak self] error in
                 log.error("Load failed: \(error)")
@@ -135,7 +137,9 @@ class ShoppingListViewController: UIViewController {
 
     private func loadAllArticles(for shoppingList: ShoppingList) -> Single<[RequestArticle]> {
         return ShoppingListService.shared.fetchShoppingLists()
-            .map { $0.filter { $0.status == "active" }.last }
+            .map {
+                $0.filter { $0.status == "active" }.first
+            }
             .flatMap { list -> Single<[RequestEntity]> in
                 guard let list = list else {
                     return Single.just([])
