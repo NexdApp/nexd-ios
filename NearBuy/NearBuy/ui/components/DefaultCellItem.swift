@@ -9,6 +9,6 @@
 import UIKit
 
 struct DefaultCellItem: Hashable {
-    let iconColor: UIColor
+    let icon: UIImage?
     let text: String
 }

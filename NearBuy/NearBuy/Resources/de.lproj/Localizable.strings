@@ -30,6 +30,7 @@
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_available_section" = "Suchen:";
 "helper_request_overview_unknown_requester" = "- UNBEKANNT -";
+"helper_request_overview_button_title_start" = "Start";
 
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";

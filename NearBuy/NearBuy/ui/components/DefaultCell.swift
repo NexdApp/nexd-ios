@@ -9,23 +9,25 @@
 import UIKit
 
 class DefaultCell: UICollectionViewCell {
-    lazy var icon = UIView()
+    lazy var icon = UIImageView()
     lazy var label = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(icon)
+        icon.tintColor = .black
+
         contentView.addSubview(label)
 
         icon.snp.makeConstraints { make -> Void in
             make.width.height.equalTo(20)
-            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
             make.centerY.equalToSuperview()
         }
 
         label.snp.makeConstraints { make -> Void in
-            make.rightMargin.equalTo(8)
-            make.left.equalTo(icon.snp.right).offset(8)
+            make.left.equalTo(8)
+            make.right.equalTo(icon.snp.right).offset(8)
             make.centerY.equalToSuperview()
         }
     }
@@ -35,7 +37,7 @@ class DefaultCell: UICollectionViewCell {
     }
 
     func bind(to item: DefaultCellItem) {
-        icon.backgroundColor = item.iconColor
+        icon.image = item.icon
         label.text = item.text
     }
 

@@ -9,6 +9,6 @@
 import Foundation
 
 enum AppConfiguration {
-//    static let baseUrl = "http://localhost:3001"
-    static let baseUrl = "https://wirvsvirus-nearbuy.herokuapp.com"
+    static let baseUrl = "http://localhost:3001"
+//    static let baseUrl = "https://wirvsvirus-nearbuy.herokuapp.com"
 }

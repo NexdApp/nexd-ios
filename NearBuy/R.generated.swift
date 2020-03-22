@@ -105,10 +105,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 7 images.
+  /// This `R.image` struct is generated, and contains static references to 8 images.
   struct image {
     /// Image `baseline_check_black_48pt`.
     static let baseline_check_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_48pt")
+    /// Image `baseline_shopping_basket_black_48pt`.
+    static let baseline_shopping_basket_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_shopping_basket_black_48pt")
     /// Image `gradient`.
     static let gradient = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient")
     /// Image `icon`.
@@ -126,6 +128,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "baseline_check_black_48pt", bundle: ..., traitCollection: ...)`
     static func baseline_check_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.baseline_check_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_shopping_basket_black_48pt", bundle: ..., traitCollection: ...)`
+    static func baseline_shopping_basket_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_shopping_basket_black_48pt, compatibleWith: traitCollection)
     }
     #endif
 
@@ -176,7 +185,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 33 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 34 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -282,6 +291,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_screen_title = Rswift.StringResource(key: "registration_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Start
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_button_title_start = Rswift.StringResource(key: "helper_request_overview_button_title_start", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Submit
       ///
       /// Locales: en, de
@@ -699,6 +712,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Start
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_button_title_start(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_button_title_start", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_button_title_start"
+        }
+
+        return NSLocalizedString("helper_request_overview_button_title_start", bundle: bundle, comment: "")
       }
 
       /// en translation: Submit

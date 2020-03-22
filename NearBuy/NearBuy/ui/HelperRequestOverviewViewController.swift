@@ -9,6 +9,7 @@
 import RxSwift
 import SnapKit
 import UIKit
+import SwaggerClient
 
 class HelperRequestOverviewViewController: UIViewController {
     enum Style {
@@ -18,6 +19,7 @@ class HelperRequestOverviewViewController: UIViewController {
     }
 
     struct Request {
+        let id: Int
         let title: String
     }
 
@@ -30,6 +32,8 @@ class HelperRequestOverviewViewController: UIViewController {
 
     private var gradient = GradientView()
     private var collectionView: UICollectionView?
+    private var startButton = UIButton()
+
     private var dataSource: DefaultSectionedDataSource<DefaultCellItem>? {
         didSet {
             collectionView?.dataSource = dataSource
@@ -42,10 +46,10 @@ class HelperRequestOverviewViewController: UIViewController {
             if let content = content {
                 let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                   title: R.string.localizable.helper_request_overview_heading_accepted_section(),
-                                                                                                  items: content.acceptedRequests.map { DefaultCellItem(iconColor: .green, text: $0.title) })
+                                                                                                  items: content.acceptedRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) })
                 let availableRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                    title: R.string.localizable.helper_request_overview_heading_available_section(),
-                                                                                                   items: content.availableRequests.map { DefaultCellItem(iconColor: .red, text: $0.title) })
+                                                                                                   items: content.availableRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) })
 
                 sections.append(acceptedRequestsSection)
                 sections.append(availableRequestsSection)
@@ -80,9 +84,20 @@ class HelperRequestOverviewViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
+        startButton.addTarget(self, action: #selector(startButtonPressed(sender:)), for: .touchUpInside)
+        startButton.style(text: R.string.localizable.helper_request_overview_button_title_start())
+        view.addSubview(startButton)
+        startButton.snp.makeConstraints { make in
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.height.equalTo(Style.buttonHeight)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+        }
+
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in
-            make.edges.equalToSuperview()
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalTo(startButton.snp.top).offset(8)
         }
 
         collectionView = list
@@ -92,16 +107,21 @@ class HelperRequestOverviewViewController: UIViewController {
         super.viewDidAppear(animated)
 
         RequestService.shared.openRequests()
+            .flatMap { requests -> Single<[(Int, String)]> in
+                return Single.zip(requests
+                    .filter { $0.status == "new" }
+                    .map { request in  UserService.shared.fetchUserInfo(id: request.requesterId).map{ (request._id, "\($0.lastName) (\(request.articles.count))" ) } })
+
+            }
             .subscribe(onSuccess: { [weak self] openRequests in
                 log.debug("Open requests: \(openRequests)")
 
+                // Status values:
+                // NEW = 'new',
+                // ONGOING = 'ongoing',
+                // COMPLETED = 'completed',
                 let content = Content(acceptedRequests: [],
-                                      availableRequests: openRequests.map {
-//                                        let name = $0.requester?.lastName ?? R.string.localizable.helper_request_overview_unknown_requester()
-
-                                        let name = "Requester: \($0.requesterId)"
-                                        return Request(title: name)
-                })
+                                      availableRequests: openRequests.map { Request(id: $0.0, title: $0.1) })
 
                 self?.content = content
             }) { error in
@@ -117,12 +137,36 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        log.debug("ZEFIX - \(indexPath)")
+        guard let content = self.content else {
+            return
+        }
+
+        let addRequest = indexPath.section == 1
+
+        var acceptedRequests = content.acceptedRequests
+        var openRequests = content.availableRequests
+
+        if addRequest {
+            let request = openRequests.remove(at: indexPath.row)
+            acceptedRequests.append(request)
+        } else {
+            let request = acceptedRequests.remove(at: indexPath.row)
+            openRequests.append(request)
+        }
+
+        self.content = Content(acceptedRequests: acceptedRequests, availableRequests: openRequests)
     }
 }
 
-extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width, height: Style.rowHeight)
-//    }
+extension HelperRequestOverviewViewController {
+    @objc func startButtonPressed(sender: UIButton!) {
+        guard let content = content else { return }
+        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
+            .subscribe(onCompleted: {
+                log.debug("Shoppping list created!")
+            }, onError: { error in
+                log.error("Failed to create shopping list: \(error)")
+            })
+            .disposed(by: disposeBag)
+    }
 }

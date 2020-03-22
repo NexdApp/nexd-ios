@@ -15,7 +15,6 @@ class SectionHeaderView: UICollectionReusableView {
         super.init(frame: frame)
 
         addSubview(label)
-
         label.snp.makeConstraints { make -> Void in
             make.leftMargin.rightMargin.equalTo(8)
             make.centerY.equalToSuperview()

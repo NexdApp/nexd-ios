@@ -25,4 +25,8 @@ class UserService {
                                             _id: id)
             .asSingle()
     }
+
+    func fetchUserInfo(id: Int) -> Single<User> {
+        return UserAPI.userControllerFindOne(_id: id).asSingle()
+    }
 }
