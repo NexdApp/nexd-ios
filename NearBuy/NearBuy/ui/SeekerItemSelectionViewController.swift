@@ -129,7 +129,10 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout 
 
 extension SeekerItemSelectionViewController {
     @objc func submitButtonPressed(sender: UIButton!) {
-        RequestService.shared.submitRequest().subscribe(onSuccess: { request in
+        guard let content = content else { return }
+
+        let selectedItems = content.items.filter { $0.isSelected }.map { RequestService.RequestItem(id: $0.id, articleCount: 1) }
+        RequestService.shared.submitRequest(items: selectedItems).subscribe(onSuccess: { request in
             log.debug("Succesful: \(request)")
         }) { error in
             log.error("Error: \(error)")

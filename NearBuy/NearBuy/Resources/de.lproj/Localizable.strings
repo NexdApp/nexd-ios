@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  NearBuy
+
+  Created by Tobias Schröpf on 21.03.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved.
+*/
+"login_screen_title" = "Login";
+"login_placeholer_username" = "Benutzername";
+"login_placeholer_password" = "Passwort";
+"login_button_title_login" = "Einloggen";
+"login_button_title_register" = "Registrieren";
+
+"registration_screen_title" = "Registrierung";
+"registration_placeholer_email" = "E-Mail";
+"registration_placeholer_firstname" = "Vorname";
+"registration_placeholer_lastname" = "Nachname";
+"registration_placeholer_phone" = "Telefon";
+"registration_placeholer_password" = "Passwort";
+"registration_placeholer_confirm_password" = "Passwort bestätigen";
+"registration_button_title_send" = "Bestätigen";
+
+"role_selection_screen_title" = "Rolle";
+"role_selection_seeker" = "Ich brauche etwas!";
+"role_selection_helper" = "Ich kann helfen!";
+
+"helper_request_overview_screen_title" = "Übersicht";
+"helper_request_overview_heading_accepted_section" = "Angenommen:";
+"helper_request_overview_heading_available_section" = "Suchen:";
+
+"seeker_item_selection_screen_title" = "Artikel";
+"seeker_submit_button_title" = "Senden";
+
+"error_title" = "Fehler";
+"error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
+
+"error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_button_ok" = "OK";
