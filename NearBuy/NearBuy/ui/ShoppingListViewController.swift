@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import SwaggerClient
+import OpenAPIClient
 import UIKit
 
 class ShoppingListViewController: UIViewController {
@@ -103,7 +103,7 @@ class ShoppingListViewController: UIViewController {
             Single.just(shoppingList) :
             ShoppingListService.shared.fetchShoppingLists()
             .map { lists in
-                var activeList = lists.filter { $0.status == "active" }
+                var activeList = lists.filter { $0.status == .active }
                 activeList.sort { first, second in first.createdAt < second.createdAt }
                 return activeList.first
             }
@@ -121,7 +121,7 @@ class ShoppingListViewController: UIViewController {
                         requests
                             .flatMap { request in
                                 request.articles.map { article in
-                                    let details = allArticles.first { $0._id == article.articleId }
+                                    let details = allArticles.first { $0.id == article.articleId }
 
                                     return Item(isSelected: false,
                                                 title: details?.name ?? "-",

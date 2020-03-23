@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import SwaggerClient
+import OpenAPIClient
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -99,10 +99,10 @@ extension LoginViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("Login successful!")
 
-                SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
+                OpenAPIClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
-                Storage.shared.userId = response._id
+                Storage.shared.userId = response.id
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")

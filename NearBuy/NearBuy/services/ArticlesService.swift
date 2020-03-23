@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwaggerClient
+import OpenAPIClient
 import RxSwift
 
 class ArticlesService {

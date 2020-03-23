@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import SwaggerClient
+import OpenAPIClient
 import UIKit
 
 class UserDetailsViewController: UIViewController {

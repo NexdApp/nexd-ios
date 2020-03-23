@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwaggerClient
+import OpenAPIClient
 
 class Storage {
     static let shared = Storage()

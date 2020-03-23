@@ -10,18 +10,21 @@ $ pod install
 
 # Update REST client
 
-## From localhost
-```
-$ swagger-codegen generate -i http://localhost:3001/api/docs-json -l swift5  --additional-properties podHomepage=https://github.com/NearBuyVsVirus/nearbuy-ios,podSummary="Swagger Client",responseAs=RxSwift --type-mappings BigDecimal=Int
-```
+## From local backend
 
-## From heroku
 ```
-$ swagger-codegen generate -i https://wirvsvirus-nearbuy.herokuapp.com/api/docs-json -l swift5  --additional-properties podHomepage=https://github.com/NearBuyVsVirus/nearbuy-ios,podSummary="Swagger Client",responseAs=RxSwift --type-mappings BigDecimal=Int
 $ cd NearBuy
-$ pod install
+$ openapi-generator generate --input-spec http://localhost:3001/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="Swagger Client",responseAs=RxSwift
+$ pod isntall
 ```
 
+## From deployed backend
+
+```
+$ cd NearBuy
+$ openapi-generator generate --input-spec http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="Swagger Client",responseAs=RxSwift --type-mappings number=Int
+$ pod isntall
+```
 
 # Local backend
 

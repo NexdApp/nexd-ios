@@ -9,7 +9,7 @@
 import RxSwift
 import SnapKit
 import UIKit
-import SwaggerClient
+import OpenAPIClient
 
 class HelperRequestOverviewViewController: UIViewController {
     enum Style {
@@ -109,8 +109,8 @@ class HelperRequestOverviewViewController: UIViewController {
         RequestService.shared.openRequests()
             .flatMap { requests -> Single<[(Int, String)]> in
                 return Single.zip(requests
-                    .filter { $0.status == "pending" }
-                    .map { request in  UserService.shared.fetchUserInfo(id: request.requesterId).map{ (request._id, "\($0.lastName) (\(request.articles.count))" ) } })
+                    .filter { $0.status == .pending }
+                    .map { request in  UserService.shared.fetchUserInfo(id: request.requesterId).map{ (request.id, "\($0.lastName) (\(request.articles.count))" ) } })
 
             }
             .subscribe(onSuccess: { [weak self] openRequests in

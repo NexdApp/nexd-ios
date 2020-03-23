@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import SwaggerClient
+import OpenAPIClient
 import UIKit
 
 class RegistrationViewController: UIViewController {
@@ -118,13 +118,13 @@ extension RegistrationViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("User registration successful")
 
-                SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
+                OpenAPIClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
-                Storage.shared.userId = response._id
+                Storage.shared.userId = response.id
 
                 let userDetailsVC = UserDetailsViewController()
-                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response._id, firstName: firstName, lastName: lastName)
+                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response.id, firstName: firstName, lastName: lastName)
                 self?.navigationController?.pushViewController(userDetailsVC, animated: true)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")

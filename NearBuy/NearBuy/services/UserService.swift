@@ -7,26 +7,26 @@
 //
 
 import Foundation
+import OpenAPIClient
 import RxSwift
-import SwaggerClient
 
 class UserService {
     static let shared = UserService()
 
     func updateUserInformation(id: Int, zipCode: String, firstName: String, lastName: String, phone: String) -> Single<User> {
-        return UserAPI.userControllerUpdate(body: UpdateUserDto(street: nil,
-                                                                number: nil,
-                                                                zipCode: zipCode,
-                                                                city: "",
-                                                                firstName: firstName,
-                                                                lastName: lastName,
-                                                                role: .helper,
-                                                                telephone: phone),
-                                            _id: id)
+        return UserAPI.userControllerUpdate(id: id,
+                                            updateUserDto: UpdateUserDto(street: nil,
+                                                                         number: nil,
+                                                                         zipCode: zipCode,
+                                                                         city: "",
+                                                                         firstName: firstName,
+                                                                         lastName: lastName,
+                                                                         role: .helper,
+                                                                         telephone: phone))
             .asSingle()
     }
 
     func fetchUserInfo(id: Int) -> Single<User> {
-        return UserAPI.userControllerFindOne(_id: id).asSingle()
+        return UserAPI.userControllerFindOne(id: id).asSingle()
     }
 }

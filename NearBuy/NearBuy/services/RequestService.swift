@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import SwaggerClient
+import OpenAPIClient
 
 class RequestService {
     struct RequestItem {
@@ -23,13 +23,14 @@ class RequestService {
 
         let dto = RequestFormDto(street: nil,
                                  number: nil,
-                                 zipCode: "12345",
-                                 city: "München",
+                                 zipCode: nil,
+                                 city: nil,
                                  articles: articles,
+                                 status: .pending,
                                  additionalRequest: "",
                                  deliveryComment: "",
                                  phoneNumber: "")
-        return RequestAPI.requestControllerInsertRequestWithArticles(body: dto).asSingle()
+        return RequestAPI.requestControllerInsertRequestWithArticles(requestFormDto: dto).asSingle()
     }
 
     func openRequests(onlyMine: Bool = false) -> Single<[RequestEntity]> {

@@ -7,7 +7,7 @@
 //
 
 import AlamofireNetworkActivityLogger
-import SwaggerClient
+import OpenAPIClient
 import UIKit
 import XCGLogger
 
@@ -34,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NetworkActivityLogger.shared.startLogging()
         #endif
 
-        SwaggerClientAPI.basePath = AppConfiguration.baseUrl
+        OpenAPIClientAPI.basePath = AppConfiguration.baseUrl
         if let token = Storage.shared.authorizationToken {
-            SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
+            OpenAPIClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
         }
 
         return true
