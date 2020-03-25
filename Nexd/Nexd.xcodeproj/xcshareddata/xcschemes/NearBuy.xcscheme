@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AEF3D617242584C9005C77CE"
                BuildableName = "Nexd.app"
-               BlueprintName = "NearBuy"
-               ReferencedContainer = "container:NearBuy.xcodeproj">
+               BlueprintName = "Nexd"
+               ReferencedContainer = "container:Nexd.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AEF3D62D242584CC005C77CE"
-               BuildableName = "NearBuyTests.xctest"
-               BlueprintName = "NearBuyTests"
-               ReferencedContainer = "container:NearBuy.xcodeproj">
+               BuildableName = "NexdTests.xctest"
+               BlueprintName = "NexdTests"
+               ReferencedContainer = "container:Nexd.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,8 +57,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
             BuildableName = "Nexd.app"
-            BlueprintName = "NearBuy"
-            ReferencedContainer = "container:NearBuy.xcodeproj">
+            BlueprintName = "Nexd"
+            ReferencedContainer = "container:Nexd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -74,8 +74,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
             BuildableName = "Nexd.app"
-            BlueprintName = "NearBuy"
-            ReferencedContainer = "container:NearBuy.xcodeproj">
+            BlueprintName = "Nexd"
+            ReferencedContainer = "container:Nexd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

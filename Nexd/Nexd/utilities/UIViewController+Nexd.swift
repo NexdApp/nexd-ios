@@ -1,6 +1,6 @@
 //
-//  UIViewController+NearBuy.swift
-//  NearBuy
+//  UIViewController+Nexd.swift
+//  Nexd
 //
 //  Created by Tobias Schröpf on 21.03.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.

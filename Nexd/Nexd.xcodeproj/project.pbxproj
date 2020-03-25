@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A2249BB540F14859C4A57A1 /* Pods_NearBuyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */; };
+		45852914C1AF6C97FF0AD66F /* Pods_NexdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */; };
+		ABE9136618DF4E99794858F8 /* Pods_Nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B168F8C604346758541C12A /* Pods_Nexd.framework */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* ShoppingListService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */; };
@@ -25,7 +26,7 @@
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
 		AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */; };
-		AEF3D633242584CC005C77CE /* NearBuyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NearBuyTests.swift */; };
+		AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NexdTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
 		AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* LoginViewController.swift */; };
 		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
@@ -38,14 +39,13 @@
 		AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D666242630C3005C77CE /* AppConfiguration.swift */; };
 		AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66824263149005C77CE /* RegistrationViewController.swift */; };
 		AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */; };
-		AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */; };
+		AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */; };
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
 		AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
 		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67A2426C88B005C77CE /* GradientView.swift */; };
-		CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +59,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B168F8C604346758541C12A /* Pods_Nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		1F37CA94D89281584B425944 /* Pods-NearBuyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.release.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.release.xcconfig"; sourceTree = "<group>"; };
 		20C9A67778931D25EE5344A1 /* Pods-NearBuy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.debug.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.debug.xcconfig"; sourceTree = "<group>"; };
 		216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.debug.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.debug.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.debug.xcconfig"; sourceTree = "<group>"; };
+		34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
+		8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
 		9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.release.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.release.xcconfig"; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
@@ -84,8 +88,8 @@
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF3D627242584CC005C77CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEF3D629242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AEF3D62E242584CC005C77CE /* NearBuyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NearBuyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEF3D632242584CC005C77CE /* NearBuyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearBuyTests.swift; sourceTree = "<group>"; };
+		AEF3D62E242584CC005C77CE /* NexdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NexdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF3D632242584CC005C77CE /* NexdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdTests.swift; sourceTree = "<group>"; };
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		AEF3D64B24259ACE005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -99,14 +103,14 @@
 		AEF3D666242630C3005C77CE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		AEF3D66824263149005C77CE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
-		AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+NearBuy.swift"; sourceTree = "<group>"; };
+		AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nexd.swift"; sourceTree = "<group>"; };
 		AEF3D6702426785C005C77CE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSectionedDataSource.swift; sourceTree = "<group>"; };
 		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		AEF3D6782426B970005C77CE /* CheckableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableCell.swift; sourceTree = "<group>"; };
 		AEF3D67A2426C88B005C77CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NearBuyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0E1A257AAB928EADDCFFC4 /* Pods_NearBuy.framework in Frameworks */,
+				ABE9136618DF4E99794858F8 /* Pods_Nexd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2249BB540F14859C4A57A1 /* Pods_NearBuyTests.framework in Frameworks */,
+				45852914C1AF6C97FF0AD66F /* Pods_NexdTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +136,8 @@
 		0FB576275224D4124A7223A1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4D0CBBAC6146B1985197F7FD /* Pods_NearBuy.framework */,
-				F4AF7DA9DD107FE95BA46206 /* Pods_NearBuyTests.framework */,
+				0B168F8C604346758541C12A /* Pods_Nexd.framework */,
+				BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -141,8 +145,8 @@
 		AEF3D60F242584C9005C77CE = {
 			isa = PBXGroup;
 			children = (
-				AEF3D61A242584C9005C77CE /* NearBuy */,
-				AEF3D631242584CC005C77CE /* NearBuyTests */,
+				AEF3D61A242584C9005C77CE /* Nexd */,
+				AEF3D631242584CC005C77CE /* NexdTests */,
 				AEF3D619242584C9005C77CE /* Products */,
 				B7FBC32D851855F768588401 /* Pods */,
 				0FB576275224D4124A7223A1 /* Frameworks */,
@@ -153,12 +157,12 @@
 			isa = PBXGroup;
 			children = (
 				AEF3D618242584C9005C77CE /* Nexd.app */,
-				AEF3D62E242584CC005C77CE /* NearBuyTests.xctest */,
+				AEF3D62E242584CC005C77CE /* NexdTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AEF3D61A242584C9005C77CE /* NearBuy */ = {
+		AEF3D61A242584C9005C77CE /* Nexd */ = {
 			isa = PBXGroup;
 			children = (
 				AEF3D66D24266460005C77CE /* utilities */,
@@ -173,16 +177,16 @@
 				AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */,
 				AEF3D629242584CC005C77CE /* Info.plist */,
 			);
-			path = NearBuy;
+			path = Nexd;
 			sourceTree = "<group>";
 		};
-		AEF3D631242584CC005C77CE /* NearBuyTests */ = {
+		AEF3D631242584CC005C77CE /* NexdTests */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D632242584CC005C77CE /* NearBuyTests.swift */,
+				AEF3D632242584CC005C77CE /* NexdTests.swift */,
 				AEF3D634242584CC005C77CE /* Info.plist */,
 			);
-			path = NearBuyTests;
+			path = NexdTests;
 			sourceTree = "<group>";
 		};
 		AEF3D64A24259ACE005C77CE /* ui */ = {
@@ -238,7 +242,7 @@
 		AEF3D66D24266460005C77CE /* utilities */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D66E24266472005C77CE /* UIViewController+NearBuy.swift */,
+				AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */,
 				AEF3D6702426785C005C77CE /* Storage.swift */,
 				AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */,
 				AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */,
@@ -266,6 +270,10 @@
 				9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */,
 				216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */,
 				1F37CA94D89281584B425944 /* Pods-NearBuyTests.release.xcconfig */,
+				327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */,
+				34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */,
+				1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */,
+				8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -273,9 +281,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AEF3D617242584C9005C77CE /* NearBuy */ = {
+		AEF3D617242584C9005C77CE /* Nexd */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "NearBuy" */;
+			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */;
 			buildPhases = (
 				93EAC044F0C62EA87643DD87 /* [CP] Check Pods Manifest.lock */,
 				AEF3D63D24258F61005C77CE /* ShellScript */,
@@ -288,14 +296,14 @@
 			);
 			dependencies = (
 			);
-			name = NearBuy;
+			name = Nexd;
 			productName = NearBuy;
 			productReference = AEF3D618242584C9005C77CE /* Nexd.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AEF3D62D242584CC005C77CE /* NearBuyTests */ = {
+		AEF3D62D242584CC005C77CE /* NexdTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NearBuyTests" */;
+			buildConfigurationList = AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NexdTests" */;
 			buildPhases = (
 				79F67BF17B5DAE36C8295905 /* [CP] Check Pods Manifest.lock */,
 				AEF3D62A242584CC005C77CE /* Sources */,
@@ -307,9 +315,9 @@
 			dependencies = (
 				AEF3D630242584CC005C77CE /* PBXTargetDependency */,
 			);
-			name = NearBuyTests;
+			name = NexdTests;
 			productName = NearBuyTests;
-			productReference = AEF3D62E242584CC005C77CE /* NearBuyTests.xctest */;
+			productReference = AEF3D62E242584CC005C77CE /* NexdTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -331,7 +339,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "NearBuy" */;
+			buildConfigurationList = AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "Nexd" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -345,8 +353,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AEF3D617242584C9005C77CE /* NearBuy */,
-				AEF3D62D242584CC005C77CE /* NearBuyTests */,
+				AEF3D617242584C9005C77CE /* Nexd */,
+				AEF3D62D242584CC005C77CE /* NexdTests */,
 			);
 		};
 /* End PBXProject section */
@@ -387,7 +395,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NearBuyTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-NexdTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -409,7 +417,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-NearBuy-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Nexd-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -441,15 +449,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NearBuy/Pods-NearBuy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-NearBuy/Pods-NearBuy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NearBuy/Pods-NearBuy-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -474,7 +482,7 @@
 				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
-				AEF3D66F24266472005C77CE /* UIViewController+NearBuy.swift in Sources */,
+				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
@@ -499,7 +507,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF3D633242584CC005C77CE /* NearBuyTests.swift in Sources */,
+				AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,7 +516,7 @@
 /* Begin PBXTargetDependency section */
 		AEF3D630242584CC005C77CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AEF3D617242584C9005C77CE /* NearBuy */;
+			target = AEF3D617242584C9005C77CE /* Nexd */;
 			targetProxy = AEF3D62F242584CC005C77CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -652,12 +660,12 @@
 		};
 		AEF3D638242584CC005C77CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 20C9A67778931D25EE5344A1 /* Pods-NearBuy.debug.xcconfig */;
+			baseConfigurationReference = 327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
-				INFOPLIST_FILE = NearBuy/Info.plist;
+				INFOPLIST_FILE = Nexd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -671,12 +679,12 @@
 		};
 		AEF3D639242584CC005C77CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */;
+			baseConfigurationReference = 34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
-				INFOPLIST_FILE = NearBuy/Info.plist;
+				INFOPLIST_FILE = Nexd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -690,54 +698,52 @@
 		};
 		AEF3D63B242584CC005C77CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */;
+			baseConfigurationReference = 1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
-				INFOPLIST_FILE = NearBuyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NearBuyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NexdTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearBuy.app/NearBuy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nexd.app/Nexd";
 			};
 			name = Debug;
 		};
 		AEF3D63C242584CC005C77CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1F37CA94D89281584B425944 /* Pods-NearBuyTests.release.xcconfig */;
+			baseConfigurationReference = 8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
-				INFOPLIST_FILE = NearBuyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NearBuyTests;
+				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.NexdTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NearBuy.app/NearBuy";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nexd.app/Nexd";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "NearBuy" */ = {
+		AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "Nexd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D635242584CC005C77CE /* Debug */,
@@ -746,7 +752,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "NearBuy" */ = {
+		AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D638242584CC005C77CE /* Debug */,
@@ -755,7 +761,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NearBuyTests" */ = {
+		AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NexdTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D63B242584CC005C77CE /* Debug */,
