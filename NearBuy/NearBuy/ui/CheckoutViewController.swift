@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import SwaggerClient
+import NexdClient
 import UIKit
 
 class CheckoutViewController: UIViewController {

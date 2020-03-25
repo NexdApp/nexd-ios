@@ -99,7 +99,7 @@ class SeekerItemSelectionViewController: UIViewController {
         ArticlesService.shared.allArticles()
             .subscribe(onSuccess: { [weak self] articles in
                 log.debug("Articles: \(articles)")
-                self?.content = Content(items: articles.map { Item(isSelected: false, id: $0._id, title: $0.name) })
+                self?.content = Content(items: articles.map { Item(isSelected: false, id: $0.id, title: $0.name) })
             }) { error in
                 log.error("Error occurred: \(error)")
             }

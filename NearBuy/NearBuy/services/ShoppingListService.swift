@@ -8,13 +8,14 @@
 
 import Foundation
 import RxSwift
-import SwaggerClient
+import NexdClient
 
 class ShoppingListService {
     static let shared = ShoppingListService()
 
     func createShoppingList(requestIds: [Int]) -> Single<ShoppingList> {
-        return ShoppingListAPI.shoppingListControllerInsertNewShoppingList(body: ShoppingListFormDto(requests: requestIds, status: nil))
+        // FIXME: remove -1 once swagger api is fixed
+        return ShoppingListAPI.shoppingListControllerInsertNewShoppingList(shoppingListFormDto: ShoppingListFormDto(requests: requestIds.first ?? -1, status: nil))
             .asSingle()
     }
 

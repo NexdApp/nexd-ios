@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwaggerClient
+import NexdClient
 import RxSwift
 
 class ArticlesService {

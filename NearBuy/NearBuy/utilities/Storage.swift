@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SwaggerClient
+import NexdClient
 
 class Storage {
     static let shared = Storage()

@@ -1,34 +1,27 @@
 PODS:
-  - Alamofire (4.9.1)
-  - AlamofireNetworkActivityLogger (2.4.0):
-    - Alamofire (~> 4.8)
+  - NexdClient (1.0):
+    - RxSwift (~> 5.0.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
-  - RxSwift (4.5.0)
+  - RxSwift (5.0.1)
   - SnapKit (4.2.0)
-  - SwaggerClient (0.0.1):
-    - Alamofire (~> 4.9.0)
-    - RxSwift (~> 4.0)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
     - ObjcExceptionBridging
 
 DEPENDENCIES:
-  - AlamofireNetworkActivityLogger
+  - NexdClient (from `lib/openapi`)
   - R.swift
   - SnapKit
-  - SwaggerClient (from `../`)
   - XCGLogger
 
 SPEC REPOS:
   trunk:
-    - Alamofire
-    - AlamofireNetworkActivityLogger
     - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
@@ -37,20 +30,18 @@ SPEC REPOS:
     - XCGLogger
 
 EXTERNAL SOURCES:
-  SwaggerClient:
-    :path: "../"
+  NexdClient:
+    :path: lib/openapi
 
 SPEC CHECKSUMS:
-  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  AlamofireNetworkActivityLogger: 6d3398c692d2c5d83b0c58793537860aca1e383d
+  NexdClient: 59d4b678d4447342066df89dec7e20da95d7c0fb
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
-  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwaggerClient: 98b8e63e61d9798177e64d631dbd7d0c34c6d5cb
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 99dc30d040d05455a652e65a8fcb926ab439bce7
+PODFILE CHECKSUM: f88300e586d594b757c8c2ee84ffb13c3b5a6080
 
 COCOAPODS: 1.8.4

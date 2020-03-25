@@ -6,8 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import AlamofireNetworkActivityLogger
-import SwaggerClient
+import NexdClient
 import UIKit
 import XCGLogger
 
@@ -29,15 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         log.logAppDetails()
 
-        #if DEBUG
-            NetworkActivityLogger.shared.level = .debug
-            NetworkActivityLogger.shared.startLogging()
-        #endif
-
-        SwaggerClientAPI.basePath = AppConfiguration.baseUrl
-        if let token = Storage.shared.authorizationToken {
-            SwaggerClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
-        }
+        NexdClientAPI.setup(authorizationToken: Storage.shared.authorizationToken)
 
         return true
     }
