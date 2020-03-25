@@ -670,7 +670,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.nexdapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
 				PRODUCT_NAME = Nexd;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -689,7 +689,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.wirvsvirushackathon.nexdapp;
+				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
 				PRODUCT_NAME = Nexd;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

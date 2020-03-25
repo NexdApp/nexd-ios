@@ -24,12 +24,12 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com</key>
+			<key>localhost</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>localhost</key>
+			<key>nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
