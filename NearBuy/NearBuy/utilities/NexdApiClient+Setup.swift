@@ -104,9 +104,8 @@ extension RequestBuilder: CustomDebugStringConvertible {
 
 extension Data {
     func asString() -> String {
-        if let json = try? JSONSerialization.jsonObject(with: self, options: []) as? [String: Any],
-            let jsonString = String(data: try! JSONSerialization.data(withJSONObject: json, options: .prettyPrinted), encoding: .utf8) {
-            return jsonString
+        if let json = try? JSONSerialization.jsonObject(with: self, options: []) {
+            return String(describing: json)
         }
 
         return map { String(format: "%02hhx", $0) }.joined()
