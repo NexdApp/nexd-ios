@@ -21,7 +21,7 @@ Method | HTTP request | Description
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let onlyMine = "onlyMine_example" // String | if \"true\", only the requesting user requests will be replied. (optional)
 let zipCode = "zipCode_example" // String | if set, only requests within the same zip code will be replied (optional)
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let requestId = 987 // Int | 
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let requestFormDto = RequestFormDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // RequestFormDto | 
 
@@ -137,7 +137,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let requestId = 987 // Int | 
 let articleId = 987 // Int | 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let requestId = 987 // Int | 
 let requestFormDto = RequestFormDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // RequestFormDto | 

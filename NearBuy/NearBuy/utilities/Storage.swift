@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import OpenAPIClient
+import NexdClient
 
 class Storage {
     static let shared = Storage()

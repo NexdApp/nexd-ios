@@ -22,7 +22,7 @@ Method | HTTP request | Description
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let shoppingListId = 987 // Int | 
 let requestId = 987 // Int | 
@@ -62,7 +62,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let shoppingListId = 987 // Int | 
 let requestId = 987 // Int | 
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let id = 987 // Int | 
 
@@ -140,7 +140,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -174,7 +174,7 @@ This endpoint does not need any parameter.
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let shoppingListFormDto = ShoppingListFormDto(requests: 123, status: "status_example") // ShoppingListFormDto | 
 
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let id = 987 // Int | 
 let shoppingListFormDto = ShoppingListFormDto(requests: 123, status: "status_example") // ShoppingListFormDto | 

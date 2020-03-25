@@ -8,7 +8,7 @@
 
 import Foundation
 import RxSwift
-import OpenAPIClient
+import NexdClient
 
 class ShoppingListService {
     static let shared = ShoppingListService()

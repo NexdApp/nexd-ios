@@ -20,6 +20,7 @@
 		AE2A9A9624275E14006066B4 /* UITextField+NearBuy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */; };
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
+		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -76,6 +77,7 @@
 		AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+NearBuy.swift"; sourceTree = "<group>"; };
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* Nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				AE2A9A882426D992006066B4 /* UIColor+NearBuy.swift */,
 				AE2A9A9524275E14006066B4 /* UITextField+NearBuy.swift */,
 				AE2690252427B3BA009A8892 /* UILabel+NearBuy.swift */,
+				AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+NearBuy.swift in Sources */,
+				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
 				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
 				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,

@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import OpenAPIClient
+import NexdClient
 import UIKit
 
 class ShoppingListViewController: UIViewController {

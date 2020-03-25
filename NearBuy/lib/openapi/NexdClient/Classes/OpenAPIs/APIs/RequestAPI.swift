@@ -18,7 +18,7 @@ open class RequestAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[RequestEntity]>
      */
-    open class func requestControllerGetAll(onlyMine: String? = nil, zipCode: String? = nil, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[RequestEntity]> {
+    open class func requestControllerGetAll(onlyMine: String? = nil, zipCode: String? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[RequestEntity]> {
         return Observable.create { observer -> Disposable in
             requestControllerGetAllWithRequestBuilder(onlyMine: onlyMine, zipCode: zipCode).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -44,7 +44,7 @@ open class RequestAPI {
      */
     open class func requestControllerGetAllWithRequestBuilder(onlyMine: String? = nil, zipCode: String? = nil) -> RequestBuilder<[RequestEntity]> {
         let path = "/api/request"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         var url = URLComponents(string: URLString)
@@ -53,7 +53,7 @@ open class RequestAPI {
             "zipCode": zipCode?.encodeToJSON()
         ])
 
-        let requestBuilder: RequestBuilder<[RequestEntity]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<[RequestEntity]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -64,7 +64,7 @@ open class RequestAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<RequestEntity>
      */
-    open class func requestControllerGetSingleRequest(requestId: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
+    open class func requestControllerGetSingleRequest(requestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
         return Observable.create { observer -> Disposable in
             requestControllerGetSingleRequestWithRequestBuilder(requestId: requestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -92,12 +92,12 @@ open class RequestAPI {
         let requestIdPreEscape = "\(APIHelper.mapValueToPathItem(requestId))"
         let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<RequestEntity>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<RequestEntity>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -108,7 +108,7 @@ open class RequestAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<RequestEntity>
      */
-    open class func requestControllerInsertRequestWithArticles(requestFormDto: RequestFormDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
+    open class func requestControllerInsertRequestWithArticles(requestFormDto: RequestFormDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
         return Observable.create { observer -> Disposable in
             requestControllerInsertRequestWithArticlesWithRequestBuilder(requestFormDto: requestFormDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -133,12 +133,12 @@ open class RequestAPI {
      */
     open class func requestControllerInsertRequestWithArticlesWithRequestBuilder(requestFormDto: RequestFormDto) -> RequestBuilder<RequestEntity> {
         let path = "/api/request"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestFormDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<RequestEntity>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<RequestEntity>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
@@ -151,7 +151,7 @@ open class RequestAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<RequestEntity>
      */
-    open class func requestControllerMarkArticleAsDone(requestId: Int, articleId: Int, requestArticleStatusDto: RequestArticleStatusDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
+    open class func requestControllerMarkArticleAsDone(requestId: Int, articleId: Int, requestArticleStatusDto: RequestArticleStatusDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
         return Observable.create { observer -> Disposable in
             requestControllerMarkArticleAsDoneWithRequestBuilder(requestId: requestId, articleId: articleId, requestArticleStatusDto: requestArticleStatusDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -184,12 +184,12 @@ open class RequestAPI {
         let articleIdPreEscape = "\(APIHelper.mapValueToPathItem(articleId))"
         let articleIdPostEscape = articleIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{articleId}", with: articleIdPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestArticleStatusDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<RequestEntity>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<RequestEntity>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
@@ -201,7 +201,7 @@ open class RequestAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<RequestEntity>
      */
-    open class func requestControllerUpdateRequest(requestId: Int, requestFormDto: RequestFormDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
+    open class func requestControllerUpdateRequest(requestId: Int, requestFormDto: RequestFormDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<RequestEntity> {
         return Observable.create { observer -> Disposable in
             requestControllerUpdateRequestWithRequestBuilder(requestId: requestId, requestFormDto: requestFormDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -230,12 +230,12 @@ open class RequestAPI {
         let requestIdPreEscape = "\(APIHelper.mapValueToPathItem(requestId))"
         let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: requestFormDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<RequestEntity>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<RequestEntity>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

@@ -16,7 +16,7 @@ open class DefaultAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func appControllerRoot(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func appControllerRoot(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             appControllerRootWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -37,12 +37,12 @@ open class DefaultAPI {
      */
     open class func appControllerRootWithRequestBuilder() -> RequestBuilder<Void> {
         let path = "/api"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

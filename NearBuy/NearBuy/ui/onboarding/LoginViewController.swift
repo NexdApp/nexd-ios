@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import OpenAPIClient
+import NexdClient
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -99,7 +99,7 @@ extension LoginViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("Login successful!")
 
-                OpenAPIClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
+                NexdClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
                 Storage.shared.userId = response.id

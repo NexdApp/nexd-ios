@@ -1,10 +1,10 @@
-name: OpenAPIClient
+name: NexdClient
 targets:
-  OpenAPIClient:
+  NexdClient:
     type: framework
     platform: iOS
     deploymentTarget: "10.0"
-    sources: [OpenAPIClient]
+    sources: [NexdClient]
     info:
       path: ./Info.plist
       version: 1.0

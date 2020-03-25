@@ -6,11 +6,10 @@ target 'NearBuy' do
   use_frameworks!
 
   # Pods for NearBuy
-  pod 'OpenAPIClient', :path => 'lib/openapi'
+  pod 'NexdClient', :path => 'lib/openapi'
   pod 'SnapKit'
   pod 'R.swift'
   pod 'XCGLogger'
-  pod 'AlamofireNetworkActivityLogger'
 
   target 'NearBuyTests' do
     inherit! :search_paths

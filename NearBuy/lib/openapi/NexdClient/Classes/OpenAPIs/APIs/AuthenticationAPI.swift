@@ -17,7 +17,7 @@ open class AuthenticationAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ResponseTokenDto>
      */
-    open class func authControllerLogin(loginPayload: LoginPayload, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ResponseTokenDto> {
+    open class func authControllerLogin(loginPayload: LoginPayload, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ResponseTokenDto> {
         return Observable.create { observer -> Disposable in
             authControllerLoginWithRequestBuilder(loginPayload: loginPayload).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -39,12 +39,12 @@ open class AuthenticationAPI {
      */
     open class func authControllerLoginWithRequestBuilder(loginPayload: LoginPayload) -> RequestBuilder<ResponseTokenDto> {
         let path = "/api/auth/login"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: loginPayload)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
@@ -55,7 +55,7 @@ open class AuthenticationAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ResponseTokenDto>
      */
-    open class func authControllerRegister(registerPayload: RegisterPayload, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ResponseTokenDto> {
+    open class func authControllerRegister(registerPayload: RegisterPayload, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ResponseTokenDto> {
         return Observable.create { observer -> Disposable in
             authControllerRegisterWithRequestBuilder(registerPayload: registerPayload).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -77,12 +77,12 @@ open class AuthenticationAPI {
      */
     open class func authControllerRegisterWithRequestBuilder(registerPayload: RegisterPayload) -> RequestBuilder<ResponseTokenDto> {
         let path = "/api/auth/register"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: registerPayload)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ResponseTokenDto>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

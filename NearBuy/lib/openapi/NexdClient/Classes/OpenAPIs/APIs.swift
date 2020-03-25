@@ -6,7 +6,7 @@
 
 import Foundation
 
-open class OpenAPIClientAPI {
+open class NexdClientAPI {
     public static var basePath = "http://localhost"
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
@@ -34,7 +34,7 @@ open class RequestBuilder<T> {
         self.isBody = isBody
         self.headers = headers
 
-        addHeaders(OpenAPIClientAPI.customHeaders)
+        addHeaders(NexdClientAPI.customHeaders)
     }
 
     open func addHeaders(_ aHeaders:[String:String]) {
@@ -43,7 +43,7 @@ open class RequestBuilder<T> {
         }
     }
 
-    open func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (_ result: Result<Response<T>, Error>) -> Void) { }
+    open func execute(_ apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue, _ completion: @escaping (_ result: Result<Response<T>, Error>) -> Void) { }
 
     public func addHeader(name: String, value: String) -> Self {
         if !value.isEmpty {
@@ -53,7 +53,7 @@ open class RequestBuilder<T> {
     }
 
     open func addCredential() -> Self {
-        self.credential = OpenAPIClientAPI.credential
+        self.credential = NexdClientAPI.credential
         return self
     }
 }

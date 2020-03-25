@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name = 'OpenAPIClient'
+  s.name = 'NexdClient'
   s.ios.deployment_target = '9.0'
   s.osx.deployment_target = '10.11'
   s.tvos.deployment_target = '9.0'
@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.authors = 'OpenAPI Generator'
   s.license = 'Proprietary'
   s.homepage = 'https://github.com/NearBuyVsVirus/nearbuy-ios'
-  s.summary = 'Swagger Client'
-  s.source_files = 'OpenAPIClient/Classes/**/*.swift'
+  s.summary = 'OpenAPI Client'
+  s.source_files = 'NexdClient/Classes/**/*.swift'
   s.dependency 'RxSwift', '~> 5.0.0'
 end

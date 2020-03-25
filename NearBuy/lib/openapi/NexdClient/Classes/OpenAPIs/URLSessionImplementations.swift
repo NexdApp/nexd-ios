@@ -102,7 +102,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
         return modifiedRequest
     }
 
-    override open func execute(_ apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue, _ completion: @escaping (_ result: Result<Response<T>, Error>) -> Void) {
+    override open func execute(_ apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue, _ completion: @escaping (_ result: Result<Response<T>, Error>) -> Void) {
         let urlSessionId:String = UUID().uuidString
         // Create a new manager for each request to customize its request header
         let urlSession = createURLSession()
@@ -256,7 +256,7 @@ open class URLSessionRequestBuilder<T>: RequestBuilder<T> {
     }
 
     open func buildHeaders() -> [String: String] {
-        var httpHeaders = OpenAPIClientAPI.customHeaders
+        var httpHeaders = NexdClientAPI.customHeaders
         for (key, value) in self.headers {
             httpHeaders[key] = value
         }

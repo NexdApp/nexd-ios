@@ -18,7 +18,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerAddRequestToList(shoppingListId: Int, requestId: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
+    open class func shoppingListControllerAddRequestToList(shoppingListId: Int, requestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerAddRequestToListWithRequestBuilder(shoppingListId: shoppingListId, requestId: requestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -50,12 +50,12 @@ open class ShoppingListAPI {
         let requestIdPreEscape = "\(APIHelper.mapValueToPathItem(requestId))"
         let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ShoppingList>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -67,7 +67,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerDeleteRequestFromList(shoppingListId: Int, requestId: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
+    open class func shoppingListControllerDeleteRequestFromList(shoppingListId: Int, requestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerDeleteRequestFromListWithRequestBuilder(shoppingListId: shoppingListId, requestId: requestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -99,12 +99,12 @@ open class ShoppingListAPI {
         let requestIdPreEscape = "\(APIHelper.mapValueToPathItem(requestId))"
         let requestIdPostEscape = requestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{requestId}", with: requestIdPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ShoppingList>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "DELETE", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -115,7 +115,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerFindOne(id: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
+    open class func shoppingListControllerFindOne(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerFindOneWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -143,12 +143,12 @@ open class ShoppingListAPI {
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ShoppingList>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -158,7 +158,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[ShoppingList]>
      */
-    open class func shoppingListControllerGetUserLists(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[ShoppingList]> {
+    open class func shoppingListControllerGetUserLists(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[ShoppingList]> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerGetUserListsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -182,12 +182,12 @@ open class ShoppingListAPI {
      */
     open class func shoppingListControllerGetUserListsWithRequestBuilder() -> RequestBuilder<[ShoppingList]> {
         let path = "/api/shopping-list"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<[ShoppingList]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<[ShoppingList]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -198,7 +198,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerInsertNewShoppingList(shoppingListFormDto: ShoppingListFormDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
+    open class func shoppingListControllerInsertNewShoppingList(shoppingListFormDto: ShoppingListFormDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerInsertNewShoppingListWithRequestBuilder(shoppingListFormDto: shoppingListFormDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -223,12 +223,12 @@ open class ShoppingListAPI {
      */
     open class func shoppingListControllerInsertNewShoppingListWithRequestBuilder(shoppingListFormDto: ShoppingListFormDto) -> RequestBuilder<ShoppingList> {
         let path = "/api/shopping-list"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: shoppingListFormDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ShoppingList>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
@@ -240,7 +240,7 @@ open class ShoppingListAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<ShoppingList>
      */
-    open class func shoppingListControllerUpdateShoppingList(id: Int, shoppingListFormDto: ShoppingListFormDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
+    open class func shoppingListControllerUpdateShoppingList(id: Int, shoppingListFormDto: ShoppingListFormDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<ShoppingList> {
         return Observable.create { observer -> Disposable in
             shoppingListControllerUpdateShoppingListWithRequestBuilder(id: id, shoppingListFormDto: shoppingListFormDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -269,12 +269,12 @@ open class ShoppingListAPI {
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: shoppingListFormDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<ShoppingList>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<ShoppingList>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

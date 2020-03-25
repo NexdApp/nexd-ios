@@ -17,7 +17,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerDownload(id: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerDownload(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerDownloadWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -42,12 +42,12 @@ open class CallsAPI {
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -57,7 +57,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerIndex(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerIndex(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerIndexWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -78,12 +78,12 @@ open class CallsAPI {
      */
     open class func callControllerIndexWithRequestBuilder() -> RequestBuilder<Void> {
         let path = "/api/call"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -93,7 +93,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerInitUpload(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerInitUpload(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerInitUploadWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -114,12 +114,12 @@ open class CallsAPI {
      */
     open class func callControllerInitUploadWithRequestBuilder() -> RequestBuilder<Void> {
         let path = "/api/call/upload"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -130,7 +130,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerTranslated(id: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerTranslated(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerTranslatedWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -155,12 +155,12 @@ open class CallsAPI {
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -171,7 +171,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerUpload(id: Int, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerUpload(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerUploadWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -196,12 +196,12 @@ open class CallsAPI {
         let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
         let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
         path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -211,7 +211,7 @@ open class CallsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Void>
      */
-    open class func callControllerWebhook(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callControllerWebhook(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
         return Observable.create { observer -> Disposable in
             callControllerWebhookWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -232,12 +232,12 @@ open class CallsAPI {
      */
     open class func callControllerWebhookWithRequestBuilder() -> RequestBuilder<Void> {
         let path = "/api/call/webhook"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = OpenAPIClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

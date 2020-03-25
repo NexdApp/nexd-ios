@@ -8,7 +8,7 @@
 
 import RxSwift
 import SnapKit
-import OpenAPIClient
+import NexdClient
 import UIKit
 
 class RegistrationViewController: UIViewController {
@@ -118,7 +118,7 @@ extension RegistrationViewController {
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("User registration successful")
 
-                OpenAPIClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
+                NexdClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
 
                 Storage.shared.authorizationToken = response.accessToken
                 Storage.shared.userId = response.id

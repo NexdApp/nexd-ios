@@ -16,7 +16,7 @@ open class ArticlesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Article]>
      */
-    open class func articlesControllerFindAll(apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<[Article]> {
+    open class func articlesControllerFindAll(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Article]> {
         return Observable.create { observer -> Disposable in
             articlesControllerFindAllWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -37,12 +37,12 @@ open class ArticlesAPI {
      */
     open class func articlesControllerFindAllWithRequestBuilder() -> RequestBuilder<[Article]> {
         let path = "/api/articles"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<[Article]>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<[Article]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -53,7 +53,7 @@ open class ArticlesAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Article>
      */
-    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = OpenAPIClientAPI.apiResponseQueue) -> Observable<Article> {
+    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Article> {
         return Observable.create { observer -> Disposable in
             articlesControllerInsertOneWithRequestBuilder(createArticleDto: createArticleDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -75,12 +75,12 @@ open class ArticlesAPI {
      */
     open class func articlesControllerInsertOneWithRequestBuilder(createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
         let path = "/api/articles"
-        let URLString = OpenAPIClientAPI.basePath + path
+        let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createArticleDto)
 
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Article>.Type = OpenAPIClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<Article>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }

@@ -14,7 +14,7 @@ $ pod install
 
 ```
 $ cd NearBuy
-$ openapi-generator generate --input-spec http://localhost:3001/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="Swagger Client",responseAs=RxSwift
+$ openapi-generator generate --input-spec http://localhost:3001/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="OpenAPI Client",responseAs=RxSwift,projectName=NexdClient --type-mappings number=Int
 $ pod isntall
 ```
 
@@ -22,7 +22,7 @@ $ pod isntall
 
 ```
 $ cd NearBuy
-$ openapi-generator generate --input-spec http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="Swagger Client",responseAs=RxSwift --type-mappings number=Int
+$ openapi-generator generate --input-spec http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NearBuyVsVirus/nearbuy-ios",podSummary="OpenAPI Client",responseAs=RxSwift,projectName=NexdClient --type-mappings number=Int
 $ pod isntall
 ```
 

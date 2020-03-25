@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import OpenAPIClient
+import NexdClient
 import RxSwift
 
 class ArticlesService {

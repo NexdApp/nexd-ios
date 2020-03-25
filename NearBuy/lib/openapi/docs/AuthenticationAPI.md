@@ -18,7 +18,7 @@ Method | HTTP request | Description
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let loginPayload = LoginPayload(email: "email_example", password: "password_example") // LoginPayload | 
 
@@ -56,7 +56,7 @@ No authorization required
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import OpenAPIClient
+import NexdClient
 
 let registerPayload = RegisterPayload(email: "email_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", password: "password_example") // RegisterPayload | 
 

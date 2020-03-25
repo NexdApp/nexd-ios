@@ -9,7 +9,7 @@
 import RxSwift
 import SnapKit
 import UIKit
-import OpenAPIClient
+import NexdClient
 
 class HelperRequestOverviewViewController: UIViewController {
     enum Style {
