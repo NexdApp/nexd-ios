@@ -1,6 +1,6 @@
 //
-//  OpenAPI+NearBuy.swift
-//  NearBuy
+//  OpenAPI+Nexd.swift
+//  Nexd
 //
 //  Created by Tobias Schröpf on 25.03.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.

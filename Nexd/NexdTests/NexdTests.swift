@@ -1,15 +1,15 @@
 //
-//  NearBuyTests.swift
-//  NearBuyTests
+//  NexdTests.swift
+//  NexdTests
 //
 //  Created by Tobias Schröpf on 21.03.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
 import XCTest
-@testable import NearBuy
+@testable import Nexd
 
-class NearBuyTests: XCTestCase {
+class NexdTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
