@@ -15,9 +15,15 @@ extension NexdClientAPI {
             NexdClientAPI.requestBuilderFactory = DebuggableURLSessionRequestBuilderFactory()
         #endif
 
-        NexdClientAPI.basePath = AppConfiguration.baseUrl
+        if let baseUrl = AppConfiguration.baseUrl {
+            NexdClientAPI.basePath = baseUrl
+        }
 
         if let token = authorizationToken {
+            #if DEBUG
+                log.verbose("Using token: Bearer \(token)")
+            #endif
+
             NexdClientAPI.customHeaders = ["Authorization": "Bearer \(token)"]
         }
     }

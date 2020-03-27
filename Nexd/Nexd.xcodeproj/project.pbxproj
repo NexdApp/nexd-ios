@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		45852914C1AF6C97FF0AD66F /* Pods_NexdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */; };
-		ABE9136618DF4E99794858F8 /* Pods_Nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B168F8C604346758541C12A /* Pods_Nexd.framework */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* ShoppingListService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */; };
@@ -46,6 +44,8 @@
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
 		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67A2426C88B005C77CE /* GradientView.swift */; };
+		DC980426A654B85BA205A6E6 /* Pods_NexdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 53D487947B466F8E98665000 /* Pods_NexdTests.framework */; };
+		F4AC3E450AB532C32905FC28 /* Pods_Nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2E480741A76E50120EEE8F /* Pods_Nexd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,15 +59,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B168F8C604346758541C12A /* Pods_Nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1F37CA94D89281584B425944 /* Pods-NearBuyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.release.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.release.xcconfig"; sourceTree = "<group>"; };
-		20C9A67778931D25EE5344A1 /* Pods-NearBuy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.debug.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.debug.xcconfig"; sourceTree = "<group>"; };
-		216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuyTests.debug.xcconfig"; path = "Target Support Files/Pods-NearBuyTests/Pods-NearBuyTests.debug.xcconfig"; sourceTree = "<group>"; };
-		327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.debug.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.debug.xcconfig"; sourceTree = "<group>"; };
-		34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
-		8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
-		9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NearBuy.release.xcconfig"; path = "Target Support Files/Pods-NearBuy/Pods-NearBuy.release.xcconfig"; sourceTree = "<group>"; };
+		170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.debug.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.debug.xcconfig"; sourceTree = "<group>"; };
+		3E2E480741A76E50120EEE8F /* Pods_Nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		53D487947B466F8E98665000 /* Pods_NexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
 		AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Nexd.swift"; sourceTree = "<group>"; };
@@ -110,7 +104,9 @@
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		AEF3D6782426B970005C77CE /* CheckableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableCell.swift; sourceTree = "<group>"; };
 		AEF3D67A2426C88B005C77CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
+		F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ABE9136618DF4E99794858F8 /* Pods_Nexd.framework in Frameworks */,
+				F4AC3E450AB532C32905FC28 /* Pods_Nexd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,18 +122,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45852914C1AF6C97FF0AD66F /* Pods_NexdTests.framework in Frameworks */,
+				DC980426A654B85BA205A6E6 /* Pods_NexdTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0FB576275224D4124A7223A1 /* Frameworks */ = {
+		ADC00A67FE5460AED668653F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B168F8C604346758541C12A /* Pods_Nexd.framework */,
-				BF5E8110C0F72C75B7557128 /* Pods_NexdTests.framework */,
+				3E2E480741A76E50120EEE8F /* Pods_Nexd.framework */,
+				53D487947B466F8E98665000 /* Pods_NexdTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -149,7 +145,7 @@
 				AEF3D631242584CC005C77CE /* NexdTests */,
 				AEF3D619242584C9005C77CE /* Products */,
 				B7FBC32D851855F768588401 /* Pods */,
-				0FB576275224D4124A7223A1 /* Frameworks */,
+				ADC00A67FE5460AED668653F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -266,14 +262,10 @@
 		B7FBC32D851855F768588401 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				20C9A67778931D25EE5344A1 /* Pods-NearBuy.debug.xcconfig */,
-				9CE5FD2D0885B17443F3FE33 /* Pods-NearBuy.release.xcconfig */,
-				216061E8FDA0591D2F4A9834 /* Pods-NearBuyTests.debug.xcconfig */,
-				1F37CA94D89281584B425944 /* Pods-NearBuyTests.release.xcconfig */,
-				327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */,
-				34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */,
-				1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */,
-				8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */,
+				170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */,
+				F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */,
+				BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */,
+				DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -285,12 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */;
 			buildPhases = (
-				93EAC044F0C62EA87643DD87 /* [CP] Check Pods Manifest.lock */,
+				CC0A0A57E0CD23A5F05F134C /* [CP] Check Pods Manifest.lock */,
 				AEF3D63D24258F61005C77CE /* ShellScript */,
 				AEF3D614242584C9005C77CE /* Sources */,
 				AEF3D615242584C9005C77CE /* Frameworks */,
 				AEF3D616242584C9005C77CE /* Resources */,
-				DA223312793D78A63568EA1C /* [CP] Embed Pods Frameworks */,
+				7F5AF015A4002CFDE0BCCA9C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -305,7 +297,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NexdTests" */;
 			buildPhases = (
-				79F67BF17B5DAE36C8295905 /* [CP] Check Pods Manifest.lock */,
+				98DCC7DF67737DC9E09A7DDD /* [CP] Check Pods Manifest.lock */,
 				AEF3D62A242584CC005C77CE /* Sources */,
 				AEF3D62B242584CC005C77CE /* Frameworks */,
 				AEF3D62C242584CC005C77CE /* Resources */,
@@ -380,7 +372,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		79F67BF17B5DAE36C8295905 /* [CP] Check Pods Manifest.lock */ = {
+		7F5AF015A4002CFDE0BCCA9C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		98DCC7DF67737DC9E09A7DDD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -402,7 +411,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93EAC044F0C62EA87643DD87 /* [CP] Check Pods Manifest.lock */ = {
+		AEF3D63D24258F61005C77CE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$SRCROOT/R.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		CC0A0A57E0CD23A5F05F134C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -422,42 +450,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AEF3D63D24258F61005C77CE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				$SRCROOT/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
-		};
-		DA223312793D78A63568EA1C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nexd/Pods-Nexd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -660,7 +652,7 @@
 		};
 		AEF3D638242584CC005C77CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 327C15BE7C419FD9AB58FA8C /* Pods-Nexd.debug.xcconfig */;
+			baseConfigurationReference = 170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -679,7 +671,7 @@
 		};
 		AEF3D639242584CC005C77CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34E66968F5D69BA8C484C053 /* Pods-Nexd.release.xcconfig */;
+			baseConfigurationReference = F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -698,7 +690,7 @@
 		};
 		AEF3D63B242584CC005C77CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1D2BBBF3C002A333CF89BE2C /* Pods-NexdTests.debug.xcconfig */;
+			baseConfigurationReference = BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -720,7 +712,7 @@
 		};
 		AEF3D63C242584CC005C77CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B1F16E6F73FBA3CFF9E8252 /* Pods-NexdTests.release.xcconfig */;
+			baseConfigurationReference = DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
