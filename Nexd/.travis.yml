@@ -1,0 +1,7 @@
+language: swift
+osx_image: xcode11.3
+xcode_workspace: Nexd.xcworkspace
+xcode_scheme: Nexd
+xcode_destination: platform=iOS Simulator,OS=12.1,name=iPhone X
+before_install:
+- pod install
