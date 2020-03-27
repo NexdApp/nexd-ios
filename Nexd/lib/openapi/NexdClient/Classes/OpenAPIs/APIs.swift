@@ -7,7 +7,7 @@
 import Foundation
 
 open class NexdClientAPI {
-    public static var basePath = "http://localhost"
+    public static var basePath = "http://localhost:3001"
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

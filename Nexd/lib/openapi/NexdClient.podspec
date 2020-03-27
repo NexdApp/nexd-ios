@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'git@github.com:OpenAPITools/openapi-generator.git', :tag => 'v1.0' }
   s.authors = 'OpenAPI Generator'
   s.license = 'Proprietary'
-  s.homepage = 'https://github.com/NearBuyVsVirus/nexd-ios'
+  s.homepage = 'https://github.com/NexdApp/nexd-ios'
   s.summary = 'OpenAPI Client'
   s.source_files = 'NexdClient/Classes/**/*.swift'
   s.dependency 'RxSwift', '~> 5.0.0'

@@ -9,8 +9,9 @@
 import Foundation
 
 enum AppConfiguration {
-//    static let baseUrl = "http://localhost:3001"
-//    static let baseUrl = "https://wirvsvirus-nearbuy.herokuapp.com"
-    static let baseUrl = "http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com"
-
+    static var baseUrl: String? {
+        return nil  // use default value from NexdAPI
+//        return "http://localhost:3001"
+//        return "http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com"
+    }
 }
