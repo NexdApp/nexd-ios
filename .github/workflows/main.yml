@@ -25,6 +25,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Bootstrap
       run: |
-        bundle install
         cd Nexd
-        pod install
+        bundle install
+        bundle exec fastlane test
