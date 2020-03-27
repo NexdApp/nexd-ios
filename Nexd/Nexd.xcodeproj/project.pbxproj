@@ -278,7 +278,8 @@
 			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */;
 			buildPhases = (
 				CC0A0A57E0CD23A5F05F134C /* [CP] Check Pods Manifest.lock */,
-				AEF3D63D24258F61005C77CE /* ShellScript */,
+				AEF3D63D24258F61005C77CE /* R.swift */,
+				AE56322D242E942900948569 /* Swiftlint */,
 				AEF3D614242584C9005C77CE /* Sources */,
 				AEF3D615242584C9005C77CE /* Frameworks */,
 				AEF3D616242584C9005C77CE /* Resources */,
@@ -411,7 +412,25 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AEF3D63D24258F61005C77CE /* ShellScript */ = {
+		AE56322D242E942900948569 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
+		};
+		AEF3D63D24258F61005C77CE /* R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -421,10 +440,11 @@
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
+			name = R.swift;
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -592,6 +612,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 			};
 			name = Debug;
 		};
@@ -646,6 +667,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

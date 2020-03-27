@@ -1,0 +1,43 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  lane :bootstrap do
+    cocoapods(
+      clean: true,
+      deployment: true
+    )
+  end
+
+  lane :lint do
+    swiftlint(
+      executable: 'Pods/SwiftLint/swiftlint',
+      strict: true,
+      raise_if_swiftlint_error: true
+    )
+  end
+
+  desc "Run the tests"
+  lane :test do
+    bootstrap
+    lint
+    scan(
+      workspace: "Nexd.xcworkspace",
+      scheme: "Nexd"
+    )
+  end
+end

@@ -9,6 +9,7 @@ PODS:
   - R.swift.Library (5.1.0)
   - RxSwift (5.0.1)
   - SnapKit (4.2.0)
+  - SwiftLint (0.39.1)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - NexdClient (from `lib/openapi`)
   - R.swift
   - SnapKit
+  - SwiftLint
   - XCGLogger
 
 SPEC REPOS:
@@ -27,6 +29,7 @@ SPEC REPOS:
     - R.swift.Library
     - RxSwift
     - SnapKit
+    - SwiftLint
     - XCGLogger
 
 EXTERNAL SOURCES:
@@ -40,8 +43,9 @@ SPEC CHECKSUMS:
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: a979b3f1c1b0bb75232a529912441681af7753d8
+PODFILE CHECKSUM: b092a99337a04a75e4fb9da0ef74abbab8a08c73
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1

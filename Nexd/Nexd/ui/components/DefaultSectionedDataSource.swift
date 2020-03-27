@@ -62,4 +62,3 @@ class DefaultSectionedDataSource<ItemType>: NSObject, UICollectionViewDataSource
         }
     }
 }
-

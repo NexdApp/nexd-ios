@@ -12,6 +12,7 @@ target 'Nexd' do
   pod 'SnapKit'
   pod 'R.swift'
   pod 'XCGLogger'
+  pod 'SwiftLint'
 
   target 'NexdTests' do
     inherit! :search_paths

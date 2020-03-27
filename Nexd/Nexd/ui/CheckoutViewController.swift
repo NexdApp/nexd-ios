@@ -21,11 +21,11 @@ class CheckoutViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let id: Int
+        let itemId: Int
         let orderedBy: Int
 
         static func from(item: ShoppingListViewController.Item) -> Item {
-            return Item(isSelected: item.isSelected, title: item.title, id: item.id, orderedBy: item.orderedBy)
+            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
         }
     }
 
@@ -126,7 +126,7 @@ extension CheckoutViewController: UICollectionViewDelegate {
 
 extension CheckoutViewController {
     @objc func completeButtonPressed(sender: UIButton!) {
-        guard let content = content else { return }
+//        guard let content = content else { return }
 //        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
 //            .subscribe(onSuccess: { [weak self] shoppingList in
 //                log.debug("Shoppping list created: \(shoppingList)")

@@ -12,14 +12,14 @@ import NexdClient
 
 class RequestService {
     struct RequestItem {
-        let id: Int
+        let itemId: Int
         let articleCount: Int
     }
 
     static let shared = RequestService()
 
     func submitRequest(items: [RequestItem]) -> Single<RequestEntity> {
-        let articles = items.map { CreateRequestArticleDto(articleId: $0.id, articleCount: $0.articleCount) }
+        let articles = items.map { CreateRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) }
 
         let dto = RequestFormDto(street: nil,
                                  number: nil,
@@ -41,8 +41,8 @@ class RequestService {
         return RequestAPI.requestControllerGetAll().asSingle()
     }
 
-    func fetchRequest(id: Int) -> Single<RequestEntity> {
-        return RequestAPI.requestControllerGetSingleRequest(requestId: id)
+    func fetchRequest(requestId: Int) -> Single<RequestEntity> {
+        return RequestAPI.requestControllerGetSingleRequest(requestId: requestId)
             .asSingle()
     }
 }

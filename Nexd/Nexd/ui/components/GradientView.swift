@@ -15,13 +15,13 @@ class GradientView: UIView {
 
     init() {
         super.init(frame: .zero)
-        let gradientLayer = layer as! CAGradientLayer
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.gradientGreen.cgColor]
+        let gradientLayer = layer as? CAGradientLayer
+        gradientLayer?.colors = [UIColor.white.cgColor, UIColor.gradientGreen.cgColor]
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let gradientLayer = layer as! CAGradientLayer
-        gradientLayer.colors = [UIColor.white.cgColor, UIColor.gradientGreen.cgColor]
+        let gradientLayer = layer as? CAGradientLayer
+        gradientLayer?.colors = [UIColor.white.cgColor, UIColor.gradientGreen.cgColor]
     }
 }
