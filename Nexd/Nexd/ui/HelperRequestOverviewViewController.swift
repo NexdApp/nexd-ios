@@ -126,9 +126,9 @@ class HelperRequestOverviewViewController: UIViewController {
                                       availableRequests: openRequests.map { Request(requestId: $0.0, title: $0.1) })
 
                 self?.content = content
-            }) { error in
+            }, onError: { error in
                 log.error("Request failed: \(error)")
-            }
+            })
             .disposed(by: disposeBag)
     }
 }

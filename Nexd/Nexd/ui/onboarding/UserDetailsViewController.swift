@@ -6,9 +6,9 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxSwift
 import SnapKit
-import NexdClient
 import UIKit
 
 class UserDetailsViewController: UIViewController {
@@ -96,10 +96,10 @@ extension UserDetailsViewController {
             .subscribe(onSuccess: { [weak self] user in
                 log.debug("User information updated: \(user)")
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
-            }) { [weak self] error in
+            }, onError: { [weak self] error in
                 log.error("UserInformation update failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
-            }
+            })
             .disposed(by: disposeBag)
     }
 }

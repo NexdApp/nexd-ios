@@ -25,7 +25,7 @@ class CheckoutViewController: UIViewController {
         let orderedBy: Int
 
         static func from(item: ShoppingListViewController.Item) -> Item {
-            return Item(isSelected: item.isSelected, title: item.title, itemId: item.id, orderedBy: item.orderedBy)
+            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
         }
     }
 

@@ -6,9 +6,9 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxSwift
 import SnapKit
-import NexdClient
 import UIKit
 
 class ShoppingListViewController: UIViewController {
@@ -21,7 +21,7 @@ class ShoppingListViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let id: Int
+        let itemId: Int
         let orderedBy: Int
     }
 
@@ -125,7 +125,7 @@ class ShoppingListViewController: UIViewController {
 
                                     return Item(isSelected: false,
                                                 title: details?.name ?? "-",
-                                                id: article.articleId,
+                                                itemId: article.articleId,
                                                 orderedBy: request.requesterId)
                                 }
                             }
@@ -134,11 +134,11 @@ class ShoppingListViewController: UIViewController {
             .subscribe(onSuccess: { [weak self] items in
                 log.debug("List loaded successfully... updating content (items: \(items.count))")
                 self?.content = Content(items: items)
-            }) { [weak self] error in
+            }, onError: { [weak self] error in
                 log.error("Load failed: \(error)")
                 self?.showError(title: R.string.localizable.shopping_list_overview_error_title(),
                                 message: R.string.localizable.shopping_list_overview_error_loading_failed_message())
-            }
+            })
             .disposed(by: disposeBag)
     }
 
@@ -157,7 +157,7 @@ extension ShoppingListViewController: UICollectionViewDelegate {
 
         var items = content.items
         let item = items[indexPath.row]
-        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, id: item.id, orderedBy: item.orderedBy)
+        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
         self.content = Content(items: items)
     }
 }
@@ -168,8 +168,10 @@ extension ShoppingListViewController {
         let checkoutVC = CheckoutViewController()
 
         let allUserIds = Array(Set(content.items.map { $0.orderedBy }))
-        let checkoutItems = allUserIds.map { userId in CheckoutViewController.UserRequest(userId: userId,
-                                                                      items: content.items.filter { $0.orderedBy == userId }.map { CheckoutViewController.Item.from(item: $0) }) }
+        let checkoutItems = allUserIds.map { userId -> CheckoutViewController.UserRequest in
+            let items = content.items.filter { $0.orderedBy == userId }.map { CheckoutViewController.Item.from(item: $0) }
+            return CheckoutViewController.UserRequest(userId: userId, items: items)
+        }
         checkoutVC.content = CheckoutViewController.Content(requests: checkoutItems)
 
         navigationController?.pushViewController(checkoutVC, animated: true)

@@ -7,3 +7,6 @@ excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Source/ExcludedFile.swift
   - Source/*/ExcludedFile.swift # Exclude files with a wildcard
 line_length: 180
+function_body_length:
+  - 60
+  - 120

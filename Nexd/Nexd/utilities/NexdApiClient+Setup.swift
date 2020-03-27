@@ -12,7 +12,7 @@ import NexdClient
 extension NexdClientAPI {
     static func setup(authorizationToken: String?) {
         #if DEBUG
-            NexdClientAPI.requestBuilderFactory = DebuggableURLSessionRequestBuilderFactory()
+            NexdClientAPI.requestBuilderFactory = DebuggableRequestBuilderFactory()
         #endif
 
         if let baseUrl = AppConfiguration.baseUrl {
@@ -59,13 +59,13 @@ extension NexdClientAPI {
     }
 }
 
-private class DebuggableURLSessionRequestBuilderFactory: RequestBuilderFactory {
+private class DebuggableRequestBuilderFactory: RequestBuilderFactory {
     func getNonDecodableBuilder<T>() -> RequestBuilder<T>.Type {
         return DebuggableURLSessionRequestBuilder<T>.self
     }
 
     func getBuilder<T: Decodable>() -> RequestBuilder<T>.Type {
-        return DebuggableURLSessionDecodableRequestBuilder<T>.self
+        return DebuggableDecodableRequestBuilder<T>.self
     }
 }
 
@@ -80,7 +80,7 @@ private class DebuggableURLSessionRequestBuilder<T>: URLSessionRequestBuilder<T>
     }
 }
 
-private class DebuggableURLSessionDecodableRequestBuilder<T: Decodable>: URLSessionDecodableRequestBuilder<T> {
+private class DebuggableDecodableRequestBuilder<T: Decodable>: URLSessionDecodableRequestBuilder<T> {
     override func execute(_ apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, Error>) -> Void) {
         NexdClientAPI.logRequest(request: self)
 

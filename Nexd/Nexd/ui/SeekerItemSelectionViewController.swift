@@ -100,9 +100,9 @@ class SeekerItemSelectionViewController: UIViewController {
             .subscribe(onSuccess: { [weak self] articles in
                 log.debug("Articles: \(articles)")
                 self?.content = Content(items: articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) })
-            }) { error in
+            }, onError: { error in
                 log.error("Error occurred: \(error)")
-            }
+            })
             .disposed(by: disposeBag)
     }
 }
@@ -138,10 +138,10 @@ extension SeekerItemSelectionViewController {
             self?.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
                 self?.navigationController?.popViewController(animated: true)
             }
-        }) { [weak self] error in
+        }, onError: { [weak self] error in
             log.error("Error: \(error)")
             self?.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message())
-        }
-        .disposed(by: disposeBag)
+        })
+            .disposed(by: disposeBag)
     }
 }
