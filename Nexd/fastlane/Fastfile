@@ -23,9 +23,17 @@ platform :ios do
     )
   end
 
+  lane :lint do
+    swiftlint(
+      strict: true,
+      raise_if_swiftlint_error: true
+    )
+  end
+
   desc "Run the tests"
   lane :test do
     bootstrap
+    lint
     scan(
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd"

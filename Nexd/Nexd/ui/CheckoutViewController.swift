@@ -126,7 +126,7 @@ extension CheckoutViewController: UICollectionViewDelegate {
 
 extension CheckoutViewController {
     @objc func completeButtonPressed(sender: UIButton!) {
-        guard let content = content else { return }
+//        guard let content = content else { return }
 //        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
 //            .subscribe(onSuccess: { [weak self] shoppingList in
 //                log.debug("Shoppping list created: \(shoppingList)")
