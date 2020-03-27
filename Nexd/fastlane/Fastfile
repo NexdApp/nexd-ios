@@ -25,6 +25,7 @@ platform :ios do
 
   lane :lint do
     swiftlint(
+      executable: 'Pods/SwiftLint/swiftlint',
       strict: true,
       raise_if_swiftlint_error: true
     )
