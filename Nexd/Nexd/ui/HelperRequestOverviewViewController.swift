@@ -6,10 +6,10 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
-import NexdClient
 
 class HelperRequestOverviewViewController: UIViewController {
     enum Style {
@@ -19,7 +19,7 @@ class HelperRequestOverviewViewController: UIViewController {
     }
 
     struct Request {
-        let id: Int
+        let requestId: Int
         let title: String
     }
 
@@ -44,12 +44,15 @@ class HelperRequestOverviewViewController: UIViewController {
         didSet {
             var sections = [DefaultSectionedDataSource<DefaultCellItem>.Section]()
             if let content = content {
+                let acceptedItems = content.acceptedRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
                 let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                   title: R.string.localizable.helper_request_overview_heading_accepted_section(),
-                                                                                                  items: content.acceptedRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) })
+                                                                                                  items: acceptedItems)
+
+                let availableItems = content.availableRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
                 let availableRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                    title: R.string.localizable.helper_request_overview_heading_available_section(),
-                                                                                                   items: content.availableRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) })
+                                                                                                   items: availableItems)
 
                 sections.append(acceptedRequestsSection)
                 sections.append(availableRequestsSection)
@@ -108,10 +111,9 @@ class HelperRequestOverviewViewController: UIViewController {
 
         RequestService.shared.openRequests()
             .flatMap { requests -> Single<[(Int, String)]> in
-                return Single.zip(requests
+                Single.zip(requests
                     .filter { $0.status == .pending }
-                    .map { request in  UserService.shared.fetchUserInfo(id: request.requesterId).map{ (request.id, "\($0.lastName) (\(request.articles.count))" ) } })
-
+                    .map { request in UserService.shared.fetchUserInfo(usreId: request.requesterId).map { (request.id, "\($0.lastName) (\(request.articles.count))") } })
             }
             .subscribe(onSuccess: { [weak self] openRequests in
                 log.debug("Open requests: \(openRequests)")
@@ -121,7 +123,7 @@ class HelperRequestOverviewViewController: UIViewController {
                 // ONGOING = 'ongoing',
                 // COMPLETED = 'completed',
                 let content = Content(acceptedRequests: [],
-                                      availableRequests: openRequests.map { Request(id: $0.0, title: $0.1) })
+                                      availableRequests: openRequests.map { Request(requestId: $0.0, title: $0.1) })
 
                 self?.content = content
             }) { error in
@@ -161,7 +163,7 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegate {
 extension HelperRequestOverviewViewController {
     @objc func startButtonPressed(sender: UIButton!) {
         guard let content = content else { return }
-        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
+        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.requestId })
             .subscribe(onSuccess: { [weak self] shoppingList in
                 log.debug("Shoppping list created: \(shoppingList)")
                 let shoppingListVC = ShoppingListViewController()

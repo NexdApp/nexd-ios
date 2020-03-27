@@ -13,8 +13,8 @@ import RxSwift
 class UserService {
     static let shared = UserService()
 
-    func updateUserInformation(id: Int, zipCode: String, firstName: String, lastName: String, phone: String) -> Single<User> {
-        return UserAPI.userControllerUpdate(id: id,
+    func updateUserInformation(usreId: Int, zipCode: String, firstName: String, lastName: String, phone: String) -> Single<User> {
+        return UserAPI.userControllerUpdate(id: usreId,
                                             updateUserDto: UpdateUserDto(street: nil,
                                                                          number: nil,
                                                                          zipCode: zipCode,
@@ -26,7 +26,7 @@ class UserService {
             .asSingle()
     }
 
-    func fetchUserInfo(id: Int) -> Single<User> {
-        return UserAPI.userControllerFindOne(id: id).asSingle()
+    func fetchUserInfo(usreId: Int) -> Single<User> {
+        return UserAPI.userControllerFindOne(id: usreId).asSingle()
     }
 }

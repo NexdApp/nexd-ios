@@ -143,7 +143,7 @@ class ShoppingListViewController: UIViewController {
     }
 
     private func loadAllRequests(for shoppingList: ShoppingList) -> Single<[RequestEntity]> {
-        return Single.zip(shoppingList.requests.map { RequestService.shared.fetchRequest(id: $0.requestId) })
+        return Single.zip(shoppingList.requests.map { RequestService.shared.fetchRequest(requestId: $0.requestId) })
     }
 }
 

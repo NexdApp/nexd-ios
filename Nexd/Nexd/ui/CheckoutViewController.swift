@@ -21,11 +21,11 @@ class CheckoutViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let id: Int
+        let itemId: Int
         let orderedBy: Int
 
         static func from(item: ShoppingListViewController.Item) -> Item {
-            return Item(isSelected: item.isSelected, title: item.title, id: item.id, orderedBy: item.orderedBy)
+            return Item(isSelected: item.isSelected, title: item.title, itemId: item.id, orderedBy: item.orderedBy)
         }
     }
 

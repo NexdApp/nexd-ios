@@ -99,8 +99,8 @@ extension RequestBuilder: CustomDebugStringConvertible {
     public var parametersDescription: String? {
         return parameters?.map { key, value -> String in
             switch value {
-            case let v as Data:
-                return "\(key): \(v.asString())"
+            case let data as Data:
+                return "\(key): \(data.asString())"
             default:
                 return "\(key): \(value)"
             }

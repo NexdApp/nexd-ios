@@ -88,7 +88,7 @@ extension UserDetailsViewController {
             return
         }
 
-        UserService.shared.updateUserInformation(id: userInformation.userId,
+        UserService.shared.updateUserInformation(usreId: userInformation.userId,
                                                  zipCode: zipCode,
                                                  firstName: userInformation.firstName,
                                                  lastName: userInformation.lastName,

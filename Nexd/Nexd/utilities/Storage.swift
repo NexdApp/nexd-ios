@@ -27,8 +27,8 @@ class Storage {
         get {
             defaults.integer(forKey: "userId")
         }
-        set(id) {
-            defaults.setValue(id, forKey: "userId")
+        set(userId) {
+            defaults.setValue(userId, forKey: "userId")
         }
     }
 }
