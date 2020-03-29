@@ -58,7 +58,7 @@ class DefaultSectionedDataSource<ItemType>: NSObject, UICollectionViewDataSource
             headerView.label.styleHeader(text: sections[indexPath.section].title)
             return headerView
         default:
-            assert(false, "Invalid element type")
+            fatalError("Invalid element type")
         }
     }
 }

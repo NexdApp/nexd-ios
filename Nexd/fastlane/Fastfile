@@ -40,4 +40,22 @@ platform :ios do
       scheme: "Nexd"
     )
   end
+
+  desc "Build for distribution (via App Store and TestFlight)"
+  lane :apple_distribution do
+    # get_certificates
+    # get_provisioning_profile
+    build_app(
+      workspace: "Nexd.xcworkspace",
+      scheme: "Nexd",
+      export_options: {
+        method: "app-store",
+        signingCertificate: "Apple Distribution: Tobias Schroepf",
+        provisioningProfiles: {
+          "app.nexd.apple" => "Nexd (Distribution)"
+        }
+      }
+    )
+    upload_to_testflight
+  end
 end

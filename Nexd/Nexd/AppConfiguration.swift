@@ -10,8 +10,9 @@ import Foundation
 
 enum AppConfiguration {
     static var baseUrl: String? {
-        return nil  // use default value from NexdAPI
+//        return nil  // use default value from NexdAPI
 //        return "http://localhost:3001"
 //        return "http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com"
+        return "http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com"
     }
 }

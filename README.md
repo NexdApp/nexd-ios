@@ -13,17 +13,13 @@ $ pod install
 ## From local backend
 
 ```
-$ cd NearBuy
-$ openapi-generator generate --input-spec http://localhost:3001/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NexdApp/nexd-ios",podSummary="OpenAPI Client",responseAs=RxSwift,projectName=NexdClient --type-mappings number=Int
-$ pod isntall
+$ ./update_swagger_client.sh
 ```
 
 ## From deployed backend
 
 ```
-$ cd NearBuy
-$ openapi-generator generate --input-spec http://nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com/api/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NexdApp/nexd-ios",podSummary="OpenAPI Client",responseAs=RxSwift,projectName=NexdClient --type-mappings number=Int
-$ pod isntall
+$ ./update_swagger_client.sh http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com
 ```
 
 # Local backend

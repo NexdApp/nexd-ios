@@ -21,11 +21,21 @@ or alternatively using `brew cask install fastlane`
 fastlane ios bootstrap
 ```
 
+### ios lint
+```
+fastlane ios lint
+```
+
 ### ios test
 ```
 fastlane ios test
 ```
 Run the tests
+### ios apple_distribution
+```
+fastlane ios apple_distribution
+```
+Build for distribution (via App Store and TestFlight)
 
 ----
 

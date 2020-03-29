@@ -1,6 +1,6 @@
 # AuthenticationAPI
 
-All URIs are relative to *http://localhost:3001*
+All URIs are relative to *http://undefined:80*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

@@ -677,15 +677,17 @@
 			baseConfigurationReference = 170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PXLNW4QQT3;
 				INFOPLIST_FILE = Nexd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
 				PRODUCT_NAME = Nexd;
+				PROVISIONING_PROFILE_SPECIFIER = "Nexd (Development)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -696,15 +698,17 @@
 			baseConfigurationReference = F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PXLNW4QQT3;
 				INFOPLIST_FILE = Nexd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
 				PRODUCT_NAME = Nexd;
+				PROVISIONING_PROFILE_SPECIFIER = "Nexd (Development)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -717,7 +721,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				DEVELOPMENT_TEAM = PXLNW4QQT3;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -739,7 +743,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				DEVELOPMENT_TEAM = PXLNW4QQT3;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
