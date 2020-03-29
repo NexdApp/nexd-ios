@@ -64,6 +64,8 @@ class LoginViewController: UIViewController {
         contentView.addSubview(username)
         username.keyboardType = .emailAddress
         username.styled(placeholder: R.string.localizable.login_placeholer_username())
+        username.tag = 0
+        username.delegate = self
         username.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
             make.left.equalToSuperview().offset(8)
@@ -74,6 +76,8 @@ class LoginViewController: UIViewController {
         contentView.addSubview(password)
         password.styled(placeholder: R.string.localizable.login_placeholer_password())
         password.isSecureTextEntry = true
+        password.tag = 1
+        password.delegate = self
         password.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
             make.left.equalToSuperview().offset(8)
@@ -112,7 +116,7 @@ class LoginViewController: UIViewController {
             self.scrollView.contentInset = contentInsets
             self.scrollView.scrollIndicatorInsets = contentInsets
 
-            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom);
+            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom)
             self.scrollView.setContentOffset(bottomOffset, animated: true)
         }, keyboardWillHide: { [weak self] _ in
             guard let self = self else { return }
@@ -154,5 +158,23 @@ extension LoginViewController {
 
     @objc func registerButtonPressed(sender: UIButton!) {
         navigationController?.pushViewController(RegistrationViewController(), animated: true)
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+        // Try to find next responder
+        let nextResponder = textField.superview?.viewWithTag(nextTag)
+
+        if nextResponder != nil {
+            // Found next responder, so set it
+            nextResponder?.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard
+            textField.resignFirstResponder()
+        }
+
+        return false
     }
 }
