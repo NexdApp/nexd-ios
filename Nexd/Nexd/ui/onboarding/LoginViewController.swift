@@ -6,9 +6,9 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxSwift
 import SnapKit
-import NexdClient
 import UIKit
 
 class LoginViewController: UIViewController {
@@ -16,11 +16,14 @@ class LoginViewController: UIViewController {
         static let buttonBackgroundColor: UIColor = .gray
         static let logoSize = CGSize(width: 256, height: 256)
         static let buttonHeight: CGFloat = 52
+        static let verticalPadding: CGFloat = 16
     }
 
     private let disposeBag = DisposeBag()
+    private var keyboardObserver: KeyboardObserver?
 
     lazy var gradient = GradientView()
+    lazy var scrollView = UIScrollView()
     lazy var logo = UIImageView()
     lazy var username = TextField()
     lazy var password = TextField()
@@ -38,53 +41,91 @@ class LoginViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        view.addSubview(logo)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        let contentView = UIView()
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalTo(view)
+        }
+
+        contentView.addSubview(logo)
         logo.image = R.image.logo()
         logo.snp.makeConstraints { make -> Void in
             make.size.equalTo(Style.logoSize)
             make.centerX.equalToSuperview()
-            make.topMargin.equalTo(16)
+            make.topMargin.equalTo(Style.verticalPadding)
         }
 
-        view.addSubview(username)
+        contentView.addSubview(username)
         username.keyboardType = .emailAddress
         username.styled(placeholder: R.string.localizable.login_placeholer_username())
         username.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(logo.snp.bottom).offset(16)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.top.equalTo(logo.snp.bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(password)
+        contentView.addSubview(password)
         password.styled(placeholder: R.string.localizable.login_placeholer_password())
         password.isSecureTextEntry = true
         password.snp.makeConstraints { make -> Void in
             make.height.equalTo(36)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(username.snp_bottom).offset(16)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.top.equalTo(username.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(loginButton)
+        contentView.addSubview(loginButton)
         loginButton.style(text: R.string.localizable.login_button_title_login())
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(password.snp_bottom).offset(16)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(registerButton)
+        contentView.addSubview(registerButton)
         registerButton.style(text: R.string.localizable.login_button_title_register())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(loginButton.snp_bottom).offset(16)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.top.equalTo(loginButton.snp_bottom).offset(Style.verticalPadding)
+            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardObserver = KeyboardObserver(keyboardWillShow: { [weak self] keyboardSize in
+            guard let self = self else { return }
+
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+
+            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom);
+            self.scrollView.setContentOffset(bottomOffset, animated: true)
+        }, keyboardWillHide: { [weak self] _ in
+            guard let self = self else { return }
+
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+            self.scrollView.contentInset = contentInsets
+            self.scrollView.scrollIndicatorInsets = contentInsets
+        })
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        keyboardObserver = nil
     }
 }
 
