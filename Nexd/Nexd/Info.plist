@@ -29,7 +29,7 @@
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
-			<key>nexd-api-alb-1107636132.eu-central-1.elb.amazonaws.com</key>
+			<key>nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
