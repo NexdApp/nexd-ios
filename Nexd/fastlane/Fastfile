@@ -59,13 +59,11 @@ platform :ios do
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd",
       export_options: {
-        method: "app-store",
-        signingCertificate: "Apple Distribution: Tobias Schroepf",
-        provisioningProfiles: {
-          "app.nexd.apple" => "Nexd (Distribution)"
-        }
+        method: "app-store"
       }
     )
-    upload_to_testflight
+    upload_to_testflight(
+      username: "mista.tee.apps@gmail.com",
+    )
   end
 end
