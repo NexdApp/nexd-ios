@@ -43,7 +43,13 @@ platform :ios do
 
   desc "Build for distribution (via App Store and TestFlight)"
   lane :testflight_beta do
-    match(type: "appstore", readonly: true)
+    puts "MATCH_GIT_USERNAME: #{ENV['MATCH_GIT_USERNAME']}"
+
+    match(
+      type: "appstore",
+      readonly: true,
+      git_basic_authorization: Base64.encode64("#{ENV['MATCH_GIT_USERNAME']}:#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}")
+    )
     build_app(
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd",

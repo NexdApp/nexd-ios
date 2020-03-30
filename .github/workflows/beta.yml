@@ -26,6 +26,7 @@ jobs:
     - name: Bootstrap
       env:
         MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        MATCH_GIT_USERNAME: ${{ secrets.MATCH_GIT_USERNAME }}
       run: |
         cd Nexd
         bundle install
