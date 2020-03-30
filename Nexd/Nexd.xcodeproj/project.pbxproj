@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E0104243148E90006A490 /* KeyboardObserver.swift */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* ShoppingListService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */; };
@@ -62,6 +63,7 @@
 		170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.debug.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.debug.xcconfig"; sourceTree = "<group>"; };
 		3E2E480741A76E50120EEE8F /* Pods_Nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53D487947B466F8E98665000 /* Pods_NexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE1E0104243148E90006A490 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
 		AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Nexd.swift"; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */,
 				AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */,
 				AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */,
+				AE1E0104243148E90006A490 /* KeyboardObserver.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -493,6 +496,7 @@
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
 				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
+				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
