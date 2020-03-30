@@ -42,7 +42,7 @@ platform :ios do
   end
 
   desc "Build for distribution (via App Store and TestFlight)"
-  lane :testflight do
+  lane :testflight_beta do
     match(type: "appstore", readlony: true)
     build_app(
       workspace: "Nexd.xcworkspace",

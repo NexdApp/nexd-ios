@@ -27,4 +27,4 @@ jobs:
       run: |
         cd Nexd
         bundle install
-        bundle exec fastlane testflight
+        bundle exec fastlane testflight_beta
