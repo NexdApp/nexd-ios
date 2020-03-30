@@ -24,6 +24,8 @@ jobs:
 
     # Runs a set of commands using the runners shell
     - name: Bootstrap
+      env:
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
       run: |
         cd Nexd
         bundle install
