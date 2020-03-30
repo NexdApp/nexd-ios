@@ -43,12 +43,16 @@ platform :ios do
 
   desc "Build for distribution (via App Store and TestFlight)"
   lane :testflight_beta do
-    puts "MATCH_GIT_USERNAME: #{ENV['MATCH_GIT_USERNAME']}"
-
+    increment_build_number(
+      build_number: ENV['GITHUB_RUN_NUMBER']
+    )
     match(
+      storage_mode: "git",
       type: "appstore",
       readonly: true,
-      git_basic_authorization: Base64.encode64("#{ENV['MATCH_GIT_USERNAME']}:#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}")
+      git_url: "https://github.com/schroepf/next-ios-codesigning.git",
+      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+      app_identifier: "app.nexd.apple"
     )
     build_app(
       workspace: "Nexd.xcworkspace",
