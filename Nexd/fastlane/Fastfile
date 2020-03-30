@@ -43,6 +43,7 @@ platform :ios do
 
   desc "Build for distribution (via App Store and TestFlight)"
   lane :testflight_beta do
+    bootstrap
     increment_build_number(
       build_number: ENV['GITHUB_RUN_NUMBER']
     )
