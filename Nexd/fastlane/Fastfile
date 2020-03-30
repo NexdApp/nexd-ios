@@ -43,8 +43,7 @@ platform :ios do
 
   desc "Build for distribution (via App Store and TestFlight)"
   lane :apple_distribution do
-    # get_certificates
-    # get_provisioning_profile
+    match(type: "appstore", readlony: true)
     build_app(
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd",
