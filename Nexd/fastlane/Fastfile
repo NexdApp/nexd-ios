@@ -66,9 +66,9 @@ platform :ios do
     build_app(
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd",
-      codesigning_identity: "Apple Distribution: Tobias Schroepf",
       export_options: {
-        method: "app-store"
+        method: "app-store",
+        signingCertificate: "Apple Distribution: Tobias Schroepf",
       }
     )
     upload_to_testflight(
