@@ -31,9 +31,9 @@ fastlane ios lint
 fastlane ios test
 ```
 Run the tests
-### ios apple_distribution
+### ios testflight_beta
 ```
-fastlane ios apple_distribution
+fastlane ios testflight_beta
 ```
 Build for distribution (via App Store and TestFlight)
 

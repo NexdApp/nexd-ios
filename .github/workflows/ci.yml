@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+
+jobs:
+  ci:
+    runs-on: macos-10.15
+    steps:
+    - uses: actions/checkout@v2
+    - name: Bootstrap
+      run: |
+        cd Nexd
+        bundle install
+        bundle exec fastlane test
