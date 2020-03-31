@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Bootstrap
       run: |
+        env
         cd Nexd
         bundle install
         bundle exec fastlane test
