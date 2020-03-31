@@ -1,3 +1,8 @@
+# Deployment status
+
+
+- develop to TestFlight: ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop)
+
 # Initial Setup
 
 ```
