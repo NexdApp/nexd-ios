@@ -33,16 +33,7 @@ platform :ios do
       build_number: ENV['GITHUB_RUN_NUMBER']
     )
     setup_ci
-    # create_keychain(
-    #   name: "Nexd.keychain",
-    #   password: "Nexd.app",
-    #   default_keychain: true,
-    #   unlock: true,
-    #   timeout: 3600
-    # )
     match(
-      # keychain_name: "Nexd.keychain",
-      # keychain_password: "Nexd.app",
       storage_mode: "git",
       type: "development",
       readonly: true,
@@ -51,8 +42,6 @@ platform :ios do
       app_identifier: "app.nexd.apple"
     )
     match(
-      # keychain_name: "Nexd.keychain",
-      # keychain_password: "Nexd.app",
       storage_mode: "git",
       type: "appstore",
       readonly: true,
@@ -69,8 +58,8 @@ platform :ios do
       }
     )
     upload_to_testflight(
-      username: "mista.tee.apps@gmail.com"
+      username: "mista.tee.apps@gmail.com",
+      skip_submission: true
     )
-    # delete_keychain(name: "Nexd.keychain")
   end
 end
