@@ -70,8 +70,8 @@ platform :ios do
         method: "app-store"
       }
     )
-    upload_to_testflight(
-      username: "mista.tee.apps@gmail.com",
-    )
+    # upload_to_testflight(
+    #   username: "mista.tee.apps@gmail.com",
+    # )
   end
 end
