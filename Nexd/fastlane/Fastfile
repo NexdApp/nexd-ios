@@ -66,12 +66,13 @@ platform :ios do
     build_app(
       workspace: "Nexd.xcworkspace",
       scheme: "Nexd",
+      codesigning_identity: "Apple Distribution: Tobias Schroepf",
       export_options: {
         method: "app-store"
       }
     )
     upload_to_testflight(
-      username: "mista.tee.apps@gmail.com",
+      username: "mista.tee.apps@gmail.com"
     )
   end
 end
