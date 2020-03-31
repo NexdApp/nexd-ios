@@ -11,8 +11,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build and deploy
+      - uses: sinoru/actions-setup-keychain@v1.0
+      - uses: actions/checkout@v2
+      - name: Build and deploy
       env:
         MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
         MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
