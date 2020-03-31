@@ -58,8 +58,7 @@ platform :ios do
       }
     )
     upload_to_testflight(
-      username: "mista.tee.apps@gmail.com",
-      skip_submission: true
+      username: "mista.tee.apps@gmail.com"
     )
   end
 end
