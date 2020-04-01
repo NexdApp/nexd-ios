@@ -15,9 +15,10 @@ class DefaultCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(icon)
-        icon.tintColor = .black
-
         contentView.addSubview(label)
+
+        icon.styleDefault()
+        label.styleDefault()
 
         icon.snp.makeConstraints { make -> Void in
             make.width.height.equalTo(20)

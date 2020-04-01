@@ -11,11 +11,12 @@ import UIKit
 extension UITextField {
     func styled(placeholder: String) {
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.textFieldTextColor
+            .foregroundColor: UIColor.textFieldPlaceholderTextColor
         ]
 
         let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
 
+        textColor = .black
         attributedPlaceholder = attributedString
 
         layer.borderWidth = 1
