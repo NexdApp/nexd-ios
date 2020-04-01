@@ -44,13 +44,6 @@ $ docker volume remove nearbuy-backend_data-volume
 $ docker-compose up -d db
 ```
 
-## Deployments
-
-- update FASTLANE_SESSOIN in github secrets (once expired) with output of:
-```
-$ fastlane spaceauth -u mista.tee.apps@gmail.com
-```
-
 ## Known issues
 
 - update of access token in API client right after registration/login is ingored -> app needs to be killed and restarted
