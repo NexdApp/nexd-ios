@@ -6,21 +6,18 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxSwift
 import SnapKit
-import NexdClient
 import UIKit
 
 class RegistrationViewController: UIViewController {
-    enum Style {
-        static let buttonBackgroundColor: UIColor = .gray
-        static let textFieldHeight: CGFloat = 36
-        static let buttonHeight: CGFloat = 52
-    }
-
     private let disposeBag = DisposeBag()
+    private var keyboardObserver: KeyboardObserver?
+    private var keyboardDismisser: KeyboardDismisser?
 
     lazy var gradient = GradientView()
+    lazy var scrollView = UIScrollView()
 
     lazy var email = TextField()
     lazy var firstName = TextField()
@@ -32,6 +29,7 @@ class RegistrationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardDismisser = KeyboardDismisser(rootView: view)
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
@@ -41,7 +39,19 @@ class RegistrationViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        view.addSubview(email)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        let contentView = UIView()
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalTo(view)
+        }
+
+        contentView.addSubview(email)
         email.keyboardType = .emailAddress
         email.styled(placeholder: R.string.localizable.registration_placeholer_email())
         email.snp.makeConstraints { make -> Void in
@@ -51,53 +61,64 @@ class RegistrationViewController: UIViewController {
             make.topMargin.equalTo(50)
         }
 
-        view.addSubview(firstName)
+        contentView.addSubview(firstName)
         firstName.styled(placeholder: R.string.localizable.registration_placeholer_firstname())
         firstName.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(email.snp_bottom).offset(16)
+            make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(lastName)
+        contentView.addSubview(lastName)
         lastName.styled(placeholder: R.string.localizable.registration_placeholer_lastname())
         lastName.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(firstName.snp_bottom).offset(16)
+            make.top.equalTo(firstName.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(password)
+        contentView.addSubview(password)
         password.styled(placeholder: R.string.localizable.registration_placeholer_password())
         password.isSecureTextEntry = true
         password.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(lastName.snp_bottom).offset(16)
+            make.top.equalTo(lastName.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(confirmPassword)
+        contentView.addSubview(confirmPassword)
         confirmPassword.styled(placeholder: R.string.localizable.registration_placeholer_confirm_password())
         confirmPassword.isSecureTextEntry = true
         confirmPassword.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(password.snp_bottom).offset(16)
+            make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(registerButton)
+        contentView.addSubview(registerButton)
         registerButton.style(text: R.string.localizable.registration_button_title_continue())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(confirmPassword.snp_bottom).offset(16)
+            make.top.equalTo(confirmPassword.snp_bottom).offset(Style.verticalPadding)
+            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        keyboardObserver = nil
     }
 }
 

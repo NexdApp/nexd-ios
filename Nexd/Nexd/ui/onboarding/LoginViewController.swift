@@ -12,18 +12,13 @@ import SnapKit
 import UIKit
 
 class LoginViewController: UIViewController {
-    enum Style {
-        static let buttonBackgroundColor: UIColor = .gray
-        static let logoSize = CGSize(width: 256, height: 256)
-        static let buttonHeight: CGFloat = 52
-        static let verticalPadding: CGFloat = 16
-    }
-
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
+    private var keyboardDismisser: KeyboardDismisser?
 
     lazy var gradient = GradientView()
     lazy var scrollView = UIScrollView()
+
     lazy var logo = UIImageView()
     lazy var username = TextField()
     lazy var password = TextField()
@@ -32,6 +27,7 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardDismisser = KeyboardDismisser(rootView: view)
 
         view.backgroundColor = .white
         title = R.string.localizable.login_screen_title()
@@ -109,22 +105,7 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardObserver = KeyboardObserver(keyboardWillShow: { [weak self] keyboardSize in
-            guard let self = self else { return }
-
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-            self.scrollView.contentInset = contentInsets
-            self.scrollView.scrollIndicatorInsets = contentInsets
-
-            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom)
-            self.scrollView.setContentOffset(bottomOffset, animated: true)
-        }, keyboardWillHide: { [weak self] _ in
-            guard let self = self else { return }
-
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-            self.scrollView.contentInset = contentInsets
-            self.scrollView.scrollIndicatorInsets = contentInsets
-        })
+        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

@@ -12,12 +12,6 @@ import SnapKit
 import UIKit
 
 class UserDetailsViewController: UIViewController {
-    enum Style {
-        static let buttonBackgroundColor: UIColor = .gray
-        static let textFieldHeight: CGFloat = 36
-        static let buttonHeight: CGFloat = 52
-    }
-
     struct UserInformation {
         let userId: Int
         let firstName: String
@@ -27,8 +21,11 @@ class UserDetailsViewController: UIViewController {
     var userInformation: UserInformation!
 
     private let disposeBag = DisposeBag()
+    private var keyboardObserver: KeyboardObserver?
+    private var keyboardDismisser: KeyboardDismisser?
 
     lazy var gradient = GradientView()
+    lazy var scrollView = UIScrollView()
 
     lazy var phone = TextField()
     lazy var zipCode = TextField()
@@ -37,6 +34,7 @@ class UserDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardDismisser = KeyboardDismisser(rootView: view)
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
@@ -46,7 +44,19 @@ class UserDetailsViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        view.addSubview(phone)
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
+        let contentView = UIView()
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalTo(view)
+        }
+
+        contentView.addSubview(phone)
         phone.keyboardType = .phonePad
         phone.styled(placeholder: R.string.localizable.registration_placeholer_phone())
         phone.snp.makeConstraints { make -> Void in
@@ -56,25 +66,36 @@ class UserDetailsViewController: UIViewController {
             make.topMargin.equalTo(50)
         }
 
-        view.addSubview(zipCode)
+        contentView.addSubview(zipCode)
         zipCode.keyboardType = .phonePad
         zipCode.styled(placeholder: R.string.localizable.registration_placeholer_zip())
         zipCode.snp.makeConstraints { make -> Void in
             make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(phone.snp_bottom).offset(16)
+            make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
         }
 
-        view.addSubview(registerButton)
+        contentView.addSubview(registerButton)
         registerButton.style(text: R.string.localizable.registration_button_title_send())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(zipCode.snp_bottom).offset(16)
+            make.top.equalTo(zipCode.snp_bottom).offset(Style.verticalPadding)
+            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        keyboardObserver = nil
     }
 }
 
