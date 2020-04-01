@@ -1,16 +1,14 @@
-/* 
-  Localizable.strings
+
+/*Localizable.strings
   Nexd
 
   Created by Tobias Schröpf on 21.03.20.
-  Copyright © 2020 Tobias Schröpf. All rights reserved.
-*/
+  Copyright © 2020 Tobias Schröpf. All rights reserved.*/
 "login_screen_title" = "Login";
 "login_placeholer_username" = "Benutzername";
 "login_placeholer_password" = "Passwort";
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
-
 "registration_screen_title" = "Registrierung";
 "registration_placeholer_email" = "E-Mail";
 "registration_placeholer_firstname" = "Vorname";
@@ -21,11 +19,9 @@
 "registration_placeholer_confirm_password" = "Passwort bestätigen";
 "registration_button_title_continue" = "Weiter";
 "registration_button_title_send" = "Bestätigen";
-
 "role_selection_screen_title" = "Rolle";
 "role_selection_seeker" = "Ich brauche etwas!";
 "role_selection_helper" = "Ich kann helfen!";
-
 "helper_request_overview_screen_title" = "Übersicht";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_available_section" = "Suchen:";
@@ -33,25 +29,20 @@
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
-
 "shopping_list_screen_title" = "Einkaufsliste";
 "shopping_list_button_title_checkout" = "Zur Kasse";
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
-
 "checkout_screen_title" = "An der Kasse";
 "checkout_button_title_complete" = "Fertig";
-
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_submit_button_title" = "Senden";
 "seeker_success_title" = "Fertig!";
 "seeker_success_message" = "Die Anfrage wurde erfolgreich aufgegeben.";
 "seeker_error_title" = "Fehler!";
 "seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
-
 "error_title" = "Fehler";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
-
 "error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_button_ok" = "OK";
