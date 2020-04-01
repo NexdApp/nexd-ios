@@ -23,13 +23,14 @@ class CheckableCell: UICollectionViewCell {
         contentView.addSubview(label)
         contentView.addSubview(checkmark)
 
+        label.styleDefault()
         label.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.right.equalTo(checkmark.snp.left).offset(8)
             make.centerY.equalToSuperview()
         }
 
-        checkmark.tintColor = .black
+        checkmark.styleDefault()
         checkmark.snp.makeConstraints { make -> Void in
             make.width.height.equalTo(40)
             make.right.equalToSuperview().offset(-8)

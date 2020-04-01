@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Jnz-f1-H2p" firstAttribute="top" secondItem="PkD-hS-Pad" secondAttribute="top" id="1vw-mU-lYk"/>
                             <constraint firstItem="PkD-hS-Pad" firstAttribute="trailing" secondItem="Jnz-f1-H2p" secondAttribute="trailing" id="GPn-YW-tjJ"/>

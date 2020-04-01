@@ -9,12 +9,11 @@
 import UIKit
 
 extension UILabel {
-    func styleHeader(text: String) {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.buttonTextColor,
-            .font: UIFont.boldSystemFont(ofSize: 20)
-        ]
+    func styleDefault() {
+        textColor = .black
+    }
 
-        attributedText = NSAttributedString(string: text, attributes: attributes)
+    func styleHeader() {
+        textColor = UIColor.buttonTextColor
     }
 }
