@@ -10,6 +10,7 @@ PODS:
   - RxSwift (5.0.1)
   - SnapKit (4.2.0)
   - SwiftLint (0.39.1)
+  - Validator (3.2.1)
   - XCGLogger (7.0.1):
     - XCGLogger/Core (= 7.0.1)
   - XCGLogger/Core (7.0.1):
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - R.swift
   - SnapKit
   - SwiftLint
+  - Validator
   - XCGLogger
 
 SPEC REPOS:
@@ -30,6 +32,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwiftLint
+    - Validator
     - XCGLogger
 
 EXTERNAL SOURCES:
@@ -44,8 +47,9 @@ SPEC CHECKSUMS:
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
+  Validator: 80a6f567220c962dfd2d9928ae98a8c1d164f6f4
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: b092a99337a04a75e4fb9da0ef74abbab8a08c73
+PODFILE CHECKSUM: 790bae27e3ffb3c719a8f7b14294d6470fe8778d
 
 COCOAPODS: 1.9.1

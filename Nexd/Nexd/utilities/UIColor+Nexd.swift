@@ -16,4 +16,8 @@ extension UIColor {
     static var textFieldBorderColor: UIColor { UIColor(red: 204 / 255, green: 225 / 255, blue: 173 / 255, alpha: 1.0) }
 
     static var buttonTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
+
+    static var errorTintColor: UIColor { .red }
+
+    static var warningTintColor: UIColor { .orange }
 }

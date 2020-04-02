@@ -10,6 +10,7 @@ import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
+import Validator
 
 class RegistrationViewController: UIViewController {
     private let disposeBag = DisposeBag()
@@ -19,11 +20,28 @@ class RegistrationViewController: UIViewController {
     lazy var gradient = GradientView()
     lazy var scrollView = UIScrollView()
 
-    lazy var email = TextField()
-    lazy var firstName = TextField()
-    lazy var lastName = TextField()
-    lazy var password = TextField()
-    lazy var confirmPassword = TextField()
+    lazy var email = ValidatingTextField.make(tag: 0,
+                                              placeholder: R.string.localizable.registration_placeholer_email(),
+                                              keyboardType: .emailAddress,
+                                              validationRules: .email())
+
+    lazy var firstName = ValidatingTextField.make(tag: 1,
+                                                  placeholder: R.string.localizable.registration_placeholer_firstname(),
+                                                  validationRules: .firstName())
+
+    lazy var lastName = ValidatingTextField.make(tag: 2,
+                                                 placeholder: R.string.localizable.registration_placeholer_lastname(),
+                                                 validationRules: .lastName())
+
+    lazy var password = ValidatingTextField.make(tag: 3,
+                                                 placeholder: R.string.localizable.registration_placeholer_password(),
+                                                 isSecureTextEntry: true,
+                                                 validationRules: .password())
+
+    lazy var confirmPassword = ValidatingTextField.make(tag: 4,
+                                                        placeholder: R.string.localizable.registration_placeholer_confirm_password(),
+                                                        isSecureTextEntry: true,
+                                                        validationRules: .passwordConfirmation(dynamicTarget: { [weak self] in self?.password.value ?? "" }))
 
     lazy var registerButton = UIButton()
 
@@ -52,48 +70,35 @@ class RegistrationViewController: UIViewController {
         }
 
         contentView.addSubview(email)
-        email.keyboardType = .emailAddress
-        email.styled(placeholder: R.string.localizable.registration_placeholer_email())
         email.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.topMargin.equalTo(50)
         }
 
         contentView.addSubview(firstName)
-        firstName.styled(placeholder: R.string.localizable.registration_placeholer_firstname())
         firstName.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(lastName)
-        lastName.styled(placeholder: R.string.localizable.registration_placeholer_lastname())
         lastName.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(firstName.snp_bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(password)
-        password.styled(placeholder: R.string.localizable.registration_placeholer_password())
-        password.isSecureTextEntry = true
         password.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(lastName.snp_bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(confirmPassword)
-        confirmPassword.styled(placeholder: R.string.localizable.registration_placeholer_confirm_password())
-        confirmPassword.isSecureTextEntry = true
         confirmPassword.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
@@ -124,14 +129,23 @@ class RegistrationViewController: UIViewController {
 
 extension RegistrationViewController {
     @objc func registerButtonPressed(sender: UIButton!) {
-        log.debug("Send registration to backend")
+        let hasInvalidInput = [email, firstName, lastName, password, confirmPassword]
+            .map { $0.validate() }
+            .contains(false)
 
-        guard let email = email.text, let firstName = firstName.text, let lastName = lastName.text, let password = password.text else {
+        guard !hasInvalidInput else {
+            log.warning("Cannot register user! Validation failed!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
+
+        guard let email = email.value, let firstName = firstName.value, let lastName = lastName.value, let password = password.value else {
             log.warning("Cannot register user, mandatory field is missing!")
             showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
             return
         }
 
+        log.debug("Send registration to backend")
         AuthenticationService.shared.register(email: email,
                                               firstName: firstName,
                                               lastName: lastName,
@@ -153,5 +167,37 @@ extension RegistrationViewController {
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
             })
             .disposed(by: disposeBag)
+    }
+}
+
+private extension ValidationRuleSet where InputType == String {
+    enum ValidationErrors: String, ValidationError {
+        case emailInvalid = "Email address is invalid!"
+        case missingFirstName = "Frist name must not be empty!"
+        case missingLastName = "Last name must not be empty!"
+        case passwordTooShort = "Password is too short!"
+        case passwordConfirmationFailed = "Passwords do not match!"
+        var message: String { return rawValue }
+    }
+
+    static func email() -> ValidationRuleSet<String> {
+        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
+    }
+
+    static func firstName() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 1, error: ValidationErrors.missingFirstName)])
+    }
+
+    static func lastName() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 1, error: ValidationErrors.missingLastName)])
+    }
+
+    static func password() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
+    }
+
+    static func passwordConfirmation(dynamicTarget: @escaping (() -> String)) -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleEquality<String>(dynamicTarget: dynamicTarget,
+                                                                         error: ValidationErrors.passwordConfirmationFailed)])
     }
 }

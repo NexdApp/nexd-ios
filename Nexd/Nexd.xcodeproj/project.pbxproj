@@ -21,6 +21,8 @@
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
+		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
+		AEA2010F24362C0500BD6C1B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* View.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -82,6 +84,8 @@
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
+		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
+		AEA2010E24362C0500BD6C1B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -230,6 +234,8 @@
 				AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */,
 				AEF3D67A2426C88B005C77CE /* GradientView.swift */,
 				AE2A9A97242763CF006066B4 /* TextField.swift */,
+				AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */,
+				AEA2010E24362C0500BD6C1B /* View.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -526,12 +532,14 @@
 				AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
+				AEA2010F24362C0500BD6C1B /* View.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
+				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,4 +24,30 @@ extension String {
 
         return NSAttributedString(string: self, attributes: attributes)
     }
+
+    func asAttributedPlaceholder() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.textFieldPlaceholderTextColor
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
+    func asAttributedErrorLabel() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.errorTintColor,
+            .font: UIFont.systemFont(ofSize: 12)
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
+    func asAttributedWarningLabel() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.warningTintColor,
+            .font: UIFont.systemFont(ofSize: 12)
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
 }
