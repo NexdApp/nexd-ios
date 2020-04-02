@@ -105,12 +105,16 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 8 images.
+  /// This `R.image` struct is generated, and contains static references to 10 images.
   struct image {
     /// Image `baseline_check_black_48pt`.
     static let baseline_check_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_48pt")
+    /// Image `baseline_error_black_18pt`.
+    static let baseline_error_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_error_black_18pt")
     /// Image `baseline_shopping_basket_black_48pt`.
     static let baseline_shopping_basket_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_shopping_basket_black_48pt")
+    /// Image `baseline_warning_black_18pt`.
+    static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
     /// Image `gradient`.
     static let gradient = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient")
     /// Image `icon`.
@@ -132,9 +136,23 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_error_black_18pt", bundle: ..., traitCollection: ...)`
+    static func baseline_error_black_18pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_error_black_18pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_shopping_basket_black_48pt", bundle: ..., traitCollection: ...)`
     static func baseline_shopping_basket_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.baseline_shopping_basket_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_warning_black_18pt", bundle: ..., traitCollection: ...)`
+    static func baseline_warning_black_18pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_warning_black_18pt, compatibleWith: traitCollection)
     }
     #endif
 

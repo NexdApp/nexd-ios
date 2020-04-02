@@ -10,20 +10,30 @@ import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
+import Validator
 
 class LoginViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
 
-    lazy var gradient = GradientView()
-    lazy var scrollView = UIScrollView()
+    private lazy var gradient = GradientView()
+    private lazy var scrollView = UIScrollView()
 
-    lazy var logo = UIImageView()
-    lazy var username = TextField()
-    lazy var password = TextField()
-    lazy var loginButton = UIButton()
-    lazy var registerButton = UIButton()
+    private lazy var logo = UIImageView()
+    private lazy var email = ValidatingTextField.make(tag: 0,
+                                                      placeholder: R.string.localizable.login_placeholer_username(),
+                                                      keyboardType: .emailAddress,
+                                                      delegate: self,
+                                                      validationRules: .email())
+
+    private lazy var password = ValidatingTextField.make(tag: 1,
+                                                         placeholder: R.string.localizable.login_placeholer_password(),
+                                                         isSecureTextEntry: true,
+                                                         delegate: self,
+                                                         validationRules: .password())
+    private lazy var loginButton = UIButton()
+    private lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,28 +67,18 @@ class LoginViewController: UIViewController {
             make.topMargin.equalTo(Style.verticalPadding)
         }
 
-        contentView.addSubview(username)
-        username.keyboardType = .emailAddress
-        username.styled(placeholder: R.string.localizable.login_placeholer_username())
-        username.tag = 0
-        username.delegate = self
-        username.snp.makeConstraints { make -> Void in
-            make.height.equalTo(36)
+        contentView.addSubview(email)
+        email.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(logo.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(password)
-        password.styled(placeholder: R.string.localizable.login_placeholer_password())
-        password.isSecureTextEntry = true
-        password.tag = 1
-        password.delegate = self
         password.snp.makeConstraints { make -> Void in
-            make.height.equalTo(36)
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(username.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(loginButton)
@@ -116,7 +116,17 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     @objc func loginButtonPressed(sender: UIButton!) {
-        guard let email = username.text, let password = password.text else {
+        let hasInvalidInput = [email, password]
+            .map { $0.validate() }
+            .contains(false)
+
+        guard !hasInvalidInput else {
+            log.warning("Cannot login user! Validation failed!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
+
+        guard let email = email.value, let password = password.value else {
             log.warning("Missing mandatory login information!")
             return
         }
@@ -143,7 +153,7 @@ extension LoginViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
         // Try to find next responder
         let nextResponder = textField.superview?.viewWithTag(nextTag)
@@ -157,5 +167,21 @@ extension LoginViewController: UITextFieldDelegate {
         }
 
         return false
+    }
+}
+
+private extension ValidationRuleSet where InputType == String {
+    enum ValidationErrors: String, ValidationError {
+        case emailInvalid = "Email address is invalid"
+        case passwordTooShort = "Password is too short!"
+        var message: String { return rawValue }
+    }
+
+    static func email() -> ValidationRuleSet<String> {
+        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
+    }
+
+    static func password() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
     }
 }

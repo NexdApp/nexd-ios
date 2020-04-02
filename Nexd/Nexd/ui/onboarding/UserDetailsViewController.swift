@@ -10,6 +10,7 @@ import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
+import Validator
 
 class UserDetailsViewController: UIViewController {
     struct UserInformation {
@@ -27,8 +28,15 @@ class UserDetailsViewController: UIViewController {
     lazy var gradient = GradientView()
     lazy var scrollView = UIScrollView()
 
-    lazy var phone = TextField()
-    lazy var zipCode = TextField()
+    lazy var phone = ValidatingTextField.make(tag: 0,
+                                              placeholder: R.string.localizable.registration_placeholer_phone(),
+                                              keyboardType: .phonePad,
+                                              validationRules: .phone())
+
+    lazy var zipCode = ValidatingTextField.make(tag: 0,
+                                                placeholder: R.string.localizable.registration_placeholer_zip(),
+                                                keyboardType: .phonePad,
+                                                validationRules: .zipCode())
 
     lazy var registerButton = UIButton()
 
@@ -57,20 +65,14 @@ class UserDetailsViewController: UIViewController {
         }
 
         contentView.addSubview(phone)
-        phone.keyboardType = .phonePad
-        phone.styled(placeholder: R.string.localizable.registration_placeholer_phone())
         phone.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.topMargin.equalTo(50)
         }
 
         contentView.addSubview(zipCode)
-        zipCode.keyboardType = .phonePad
-        zipCode.styled(placeholder: R.string.localizable.registration_placeholer_zip())
         zipCode.snp.makeConstraints { make -> Void in
-            make.height.equalTo(Style.textFieldHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
@@ -101,14 +103,23 @@ class UserDetailsViewController: UIViewController {
 
 extension UserDetailsViewController {
     @objc func registerButtonPressed(sender: UIButton!) {
-        log.debug("Send registration to backend")
+        let hasInvalidInput = [phone, zipCode]
+            .map { $0.validate() }
+            .contains(false)
 
-        guard let zipCode = zipCode.text, let phone = phone.text else {
+        guard !hasInvalidInput else {
             log.warning("Cannot update user, mandatory field is missing!")
             showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
             return
         }
 
+        guard let zipCode = zipCode.value, let phone = phone.value else {
+            log.warning("Cannot update user, mandatory field is missing!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
+
+        log.debug("Send registration to backend")
         UserService.shared.updateUserInformation(usreId: userInformation.userId,
                                                  zipCode: zipCode,
                                                  firstName: userInformation.firstName,
@@ -122,5 +133,21 @@ extension UserDetailsViewController {
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
             })
             .disposed(by: disposeBag)
+    }
+}
+
+private extension ValidationRuleSet where InputType == String {
+    enum ValidationErrors: String, ValidationError {
+        case phoneNumberInvalid = "Phone number is invalid"
+        case zipCodeInvalid = "ZIP code is invalid"
+        var message: String { return rawValue }
+    }
+
+    static func phone() -> ValidationRuleSet<String> {
+        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
+    }
+
+    static func zipCode() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRulePattern(pattern: "^[0-9]+$", error: ValidationErrors.zipCodeInvalid)])
     }
 }
