@@ -74,10 +74,28 @@ class SelectRoleViewController: UIViewController {
             make.bottom.equalTo(helperTitle.snp.top).offset(-16)
         }
         helperRoleButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
+
+        let profileButton = UIBarButtonItem(image: R.image.baseline_account_box_black_24pt(),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(profileButtonPressed(sender:)))
+        profileButton.tintColor = .label
+        navigationItem.rightBarButtonItem = profileButton
     }
 }
 
 extension SelectRoleViewController {
+    @objc func profileButtonPressed(sender: UIBarButtonItem!) {
+        let profileScreen = UserProfileViewController()
+        profileScreen.onUserLoggedOut = { [weak self] in
+            log.debug("User logged out!")
+            self?.dismiss(animated: true) { [weak self] in
+                self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+            }
+        }
+        present(profileScreen, animated: true, completion: nil)
+    }
+
     @objc func helperRoleButtonPressed(sender: UIButton!) {
         navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
     }

@@ -127,7 +127,7 @@ extension UserDetailsViewController {
                                                  phone: phone)
             .subscribe(onSuccess: { [weak self] user in
                 log.debug("User information updated: \(user)")
-                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+                self?.navigationController?.setViewControllers([SelectRoleViewController()], animated: true)
             }, onError: { [weak self] error in
                 log.error("UserInformation update failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())

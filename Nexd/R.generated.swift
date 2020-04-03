@@ -105,8 +105,16 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 10 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
+    /// Image `baseline_account_box_black_18pt`.
+    static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
+    /// Image `baseline_account_box_black_24pt`.
+    static let baseline_account_box_black_24pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_24pt")
+    /// Image `baseline_account_box_black_36pt`.
+    static let baseline_account_box_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_36pt")
+    /// Image `baseline_account_box_black_48pt`.
+    static let baseline_account_box_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_48pt")
     /// Image `baseline_check_black_48pt`.
     static let baseline_check_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_check_black_48pt")
     /// Image `baseline_error_black_18pt`.
@@ -123,10 +131,40 @@ struct R: Rswift.Validatable {
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
     /// Image `nexd`.
     static let nexd = Rswift.ImageResource(bundle: R.hostingBundle, name: "nexd")
+    /// Image `outline_account_box_black_48pt`.
+    static let outline_account_box_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_account_box_black_48pt")
     /// Image `outline_directions_walk_black_48pt`.
     static let outline_directions_walk_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_directions_walk_black_48pt")
     /// Image `outline_shopping_cart_black_48pt`.
     static let outline_shopping_cart_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_shopping_cart_black_48pt")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_account_box_black_18pt", bundle: ..., traitCollection: ...)`
+    static func baseline_account_box_black_18pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_account_box_black_18pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_account_box_black_24pt", bundle: ..., traitCollection: ...)`
+    static func baseline_account_box_black_24pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_account_box_black_24pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_account_box_black_36pt", bundle: ..., traitCollection: ...)`
+    static func baseline_account_box_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_account_box_black_36pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_account_box_black_48pt", bundle: ..., traitCollection: ...)`
+    static func baseline_account_box_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_account_box_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_check_black_48pt", bundle: ..., traitCollection: ...)`
@@ -185,6 +223,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "outline_account_box_black_48pt", bundle: ..., traitCollection: ...)`
+    static func outline_account_box_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.outline_account_box_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "outline_directions_walk_black_48pt", bundle: ..., traitCollection: ...)`
     static func outline_directions_walk_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.outline_directions_walk_black_48pt, compatibleWith: traitCollection)
@@ -203,7 +248,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 44 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -293,6 +338,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_login_failed = Rswift.StringResource(key: "error_message_login_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Logout
+      ///
+      /// Locales: en, de
+      static let user_profile_button_title_logout = Rswift.StringResource(key: "user_profile_button_title_logout", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: OK
       ///
       /// Locales: en, de
@@ -345,6 +394,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_submit_button_title = Rswift.StringResource(key: "seeker_submit_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: User profile
+      ///
+      /// Locales: en, de
+      static let user_profile_screen_title = Rswift.StringResource(key: "user_profile_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: User registration failed. Please make sure you input valid data.
       ///
       /// Locales: en, de
@@ -704,6 +757,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("error_message_login_failed", bundle: bundle, comment: "")
       }
 
+      /// en translation: Logout
+      ///
+      /// Locales: en, de
+      static func user_profile_button_title_logout(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("user_profile_button_title_logout", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "user_profile_button_title_logout"
+        }
+
+        return NSLocalizedString("user_profile_button_title_logout", bundle: bundle, comment: "")
+      }
+
       /// en translation: OK
       ///
       /// Locales: en, de
@@ -897,6 +965,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_submit_button_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: User profile
+      ///
+      /// Locales: en, de
+      static func user_profile_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("user_profile_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "user_profile_screen_title"
+        }
+
+        return NSLocalizedString("user_profile_screen_title", bundle: bundle, comment: "")
       }
 
       /// en translation: User registration failed. Please make sure you input valid data.
