@@ -25,6 +25,15 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
+    func asAttributedTitle() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor.titleTextColor,
+            .font: UIFont.boldSystemFont(ofSize: 36)
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
     func asAttributedPlaceholder() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.textFieldPlaceholderTextColor

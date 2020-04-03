@@ -14,6 +14,6 @@ extension UILabel {
     }
 
     func styleHeader() {
-        textColor = UIColor.buttonTextColor
+        textColor = .headingTextColor
     }
 }

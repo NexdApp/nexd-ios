@@ -122,12 +122,6 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegate {
     }
 }
 
-extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width, height: Style.rowHeight)
-//    }
-}
-
 extension SeekerItemSelectionViewController {
     @objc func submitButtonPressed(sender: UIButton!) {
         guard let content = content else { return }

@@ -132,13 +132,8 @@ extension LoginViewController {
         }
 
         AuthenticationService.shared.login(email: email, password: password)
-            .subscribe(onSuccess: { [weak self] response in
+            .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
-
-                NexdClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
-
-                Storage.shared.authorizationToken = response.accessToken
-                Storage.shared.userId = response.id
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")

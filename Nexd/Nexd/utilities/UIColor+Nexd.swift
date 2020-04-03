@@ -17,6 +17,10 @@ extension UIColor {
 
     static var buttonTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
 
+    static var headingTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
+
+    static var titleTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
+
     static var errorTintColor: UIColor { .red }
 
     static var warningTintColor: UIColor { .orange }
