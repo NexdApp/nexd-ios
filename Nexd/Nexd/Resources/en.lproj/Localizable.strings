@@ -94,3 +94,4 @@
 "error_message_registration_invalid_email" = "Invalid E-mail address";
 "error_message_user_detail_field_missing" = "Please fill in";
 "registration_label_privacy_policy_agreement" = "By creating an account, I agree to Nexd's %1$@";
+"registration_term_privacy_policy" = "Privacy Policy";
