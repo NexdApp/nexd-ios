@@ -94,7 +94,7 @@
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
 		AED8818E24352373006065D2 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		AEF3D618242584C9005C77CE /* Nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -170,7 +170,7 @@
 		AEF3D619242584C9005C77CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D618242584C9005C77CE /* Nexd.app */,
+				AEF3D618242584C9005C77CE /* nexd.app */,
 				AEF3D62E242584CC005C77CE /* NexdTests.xctest */,
 			);
 			name = Products;
@@ -318,7 +318,7 @@
 			);
 			name = Nexd;
 			productName = NearBuy;
-			productReference = AEF3D618242584C9005C77CE /* Nexd.app */;
+			productReference = AEF3D618242584C9005C77CE /* nexd.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AEF3D62D242584CC005C77CE /* NexdTests */ = {
@@ -726,7 +726,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
-				PRODUCT_NAME = Nexd;
+				PRODUCT_NAME = nexd;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.apple";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,7 +747,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
-				PRODUCT_NAME = Nexd;
+				PRODUCT_NAME = nexd;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.apple";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
