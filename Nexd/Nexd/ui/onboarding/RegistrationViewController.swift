@@ -45,6 +45,8 @@ class RegistrationViewController: UIViewController {
 
     lazy var registerButton = UIButton()
 
+    lazy var privacyPolicy = UITextView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismisser = KeyboardDismisser(rootView: view)
@@ -80,28 +82,28 @@ class RegistrationViewController: UIViewController {
         firstName.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(email.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(lastName)
         lastName.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(firstName.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(firstName.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(password)
         password.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(lastName.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(lastName.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(confirmPassword)
         confirmPassword.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(password.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(registerButton)
@@ -111,7 +113,22 @@ class RegistrationViewController: UIViewController {
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(confirmPassword.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(confirmPassword.snp.bottom).offset(Style.verticalPadding)
+        }
+
+        contentView.addSubview(privacyPolicy)
+        privacyPolicy.backgroundColor = .clear
+        privacyPolicy.isScrollEnabled = false
+        privacyPolicy.textContainerInset = .zero
+
+        let term = R.string.localizable.registration_term_privacy_policy()
+        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
+        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
+        privacyPolicy.snp.makeConstraints { make -> Void in
+            make.height.equalTo(54)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.top.equalTo(registerButton.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
     }
@@ -152,12 +169,6 @@ extension RegistrationViewController {
                                               password: password)
             .subscribe(onSuccess: { [weak self] response in
                 log.debug("User registration successful")
-
-                NexdClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
-
-                Storage.shared.authorizationToken = response.accessToken
-                Storage.shared.userId = response.id
-
                 let userDetailsVC = UserDetailsViewController()
                 userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response.id, firstName: firstName, lastName: lastName)
                 self?.navigationController?.pushViewController(userDetailsVC, animated: true)
