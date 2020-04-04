@@ -1,4 +1,4 @@
-# RequestFormDto
+# HelpRequestCreateDto
 
 ## Properties
 Name | Type | Description | Notes
@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **number** | **String** |  | [optional] 
 **zipCode** | **String** |  | [optional] 
 **city** | **String** |  | [optional] 
-**articles** | [CreateRequestArticleDto] | List of articles | 
+**articles** | [CreateHelpRequestArticleDto] |  | [optional] 
 **status** | **String** |  | [optional] [default to .pending]
-**additionalRequest** | **String** |  | 
-**deliveryComment** | **String** |  | 
-**phoneNumber** | **String** |  | 
+**additionalRequest** | **String** |  | [optional] 
+**deliveryComment** | **String** |  | [optional] 
+**phoneNumber** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

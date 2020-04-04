@@ -110,10 +110,13 @@ class HelperRequestOverviewViewController: UIViewController {
         super.viewDidAppear(animated)
 
         RequestService.shared.openRequests()
-            .flatMap { requests -> Single<[(Int, String)]> in
+            .flatMap { requests -> Single<[Request]> in
                 Single.zip(requests
                     .filter { $0.status == .pending }
-                    .map { request in UserService.shared.fetchUserInfo(usreId: request.requesterId).map { (request.id, "\($0.lastName) (\(request.articles.count))") } })
+                    .compactMap { request in
+                        guard let requesterId = request.requesterId, let requestId = request.id else { return nil }
+                        return UserService.shared.fetchUserInfo(userId: requesterId)
+                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") } })
             }
             .subscribe(onSuccess: { [weak self] openRequests in
                 log.debug("Open requests: \(openRequests)")
@@ -122,8 +125,7 @@ class HelperRequestOverviewViewController: UIViewController {
                 // NEW = 'new',
                 // ONGOING = 'ongoing',
                 // COMPLETED = 'completed',
-                let content = Content(acceptedRequests: [],
-                                      availableRequests: openRequests.map { Request(requestId: $0.0, title: $0.1) })
+                let content = Content(acceptedRequests: [], availableRequests: openRequests)
 
                 self?.content = content
             }, onError: { error in

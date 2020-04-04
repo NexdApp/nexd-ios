@@ -167,10 +167,10 @@ extension RegistrationViewController {
                                               firstName: firstName,
                                               lastName: lastName,
                                               password: password)
-            .subscribe(onSuccess: { [weak self] response in
+            .subscribe(onCompleted: { [weak self] in
                 log.debug("User registration successful")
                 let userDetailsVC = UserDetailsViewController()
-                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response.id, firstName: firstName, lastName: lastName)
+                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
                 self?.navigationController?.pushViewController(userDetailsVC, animated: true)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")

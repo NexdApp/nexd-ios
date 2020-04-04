@@ -7,7 +7,7 @@
 import Foundation
 
 open class NexdClientAPI {
-    public static var basePath = "http://undefined:80"
+    public static var basePath = "https://nexd-backend-staging.herokuapp.com:443/api/v1"
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

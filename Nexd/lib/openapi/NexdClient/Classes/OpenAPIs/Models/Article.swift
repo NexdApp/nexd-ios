@@ -8,7 +8,8 @@
 import Foundation
 
 
-public struct Article: Codable {
+public struct Article: Codable { 
+
 
     /** Auto-incremented id of an article. */
     public var id: Int

@@ -1,14 +1,16 @@
-# ShoppingList
+# HelpList
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int** |  | 
-**owner** | **Int** |  | 
+**ownerId** | **String** |  | 
+**owner** | [**User**](User.md) |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
-**status** | **String** |  | [default to .active]
-**requests** | [ShoppingListRequest] |  | 
+**status** | **String** |  | [optional] [default to .active]
+**helpRequests** | [HelpRequest] |  | 
+**helpRequestsIds** | **[Int]** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

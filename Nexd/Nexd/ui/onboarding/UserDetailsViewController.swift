@@ -14,7 +14,6 @@ import Validator
 
 class UserDetailsViewController: UIViewController {
     struct UserInformation {
-        let userId: Int
         let firstName: String
         let lastName: String
     }
@@ -120,8 +119,7 @@ extension UserDetailsViewController {
         }
 
         log.debug("Send registration to backend")
-        UserService.shared.updateUserInformation(usreId: userInformation.userId,
-                                                 zipCode: zipCode,
+        UserService.shared.updateUserInformation(zipCode: zipCode,
                                                  firstName: userInformation.firstName,
                                                  lastName: userInformation.lastName,
                                                  phone: phone)

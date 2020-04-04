@@ -8,7 +8,8 @@
 import Foundation
 
 
-public struct CreateArticleDto: Codable {
+public struct CreateArticleDto: Codable { 
+
 
     /** Name of the article, should also contain the unit. */
     public var name: String

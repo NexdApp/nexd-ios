@@ -8,11 +8,13 @@
 import Foundation
 
 
-public struct UpdateUserDto: Codable {
+public struct UpdateUserDto: Codable { 
+
 
     public enum Role: String, Codable, CaseIterable {
         case helper = "helper"
         case seeker = "seeker"
+        case _none = "none"
     }
     public var street: String?
     public var number: String?
@@ -20,10 +22,10 @@ public struct UpdateUserDto: Codable {
     public var city: String?
     public var firstName: String
     public var lastName: String
-    public var role: Role
+    public var role: Role? = ._none
     public var telephone: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role, telephone: String?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role?, telephone: String?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode

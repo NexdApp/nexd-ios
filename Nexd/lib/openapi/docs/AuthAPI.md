@@ -1,27 +1,27 @@
-# UserAPI
+# AuthAPI
 
-All URIs are relative to *http://undefined:80*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**userControllerFindOne**](UserAPI.md#usercontrollerfindone) | **GET** /api/user/{id} | 
-[**userControllerGetAll**](UserAPI.md#usercontrollergetall) | **GET** /api/user | 
-[**userControllerUpdate**](UserAPI.md#usercontrollerupdate) | **PUT** /api/user/{id} | 
+[**authControllerLogin**](AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
+[**authControllerRefreshToken**](AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
+[**authControllerRegister**](AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
 
 
-# **userControllerFindOne**
+# **authControllerLogin**
 ```swift
-    open class func userControllerFindOne(id: Int) -> Observable<User>
+    open class func authControllerLogin(loginDto: LoginDto) -> Observable<TokenDto>
 ```
 
-
+Login by email and password 
 
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let id = 987 // Int | user id
+let loginDto = LoginDto(email: "email_example", password: "password_example") // LoginDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -30,71 +30,36 @@ let id = 987 // Int | user id
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | user id | 
+ **loginDto** | [**LoginDto**](LoginDto.md) |  | 
 
 ### Return type
 
-[**User**](User.md)
+[**TokenDto**](TokenDto.md)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **userControllerGetAll**
+# **authControllerRefreshToken**
 ```swift
-    open class func userControllerGetAll() -> Observable<[User]>
+    open class func authControllerRefreshToken(tokenDto: TokenDto) -> Observable<TokenDto>
 ```
 
-
+Not yet implemented, token refresh
 
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-
-// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**[User]**](User.md)
-
-### Authorization
-
-[bearer](../README.md#bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **userControllerUpdate**
-```swift
-    open class func userControllerUpdate(id: Int, updateUserDto: UpdateUserDto) -> Observable<User>
-```
-
-
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import NexdClient
-
-let id = 987 // Int | user id
-let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", telephone: "telephone_example") // UpdateUserDto | 
+let tokenDto = TokenDto(accessToken: "accessToken_example") // TokenDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -103,16 +68,53 @@ let updateUserDto = UpdateUserDto(street: "street_example", number: "number_exam
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | user id | 
- **updateUserDto** | [**UpdateUserDto**](UpdateUserDto.md) |  | 
+ **tokenDto** | [**TokenDto**](TokenDto.md) |  | 
 
 ### Return type
 
-[**User**](User.md)
+[**TokenDto**](TokenDto.md)
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authControllerRegister**
+```swift
+    open class func authControllerRegister(registerDto: RegisterDto) -> Observable<TokenDto>
+```
+
+Register with email and password 
+
+### Example 
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import NexdClient
+
+let registerDto = RegisterDto(email: "email_example", firstName: "firstName_example", lastName: "lastName_example", password: "password_example") // RegisterDto | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **registerDto** | [**RegisterDto**](RegisterDto.md) |  | 
+
+### Return type
+
+[**TokenDto**](TokenDto.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **city** | **String** |  | [optional] 
 **firstName** | **String** |  | 
 **lastName** | **String** |  | 
-**role** | **String** |  | 
+**role** | **String** |  | [optional] [default to ._none]
 **telephone** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
