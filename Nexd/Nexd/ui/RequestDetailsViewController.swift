@@ -39,7 +39,7 @@ class RequestDetailsViewController: UIViewController {
         view.addSubview(playPauseButton)
         playPauseButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(8)
-            make.left.equalToSuperview().offset(8)
+            make.left.equalToSuperview().offset(18)
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
 
@@ -47,8 +47,8 @@ class RequestDetailsViewController: UIViewController {
         view.addSubview(slider)
         slider.snp.makeConstraints { make in
             make.centerY.equalTo(playPauseButton)
-            make.left.equalTo(playPauseButton.snp.right).offset(8)
-            make.right.equalToSuperview().offset(-8)
+            make.left.equalTo(playPauseButton.snp.right).offset(20)
+            make.right.equalToSuperview().offset(-40)
         }
     }
 
