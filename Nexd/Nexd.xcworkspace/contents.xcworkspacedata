@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Nexd.xcodeproj">
+      location = "group:/Users/tschroep/Documents/Personal/git/github.com/Nexd/nexd-ios/Nexd/nexd.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

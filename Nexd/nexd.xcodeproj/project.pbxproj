@@ -100,7 +100,7 @@
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AEF3D627242584CC005C77CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AEF3D629242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AEF3D62E242584CC005C77CE /* NexdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NexdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF3D62E242584CC005C77CE /* nexdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nexdTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D632242584CC005C77CE /* NexdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdTests.swift; sourceTree = "<group>"; };
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -171,7 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				AEF3D618242584C9005C77CE /* nexd.app */,
-				AEF3D62E242584CC005C77CE /* NexdTests.xctest */,
+				AEF3D62E242584CC005C77CE /* nexdTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -300,9 +300,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AEF3D617242584C9005C77CE /* Nexd */ = {
+		AEF3D617242584C9005C77CE /* nexd */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */;
+			buildConfigurationList = AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "nexd" */;
 			buildPhases = (
 				CC0A0A57E0CD23A5F05F134C /* [CP] Check Pods Manifest.lock */,
 				AEF3D63D24258F61005C77CE /* R.swift */,
@@ -316,14 +316,14 @@
 			);
 			dependencies = (
 			);
-			name = Nexd;
+			name = nexd;
 			productName = NearBuy;
 			productReference = AEF3D618242584C9005C77CE /* nexd.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AEF3D62D242584CC005C77CE /* NexdTests */ = {
+		AEF3D62D242584CC005C77CE /* nexdTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NexdTests" */;
+			buildConfigurationList = AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "nexdTests" */;
 			buildPhases = (
 				98DCC7DF67737DC9E09A7DDD /* [CP] Check Pods Manifest.lock */,
 				AEF3D62A242584CC005C77CE /* Sources */,
@@ -335,9 +335,9 @@
 			dependencies = (
 				AEF3D630242584CC005C77CE /* PBXTargetDependency */,
 			);
-			name = NexdTests;
+			name = nexdTests;
 			productName = NearBuyTests;
-			productReference = AEF3D62E242584CC005C77CE /* NexdTests.xctest */;
+			productReference = AEF3D62E242584CC005C77CE /* nexdTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -359,7 +359,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "Nexd" */;
+			buildConfigurationList = AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "nexd" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -373,8 +373,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AEF3D617242584C9005C77CE /* Nexd */,
-				AEF3D62D242584CC005C77CE /* NexdTests */,
+				AEF3D617242584C9005C77CE /* nexd */,
+				AEF3D62D242584CC005C77CE /* nexdTests */,
 			);
 		};
 /* End PBXProject section */
@@ -564,7 +564,7 @@
 /* Begin PBXTargetDependency section */
 		AEF3D630242584CC005C77CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AEF3D617242584C9005C77CE /* Nexd */;
+			target = AEF3D617242584C9005C77CE /* nexd */;
 			targetProxy = AEF3D62F242584CC005C77CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -772,7 +772,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nexd.app/Nexd";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nexd.app/nexd";
 			};
 			name = Debug;
 		};
@@ -794,14 +794,14 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nexd.app/Nexd";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nexd.app/nexd";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "Nexd" */ = {
+		AEF3D613242584C9005C77CE /* Build configuration list for PBXProject "nexd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D635242584CC005C77CE /* Debug */,
@@ -810,7 +810,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "Nexd" */ = {
+		AEF3D637242584CC005C77CE /* Build configuration list for PBXNativeTarget "nexd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D638242584CC005C77CE /* Debug */,
@@ -819,7 +819,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "NexdTests" */ = {
+		AEF3D63A242584CC005C77CE /* Build configuration list for PBXNativeTarget "nexdTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AEF3D63B242584CC005C77CE /* Debug */,
