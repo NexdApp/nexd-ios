@@ -105,7 +105,21 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 15 images.
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `cymbal.wav`.
+    static let cymbalWav = Rswift.FileResource(bundle: R.hostingBundle, name: "cymbal", pathExtension: "wav")
+
+    /// `bundle.url(forResource: "cymbal", withExtension: "wav")`
+    static func cymbalWav(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cymbalWav
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 17 images.
   struct image {
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
@@ -137,6 +151,10 @@ struct R: Rswift.Validatable {
     static let outline_directions_walk_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_directions_walk_black_48pt")
     /// Image `outline_shopping_cart_black_48pt`.
     static let outline_shopping_cart_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_shopping_cart_black_48pt")
+    /// Image `round_pause_black_36pt`.
+    static let round_pause_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_pause_black_36pt")
+    /// Image `round_play_arrow_black_36pt`.
+    static let round_play_arrow_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_play_arrow_black_36pt")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_account_box_black_18pt", bundle: ..., traitCollection: ...)`
@@ -240,6 +258,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "outline_shopping_cart_black_48pt", bundle: ..., traitCollection: ...)`
     static func outline_shopping_cart_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.outline_shopping_cart_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "round_pause_black_36pt", bundle: ..., traitCollection: ...)`
+    static func round_pause_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.round_pause_black_36pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "round_play_arrow_black_36pt", bundle: ..., traitCollection: ...)`
+    static func round_play_arrow_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.round_play_arrow_black_36pt, compatibleWith: traitCollection)
     }
     #endif
 

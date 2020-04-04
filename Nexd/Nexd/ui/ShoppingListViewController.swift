@@ -34,6 +34,7 @@ class ShoppingListViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     private var gradient = GradientView()
+
     private var collectionView: UICollectionView?
     private var checkoutButton = UIButton()
 

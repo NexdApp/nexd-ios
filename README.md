@@ -24,7 +24,7 @@ $ ./update_swagger_client.sh
 ## From deployed backend
 
 ```
-$ ./update_swagger_client.sh http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com
+$ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
 ```
 
 # Local backend
