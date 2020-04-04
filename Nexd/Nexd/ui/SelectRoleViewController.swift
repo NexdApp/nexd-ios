@@ -35,7 +35,7 @@ class SelectRoleViewController: UIViewController {
 
         view.addSubview(seekerTitle)
         seekerTitle.styleDefault()
-        seekerTitle.attributedText = R.string.localizable.role_selection_seeker().asAttributedDefault()
+        seekerTitle.attributedText = R.string.localizable.role_selection_seeker().asDefaultText()
         seekerTitle.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
             make.topMargin.equalTo(Style.padding)
@@ -56,7 +56,7 @@ class SelectRoleViewController: UIViewController {
 
         view.addSubview(helperTitle)
         helperTitle.styleDefault()
-        helperTitle.attributedText = R.string.localizable.role_selection_helper().asAttributedDefault()
+        helperTitle.attributedText = R.string.localizable.role_selection_helper().asDefaultText()
         helperTitle.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
             make.bottomMargin.equalTo(-Style.padding)

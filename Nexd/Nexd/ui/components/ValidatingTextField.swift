@@ -74,14 +74,14 @@ class ValidatingTextField: View {
         textField.showError()
 
         errorLabel.isHidden = text == nil
-        errorLabel.attributedText = text?.asAttributedErrorLabel()
+        errorLabel.attributedText = text?.asErrorLabel()
     }
 
     private func showWarning(text: String?) {
         textField.showWarning()
 
         errorLabel.isHidden = text == nil
-        errorLabel.attributedText = text?.asAttributedWarningLabel()
+        errorLabel.attributedText = text?.asWarningLabel()
     }
 
     static func make(tag: Int,
@@ -94,7 +94,7 @@ class ValidatingTextField: View {
 
         view.textField.tag = tag
         view.textField.styled()
-        view.textField.attributedPlaceholder = placeholder?.asAttributedPlaceholder()
+        view.textField.attributedPlaceholder = placeholder?.asPlaceholder()
 
         if let keyboardType = keyboardType {
             view.textField.keyboardType = keyboardType

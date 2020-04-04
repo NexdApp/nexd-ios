@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-    func asAttributedDefault() -> NSAttributedString {
+    func asDefaultText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 16)
         ]
@@ -17,7 +17,7 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asAttributedHeader() -> NSAttributedString {
+    func asHeader() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.boldSystemFont(ofSize: 20)
         ]
@@ -25,7 +25,7 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asAttributedTitle() -> NSAttributedString {
+    func asTitle() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.titleTextColor,
             .font: UIFont.boldSystemFont(ofSize: 36)
@@ -34,7 +34,7 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asAttributedPlaceholder() -> NSAttributedString {
+    func asPlaceholder() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.textFieldPlaceholderTextColor
         ]
@@ -42,7 +42,7 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asAttributedErrorLabel() -> NSAttributedString {
+    func asErrorLabel() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.errorTintColor,
             .font: UIFont.systemFont(ofSize: 12)
@@ -51,7 +51,7 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asAttributedWarningLabel() -> NSAttributedString {
+    func asWarningLabel() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.warningTintColor,
             .font: UIFont.systemFont(ofSize: 12)
@@ -59,4 +59,32 @@ extension String {
 
         return NSAttributedString(string: self, attributes: attributes)
     }
+
+    func asLink(range: Range<String.Index>?, target: String) -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 16)
+        ]
+
+        let attributedString = NSMutableAttributedString(string: self, attributes: attributes)
+
+        guard let range = range else { return attributedString }
+        attributedString.addAttribute(.link, value: target, range: NSRange(range, in: self))
+        return attributedString
+    }
+
+    func parseHtml() -> NSAttributedString? {
+        return try? NSAttributedString(
+            data: data(using: String.Encoding.unicode, allowLossyConversion: true)!,
+            options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+            documentAttributes: nil
+        )
+    }
+}
+
+// concatenate attributed strings
+func + (left: NSAttributedString, right: NSAttributedString) -> NSAttributedString {
+    let result = NSMutableAttributedString()
+    result.append(left)
+    result.append(right)
+    return result
 }

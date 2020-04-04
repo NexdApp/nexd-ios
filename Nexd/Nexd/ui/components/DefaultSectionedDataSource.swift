@@ -56,7 +56,7 @@ class DefaultSectionedDataSource<ItemType>: NSObject, UICollectionViewDataSource
             }
 
             headerView.label.styleHeader()
-            headerView.label.attributedText = sections[indexPath.section].title.asAttributedHeader()
+            headerView.label.attributedText = sections[indexPath.section].title.asHeader()
             return headerView
         default:
             fatalError("Invalid element type")

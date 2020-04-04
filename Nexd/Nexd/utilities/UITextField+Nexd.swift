@@ -12,7 +12,7 @@ extension UITextField {
     func styled(placeholder: String? = nil) {
         textColor = .black
         withBorder()
-        attributedPlaceholder = placeholder?.asAttributedPlaceholder()
+        attributedPlaceholder = placeholder?.asPlaceholder()
     }
 
     func withBorder(color: UIColor = .textFieldBorderColor) {
