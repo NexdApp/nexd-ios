@@ -11,14 +11,14 @@ import Foundation
 public struct HelpRequestArticle: Codable { 
 
 
-    public var articleId: Int
-    public var articleCount: Int
-    public var id: Int
-    public var article: Article
-    public var articleDone: Bool
-    public var helpRequest: HelpRequest
+    public var articleId: Int?
+    public var articleCount: Int?
+    public var id: Int?
+    public var article: Article?
+    public var articleDone: Bool?
+    public var helpRequest: HelpRequest?
 
-    public init(articleId: Int, articleCount: Int, id: Int, article: Article, articleDone: Bool, helpRequest: HelpRequest) {
+    public init(articleId: Int?, articleCount: Int?, id: Int?, article: Article?, articleDone: Bool?, helpRequest: HelpRequest?) {
         self.articleId = articleId
         self.articleCount = articleCount
         self.id = id

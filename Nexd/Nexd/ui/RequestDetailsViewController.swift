@@ -55,7 +55,7 @@ class RequestDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        player = AudioPlayer.sample()
+        player = AudioPlayer.sampleMp3()
 
         let disposeBag = DisposeBag()
 

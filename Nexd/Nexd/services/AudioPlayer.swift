@@ -83,8 +83,14 @@ class AudioPlayer: NSObject {
         isPlaying.accept(false)
     }
 
-    static func sample() -> AudioPlayer? {
+    static func sampleWav() -> AudioPlayer? {
         let path = Bundle.main.path(forResource: "cymbal.wav", ofType: nil)!
+        let url = URL(fileURLWithPath: path)
+        return AudioPlayer(url: url)
+    }
+
+    static func sampleMp3() -> AudioPlayer? {
+        let path = Bundle.main.path(forResource: "recording.mp3", ofType: nil)!
         let url = URL(fileURLWithPath: path)
         return AudioPlayer(url: url)
     }

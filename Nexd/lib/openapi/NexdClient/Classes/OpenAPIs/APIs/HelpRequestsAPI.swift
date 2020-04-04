@@ -78,15 +78,16 @@ open class HelpRequestsAPI {
      Get and filter for various help requests
      
      - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
+     - parameter excludeUserId: (query) If true, the given userId is excluded (and not filtered for as default) (optional)
      - parameter zipCode: (query) Filter by an array of zipCodes (optional)
      - parameter includeRequester: (query) If \&quot;true\&quot;, the requester object is included in each help request (optional)
      - parameter status: (query) Array of status to filter for (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[HelpRequest]>
      */
-    open class func helpRequestsControllerGetAll(userId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
         return Observable.create { observer -> Disposable in
-            helpRequestsControllerGetAllWithRequestBuilder(userId: userId, zipCode: zipCode, includeRequester: includeRequester, status: status).execute(apiResponseQueue) { result -> Void in
+            helpRequestsControllerGetAllWithRequestBuilder(userId: userId, excludeUserId: excludeUserId, zipCode: zipCode, includeRequester: includeRequester, status: status).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -106,12 +107,13 @@ open class HelpRequestsAPI {
        - type: http
        - name: bearer
      - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
+     - parameter excludeUserId: (query) If true, the given userId is excluded (and not filtered for as default) (optional)
      - parameter zipCode: (query) Filter by an array of zipCodes (optional)
      - parameter includeRequester: (query) If \&quot;true\&quot;, the requester object is included in each help request (optional)
      - parameter status: (query) Array of status to filter for (optional)
      - returns: RequestBuilder<[HelpRequest]> 
      */
-    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> RequestBuilder<[HelpRequest]> {
+    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> RequestBuilder<[HelpRequest]> {
         let path = "/help-requests"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -119,6 +121,7 @@ open class HelpRequestsAPI {
         var url = URLComponents(string: URLString)
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "userId": userId?.encodeToJSON(), 
+            "excludeUserId": excludeUserId?.encodeToJSON(), 
             "zipCode": zipCode?.encodeToJSON(), 
             "includeRequester": includeRequester?.encodeToJSON(), 
             "status": status?.encodeToJSON()

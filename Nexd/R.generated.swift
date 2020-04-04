@@ -105,14 +105,22 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `cymbal.wav`.
     static let cymbalWav = Rswift.FileResource(bundle: R.hostingBundle, name: "cymbal", pathExtension: "wav")
+    /// Resource file `recording.mp3`.
+    static let recordingMp3 = Rswift.FileResource(bundle: R.hostingBundle, name: "recording", pathExtension: "mp3")
 
     /// `bundle.url(forResource: "cymbal", withExtension: "wav")`
     static func cymbalWav(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.cymbalWav
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "recording", withExtension: "mp3")`
+    static func recordingMp3(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.recordingMp3
       return fileResource.bundle.url(forResource: fileResource)
     }
 

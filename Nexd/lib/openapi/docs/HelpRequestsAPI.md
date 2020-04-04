@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerGetAll**
 ```swift
-    open class func helpRequestsControllerGetAll(userId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> Observable<[HelpRequest]>
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> Observable<[HelpRequest]>
 ```
 
 Get and filter for various help requests
@@ -67,6 +67,7 @@ Get and filter for various help requests
 import NexdClient
 
 let userId = "userId_example" // String | If included, filter by userId, \"me\" for the requesting user, otherwise all users are replied. (optional)
+let excludeUserId = "excludeUserId_example" // String | If true, the given userId is excluded (and not filtered for as default) (optional)
 let zipCode = ["inner_example"] // [String] | Filter by an array of zipCodes (optional)
 let includeRequester = "includeRequester_example" // String | If \"true\", the requester object is included in each help request (optional)
 let status = ["status_example"] // [String] | Array of status to filter for (optional)
@@ -79,6 +80,7 @@ let status = ["status_example"] // [String] | Array of status to filter for (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String** | If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. | [optional] 
+ **excludeUserId** | **String** | If true, the given userId is excluded (and not filtered for as default) | [optional] 
  **zipCode** | [**[String]**](String.md) | Filter by an array of zipCodes | [optional] 
  **includeRequester** | **String** | If \&quot;true\&quot;, the requester object is included in each help request | [optional] 
  **status** | [**[String]**](String.md) | Array of status to filter for | [optional] 
