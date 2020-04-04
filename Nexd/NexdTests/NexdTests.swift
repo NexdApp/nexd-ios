@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Nexd
+@testable import nexd
 
 class NexdTests: XCTestCase {
 
