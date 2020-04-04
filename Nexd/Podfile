@@ -3,7 +3,7 @@ platform :ios, '9.0'
 
 inhibit_all_warnings!
 
-target 'Nexd' do
+target 'nexd' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
@@ -15,7 +15,7 @@ target 'Nexd' do
   pod 'SwiftLint'
   pod 'Validator'
 
-  target 'NexdTests' do
+  target 'nexdTests' do
     inherit! :search_paths
     # Pods for testing
   end
