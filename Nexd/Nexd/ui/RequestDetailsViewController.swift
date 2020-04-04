@@ -6,15 +6,20 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 import SnapKit
+import UIKit
 
 class RequestDetailsViewController: UIViewController {
+    private var disposeBag: DisposeBag?
+
     private var gradient = GradientView()
     private var titleLabel = UILabel()
 
     private var playPauseButton = UIButton()
     private var slider = UISlider()
+
+    private var player: AudioPlayer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +43,7 @@ class RequestDetailsViewController: UIViewController {
             make.size.equalTo(CGSize(width: 36, height: 36))
         }
 
+        slider.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: .valueChanged)
         view.addSubview(slider)
         slider.snp.makeConstraints { make in
             make.centerY.equalTo(playPauseButton)
@@ -45,10 +51,43 @@ class RequestDetailsViewController: UIViewController {
             make.right.equalToSuperview().offset(-8)
         }
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        player = AudioPlayer.sample()
+
+        let disposeBag = DisposeBag()
+
+        player?.state
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] state in
+                self?.slider.setValue(state.progress, animated: state.progress != 0)
+                self?.playPauseButton.isSelected = state.isPlaying
+            })
+            .disposed(by: disposeBag)
+
+        self.disposeBag = disposeBag
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        player?.stop()
+        disposeBag = nil
+    }
 }
 
 extension RequestDetailsViewController {
     @objc func playPauseButtonPressed(sender: UIButton!) {
-        sender.isSelected = !sender.isSelected
+        if playPauseButton.isSelected {
+            player?.pause()
+        } else {
+            player?.play()
+        }
+    }
+
+    @objc func sliderValueChanged(sender: UISlider) {
+        player?.seekTo(progress: sender.value)
     }
 }
