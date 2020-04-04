@@ -94,3 +94,4 @@
 "error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "registration_label_privacy_policy_agreement" = "Mit der Registrierung akzeptiere ich die %1$@";
+"registration_term_privacy_policy" = "Datenschutzbestimmungen";
