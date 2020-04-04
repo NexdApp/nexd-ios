@@ -17,15 +17,15 @@ public struct HelpList: Codable {
         case completed = "completed"
     }
     public var id: Int
-    public var ownerId: String
-    public var owner: User
+    public var ownerId: String?
+    public var owner: User?
     public var createdAt: Date
     public var updatedAt: Date
     public var status: Status? = .active
     public var helpRequests: [HelpRequest]
     public var helpRequestsIds: [Int]
 
-    public init(id: Int, ownerId: String, owner: User, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest], helpRequestsIds: [Int]) {
+    public init(id: Int, ownerId: String?, owner: User?, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest], helpRequestsIds: [Int]) {
         self.id = id
         self.ownerId = ownerId
         self.owner = owner

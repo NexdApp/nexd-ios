@@ -66,7 +66,7 @@ Delete a help request from help list
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpListId =  // Int | Id of the help list
+let helpListId = 987 // Int | Id of the help list
 let helpRequestId = 987 // Int | Id of the help request
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -76,7 +76,7 @@ let helpRequestId = 987 // Int | Id of the help request
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | [**Int**](.md) | Id of the help list | 
+ **helpListId** | **Int** | Id of the help list | 
  **helpRequestId** | **Int** | Id of the help request | 
 
 ### Return type
@@ -263,7 +263,7 @@ Set/unset articleDone of an article in a specific help request
 import NexdClient
 
 let articleDone = true // Bool | true to set the article as \"bought\"
-let helpListId =  // Int | Id of the help list
+let helpListId = 987 // Int | Id of the help list
 let helpRequestId = 987 // Int | Id of the help request
 let articleId = 987 // Int | Id of the article
 
@@ -275,7 +275,7 @@ let articleId = 987 // Int | Id of the article
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **articleDone** | **Bool** | true to set the article as \&quot;bought\&quot; | 
- **helpListId** | [**Int**](.md) | Id of the help list | 
+ **helpListId** | **Int** | Id of the help list | 
  **helpRequestId** | **Int** | Id of the help request | 
  **articleId** | **Int** | Id of the article | 
 

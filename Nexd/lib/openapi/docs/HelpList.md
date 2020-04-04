@@ -4,8 +4,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int** |  | 
-**ownerId** | **String** |  | 
-**owner** | [**User**](User.md) |  | 
+**ownerId** | **String** |  | [optional] 
+**owner** | [**User**](User.md) |  | [optional] 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **status** | **String** |  | [optional] [default to .active]
