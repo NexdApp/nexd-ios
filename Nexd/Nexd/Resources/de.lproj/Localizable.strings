@@ -46,3 +46,51 @@
 
 /*Logout button title*/
 "user_profile_button_title_logout" = "Abmelden";
+
+/*Localizable.strings
+  Nexd
+
+  Created by Tobias Schröpf on 21.03.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved.*/
+"dialog_button_abort" = "Abbrechen";
+"dialog_button_confirm" = "Bestätigen";
+"login_placeholder_username" = "Benutzername";
+"login_placeholder_password" = "Passwort";
+"registration_placeholder_email" = "E-Mail";
+"registration_placeholder_firstName" = "Vorname";
+"registration_placeholder_lastName" = "Nachname";
+"registration_placeholder_phone" = "Telefon";
+"registration_placeholder_zip" = "Postleitzahl";
+"registration_placeholder_password" = "Passwort";
+"registration_placeholder_confirm_password" = "Passwort bestätigen";
+"registration_button_privacy_policy" = "Datenschutzhinweise";
+"role_selection_button_logout" = "Ausloggen";
+"helper_request_overview_button_summary_title" = "Einkaufen";
+"helper_request_overview_button_summary_details" = "Insg. ";
+"helper_request_detail_screen_title" = "Zu Einkaufen";
+"helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
+"helper_request_detail_button_accept" = "Mach ich!";
+"delivery_screen_title" = "Abgabe!";
+"delivery_dialog_deliver_title" = "Abgeben";
+"delivery_dialog_deliver_description" = "Bestätigen Sie die Abgabe aller angenommen Aufträge";
+"delivery_dialog_delivery_button_confirm" = "Bestätigen";
+"delivery_request_address" = "Adresse: ";
+"delivery_request_phoneNumber" = "Tel.: ";
+"seeker_detail_screen_title" = "Deine Anfrage";
+"seeker_detail_placeholder_information" = "Zusätzliche Informationen";
+"seeker_request_create_heading" = "Ich benötige:";
+"seeker_request_create_placeholder_information" = "Zusätzliche Informationen";
+"user_input_details_screen_title" = "Geben Sie weitere Details ein";
+"user_input_details_placeholder_phoneNumber" = "Tel. Nr.";
+"user_input_details_placeholder_street" = "Straße";
+"user_input_details_placeholder_houseNumber" = "Nr.";
+"user_input_details_placeholder_zipCode" = "PLZ";
+"user_input_details_placeholder_city" = "Ort";
+"user_input_details_confirm" = "Bestätigen";
+"error_message_login_field_missing" = "Bitte ausfüllen";
+"error_message_registration_password_match" = "Passwörter stimmen nicht überein";
+"error_message_registration_field_missing" = "Bitte ausfüllen";
+"error_message_registration_password_too_short" = "mind. 6 Zeichen";
+"error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
+"error_message_user_detail_field_missing" = "Bitte ausfüllen";
+"registration_label_privacy_policy_agreement" = "Mit der Registrierung akzeptiere ich die %1$@";
