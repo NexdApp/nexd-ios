@@ -89,3 +89,5 @@
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "seeker_overview_screen_title" = "Your requests:";
 "helper_request_finished_screen_title" = "Completed requests:";
+"helper_request_overview_item_type_recording" = "Recording";
+"helper_request_overview_item_type_list" = "List";
