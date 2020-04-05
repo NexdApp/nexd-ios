@@ -11,9 +11,9 @@ import Foundation
 public struct ConvertedHelpRequestDto: Codable { 
 
 
-    public var helpRequestId: Int
+    public var helpRequestId: Int64
 
-    public init(helpRequestId: Int) {
+    public init(helpRequestId: Int64) {
         self.helpRequestId = helpRequestId
     }
 

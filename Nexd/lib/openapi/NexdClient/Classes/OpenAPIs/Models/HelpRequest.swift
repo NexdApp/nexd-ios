@@ -22,6 +22,7 @@ public struct HelpRequest: Codable {
     public var zipCode: String?
     public var city: String?
     public var id: Int64?
+    public var helpListId: Int64?
     public var createdAt: Date?
     public var priority: String?
     public var additionalRequest: String?
@@ -31,15 +32,15 @@ public struct HelpRequest: Codable {
     public var articles: [HelpRequestArticle]?
     public var requesterId: String?
     public var requester: User?
-    public var helpListId: String?
     public var helpList: HelpList?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpListId: String?, helpList: HelpList?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, helpListId: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpList: HelpList?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode
         self.city = city
         self.id = id
+        self.helpListId = helpListId
         self.createdAt = createdAt
         self.priority = priority
         self.additionalRequest = additionalRequest
@@ -49,7 +50,6 @@ public struct HelpRequest: Codable {
         self.articles = articles
         self.requesterId = requesterId
         self.requester = requester
-        self.helpListId = helpListId
         self.helpList = helpList
     }
 
@@ -59,6 +59,7 @@ public struct HelpRequest: Codable {
         case zipCode
         case city
         case id
+        case helpListId
         case createdAt = "created_at"
         case priority
         case additionalRequest
@@ -68,7 +69,6 @@ public struct HelpRequest: Codable {
         case articles
         case requesterId
         case requester
-        case helpListId
         case helpList
     }
 

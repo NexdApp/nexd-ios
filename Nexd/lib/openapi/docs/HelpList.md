@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **updatedAt** | **Date** |  | 
 **status** | **String** |  | [optional] [default to .active]
 **helpRequests** | [HelpRequest] |  | 
-**helpRequestsIds** | **[Int64]** |  | 
+**helpRequestsIds** | **[Double]** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

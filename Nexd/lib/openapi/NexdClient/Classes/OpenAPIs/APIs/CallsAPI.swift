@@ -14,12 +14,17 @@ open class CallsAPI {
     /**
      Returns all calls with the given parameters
      
+     - parameter limit: (query)  (optional)
+     - parameter converted: (query) True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+     - parameter country: (query)  (optional)
+     - parameter zip: (query)  (optional)
+     - parameter city: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Call]>
      */
-    open class func callsControllerCalls(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Call]> {
+    open class func callsControllerCalls(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Call]> {
         return Observable.create { observer -> Disposable in
-            callsControllerCallsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            callsControllerCallsWithRequestBuilder(limit: limit, converted: converted, country: country, zip: zip, city: city).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -38,14 +43,26 @@ open class CallsAPI {
      - BASIC:
        - type: http
        - name: bearer
+     - parameter limit: (query)  (optional)
+     - parameter converted: (query) True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+     - parameter country: (query)  (optional)
+     - parameter zip: (query)  (optional)
+     - parameter city: (query)  (optional)
      - returns: RequestBuilder<[Call]> 
      */
-    open class func callsControllerCallsWithRequestBuilder() -> RequestBuilder<[Call]> {
+    open class func callsControllerCallsWithRequestBuilder(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil) -> RequestBuilder<[Call]> {
         let path = "/call/calls"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "limit": limit?.encodeToJSON(), 
+            "converted": converted?.encodeToJSON(), 
+            "country": country?.encodeToJSON(), 
+            "zip": zip?.encodeToJSON(), 
+            "city": city?.encodeToJSON()
+        ])
 
         let requestBuilder: RequestBuilder<[Call]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 

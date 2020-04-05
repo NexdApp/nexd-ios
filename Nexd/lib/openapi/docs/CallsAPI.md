@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **callsControllerCalls**
 ```swift
-    open class func callsControllerCalls() -> Observable<[Call]>
+    open class func callsControllerCalls(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil) -> Observable<[Call]>
 ```
 
 Returns all calls with the given parameters
@@ -22,12 +22,24 @@ Returns all calls with the given parameters
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
+let limit = 987 // Double |  (optional)
+let converted = "converted_example" // String | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+let country = "country_example" // String |  (optional)
+let zip = 987 // Double |  (optional)
+let city = "city_example" // String |  (optional)
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Double** |  | [optional] 
+ **converted** | **String** | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. | [optional] 
+ **country** | **String** |  | [optional] 
+ **zip** | **Double** |  | [optional] 
+ **city** | **String** |  | [optional] 
 
 ### Return type
 

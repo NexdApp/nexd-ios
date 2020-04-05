@@ -19,7 +19,7 @@ open class HelpListsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpList>
      */
-    open class func helpListsControllerAddHelpRequestToList(helpListId: Int, helpRequestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
+    open class func helpListsControllerAddHelpRequestToList(helpListId: Int64, helpRequestId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
         return Observable.create { observer -> Disposable in
             helpListsControllerAddHelpRequestToListWithRequestBuilder(helpListId: helpListId, helpRequestId: helpRequestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -44,7 +44,7 @@ open class HelpListsAPI {
      - parameter helpRequestId: (path) Id of the help request 
      - returns: RequestBuilder<HelpList> 
      */
-    open class func helpListsControllerAddHelpRequestToListWithRequestBuilder(helpListId: Int, helpRequestId: Int) -> RequestBuilder<HelpList> {
+    open class func helpListsControllerAddHelpRequestToListWithRequestBuilder(helpListId: Int64, helpRequestId: Int64) -> RequestBuilder<HelpList> {
         var path = "/help-lists/{helpListId}/help-request/{helpRequestId}"
         let helpListIdPreEscape = "\(APIHelper.mapValueToPathItem(helpListId))"
         let helpListIdPostEscape = helpListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -70,7 +70,7 @@ open class HelpListsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpList>
      */
-    open class func helpListsControllerDeleteHelpRequestFromHelpList(helpListId: Int, helpRequestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
+    open class func helpListsControllerDeleteHelpRequestFromHelpList(helpListId: Int64, helpRequestId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
         return Observable.create { observer -> Disposable in
             helpListsControllerDeleteHelpRequestFromHelpListWithRequestBuilder(helpListId: helpListId, helpRequestId: helpRequestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -95,7 +95,7 @@ open class HelpListsAPI {
      - parameter helpRequestId: (path) Id of the help request 
      - returns: RequestBuilder<HelpList> 
      */
-    open class func helpListsControllerDeleteHelpRequestFromHelpListWithRequestBuilder(helpListId: Int, helpRequestId: Int) -> RequestBuilder<HelpList> {
+    open class func helpListsControllerDeleteHelpRequestFromHelpListWithRequestBuilder(helpListId: Int64, helpRequestId: Int64) -> RequestBuilder<HelpList> {
         var path = "/help-lists/{helpListId}/help-request/{helpRequestId}"
         let helpListIdPreEscape = "\(APIHelper.mapValueToPathItem(helpListId))"
         let helpListIdPostEscape = helpListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -257,7 +257,7 @@ open class HelpListsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpList>
      */
-    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int, articleId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
+    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int64, articleId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
         return Observable.create { observer -> Disposable in
             helpListsControllerModifyArticleInAllHelpRequestsWithRequestBuilder(articleDone: articleDone, helpListId: helpListId, articleId: articleId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -283,7 +283,7 @@ open class HelpListsAPI {
      - parameter articleId: (path) Id of the article 
      - returns: RequestBuilder<HelpList> 
      */
-    open class func helpListsControllerModifyArticleInAllHelpRequestsWithRequestBuilder(articleDone: Bool, helpListId: Int, articleId: Int64) -> RequestBuilder<HelpList> {
+    open class func helpListsControllerModifyArticleInAllHelpRequestsWithRequestBuilder(articleDone: Bool, helpListId: Int64, articleId: Int64) -> RequestBuilder<HelpList> {
         var path = "/help-lists/{helpListId}/article/{articleId}"
         let helpListIdPreEscape = "\(APIHelper.mapValueToPathItem(helpListId))"
         let helpListIdPostEscape = helpListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -314,7 +314,7 @@ open class HelpListsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpList>
      */
-    open class func helpListsControllerModifyArticleInHelpRequest(articleDone: Bool, helpListId: Int, helpRequestId: Int, articleId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
+    open class func helpListsControllerModifyArticleInHelpRequest(articleDone: Bool, helpListId: Int64, helpRequestId: Int64, articleId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
         return Observable.create { observer -> Disposable in
             helpListsControllerModifyArticleInHelpRequestWithRequestBuilder(articleDone: articleDone, helpListId: helpListId, helpRequestId: helpRequestId, articleId: articleId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -341,7 +341,7 @@ open class HelpListsAPI {
      - parameter articleId: (path) Id of the article 
      - returns: RequestBuilder<HelpList> 
      */
-    open class func helpListsControllerModifyArticleInHelpRequestWithRequestBuilder(articleDone: Bool, helpListId: Int, helpRequestId: Int, articleId: Int) -> RequestBuilder<HelpList> {
+    open class func helpListsControllerModifyArticleInHelpRequestWithRequestBuilder(articleDone: Bool, helpListId: Int64, helpRequestId: Int64, articleId: Int64) -> RequestBuilder<HelpList> {
         var path = "/help-lists/{helpListId}/help-request/{helpRequestId}/article/{articleId}"
         let helpListIdPreEscape = "\(APIHelper.mapValueToPathItem(helpListId))"
         let helpListIdPostEscape = helpListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -373,7 +373,7 @@ open class HelpListsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpList>
      */
-    open class func helpListsControllerUpdateHelpLists(helpListId: Int, helpListCreateDto: HelpListCreateDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
+    open class func helpListsControllerUpdateHelpLists(helpListId: Int64, helpListCreateDto: HelpListCreateDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpList> {
         return Observable.create { observer -> Disposable in
             helpListsControllerUpdateHelpListsWithRequestBuilder(helpListId: helpListId, helpListCreateDto: helpListCreateDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -398,7 +398,7 @@ open class HelpListsAPI {
      - parameter helpListCreateDto: (body)  
      - returns: RequestBuilder<HelpList> 
      */
-    open class func helpListsControllerUpdateHelpListsWithRequestBuilder(helpListId: Int, helpListCreateDto: HelpListCreateDto) -> RequestBuilder<HelpList> {
+    open class func helpListsControllerUpdateHelpListsWithRequestBuilder(helpListId: Int64, helpListCreateDto: HelpListCreateDto) -> RequestBuilder<HelpList> {
         var path = "/help-lists/{helpListId}"
         let helpListIdPreEscape = "\(APIHelper.mapValueToPathItem(helpListId))"
         let helpListIdPostEscape = helpListIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

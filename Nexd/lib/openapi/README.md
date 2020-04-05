@@ -60,7 +60,6 @@ Class | Method | HTTP request | Description
 
  - [Article](docs/Article.md)
  - [Call](docs/Call.md)
- - [CallQueryDto](docs/CallQueryDto.md)
  - [ConvertedHelpRequestDto](docs/ConvertedHelpRequestDto.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
  - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
