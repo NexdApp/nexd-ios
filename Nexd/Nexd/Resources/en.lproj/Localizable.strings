@@ -1,16 +1,7 @@
 "login_screen_title" = "Login";
-"login_placeholer_username" = "Username";
-"login_placeholer_password" = "Password";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
 "registration_screen_title" = "Sign-up";
-"registration_placeholer_email" = "E-Mail";
-"registration_placeholer_firstname" = "First name";
-"registration_placeholer_lastname" = "Last name";
-"registration_placeholer_phone" = "Phone";
-"registration_placeholer_zip" = "ZIP code";
-"registration_placeholer_password" = "Password";
-"registration_placeholer_confirm_password" = "Confirm password";
 "registration_button_title_continue" = "Continue";
 "registration_button_title_send" = "Send";
 "role_selection_screen_title" = "Role";
@@ -95,3 +86,6 @@
 "error_message_user_detail_field_missing" = "Please fill in";
 "registration_label_privacy_policy_agreement" = "By creating an account, I agree to Nexd's %1$@";
 "registration_term_privacy_policy" = "Privacy Policy";
+"helper_request_overview_button_previous_requests" = "Previous purchases";
+"seeker_overview_screen_title" = "Your requests:";
+"helper_request_finished_screen_title" = "Completed requests:";
