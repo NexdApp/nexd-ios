@@ -1,16 +1,7 @@
 "login_screen_title" = "Login";
-"login_placeholer_username" = "Benutzername";
-"login_placeholer_password" = "Passwort";
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
 "registration_screen_title" = "Registrierung";
-"registration_placeholer_email" = "E-Mail";
-"registration_placeholer_firstname" = "Vorname";
-"registration_placeholer_lastname" = "Nachname";
-"registration_placeholer_phone" = "Telefon";
-"registration_placeholer_zip" = "Postleitzahl";
-"registration_placeholer_password" = "Passwort";
-"registration_placeholer_confirm_password" = "Passwort bestätigen";
 "registration_button_title_continue" = "Weiter";
 "registration_button_title_send" = "Bestätigen";
 "role_selection_screen_title" = "Rolle";
@@ -95,3 +86,6 @@
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "registration_label_privacy_policy_agreement" = "Mit der Registrierung akzeptiere ich die %1$@";
 "registration_term_privacy_policy" = "Datenschutzbestimmungen";
+"helper_request_overview_button_previous_requests" = "Previous purchases";
+"seeker_overview_screen_title" = "Your requests:";
+"helper_request_finished_screen_title" = "";
