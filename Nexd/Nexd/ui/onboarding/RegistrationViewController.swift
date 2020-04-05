@@ -17,7 +17,6 @@ class RegistrationViewController: UIViewController {
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
 
-    lazy var gradient = GradientView()
     lazy var scrollView = UIScrollView()
 
     lazy var email = ValidatingTextField.make(tag: 0,
@@ -53,11 +52,6 @@ class RegistrationViewController: UIViewController {
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in

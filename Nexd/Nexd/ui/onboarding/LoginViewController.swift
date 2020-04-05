@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
 
-    private lazy var gradient = GradientView()
     private lazy var scrollView = UIScrollView()
 
     private lazy var logo = UIImageView()
@@ -41,11 +40,6 @@ class LoginViewController: UIViewController {
 
         view.backgroundColor = .white
         title = R.string.localizable.login_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
