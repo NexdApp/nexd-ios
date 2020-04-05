@@ -114,7 +114,7 @@ extension SelectRoleViewController {
     }
 
     @objc func transcriberRoleButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(TranscriberViewController(), animated: true)
+        navigationController?.pushViewController(CallsListViewController(), animated: true)
     }
 
     @objc func seekerRoleButtonPressed(sender: UIButton!) {

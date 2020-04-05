@@ -17,4 +17,9 @@ class CallsService {
         return CallsAPI.callsControllerCalls()
             .asSingle()
     }
+
+    func callFileUrl(sid: String) -> Single<URL> {
+        return CallsAPI.callsControllerGetCallUrl(sid: sid)
+            .asSingle()
+    }
 }
