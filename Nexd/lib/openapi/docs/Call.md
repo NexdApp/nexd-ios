@@ -1,13 +1,17 @@
-# CallQueryDto
+# Call
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **Int** |  | [optional] 
+**sid** | **String** |  | 
+**created** | **Date** |  | 
+**recordUrl** | **String** |  | [optional] 
+**transcriptionUrl** | **String** |  | [optional] 
+**convertedHelpRequest** | [**HelpRequest**](HelpRequest.md) |  | [optional] 
+**phoneNumber** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
 **zip** | **String** |  | [optional] 
 **city** | **String** |  | [optional] 
-**converted** | **Bool** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

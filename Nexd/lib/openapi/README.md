@@ -30,6 +30,10 @@ Class | Method | HTTP request | Description
 *AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 *AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
 *AuthAPI* | [**authControllerRegister**](docs/AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
+*CallsAPI* | [**callsControllerCalls**](docs/CallsAPI.md#callscontrollercalls) | **GET** /call/calls | Returns all calls with the given parameters
+*CallsAPI* | [**callsControllerConverted**](docs/CallsAPI.md#callscontrollerconverted) | **PUT** /call/calls/{sid}/converted | Sets a call as converted to shopping list
+*CallsAPI* | [**callsControllerGetCallUrl**](docs/CallsAPI.md#callscontrollergetcallurl) | **GET** /call/calls/{sid}/record | Redirects the request to the stored record file.
+*CallsAPI* | [**callsControllerGetNumber**](docs/CallsAPI.md#callscontrollergetnumber) | **GET** /call/number | Returns available numbers
 *DefaultAPI* | [**appControllerGetHello**](docs/DefaultAPI.md#appcontrollergethello) | **GET** / | 
 *HelpListsAPI* | [**helpListsControllerAddHelpRequestToList**](docs/HelpListsAPI.md#helplistscontrolleraddhelprequesttolist) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId} | Add a help request to a help list
 *HelpListsAPI* | [**helpListsControllerDeleteHelpRequestFromHelpList**](docs/HelpListsAPI.md#helplistscontrollerdeletehelprequestfromhelplist) | **DELETE** /help-lists/{helpListId}/help-request/{helpRequestId} | Delete a help request from help list
@@ -55,7 +59,9 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Article](docs/Article.md)
+ - [Call](docs/Call.md)
  - [CallQueryDto](docs/CallQueryDto.md)
+ - [ConvertedHelpRequestDto](docs/ConvertedHelpRequestDto.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
  - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
  - [CreateOrUpdateHelpRequestArticleDto](docs/CreateOrUpdateHelpRequestArticleDto.md)
