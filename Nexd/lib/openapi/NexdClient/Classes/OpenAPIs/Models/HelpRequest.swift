@@ -31,10 +31,10 @@ public struct HelpRequest: Codable {
     public var articles: [HelpRequestArticle]?
     public var requesterId: String?
     public var requester: User?
-    public var helpListId: String?
+    public var helpListId: Int?
     public var helpList: HelpList?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, id: Int?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpListId: String?, helpList: HelpList?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, id: Int?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpListId: Int?, helpList: HelpList?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode

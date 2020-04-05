@@ -54,6 +54,7 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Article](docs/Article.md)
+ - [CallQueryDto](docs/CallQueryDto.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
  - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
  - [CreateOrUpdateHelpRequestArticleDto](docs/CreateOrUpdateHelpRequestArticleDto.md)

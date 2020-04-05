@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **articles** | [HelpRequestArticle] |  | [optional] 
 **requesterId** | **String** |  | [optional] 
 **requester** | [**User**](User.md) |  | [optional] 
-**helpListId** | **String** |  | [optional] 
+**helpListId** | **Int** |  | [optional] 
 **helpList** | [**HelpList**](HelpList.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
