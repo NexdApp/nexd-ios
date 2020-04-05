@@ -20,25 +20,25 @@ class RegistrationViewController: UIViewController {
     lazy var scrollView = UIScrollView()
 
     lazy var email = ValidatingTextField.make(tag: 0,
-                                              placeholder: R.string.localizable.registration_placeholer_email(),
+                                              placeholder: R.string.localizable.registration_placeholder_email(),
                                               keyboardType: .emailAddress,
                                               validationRules: .email())
 
     lazy var firstName = ValidatingTextField.make(tag: 1,
-                                                  placeholder: R.string.localizable.registration_placeholer_firstname(),
+                                                  placeholder: R.string.localizable.registration_placeholder_firstName(),
                                                   validationRules: .firstName())
 
     lazy var lastName = ValidatingTextField.make(tag: 2,
-                                                 placeholder: R.string.localizable.registration_placeholer_lastname(),
+                                                 placeholder: R.string.localizable.registration_placeholder_lastName(),
                                                  validationRules: .lastName())
 
     lazy var password = ValidatingTextField.make(tag: 3,
-                                                 placeholder: R.string.localizable.registration_placeholer_password(),
+                                                 placeholder: R.string.localizable.registration_placeholder_password(),
                                                  isSecureTextEntry: true,
                                                  validationRules: .password())
 
     lazy var confirmPassword = ValidatingTextField.make(tag: 4,
-                                                        placeholder: R.string.localizable.registration_placeholer_confirm_password(),
+                                                        placeholder: R.string.localizable.registration_placeholder_confirm_password(),
                                                         isSecureTextEntry: true,
                                                         validationRules: .passwordConfirmation(dynamicTarget: { [weak self] in self?.password.value ?? "" }))
 

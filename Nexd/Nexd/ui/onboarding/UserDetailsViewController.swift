@@ -28,12 +28,12 @@ class UserDetailsViewController: UIViewController {
     lazy var scrollView = UIScrollView()
 
     lazy var phone = ValidatingTextField.make(tag: 0,
-                                              placeholder: R.string.localizable.registration_placeholer_phone(),
+                                              placeholder: R.string.localizable.registration_placeholder_phone(),
                                               keyboardType: .phonePad,
                                               validationRules: .phone())
 
     lazy var zipCode = ValidatingTextField.make(tag: 0,
-                                                placeholder: R.string.localizable.registration_placeholer_zip(),
+                                                placeholder: R.string.localizable.registration_placeholder_zip(),
                                                 keyboardType: .phonePad,
                                                 validationRules: .zipCode())
 

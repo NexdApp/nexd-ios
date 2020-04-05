@@ -21,13 +21,13 @@ class LoginViewController: UIViewController {
 
     private lazy var logo = UIImageView()
     private lazy var email = ValidatingTextField.make(tag: 0,
-                                                      placeholder: R.string.localizable.login_placeholer_username(),
+                                                      placeholder: R.string.localizable.login_placeholder_username(),
                                                       keyboardType: .emailAddress,
                                                       delegate: self,
                                                       validationRules: .email())
 
     private lazy var password = ValidatingTextField.make(tag: 1,
-                                                         placeholder: R.string.localizable.login_placeholer_password(),
+                                                         placeholder: R.string.localizable.login_placeholder_password(),
                                                          isSecureTextEntry: true,
                                                          delegate: self,
                                                          validationRules: .password())
