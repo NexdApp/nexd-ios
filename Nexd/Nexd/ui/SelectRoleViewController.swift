@@ -19,6 +19,7 @@ class SelectRoleViewController: UIViewController {
     lazy var gradient = GradientView()
     lazy var seekerTitle = UILabel()
     lazy var seekerRoleButton = UIButton()
+    lazy var transcriberRoleButton = UIButton()
     lazy var helperRoleButton = UIButton()
     lazy var helperTitle = UILabel()
 
@@ -33,13 +34,17 @@ class SelectRoleViewController: UIViewController {
             make.edges.equalToSuperview()
         }
 
-        view.addSubview(seekerTitle)
-        seekerTitle.styleDefault()
-        seekerTitle.attributedText = R.string.localizable.role_selection_seeker().asDefaultText()
-        seekerTitle.snp.makeConstraints { make -> Void in
-            make.centerX.equalToSuperview()
-            make.topMargin.equalTo(Style.padding)
+        view.addSubview(transcriberRoleButton)
+        transcriberRoleButton.backgroundColor = Style.buttonBackgroundColor
+        transcriberRoleButton.layer.cornerRadius = 0.5 * Style.buttonSize.width
+        transcriberRoleButton.addShadow()
+        transcriberRoleButton.tintColor = .black
+        transcriberRoleButton.setImage(R.image.baseline_voicemail_black_48pt(), for: .normal)
+        transcriberRoleButton.snp.makeConstraints { make -> Void in
+            make.centerX.centerY.equalToSuperview()
+            make.size.equalTo(Style.buttonSize)
         }
+        transcriberRoleButton.addTarget(self, action: #selector(transcriberRoleButtonPressed(sender:)), for: .touchUpInside)
 
         view.addSubview(seekerRoleButton)
         seekerRoleButton.backgroundColor = Style.buttonBackgroundColor
@@ -50,16 +55,16 @@ class SelectRoleViewController: UIViewController {
         seekerRoleButton.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
             make.size.equalTo(Style.buttonSize)
-            make.top.equalTo(seekerTitle.snp.bottom).offset(16)
+            make.bottom.equalTo(transcriberRoleButton.snp.top).offset(-84)
         }
         seekerRoleButton.addTarget(self, action: #selector(seekerRoleButtonPressed(sender:)), for: .touchUpInside)
 
-        view.addSubview(helperTitle)
-        helperTitle.styleDefault()
-        helperTitle.attributedText = R.string.localizable.role_selection_helper().asDefaultText()
-        helperTitle.snp.makeConstraints { make -> Void in
+        view.addSubview(seekerTitle)
+        seekerTitle.styleDefault()
+        seekerTitle.attributedText = R.string.localizable.role_selection_seeker().asDefaultText()
+        seekerTitle.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
-            make.bottomMargin.equalTo(-Style.padding)
+            make.bottom.equalTo(seekerRoleButton.snp.top).offset(-16)
         }
 
         view.addSubview(helperRoleButton)
@@ -71,9 +76,17 @@ class SelectRoleViewController: UIViewController {
         helperRoleButton.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
             make.size.equalTo(Style.buttonSize)
-            make.bottom.equalTo(helperTitle.snp.top).offset(-16)
+            make.top.equalTo(transcriberRoleButton.snp.bottom).offset(84)
         }
         helperRoleButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
+
+        view.addSubview(helperTitle)
+        helperTitle.styleDefault()
+        helperTitle.attributedText = R.string.localizable.role_selection_helper().asDefaultText()
+        helperTitle.snp.makeConstraints { make -> Void in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(helperRoleButton.snp.bottom).offset(16)
+        }
 
         let profileButton = UIBarButtonItem(image: R.image.baseline_account_box_black_24pt(),
                                             style: .plain,
@@ -98,6 +111,10 @@ extension SelectRoleViewController {
 
     @objc func helperRoleButtonPressed(sender: UIButton!) {
         navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
+    }
+
+    @objc func transcriberRoleButtonPressed(sender: UIButton!) {
+        navigationController?.pushViewController(TranscriberViewController(), animated: true)
     }
 
     @objc func seekerRoleButtonPressed(sender: UIButton!) {
