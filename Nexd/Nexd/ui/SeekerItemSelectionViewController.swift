@@ -19,7 +19,7 @@ class SeekerItemSelectionViewController: UIViewController {
 
     struct Item {
         let isSelected: Bool
-        let itemId: Int
+        let itemId: Int64
         let title: String
     }
 

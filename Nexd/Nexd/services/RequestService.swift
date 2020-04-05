@@ -12,8 +12,8 @@ import RxSwift
 
 class RequestService {
     struct RequestItem {
-        let itemId: Int
-        let articleCount: Int
+        let itemId: Int64
+        let articleCount: Int64
     }
 
     static let shared = RequestService()
@@ -36,12 +36,12 @@ class RequestService {
     func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = false, status: [String]? = nil) -> Single<[HelpRequest]> {
         return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
                                                             zipCode: zipCode,
-                                                            includeRequester: includeRequester ? "true" : nil,
+                                                            includeRequester: includeRequester,
                                                             status: status)
             .asSingle()
     }
 
-    func fetchRequest(requestId: Int) -> Single<HelpRequest> {
+    func fetchRequest(requestId: Int64) -> Single<HelpRequest> {
         return HelpRequestsAPI.helpRequestsControllerGetSingleRequest(helpRequestId: requestId)
             .asSingle()
     }

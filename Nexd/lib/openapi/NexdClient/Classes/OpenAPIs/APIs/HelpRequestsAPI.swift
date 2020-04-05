@@ -20,7 +20,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpRequest>
      */
-    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int, articleId: Int, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
+    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int, articleId: Int64, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerAddArticleInHelpRequestWithRequestBuilder(helpRequestId: helpRequestId, articleId: articleId, createOrUpdateHelpRequestArticleDto: createOrUpdateHelpRequestArticleDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -46,7 +46,7 @@ open class HelpRequestsAPI {
      - parameter createOrUpdateHelpRequestArticleDto: (body)  
      - returns: RequestBuilder<HelpRequest> 
      */
-    open class func helpRequestsControllerAddArticleInHelpRequestWithRequestBuilder(helpRequestId: Int, articleId: Int, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> RequestBuilder<HelpRequest> {
+    open class func helpRequestsControllerAddArticleInHelpRequestWithRequestBuilder(helpRequestId: Int, articleId: Int64, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> RequestBuilder<HelpRequest> {
         var path = "/help-requests/{helpRequestId}/article/{articleId}"
         let helpRequestIdPreEscape = "\(APIHelper.mapValueToPathItem(helpRequestId))"
         let helpRequestIdPostEscape = helpRequestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -85,7 +85,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[HelpRequest]>
      */
-    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerGetAllWithRequestBuilder(userId: userId, excludeUserId: excludeUserId, zipCode: zipCode, includeRequester: includeRequester, status: status).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -113,7 +113,7 @@ open class HelpRequestsAPI {
      - parameter status: (query) Array of status to filter for (optional)
      - returns: RequestBuilder<[HelpRequest]> 
      */
-    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> RequestBuilder<[HelpRequest]> {
+    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil) -> RequestBuilder<[HelpRequest]> {
         let path = "/help-requests"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -139,7 +139,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpRequest>
      */
-    open class func helpRequestsControllerGetSingleRequest(helpRequestId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
+    open class func helpRequestsControllerGetSingleRequest(helpRequestId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerGetSingleRequestWithRequestBuilder(helpRequestId: helpRequestId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -163,7 +163,7 @@ open class HelpRequestsAPI {
      - parameter helpRequestId: (path) Id of the help request 
      - returns: RequestBuilder<HelpRequest> 
      */
-    open class func helpRequestsControllerGetSingleRequestWithRequestBuilder(helpRequestId: Int) -> RequestBuilder<HelpRequest> {
+    open class func helpRequestsControllerGetSingleRequestWithRequestBuilder(helpRequestId: Int64) -> RequestBuilder<HelpRequest> {
         var path = "/help-requests/{helpRequestId}"
         let helpRequestIdPreEscape = "\(APIHelper.mapValueToPathItem(helpRequestId))"
         let helpRequestIdPostEscape = helpRequestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -229,7 +229,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpRequest>
      */
-    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int, articleId: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
+    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int, articleId: Int64, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerRemoveArticleInHelpRequestWithRequestBuilder(helpRequestId: helpRequestId, articleId: articleId).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -254,7 +254,7 @@ open class HelpRequestsAPI {
      - parameter articleId: (path) Id of the article 
      - returns: RequestBuilder<HelpRequest> 
      */
-    open class func helpRequestsControllerRemoveArticleInHelpRequestWithRequestBuilder(helpRequestId: Int, articleId: Int) -> RequestBuilder<HelpRequest> {
+    open class func helpRequestsControllerRemoveArticleInHelpRequestWithRequestBuilder(helpRequestId: Int, articleId: Int64) -> RequestBuilder<HelpRequest> {
         var path = "/help-requests/{helpRequestId}/article/{articleId}"
         let helpRequestIdPreEscape = "\(APIHelper.mapValueToPathItem(helpRequestId))"
         let helpRequestIdPostEscape = helpRequestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
@@ -280,7 +280,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<HelpRequest>
      */
-    open class func helpRequestsControllerUpdateRequest(helpRequestId: Int, helpRequestCreateDto: HelpRequestCreateDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
+    open class func helpRequestsControllerUpdateRequest(helpRequestId: Int64, helpRequestCreateDto: HelpRequestCreateDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<HelpRequest> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerUpdateRequestWithRequestBuilder(helpRequestId: helpRequestId, helpRequestCreateDto: helpRequestCreateDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -305,7 +305,7 @@ open class HelpRequestsAPI {
      - parameter helpRequestCreateDto: (body)  
      - returns: RequestBuilder<HelpRequest> 
      */
-    open class func helpRequestsControllerUpdateRequestWithRequestBuilder(helpRequestId: Int, helpRequestCreateDto: HelpRequestCreateDto) -> RequestBuilder<HelpRequest> {
+    open class func helpRequestsControllerUpdateRequestWithRequestBuilder(helpRequestId: Int64, helpRequestCreateDto: HelpRequestCreateDto) -> RequestBuilder<HelpRequest> {
         var path = "/help-requests/{helpRequestId}"
         let helpRequestIdPreEscape = "\(APIHelper.mapValueToPathItem(helpRequestId))"
         let helpRequestIdPostEscape = helpRequestIdPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""

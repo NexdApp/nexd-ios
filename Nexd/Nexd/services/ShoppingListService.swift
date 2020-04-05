@@ -13,7 +13,7 @@ import NexdClient
 class ShoppingListService {
     static let shared = ShoppingListService()
 
-    func createShoppingList(requestIds: [Int]) -> Single<HelpList> {
+    func createShoppingList(requestIds: [Int64]) -> Single<HelpList> {
         let dto = HelpListCreateDto(helpRequestsIds: requestIds, status: .active)
         return HelpListsAPI.helpListsControllerInsertNewHelpList(helpListCreateDto: dto)
             .asSingle()

@@ -19,7 +19,7 @@ class HelperRequestOverviewViewController: UIViewController {
     }
 
     struct Request {
-        let requestId: Int
+        let requestId: Int64
         let title: String
     }
 

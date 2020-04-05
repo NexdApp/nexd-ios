@@ -96,7 +96,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerFindOne**
 ```swift
-    open class func helpListsControllerFindOne(helpListId: Int) -> Observable<HelpList>
+    open class func helpListsControllerFindOne(helpListId: Int64) -> Observable<HelpList>
 ```
 
 Get a specific help list
@@ -106,7 +106,7 @@ Get a specific help list
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpListId = 987 // Int | Id of the help list
+let helpListId = 987 // Int64 | Id of the help list
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -115,7 +115,7 @@ let helpListId = 987 // Int | Id of the help list
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **Int** | Id of the help list | 
+ **helpListId** | **Int64** | Id of the help list | 
 
 ### Return type
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerModifyArticleInAllHelpRequests**
 ```swift
-    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int, articleId: Int) -> Observable<HelpList>
+    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int, articleId: Int64) -> Observable<HelpList>
 ```
 
 Set/unset article done in all help requests
@@ -222,7 +222,7 @@ import NexdClient
 
 let articleDone = true // Bool | true to set the article as \"bought\"
 let helpListId = 987 // Int | Id of the help list
-let articleId = 987 // Int | Id of the article
+let articleId = 987 // Int64 | Id of the article
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -233,7 +233,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **articleDone** | **Bool** | true to set the article as \&quot;bought\&quot; | 
  **helpListId** | **Int** | Id of the help list | 
- **articleId** | **Int** | Id of the article | 
+ **articleId** | **Int64** | Id of the article | 
 
 ### Return type
 
