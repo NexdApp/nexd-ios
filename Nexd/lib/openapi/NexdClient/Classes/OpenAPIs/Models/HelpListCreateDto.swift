@@ -17,10 +17,10 @@ public struct HelpListCreateDto: Codable {
         case completed = "completed"
     }
     /** List of help request IDs */
-    public var helpRequestsIds: [Int]?
+    public var helpRequestsIds: [Int64]?
     public var status: Status? = .active
 
-    public init(helpRequestsIds: [Int]?, status: Status?) {
+    public init(helpRequestsIds: [Int64]?, status: Status?) {
         self.helpRequestsIds = helpRequestsIds
         self.status = status
     }

@@ -12,11 +12,11 @@ public struct CreateHelpRequestArticleDto: Codable {
 
 
     /** Article ID received from the article list */
-    public var articleId: Int
+    public var articleId: Int64
     /** Number of items */
-    public var articleCount: Int
+    public var articleCount: Int64
 
-    public init(articleId: Int, articleCount: Int) {
+    public init(articleId: Int64, articleCount: Int64) {
         self.articleId = articleId
         self.articleCount = articleCount
     }

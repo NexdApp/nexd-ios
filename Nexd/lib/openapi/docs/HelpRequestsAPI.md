@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **helpRequestsControllerAddArticleInHelpRequest**
 ```swift
-    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int, articleId: Int, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> Observable<HelpRequest>
+    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int, articleId: Int64, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> Observable<HelpRequest>
 ```
 
 Put an article to a help request, endpoint overrides.
@@ -25,7 +25,7 @@ Put an article to a help request, endpoint overrides.
 import NexdClient
 
 let helpRequestId = 987 // Int | Id of the help request
-let articleId = 987 // Int | Id of the article
+let articleId = 987 // Int64 | Id of the article
 let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(articleCount: 123, articleDone: false) // CreateOrUpdateHelpRequestArticleDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -36,7 +36,7 @@ let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(ar
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **helpRequestId** | **Int** | Id of the help request | 
- **articleId** | **Int** | Id of the article | 
+ **articleId** | **Int64** | Id of the article | 
  **createOrUpdateHelpRequestArticleDto** | [**CreateOrUpdateHelpRequestArticleDto**](CreateOrUpdateHelpRequestArticleDto.md) |  | 
 
 ### Return type
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerGetAll**
 ```swift
-    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: String? = nil, zipCode: [String]? = nil, includeRequester: String? = nil, status: [String]? = nil) -> Observable<[HelpRequest]>
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil) -> Observable<[HelpRequest]>
 ```
 
 Get and filter for various help requests
@@ -67,9 +67,9 @@ Get and filter for various help requests
 import NexdClient
 
 let userId = "userId_example" // String | If included, filter by userId, \"me\" for the requesting user, otherwise all users are replied. (optional)
-let excludeUserId = "excludeUserId_example" // String | If true, the given userId is excluded (and not filtered for as default) (optional)
+let excludeUserId = true // Bool | If true, the given userId is excluded (and not filtered for as default) (optional)
 let zipCode = ["inner_example"] // [String] | Filter by an array of zipCodes (optional)
-let includeRequester = "includeRequester_example" // String | If \"true\", the requester object is included in each help request (optional)
+let includeRequester = true // Bool | If \"true\", the requester object is included in each help request (optional)
 let status = ["status_example"] // [String] | Array of status to filter for (optional)
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -80,9 +80,9 @@ let status = ["status_example"] // [String] | Array of status to filter for (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **userId** | **String** | If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. | [optional] 
- **excludeUserId** | **String** | If true, the given userId is excluded (and not filtered for as default) | [optional] 
+ **excludeUserId** | **Bool** | If true, the given userId is excluded (and not filtered for as default) | [optional] 
  **zipCode** | [**[String]**](String.md) | Filter by an array of zipCodes | [optional] 
- **includeRequester** | **String** | If \&quot;true\&quot;, the requester object is included in each help request | [optional] 
+ **includeRequester** | **Bool** | If \&quot;true\&quot;, the requester object is included in each help request | [optional] 
  **status** | [**[String]**](String.md) | Array of status to filter for | [optional] 
 
 ### Return type
@@ -102,7 +102,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerGetSingleRequest**
 ```swift
-    open class func helpRequestsControllerGetSingleRequest(helpRequestId: Int) -> Observable<HelpRequest>
+    open class func helpRequestsControllerGetSingleRequest(helpRequestId: Int64) -> Observable<HelpRequest>
 ```
 
 Get a single help request by id
@@ -112,7 +112,7 @@ Get a single help request by id
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpRequestId = 987 // Int | Id of the help request
+let helpRequestId = 987 // Int64 | Id of the help request
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -121,7 +121,7 @@ let helpRequestId = 987 // Int | Id of the help request
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpRequestId** | **Int64** | Id of the help request | 
 
 ### Return type
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerRemoveArticleInHelpRequest**
 ```swift
-    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int, articleId: Int) -> Observable<HelpRequest>
+    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int, articleId: Int64) -> Observable<HelpRequest>
 ```
 
 Remove an article from a help request
@@ -189,7 +189,7 @@ Remove an article from a help request
 import NexdClient
 
 let helpRequestId = 987 // Int | Id of the help request
-let articleId = 987 // Int | Id of the article
+let articleId = 987 // Int64 | Id of the article
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -199,7 +199,7 @@ let articleId = 987 // Int | Id of the article
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **helpRequestId** | **Int** | Id of the help request | 
- **articleId** | **Int** | Id of the article | 
+ **articleId** | **Int64** | Id of the article | 
 
 ### Return type
 
@@ -218,7 +218,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerUpdateRequest**
 ```swift
-    open class func helpRequestsControllerUpdateRequest(helpRequestId: Int, helpRequestCreateDto: HelpRequestCreateDto) -> Observable<HelpRequest>
+    open class func helpRequestsControllerUpdateRequest(helpRequestId: Int64, helpRequestCreateDto: HelpRequestCreateDto) -> Observable<HelpRequest>
 ```
 
 Modify a help request (e.g. address or articles)
@@ -228,7 +228,7 @@ Modify a help request (e.g. address or articles)
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpRequestId = 987 // Int | Id of the help request
+let helpRequestId = 987 // Int64 | Id of the help request
 let helpRequestCreateDto = HelpRequestCreateDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -238,7 +238,7 @@ let helpRequestCreateDto = HelpRequestCreateDto(street: "street_example", number
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpRequestId** | **Int64** | Id of the help request | 
  **helpRequestCreateDto** | [**HelpRequestCreateDto**](HelpRequestCreateDto.md) |  | 
 
 ### Return type

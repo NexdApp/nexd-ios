@@ -30,6 +30,7 @@ Class | Method | HTTP request | Description
 *AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 *AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
 *AuthAPI* | [**authControllerRegister**](docs/AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
+*DefaultAPI* | [**appControllerGetHello**](docs/DefaultAPI.md#appcontrollergethello) | **GET** / | 
 *HelpListsAPI* | [**helpListsControllerAddHelpRequestToList**](docs/HelpListsAPI.md#helplistscontrolleraddhelprequesttolist) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId} | Add a help request to a help list
 *HelpListsAPI* | [**helpListsControllerDeleteHelpRequestFromHelpList**](docs/HelpListsAPI.md#helplistscontrollerdeletehelprequestfromhelplist) | **DELETE** /help-lists/{helpListId}/help-request/{helpRequestId} | Delete a help request from help list
 *HelpListsAPI* | [**helpListsControllerFindOne**](docs/HelpListsAPI.md#helplistscontrollerfindone) | **GET** /help-lists/{helpListId} | Get a specific help list

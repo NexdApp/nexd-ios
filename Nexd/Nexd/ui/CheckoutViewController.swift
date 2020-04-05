@@ -21,7 +21,7 @@ class CheckoutViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let itemId: Int?
+        let itemId: Int64?
         let orderedBy: String?
 
         static func from(item: ShoppingListViewController.Item) -> Item {
