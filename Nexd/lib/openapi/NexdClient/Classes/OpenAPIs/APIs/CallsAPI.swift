@@ -14,13 +14,12 @@ open class CallsAPI {
     /**
      Returns all calls with the given parameters
      
-     - parameter callQueryDto: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Call]>
      */
-    open class func callsControllerCalls(callQueryDto: CallQueryDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Call]> {
+    open class func callsControllerCalls(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Call]> {
         return Observable.create { observer -> Disposable in
-            callsControllerCallsWithRequestBuilder(callQueryDto: callQueryDto).execute(apiResponseQueue) { result -> Void in
+            callsControllerCallsWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -36,19 +35,21 @@ open class CallsAPI {
     /**
      Returns all calls with the given parameters
      - GET /call/calls
-     - parameter callQueryDto: (body)  
+     - BASIC:
+       - type: http
+       - name: bearer
      - returns: RequestBuilder<[Call]> 
      */
-    open class func callsControllerCallsWithRequestBuilder(callQueryDto: CallQueryDto) -> RequestBuilder<[Call]> {
+    open class func callsControllerCallsWithRequestBuilder() -> RequestBuilder<[Call]> {
         let path = "/call/calls"
         let URLString = NexdClientAPI.basePath + path
-        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: callQueryDto)
-
+        let parameters: [String:Any]? = nil
+        
         let url = URLComponents(string: URLString)
 
         let requestBuilder: RequestBuilder<[Call]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
@@ -77,6 +78,9 @@ open class CallsAPI {
     /**
      Sets a call as converted to shopping list
      - PUT /call/calls/{sid}/converted
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter sid: (path) call sid 
      - parameter convertedHelpRequestDto: (body)  
      - returns: RequestBuilder<Call> 
@@ -121,6 +125,9 @@ open class CallsAPI {
     /**
      Redirects the request to the stored record file.
      - GET /call/calls/{sid}/record
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter sid: (path)  
      - returns: RequestBuilder<URL> 
      */

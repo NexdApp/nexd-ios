@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 # **callsControllerCalls**
 ```swift
-    open class func callsControllerCalls(callQueryDto: CallQueryDto) -> Observable<[Call]>
+    open class func callsControllerCalls() -> Observable<[Call]>
 ```
 
 Returns all calls with the given parameters
@@ -22,16 +22,12 @@ Returns all calls with the given parameters
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let callQueryDto = CallQueryDto(amount: 123, country: "country_example", zip: "zip_example", city: "city_example", converted: false) // CallQueryDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **callQueryDto** | [**CallQueryDto**](CallQueryDto.md) |  | 
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -39,11 +35,11 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -79,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
@@ -117,7 +113,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 

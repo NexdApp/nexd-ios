@@ -14,8 +14,7 @@ class CallsService {
     static let shared = CallsService()
 
     func allCalls() -> Single<[Call]> {
-        let dto = CallQueryDto(amount: nil, country: nil, zip: nil, city: nil, converted: nil)
-        return CallsAPI.callsControllerCalls(callQueryDto: dto)
+        return CallsAPI.callsControllerCalls()
             .asSingle()
     }
 }
