@@ -50,12 +50,7 @@ class UserProfileViewController: UIViewController {
     }
 
     private func loadProfile() {
-        guard let userId = Storage.shared.userId else {
-            log.error("No userID is available!")
-            return
-        }
-
-        UserService.shared.fetchUserInfo(usreId: userId)
+        UserService.shared.findMe()
             .subscribe(onSuccess: { user in
                 log.debug("User: \(user)")
             }, onError: { error in

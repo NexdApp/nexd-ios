@@ -17,7 +17,6 @@ class RegistrationViewController: UIViewController {
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
 
-    lazy var gradient = GradientView()
     lazy var scrollView = UIScrollView()
 
     lazy var email = ValidatingTextField.make(tag: 0,
@@ -53,11 +52,6 @@ class RegistrationViewController: UIViewController {
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -167,10 +161,10 @@ extension RegistrationViewController {
                                               firstName: firstName,
                                               lastName: lastName,
                                               password: password)
-            .subscribe(onSuccess: { [weak self] response in
+            .subscribe(onCompleted: { [weak self] in
                 log.debug("User registration successful")
                 let userDetailsVC = UserDetailsViewController()
-                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(userId: response.id, firstName: firstName, lastName: lastName)
+                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
                 self?.navigationController?.pushViewController(userDetailsVC, animated: true)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")

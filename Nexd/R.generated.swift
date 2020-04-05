@@ -105,7 +105,29 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.image` struct is generated, and contains static references to 15 images.
+  /// This `R.file` struct is generated, and contains static references to 2 files.
+  struct file {
+    /// Resource file `cymbal.wav`.
+    static let cymbalWav = Rswift.FileResource(bundle: R.hostingBundle, name: "cymbal", pathExtension: "wav")
+    /// Resource file `recording.mp3`.
+    static let recordingMp3 = Rswift.FileResource(bundle: R.hostingBundle, name: "recording", pathExtension: "mp3")
+
+    /// `bundle.url(forResource: "cymbal", withExtension: "wav")`
+    static func cymbalWav(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.cymbalWav
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "recording", withExtension: "mp3")`
+    static func recordingMp3(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.recordingMp3
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.image` struct is generated, and contains static references to 16 images.
   struct image {
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
@@ -125,18 +147,20 @@ struct R: Rswift.Validatable {
     static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
     /// Image `gradient`.
     static let gradient = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient")
-    /// Image `icon`.
-    static let icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "icon")
+    /// Image `logo_white`.
+    static let logo_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo_white")
     /// Image `logo`.
     static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
-    /// Image `nexd`.
-    static let nexd = Rswift.ImageResource(bundle: R.hostingBundle, name: "nexd")
     /// Image `outline_account_box_black_48pt`.
     static let outline_account_box_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_account_box_black_48pt")
     /// Image `outline_directions_walk_black_48pt`.
     static let outline_directions_walk_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_directions_walk_black_48pt")
     /// Image `outline_shopping_cart_black_48pt`.
     static let outline_shopping_cart_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_shopping_cart_black_48pt")
+    /// Image `round_pause_black_36pt`.
+    static let round_pause_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_pause_black_36pt")
+    /// Image `round_play_arrow_black_36pt`.
+    static let round_play_arrow_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_play_arrow_black_36pt")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_account_box_black_18pt", bundle: ..., traitCollection: ...)`
@@ -202,13 +226,6 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "icon", bundle: ..., traitCollection: ...)`
-    static func icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.icon, compatibleWith: traitCollection)
-    }
-    #endif
-
-    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
     static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
@@ -216,9 +233,9 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "nexd", bundle: ..., traitCollection: ...)`
-    static func nexd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.nexd, compatibleWith: traitCollection)
+    /// `UIImage(named: "logo_white", bundle: ..., traitCollection: ...)`
+    static func logo_white(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.logo_white, compatibleWith: traitCollection)
     }
     #endif
 
@@ -240,6 +257,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "outline_shopping_cart_black_48pt", bundle: ..., traitCollection: ...)`
     static func outline_shopping_cart_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.outline_shopping_cart_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "round_pause_black_36pt", bundle: ..., traitCollection: ...)`
+    static func round_pause_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.round_pause_black_36pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "round_play_arrow_black_36pt", bundle: ..., traitCollection: ...)`
+    static func round_play_arrow_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.round_play_arrow_black_36pt, compatibleWith: traitCollection)
     }
     #endif
 
@@ -1948,8 +1979,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
-        if UIKit.UIImage(named: "gradient", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'gradient' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "icon", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'icon' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "logo_white", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo_white' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

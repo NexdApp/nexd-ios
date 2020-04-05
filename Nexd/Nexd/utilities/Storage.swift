@@ -22,13 +22,4 @@ class Storage {
             defaults.setValue(email, forKey: "authorizationToken")
         }
     }
-
-    var userId: Int? {
-        get {
-            defaults.integer(forKey: "userId")
-        }
-        set(userId) {
-            defaults.setValue(userId, forKey: "userId")
-        }
-    }
 }

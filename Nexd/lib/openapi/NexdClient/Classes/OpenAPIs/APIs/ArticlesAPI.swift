@@ -12,7 +12,8 @@ import RxSwift
 
 open class ArticlesAPI {
     /**
-
+     List articles
+     
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Article]>
      */
@@ -32,11 +33,12 @@ open class ArticlesAPI {
     }
 
     /**
-     - GET /api/articles
+     List articles
+     - GET /articles
      - returns: RequestBuilder<[Article]> 
      */
     open class func articlesControllerFindAllWithRequestBuilder() -> RequestBuilder<[Article]> {
-        let path = "/api/articles"
+        let path = "/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
@@ -48,7 +50,8 @@ open class ArticlesAPI {
     }
 
     /**
-
+     Create an article
+     
      - parameter createArticleDto: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Article>
@@ -69,12 +72,13 @@ open class ArticlesAPI {
     }
 
     /**
-     - POST /api/articles
+     Create an article
+     - POST /articles
      - parameter createArticleDto: (body)  
      - returns: RequestBuilder<Article> 
      */
     open class func articlesControllerInsertOneWithRequestBuilder(createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
-        let path = "/api/articles"
+        let path = "/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createArticleDto)
 

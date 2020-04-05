@@ -21,19 +21,20 @@ class ShoppingListViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let itemId: Int
-        let orderedBy: Int
+        let itemId: Int?
+        let orderedBy: String?
     }
 
     struct Content {
         let items: [Item]
     }
 
-    var shoppingList: ShoppingList?
+    var shoppingList: HelpList?
 
     private let disposeBag = DisposeBag()
 
     private var gradient = GradientView()
+
     private var collectionView: UICollectionView?
     private var checkoutButton = UIButton()
 
@@ -109,7 +110,7 @@ class ShoppingListViewController: UIViewController {
             }
 
         getShoppingList
-            .flatMap { [weak self] list -> Single<[RequestEntity]> in
+            .flatMap { [weak self] list -> Single<[HelpRequest]> in
                 guard let self = self, let list = list else {
                     return Single.just([])
                 }
@@ -118,17 +119,18 @@ class ShoppingListViewController: UIViewController {
             .flatMap { requests in
                 ArticlesService.shared.allArticles()
                     .map { allArticles -> [Item] in
-                        requests
-                            .flatMap { request in
-                                request.articles.map { article in
-                                    let details = allArticles.first { $0.id == article.articleId }
+                        requests.flatMap { request -> [Item] in
+                            guard let articles = request.articles else { return [] }
 
-                                    return Item(isSelected: false,
-                                                title: details?.name ?? "-",
-                                                itemId: article.articleId,
-                                                orderedBy: request.requesterId)
-                                }
+                            return articles.map { article -> Item in
+                                 let details = allArticles.first { $0.id == article.articleId }
+
+                                return Item(isSelected: false,
+                                            title: details?.name ?? "-",
+                                            itemId: article.articleId,
+                                            orderedBy: request.requesterId)
                             }
+                        }
                     }
             }
             .subscribe(onSuccess: { [weak self] items in
@@ -142,8 +144,10 @@ class ShoppingListViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func loadAllRequests(for shoppingList: ShoppingList) -> Single<[RequestEntity]> {
-        return Single.zip(shoppingList.requests.map { RequestService.shared.fetchRequest(requestId: $0.requestId) })
+    private func loadAllRequests(for shoppingList: HelpList) -> Single<[HelpRequest]> {
+        return Single.zip(shoppingList.helpRequests
+            .compactMap { $0.id }
+            .map { RequestService.shared.fetchRequest(requestId: $0) })
     }
 }
 

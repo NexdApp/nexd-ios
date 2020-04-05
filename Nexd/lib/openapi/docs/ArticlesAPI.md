@@ -1,11 +1,11 @@
 # ArticlesAPI
 
-All URIs are relative to *http://undefined:80*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**articlesControllerFindAll**](ArticlesAPI.md#articlescontrollerfindall) | **GET** /api/articles | 
-[**articlesControllerInsertOne**](ArticlesAPI.md#articlescontrollerinsertone) | **POST** /api/articles | 
+[**articlesControllerFindAll**](ArticlesAPI.md#articlescontrollerfindall) | **GET** /articles | List articles
+[**articlesControllerInsertOne**](ArticlesAPI.md#articlescontrollerinsertone) | **POST** /articles | Create an article
 
 
 # **articlesControllerFindAll**
@@ -13,7 +13,7 @@ Method | HTTP request | Description
     open class func articlesControllerFindAll() -> Observable<[Article]>
 ```
 
-
+List articles
 
 ### Example 
 ```swift
@@ -47,7 +47,7 @@ No authorization required
     open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto) -> Observable<Article>
 ```
 
-
+Create an article
 
 ### Example 
 ```swift
