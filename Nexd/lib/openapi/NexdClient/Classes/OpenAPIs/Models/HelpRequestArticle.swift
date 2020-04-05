@@ -13,12 +13,12 @@ public struct HelpRequestArticle: Codable {
 
     public var articleId: Int64?
     public var articleCount: Int64?
-    public var id: Int64?
+    public var id: Double?
     public var article: Article?
     public var articleDone: Bool?
     public var helpRequest: HelpRequest?
 
-    public init(articleId: Int64?, articleCount: Int64?, id: Int64?, article: Article?, articleDone: Bool?, helpRequest: HelpRequest?) {
+    public init(articleId: Int64?, articleCount: Int64?, id: Double?, article: Article?, articleDone: Bool?, helpRequest: HelpRequest?) {
         self.articleId = articleId
         self.articleCount = articleCount
         self.id = id

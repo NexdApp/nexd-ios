@@ -23,9 +23,9 @@ public struct HelpList: Codable {
     public var updatedAt: Date
     public var status: Status? = .active
     public var helpRequests: [HelpRequest]
-    public var helpRequestsIds: [Int64]
+    public var helpRequestsIds: [Double]
 
-    public init(id: Int64, ownerId: String?, owner: User?, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest], helpRequestsIds: [Int64]) {
+    public init(id: Int64, ownerId: String?, owner: User?, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest], helpRequestsIds: [Double]) {
         self.id = id
         self.ownerId = ownerId
         self.owner = owner

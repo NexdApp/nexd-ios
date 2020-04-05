@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **zipCode** | **String** |  | [optional] 
 **city** | **String** |  | [optional] 
 **id** | **Int64** |  | [optional] 
+**helpListId** | **Int64** |  | [optional] 
 **createdAt** | **Date** |  | [optional] 
 **priority** | **String** |  | [optional] 
 **additionalRequest** | **String** |  | [optional] 
@@ -17,7 +18,6 @@ Name | Type | Description | Notes
 **articles** | [HelpRequestArticle] |  | [optional] 
 **requesterId** | **String** |  | [optional] 
 **requester** | [**User**](User.md) |  | [optional] 
-**helpListId** | **String** |  | [optional] 
 **helpList** | [**HelpList**](HelpList.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

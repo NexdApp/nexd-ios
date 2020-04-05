@@ -34,7 +34,7 @@ class HelperRequestOverviewViewController: UIViewController {
     private var collectionView: UICollectionView?
     private var startButton = UIButton()
 
-    private var dataSource: DefaultSectionedDataSource<DefaultCellItem>? {
+    private var dataSource: DefaultSectionedDataSource<DefaultCell.Item>? {
         didSet {
             collectionView?.dataSource = dataSource
         }
@@ -42,15 +42,15 @@ class HelperRequestOverviewViewController: UIViewController {
 
     private var content: Content? {
         didSet {
-            var sections = [DefaultSectionedDataSource<DefaultCellItem>.Section]()
+            var sections = [DefaultSectionedDataSource<DefaultCell.Item>.Section]()
             if let content = content {
-                let acceptedItems = content.acceptedRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
-                let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
+                let acceptedItems = content.acceptedRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
+                let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                   title: R.string.localizable.helper_request_overview_heading_accepted_section(),
                                                                                                   items: acceptedItems)
 
-                let availableItems = content.availableRequests.map { DefaultCellItem(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
-                let availableRequestsSection = DefaultSectionedDataSource<DefaultCellItem>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
+                let availableItems = content.availableRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
+                let availableRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
                                                                                                    title: R.string.localizable.helper_request_overview_heading_available_section(),
                                                                                                    items: availableItems)
 
@@ -116,7 +116,8 @@ class HelperRequestOverviewViewController: UIViewController {
                     .compactMap { request in
                         guard let requesterId = request.requesterId, let requestId = request.id else { return nil }
                         return UserService.shared.fetchUserInfo(userId: requesterId)
-                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") } })
+                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") }
+                })
             }
             .subscribe(onSuccess: { [weak self] openRequests in
                 log.debug("Open requests: \(openRequests)")

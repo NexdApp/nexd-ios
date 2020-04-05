@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 # **helpListsControllerAddHelpRequestToList**
 ```swift
-    open class func helpListsControllerAddHelpRequestToList(helpListId: Int, helpRequestId: Int) -> Observable<HelpList>
+    open class func helpListsControllerAddHelpRequestToList(helpListId: Int64, helpRequestId: Int64) -> Observable<HelpList>
 ```
 
 Add a help request to a help list
@@ -26,8 +26,8 @@ Add a help request to a help list
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpListId = 987 // Int | Id of the help list
-let helpRequestId = 987 // Int | Id of the help request
+let helpListId = 987 // Int64 | Id of the help list
+let helpRequestId = 987 // Int64 | Id of the help request
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -36,8 +36,8 @@ let helpRequestId = 987 // Int | Id of the help request
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **Int** | Id of the help list | 
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpListId** | **Int64** | Id of the help list | 
+ **helpRequestId** | **Int64** | Id of the help request | 
 
 ### Return type
 
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerDeleteHelpRequestFromHelpList**
 ```swift
-    open class func helpListsControllerDeleteHelpRequestFromHelpList(helpListId: Int, helpRequestId: Int) -> Observable<HelpList>
+    open class func helpListsControllerDeleteHelpRequestFromHelpList(helpListId: Int64, helpRequestId: Int64) -> Observable<HelpList>
 ```
 
 Delete a help request from help list
@@ -66,8 +66,8 @@ Delete a help request from help list
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpListId = 987 // Int | Id of the help list
-let helpRequestId = 987 // Int | Id of the help request
+let helpListId = 987 // Int64 | Id of the help list
+let helpRequestId = 987 // Int64 | Id of the help request
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -76,8 +76,8 @@ let helpRequestId = 987 // Int | Id of the help request
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **Int** | Id of the help list | 
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpListId** | **Int64** | Id of the help list | 
+ **helpRequestId** | **Int64** | Id of the help request | 
 
 ### Return type
 
@@ -210,7 +210,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerModifyArticleInAllHelpRequests**
 ```swift
-    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int, articleId: Int64) -> Observable<HelpList>
+    open class func helpListsControllerModifyArticleInAllHelpRequests(articleDone: Bool, helpListId: Int64, articleId: Int64) -> Observable<HelpList>
 ```
 
 Set/unset article done in all help requests
@@ -221,7 +221,7 @@ Set/unset article done in all help requests
 import NexdClient
 
 let articleDone = true // Bool | true to set the article as \"bought\"
-let helpListId = 987 // Int | Id of the help list
+let helpListId = 987 // Int64 | Id of the help list
 let articleId = 987 // Int64 | Id of the article
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -232,7 +232,7 @@ let articleId = 987 // Int64 | Id of the article
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **articleDone** | **Bool** | true to set the article as \&quot;bought\&quot; | 
- **helpListId** | **Int** | Id of the help list | 
+ **helpListId** | **Int64** | Id of the help list | 
  **articleId** | **Int64** | Id of the article | 
 
 ### Return type
@@ -252,7 +252,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerModifyArticleInHelpRequest**
 ```swift
-    open class func helpListsControllerModifyArticleInHelpRequest(articleDone: Bool, helpListId: Int, helpRequestId: Int, articleId: Int) -> Observable<HelpList>
+    open class func helpListsControllerModifyArticleInHelpRequest(articleDone: Bool, helpListId: Int64, helpRequestId: Int64, articleId: Int64) -> Observable<HelpList>
 ```
 
 Set/unset articleDone of an article in a specific help request
@@ -263,9 +263,9 @@ Set/unset articleDone of an article in a specific help request
 import NexdClient
 
 let articleDone = true // Bool | true to set the article as \"bought\"
-let helpListId = 987 // Int | Id of the help list
-let helpRequestId = 987 // Int | Id of the help request
-let articleId = 987 // Int | Id of the article
+let helpListId = 987 // Int64 | Id of the help list
+let helpRequestId = 987 // Int64 | Id of the help request
+let articleId = 987 // Int64 | Id of the article
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -275,9 +275,9 @@ let articleId = 987 // Int | Id of the article
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **articleDone** | **Bool** | true to set the article as \&quot;bought\&quot; | 
- **helpListId** | **Int** | Id of the help list | 
- **helpRequestId** | **Int** | Id of the help request | 
- **articleId** | **Int** | Id of the article | 
+ **helpListId** | **Int64** | Id of the help list | 
+ **helpRequestId** | **Int64** | Id of the help request | 
+ **articleId** | **Int64** | Id of the article | 
 
 ### Return type
 
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 # **helpListsControllerUpdateHelpLists**
 ```swift
-    open class func helpListsControllerUpdateHelpLists(helpListId: Int, helpListCreateDto: HelpListCreateDto) -> Observable<HelpList>
+    open class func helpListsControllerUpdateHelpLists(helpListId: Int64, helpListCreateDto: HelpListCreateDto) -> Observable<HelpList>
 ```
 
 Modify a help list
@@ -306,7 +306,7 @@ Modify a help list
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpListId = 987 // Int | Id of the help list
+let helpListId = 987 // Int64 | Id of the help list
 let helpListCreateDto = HelpListCreateDto(helpRequestsIds: [123], status: "status_example") // HelpListCreateDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -316,7 +316,7 @@ let helpListCreateDto = HelpListCreateDto(helpRequestsIds: [123], status: "statu
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpListId** | **Int** | Id of the help list | 
+ **helpListId** | **Int64** | Id of the help list | 
  **helpListCreateDto** | [**HelpListCreateDto**](HelpListCreateDto.md) |  | 
 
 ### Return type

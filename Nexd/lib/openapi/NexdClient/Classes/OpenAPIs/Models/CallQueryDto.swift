@@ -12,15 +12,15 @@ public struct CallQueryDto: Codable {
 
 
     public var amount: Int?
-    public var zip: Int?
     public var country: String?
+    public var zip: String?
     public var city: String?
     public var converted: Bool?
 
-    public init(amount: Int?, zip: Int?, country: String?, city: String?, converted: Bool?) {
+    public init(amount: Int?, country: String?, zip: String?, city: String?, converted: Bool?) {
         self.amount = amount
-        self.zip = zip
         self.country = country
+        self.zip = zip
         self.city = city
         self.converted = converted
     }

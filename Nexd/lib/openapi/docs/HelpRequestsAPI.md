@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 # **helpRequestsControllerAddArticleInHelpRequest**
 ```swift
-    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int, articleId: Int64, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> Observable<HelpRequest>
+    open class func helpRequestsControllerAddArticleInHelpRequest(helpRequestId: Int64, articleId: Int64, createOrUpdateHelpRequestArticleDto: CreateOrUpdateHelpRequestArticleDto) -> Observable<HelpRequest>
 ```
 
 Put an article to a help request, endpoint overrides.
@@ -24,7 +24,7 @@ Put an article to a help request, endpoint overrides.
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpRequestId = 987 // Int | Id of the help request
+let helpRequestId = 987 // Int64 | Id of the help request
 let articleId = 987 // Int64 | Id of the article
 let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(articleCount: 123, articleDone: false) // CreateOrUpdateHelpRequestArticleDto | 
 
@@ -35,7 +35,7 @@ let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(ar
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpRequestId** | **Int64** | Id of the help request | 
  **articleId** | **Int64** | Id of the article | 
  **createOrUpdateHelpRequestArticleDto** | [**CreateOrUpdateHelpRequestArticleDto**](CreateOrUpdateHelpRequestArticleDto.md) |  | 
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerRemoveArticleInHelpRequest**
 ```swift
-    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int, articleId: Int64) -> Observable<HelpRequest>
+    open class func helpRequestsControllerRemoveArticleInHelpRequest(helpRequestId: Int64, articleId: Int64) -> Observable<HelpRequest>
 ```
 
 Remove an article from a help request
@@ -188,7 +188,7 @@ Remove an article from a help request
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpRequestId = 987 // Int | Id of the help request
+let helpRequestId = 987 // Int64 | Id of the help request
 let articleId = 987 // Int64 | Id of the article
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -198,7 +198,7 @@ let articleId = 987 // Int64 | Id of the article
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **helpRequestId** | **Int** | Id of the help request | 
+ **helpRequestId** | **Int64** | Id of the help request | 
  **articleId** | **Int64** | Id of the article | 
 
 ### Return type

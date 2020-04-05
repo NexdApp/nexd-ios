@@ -127,7 +127,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 16 images.
+  /// This `R.image` struct is generated, and contains static references to 18 images.
   struct image {
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
@@ -143,6 +143,10 @@ struct R: Rswift.Validatable {
     static let baseline_error_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_error_black_18pt")
     /// Image `baseline_shopping_basket_black_48pt`.
     static let baseline_shopping_basket_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_shopping_basket_black_48pt")
+    /// Image `baseline_voicemail_black_24pt`.
+    static let baseline_voicemail_black_24pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_voicemail_black_24pt")
+    /// Image `baseline_voicemail_black_48pt`.
+    static let baseline_voicemail_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_voicemail_black_48pt")
     /// Image `baseline_warning_black_18pt`.
     static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
     /// Image `gradient`.
@@ -208,6 +212,20 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "baseline_shopping_basket_black_48pt", bundle: ..., traitCollection: ...)`
     static func baseline_shopping_basket_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.baseline_shopping_basket_black_48pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_voicemail_black_24pt", bundle: ..., traitCollection: ...)`
+    static func baseline_voicemail_black_24pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_voicemail_black_24pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "baseline_voicemail_black_48pt", bundle: ..., traitCollection: ...)`
+    static func baseline_voicemail_black_48pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.baseline_voicemail_black_48pt, compatibleWith: traitCollection)
     }
     #endif
 
@@ -279,7 +297,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 81 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -421,6 +439,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholder_lastName = Rswift.StringResource(key: "registration_placeholder_lastName", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: List
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_item_type_list = Rswift.StringResource(key: "helper_request_overview_item_type_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Log out
       ///
       /// Locales: en, de
@@ -497,6 +519,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_term_privacy_policy = Rswift.StringResource(key: "registration_term_privacy_policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Recording
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_item_type_recording = Rswift.StringResource(key: "helper_request_overview_item_type_recording", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Register
       ///
       /// Locales: en, de
@@ -1133,6 +1159,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholder_lastName", bundle: bundle, comment: "")
       }
 
+      /// en translation: List
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_item_type_list(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_item_type_list", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_item_type_list"
+        }
+
+        return NSLocalizedString("helper_request_overview_item_type_list", bundle: bundle, comment: "")
+      }
+
       /// en translation: Log out
       ///
       /// Locales: en, de
@@ -1416,6 +1457,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_term_privacy_policy", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Recording
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_item_type_recording(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_item_type_recording", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_item_type_recording"
+        }
+
+        return NSLocalizedString("helper_request_overview_item_type_recording", bundle: bundle, comment: "")
       }
 
       /// en translation: Register

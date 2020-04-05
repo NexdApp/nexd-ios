@@ -21,11 +21,13 @@
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
 		AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE4EA65224394AEA00B8E9D6 /* recording.mp3 */; };
+		AE4EA655243A665900B8E9D6 /* CallsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA654243A665900B8E9D6 /* CallsService.swift */; };
 		AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2752437B76500A1166F /* UserProfileViewController.swift */; };
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* View.swift */; };
+		AEC5877B243A853900B6876C /* TranscriberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5877A243A853900B6876C /* TranscriberViewController.swift */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
 		AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */ = {isa = PBXBuildFile; fileRef = AECE9D252438D93E00EDCE0D /* cymbal.wav */; };
 		AECE9D282438E03800EDCE0D /* RequestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D272438E03800EDCE0D /* RequestDetailsViewController.swift */; };
@@ -45,7 +47,6 @@
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65E242604DE005C77CE /* DataSource.swift */; };
 		AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66024260500005C77CE /* DefaultDataSource.swift */; };
-		AEF3D66324260574005C77CE /* DefaultCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66224260574005C77CE /* DefaultCellItem.swift */; };
 		AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66424261131005C77CE /* SectionHeaderView.swift */; };
 		AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D666242630C3005C77CE /* AppConfiguration.swift */; };
 		AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66824263149005C77CE /* RegistrationViewController.swift */; };
@@ -92,11 +93,13 @@
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		AE4EA65224394AEA00B8E9D6 /* recording.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = recording.mp3; sourceTree = "<group>"; };
+		AE4EA654243A665900B8E9D6 /* CallsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsService.swift; sourceTree = "<group>"; };
 		AE52A2752437B76500A1166F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		AEC5877A243A853900B6876C /* TranscriberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriberViewController.swift; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		AECE9D252438D93E00EDCE0D /* cymbal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cymbal.wav; sourceTree = "<group>"; };
 		AECE9D272438E03800EDCE0D /* RequestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +123,6 @@
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D65E242604DE005C77CE /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		AEF3D66024260500005C77CE /* DefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
-		AEF3D66224260574005C77CE /* DefaultCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultCellItem.swift; sourceTree = "<group>"; };
 		AEF3D66424261131005C77CE /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		AEF3D666242630C3005C77CE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		AEF3D66824263149005C77CE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AECE9D272438E03800EDCE0D /* RequestDetailsViewController.swift */,
+				AEC5877A243A853900B6876C /* TranscriberViewController.swift */,
 				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
 				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE52A2752437B76500A1166F /* UserProfileViewController.swift */,
@@ -249,7 +252,6 @@
 				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
 				AEF3D65E242604DE005C77CE /* DataSource.swift */,
 				AEF3D66024260500005C77CE /* DefaultDataSource.swift */,
-				AEF3D66224260574005C77CE /* DefaultCellItem.swift */,
 				AEF3D66424261131005C77CE /* SectionHeaderView.swift */,
 				AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */,
 				AEF3D67A2426C88B005C77CE /* GradientView.swift */,
@@ -269,6 +271,7 @@
 				AE26902124278BFC009A8892 /* UserService.swift */,
 				AE2690232427A61D009A8892 /* ShoppingListService.swift */,
 				AECE9D232438D84400EDCE0D /* AudioPlayer.swift */,
+				AE4EA654243A665900B8E9D6 /* CallsService.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -528,7 +531,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEF3D66324260574005C77CE /* DefaultCellItem.swift in Sources */,
 				AED8818F24352373006065D2 /* Style.swift in Sources */,
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
@@ -536,6 +538,7 @@
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
 				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
+				AEC5877B243A853900B6876C /* TranscriberViewController.swift in Sources */,
 				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,
 				AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */,
@@ -572,6 +575,7 @@
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,
+				AE4EA655243A665900B8E9D6 /* CallsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

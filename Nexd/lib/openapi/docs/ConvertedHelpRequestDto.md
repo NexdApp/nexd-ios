@@ -1,13 +1,9 @@
-# CallQueryDto
+# ConvertedHelpRequestDto
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**amount** | **Int** |  | [optional] 
-**country** | **String** |  | [optional] 
-**zip** | **String** |  | [optional] 
-**city** | **String** |  | [optional] 
-**converted** | **Bool** |  | [optional] 
+**helpRequestId** | **Int64** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
