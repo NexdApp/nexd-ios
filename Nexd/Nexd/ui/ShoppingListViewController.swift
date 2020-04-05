@@ -119,17 +119,18 @@ class ShoppingListViewController: UIViewController {
             .flatMap { requests in
                 ArticlesService.shared.allArticles()
                     .map { allArticles -> [Item] in
-                        requests
-                            .compactMap { request in
-                                request.articles.map { article in
-//                                    let details = allArticles.first { $0.id == article.articleId }
+                        requests.flatMap { request -> [Item] in
+                            guard let articles = request.articles else { return [] }
 
-                                    return Item(isSelected: false,
-                                                title: "TODO", // details?.name ?? "-",
-                                                itemId: 123, // TODO article.articleId,
-                                                orderedBy: request.requesterId)
-                                }
+                            return articles.map { article -> Item in
+                                 let details = allArticles.first { $0.id == article.articleId }
+
+                                return Item(isSelected: false,
+                                            title: details?.name ?? "-",
+                                            itemId: article.articleId,
+                                            orderedBy: request.requesterId)
                             }
+                        }
                     }
             }
             .subscribe(onSuccess: { [weak self] items in
