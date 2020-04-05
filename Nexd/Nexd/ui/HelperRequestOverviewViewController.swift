@@ -116,7 +116,8 @@ class HelperRequestOverviewViewController: UIViewController {
                     .compactMap { request in
                         guard let requesterId = request.requesterId, let requestId = request.id else { return nil }
                         return UserService.shared.fetchUserInfo(userId: requesterId)
-                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") } })
+                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") }
+                })
             }
             .subscribe(onSuccess: { [weak self] openRequests in
                 log.debug("Open requests: \(openRequests)")
@@ -130,6 +131,14 @@ class HelperRequestOverviewViewController: UIViewController {
                 self?.content = content
             }, onError: { error in
                 log.error("Request failed: \(error)")
+            })
+            .disposed(by: disposeBag)
+
+        CallsService.shared.allCalls()
+            .subscribe(onSuccess: { calls in
+                log.debug("Calls recevied: \(calls)")
+            }, onError: { error in
+                log.error("Error: \(error)")
             })
             .disposed(by: disposeBag)
     }
