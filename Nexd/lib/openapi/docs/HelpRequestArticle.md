@@ -3,9 +3,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**id** | **Int64** |  | [optional] 
 **articleId** | **Int64** |  | [optional] 
 **articleCount** | **Int64** |  | [optional] 
-**id** | **Double** |  | [optional] 
 **article** | [**Article**](Article.md) |  | [optional] 
 **articleDone** | **Bool** |  | [optional] 
 **helpRequest** | [**HelpRequest**](HelpRequest.md) |  | [optional] 
