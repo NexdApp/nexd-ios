@@ -11,17 +11,21 @@ import RxSwift
 import SnapKit
 import UIKit
 
-class TranscriberViewController: UIViewController {
+class CallsListViewController: UIViewController {
     enum MyStyle {
         static let headerHeight: CGFloat = 60
         static let rowHeight: CGFloat = 40
     }
 
     struct Item {
-        let title: String
+        let call: Call
+
+        var title: String {
+            return call.sid
+        }
 
         static func from(call: Call) -> Item {
-            return Item(title: call.sid)
+            return Item(call: call)
         }
     }
 
@@ -88,17 +92,12 @@ class TranscriberViewController: UIViewController {
     }
 }
 
-extension TranscriberViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // nothing yet
-    }
-
+extension CallsListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let content = self.content else { return }
+        guard let items = self.content?.items else { return }
 
-        var items = content.items
-        let item = items[indexPath.row]
-        items[indexPath.row] = Item(title: item.title)
-        self.content = Content(items: items)
+        let transcribeCallVc = TranscribeCallViewController()
+        transcribeCallVc.callSid = items[indexPath.row].call.sid
+        navigationController?.pushViewController(transcribeCallVc, animated: true)
     }
 }

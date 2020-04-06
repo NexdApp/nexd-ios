@@ -10,11 +10,26 @@ import Foundation
 import NexdClient
 import RxSwift
 
+enum CallsError: Error {
+    case downloadFailed
+}
+
 class CallsService {
     static let shared = CallsService()
 
+    private lazy var urlSession: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.httpAdditionalHeaders = [ "Authorization": "Bearer \(Storage.shared.authorizationToken ?? "-")" ]
+        return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
+    }()
+
     func allCalls() -> Single<[Call]> {
         return CallsAPI.callsControllerCalls()
+            .asSingle()
+    }
+
+    func callFileUrl(sid: String) -> Single<URL> {
+        return CallsAPI.callsControllerGetCallUrl(sid: sid)
             .asSingle()
     }
 }

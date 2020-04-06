@@ -17,34 +17,35 @@ public struct HelpList: Codable {
         case completed = "completed"
     }
     public var id: Int64
+    /** List of help request IDs */
+    public var helpRequestsIds: [Int64]
     public var ownerId: String?
     public var owner: User?
     public var createdAt: Date
     public var updatedAt: Date
     public var status: Status? = .active
     public var helpRequests: [HelpRequest]
-    public var helpRequestsIds: [Double]
 
-    public init(id: Int64, ownerId: String?, owner: User?, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest], helpRequestsIds: [Double]) {
+    public init(id: Int64, helpRequestsIds: [Int64], ownerId: String?, owner: User?, createdAt: Date, updatedAt: Date, status: Status?, helpRequests: [HelpRequest]) {
         self.id = id
+        self.helpRequestsIds = helpRequestsIds
         self.ownerId = ownerId
         self.owner = owner
         self.createdAt = createdAt
         self.updatedAt = updatedAt
         self.status = status
         self.helpRequests = helpRequests
-        self.helpRequestsIds = helpRequestsIds
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable { 
         case id
+        case helpRequestsIds
         case ownerId
         case owner
         case createdAt = "created_at"
         case updatedAt = "updated_at"
         case status
         case helpRequests
-        case helpRequestsIds
     }
 
 }

@@ -10,7 +10,7 @@ import RxSwift
 import SnapKit
 import UIKit
 
-class RequestDetailsViewController: UIViewController {
+class TranscribeCallViewController: UIViewController {
     private var disposeBag: DisposeBag?
 
     private var gradient = GradientView()
@@ -20,6 +20,8 @@ class RequestDetailsViewController: UIViewController {
     private var slider = UISlider()
 
     private var player: AudioPlayer?
+
+    var callSid: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,11 +57,19 @@ class RequestDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        player = AudioPlayer.sampleMp3()
-
         let disposeBag = DisposeBag()
 
-        player?.state
+        guard let sid = callSid else { return }
+        CallsService.shared.callFileUrl(sid: sid)
+            .asObservable()
+            .flatMap { url -> Observable<AudioPlayer.PlayerState> in
+                let audioPlayer = AudioPlayer(url: url)
+                guard let player = audioPlayer else {
+                    return Observable.never()
+                }
+
+                return player.state
+            }
             .observeOn(MainScheduler.asyncInstance)
             .subscribe(onNext: { [weak self] state in
                 self?.slider.setValue(state.progress, animated: state.progress != 0)
@@ -67,6 +77,16 @@ class RequestDetailsViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
+        let player = AudioPlayer.sampleMp3()!
+        player.state
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] state in
+                self?.slider.setValue(state.progress, animated: state.progress != 0)
+                self?.playPauseButton.isSelected = state.isPlaying
+            })
+            .disposed(by: disposeBag)
+
+        self.player = player
         self.disposeBag = disposeBag
     }
 
@@ -78,7 +98,7 @@ class RequestDetailsViewController: UIViewController {
     }
 }
 
-extension RequestDetailsViewController {
+extension TranscribeCallViewController {
     @objc func playPauseButtonPressed(sender: UIButton!) {
         if playPauseButton.isSelected {
             player?.pause()
