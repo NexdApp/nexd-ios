@@ -59,19 +59,23 @@ class TranscribeCallViewController: UIViewController {
 
         let disposeBag = DisposeBag()
 
-        
-//        guard let sid = callSid else { return }
-//        CallsService.shared.callFileUrl(sid: sid)
-//            .asObservable()
-//            .flatMap { url -> Observable<AudioPlayer.PlayerState> in
-//                let audioPlayer = AudioPlayer.sampleMp3()
-////                let audioPlayer = AudioPlayer(url: url)
-//                guard let player = audioPlayer else {
-//                    return Observable.never()
-//                }
-//
-//                return player.state
-//            }
+        guard let sid = callSid else { return }
+        CallsService.shared.callFileUrl(sid: sid)
+            .asObservable()
+            .flatMap { url -> Observable<AudioPlayer.PlayerState> in
+                let audioPlayer = AudioPlayer(url: url)
+                guard let player = audioPlayer else {
+                    return Observable.never()
+                }
+
+                return player.state
+            }
+            .observeOn(MainScheduler.asyncInstance)
+            .subscribe(onNext: { [weak self] state in
+                self?.slider.setValue(state.progress, animated: state.progress != 0)
+                self?.playPauseButton.isSelected = state.isPlaying
+            })
+            .disposed(by: disposeBag)
 
         let player = AudioPlayer.sampleMp3()!
         player.state

@@ -29,26 +29,7 @@ class CallsService {
     }
 
     func callFileUrl(sid: String) -> Single<URL> {
-        return Single.create { single -> Disposable in
-            let sid = "CA7fad946f02195f0faa2b6c5f79207429"
-            let url = URL(string: NexdClientAPI.basePath +  "/call/calls/\(sid)/record")!
-
-            let task = self.urlSession.downloadTask(with: url) { localURL, urlResponse, error in
-                guard let localURL = localURL else {
-                    let error = error ?? CallsError.downloadFailed
-                    single(.error(error))
-                    return
-                }
-
-                log.debug("Saved audio file to: \(localURL)")
-                single(.success(localURL))
-            }
-
-            task.resume()
-            return Disposables.create()
-        }
-
-//        return CallsAPI.callsControllerGetCallUrl(sid: sid)
-//            .asSingle()
+        return CallsAPI.callsControllerGetCallUrl(sid: sid)
+            .asSingle()
     }
 }
