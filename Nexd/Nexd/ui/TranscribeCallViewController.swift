@@ -60,11 +60,12 @@ class TranscribeCallViewController: UIViewController {
         let disposeBag = DisposeBag()
 
         guard let sid = callSid else { return }
-        CallsService.shared.callFileUrl(sid: sid)
+        // File
+        CallsService.shared.downloadCallFile(sid: sid)
             .asObservable()
-            .flatMap { url -> Observable<AudioPlayer.PlayerState> in
-                let audioPlayer = AudioPlayer(url: url)
-                guard let player = audioPlayer else {
+            .flatMap { [weak self] url -> Observable<AudioPlayer.PlayerState> in
+                self?.player = AudioPlayer(url: url)
+                guard let player = self?.player else {
                     return Observable.never()
                 }
 
@@ -74,19 +75,12 @@ class TranscribeCallViewController: UIViewController {
             .subscribe(onNext: { [weak self] state in
                 self?.slider.setValue(state.progress, animated: state.progress != 0)
                 self?.playPauseButton.isSelected = state.isPlaying
+                }, onError: { [weak self] error in
+                    log.error("Playback failed: \(error)")
+                    self?.showError(title: "ERROR", message: "Playback failed!")
             })
             .disposed(by: disposeBag)
 
-        let player = AudioPlayer.sampleMp3()!
-        player.state
-            .observeOn(MainScheduler.asyncInstance)
-            .subscribe(onNext: { [weak self] state in
-                self?.slider.setValue(state.progress, animated: state.progress != 0)
-                self?.playPauseButton.isSelected = state.isPlaying
-            })
-            .disposed(by: disposeBag)
-
-        self.player = player
         self.disposeBag = disposeBag
     }
 

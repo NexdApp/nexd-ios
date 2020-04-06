@@ -25,15 +25,16 @@ class AudioPlayer: NSObject {
         }
     }
 
-    private let url: URL
     private let player: AVAudioPlayer
 
-    fileprivate let isPlaying = PublishRelay<Bool>()
+    fileprivate let isPlaying = BehaviorRelay<Bool>(value: false)
 
     var state: Observable<PlayerState> {
         return isPlaying
             .flatMapLatest { [weak self] isPlaying -> Observable<PlayerState> in
-                guard let player = self?.player else { return Observable.empty() }
+                guard let player = self?.player else {
+                    return Observable.empty()
+                }
 
                 guard isPlaying else { return Observable.just(PlayerState.from(player: player)) }
 
@@ -43,10 +44,20 @@ class AudioPlayer: NSObject {
     }
 
     init?(url: URL) {
-        self.url = url
-
         do {
-            player = try AVAudioPlayer(contentsOf: url)
+            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+        } catch let error {
+            log.error("Could not create player: \(error)")
+            return nil
+        }
+
+        super.init()
+        player.delegate = self
+    }
+
+    init?(data: Data, fileTypeHint: String?) {
+        do {
+            player = try AVAudioPlayer(data: data, fileTypeHint: fileTypeHint)
         } catch {
             log.error("Could not play: ")
             return nil
