@@ -1,6 +1,6 @@
 # ArticlesAPI
 
-All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -44,7 +44,7 @@ No authorization required
 
 # **articlesControllerInsertOne**
 ```swift
-    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto) -> Observable<Article>
+    open class func articlesControllerInsertOne(xAdminSecret: String, createArticleDto: CreateArticleDto) -> Observable<Article>
 ```
 
 Create an article
@@ -54,6 +54,7 @@ Create an article
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
+let xAdminSecret = "xAdminSecret_example" // String | Secret to access the admin functions.
 let createArticleDto = CreateArticleDto(name: "name_example") // CreateArticleDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
@@ -63,6 +64,7 @@ let createArticleDto = CreateArticleDto(name: "name_example") // CreateArticleDt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **xAdminSecret** | **String** | Secret to access the admin functions. | 
  **createArticleDto** | [**CreateArticleDto**](CreateArticleDto.md) |  | 
 
 ### Return type

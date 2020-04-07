@@ -21,10 +21,17 @@ $ pod install
 $ ./update_swagger_client.sh
 ```
 
-## From deployed backend
+## From staging backend
 
 ```
 $ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
+```
+
+
+## From producton backend
+
+```
+$ ./update_swagger_client.sh https://nexd-backend.herokuapp.com/api/v1
 ```
 
 # Local backend

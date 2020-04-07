@@ -77,8 +77,8 @@ open class HelpRequestsAPI {
     /**
      Get and filter for various help requests
      
-     - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
-     - parameter excludeUserId: (query) If true, the given userId is excluded (and not filtered for as default) (optional)
+     - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId.  (optional)
+     - parameter excludeUserId: (query) If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. (optional)
      - parameter zipCode: (query) Filter by an array of zipCodes (optional)
      - parameter includeRequester: (query) If \&quot;true\&quot;, the requester object is included in each help request (optional)
      - parameter status: (query) Array of status to filter for (optional)
@@ -106,8 +106,8 @@ open class HelpRequestsAPI {
      - BASIC:
        - type: http
        - name: bearer
-     - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. (optional)
-     - parameter excludeUserId: (query) If true, the given userId is excluded (and not filtered for as default) (optional)
+     - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId.  (optional)
+     - parameter excludeUserId: (query) If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. (optional)
      - parameter zipCode: (query) Filter by an array of zipCodes (optional)
      - parameter includeRequester: (query) If \&quot;true\&quot;, the requester object is included in each help request (optional)
      - parameter status: (query) Array of status to filter for (optional)
