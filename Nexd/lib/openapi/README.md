@@ -21,7 +21,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------

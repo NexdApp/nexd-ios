@@ -2,7 +2,7 @@ name: TestFlight
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ master ]
 
 jobs:
   testflight:

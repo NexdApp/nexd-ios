@@ -753,6 +753,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
 				PRODUCT_NAME = nexd;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.apple";
@@ -774,6 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.apple;
 				PRODUCT_NAME = nexd;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.apple";
