@@ -19,7 +19,7 @@ class SeekerItemSelectionViewController: UIViewController {
 
     struct Item {
         let isSelected: Bool
-        let itemId: Int
+        let itemId: Int64
         let title: String
     }
 
@@ -120,12 +120,6 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegate {
         items[indexPath.row] = Item(isSelected: !item.isSelected, itemId: item.itemId, title: item.title)
         self.content = Content(items: items)
     }
-}
-
-extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: collectionView.frame.size.width, height: Style.rowHeight)
-//    }
 }
 
 extension SeekerItemSelectionViewController {

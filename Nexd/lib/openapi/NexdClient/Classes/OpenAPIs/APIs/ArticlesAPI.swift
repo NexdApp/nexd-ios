@@ -12,7 +12,8 @@ import RxSwift
 
 open class ArticlesAPI {
     /**
-
+     List articles
+     
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Article]>
      */
@@ -32,11 +33,12 @@ open class ArticlesAPI {
     }
 
     /**
-     - GET /api/articles
+     List articles
+     - GET /articles
      - returns: RequestBuilder<[Article]> 
      */
     open class func articlesControllerFindAllWithRequestBuilder() -> RequestBuilder<[Article]> {
-        let path = "/api/articles"
+        let path = "/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
@@ -48,14 +50,16 @@ open class ArticlesAPI {
     }
 
     /**
-
+     Create an article
+     
+     - parameter xAdminSecret: (header) Secret to access the admin functions. 
      - parameter createArticleDto: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Article>
      */
-    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Article> {
+    open class func articlesControllerInsertOne(xAdminSecret: String, createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Article> {
         return Observable.create { observer -> Disposable in
-            articlesControllerInsertOneWithRequestBuilder(createArticleDto: createArticleDto).execute(apiResponseQueue) { result -> Void in
+            articlesControllerInsertOneWithRequestBuilder(xAdminSecret: xAdminSecret, createArticleDto: createArticleDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -69,20 +73,26 @@ open class ArticlesAPI {
     }
 
     /**
-     - POST /api/articles
+     Create an article
+     - POST /articles
+     - parameter xAdminSecret: (header) Secret to access the admin functions. 
      - parameter createArticleDto: (body)  
      - returns: RequestBuilder<Article> 
      */
-    open class func articlesControllerInsertOneWithRequestBuilder(createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
-        let path = "/api/articles"
+    open class func articlesControllerInsertOneWithRequestBuilder(xAdminSecret: String, createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
+        let path = "/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createArticleDto)
 
         let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "x-admin-secret": xAdminSecret.encodeToJSON()
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Article>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
     }
 
 }

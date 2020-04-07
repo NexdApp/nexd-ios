@@ -1,30 +1,32 @@
 # CallsAPI
 
-All URIs are relative to *http://undefined:80*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**callControllerDownload**](CallsAPI.md#callcontrollerdownload) | **GET** /api/call/download/{id} | 
-[**callControllerIndex**](CallsAPI.md#callcontrollerindex) | **GET** /api/call | 
-[**callControllerInitUpload**](CallsAPI.md#callcontrollerinitupload) | **GET** /api/call/upload | 
-[**callControllerTranslated**](CallsAPI.md#callcontrollertranslated) | **PUT** /api/call/translated/{id} | 
-[**callControllerUpload**](CallsAPI.md#callcontrollerupload) | **POST** /api/call/upload/{id} | 
-[**callControllerWebhook**](CallsAPI.md#callcontrollerwebhook) | **GET** /api/call/webhook | 
+[**callsControllerCalls**](CallsAPI.md#callscontrollercalls) | **GET** /call/calls | Returns all calls with the given parameters
+[**callsControllerConverted**](CallsAPI.md#callscontrollerconverted) | **PUT** /call/calls/{sid}/converted | Sets a call as converted to shopping list
+[**callsControllerGetCallUrl**](CallsAPI.md#callscontrollergetcallurl) | **GET** /call/calls/{sid}/record | Redirects the request to the stored record file.
+[**callsControllerGetNumber**](CallsAPI.md#callscontrollergetnumber) | **GET** /call/number | Returns available numbers
 
 
-# **callControllerDownload**
+# **callsControllerCalls**
 ```swift
-    open class func callControllerDownload(id: Int) -> Observable<Void>
+    open class func callsControllerCalls(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil) -> Observable<[Call]>
 ```
 
-
+Returns all calls with the given parameters
 
 ### Example 
 ```swift
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let id = 987 // Int | audio id
+let limit = 987 // Double |  (optional)
+let converted = "converted_example" // String | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+let country = "country_example" // String |  (optional)
+let zip = 987 // Double |  (optional)
+let city = "city_example" // String |  (optional)
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -33,29 +35,111 @@ let id = 987 // Int | audio id
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Int** | audio id | 
+ **limit** | **Double** |  | [optional] 
+ **converted** | **String** | True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. | [optional] 
+ **country** | **String** |  | [optional] 
+ **zip** | **Double** |  | [optional] 
+ **city** | **String** |  | [optional] 
 
 ### Return type
 
-Void (empty response body)
+[**[Call]**](Call.md)
 
 ### Authorization
 
-No authorization required
+[bearer](../README.md#bearer)
 
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **callControllerIndex**
+# **callsControllerConverted**
 ```swift
-    open class func callControllerIndex() -> Observable<Void>
+    open class func callsControllerConverted(sid: String, convertedHelpRequestDto: ConvertedHelpRequestDto) -> Observable<Call>
 ```
 
+Sets a call as converted to shopping list
 
+### Example 
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import NexdClient
+
+let sid = "sid_example" // String | call sid
+let convertedHelpRequestDto = ConvertedHelpRequestDto(helpRequestId: 123) // ConvertedHelpRequestDto | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **String** | call sid | 
+ **convertedHelpRequestDto** | [**ConvertedHelpRequestDto**](ConvertedHelpRequestDto.md) |  | 
+
+### Return type
+
+[**Call**](Call.md)
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **callsControllerGetCallUrl**
+```swift
+    open class func callsControllerGetCallUrl(sid: String) -> Observable<URL>
+```
+
+Redirects the request to the stored record file.
+
+### Example 
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import NexdClient
+
+let sid = "sid_example" // String | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sid** | **String** |  | 
+
+### Return type
+
+**URL**
+
+### Authorization
+
+[bearer](../README.md#bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: audio/x-wav
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **callsControllerGetNumber**
+```swift
+    open class func callsControllerGetNumber() -> Observable<String>
+```
+
+Returns available numbers
 
 ### Example 
 ```swift
@@ -71,7 +155,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-Void (empty response body)
+**String**
 
 ### Authorization
 
@@ -80,151 +164,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **callControllerInitUpload**
-```swift
-    open class func callControllerInitUpload() -> Observable<Void>
-```
-
-
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import NexdClient
-
-
-// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **callControllerTranslated**
-```swift
-    open class func callControllerTranslated(id: Int) -> Observable<Void>
-```
-
-
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import NexdClient
-
-let id = 987 // Int | audio id
-
-// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Int** | audio id | 
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **callControllerUpload**
-```swift
-    open class func callControllerUpload(id: Int) -> Observable<Void>
-```
-
-
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import NexdClient
-
-let id = 987 // Int | audio id
-
-// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **id** | **Int** | audio id | 
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **callControllerWebhook**
-```swift
-    open class func callControllerWebhook() -> Observable<Void>
-```
-
-
-
-### Example 
-```swift
-// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
-import NexdClient
-
-
-// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-Void (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: applicaton/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

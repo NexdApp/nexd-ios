@@ -9,17 +9,15 @@
 import UIKit
 
 extension UITextField {
-    func styled(placeholder: String) {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.textFieldTextColor
-        ]
+    func styled(placeholder: String? = nil) {
+        textColor = .black
+        withBorder()
+        attributedPlaceholder = placeholder?.asPlaceholder()
+    }
 
-        let attributedString = NSAttributedString(string: placeholder, attributes: attributes)
-
-        attributedPlaceholder = attributedString
-
+    func withBorder(color: UIColor = .textFieldBorderColor) {
         layer.borderWidth = 1
-        layer.borderColor = UIColor.textFieldBorderColor.cgColor
+        layer.borderColor = color.cgColor
         layer.cornerRadius = 8
     }
 }

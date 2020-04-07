@@ -7,42 +7,42 @@
 //
 
 import Foundation
-import RxSwift
 import NexdClient
+import RxSwift
 
 class RequestService {
     struct RequestItem {
-        let itemId: Int
-        let articleCount: Int
+        let itemId: Int64
+        let articleCount: Int64
     }
 
     static let shared = RequestService()
 
-    func submitRequest(items: [RequestItem]) -> Single<RequestEntity> {
-        let articles = items.map { CreateRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) }
+    func submitRequest(items: [RequestItem]) -> Single<HelpRequest> {
+        let articles = items.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) }
 
-        let dto = RequestFormDto(street: nil,
-                                 number: nil,
-                                 zipCode: nil,
-                                 city: nil,
-                                 articles: articles,
-                                 status: .pending,
-                                 additionalRequest: "",
-                                 deliveryComment: "",
-                                 phoneNumber: "")
-        return RequestAPI.requestControllerInsertRequestWithArticles(requestFormDto: dto).asSingle()
+        let dto = HelpRequestCreateDto(street: nil,
+                                       number: nil,
+                                       zipCode: nil,
+                                       city: nil,
+                                       articles: articles,
+                                       status: .pending,
+                                       additionalRequest: nil,
+                                       deliveryComment: nil,
+                                       phoneNumber: nil)
+        return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: dto).asSingle()
     }
 
-    func openRequests(onlyMine: Bool = false) -> Single<[RequestEntity]> {
-        guard !onlyMine else {
-            return RequestAPI.requestControllerGetAll(onlyMine: "true").asSingle()
-        }
-
-        return RequestAPI.requestControllerGetAll().asSingle()
+    func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = false, status: [String]? = nil) -> Single<[HelpRequest]> {
+        return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
+                                                            zipCode: zipCode,
+                                                            includeRequester: includeRequester,
+                                                            status: status)
+            .asSingle()
     }
 
-    func fetchRequest(requestId: Int) -> Single<RequestEntity> {
-        return RequestAPI.requestControllerGetSingleRequest(requestId: requestId)
+    func fetchRequest(requestId: Int64) -> Single<HelpRequest> {
+        return HelpRequestsAPI.helpRequestsControllerGetSingleRequest(helpRequestId: requestId)
             .asSingle()
     }
 }

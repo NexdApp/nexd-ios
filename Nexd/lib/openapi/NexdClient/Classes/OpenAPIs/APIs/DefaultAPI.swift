@@ -14,14 +14,14 @@ open class DefaultAPI {
     /**
 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
+     - returns: Observable<String>
      */
-    open class func appControllerRoot(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func appControllerGetHello(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<String> {
         return Observable.create { observer -> Disposable in
-            appControllerRootWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            appControllerGetHelloWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
-                case .success:
-                    observer.onNext(())
+                case let .success(response):
+                    observer.onNext(response.body!)
                 case let .failure(error):
                     observer.onError(error)
                 }
@@ -32,17 +32,17 @@ open class DefaultAPI {
     }
 
     /**
-     - GET /api
-     - returns: RequestBuilder<Void> 
+     - GET /
+     - returns: RequestBuilder<String> 
      */
-    open class func appControllerRootWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/api"
+    open class func appControllerGetHelloWithRequestBuilder() -> RequestBuilder<String> {
+        let path = "/"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

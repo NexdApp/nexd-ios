@@ -8,23 +8,31 @@
 import Foundation
 
 
-public struct User: Codable {
+public struct User: Codable { 
 
+
+    public enum Role: String, Codable, CaseIterable {
+        case helper = "helper"
+        case seeker = "seeker"
+        case _none = "none"
+    }
     public var street: String?
     public var number: String?
     public var zipCode: String?
     public var city: String?
+    public var id: String
     public var firstName: String
     public var lastName: String
     public var email: String
-    public var role: String
+    public var role: Role? = ._none
     public var telephone: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, email: String, role: String, telephone: String?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, id: String, firstName: String, lastName: String, email: String, role: Role?, telephone: String?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode
         self.city = city
+        self.id = id
         self.firstName = firstName
         self.lastName = lastName
         self.email = email

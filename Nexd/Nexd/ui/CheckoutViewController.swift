@@ -21,8 +21,8 @@ class CheckoutViewController: UIViewController {
     struct Item {
         let isSelected: Bool
         let title: String
-        let itemId: Int
-        let orderedBy: Int
+        let itemId: Int64?
+        let orderedBy: String?
 
         static func from(item: ShoppingListViewController.Item) -> Item {
             return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
@@ -30,7 +30,7 @@ class CheckoutViewController: UIViewController {
     }
 
     struct UserRequest {
-        let userId: Int
+        let userId: String?
         let items: [Item]
     }
 
@@ -59,7 +59,7 @@ class CheckoutViewController: UIViewController {
             let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
                 let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
                 return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                              title: "\(request.userId)",
+                                                                              title: "\(request.userId ?? "-")",
                                                                               items: items)
             }
 

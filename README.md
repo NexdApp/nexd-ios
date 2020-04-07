@@ -1,3 +1,8 @@
+# Deployment status
+
+
+- develop to TestFlight: ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop)
+
 # Initial Setup
 
 ```
@@ -16,10 +21,17 @@ $ pod install
 $ ./update_swagger_client.sh
 ```
 
-## From deployed backend
+## From staging backend
 
 ```
-$ ./update_swagger_client.sh http://nexd-api-alb-1905109360.eu-central-1.elb.amazonaws.com
+$ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
+```
+
+
+## From producton backend
+
+```
+$ ./update_swagger_client.sh https://nexd-backend.herokuapp.com/api/v1
 ```
 
 # Local backend

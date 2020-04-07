@@ -1,15 +1,15 @@
 # DefaultAPI
 
-All URIs are relative to *http://undefined:80*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**appControllerRoot**](DefaultAPI.md#appcontrollerroot) | **GET** /api | 
+[**appControllerGetHello**](DefaultAPI.md#appcontrollergethello) | **GET** / | 
 
 
-# **appControllerRoot**
+# **appControllerGetHello**
 ```swift
-    open class func appControllerRoot() -> Observable<Void>
+    open class func appControllerGetHello() -> Observable<String>
 ```
 
 
@@ -28,7 +28,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-Void (empty response body)
+**String**
 
 ### Authorization
 
@@ -37,7 +37,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

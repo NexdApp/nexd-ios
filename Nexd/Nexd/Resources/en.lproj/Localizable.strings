@@ -1,31 +1,12 @@
-/* 
-  Localizable.strings
-  Nexd
-
-  Created by Tobias Schröpf on 21.03.20.
-  Copyright © 2020 Tobias Schröpf. All rights reserved.
-*/
 "login_screen_title" = "Login";
-"login_placeholer_username" = "Username";
-"login_placeholer_password" = "Password";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
-
 "registration_screen_title" = "Sign-up";
-"registration_placeholer_email" = "E-Mail";
-"registration_placeholer_firstname" = "First name";
-"registration_placeholer_lastname" = "Last name";
-"registration_placeholer_phone" = "Phone";
-"registration_placeholer_zip" = "ZIP code";
-"registration_placeholer_password" = "Password";
-"registration_placeholer_confirm_password" = "Confirm password";
 "registration_button_title_continue" = "Continue";
 "registration_button_title_send" = "Send";
-
 "role_selection_screen_title" = "Role";
 "role_selection_seeker" = "I need something";
 "role_selection_helper" = "I can help";
-
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
 "helper_request_overview_heading_available_section" = "Available requests:";
@@ -33,25 +14,80 @@
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_error_title" = "Error!";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
-
 "shopping_list_screen_title" = "Shopping list";
 "shopping_list_button_title_checkout" = "Checkout";
 "shopping_list_overview_error_title" = "Error!";
 "shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
-
 "checkout_screen_title" = "Checkout";
 "checkout_button_title_complete" = "Complete";
-
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_submit_button_title" = "Submit";
 "seeker_success_title" = "Done!";
 "seeker_success_message" = "Your request was sent successfully.";
 "seeker_error_title" = "Error!";
 "seeker_error_message" = "Your request could not be sent! Please try again.";
-
 "error_title" = "Error";
 "error_message_login_failed" = "Login failed. Please try again.";
-
 "error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
 "error_message_registration_failed" = "User registration failed. Please try again.";
 "error_button_ok" = "OK";
+
+/*Title of the user profile screen*/
+"user_profile_screen_title" = "User profile";
+
+/*Logout button title*/
+"user_profile_button_title_logout" = "Logout";
+
+/*Localizable.strings
+  Nexd
+
+  Created by Tobias Schröpf on 21.03.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved.*/
+"dialog_button_abort" = "Abort";
+"dialog_button_confirm" = "Confirm";
+"login_placeholder_username" = "Username";
+"login_placeholder_password" = "Password";
+"registration_placeholder_email" = "E-mail";
+"registration_placeholder_firstName" = "First name";
+"registration_placeholder_lastName" = "Last name";
+"registration_placeholder_phone" = "Phone";
+"registration_placeholder_zip" = "ZIP code";
+"registration_placeholder_password" = "Password";
+"registration_placeholder_confirm_password" = "Confirm password";
+"registration_button_privacy_policy" = "Privacy Policy";
+"role_selection_button_logout" = "Log out";
+"helper_request_overview_button_summary_title" = "Shopping";
+"helper_request_overview_button_summary_details" = "Total ";
+"helper_request_detail_screen_title" = "To collect";
+"helper_request_detail_button_accepted" = "Request already accepted";
+"helper_request_detail_button_accept" = "Will do!";
+"delivery_screen_title" = "Delivery!";
+"delivery_dialog_deliver_title" = "Deliver";
+"delivery_dialog_deliver_description" = "Confirm the delivery of all accepted requests";
+"delivery_dialog_delivery_button_confirm" = "Confirm";
+"delivery_request_address" = "Address: ";
+"delivery_request_phoneNumber" = "Tel.: ";
+"seeker_detail_screen_title" = "Your request";
+"seeker_detail_placeholder_information" = "Additional information";
+"seeker_request_create_heading" = "I need:";
+"seeker_request_create_placeholder_information" = "Additional information";
+"user_input_details_screen_title" = "Input further information";
+"user_input_details_placeholder_phoneNumber" = "Tel.";
+"user_input_details_placeholder_street" = "Street";
+"user_input_details_placeholder_houseNumber" = "No.";
+"user_input_details_placeholder_zipCode" = "Zip code";
+"user_input_details_placeholder_city" = "Place";
+"user_input_details_confirm" = "Confirm";
+"error_message_login_field_missing" = "Please fill in";
+"error_message_registration_password_match" = "Passwords dont match";
+"error_message_registration_field_missing" = "Please fill in";
+"error_message_registration_password_too_short" = "At least 6 characters";
+"error_message_registration_invalid_email" = "Invalid E-mail address";
+"error_message_user_detail_field_missing" = "Please fill in";
+"registration_label_privacy_policy_agreement" = "By creating an account, I agree to Nexd's %1$@";
+"registration_term_privacy_policy" = "Privacy Policy";
+"helper_request_overview_button_previous_requests" = "Previous purchases";
+"seeker_overview_screen_title" = "Your requests:";
+"helper_request_finished_screen_title" = "Completed requests:";
+"helper_request_overview_item_type_recording" = "Recording";
+"helper_request_overview_item_type_list" = "List";

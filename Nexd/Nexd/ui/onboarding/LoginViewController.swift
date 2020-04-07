@@ -10,36 +10,36 @@ import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
+import Validator
 
 class LoginViewController: UIViewController {
-    enum Style {
-        static let buttonBackgroundColor: UIColor = .gray
-        static let logoSize = CGSize(width: 256, height: 256)
-        static let buttonHeight: CGFloat = 52
-        static let verticalPadding: CGFloat = 16
-    }
-
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
+    private var keyboardDismisser: KeyboardDismisser?
 
-    lazy var gradient = GradientView()
-    lazy var scrollView = UIScrollView()
-    lazy var logo = UIImageView()
-    lazy var username = TextField()
-    lazy var password = TextField()
-    lazy var loginButton = UIButton()
-    lazy var registerButton = UIButton()
+    private lazy var scrollView = UIScrollView()
+
+    private lazy var logo = UIImageView()
+    private lazy var email = ValidatingTextField.make(tag: 0,
+                                                      placeholder: R.string.localizable.login_placeholder_username(),
+                                                      keyboardType: .emailAddress,
+                                                      delegate: self,
+                                                      validationRules: .email())
+
+    private lazy var password = ValidatingTextField.make(tag: 1,
+                                                         placeholder: R.string.localizable.login_placeholder_password(),
+                                                         isSecureTextEntry: true,
+                                                         delegate: self,
+                                                         validationRules: .password())
+    private lazy var loginButton = UIButton()
+    private lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        keyboardDismisser = KeyboardDismisser(rootView: view)
 
         view.backgroundColor = .white
         title = R.string.localizable.login_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -61,28 +61,18 @@ class LoginViewController: UIViewController {
             make.topMargin.equalTo(Style.verticalPadding)
         }
 
-        contentView.addSubview(username)
-        username.keyboardType = .emailAddress
-        username.styled(placeholder: R.string.localizable.login_placeholer_username())
-        username.tag = 0
-        username.delegate = self
-        username.snp.makeConstraints { make -> Void in
-            make.height.equalTo(36)
+        contentView.addSubview(email)
+        email.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(logo.snp.bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(password)
-        password.styled(placeholder: R.string.localizable.login_placeholer_password())
-        password.isSecureTextEntry = true
-        password.tag = 1
-        password.delegate = self
         password.snp.makeConstraints { make -> Void in
-            make.height.equalTo(36)
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(username.snp_bottom).offset(Style.verticalPadding)
+            make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
         }
 
         contentView.addSubview(loginButton)
@@ -109,22 +99,7 @@ class LoginViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardObserver = KeyboardObserver(keyboardWillShow: { [weak self] keyboardSize in
-            guard let self = self else { return }
-
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
-            self.scrollView.contentInset = contentInsets
-            self.scrollView.scrollIndicatorInsets = contentInsets
-
-            let bottomOffset = CGPoint(x: 0, y: self.scrollView.contentSize.height - self.scrollView.bounds.size.height + self.scrollView.contentInset.bottom)
-            self.scrollView.setContentOffset(bottomOffset, animated: true)
-        }, keyboardWillHide: { [weak self] _ in
-            guard let self = self else { return }
-
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-            self.scrollView.contentInset = contentInsets
-            self.scrollView.scrollIndicatorInsets = contentInsets
-        })
+        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -135,19 +110,24 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController {
     @objc func loginButtonPressed(sender: UIButton!) {
-        guard let email = username.text, let password = password.text else {
+        let hasInvalidInput = [email, password]
+            .map { $0.validate() }
+            .contains(false)
+
+        guard !hasInvalidInput else {
+            log.warning("Cannot login user! Validation failed!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
+
+        guard let email = email.value, let password = password.value else {
             log.warning("Missing mandatory login information!")
             return
         }
 
         AuthenticationService.shared.login(email: email, password: password)
-            .subscribe(onSuccess: { [weak self] response in
+            .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
-
-                NexdClientAPI.customHeaders = ["Authorization": "Bearer \(response.accessToken)"]
-
-                Storage.shared.authorizationToken = response.accessToken
-                Storage.shared.userId = response.id
                 self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")
@@ -162,7 +142,7 @@ extension LoginViewController {
 }
 
 extension LoginViewController: UITextFieldDelegate {
-     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
         // Try to find next responder
         let nextResponder = textField.superview?.viewWithTag(nextTag)
@@ -176,5 +156,21 @@ extension LoginViewController: UITextFieldDelegate {
         }
 
         return false
+    }
+}
+
+private extension ValidationRuleSet where InputType == String {
+    enum ValidationErrors: String, ValidationError {
+        case emailInvalid = "Email address is invalid"
+        case passwordTooShort = "Password is too short!"
+        var message: String { return rawValue }
+    }
+
+    static func email() -> ValidationRuleSet<String> {
+        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
+    }
+
+    static func password() -> ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
     }
 }

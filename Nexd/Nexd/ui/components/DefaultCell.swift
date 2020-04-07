@@ -9,15 +9,21 @@
 import UIKit
 
 class DefaultCell: UICollectionViewCell {
+    struct Item: Hashable {
+        let icon: UIImage?
+        let text: String
+    }
+
     lazy var icon = UIImageView()
     lazy var label = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(icon)
-        icon.tintColor = .black
-
         contentView.addSubview(label)
+
+        icon.styleDefault()
+        label.styleDefault()
 
         icon.snp.makeConstraints { make -> Void in
             make.width.height.equalTo(20)
@@ -36,7 +42,7 @@ class DefaultCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func bind(to item: DefaultCellItem) {
+    func bind(to item: Item) {
         icon.image = item.icon
         label.text = item.text
     }

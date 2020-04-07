@@ -21,52 +21,57 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *http://undefined:80*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ArticlesAPI* | [**articlesControllerFindAll**](docs/ArticlesAPI.md#articlescontrollerfindall) | **GET** /api/articles | 
-*ArticlesAPI* | [**articlesControllerInsertOne**](docs/ArticlesAPI.md#articlescontrollerinsertone) | **POST** /api/articles | 
-*AuthenticationAPI* | [**authControllerLogin**](docs/AuthenticationAPI.md#authcontrollerlogin) | **POST** /api/auth/login | 
-*AuthenticationAPI* | [**authControllerRegister**](docs/AuthenticationAPI.md#authcontrollerregister) | **POST** /api/auth/register | 
-*CallsAPI* | [**callControllerDownload**](docs/CallsAPI.md#callcontrollerdownload) | **GET** /api/call/download/{id} | 
-*CallsAPI* | [**callControllerIndex**](docs/CallsAPI.md#callcontrollerindex) | **GET** /api/call | 
-*CallsAPI* | [**callControllerInitUpload**](docs/CallsAPI.md#callcontrollerinitupload) | **GET** /api/call/upload | 
-*CallsAPI* | [**callControllerTranslated**](docs/CallsAPI.md#callcontrollertranslated) | **PUT** /api/call/translated/{id} | 
-*CallsAPI* | [**callControllerUpload**](docs/CallsAPI.md#callcontrollerupload) | **POST** /api/call/upload/{id} | 
-*CallsAPI* | [**callControllerWebhook**](docs/CallsAPI.md#callcontrollerwebhook) | **GET** /api/call/webhook | 
-*DefaultAPI* | [**appControllerRoot**](docs/DefaultAPI.md#appcontrollerroot) | **GET** /api | 
-*RequestAPI* | [**requestControllerGetAll**](docs/RequestAPI.md#requestcontrollergetall) | **GET** /api/request | 
-*RequestAPI* | [**requestControllerGetSingleRequest**](docs/RequestAPI.md#requestcontrollergetsinglerequest) | **GET** /api/request/{requestId} | 
-*RequestAPI* | [**requestControllerInsertRequestWithArticles**](docs/RequestAPI.md#requestcontrollerinsertrequestwitharticles) | **POST** /api/request | 
-*RequestAPI* | [**requestControllerMarkArticleAsDone**](docs/RequestAPI.md#requestcontrollermarkarticleasdone) | **PUT** /api/request/{requestId}/{articleId} | 
-*RequestAPI* | [**requestControllerUpdateRequest**](docs/RequestAPI.md#requestcontrollerupdaterequest) | **PUT** /api/request/{requestId} | 
-*ShoppingListAPI* | [**shoppingListControllerAddRequestToList**](docs/ShoppingListAPI.md#shoppinglistcontrolleraddrequesttolist) | **PUT** /api/shopping-list/{shoppingListId}/{requestId} | 
-*ShoppingListAPI* | [**shoppingListControllerDeleteRequestFromList**](docs/ShoppingListAPI.md#shoppinglistcontrollerdeleterequestfromlist) | **DELETE** /api/shopping-list/{shoppingListId}/{requestId} | 
-*ShoppingListAPI* | [**shoppingListControllerFindOne**](docs/ShoppingListAPI.md#shoppinglistcontrollerfindone) | **GET** /api/shopping-list/{id} | 
-*ShoppingListAPI* | [**shoppingListControllerGetUserLists**](docs/ShoppingListAPI.md#shoppinglistcontrollergetuserlists) | **GET** /api/shopping-list | 
-*ShoppingListAPI* | [**shoppingListControllerInsertNewShoppingList**](docs/ShoppingListAPI.md#shoppinglistcontrollerinsertnewshoppinglist) | **POST** /api/shopping-list | 
-*ShoppingListAPI* | [**shoppingListControllerUpdateShoppingList**](docs/ShoppingListAPI.md#shoppinglistcontrollerupdateshoppinglist) | **PUT** /api/shopping-list/{id} | 
-*UserAPI* | [**userControllerFindOne**](docs/UserAPI.md#usercontrollerfindone) | **GET** /api/user/{id} | 
-*UserAPI* | [**userControllerGetAll**](docs/UserAPI.md#usercontrollergetall) | **GET** /api/user | 
-*UserAPI* | [**userControllerUpdate**](docs/UserAPI.md#usercontrollerupdate) | **PUT** /api/user/{id} | 
+*ArticlesAPI* | [**articlesControllerFindAll**](docs/ArticlesAPI.md#articlescontrollerfindall) | **GET** /articles | List articles
+*ArticlesAPI* | [**articlesControllerInsertOne**](docs/ArticlesAPI.md#articlescontrollerinsertone) | **POST** /articles | Create an article
+*AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
+*AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
+*AuthAPI* | [**authControllerRegister**](docs/AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
+*CallsAPI* | [**callsControllerCalls**](docs/CallsAPI.md#callscontrollercalls) | **GET** /call/calls | Returns all calls with the given parameters
+*CallsAPI* | [**callsControllerConverted**](docs/CallsAPI.md#callscontrollerconverted) | **PUT** /call/calls/{sid}/converted | Sets a call as converted to shopping list
+*CallsAPI* | [**callsControllerGetCallUrl**](docs/CallsAPI.md#callscontrollergetcallurl) | **GET** /call/calls/{sid}/record | Redirects the request to the stored record file.
+*CallsAPI* | [**callsControllerGetNumber**](docs/CallsAPI.md#callscontrollergetnumber) | **GET** /call/number | Returns available numbers
+*DefaultAPI* | [**appControllerGetHello**](docs/DefaultAPI.md#appcontrollergethello) | **GET** / | 
+*HelpListsAPI* | [**helpListsControllerAddHelpRequestToList**](docs/HelpListsAPI.md#helplistscontrolleraddhelprequesttolist) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId} | Add a help request to a help list
+*HelpListsAPI* | [**helpListsControllerDeleteHelpRequestFromHelpList**](docs/HelpListsAPI.md#helplistscontrollerdeletehelprequestfromhelplist) | **DELETE** /help-lists/{helpListId}/help-request/{helpRequestId} | Delete a help request from help list
+*HelpListsAPI* | [**helpListsControllerFindOne**](docs/HelpListsAPI.md#helplistscontrollerfindone) | **GET** /help-lists/{helpListId} | Get a specific help list
+*HelpListsAPI* | [**helpListsControllerGetUserLists**](docs/HelpListsAPI.md#helplistscontrollergetuserlists) | **GET** /help-lists | Get help lists of the requesting user
+*HelpListsAPI* | [**helpListsControllerInsertNewHelpList**](docs/HelpListsAPI.md#helplistscontrollerinsertnewhelplist) | **POST** /help-lists | Add a new help list for the current user
+*HelpListsAPI* | [**helpListsControllerModifyArticleInAllHelpRequests**](docs/HelpListsAPI.md#helplistscontrollermodifyarticleinallhelprequests) | **PUT** /help-lists/{helpListId}/article/{articleId} | Set/unset article done in all help requests
+*HelpListsAPI* | [**helpListsControllerModifyArticleInHelpRequest**](docs/HelpListsAPI.md#helplistscontrollermodifyarticleinhelprequest) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId}/article/{articleId} | Set/unset articleDone of an article in a specific help request
+*HelpListsAPI* | [**helpListsControllerUpdateHelpLists**](docs/HelpListsAPI.md#helplistscontrollerupdatehelplists) | **PUT** /help-lists/{helpListId} | Modify a help list
+*HelpRequestsAPI* | [**helpRequestsControllerAddArticleInHelpRequest**](docs/HelpRequestsAPI.md#helprequestscontrolleraddarticleinhelprequest) | **PUT** /help-requests/{helpRequestId}/article/{articleId} | Put an article to a help request, endpoint overrides.
+*HelpRequestsAPI* | [**helpRequestsControllerGetAll**](docs/HelpRequestsAPI.md#helprequestscontrollergetall) | **GET** /help-requests | Get and filter for various help requests
+*HelpRequestsAPI* | [**helpRequestsControllerGetSingleRequest**](docs/HelpRequestsAPI.md#helprequestscontrollergetsinglerequest) | **GET** /help-requests/{helpRequestId} | Get a single help request by id
+*HelpRequestsAPI* | [**helpRequestsControllerInsertRequestWithArticles**](docs/HelpRequestsAPI.md#helprequestscontrollerinsertrequestwitharticles) | **POST** /help-requests | Add a help request
+*HelpRequestsAPI* | [**helpRequestsControllerRemoveArticleInHelpRequest**](docs/HelpRequestsAPI.md#helprequestscontrollerremovearticleinhelprequest) | **DELETE** /help-requests/{helpRequestId}/article/{articleId} | Remove an article from a help request
+*HelpRequestsAPI* | [**helpRequestsControllerUpdateRequest**](docs/HelpRequestsAPI.md#helprequestscontrollerupdaterequest) | **PUT** /help-requests/{helpRequestId} | Modify a help request (e.g. address or articles)
+*UsersAPI* | [**userControllerFindMe**](docs/UsersAPI.md#usercontrollerfindme) | **GET** /users/me | Get user profile of the requesting user
+*UsersAPI* | [**userControllerFindOne**](docs/UsersAPI.md#usercontrollerfindone) | **GET** /users/{userId} | Get user profile of a specific user
+*UsersAPI* | [**userControllerGetAll**](docs/UsersAPI.md#usercontrollergetall) | **GET** /users | Get all users
+*UsersAPI* | [**userControllerUpdate**](docs/UsersAPI.md#usercontrollerupdate) | **PUT** /users/{userId} | Update profile of a specific user
+*UsersAPI* | [**userControllerUpdateMyself**](docs/UsersAPI.md#usercontrollerupdatemyself) | **PUT** /users/me | Update profile of the requesting user
 
 
 ## Documentation For Models
 
  - [Article](docs/Article.md)
+ - [Call](docs/Call.md)
+ - [ConvertedHelpRequestDto](docs/ConvertedHelpRequestDto.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
- - [CreateRequestArticleDto](docs/CreateRequestArticleDto.md)
- - [LoginPayload](docs/LoginPayload.md)
- - [RegisterPayload](docs/RegisterPayload.md)
- - [RequestArticle](docs/RequestArticle.md)
- - [RequestArticleStatusDto](docs/RequestArticleStatusDto.md)
- - [RequestEntity](docs/RequestEntity.md)
- - [RequestFormDto](docs/RequestFormDto.md)
- - [ResponseTokenDto](docs/ResponseTokenDto.md)
- - [ShoppingList](docs/ShoppingList.md)
- - [ShoppingListFormDto](docs/ShoppingListFormDto.md)
- - [ShoppingListRequest](docs/ShoppingListRequest.md)
+ - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
+ - [CreateOrUpdateHelpRequestArticleDto](docs/CreateOrUpdateHelpRequestArticleDto.md)
+ - [HelpList](docs/HelpList.md)
+ - [HelpListCreateDto](docs/HelpListCreateDto.md)
+ - [HelpRequest](docs/HelpRequest.md)
+ - [HelpRequestArticle](docs/HelpRequestArticle.md)
+ - [HelpRequestCreateDto](docs/HelpRequestCreateDto.md)
+ - [LoginDto](docs/LoginDto.md)
+ - [RegisterDto](docs/RegisterDto.md)
+ - [TokenDto](docs/TokenDto.md)
  - [UpdateUserDto](docs/UpdateUserDto.md)
  - [User](docs/User.md)
 

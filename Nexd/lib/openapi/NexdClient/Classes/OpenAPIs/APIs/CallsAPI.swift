@@ -12,17 +12,22 @@ import RxSwift
 
 open class CallsAPI {
     /**
-
-     - parameter id: (path) audio id 
+     Returns all calls with the given parameters
+     
+     - parameter limit: (query)  (optional)
+     - parameter converted: (query) True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+     - parameter country: (query)  (optional)
+     - parameter zip: (query)  (optional)
+     - parameter city: (query)  (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
+     - returns: Observable<[Call]>
      */
-    open class func callControllerDownload(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callsControllerCalls(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Call]> {
         return Observable.create { observer -> Disposable in
-            callControllerDownloadWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
+            callsControllerCallsWithRequestBuilder(limit: limit, converted: converted, country: country, zip: zip, city: city).execute(apiResponseQueue) { result -> Void in
                 switch result {
-                case .success:
-                    observer.onNext(())
+                case let .success(response):
+                    observer.onNext(response.body!)
                 case let .failure(error):
                     observer.onError(error)
                 }
@@ -33,36 +38,51 @@ open class CallsAPI {
     }
 
     /**
-     - GET /api/call/download/{id}
-     - parameter id: (path) audio id 
-     - returns: RequestBuilder<Void> 
+     Returns all calls with the given parameters
+     - GET /call/calls
+     - BASIC:
+       - type: http
+       - name: bearer
+     - parameter limit: (query)  (optional)
+     - parameter converted: (query) True if you only want to query calls which are already converted to a help request, false otherwise. Returns all calls if undefined. (optional)
+     - parameter country: (query)  (optional)
+     - parameter zip: (query)  (optional)
+     - parameter city: (query)  (optional)
+     - returns: RequestBuilder<[Call]> 
      */
-    open class func callControllerDownloadWithRequestBuilder(id: Int) -> RequestBuilder<Void> {
-        var path = "/api/call/download/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
+    open class func callsControllerCallsWithRequestBuilder(limit: Double? = nil, converted: String? = nil, country: String? = nil, zip: Double? = nil, city: String? = nil) -> RequestBuilder<[Call]> {
+        let path = "/call/calls"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "limit": limit?.encodeToJSON(), 
+            "converted": converted?.encodeToJSON(), 
+            "country": country?.encodeToJSON(), 
+            "zip": zip?.encodeToJSON(), 
+            "city": city?.encodeToJSON()
+        ])
 
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<[Call]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
+     Sets a call as converted to shopping list
+     
+     - parameter sid: (path) call sid 
+     - parameter convertedHelpRequestDto: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
+     - returns: Observable<Call>
      */
-    open class func callControllerIndex(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callsControllerConverted(sid: String, convertedHelpRequestDto: ConvertedHelpRequestDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Call> {
         return Observable.create { observer -> Disposable in
-            callControllerIndexWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            callsControllerConvertedWithRequestBuilder(sid: sid, convertedHelpRequestDto: convertedHelpRequestDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
-                case .success:
-                    observer.onNext(())
+                case let .success(response):
+                    observer.onNext(response.body!)
                 case let .failure(error):
                     observer.onError(error)
                 }
@@ -73,32 +93,88 @@ open class CallsAPI {
     }
 
     /**
-     - GET /api/call
-     - returns: RequestBuilder<Void> 
+     Sets a call as converted to shopping list
+     - PUT /call/calls/{sid}/converted
+     - BASIC:
+       - type: http
+       - name: bearer
+     - parameter sid: (path) call sid 
+     - parameter convertedHelpRequestDto: (body)  
+     - returns: RequestBuilder<Call> 
      */
-    open class func callControllerIndexWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/api/call"
+    open class func callsControllerConvertedWithRequestBuilder(sid: String, convertedHelpRequestDto: ConvertedHelpRequestDto) -> RequestBuilder<Call> {
+        var path = "/call/calls/{sid}/converted"
+        let sidPreEscape = "\(APIHelper.mapValueToPathItem(sid))"
+        let sidPostEscape = sidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{sid}", with: sidPostEscape, options: .literal, range: nil)
+        let URLString = NexdClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: convertedHelpRequestDto)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Call>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
+    /**
+     Redirects the request to the stored record file.
+     
+     - parameter sid: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<URL>
+     */
+    open class func callsControllerGetCallUrl(sid: String, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<URL> {
+        return Observable.create { observer -> Disposable in
+            callsControllerGetCallUrlWithRequestBuilder(sid: sid).execute(apiResponseQueue) { result -> Void in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body!)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    /**
+     Redirects the request to the stored record file.
+     - GET /call/calls/{sid}/record
+     - BASIC:
+       - type: http
+       - name: bearer
+     - parameter sid: (path)  
+     - returns: RequestBuilder<URL> 
+     */
+    open class func callsControllerGetCallUrlWithRequestBuilder(sid: String) -> RequestBuilder<URL> {
+        var path = "/call/calls/{sid}/record"
+        let sidPreEscape = "\(APIHelper.mapValueToPathItem(sid))"
+        let sidPostEscape = sidPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{sid}", with: sidPostEscape, options: .literal, range: nil)
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<URL>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
 
     /**
-
+     Returns available numbers
+     
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
+     - returns: Observable<String>
      */
-    open class func callControllerInitUpload(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+    open class func callsControllerGetNumber(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<String> {
         return Observable.create { observer -> Disposable in
-            callControllerInitUploadWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            callsControllerGetNumberWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
-                case .success:
-                    observer.onNext(())
+                case let .success(response):
+                    observer.onNext(response.body!)
                 case let .failure(error):
                     observer.onError(error)
                 }
@@ -109,135 +185,18 @@ open class CallsAPI {
     }
 
     /**
-     - GET /api/call/upload
-     - returns: RequestBuilder<Void> 
+     Returns available numbers
+     - GET /call/number
+     - returns: RequestBuilder<String> 
      */
-    open class func callControllerInitUploadWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/api/call/upload"
+    open class func callsControllerGetNumberWithRequestBuilder() -> RequestBuilder<String> {
+        let path = "/call/number"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-
-     - parameter id: (path) audio id 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
-     */
-    open class func callControllerTranslated(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
-        return Observable.create { observer -> Disposable in
-            callControllerTranslatedWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    observer.onNext(())
-                case let .failure(error):
-                    observer.onError(error)
-                }
-                observer.onCompleted()
-            }
-            return Disposables.create()
-        }
-    }
-
-    /**
-     - PUT /api/call/translated/{id}
-     - parameter id: (path) audio id 
-     - returns: RequestBuilder<Void> 
-     */
-    open class func callControllerTranslatedWithRequestBuilder(id: Int) -> RequestBuilder<Void> {
-        var path = "/api/call/translated/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = NexdClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "PUT", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-
-     - parameter id: (path) audio id 
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
-     */
-    open class func callControllerUpload(id: Int, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
-        return Observable.create { observer -> Disposable in
-            callControllerUploadWithRequestBuilder(id: id).execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    observer.onNext(())
-                case let .failure(error):
-                    observer.onError(error)
-                }
-                observer.onCompleted()
-            }
-            return Disposables.create()
-        }
-    }
-
-    /**
-     - POST /api/call/upload/{id}
-     - parameter id: (path) audio id 
-     - returns: RequestBuilder<Void> 
-     */
-    open class func callControllerUploadWithRequestBuilder(id: Int) -> RequestBuilder<Void> {
-        var path = "/api/call/upload/{id}"
-        let idPreEscape = "\(APIHelper.mapValueToPathItem(id))"
-        let idPostEscape = idPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
-        path = path.replacingOccurrences(of: "{id}", with: idPostEscape, options: .literal, range: nil)
-        let URLString = NexdClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
-
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
-    }
-
-    /**
-
-     - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<Void>
-     */
-    open class func callControllerWebhook(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
-        return Observable.create { observer -> Disposable in
-            callControllerWebhookWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
-                switch result {
-                case .success:
-                    observer.onNext(())
-                case let .failure(error):
-                    observer.onError(error)
-                }
-                observer.onCompleted()
-            }
-            return Disposables.create()
-        }
-    }
-
-    /**
-     - GET /api/call/webhook
-     - returns: RequestBuilder<Void> 
-     */
-    open class func callControllerWebhookWithRequestBuilder() -> RequestBuilder<Void> {
-        let path = "/api/call/webhook"
-        let URLString = NexdClientAPI.basePath + path
-        let parameters: [String:Any]? = nil
-        
-        let url = URLComponents(string: URLString)
-
-        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+        let requestBuilder: RequestBuilder<String>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }

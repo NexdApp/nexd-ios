@@ -8,14 +8,15 @@
 import Foundation
 
 
-public struct Article: Codable {
+public struct Article: Codable { 
 
-    /** Auto-incremented id of an article. */
-    public var id: Int
+
+    /** Auto-incremented ID of an article. */
+    public var id: Int64
     /** Name of the article, should also contain the unit. */
     public var name: String
 
-    public init(id: Int, name: String) {
+    public init(id: Int64, name: String) {
         self.id = id
         self.name = name
     }

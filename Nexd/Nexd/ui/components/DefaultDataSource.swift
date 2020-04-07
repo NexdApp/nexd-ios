@@ -8,8 +8,8 @@
 
 import Foundation
 
-class DefaultDataSource: DataSource<DefaultCellItem> {
-    init(items: [DefaultCellItem]) {
+class DefaultDataSource: DataSource<DefaultCell.Item> {
+    init(items: [DefaultCell.Item]) {
         super.init(reuseIdentifier: DefaultCell.reuseIdentifier, items: items) { item, cell in
             if let cell = cell as? DefaultCell {
                 cell.bind(to: item)
