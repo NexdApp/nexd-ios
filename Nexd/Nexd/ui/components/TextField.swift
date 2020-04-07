@@ -9,7 +9,7 @@
 import UIKit
 
 class TextField: UITextField {
-    let padding = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+    let padding = UIEdgeInsets(top: 0, left: 41, bottom: 0, right: 0)
 
     override open func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: padding)
@@ -35,7 +35,7 @@ class TextField: UITextField {
     func showNormal() {
         rightViewMode = .never
         rightView = nil
-        withBorder()
+        withBottomBorder()
     }
 
     func showError() {
@@ -45,7 +45,7 @@ class TextField: UITextField {
         imageView.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
         rightView = imageView
 
-        withBorder(color: .errorTintColor)
+        withBottomBorder(color: .errorTintColor)
     }
 
     func showWarning() {
@@ -55,6 +55,6 @@ class TextField: UITextField {
         imageView.bounds = CGRect(x: 0, y: 0, width: 16, height: 16)
         rightView = imageView
 
-        withBorder(color: .warningTintColor)
+        withBottomBorder(color: .warningTintColor)
     }
 }

@@ -60,6 +60,10 @@
 		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67A2426C88B005C77CE /* GradientView.swift */; };
 		C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */; };
+		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
+		E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */; };
+		E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */; };
+		E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */; };
 		FFCBC08C9AB985704A26A1E7 /* Pods_nexdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +143,10 @@
 		BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.release.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.release.xcconfig"; sourceTree = "<group>"; };
 		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
+		E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium-webfont.ttf"; sourceTree = "<group>"; };
+		E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold-webfont.ttf"; sourceTree = "<group>"; };
+		E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular-webfont.ttf"; sourceTree = "<group>"; };
+		E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-semibold-webfont.ttf"; sourceTree = "<group>"; };
 		F1E7BF07394EEF7D7982A0F9 /* Pods-nexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdTests.debug.xcconfig"; path = "Target Support Files/Pods-nexdTests/Pods-nexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,6 +249,10 @@
 		AEF3D64D24259AE5005C77CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */,
+				E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */,
+				E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */,
+				E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */,
 				AE4EA65224394AEA00B8E9D6 /* recording.mp3 */,
 				AECE9D252438D93E00EDCE0D /* cymbal.wav */,
 				AE2A9A932426FA50006066B4 /* Localizable.strings */,
@@ -410,11 +422,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */,
 				AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */,
+				E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */,
 				AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */,
+				E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */,
 				AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */,
 				AEC5877F243D224800B6876C /* Colors.xcassets in Resources */,
 				AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */,
+				E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */,
 				AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

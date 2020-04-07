@@ -85,6 +85,7 @@ struct R: Rswift.Validatable {
   }
 
   static func validate() throws {
+    try font.validate()
     try intern.validate()
   }
 
@@ -159,6 +160,14 @@ struct R: Rswift.Validatable {
   struct file {
     /// Resource file `cymbal.wav`.
     static let cymbalWav = Rswift.FileResource(bundle: R.hostingBundle, name: "cymbal", pathExtension: "wav")
+    /// Resource file `proxima-nova-soft-bold-webfont.ttf`.
+    static let proximaNovaSoftBoldWebfontTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "proxima-nova-soft-bold-webfont", pathExtension: "ttf")
+    /// Resource file `proxima-nova-soft-medium-webfont.ttf`.
+    static let proximaNovaSoftMediumWebfontTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "proxima-nova-soft-medium-webfont", pathExtension: "ttf")
+    /// Resource file `proxima-nova-soft-regular-webfont.ttf`.
+    static let proximaNovaSoftRegularWebfontTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "proxima-nova-soft-regular-webfont", pathExtension: "ttf")
+    /// Resource file `proxima-nova-soft-semibold-webfont.ttf`.
+    static let proximaNovaSoftSemiboldWebfontTtf = Rswift.FileResource(bundle: R.hostingBundle, name: "proxima-nova-soft-semibold-webfont", pathExtension: "ttf")
     /// Resource file `recording.mp3`.
     static let recordingMp3 = Rswift.FileResource(bundle: R.hostingBundle, name: "recording", pathExtension: "mp3")
 
@@ -168,10 +177,75 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "proxima-nova-soft-bold-webfont", withExtension: "ttf")`
+    static func proximaNovaSoftBoldWebfontTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.proximaNovaSoftBoldWebfontTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "proxima-nova-soft-medium-webfont", withExtension: "ttf")`
+    static func proximaNovaSoftMediumWebfontTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.proximaNovaSoftMediumWebfontTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "proxima-nova-soft-regular-webfont", withExtension: "ttf")`
+    static func proximaNovaSoftRegularWebfontTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.proximaNovaSoftRegularWebfontTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "proxima-nova-soft-semibold-webfont", withExtension: "ttf")`
+    static func proximaNovaSoftSemiboldWebfontTtf(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.proximaNovaSoftSemiboldWebfontTtf
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "recording", withExtension: "mp3")`
     static func recordingMp3(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.recordingMp3
       return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    fileprivate init() {}
+  }
+
+  /// This `R.font` struct is generated, and contains static references to 4 fonts.
+  struct font: Rswift.Validatable {
+    /// Font `ProximaNovaSoft-Bold`.
+    static let proximaNovaSoftBold = Rswift.FontResource(fontName: "ProximaNovaSoft-Bold")
+    /// Font `ProximaNovaSoft-Medium`.
+    static let proximaNovaSoftMedium = Rswift.FontResource(fontName: "ProximaNovaSoft-Medium")
+    /// Font `ProximaNovaSoft-Regular`.
+    static let proximaNovaSoftRegular = Rswift.FontResource(fontName: "ProximaNovaSoft-Regular")
+    /// Font `ProximaNovaSoft-Semibold`.
+    static let proximaNovaSoftSemibold = Rswift.FontResource(fontName: "ProximaNovaSoft-Semibold")
+
+    /// `UIFont(name: "ProximaNovaSoft-Bold", size: ...)`
+    static func proximaNovaSoftBold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: proximaNovaSoftBold, size: size)
+    }
+
+    /// `UIFont(name: "ProximaNovaSoft-Medium", size: ...)`
+    static func proximaNovaSoftMedium(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: proximaNovaSoftMedium, size: size)
+    }
+
+    /// `UIFont(name: "ProximaNovaSoft-Regular", size: ...)`
+    static func proximaNovaSoftRegular(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: proximaNovaSoftRegular, size: size)
+    }
+
+    /// `UIFont(name: "ProximaNovaSoft-Semibold", size: ...)`
+    static func proximaNovaSoftSemibold(size: CGFloat) -> UIKit.UIFont? {
+      return UIKit.UIFont(resource: proximaNovaSoftSemibold, size: size)
+    }
+
+    static func validate() throws {
+      if R.font.proximaNovaSoftBold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'ProximaNovaSoft-Bold' could not be loaded, is 'proxima-nova-soft-bold-webfont.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.proximaNovaSoftMedium(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'ProximaNovaSoft-Medium' could not be loaded, is 'proxima-nova-soft-medium-webfont.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.proximaNovaSoftRegular(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'ProximaNovaSoft-Regular' could not be loaded, is 'proxima-nova-soft-regular-webfont.ttf' added to the UIAppFonts array in this targets Info.plist?") }
+      if R.font.proximaNovaSoftSemibold(size: 42) == nil { throw Rswift.ValidationError(description:"[R.swift] Font 'ProximaNovaSoft-Semibold' could not be loaded, is 'proxima-nova-soft-semibold-webfont.ttf' added to the UIAppFonts array in this targets Info.plist?") }
     }
 
     fileprivate init() {}

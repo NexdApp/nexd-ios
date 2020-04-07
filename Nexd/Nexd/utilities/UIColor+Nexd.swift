@@ -14,7 +14,7 @@ extension UIColor {
 
     static var defaultBackgroundColor: UIColor { UIColor(red: 108 / 255, green: 188 / 255, blue: 153 / 255, alpha: 1.0) }
 
-    static var textFieldPlaceholderTextColor: UIColor { UIColor(red: 204 / 255, green: 225 / 255, blue: 173 / 255, alpha: 1.0) }
+    static var textFieldPlaceholderTextColor: UIColor { UIColor(red: 172 / 255, green: 172 / 255, blue: 172 / 255, alpha: 1.0) }
 
     static var textFieldBorderColor: UIColor { UIColor(red: 204 / 255, green: 225 / 255, blue: 173 / 255, alpha: 1.0) }
 
