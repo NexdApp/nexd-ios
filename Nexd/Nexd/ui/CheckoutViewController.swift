@@ -22,15 +22,14 @@ class CheckoutViewController: UIViewController {
         let isSelected: Bool
         let title: String
         let itemId: Int64?
-        let orderedBy: String?
 
         static func from(item: ShoppingListViewController.Item) -> Item {
-            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
+            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId)
         }
     }
 
     struct UserRequest {
-        let userId: String?
+        let user: User
         let items: [Item]
     }
 
@@ -58,8 +57,8 @@ class CheckoutViewController: UIViewController {
         didSet {
             let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
                 let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
-                return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                              title: "\(request.userId ?? "-")",
+                return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: CheckableCell.reuseIdentifier,
+                                                                              title: "\(request.user.firstName) \(request.user.lastName)",
                                                                               items: items)
             }
 
@@ -82,7 +81,7 @@ class CheckoutViewController: UIViewController {
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
         list.delegate = self
-        list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
+        list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
         title = R.string.localizable.checkout_screen_title()
