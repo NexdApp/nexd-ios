@@ -22,7 +22,7 @@ class ShoppingListViewController: UIViewController {
         let isSelected: Bool
         let title: String
         let itemId: Int64?
-        let orderedBy: String?
+        let requester: User?
     }
 
     struct Content {
@@ -123,12 +123,12 @@ class ShoppingListViewController: UIViewController {
                             guard let articles = request.articles else { return [] }
 
                             return articles.map { article -> Item in
-                                 let details = allArticles.first { $0.id == article.articleId }
+                                let details = allArticles.first { $0.id == article.articleId }
 
                                 return Item(isSelected: false,
                                             title: details?.name ?? "-",
                                             itemId: article.articleId,
-                                            orderedBy: request.requesterId)
+                                            requester: request.requester)
                             }
                         }
                     }
@@ -161,7 +161,7 @@ extension ShoppingListViewController: UICollectionViewDelegate {
 
         var items = content.items
         let item = items[indexPath.row]
-        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, itemId: item.itemId, orderedBy: item.orderedBy)
+        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, itemId: item.itemId, requester: item.requester)
         self.content = Content(items: items)
     }
 }
@@ -171,10 +171,18 @@ extension ShoppingListViewController {
         guard let content = content else { return }
         let checkoutVC = CheckoutViewController()
 
-        let allUserIds = Array(Set(content.items.map { $0.orderedBy }))
-        let checkoutItems = allUserIds.map { userId -> CheckoutViewController.UserRequest in
-            let items = content.items.filter { $0.orderedBy == userId }.map { CheckoutViewController.Item.from(item: $0) }
-            return CheckoutViewController.UserRequest(userId: userId, items: items)
+        var dict = [String: User]()
+
+        content.items.forEach {
+            guard let user = $0.requester else { return }
+            dict[user.id] = user
+        }
+
+        let checkoutItems = dict.map { userId, user -> CheckoutViewController.UserRequest in
+            let items = content.items
+                .filter { $0.requester?.id == userId }
+                .map { CheckoutViewController.Item.from(item: $0) }
+            return CheckoutViewController.UserRequest(user: user, items: items)
         }
         checkoutVC.content = CheckoutViewController.Content(requests: checkoutItems)
 
