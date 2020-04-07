@@ -105,6 +105,56 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.color` struct is generated, and contains static references to 4 colors.
+  struct color {
+    /// Color `gradientEnd`.
+    static let gradientEnd = Rswift.ColorResource(bundle: R.hostingBundle, name: "gradientEnd")
+    /// Color `gradientStart`.
+    static let gradientStart = Rswift.ColorResource(bundle: R.hostingBundle, name: "gradientStart")
+    /// Color `nexdGreen`.
+    static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
+    /// Color `textfieldStroke`.
+    static let textfieldStroke = Rswift.ColorResource(bundle: R.hostingBundle, name: "textfieldStroke")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gradientEnd", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gradientEnd(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gradientEnd, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "gradientStart", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func gradientStart(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.gradientStart, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "nexdGreen", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func nexdGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.nexdGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "textfieldStroke", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func textfieldStroke(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.textfieldStroke, compatibleWith: traitCollection)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.file` struct is generated, and contains static references to 2 files.
   struct file {
     /// Resource file `cymbal.wav`.

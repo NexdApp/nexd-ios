@@ -60,8 +60,8 @@ platform :ios do
     upload_to_testflight(
       username: "mista.tee.apps@gmail.com",
       skip_waiting_for_build_processing: true,
-      apple_id: '1505194845'
-
+      apple_id: '1505194845',
+      reject_build_waiting_for_review: true
     )
   end
 end
