@@ -29,7 +29,7 @@ class CallsService {
     }
 
     func downloadCallFile(sid: String) -> Single<URL> {
-        guard let documentsUrl = try? FileManager.default.url(for: .downloadsDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
+        guard let documentsUrl = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
             log.error("Cannot create download URL path!")
             return Single.error(CallsError.downloadFailed)
         }
