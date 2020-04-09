@@ -6,19 +6,23 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
 import Validator
 
-class UserDetailsViewController: UIViewController {
+class UserDetailsViewController: ViewController<UserDetailsViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: Navigator
+        var userInformation: UserInformation
+    }
+
     struct UserInformation {
         let firstName: String
         let lastName: String
     }
-
-    var userInformation: UserInformation!
 
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
@@ -98,6 +102,10 @@ class UserDetailsViewController: UIViewController {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
+
+    override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) {
+        // TODO
+    }
 }
 
 extension UserDetailsViewController {
@@ -105,6 +113,12 @@ extension UserDetailsViewController {
         let hasInvalidInput = [phone, zipCode]
             .map { $0.validate() }
             .contains(false)
+
+        guard let userInformation = viewModel?.userInformation else {
+            log.warning("Cannot update user, internal error!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
 
         guard !hasInvalidInput else {
             log.warning("Cannot update user, mandatory field is missing!")
@@ -125,7 +139,7 @@ extension UserDetailsViewController {
                                                  phone: phone)
             .subscribe(onSuccess: { [weak self] user in
                 log.debug("User information updated: \(user)")
-                self?.navigationController?.setViewControllers([MainPageViewController()], animated: true)
+                self?.viewModel?.navigator.toMainScreen()
             }, onError: { [weak self] error in
                 log.error("UserInformation update failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())

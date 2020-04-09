@@ -12,7 +12,11 @@ import SnapKit
 import UIKit
 import Validator
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: ViewController<RegistrationViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: ScreenNavigating
+    }
+
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
@@ -150,6 +154,10 @@ class RegistrationViewController: UIViewController {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
+
+    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
+        // TODO
+    }
 }
 
 extension RegistrationViewController {
@@ -177,9 +185,8 @@ extension RegistrationViewController {
                                               password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("User registration successful")
-                let userDetailsVC = UserDetailsViewController()
-                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
-                self?.navigationController?.pushViewController(userDetailsVC, animated: true)
+                let userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
+                self?.viewModel?.navigator.toUserDetailsScreen(with: userInformation)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")
 

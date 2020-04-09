@@ -16,7 +16,6 @@ struct AppComponent: Cleanse.RootComponent {
     static func configure(binder: Binder<Singleton>) {
         binder.include(module: CoreAppModule.self)
         binder.include(module: RootWindowModule.self)
-        binder.include(module: ViewControllersModule.self)
     }
 
     static func configureRoot(binder bind: ReceiptBinder<PropertyInjector<SceneDelegate>>) -> BindingReceipt<PropertyInjector<SceneDelegate>> {

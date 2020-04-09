@@ -20,8 +20,8 @@ struct CoreAppModule: Cleanse.Module {
             .bind(Storage.self)
             .to(factory: PersistentStorage.init)
 
-//        binder
-//            .bind(ScreenNavigating.self)
-//            .to(factory: Navigator.init)
+        binder
+            .bind(ScreenNavigating.self)
+            .to(factory: Navigator.init)
     }
 }

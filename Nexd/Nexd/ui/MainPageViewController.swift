@@ -13,8 +13,14 @@ import SnapKit
 import UIKit
 
 class MainPageViewModel {
+    fileprivate let navigator: ScreenNavigating
+
     let profileButtonInitials: Driver<String?> = Driver.just("AJ")
     let greeting: Driver<NSAttributedString?> = Driver.just("Welcome, Username.".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline())
+
+    init(navigator: ScreenNavigating) {
+        self.navigator = navigator
+    }
 }
 
 class MainPageViewController: ViewController<MainPageViewModel> {
@@ -35,10 +41,6 @@ class MainPageViewController: ViewController<MainPageViewModel> {
 
     private let seekerButton = MenuButton.make(title: "Make a shopping list!")
     private let helperButton = MenuButton.make(title: "I can help!")
-
-    convenience init() {
-        self.init(viewModel: MainPageViewModel())
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,7 +118,7 @@ extension MainPageViewController {
         profileScreen.onUserLoggedOut = { [weak self] in
             log.debug("User logged out!")
             self?.dismiss(animated: true) { [weak self] in
-                self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                self?.viewModel?.navigator.toLoginScreen()
             }
         }
         present(profileScreen, animated: true, completion: nil)
@@ -141,10 +143,12 @@ extension MainPageViewController {
         static func configure(binder: Cleanse.Binder<Unscoped>) {
             binder
                 .bind(MainPageViewModel.self)
-                .to(factory: MainPageViewModel.init)
+                .to { (navigator: ScreenNavigating) -> MainPageViewModel in
+                    MainPageViewModel(navigator: navigator)
+            }
 
             binder
-                .bind(UIViewController.self)
+                .bind(MainPageViewController.self)
                 .to { (viewModel: MainPageViewModel) in
                     return MainPageViewController(viewModel: viewModel)
                 }

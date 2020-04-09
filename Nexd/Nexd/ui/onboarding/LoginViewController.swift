@@ -6,13 +6,18 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
 import Validator
 
-class LoginViewController: UIViewController {
+class LoginViewController: ViewController<LoginViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: ScreenNavigating
+    }
+
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
@@ -106,6 +111,10 @@ class LoginViewController: UIViewController {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
+
+    override func bind(viewModel: LoginViewController.ViewModel, disposeBag: DisposeBag) {
+        // TODO
+    }
 }
 
 extension LoginViewController {
@@ -128,7 +137,7 @@ extension LoginViewController {
         AuthenticationService.shared.login(email: email, password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
-                self?.navigationController?.pushViewController(MainPageViewController(), animated: true)
+                self?.viewModel?.navigator.toMainScreen()
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
@@ -137,7 +146,7 @@ extension LoginViewController {
     }
 
     @objc func registerButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        viewModel?.navigator.toRegistrationScreen()
     }
 }
 

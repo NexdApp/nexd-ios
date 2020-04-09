@@ -15,8 +15,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var storage: Storage?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Override point for customization after application launch.
-        let propertyInjector = try? ComponentFactory.of(AppComponent.self).build(scene)
+        var propertyInjector: PropertyInjector<SceneDelegate>?
+
+        do {
+            let factory = try ComponentFactory.of(AppComponent.self)
+            propertyInjector = factory.build(scene)
+        } catch let error {
+            fatalError("Dependency injection error: \(error)")
+        }
+
         propertyInjector?.injectProperties(into: self)
 
         precondition(window != nil)

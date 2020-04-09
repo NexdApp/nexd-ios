@@ -12,16 +12,13 @@ struct RootWindowModule: Cleanse.Module {
     static func configure(binder: UnscopedBinder) {
         binder
             .bind()
-            .to { (scene: UIScene, storage: Storage) -> UIWindow in
+            .to { (scene: UIScene, navigator: ScreenNavigating) -> UIWindow in
                 guard let windowScene = scene as? UIWindowScene else {
-                    fatalError()
+                    fatalError("Missing scene!")
                 }
 
                 let window = UIWindow(windowScene: windowScene)
-                let rootVC = storage.authorizationToken == nil ? LoginViewController() : MainPageViewController()
-                let navigationVC = UINavigationController(rootViewController: rootVC)
-                window.rootViewController = navigationVC
-
+                window.rootViewController = navigator.root
                 return window
             }
     }

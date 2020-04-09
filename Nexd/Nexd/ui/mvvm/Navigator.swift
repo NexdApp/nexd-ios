@@ -10,21 +10,56 @@ import Cleanse
 import UIKit
 
 protocol ScreenNavigating {
+    var root: UIViewController { get }
+    func toLoginScreen()
+    func toRegistrationScreen()
+    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
+    func toMainScreen()
     func toShoppingListOptions()
 }
 
 class Navigator {
-    let navigationController: UINavigationController
-    let mainPageViewController: MainPageViewController
+    private let storage: Storage
 
-    init(navigationController: UINavigationController, mainPageViewController: MainPageViewController) {
-        self.navigationController = navigationController
-        self.mainPageViewController = mainPageViewController
+    lazy var navigationController: UINavigationController = {
+        let loginPage = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        let mainPage = MainPageViewController(viewModel: MainPageViewModel(navigator: self))
+        return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
+    }()
+
+    init(storage: Storage) {
+        self.storage = storage
     }
 }
 
 extension Navigator: ScreenNavigating {
-    func toShoppingListOptions() {
-        navigationController.pushViewController(mainPageViewController, animated: true)
+    var root: UIViewController {
+        navigationController
     }
+
+    func toLoginScreen() {
+        guard let index = navigationController.viewControllers.firstIndex(where: { $0 is LoginViewController }) else {
+            navigationController.setViewControllers([LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))], animated: true)
+            return
+        }
+
+        navigationController.popToViewController(navigationController.viewControllers[index], animated: true)
+    }
+
+    func toRegistrationScreen() {
+        let registrationScreen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
+        navigationController.pushViewController(registrationScreen, animated: true)
+    }
+
+    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation) {
+        let userDetailsScreen = UserDetailsViewController(viewModel: UserDetailsViewController.ViewModel(navigator: self, userInformation: userInformation))
+        navigationController.pushViewController(userDetailsScreen, animated: true)
+    }
+
+    func toMainScreen() {
+        let mainScreen = MainPageViewController(viewModel: MainPageViewModel(navigator: self))
+        navigationController.setViewControllers([mainScreen], animated: true)
+    }
+
+    func toShoppingListOptions() {}
 }
