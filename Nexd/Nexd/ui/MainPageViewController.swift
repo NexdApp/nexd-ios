@@ -19,6 +19,7 @@ class MainPageViewController: UIViewController {
         static let buttonHeight: CGFloat = 132
     }
 
+    private let headerBackground = UIView()
     private let mainContent = UIView()
     private let scrollView = UIScrollView()
     private let userProfileButton = UIButton()
@@ -33,14 +34,22 @@ class MainPageViewController: UIViewController {
         view.backgroundColor = R.color.nexdGreen()
         navigationController?.navigationBar.isHidden = true
 
-        view.addSubview(mainContent)
-        mainContent.backgroundColor = R.color.defaultBackground()
-        mainContent.snp.makeConstraints { make in
+        view.addSubview(scrollView)
+        scrollView.backgroundColor = .clear
+        scrollView.snp.makeConstraints { make in
             make.left.bottom.right.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(115)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
         }
 
-        view.addSubview(userProfileButton)
+        scrollView.addSubview(mainContent)
+        mainContent.backgroundColor = R.color.defaultBackground()
+        mainContent.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.left.right.equalTo(view)
+            make.top.equalTo(scrollView).offset(115)
+        }
+
+        scrollView.addSubview(userProfileButton)
         userProfileButton.backgroundColor = R.color.profileImageBackground()
         userProfileButton.layer.cornerRadius = 0.5 * Style.profileImageSize.width
         userProfileButton.setTitleColor(.white, for: .normal)
@@ -53,32 +62,26 @@ class MainPageViewController: UIViewController {
         }
         userProfileButton.addTarget(self, action: #selector(profileButtonPressed(sender:)), for: .touchUpInside)
 
-        mainContent.addSubview(scrollView)
-        scrollView.backgroundColor = .clear
-        scrollView.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
-            make.top.equalTo(userProfileButton.snp.bottom).offset(27)
-        }
-
-        scrollView.addSubview(greetingText)
+        mainContent.addSubview(greetingText)
         greetingText.numberOfLines = 4
         greetingText.snp.makeConstraints { make in
             make.left.equalTo(mainContent).offset(Style.padding)
             make.right.equalTo(mainContent).offset(-Style.padding)
-            make.top.equalToSuperview()
+            make.top.equalTo(userProfileButton.snp.bottom).offset(27)
             make.height.equalTo(200)
         }
         greetingText.attributedText = "Welcome, Username.".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline()
 
-        scrollView.addSubview(seekerButton)
+        mainContent.addSubview(seekerButton)
         seekerButton.snp.makeConstraints { make in
             make.left.equalTo(mainContent).offset(Style.horizontalPadding)
             make.right.equalTo(mainContent).offset(-Style.horizontalPadding)
             make.top.equalTo(greetingText.snp.bottom).offset(Style.verticalPadding)
             make.height.equalTo(132)
         }
+        seekerButton.addTarget(self, action: #selector(seekerRoleButtonPressed(sender:)), for: .touchUpInside)
 
-        scrollView.addSubview(helperButton)
+        mainContent.addSubview(helperButton)
         helperButton.snp.makeConstraints { make in
             make.left.equalTo(mainContent).offset(Style.horizontalPadding)
             make.right.equalTo(mainContent).offset(-Style.horizontalPadding)
@@ -86,6 +89,7 @@ class MainPageViewController: UIViewController {
             make.height.equalTo(132)
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
+        helperButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
     }
 }
 
