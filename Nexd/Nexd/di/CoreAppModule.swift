@@ -10,7 +10,6 @@ import Cleanse
 
 struct CoreAppModule: Cleanse.Module {
     static func configure(binder: Binder<Singleton>) {
-        // Bind common dependencies.
         binder.include(module: ServicesModule.self)
 
         binder
@@ -20,5 +19,9 @@ struct CoreAppModule: Cleanse.Module {
         binder
             .bind(Storage.self)
             .to(factory: PersistentStorage.init)
+
+//        binder
+//            .bind(ScreenNavigating.self)
+//            .to(factory: Navigator.init)
     }
 }

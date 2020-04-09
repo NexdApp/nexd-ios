@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import RxCocoa
 import RxSwift
 import SnapKit
@@ -131,5 +132,22 @@ extension MainPageViewController {
 
     @objc func seekerRoleButtonPressed(sender: UIButton!) {
         navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
+    }
+}
+
+// MARK: - Dependency Injection
+extension MainPageViewController {
+    struct Module: Cleanse.Module {
+        static func configure(binder: Cleanse.Binder<Unscoped>) {
+            binder
+                .bind(MainPageViewModel.self)
+                .to(factory: MainPageViewModel.init)
+
+            binder
+                .bind(UIViewController.self)
+                .to { (viewModel: MainPageViewModel) in
+                    return MainPageViewController(viewModel: viewModel)
+                }
+        }
     }
 }

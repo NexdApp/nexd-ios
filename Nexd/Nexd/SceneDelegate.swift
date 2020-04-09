@@ -7,18 +7,20 @@
 //
 
 import Cleanse
-import UIKit
 import NexdClient
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     var storage: Storage?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-
         // Override point for customization after application launch.
         let propertyInjector = try? ComponentFactory.of(AppComponent.self).build(scene)
         propertyInjector?.injectProperties(into: self)
+
+        precondition(window != nil)
+        precondition(storage != nil)
 
         NexdClientAPI.setup(authorizationToken: storage?.authorizationToken)
 
