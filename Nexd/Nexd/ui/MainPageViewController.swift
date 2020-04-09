@@ -6,10 +6,17 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import RxCocoa
+import RxSwift
 import SnapKit
 import UIKit
 
-class MainPageViewController: UIViewController {
+class MainPageViewModel {
+    let profileButtonInitials: Driver<String?> = Driver.just("AJ")
+    let greeting: Driver<NSAttributedString?> = Driver.just("Welcome, Username.".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline())
+}
+
+class MainPageViewController: ViewController<MainPageViewModel> {
     enum Style {
         static let profileImageSize = CGSize(width: 139, height: 139)
         static let padding: CGFloat = 25
@@ -27,6 +34,10 @@ class MainPageViewController: UIViewController {
 
     private let seekerButton = MenuButton.make(title: "Make a shopping list!")
     private let helperButton = MenuButton.make(title: "I can help!")
+
+    convenience init() {
+        self.init(viewModel: MainPageViewModel())
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +65,6 @@ class MainPageViewController: UIViewController {
         userProfileButton.layer.cornerRadius = 0.5 * Style.profileImageSize.width
         userProfileButton.setTitleColor(.white, for: .normal)
         userProfileButton.titleLabel?.font = R.font.proximaNovaSoftBold(size: 65)
-        userProfileButton.setTitle("AJ", for: .normal)
         userProfileButton.snp.makeConstraints { make -> Void in
             make.centerX.equalToSuperview()
             make.centerY.equalTo(mainContent.snp.top)
@@ -70,7 +80,6 @@ class MainPageViewController: UIViewController {
             make.top.equalTo(userProfileButton.snp.bottom).offset(27)
             make.height.equalTo(200)
         }
-        greetingText.attributedText = "Welcome, Username.".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline()
 
         mainContent.addSubview(seekerButton)
         seekerButton.snp.makeConstraints { make in
@@ -90,6 +99,13 @@ class MainPageViewController: UIViewController {
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
         helperButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
+    }
+
+    override func bind(viewModel: MainPageViewModel, disposeBag: DisposeBag) {
+        disposeBag.insert(
+            viewModel.profileButtonInitials.drive(userProfileButton.rx.title()),
+            viewModel.greeting.drive(greetingText.rx.attributedText)
+        )
     }
 }
 

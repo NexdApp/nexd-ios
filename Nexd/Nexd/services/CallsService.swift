@@ -68,7 +68,7 @@ class Downloader: NSObject {
     }
 
     func loadFile(url: URL, to localUrl: URL) -> Single<URL> {
-        guard let bearerToken = Storage.shared.authorizationToken else {
+        guard let bearerToken = PersistentStorage.shared.authorizationToken else {
             return Single.error(DownloaderError.missingAuthorizationToken)
         }
 
