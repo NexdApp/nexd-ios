@@ -10,15 +10,18 @@ import UIKit
 
 extension UIColor {
     static var gradientFrom: UIColor { UIColor(red: 108 / 255, green: 188 / 255, blue: 163 / 255, alpha: 1.0) }
+
     static var gradientTo: UIColor { UIColor(red: 21 / 255, green: 47 / 255, blue: 67 / 255, alpha: 1.0) }
 
     static var defaultBackgroundColor: UIColor { UIColor(red: 108 / 255, green: 188 / 255, blue: 153 / 255, alpha: 1.0) }
+
+    static var greenBackgroundColor: UIColor { UIColor(red: 78 / 255, green: 191 / 255, blue: 150 / 255, alpha: 1.0) }
 
     static var textFieldPlaceholderTextColor: UIColor { UIColor(red: 172 / 255, green: 172 / 255, blue: 172 / 255, alpha: 1.0) }
 
     static var textFieldBorderColor: UIColor { UIColor(red: 204 / 255, green: 225 / 255, blue: 173 / 255, alpha: 1.0) }
 
-    static var buttonTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
+    static var buttonTextColor: UIColor { UIColor(red: 255 / 255, green: 255 / 255, blue: 255 / 255, alpha: 1.0) }
 
     static var headingTextColor: UIColor { UIColor(red: 112 / 255, green: 112 / 255, blue: 112 / 255, alpha: 1.0) }
 

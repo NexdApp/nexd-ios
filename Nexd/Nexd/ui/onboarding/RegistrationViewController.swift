@@ -16,6 +16,7 @@ class RegistrationViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
+    private lazy var logo = UIImageView()
 
     lazy var scrollView = UIScrollView()
 
@@ -44,7 +45,7 @@ class RegistrationViewController: UIViewController {
 
     lazy var registerButton = UIButton()
 
-    lazy var privacyPolicy = UITextView()
+//    lazy var privacyPolicy = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +66,19 @@ class RegistrationViewController: UIViewController {
             make.left.right.equalTo(view)
         }
 
+        contentView.addSubview(logo)
+        logo.image = R.image.logo()
+        logo.snp.makeConstraints { make -> Void in
+            make.size.equalTo(Style.logoSize)
+            make.centerX.equalToSuperview()
+            make.topMargin.equalTo(68)
+        }
+
         contentView.addSubview(email)
         email.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.topMargin.equalTo(50)
+            make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
         contentView.addSubview(firstName)
@@ -107,24 +116,29 @@ class RegistrationViewController: UIViewController {
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(confirmPassword.snp.bottom).offset(Style.verticalPadding)
+            make.top.equalTo(confirmPassword.snp.bottom).offset(50)
+            make.bottom.equalToSuperview().offset(-20)
         }
+        
+//        static let verticalPaddingLogoToTop = 68
+//        static let verticalPaddingLogoAndTextFields = 134
+        
+        
+//        contentView.addSubview(privacyPolicy)
+//        privacyPolicy.backgroundColor = .clear
+//        privacyPolicy.isScrollEnabled = false
+//        privacyPolicy.textContainerInset = .zero
 
-        contentView.addSubview(privacyPolicy)
-        privacyPolicy.backgroundColor = .clear
-        privacyPolicy.isScrollEnabled = false
-        privacyPolicy.textContainerInset = .zero
-
-        let term = R.string.localizable.registration_term_privacy_policy()
-        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
-        privacyPolicy.snp.makeConstraints { make -> Void in
-            make.height.equalTo(54)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(registerButton.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
-        }
+//        let term = R.string.localizable.registration_term_privacy_policy()
+//        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
+//        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
+//        privacyPolicy.snp.makeConstraints { make -> Void in
+//            make.height.equalTo(54)
+//            make.leftMargin.equalTo(8)
+//            make.rightMargin.equalTo(-8)
+//            make.top.equalTo(registerButton.snp.bottom).offset(8)
+//            make.bottomMargin.equalTo(Style.buttonHeight)
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

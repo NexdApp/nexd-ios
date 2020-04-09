@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextField {
     func styled(placeholder: String? = nil) {
-        font = UIFont(name: "ProximaNovaSoft-Bold", size: 22.0)
+        font = R.font.proximaNovaSoftBold(size: 22.0)
 
         textColor = .black
         withBottomBorder()

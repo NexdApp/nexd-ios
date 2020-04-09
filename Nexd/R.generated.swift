@@ -156,7 +156,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 2 files.
+  /// This `R.file` struct is generated, and contains static references to 6 files.
   struct file {
     /// Resource file `cymbal.wav`.
     static let cymbalWav = Rswift.FileResource(bundle: R.hostingBundle, name: "cymbal", pathExtension: "wav")
@@ -251,8 +251,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 18 images.
+  /// This `R.image` struct is generated, and contains static references to 19 images.
   struct image {
+    /// Image `Person`.
+    static let person = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person")
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
     /// Image `baseline_account_box_black_24pt`.
@@ -289,6 +291,13 @@ struct R: Rswift.Validatable {
     static let round_pause_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_pause_black_36pt")
     /// Image `round_play_arrow_black_36pt`.
     static let round_play_arrow_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_play_arrow_black_36pt")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Person", bundle: ..., traitCollection: ...)`
+    static func person(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.person, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "baseline_account_box_black_18pt", bundle: ..., traitCollection: ...)`

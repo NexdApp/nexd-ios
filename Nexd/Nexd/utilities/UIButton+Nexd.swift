@@ -11,15 +11,17 @@ import UIKit
 extension UIButton {
 
     func style(text: String) {
-        backgroundColor = .white
-        layer.cornerRadius = 26
+        backgroundColor = UIColor.greenBackgroundColor
+        layer.cornerRadius = 10
 
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.buttonTextColor,
-            .font: UIFont.boldSystemFont(ofSize: 24)
+            .font: R.font.proximaNovaSoftBold(size: 25)!
         ]
 
         setAttributedTitle(NSAttributedString(string: text, attributes: attributes), for: .normal)
+        contentHorizontalAlignment = .left
+        contentEdgeInsets = UIEdgeInsets(top: 0, left: 41, bottom: 0, right: 0)
 
         addShadow()
     }
