@@ -128,7 +128,7 @@ extension LoginViewController {
         AuthenticationService.shared.login(email: email, password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
-                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+                self?.navigationController?.pushViewController(MainPageViewController(), animated: true)
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())

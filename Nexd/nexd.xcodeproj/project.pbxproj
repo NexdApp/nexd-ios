@@ -43,7 +43,7 @@
 		AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NexdTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
 		AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* LoginViewController.swift */; };
-		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
+		AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* MainPageViewController.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65E242604DE005C77CE /* DataSource.swift */; };
@@ -124,7 +124,7 @@
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		AEF3D64B24259ACE005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoleViewController.swift; sourceTree = "<group>"; };
+		AEF3D65024259B2D005C77CE /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D65E242604DE005C77CE /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 			children = (
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
-				AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */,
+				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
@@ -588,7 +588,7 @@
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* View.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,
-				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
+				AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
