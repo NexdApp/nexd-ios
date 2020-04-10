@@ -6,11 +6,12 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
 
-class SeekerItemSelectionViewController: UIViewController {
+class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewController.ViewModel> {
     enum Style {
         static let headerHeight: CGFloat = 60
         static let rowHeight: CGFloat = 40
@@ -27,9 +28,19 @@ class SeekerItemSelectionViewController: UIViewController {
         let items: [Item]
     }
 
+    class ViewModel {
+        let navigator: ScreenNavigating
+
+        let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
+
+        init(navigator: ScreenNavigating) {
+            self.navigator = navigator
+        }
+    }
+
     private let disposeBag = DisposeBag()
 
-    private var gradient = GradientView()
+    private var titleText = UILabel()
     private var collectionView: UICollectionView?
     private var submitButton = UIButton()
 
@@ -53,11 +64,6 @@ class SeekerItemSelectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
@@ -68,8 +74,14 @@ class SeekerItemSelectionViewController: UIViewController {
         list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
-        view.backgroundColor = .white
-        title = R.string.localizable.seeker_item_selection_screen_title()
+        view.backgroundColor = R.color.nexdGreen()
+
+        view.addSubview(titleText)
+        titleText.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(75)
+            make.left.equalToSuperview().offset(35)
+            make.right.equalToSuperview().offset(35)
+        }
 
         submitButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
         submitButton.style(text: R.string.localizable.seeker_submit_button_title())
@@ -83,11 +95,18 @@ class SeekerItemSelectionViewController: UIViewController {
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in
-            make.left.top.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.top.equalTo(titleText.snp.bottom).offset(20)
             make.bottom.equalTo(submitButton.snp.top).offset(8)
         }
 
         collectionView = list
+    }
+
+    override func bind(viewModel: SeekerItemSelectionViewController.ViewModel, disposeBag: DisposeBag) {
+        disposeBag.insert(
+            viewModel.titleText.drive(titleText.rx.attributedText)
+        )
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -93,7 +93,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toCheckList() {
-        let screen = SeekerItemSelectionViewController()
+        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self))
         push(screen: screen)
     }
 
