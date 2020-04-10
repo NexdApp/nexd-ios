@@ -12,12 +12,6 @@ import SnapKit
 import UIKit
 
 class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewController.ViewModel> {
-    enum Style {
-        static let headerHeight: CGFloat = 60
-        static let rowHeight: CGFloat = 40
-        static let buttonHeight: CGFloat = 52
-    }
-
     struct Item {
         let isSelected: Bool
         let itemId: Int64
@@ -30,6 +24,7 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
     class ViewModel {
         private let navigator: ScreenNavigating
+        private let articlesService: ArticlesService
         private let requestService: RequestService
 
         let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
@@ -60,51 +55,57 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             }
         }
 
-//        var items: Driver<[Item]> = []
+        var items: Observable<[Item]> {
+            articlesService.allArticles()
+                .map { articles -> [Item] in
+                    articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) }
+                }
+                .asObservable()
+        }
 
-        init(navigator: ScreenNavigating, requestService: RequestService) {
+        var itemSelected = PublishRelay<IndexPath>()
+
+        init(navigator: ScreenNavigating, articlesService: ArticlesService, requestService: RequestService) {
             self.navigator = navigator
+            self.articlesService = articlesService
             self.requestService = requestService
         }
     }
 
-    private let disposeBag = DisposeBag()
-
     private var titleText = UILabel()
-    private var collectionView: UICollectionView?
-    private var confirmButton = ConfirmButton()
-    private var cancelButton = CancelButton()
-
-    private var dataSource: DataSource<CheckableCell.Item>? {
-        didSet {
-            collectionView?.dataSource = dataSource
-        }
-    }
-
-    private var content: Content? {
-        didSet {
-            dataSource = DataSource(reuseIdentifier: CheckableCell.reuseIdentifier,
-                                    items: content?.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) } ?? []) { item, cell in
-                if let cell = cell as? CheckableCell {
-                    cell.bind(to: item)
-                }
-            }
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+    private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
+//        layout.itemSize = CGSize(width: view.frame.size.width, height: 66)
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.delegate = self
-        list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
-        list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        list.register(ArticleSelectionCell.self, forCellWithReuseIdentifier: ArticleSelectionCell.reuseIdentifier)
+        return list
+    }()
 
+    private var confirmButton = ConfirmButton()
+    private var cancelButton = CancelButton()
+
+//    private var dataSource: DataSource<CheckableCell.Item>? {
+//        didSet {
+//            collectionView?.dataSource = dataSource
+//        }
+//    }
+
+//    private var content: Content? {
+//        didSet {
+//            dataSource = DataSource(reuseIdentifier: CheckableCell.reuseIdentifier,
+//                                    items: content?.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) } ?? []) { item, cell in
+//                if let cell = cell as? CheckableCell {
+//                    cell.bind(to: item)
+//                }
+//            }
+//        }
+//    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = R.color.nexdGreen()
 
         view.addSubview(titleText)
@@ -117,26 +118,22 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
         view.addSubview(cancelButton)
         cancelButton.snp.makeConstraints { make in
             make.left.equalTo(34)
-            make.height.equalTo(Style.buttonHeight)
         }
 
-        confirmButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
         view.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
             make.left.equalTo(34)
-            make.height.equalTo(Style.buttonHeight)
             make.top.equalTo(cancelButton.snp.bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
         }
 
-        view.addSubview(list)
-        list.snp.makeConstraints { make -> Void in
-            make.left.right.equalToSuperview()
+        view.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make -> Void in
+            make.left.equalToSuperview().offset(34)
+            make.right.equalToSuperview().offset(-36)
             make.top.equalTo(titleText.snp.bottom).offset(20)
-            make.bottom.equalTo(cancelButton.snp.top).offset(8)
+            make.bottom.equalTo(cancelButton.snp.top).offset(-32)
         }
-
-        collectionView = list
     }
 
     override func bind(viewModel: SeekerItemSelectionViewController.ViewModel, disposeBag: DisposeBag) {
@@ -144,40 +141,41 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             viewModel.titleText.drive(titleText.rx.attributedText),
             cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps)
         )
-    }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadArticles()
-    }
+//        guard let collectionView = collectionView else { return }
 
-    private func loadArticles() {
-        ArticlesService.shared.allArticles()
-            .subscribe(onSuccess: { [weak self] articles in
-                log.debug("Articles: \(articles)")
-                self?.content = Content(items: articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) })
-            }, onError: { error in
-                log.error("Error occurred: \(error)")
-            })
+        viewModel.items
+            .bind(to: collectionView.rx.items(cellIdentifier: ArticleSelectionCell.reuseIdentifier, cellType: ArticleSelectionCell.self)) { _, item, cell in
+                cell.bind(to: ArticleSelectionCell.Item(title: item.title, amount: "0"))
+            }
             .disposed(by: disposeBag)
+
+        collectionView.rx.itemSelected
+            .bind(to: viewModel.itemSelected)
+            .disposed(by: disposeBag)
+
+        collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
+
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        loadArticles()
+//    }
+
+//    private func loadArticles() {
+//        ArticlesService.shared.allArticles()
+//            .subscribe(onSuccess: { [weak self] articles in
+//                log.debug("Articles: \(articles)")
+//                self?.content = Content(items: articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) })
+//            }, onError: { error in
+//                log.error("Error occurred: \(error)")
+//            })
+//            .disposed(by: disposeBag)
+//    }
 }
 
-extension SeekerItemSelectionViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // nothing yet
+extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        CGSize(width: collectionView.frame.size.width, height: 66)
     }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let content = self.content else { return }
-
-        var items = content.items
-        let item = items[indexPath.row]
-        items[indexPath.row] = Item(isSelected: !item.isSelected, itemId: item.itemId, title: item.title)
-        self.content = Content(items: items)
-    }
-}
-
-extension SeekerItemSelectionViewController {
-    @objc func submitButtonPressed(sender: UIButton!) {}
 }

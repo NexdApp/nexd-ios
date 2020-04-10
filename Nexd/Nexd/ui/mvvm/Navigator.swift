@@ -32,6 +32,7 @@ class Navigator {
     private let userService: UserService
     private let callsService: CallsService
     private let requestService: RequestService
+    private let articlesService: ArticlesService
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
@@ -39,11 +40,12 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService) {
+    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService, articlesService: ArticlesService) {
         self.storage = storage
         self.userService = userService
         self.callsService = callsService
         self.requestService = requestService
+        self.articlesService = articlesService
     }
 }
 
@@ -112,7 +114,9 @@ extension Navigator: ScreenNavigating {
     }
 
     func toCheckList() {
-        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self, requestService: requestService))
+        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
+                                                                                                              articlesService: articlesService,
+                                                                                                              requestService: requestService))
         push(screen: screen)
     }
 

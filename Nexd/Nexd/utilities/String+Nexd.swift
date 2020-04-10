@@ -150,6 +150,22 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
+    func asListItemTitle() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.listItemTitle()!,
+                                      .font: R.font.proximaNovaSoftRegular(size: 20)!
+                                  ])
+    }
+
+    func asAmountText() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.amountText()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 20)!
+                                  ])
+    }
+
     func parseHtml() -> NSAttributedString? {
         return try? NSAttributedString(
             data: data(using: String.Encoding.unicode, allowLossyConversion: true)!,
