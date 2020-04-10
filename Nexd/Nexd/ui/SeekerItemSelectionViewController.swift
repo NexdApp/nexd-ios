@@ -29,12 +29,42 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
     }
 
     class ViewModel {
-        let navigator: ScreenNavigating
+        private let navigator: ScreenNavigating
+        private let requestService: RequestService
 
         let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
 
-        init(navigator: ScreenNavigating) {
+        var cancelButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
+        var confirmButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+//                guard let content = content else { return }
+//
+//                let selectedItems = content.items
+//                    .filter { $0.isSelected }
+//                    .map { RequestService.RequestItem(itemId: $0.itemId, articleCount: 1) }
+//                requestService.submitRequest(items: selectedItems).subscribe(onSuccess: { [weak self] request in
+//                    log.debug("Succesful: \(request)")
+//                    viewModel.navigator.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
+//                        viewModel.navigator.goBack()
+//                    }
+//                }, onError: { [weak self] error in
+//                    log.error("Error: \(error)")
+//                    self?.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message())
+//                })
+//                    .disposed(by: disposeBag)
+            }
+        }
+
+//        var items: Driver<[Item]> = []
+
+        init(navigator: ScreenNavigating, requestService: RequestService) {
             self.navigator = navigator
+            self.requestService = requestService
         }
     }
 
@@ -42,7 +72,8 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
     private var titleText = UILabel()
     private var collectionView: UICollectionView?
-    private var submitButton = UIButton()
+    private var confirmButton = ConfirmButton()
+    private var cancelButton = CancelButton()
 
     private var dataSource: DataSource<CheckableCell.Item>? {
         didSet {
@@ -83,21 +114,26 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             make.right.equalToSuperview().offset(35)
         }
 
-        submitButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
-        submitButton.style(text: R.string.localizable.seeker_submit_button_title())
-        view.addSubview(submitButton)
-        submitButton.snp.makeConstraints { make in
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
+        view.addSubview(cancelButton)
+        cancelButton.snp.makeConstraints { make in
+            make.left.equalTo(34)
             make.height.equalTo(Style.buttonHeight)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+        }
+
+        confirmButton.addTarget(self, action: #selector(submitButtonPressed(sender:)), for: .touchUpInside)
+        view.addSubview(confirmButton)
+        confirmButton.snp.makeConstraints { make in
+            make.left.equalTo(34)
+            make.height.equalTo(Style.buttonHeight)
+            make.top.equalTo(cancelButton.snp.bottom).offset(10)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
         }
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in
             make.left.right.equalToSuperview()
             make.top.equalTo(titleText.snp.bottom).offset(20)
-            make.bottom.equalTo(submitButton.snp.top).offset(8)
+            make.bottom.equalTo(cancelButton.snp.top).offset(8)
         }
 
         collectionView = list
@@ -105,7 +141,8 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
     override func bind(viewModel: SeekerItemSelectionViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            viewModel.titleText.drive(titleText.rx.attributedText)
+            viewModel.titleText.drive(titleText.rx.attributedText),
+            cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps)
         )
     }
 
@@ -142,19 +179,5 @@ extension SeekerItemSelectionViewController: UICollectionViewDelegate {
 }
 
 extension SeekerItemSelectionViewController {
-    @objc func submitButtonPressed(sender: UIButton!) {
-        guard let content = content else { return }
-
-        let selectedItems = content.items.filter { $0.isSelected }.map { RequestService.RequestItem(itemId: $0.itemId, articleCount: 1) }
-        RequestService.shared.submitRequest(items: selectedItems).subscribe(onSuccess: { [weak self] request in
-            log.debug("Succesful: \(request)")
-            self?.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
-                self?.navigationController?.popViewController(animated: true)
-            }
-        }, onError: { [weak self] error in
-            log.error("Error: \(error)")
-            self?.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message())
-        })
-            .disposed(by: disposeBag)
-    }
+    @objc func submitButtonPressed(sender: UIButton!) {}
 }

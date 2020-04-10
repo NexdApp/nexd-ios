@@ -12,6 +12,8 @@ import UIKit
 protocol ScreenNavigating {
     var root: UIViewController { get }
     func goBack()
+    func showSuccess(title: String, message: String, handler: (() -> Void)?)
+    func showError(title: String, message: String, handler: (() -> Void)?)
 
     func toStartAuthenticationFlow()
     func toLoginScreen()
@@ -29,6 +31,7 @@ class Navigator {
     private let storage: Storage
     private let userService: UserService
     private let callsService: CallsService
+    private let requestService: RequestService
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
@@ -36,10 +39,11 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService, callsService: CallsService) {
+    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService) {
         self.storage = storage
         self.userService = userService
         self.callsService = callsService
+        self.requestService = requestService
     }
 }
 
@@ -50,6 +54,14 @@ extension Navigator: ScreenNavigating {
 
     func goBack() {
         navigationController.popViewController(animated: true)
+    }
+
+    func showSuccess(title: String, message: String, handler: (() -> Void)?) {
+        navigationController.showSuccess(title: title, message: title, handler: handler)
+    }
+
+    func showError(title: String, message: String, handler: (() -> Void)?) {
+        navigationController.showError(title: title, message: title, handler: handler)
     }
 
     func toStartAuthenticationFlow() {
@@ -100,7 +112,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toCheckList() {
-        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self))
+        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self, requestService: requestService))
         push(screen: screen)
     }
 

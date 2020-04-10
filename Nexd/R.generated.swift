@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 11 colors.
+  /// This `R.color` struct is generated, and contains static references to 12 colors.
   struct color {
     /// Color `darkButtonBorder`.
     static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
@@ -126,6 +126,8 @@ struct R: Rswift.Validatable {
     static let negativeButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "negativeButtonText")
     /// Color `nexdGreen`.
     static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
+    /// Color `positiveButtonText`.
+    static let positiveButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "positiveButtonText")
     /// Color `profileImageBackground`.
     static let profileImageBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileImageBackground")
     /// Color `textfieldStroke`.
@@ -209,6 +211,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func nexdGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.nexdGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "positiveButtonText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func positiveButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.positiveButtonText, compatibleWith: traitCollection)
     }
     #endif
 
@@ -328,7 +339,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 22 images.
   struct image {
     /// Image `Chevron`.
     static let chevron = Rswift.ImageResource(bundle: R.hostingBundle, name: "Chevron")
@@ -354,6 +365,8 @@ struct R: Rswift.Validatable {
     static let baseline_voicemail_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_voicemail_black_48pt")
     /// Image `baseline_warning_black_18pt`.
     static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
+    /// Image `cancel_icon`.
+    static let cancel_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "cancel_icon")
     /// Image `chevron_left`.
     static let chevron_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "chevron_left")
     /// Image `gradient`.
@@ -454,6 +467,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "baseline_warning_black_18pt", bundle: ..., traitCollection: ...)`
     static func baseline_warning_black_18pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.baseline_warning_black_18pt, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "cancel_icon", bundle: ..., traitCollection: ...)`
+    static func cancel_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cancel_icon, compatibleWith: traitCollection)
     }
     #endif
 
