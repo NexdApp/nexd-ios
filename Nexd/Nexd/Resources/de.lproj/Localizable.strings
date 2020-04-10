@@ -88,6 +88,30 @@
 "registration_term_privacy_policy" = "Datenschutzbestimmungen";
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "seeker_overview_screen_title" = "Your requests:";
-"helper_request_finished_screen_title" = "";
+"helper_request_finished_screen_title" = "Vorherige Anfragen:";
 "helper_request_overview_item_type_recording" = "Sprachnachricht";
 "helper_request_overview_item_type_list" = "Liste";
+
+/*Title of the user profile screen*/
+"user_profile_screen_title" = "Benutzerprofil";
+
+/*Logout button title*/
+"user_profile_button_title_logout" = "Abmelden";
+"helper_request_transcript_button_done" = "Füge Bestellung zur aktuellen Shoppingliste hinzu";
+"role_screen_title" = "Wilkommen, ";
+"role_screen_subtitle" = "Was möchten Sie heute tun?";
+"helper_type_screen_title" = "Wie würden Sie gerne helfen?";
+"helper_type_button_shopping" = "Ich möchte shoppen!";
+"helper_type_button_transcript" = "Einen Anruf übersetzen!";
+"helper_call_overview_screen_title" = "Offene Anrufe:";
+"seeker_phone_call_text" = "<![CDATA[Rufen Sie bitte <br><b>%1$s</b><br>um Ihre Einkaufsliste aufzuzeigen.]]>";
+"seeker_type_screen_title" = "Wie würden Sie gerne Ihre Liste erstellen?";
+"seeker_type_button_help_request" = "Artikel auswählen";
+"seeker_type_button_phone_call" = "Einen Anruf tätigen";
+"error_message_unknown" = "Unbekannter Fehler";
+"seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
+"role_screen_title_ios" = "Willkommen, %@";
+"seeker_phone_call_text_ios" = "Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen.";
+"back_button_title" = "Zurück";
+"cancel_button_title" = "Abbrechen";
+"confirm_button_title" = "Bestätigen";

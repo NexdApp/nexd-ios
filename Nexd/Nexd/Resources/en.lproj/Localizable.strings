@@ -91,3 +91,27 @@
 "helper_request_finished_screen_title" = "Completed requests:";
 "helper_request_overview_item_type_recording" = "Recording";
 "helper_request_overview_item_type_list" = "List";
+
+/*Title of the user profile screen*/
+"user_profile_screen_title" = "User profile";
+
+/*Logout button title*/
+"user_profile_button_title_logout" = "Logout";
+"helper_request_transcript_button_done" = "Add order to Current Item List";
+"role_screen_title" = "Welcome, ";
+"role_screen_subtitle" = "What would you like to do today?";
+"helper_type_screen_title" = "How would you like to help?";
+"helper_type_button_shopping" = "I\\'d like to shop!";
+"helper_type_button_transcript" = "Transcript a call!";
+"helper_call_overview_screen_title" = "Open calls:";
+"seeker_phone_call_text" = "<![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>";
+"seeker_type_screen_title" = "How would you like to make your list?";
+"seeker_type_button_help_request" = "Select items";
+"seeker_type_button_phone_call" = "Make a\nphone call";
+"error_message_unknown" = "Unknown error";
+"seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
+"role_screen_title_ios" = "Welcome, %@";
+"seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
+"back_button_title" = "Back";
+"cancel_button_title" = "Cancel";
+"confirm_button_title" = "Confirm";

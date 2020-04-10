@@ -8,14 +8,15 @@ target 'nexd' do
   use_frameworks!
 
   # Pods for Nexd
+  pod 'Cleanse'
   pod 'NexdClient', :path => 'lib/openapi'
-  pod 'SnapKit'
   pod 'R.swift'
-  pod 'XCGLogger'
-  pod 'SwiftLint'
-  pod 'Validator'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SnapKit'
+  pod 'SwiftLint'
+  pod 'Validator'
+  pod 'XCGLogger'
 
   target 'nexdTests' do
     inherit! :search_paths

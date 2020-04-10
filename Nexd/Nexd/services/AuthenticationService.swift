@@ -35,12 +35,12 @@ class AuthenticationService {
     func userDidAuthenticate(accessToken: String) -> Completable {
         Completable.from {
             NexdClientAPI.setup(authorizationToken: accessToken)
-            Storage.shared.authorizationToken = accessToken
+            PersistentStorage.shared.authorizationToken = accessToken
         }
     }
 
     func logout() {
-        Storage.shared.authorizationToken = nil
+        PersistentStorage.shared.authorizationToken = nil
         NexdClientAPI.setup(authorizationToken: nil)
     }
 }
