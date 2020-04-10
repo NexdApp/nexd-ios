@@ -13,6 +13,7 @@ protocol ScreenNavigating {
     var root: UIViewController { get }
     func goBack()
 
+    func toStartAuthenticationFlow()
     func toLoginScreen()
     func toRegistrationScreen()
     func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
@@ -30,7 +31,7 @@ class Navigator {
     private let callsService: CallsService
 
     lazy var navigationController: UINavigationController = {
-        let loginPage = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
         let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
@@ -51,13 +52,19 @@ extension Navigator: ScreenNavigating {
         navigationController.popViewController(animated: true)
     }
 
-    func toLoginScreen() {
-        guard let index = navigationController.viewControllers.firstIndex(where: { $0 is LoginViewController }) else {
-            navigationController.setViewControllers([LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))], animated: true)
+    func toStartAuthenticationFlow() {
+        guard let index = navigationController.viewControllers.firstIndex(where: { $0 is StartAuthenticationFlowViewController }) else {
+            navigationController.setViewControllers([StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))],
+                                                    animated: true)
             return
         }
 
         navigationController.popToViewController(navigationController.viewControllers[index], animated: true)
+    }
+
+    func toLoginScreen() {
+        let screen = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        push(screen: screen)
     }
 
     func toRegistrationScreen() {
@@ -80,7 +87,7 @@ extension Navigator: ScreenNavigating {
         profileScreen.onUserLoggedOut = { [weak self] in
             log.debug("User logged out!")
             self?.navigationController.dismiss(animated: true) { [weak self] in
-                self?.toLoginScreen()
+                self?.toStartAuthenticationFlow()
             }
         }
 

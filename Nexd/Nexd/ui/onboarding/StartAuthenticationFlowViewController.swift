@@ -12,7 +12,15 @@ import SnapKit
 import UIKit
 import Validator
 
-class StartAuthenticationFlowViewController: UIViewController {
+class StartAuthenticationFlowViewController: ViewController<StartAuthenticationFlowViewController.ViewModel> {
+    class ViewModel {
+        fileprivate let navigator: ScreenNavigating
+
+        init(navigator: ScreenNavigating) {
+            self.navigator = navigator
+        }
+    }
+
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
@@ -106,15 +114,19 @@ class StartAuthenticationFlowViewController: UIViewController {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
+
+    override func bind(viewModel: StartAuthenticationFlowViewController.ViewModel, disposeBag: DisposeBag) {
+        
+    }
 }
 
 extension StartAuthenticationFlowViewController {
     @objc func loginButtonPressed(sender: UIButton!) {
-        self.navigationController?.pushViewController(LoginViewController(), animated: true)
+        self.viewModel?.navigator.toLoginScreen()
     }
 
     @objc func registerButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        self.viewModel?.navigator.toRegistrationScreen()
     }
 }
 
