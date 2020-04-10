@@ -115,3 +115,4 @@
 "back_button_title" = "Back";
 "cancel_button_title" = "Cancel";
 "confirm_button_title" = "Confirm";
+"loading_overlay_message" = "Loading...";
