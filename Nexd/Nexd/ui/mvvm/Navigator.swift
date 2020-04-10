@@ -31,7 +31,7 @@ class Navigator {
 
     lazy var navigationController: UINavigationController = {
         let loginPage = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
-        let mainPage = MainPageViewController(viewModel: MainPageViewModel(navigator: self, userService: userService))
+        let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
@@ -71,7 +71,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toMainScreen() {
-        let mainScreen = MainPageViewController(viewModel: MainPageViewModel(navigator: self, userService: userService))
+        let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
         navigationController.setViewControllers([mainScreen], animated: true)
     }
 

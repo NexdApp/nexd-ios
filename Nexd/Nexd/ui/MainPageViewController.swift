@@ -18,49 +18,49 @@ extension User {
     }
 }
 
-class MainPageViewModel {
-    private let navigator: ScreenNavigating
-    private let userService: UserService
+class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
+    class ViewModel {
+        private let navigator: ScreenNavigating
+        private let userService: UserService
 
-    private lazy var profile = userService.findMe().asObservable().share(replay: 1)
+        private lazy var profile = userService.findMe().asObservable().share(replay: 1)
 
-    lazy var profileButtonInitials: Driver<String?> = profile
-        .map { user in user.initials }
-        .asDriver(onErrorJustReturn: nil)
+        lazy var profileButtonInitials: Driver<String?> = profile
+            .map { user in user.initials }
+            .asDriver(onErrorJustReturn: nil)
 
-    lazy var greeting: Driver<NSAttributedString?> = profile
-        .map { user in R.string.localizable.role_screen_title_ios(user.firstName).asGreeting() + "\n" + R.string.localizable.role_screen_subtitle().asGreetingSubline() }
-        .asDriver(onErrorJustReturn: nil)
+        lazy var greeting: Driver<NSAttributedString?> = profile
+            .map { user in R.string.localizable.role_screen_title_ios(user.firstName).asGreeting() + "\n" + R.string.localizable.role_screen_subtitle().asGreetingSubline() }
+            .asDriver(onErrorJustReturn: nil)
 
-    var profileButtonTaps: Binder<Void> {
-        Binder(self) { viewModel, _ in
-            viewModel.navigator.toProfileScreen()
+        var profileButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toProfileScreen()
+            }
+        }
+
+        let seekerButtonTitle = Driver.just(R.string.localizable.role_selection_seeker().asLightButtonText())
+
+        var seekerButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toShoppingListOptions()
+            }
+        }
+
+        let helperButtonTitle = Driver.just(R.string.localizable.role_selection_helper().asLightButtonText())
+
+        var helperButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toHelpOptions()
+            }
+        }
+
+        init(navigator: ScreenNavigating, userService: UserService) {
+            self.navigator = navigator
+            self.userService = userService
         }
     }
 
-    let seekerButtonTitle = Driver.just(R.string.localizable.role_selection_seeker().asLightButtonText())
-
-    var seekerButtonTaps: Binder<Void> {
-        Binder(self) { viewModel, _ in
-            viewModel.navigator.toShoppingListOptions()
-        }
-    }
-
-    let helperButtonTitle = Driver.just(R.string.localizable.role_selection_helper().asLightButtonText())
-
-    var helperButtonTaps: Binder<Void> {
-        Binder(self) { viewModel, _ in
-            viewModel.navigator.toHelpOptions()
-        }
-    }
-
-    init(navigator: ScreenNavigating, userService: UserService) {
-        self.navigator = navigator
-        self.userService = userService
-    }
-}
-
-class MainPageViewController: ViewController<MainPageViewModel> {
     enum Style {
         static let profileImageSize = CGSize(width: 139, height: 139)
         static let padding: CGFloat = 25
@@ -138,7 +138,7 @@ class MainPageViewController: ViewController<MainPageViewModel> {
         }
     }
 
-    override func bind(viewModel: MainPageViewModel, disposeBag: DisposeBag) {
+    override func bind(viewModel: MainPageViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.profileButtonInitials.drive(userProfileButton.rx.title()),
             viewModel.greeting.drive(greetingText.rx.attributedText),
