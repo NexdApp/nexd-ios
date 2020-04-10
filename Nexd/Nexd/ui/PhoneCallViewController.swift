@@ -23,8 +23,7 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
         var text: Driver<NSAttributedString?> {
             phoneNumber.map { number in
                 guard let number = number?.number else { throw PhoneCallError.phoneNumberUnknown }
-                let formatted = R.string.localizable.seeker_phone_call_text_ios(number)
-                return formatted.asLinkedHeading(range: formatted.range(of: number), target: "tel://\(number)")
+                return R.string.localizable.seeker_phone_call_text_ios(number).asHeading()
             }
             .asObservable()
             .startWith(placeholder)
@@ -46,7 +45,7 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
     }
 
     private let content = UIView()
-    private let text = UILabel()
+    private let text = UITextView()
     private let backButton = BackButton.make()
 
     override func viewDidLoad() {
@@ -62,7 +61,11 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
         }
 
         content.addSubview(text)
-        text.numberOfLines = 0
+        text.isScrollEnabled = false
+        text.isEditable = false
+        text.backgroundColor = .clear
+        text.linkTextAttributes = [ .foregroundColor: R.color.darkButtonText()! ]
+        text.dataDetectorTypes = .phoneNumber
         text.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }

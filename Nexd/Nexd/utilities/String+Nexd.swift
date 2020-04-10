@@ -141,24 +141,6 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
-    func asLinkedHeading(range: Range<String.Index>?, target: String) -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 42
-        paragraphStyle.maximumLineHeight = 42
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.headingText()!,
-            .font: R.font.proximaNovaSoftBold(size: 35)!,
-            .paragraphStyle: paragraphStyle
-        ]
-
-        let attributedString = NSMutableAttributedString(string: self, attributes: attributes)
-
-        guard let range = range else { return attributedString }
-        attributedString.addAttribute(.link, value: target, range: NSRange(range, in: self))
-        return attributedString
-    }
-
     func parseHtml() -> NSAttributedString? {
         return try? NSAttributedString(
             data: data(using: String.Encoding.unicode, allowLossyConversion: true)!,
