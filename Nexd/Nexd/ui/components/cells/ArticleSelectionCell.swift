@@ -67,6 +67,10 @@ class ArticleSelectionCell: UICollectionViewCell {
         title.attributedText = item.title.asListItemTitle()
         amount.attributedText = item.amount.asAmountText()
         amountChanged = item.amountChanged
+
+        if let value = Int(item.amount) {
+            pickerView.selectRow(value, inComponent: 0, animated: false)
+        }
     }
 
     static var reuseIdentifier: String {
@@ -130,9 +134,9 @@ class PickerView: UIPickerView {
         toolBar.tintColor = .black
         toolBar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneTapped))
+        let doneButton = UIBarButtonItem(title: R.string.localizable.ok_button_title(), style: .plain, target: self, action: #selector(doneTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
+        let cancelButton = UIBarButtonItem(title: R.string.localizable.cancel_button_title(), style: .plain, target: self, action: #selector(cancelTapped))
 
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true

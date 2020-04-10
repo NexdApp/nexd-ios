@@ -62,7 +62,7 @@ extension Navigator: ScreenNavigating {
         navigationController.showSuccess(title: title, message: title, handler: handler)
     }
 
-    func showError(title: String, message: String, handler: (() -> Void)?) {
+    func showError(title: String, message: String, handler: (() -> Void)? = nil) {
         navigationController.showError(title: title, message: title, handler: handler)
     }
 

@@ -567,7 +567,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 103 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -781,6 +781,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static let ok_button_title = Rswift.StringResource(key: "ok_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Open calls:
       ///
       /// Locales: en, de
@@ -1775,6 +1779,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_button_ok", bundle: bundle, comment: "")
+      }
+
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static func ok_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ok_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ok_button_title"
+        }
+
+        return NSLocalizedString("ok_button_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Open calls:

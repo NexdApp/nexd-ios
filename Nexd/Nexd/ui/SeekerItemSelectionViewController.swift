@@ -35,24 +35,30 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             }
         }
 
-        var confirmButtonTaps: Binder<Void> {
-            Binder(self) { viewModel, _ in
-//                guard let content = content else { return }
-//
-//                let selectedItems = content.items
-//                    .filter { $0.isSelected }
-//                    .map { RequestService.RequestItem(itemId: $0.itemId, articleCount: 1) }
-//                requestService.submitRequest(items: selectedItems).subscribe(onSuccess: { [weak self] request in
-//                    log.debug("Succesful: \(request)")
-//                    viewModel.navigator.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
-//                        viewModel.navigator.goBack()
-//                    }
-//                }, onError: { [weak self] error in
-//                    log.error("Error: \(error)")
-//                    self?.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message())
-//                })
-//                    .disposed(by: disposeBag)
-            }
+        var confirmButtonTaps: Completable {
+            let requestService = self.requestService
+            return userUpdates
+                .take(1)
+                .asSingle()
+                .flatMapCompletable { items -> Completable in
+                    guard let items = items else { return Completable.empty() }
+
+                    let requestItems = items
+                        .filter { $0.amount > 0 }
+                        .map { item in RequestService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
+
+                    return requestService.submitRequest(items: requestItems)
+                        .asCompletable()
+                }
+                .do(onError: { [weak self] error in
+                    log.error("Error: \(error)")
+                    self?.navigator.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message(), handler: nil)
+                }, onCompleted: { [weak self] in
+                    log.debug("Succesful:")
+                    self?.navigator.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
+                        self?.navigator.goBack()
+                    }
+                })
         }
 
         private let userUpdates = BehaviorRelay<[Item]?>(value: nil)
@@ -138,7 +144,10 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
     override func bind(viewModel: SeekerItemSelectionViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.titleText.drive(titleText.rx.attributedText),
-            cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps)
+            cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps),
+            confirmButton.rx.controlEvent(.touchUpInside)
+                .flatMap { _ -> Completable in viewModel.confirmButtonTaps }
+                .subscribe()
         )
 
         viewModel.items
