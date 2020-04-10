@@ -6,10 +6,17 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
 import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
+
+extension User {
+    var initials: String {
+        "\(firstName.first?.description ?? "")\(lastName.first?.description ?? "")"
+    }
+}
 
 class MainPageViewModel {
     private let navigator: ScreenNavigating
@@ -18,11 +25,11 @@ class MainPageViewModel {
     private lazy var profile = userService.findMe().asObservable().share(replay: 1)
 
     lazy var profileButtonInitials: Driver<String?> = profile
-        .map { user in "\(user.firstName.first?.description ?? "")\(user.lastName.first?.description ?? "")" }
+        .map { user in user.initials }
         .asDriver(onErrorJustReturn: nil)
 
     lazy var greeting: Driver<NSAttributedString?> = profile
-        .map { user in "Welcome, \(user.firstName).".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline() }
+        .map { user in R.string.localizable.role_screen_title_ios(user.firstName).asGreeting() + "\n" + R.string.localizable.role_screen_subtitle().asGreetingSubline() }
         .asDriver(onErrorJustReturn: nil)
 
     var profileButtonTaps: Binder<Void> {
@@ -31,11 +38,15 @@ class MainPageViewModel {
         }
     }
 
+    let seekerButtonTitle = Driver.just(R.string.localizable.role_selection_seeker().asMainScreenButtonText())
+
     var seekerButtonTaps: Binder<Void> {
         Binder(self) { viewModel, _ in
             viewModel.navigator.toShoppingListOptions()
         }
     }
+
+    let helperButtonTitle = Driver.just(R.string.localizable.role_selection_helper().asMainScreenButtonText())
 
     var helperButtonTaps: Binder<Void> {
         Binder(self) { viewModel, _ in
@@ -65,8 +76,8 @@ class MainPageViewController: ViewController<MainPageViewModel> {
     private let userProfileButton = UIButton()
     private let greetingText = UILabel()
 
-    private let seekerButton = MenuButton.make(title: "Make a shopping list!")
-    private let helperButton = MenuButton.make(title: "I can help!")
+    private let seekerButton = MenuButton.make()
+    private let helperButton = MenuButton.make()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +142,9 @@ class MainPageViewController: ViewController<MainPageViewModel> {
         disposeBag.insert(
             viewModel.profileButtonInitials.drive(userProfileButton.rx.title()),
             viewModel.greeting.drive(greetingText.rx.attributedText),
+            viewModel.helperButtonTitle.drive(helperButton.rx.attributedTitle(for: .normal)),
+            viewModel.seekerButtonTitle.drive(seekerButton.rx.attributedTitle(for: .normal)),
+
             userProfileButton.rx.tap.bind(to: viewModel.profileButtonTaps),
             seekerButton.rx.tap.bind(to: viewModel.seekerButtonTaps),
             helperButton.rx.tap.bind(to: viewModel.helperButtonTaps)

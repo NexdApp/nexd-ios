@@ -472,12 +472,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 83 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 97 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
       /// Locales: en, de
       static let helper_request_overview_unknown_requester = Rswift.StringResource(key: "helper_request_overview_unknown_requester", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: <![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>
+      ///
+      /// Locales: en, de
+      static let seeker_phone_call_text = Rswift.StringResource(key: "seeker_phone_call_text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Abort
       ///
       /// Locales: en, de
@@ -486,6 +490,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_accepted_section = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Add order to Current Item List
+      ///
+      /// Locales: en, de
+      static let helper_request_transcript_button_done = Rswift.StringResource(key: "helper_request_transcript_button_done", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Additional information
       ///
       /// Locales: en, de
@@ -590,6 +598,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholder_firstName = Rswift.StringResource(key: "registration_placeholder_firstName", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: How would you like to help?
+      ///
+      /// Locales: en, de
+      static let helper_type_screen_title = Rswift.StringResource(key: "helper_type_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: How would you like to make your list?
+      ///
+      /// Locales: en, de
+      static let seeker_type_screen_title = Rswift.StringResource(key: "seeker_type_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: I can help
       ///
       /// Locales: en, de
@@ -602,6 +618,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_request_create_heading = Rswift.StringResource(key: "seeker_request_create_heading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: I\'d like to shop!
+      ///
+      /// Locales: en, de
+      static let helper_type_button_shopping = Rswift.StringResource(key: "helper_type_button_shopping", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Input further information
       ///
       /// Locales: en, de
@@ -638,6 +658,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_profile_button_title_logout = Rswift.StringResource(key: "user_profile_button_title_logout", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Make a phone call
+      ///
+      /// Locales: en, de
+      static let seeker_type_button_phone_call = Rswift.StringResource(key: "seeker_type_button_phone_call", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: No.
       ///
       /// Locales: en, de
@@ -646,6 +670,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Open calls:
+      ///
+      /// Locales: en, de
+      static let helper_call_overview_screen_title = Rswift.StringResource(key: "helper_call_overview_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Overview
       ///
       /// Locales: en, de
@@ -710,6 +738,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let role_selection_screen_title = Rswift.StringResource(key: "role_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Select items
+      ///
+      /// Locales: en, de
+      static let seeker_type_button_help_request = Rswift.StringResource(key: "seeker_type_button_help_request", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Send
       ///
       /// Locales: en, de
@@ -758,6 +790,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_button_summary_details = Rswift.StringResource(key: "helper_request_overview_button_summary_details", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Transcript a call!
+      ///
+      /// Locales: en, de
+      static let helper_type_button_transcript = Rswift.StringResource(key: "helper_type_button_transcript", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Unknown error
+      ///
+      /// Locales: en, de
+      static let error_message_unknown = Rswift.StringResource(key: "error_message_unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: User profile
       ///
       /// Locales: en, de
@@ -774,10 +814,26 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let login_placeholder_username = Rswift.StringResource(key: "login_placeholder_username", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Welcome, 
+      ///
+      /// Locales: en, de
+      static let role_screen_title = Rswift.StringResource(key: "role_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Welcome, %@
+      ///
+      /// Locales: en, de
+      static let role_screen_title_ios = Rswift.StringResource(key: "role_screen_title_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: What would you like to do today?
+      ///
+      /// Locales: en, de
+      static let role_screen_subtitle = Rswift.StringResource(key: "role_screen_subtitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Will do!
       ///
       /// Locales: en, de
       static let helper_request_detail_button_accept = Rswift.StringResource(key: "helper_request_detail_button_accept", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: You haven't sent any requests yet. Please click below right to create your first request.
+      ///
+      /// Locales: en, de
+      static let seeker_overview_empty_label = Rswift.StringResource(key: "seeker_overview_empty_label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Your request
       ///
       /// Locales: en, de
@@ -822,6 +878,23 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_unknown_requester", bundle: bundle, comment: "")
       }
 
+      /// en translation: <![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>
+      ///
+      /// Locales: en, de
+      static func seeker_phone_call_text(_ value1: UnsafePointer<unichar>, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("seeker_phone_call_text", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_phone_call_text"
+        }
+
+        let format = NSLocalizedString("seeker_phone_call_text", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: Abort
       ///
       /// Locales: en, de
@@ -850,6 +923,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helper_request_overview_heading_accepted_section", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Add order to Current Item List
+      ///
+      /// Locales: en, de
+      static func helper_request_transcript_button_done(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_transcript_button_done", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_transcript_button_done"
+        }
+
+        return NSLocalizedString("helper_request_transcript_button_done", bundle: bundle, comment: "")
       }
 
       /// en translation: Additional information
@@ -1244,6 +1332,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholder_firstName", bundle: bundle, comment: "")
       }
 
+      /// en translation: How would you like to help?
+      ///
+      /// Locales: en, de
+      static func helper_type_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_type_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_type_screen_title"
+        }
+
+        return NSLocalizedString("helper_type_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: How would you like to make your list?
+      ///
+      /// Locales: en, de
+      static func seeker_type_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_type_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_type_screen_title"
+        }
+
+        return NSLocalizedString("seeker_type_screen_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: I can help
       ///
       /// Locales: en, de
@@ -1287,6 +1405,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_request_create_heading", bundle: bundle, comment: "")
+      }
+
+      /// en translation: I\'d like to shop!
+      ///
+      /// Locales: en, de
+      static func helper_type_button_shopping(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_type_button_shopping", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_type_button_shopping"
+        }
+
+        return NSLocalizedString("helper_type_button_shopping", bundle: bundle, comment: "")
       }
 
       /// en translation: Input further information
@@ -1424,6 +1557,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("user_profile_button_title_logout", bundle: bundle, comment: "")
       }
 
+      /// en translation: Make a phone call
+      ///
+      /// Locales: en, de
+      static func seeker_type_button_phone_call(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_type_button_phone_call", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_type_button_phone_call"
+        }
+
+        return NSLocalizedString("seeker_type_button_phone_call", bundle: bundle, comment: "")
+      }
+
       /// en translation: No.
       ///
       /// Locales: en, de
@@ -1452,6 +1600,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_button_ok", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Open calls:
+      ///
+      /// Locales: en, de
+      static func helper_call_overview_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_call_overview_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_call_overview_screen_title"
+        }
+
+        return NSLocalizedString("helper_call_overview_screen_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Overview
@@ -1694,6 +1857,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("role_selection_screen_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Select items
+      ///
+      /// Locales: en, de
+      static func seeker_type_button_help_request(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_type_button_help_request", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_type_button_help_request"
+        }
+
+        return NSLocalizedString("seeker_type_button_help_request", bundle: bundle, comment: "")
+      }
+
       /// en translation: Send
       ///
       /// Locales: en, de
@@ -1874,6 +2052,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_button_summary_details", bundle: bundle, comment: "")
       }
 
+      /// en translation: Transcript a call!
+      ///
+      /// Locales: en, de
+      static func helper_type_button_transcript(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_type_button_transcript", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_type_button_transcript"
+        }
+
+        return NSLocalizedString("helper_type_button_transcript", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Unknown error
+      ///
+      /// Locales: en, de
+      static func error_message_unknown(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_unknown", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_unknown"
+        }
+
+        return NSLocalizedString("error_message_unknown", bundle: bundle, comment: "")
+      }
+
       /// en translation: User profile
       ///
       /// Locales: en, de
@@ -1934,6 +2142,53 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("login_placeholder_username", bundle: bundle, comment: "")
       }
 
+      /// en translation: Welcome, 
+      ///
+      /// Locales: en, de
+      static func role_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("role_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_screen_title"
+        }
+
+        return NSLocalizedString("role_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Welcome, %@
+      ///
+      /// Locales: en, de
+      static func role_screen_title_ios(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("role_screen_title_ios", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_screen_title_ios"
+        }
+
+        let format = NSLocalizedString("role_screen_title_ios", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: What would you like to do today?
+      ///
+      /// Locales: en, de
+      static func role_screen_subtitle(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("role_screen_subtitle", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "role_screen_subtitle"
+        }
+
+        return NSLocalizedString("role_screen_subtitle", bundle: bundle, comment: "")
+      }
+
       /// en translation: Will do!
       ///
       /// Locales: en, de
@@ -1947,6 +2202,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helper_request_detail_button_accept", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You haven't sent any requests yet. Please click below right to create your first request.
+      ///
+      /// Locales: en, de
+      static func seeker_overview_empty_label(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_overview_empty_label", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_overview_empty_label"
+        }
+
+        return NSLocalizedString("seeker_overview_empty_label", bundle: bundle, comment: "")
       }
 
       /// en translation: Your request

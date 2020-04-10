@@ -56,15 +56,13 @@ class MenuButton: UIButton {
                       height: image.size.height)
     }
 
-    static func make(title: String) -> MenuButton {
+    static func make() -> MenuButton {
         let button = MenuButton()
 
         button.backgroundColor = .clear
         button.addBorder(color: R.color.nexdGreen())
 
         button.titleLabel?.numberOfLines = 2
-
-        button.setAttributedTitle(title.asMainScreenButtonText(), for: .normal)
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 

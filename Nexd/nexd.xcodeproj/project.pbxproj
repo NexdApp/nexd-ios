@@ -38,6 +38,7 @@
 		AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95B243F9A050082316F /* CoreAppModule.swift */; };
 		AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95D243F9A210082316F /* ServicesModule.swift */; };
 		AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95F243F9A440082316F /* RootWindowModule.swift */; };
+		AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -121,6 +122,7 @@
 		AED2A95B243F9A050082316F /* CoreAppModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAppModule.swift; sourceTree = "<group>"; };
 		AED2A95D243F9A210082316F /* ServicesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesModule.swift; sourceTree = "<group>"; };
 		AED2A95F243F9A440082316F /* RootWindowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowModule.swift; sourceTree = "<group>"; };
+		AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttribuedString+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 				AED8818A24351174006065D2 /* String+Nexd.swift */,
 				AED8818C24351E85006065D2 /* KeyboardDismisser.swift */,
 				AE52A2772437D30800A1166F /* Completable+From.swift */,
+				AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -606,6 +609,7 @@
 				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
+				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
