@@ -87,6 +87,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
+            make.bottom.equalToSuperview()
         }
     }
 
