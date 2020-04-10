@@ -13,9 +13,9 @@ import UIKit
 
 class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewController.ViewModel> {
     struct Item {
-        let isSelected: Bool
         let itemId: Int64
         let title: String
+        let amount: Int64
     }
 
     struct Content {
@@ -55,15 +55,32 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             }
         }
 
+        private let userUpdates = BehaviorRelay<[Item]?>(value: nil)
         var items: Observable<[Item]> {
-            articlesService.allArticles()
+            let relay = userUpdates
+            let initialLoad = articlesService.allArticles()
                 .map { articles -> [Item] in
-                    articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) }
+                    articles.map { Item(itemId: $0.id, title: $0.name, amount: 0) }
                 }
-                .asObservable()
+                .flatMapCompletable { items -> Completable in Completable.from { relay.accept(items) } }
+
+            return Observable.merge(initialLoad.asObservable().ofType(), userUpdates.compactMap { $0 }.asObservable())
         }
 
         var itemSelected = PublishRelay<IndexPath>()
+
+        func itemDidChangeAmount(_ item: Item, amount: Int64) {
+            log.debug("itemDidChangeAmount - item: \(item) - amount: \(amount)")
+            guard let items = userUpdates.value else { return }
+
+            let updatedItems = items
+                .map { element -> Item in
+                    guard element.itemId == item.itemId else { return element }
+                    return Item(itemId: element.itemId, title: element.title, amount: amount)
+                }
+
+            userUpdates.accept(updatedItems)
+        }
 
         init(navigator: ScreenNavigating, articlesService: ArticlesService, requestService: RequestService) {
             self.navigator = navigator
@@ -76,7 +93,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-//        layout.itemSize = CGSize(width: view.frame.size.width, height: 66)
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
@@ -86,23 +102,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
     private var confirmButton = ConfirmButton()
     private var cancelButton = CancelButton()
-
-//    private var dataSource: DataSource<CheckableCell.Item>? {
-//        didSet {
-//            collectionView?.dataSource = dataSource
-//        }
-//    }
-
-//    private var content: Content? {
-//        didSet {
-//            dataSource = DataSource(reuseIdentifier: CheckableCell.reuseIdentifier,
-//                                    items: content?.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) } ?? []) { item, cell in
-//                if let cell = cell as? CheckableCell {
-//                    cell.bind(to: item)
-//                }
-//            }
-//        }
-//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,11 +141,14 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps)
         )
 
-//        guard let collectionView = collectionView else { return }
-
         viewModel.items
-            .bind(to: collectionView.rx.items(cellIdentifier: ArticleSelectionCell.reuseIdentifier, cellType: ArticleSelectionCell.self)) { _, item, cell in
-                cell.bind(to: ArticleSelectionCell.Item(title: item.title, amount: "0"))
+            .bind(to: collectionView.rx.items(cellIdentifier: ArticleSelectionCell.reuseIdentifier,
+                                              cellType: ArticleSelectionCell.self)) { [weak self] _, item, cell in
+                cell.bind(to: ArticleSelectionCell.Item(title: item.title,
+                                                        amount: String(item.amount),
+                                                        amountChanged: { amount in
+                                                            self?.viewModel?.itemDidChangeAmount(item, amount: Int64(amount))
+                }))
             }
             .disposed(by: disposeBag)
 
@@ -156,26 +158,37 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
     }
-
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        loadArticles()
-//    }
-
-//    private func loadArticles() {
-//        ArticlesService.shared.allArticles()
-//            .subscribe(onSuccess: { [weak self] articles in
-//                log.debug("Articles: \(articles)")
-//                self?.content = Content(items: articles.map { Item(isSelected: false, itemId: $0.id, title: $0.name) })
-//            }, onError: { error in
-//                log.error("Error occurred: \(error)")
-//            })
-//            .disposed(by: disposeBag)
-//    }
 }
 
 extension SeekerItemSelectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         CGSize(width: collectionView.frame.size.width, height: 66)
+    }
+}
+
+extension ObservableConvertibleType {
+    func ofType<R>() -> RxSwift.Observable<R> {
+        return of(type: R.self)
+    }
+
+    func of<R>(type: R.Type) -> RxSwift.Observable<R> {
+        return Observable.create { observer in
+            let subscription = self.asObservable().subscribe { event in
+                switch event {
+                case let .next(value):
+                    if let typeValue = value as? R {
+                        observer.on(.next(typeValue))
+                    }
+
+                case let .error(error):
+                    observer.on(.error(error))
+
+                case .completed:
+                    observer.on(.completed)
+                }
+            }
+
+            return subscription
+        }
     }
 }
