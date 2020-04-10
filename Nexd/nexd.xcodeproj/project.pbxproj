@@ -39,6 +39,7 @@
 		AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95D243F9A210082316F /* ServicesModule.swift */; };
 		AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95F243F9A440082316F /* RootWindowModule.swift */; };
 		AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */; };
+		AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -123,6 +124,7 @@
 		AED2A95D243F9A210082316F /* ServicesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesModule.swift; sourceTree = "<group>"; };
 		AED2A95F243F9A440082316F /* RootWindowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowModule.swift; sourceTree = "<group>"; };
 		AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttribuedString+Nexd.swift"; sourceTree = "<group>"; };
+		AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListOptionViewController.swift; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
 				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
+				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
@@ -611,6 +614,7 @@
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
 				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
+				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,

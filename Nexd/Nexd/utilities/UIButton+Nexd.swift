@@ -41,6 +41,32 @@ extension UIButton {
 }
 
 class MenuButton: UIButton {
+    enum Style {
+        case light
+        case dark
+
+        var borderColor: UIColor? {
+            switch self {
+            case .light:
+                return R.color.nexdGreen()
+
+            case .dark:
+                return R.color.darkButtonBorder()
+            }
+        }
+
+        var textColor: UIColor? {
+            switch self {
+            case .light:
+                return R.color.nexdGreen()
+
+            case .dark:
+                return R.color.darkButtonText()
+            }
+        }
+
+    }
+
     private var image: UIImage? {
         didSet {
             setImage(image, for: .normal)
@@ -56,17 +82,17 @@ class MenuButton: UIButton {
                       height: image.size.height)
     }
 
-    static func make() -> MenuButton {
+    static func make(style: Style) -> MenuButton {
         let button = MenuButton()
 
         button.backgroundColor = .clear
-        button.addBorder(color: R.color.nexdGreen())
+        button.addBorder(color: style.borderColor)
 
         button.titleLabel?.numberOfLines = 2
         button.contentHorizontalAlignment = .left
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-        button.image = R.image.chevron()?.withTintColor(R.color.nexdGreen()!)
+        button.image = R.image.chevron()?.withTintColor(style.borderColor!)
 
         return button
     }

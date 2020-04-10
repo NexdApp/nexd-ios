@@ -156,7 +156,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
     }
 
     override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
-        // TODO
+
     }
 }
 

@@ -17,6 +17,7 @@ protocol ScreenNavigating {
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
+    func toCheckList()
     func toHelpOptions()
 }
 
@@ -78,6 +79,11 @@ extension Navigator: ScreenNavigating {
     }
 
     func toShoppingListOptions() {
+        let screen = ShoppingListOptionViewController(viewModel: ShoppingListOptionViewController.ViewModel(navigator: self))
+        navigationController.setViewControllers([screen], animated: true)
+    }
+
+    func toCheckList() {
         let screen = SeekerItemSelectionViewController()
         navigationController.setViewControllers([screen], animated: true)
     }

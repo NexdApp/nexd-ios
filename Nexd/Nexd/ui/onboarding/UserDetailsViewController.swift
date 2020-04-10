@@ -104,7 +104,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
     }
 
     override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) {
-        // TODO
+        
     }
 }
 

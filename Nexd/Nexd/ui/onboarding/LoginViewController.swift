@@ -113,7 +113,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
     }
 
     override func bind(viewModel: LoginViewController.ViewModel, disposeBag: DisposeBag) {
-        // TODO
+
     }
 }
 

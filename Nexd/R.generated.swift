@@ -106,8 +106,12 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 7 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
+    /// Color `darkButtonBorder`.
+    static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
+    /// Color `darkButtonText`.
+    static let darkButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonText")
     /// Color `defaultBackground`.
     static let defaultBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "defaultBackground")
     /// Color `gradientEnd`.
@@ -116,12 +120,32 @@ struct R: Rswift.Validatable {
     static let gradientStart = Rswift.ColorResource(bundle: R.hostingBundle, name: "gradientStart")
     /// Color `greetingSubline`.
     static let greetingSubline = Rswift.ColorResource(bundle: R.hostingBundle, name: "greetingSubline")
+    /// Color `headingText`.
+    static let headingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "headingText")
     /// Color `nexdGreen`.
     static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
     /// Color `profileImageBackground`.
     static let profileImageBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileImageBackground")
     /// Color `textfieldStroke`.
     static let textfieldStroke = Rswift.ColorResource(bundle: R.hostingBundle, name: "textfieldStroke")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkButtonBorder", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkButtonBorder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkButtonBorder, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkButtonText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkButtonText, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "defaultBackground", bundle: ..., traitCollection: ...)`
@@ -156,6 +180,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func greetingSubline(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.greetingSubline, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "headingText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func headingText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.headingText, compatibleWith: traitCollection)
     }
     #endif
 

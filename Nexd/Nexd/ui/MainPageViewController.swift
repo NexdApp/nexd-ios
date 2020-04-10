@@ -38,7 +38,7 @@ class MainPageViewModel {
         }
     }
 
-    let seekerButtonTitle = Driver.just(R.string.localizable.role_selection_seeker().asMainScreenButtonText())
+    let seekerButtonTitle = Driver.just(R.string.localizable.role_selection_seeker().asLightButtonText())
 
     var seekerButtonTaps: Binder<Void> {
         Binder(self) { viewModel, _ in
@@ -46,7 +46,7 @@ class MainPageViewModel {
         }
     }
 
-    let helperButtonTitle = Driver.just(R.string.localizable.role_selection_helper().asMainScreenButtonText())
+    let helperButtonTitle = Driver.just(R.string.localizable.role_selection_helper().asLightButtonText())
 
     var helperButtonTaps: Binder<Void> {
         Binder(self) { viewModel, _ in
@@ -76,8 +76,8 @@ class MainPageViewController: ViewController<MainPageViewModel> {
     private let userProfileButton = UIButton()
     private let greetingText = UILabel()
 
-    private let seekerButton = MenuButton.make()
-    private let helperButton = MenuButton.make()
+    private let seekerButton = MenuButton.make(style: .light)
+    private let helperButton = MenuButton.make(style: .light)
 
     override func viewDidLoad() {
         super.viewDidLoad()
