@@ -70,6 +70,7 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
         static let buttonHeight: CGFloat = 132
     }
 
+    private let bottomBackground = UIView()
     private let headerBackground = UIView()
     private let mainContent = UIView()
     private let scrollView = UIScrollView()
@@ -84,6 +85,13 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
 
         view.backgroundColor = R.color.nexdGreen()
         navigationController?.navigationBar.isHidden = true
+
+        bottomBackground.backgroundColor = .white
+        view.addSubview(bottomBackground)
+        bottomBackground.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
+            make.height.equalToSuperview().dividedBy(2)
+        }
 
         view.addSubview(scrollView)
         scrollView.backgroundColor = .clear
