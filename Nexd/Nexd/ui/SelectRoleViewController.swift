@@ -103,7 +103,7 @@ extension SelectRoleViewController {
         profileScreen.onUserLoggedOut = { [weak self] in
             log.debug("User logged out!")
             self?.dismiss(animated: true) { [weak self] in
-                self?.navigationController?.setViewControllers([LoginViewController()], animated: true)
+                self?.navigationController?.setViewControllers([StartAuthenticationFlowViewController()], animated: true)
             }
         }
         present(profileScreen, animated: true, completion: nil)

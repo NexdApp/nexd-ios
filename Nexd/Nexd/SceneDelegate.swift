@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 
-        let rootVC = Storage.shared.authorizationToken == nil ? LoginViewController() : SelectRoleViewController()
+        let rootVC = Storage.shared.authorizationToken == nil ? StartAuthenticationFlowViewController() : SelectRoleViewController()
         let navigationVC = UINavigationController(rootViewController: rootVC)
         window?.rootViewController = navigationVC
         window?.makeKeyAndVisible()

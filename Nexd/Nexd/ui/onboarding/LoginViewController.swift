@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  Nexd
+//  LoginViewController.swift
+//  nexd
 //
-//  Created by Tobias Schröpf on 21.03.20.
+//  Created by Julian Manke on 09.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
@@ -32,7 +32,6 @@ class LoginViewController: UIViewController {
                                                          delegate: self,
                                                          validationRules: .password())
     private lazy var loginButton = UIButton()
-    private lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +57,14 @@ class LoginViewController: UIViewController {
         logo.snp.makeConstraints { make -> Void in
             make.size.equalTo(Style.logoSize)
             make.centerX.equalToSuperview()
-            make.topMargin.equalTo(Style.verticalPadding)
+            make.topMargin.equalTo(68)
         }
 
         contentView.addSubview(email)
         email.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(logo.snp.bottom).offset(Style.verticalPadding)
+            make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
         contentView.addSubview(password)
@@ -83,17 +82,6 @@ class LoginViewController: UIViewController {
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(registerButton)
-        registerButton.style(text: R.string.localizable.login_button_title_register())
-        registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
-        registerButton.snp.makeConstraints { make in
-            make.height.equalTo(Style.buttonHeight)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(loginButton.snp_bottom).offset(Style.verticalPadding)
-            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
     }
 

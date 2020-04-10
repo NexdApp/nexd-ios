@@ -45,8 +45,6 @@ class RegistrationViewController: UIViewController {
 
     lazy var registerButton = UIButton()
 
-//    lazy var privacyPolicy = UITextView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismisser = KeyboardDismisser(rootView: view)
@@ -119,26 +117,6 @@ class RegistrationViewController: UIViewController {
             make.top.equalTo(confirmPassword.snp.bottom).offset(50)
             make.bottom.equalToSuperview().offset(-20)
         }
-        
-//        static let verticalPaddingLogoToTop = 68
-//        static let verticalPaddingLogoAndTextFields = 134
-        
-        
-//        contentView.addSubview(privacyPolicy)
-//        privacyPolicy.backgroundColor = .clear
-//        privacyPolicy.isScrollEnabled = false
-//        privacyPolicy.textContainerInset = .zero
-
-//        let term = R.string.localizable.registration_term_privacy_policy()
-//        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-//        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
-//        privacyPolicy.snp.makeConstraints { make -> Void in
-//            make.height.equalTo(54)
-//            make.leftMargin.equalTo(8)
-//            make.rightMargin.equalTo(-8)
-//            make.top.equalTo(registerButton.snp.bottom).offset(8)
-//            make.bottomMargin.equalTo(Style.buttonHeight)
-//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

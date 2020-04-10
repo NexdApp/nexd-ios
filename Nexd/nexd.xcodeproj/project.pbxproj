@@ -42,7 +42,7 @@
 		AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */; };
 		AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NexdTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
-		AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* LoginViewController.swift */; };
+		AEF3D64C24259ACE005C77CE /* StartAuthenticationFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* StartAuthenticationFlowViewController.swift */; };
 		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
@@ -60,6 +60,7 @@
 		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67A2426C88B005C77CE /* GradientView.swift */; };
 		C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */; };
+		E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */; };
 		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
 		E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */; };
 		E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */; };
@@ -123,7 +124,7 @@
 		AEF3D632242584CC005C77CE /* NexdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdTests.swift; sourceTree = "<group>"; };
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		AEF3D64B24259ACE005C77CE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AEF3D64B24259ACE005C77CE /* StartAuthenticationFlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAuthenticationFlowViewController.swift; sourceTree = "<group>"; };
 		AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoleViewController.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
@@ -143,6 +144,7 @@
 		BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.release.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.release.xcconfig"; sourceTree = "<group>"; };
 		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
+		E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular-webfont.ttf"; sourceTree = "<group>"; };
@@ -313,7 +315,8 @@
 		AEF3D67C2426CC2D005C77CE /* onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D64B24259ACE005C77CE /* LoginViewController.swift */,
+				AEF3D64B24259ACE005C77CE /* StartAuthenticationFlowViewController.swift */,
+				E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */,
 				AEF3D66824263149005C77CE /* RegistrationViewController.swift */,
 				AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */,
 			);
@@ -557,7 +560,7 @@
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
-				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
+				AEF3D64C24259ACE005C77CE /* StartAuthenticationFlowViewController.swift in Sources */,
 				AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */,
 				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,
@@ -577,6 +580,7 @@
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
