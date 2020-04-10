@@ -94,7 +94,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
 
-        // TODO: Create cirle next to text (according to design spec)
+        // TODO: Create cirle next to text (according to design spec) // swiftlint:disable:this todo
         contentView.addSubview(privacyPolicy)
         privacyPolicy.backgroundColor = .clear
         privacyPolicy.isScrollEnabled = false

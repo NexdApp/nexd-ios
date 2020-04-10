@@ -19,7 +19,7 @@ extension UITextField {
 
     func withBottomBorder(color: UIColor = .textFieldBorderColor) {
         let bottomLine = CALayer()
-        // TODO: Avoid hard coded values and calculate instead...
+        // TODO: Avoid hard coded values and calculate instead...  // swiftlint:disable:this todo
         let specifiedColor = UIColor(red: CGFloat(0/255.0), green: CGFloat(0/255.0), blue: CGFloat(0/255.0), alpha: CGFloat(0.2))
         bottomLine.frame = CGRect(x: 27.0, y: 35, width: 300, height: 1.0)
         bottomLine.backgroundColor = specifiedColor.cgColor
