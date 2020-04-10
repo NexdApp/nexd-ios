@@ -10,6 +10,7 @@ target 'nexd' do
   # Pods for Nexd
   pod 'Cleanse'
   pod 'NexdClient', :path => 'lib/openapi'
+  pod 'NVActivityIndicatorView'
   pod 'R.swift'
   pod 'RxSwift'
   pod 'RxCocoa'
