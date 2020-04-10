@@ -112,3 +112,6 @@
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "role_screen_title_ios" = "Welcome, %@";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
+"back_button_title" = "Back";
+"cancel_button_title" = "Cancel";
+"confirm_button_title" = "Confirm";

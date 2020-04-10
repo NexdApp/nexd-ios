@@ -118,6 +118,15 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
+    func asNegativeButtonText() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.negativeButtonText()!,
+            .font: R.font.proximaNovaSoftBold(size: 35)!
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
     func asHeading() -> NSAttributedString {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = 42

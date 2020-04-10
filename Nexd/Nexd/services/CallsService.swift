@@ -15,6 +15,10 @@ enum CallsError: Error {
 }
 
 class CallsService {
+    struct Number: Codable {
+        let number: String?
+    }
+
     static let shared = CallsService()
 
     private lazy var urlSession: URLSession = {
@@ -23,9 +27,13 @@ class CallsService {
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }()
 
-    func number() -> Single<String> {
+    func number() -> Single<Number?> {
         return CallsAPI.callsControllerGetNumber()
-        .asSingle()
+            .map { json -> Number? in
+                guard let data = json.data(using: .utf8) else { return nil }
+                return try? JSONDecoder().decode(Number.self, from: data)
+            }
+            .asSingle()
     }
 
     func allCalls() -> Single<[Call]> {

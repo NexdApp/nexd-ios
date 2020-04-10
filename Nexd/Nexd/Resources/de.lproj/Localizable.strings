@@ -112,3 +112,6 @@
 "seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
 "role_screen_title_ios" = "Willkommen, %@";
 "seeker_phone_call_text_ios" = "Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen.";
+"back_button_title" = "Zurück";
+"cancel_button_title" = "Abbrechen";
+"confirm_button_title" = "Bestätigen";

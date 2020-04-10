@@ -11,6 +11,8 @@ import UIKit
 
 protocol ScreenNavigating {
     var root: UIViewController { get }
+    func goBack()
+
     func toLoginScreen()
     func toRegistrationScreen()
     func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
@@ -43,6 +45,10 @@ class Navigator {
 extension Navigator: ScreenNavigating {
     var root: UIViewController {
         navigationController
+    }
+
+    func goBack() {
+        navigationController.popViewController(animated: true)
     }
 
     func toLoginScreen() {
@@ -92,7 +98,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toPhoneCall() {
-        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(callsService: callsService))
+        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(callsService: callsService, navigator: self))
         push(screen: screen)
     }
 

@@ -9,17 +9,20 @@
 import RxCocoa
 import RxSwift
 
+enum PhoneCallError: Error {
+    case phoneNumberUnknown
+}
 class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel> {
-    static let phoneNumber = "0721-98419016‌"
-
     class ViewModel {
         private let callsService: CallsService
+        private let navigator: ScreenNavigating
 
         private lazy var phoneNumber = callsService.number()
         private let placeholder = R.string.localizable.seeker_phone_call_text_ios("???").asHeading()
 
         var text: Driver<NSAttributedString?> {
             phoneNumber.map { number in
+                guard let number = number?.number else { throw PhoneCallError.phoneNumberUnknown }
                 let formatted = R.string.localizable.seeker_phone_call_text_ios(number)
                 return formatted.asLinkedHeading(range: formatted.range(of: number), target: "tel://\(number)")
             }
@@ -28,14 +31,23 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
             .asDriver(onErrorJustReturn: placeholder)
         }
 
-        init(callsService: CallsService) {
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
+        init(callsService: CallsService, navigator: ScreenNavigating) {
             self.callsService = callsService
+            self.navigator = navigator
         }
     }
 
     private let content = UIView()
     private let text = UILabel()
-    private let backButton = UIButton()
+    private let backButton = BackButton.make()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,13 +64,23 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
         content.addSubview(text)
         text.numberOfLines = 0
         text.snp.makeConstraints { make in
-            make.top.left.right.bottom.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+        }
+
+        content.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(text.snp.bottom).offset(44)
+            make.left.equalToSuperview().offset(28)
+            make.right.equalToSuperview().offset(-28)
+            make.bottom.equalToSuperview()
         }
     }
 
     override func bind(viewModel: PhoneCallViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            viewModel.text.drive(text.rx.attributedText)
+            viewModel.text.drive(text.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps)
         )
     }
 }
