@@ -115,3 +115,4 @@
 "back_button_title" = "Zurück";
 "cancel_button_title" = "Abbrechen";
 "confirm_button_title" = "Bestätigen";
+"loading_overlay_message" = "Wird geladen...";
