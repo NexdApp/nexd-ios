@@ -18,12 +18,14 @@ protocol ScreenNavigating {
     func toProfileScreen()
     func toShoppingListOptions()
     func toCheckList()
+    func toPhoneCall()
     func toHelpOptions()
 }
 
 class Navigator {
     private let storage: Storage
     private let userService: UserService
+    private let callsService: CallsService
 
     lazy var navigationController: UINavigationController = {
         let loginPage = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
@@ -31,9 +33,10 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService) {
+    init(storage: Storage, userService: UserService, callsService: CallsService) {
         self.storage = storage
         self.userService = userService
+        self.callsService = callsService
     }
 }
 
@@ -52,13 +55,13 @@ extension Navigator: ScreenNavigating {
     }
 
     func toRegistrationScreen() {
-        let registrationScreen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
-        navigationController.pushViewController(registrationScreen, animated: true)
+        let screen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
+        push(screen: screen)
     }
 
     func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation) {
-        let userDetailsScreen = UserDetailsViewController(viewModel: UserDetailsViewController.ViewModel(navigator: self, userInformation: userInformation))
-        navigationController.pushViewController(userDetailsScreen, animated: true)
+        let screen = UserDetailsViewController(viewModel: UserDetailsViewController.ViewModel(navigator: self, userInformation: userInformation))
+        push(screen: screen)
     }
 
     func toMainScreen() {
@@ -80,16 +83,25 @@ extension Navigator: ScreenNavigating {
 
     func toShoppingListOptions() {
         let screen = ShoppingListOptionViewController(viewModel: ShoppingListOptionViewController.ViewModel(navigator: self))
-        navigationController.setViewControllers([screen], animated: true)
+        push(screen: screen)
     }
 
     func toCheckList() {
         let screen = SeekerItemSelectionViewController()
-        navigationController.setViewControllers([screen], animated: true)
+        push(screen: screen)
+    }
+
+    func toPhoneCall() {
+        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(callsService: callsService))
+        push(screen: screen)
     }
 
     func toHelpOptions() {
         let screen = HelperRequestOverviewViewController()
-        navigationController.setViewControllers([screen], animated: true)
+        push(screen: screen)
+    }
+
+    private func push(screen: UIViewController) {
+        navigationController.pushViewController(screen, animated: true)
     }
 }

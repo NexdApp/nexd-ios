@@ -26,8 +26,8 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
         let makePhonecallTitle = Driver.just(R.string.localizable.seeker_type_button_phone_call().asDarkButtonText())
 
         var makePhonecallTaps: Binder<Void> {
-            Binder(self) { _, _ in
-                log.debug("NOT IMPLEMENTED YET!")
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toPhoneCall()
             }
         }
 

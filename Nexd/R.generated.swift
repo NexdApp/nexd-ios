@@ -505,7 +505,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 97 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 98 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -731,6 +731,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_input_details_placeholder_city = Rswift.StringResource(key: "user_input_details_placeholder_city", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Please call %@ to record your shopping order.
+      ///
+      /// Locales: en, de
+      static let seeker_phone_call_text_ios = Rswift.StringResource(key: "seeker_phone_call_text_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Please fill in
       ///
       /// Locales: en, de
@@ -1738,6 +1742,23 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("user_input_details_placeholder_city", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Please call %@ to record your shopping order.
+      ///
+      /// Locales: en, de
+      static func seeker_phone_call_text_ios(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("seeker_phone_call_text_ios", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_phone_call_text_ios"
+        }
+
+        let format = NSLocalizedString("seeker_phone_call_text_ios", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: Please fill in

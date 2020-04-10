@@ -23,6 +23,11 @@ class CallsService {
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }()
 
+    func number() -> Single<String> {
+        return CallsAPI.callsControllerGetNumber()
+        .asSingle()
+    }
+
     func allCalls() -> Single<[Call]> {
         return CallsAPI.callsControllerCalls()
             .asSingle()

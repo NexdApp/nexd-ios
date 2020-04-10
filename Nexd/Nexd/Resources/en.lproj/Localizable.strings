@@ -111,3 +111,4 @@
 "error_message_unknown" = "Unknown error";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "role_screen_title_ios" = "Welcome, %@";
+"seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
