@@ -15,20 +15,24 @@ protocol ScreenNavigating {
     func toRegistrationScreen()
     func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
     func toMainScreen()
+    func toProfileScreen()
     func toShoppingListOptions()
+    func toHelpOptions()
 }
 
 class Navigator {
     private let storage: Storage
+    private let userService: UserService
 
     lazy var navigationController: UINavigationController = {
         let loginPage = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
-        let mainPage = MainPageViewController(viewModel: MainPageViewModel(navigator: self))
+        let mainPage = MainPageViewController(viewModel: MainPageViewModel(navigator: self, userService: userService))
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage) {
+    init(storage: Storage, userService: UserService) {
         self.storage = storage
+        self.userService = userService
     }
 }
 
@@ -57,9 +61,29 @@ extension Navigator: ScreenNavigating {
     }
 
     func toMainScreen() {
-        let mainScreen = MainPageViewController(viewModel: MainPageViewModel(navigator: self))
+        let mainScreen = MainPageViewController(viewModel: MainPageViewModel(navigator: self, userService: userService))
         navigationController.setViewControllers([mainScreen], animated: true)
     }
 
-    func toShoppingListOptions() {}
+    func toProfileScreen() {
+        let profileScreen = UserProfileViewController()
+        profileScreen.onUserLoggedOut = { [weak self] in
+            log.debug("User logged out!")
+            self?.navigationController.dismiss(animated: true) { [weak self] in
+                self?.toLoginScreen()
+            }
+        }
+
+        navigationController.present(profileScreen, animated: true, completion: nil)
+    }
+
+    func toShoppingListOptions() {
+        let screen = SeekerItemSelectionViewController()
+        navigationController.setViewControllers([screen], animated: true)
+    }
+
+    func toHelpOptions() {
+        let screen = HelperRequestOverviewViewController()
+        navigationController.setViewControllers([screen], animated: true)
+    }
 }

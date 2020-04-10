@@ -6,20 +6,46 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import Cleanse
 import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
 
 class MainPageViewModel {
-    fileprivate let navigator: ScreenNavigating
+    private let navigator: ScreenNavigating
+    private let userService: UserService
 
-    let profileButtonInitials: Driver<String?> = Driver.just("AJ")
-    let greeting: Driver<NSAttributedString?> = Driver.just("Welcome, Username.".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline())
+    private lazy var profile = userService.findMe().asObservable().share(replay: 1)
 
-    init(navigator: ScreenNavigating) {
+    lazy var profileButtonInitials: Driver<String?> = profile
+        .map { user in "\(user.firstName.first?.description ?? "")\(user.lastName.first?.description ?? "")" }
+        .asDriver(onErrorJustReturn: nil)
+
+    lazy var greeting: Driver<NSAttributedString?> = profile
+        .map { user in "Welcome, \(user.firstName).".asGreeting() + "\nWhat would you like to do today?".asGreetingSubline() }
+        .asDriver(onErrorJustReturn: nil)
+
+    var profileButtonTaps: Binder<Void> {
+        Binder(self) { viewModel, _ in
+            viewModel.navigator.toProfileScreen()
+        }
+    }
+
+    var seekerButtonTaps: Binder<Void> {
+        Binder(self) { viewModel, _ in
+            viewModel.navigator.toShoppingListOptions()
+        }
+    }
+
+    var helperButtonTaps: Binder<Void> {
+        Binder(self) { viewModel, _ in
+            viewModel.navigator.toHelpOptions()
+        }
+    }
+
+    init(navigator: ScreenNavigating, userService: UserService) {
         self.navigator = navigator
+        self.userService = userService
     }
 }
 
@@ -73,7 +99,6 @@ class MainPageViewController: ViewController<MainPageViewModel> {
             make.centerY.equalTo(mainContent.snp.top)
             make.size.equalTo(Style.profileImageSize)
         }
-        userProfileButton.addTarget(self, action: #selector(profileButtonPressed(sender:)), for: .touchUpInside)
 
         mainContent.addSubview(greetingText)
         greetingText.numberOfLines = 4
@@ -91,7 +116,6 @@ class MainPageViewController: ViewController<MainPageViewModel> {
             make.top.equalTo(greetingText.snp.bottom).offset(Style.verticalPadding)
             make.height.equalTo(132)
         }
-        seekerButton.addTarget(self, action: #selector(seekerRoleButtonPressed(sender:)), for: .touchUpInside)
 
         mainContent.addSubview(helperButton)
         helperButton.snp.makeConstraints { make in
@@ -101,57 +125,15 @@ class MainPageViewController: ViewController<MainPageViewModel> {
             make.height.equalTo(132)
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
-        helperButton.addTarget(self, action: #selector(helperRoleButtonPressed(sender:)), for: .touchUpInside)
     }
 
     override func bind(viewModel: MainPageViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.profileButtonInitials.drive(userProfileButton.rx.title()),
-            viewModel.greeting.drive(greetingText.rx.attributedText)
+            viewModel.greeting.drive(greetingText.rx.attributedText),
+            userProfileButton.rx.tap.bind(to: viewModel.profileButtonTaps),
+            seekerButton.rx.tap.bind(to: viewModel.seekerButtonTaps),
+            helperButton.rx.tap.bind(to: viewModel.helperButtonTaps)
         )
-    }
-}
-
-extension MainPageViewController {
-    @objc func profileButtonPressed(sender: UIBarButtonItem!) {
-        let profileScreen = UserProfileViewController()
-        profileScreen.onUserLoggedOut = { [weak self] in
-            log.debug("User logged out!")
-            self?.dismiss(animated: true) { [weak self] in
-                self?.viewModel?.navigator.toLoginScreen()
-            }
-        }
-        present(profileScreen, animated: true, completion: nil)
-    }
-
-    @objc func helperRoleButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(HelperRequestOverviewViewController(), animated: true)
-    }
-
-    @objc func transcriberRoleButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(CallsListViewController(), animated: true)
-    }
-
-    @objc func seekerRoleButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(SeekerItemSelectionViewController(), animated: true)
-    }
-}
-
-// MARK: - Dependency Injection
-extension MainPageViewController {
-    struct Module: Cleanse.Module {
-        static func configure(binder: Cleanse.Binder<Unscoped>) {
-            binder
-                .bind(MainPageViewModel.self)
-                .to { (navigator: ScreenNavigating) -> MainPageViewModel in
-                    MainPageViewModel(navigator: navigator)
-            }
-
-            binder
-                .bind(MainPageViewController.self)
-                .to { (viewModel: MainPageViewModel) in
-                    return MainPageViewController(viewModel: viewModel)
-                }
-        }
     }
 }
