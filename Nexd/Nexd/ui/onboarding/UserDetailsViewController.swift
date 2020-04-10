@@ -123,9 +123,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
         keyboardObserver = nil
     }
 
-    override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) {
-        
-    }
+    override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) { }
 }
 
 extension UserDetailsViewController {

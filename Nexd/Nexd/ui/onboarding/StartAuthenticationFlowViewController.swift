@@ -115,9 +115,7 @@ class StartAuthenticationFlowViewController: ViewController<StartAuthenticationF
         keyboardObserver = nil
     }
 
-    override func bind(viewModel: StartAuthenticationFlowViewController.ViewModel, disposeBag: DisposeBag) {
-        
-    }
+    override func bind(viewModel: StartAuthenticationFlowViewController.ViewModel, disposeBag: DisposeBag) { }
 }
 
 extension StartAuthenticationFlowViewController {
@@ -129,37 +127,3 @@ extension StartAuthenticationFlowViewController {
         self.viewModel?.navigator.toRegistrationScreen()
     }
 }
-
-//extension StartAuthenticationFlowViewController: UITextFieldDelegate {
-////    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-////        let nextTag = textField.tag + 1
-////        // Try to find next responder
-////        let nextResponder = textField.superview?.viewWithTag(nextTag)
-////
-////        if nextResponder != nil {
-////            // Found next responder, so set it
-////            nextResponder?.becomeFirstResponder()
-////        } else {
-////            // Not found, so remove keyboard
-////            textField.resignFirstResponder()
-////        }
-////
-////        return false
-////    }
-//}
-
-//private extension ValidationRuleSet where InputType == String {
-//    enum ValidationErrors: String, ValidationError {
-//        case emailInvalid = "Email address is invalid"
-//        case passwordTooShort = "Password is too short!"
-//        var message: String { return rawValue }
-//    }
-//
-//    static func email() -> ValidationRuleSet<String> {
-//        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
-//    }
-//
-//    static func password() -> ValidationRuleSet<String> {
-//        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
-//    }
-//}

@@ -17,7 +17,6 @@ extension UITextField {
         attributedPlaceholder = placeholder?.asPlaceholder()
     }
 
-
     func withBottomBorder(color: UIColor = .textFieldBorderColor) {
         let bottomLine = CALayer()
         // TODO: Avoid hard coded values and calculate instead...
