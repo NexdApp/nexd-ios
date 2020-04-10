@@ -32,6 +32,17 @@
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
 		AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */ = {isa = PBXBuildFile; fileRef = AECE9D252438D93E00EDCE0D /* cymbal.wav */; };
 		AECE9D282438E03800EDCE0D /* TranscribeCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */; };
+		AED2A954243F78030082316F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A953243F78030082316F /* ViewController.swift */; };
+		AED2A957243F820F0082316F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A956243F820F0082316F /* Navigator.swift */; };
+		AED2A95A243F99980082316F /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A959243F99980082316F /* AppComponent.swift */; };
+		AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95B243F9A050082316F /* CoreAppModule.swift */; };
+		AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95D243F9A210082316F /* ServicesModule.swift */; };
+		AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95F243F9A440082316F /* RootWindowModule.swift */; };
+		AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */; };
+		AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */; };
+		AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A968244058800082316F /* PhoneCallViewController.swift */; };
+		AED2A96B24406C0C0082316F /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96A24406C0C0082316F /* MenuButton.swift */; };
+		AED2A96D24406C460082316F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96C24406C460082316F /* BackButton.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -43,7 +54,7 @@
 		AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NexdTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
 		AEF3D64C24259ACE005C77CE /* StartAuthenticationFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D64B24259ACE005C77CE /* StartAuthenticationFlowViewController.swift */; };
-		AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */; };
+		AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* MainPageViewController.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65E242604DE005C77CE /* DataSource.swift */; };
@@ -110,6 +121,17 @@
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		AECE9D252438D93E00EDCE0D /* cymbal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cymbal.wav; sourceTree = "<group>"; };
 		AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeCallViewController.swift; sourceTree = "<group>"; };
+		AED2A953243F78030082316F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AED2A956243F820F0082316F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		AED2A959243F99980082316F /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
+		AED2A95B243F9A050082316F /* CoreAppModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAppModule.swift; sourceTree = "<group>"; };
+		AED2A95D243F9A210082316F /* ServicesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesModule.swift; sourceTree = "<group>"; };
+		AED2A95F243F9A440082316F /* RootWindowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowModule.swift; sourceTree = "<group>"; };
+		AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttribuedString+Nexd.swift"; sourceTree = "<group>"; };
+		AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListOptionViewController.swift; sourceTree = "<group>"; };
+		AED2A968244058800082316F /* PhoneCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCallViewController.swift; sourceTree = "<group>"; };
+		AED2A96A24406C0C0082316F /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		AED2A96C24406C460082316F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -125,7 +147,7 @@
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		AEF3D64B24259ACE005C77CE /* StartAuthenticationFlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAuthenticationFlowViewController.swift; sourceTree = "<group>"; };
-		AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoleViewController.swift; sourceTree = "<group>"; };
+		AEF3D65024259B2D005C77CE /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D65E242604DE005C77CE /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -182,6 +204,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AED2A955243F81F20082316F /* mvvm */ = {
+			isa = PBXGroup;
+			children = (
+				AED2A953243F78030082316F /* ViewController.swift */,
+				AED2A956243F820F0082316F /* Navigator.swift */,
+			);
+			path = mvvm;
+			sourceTree = "<group>";
+		};
+		AED2A958243F99880082316F /* di */ = {
+			isa = PBXGroup;
+			children = (
+				AED2A959243F99980082316F /* AppComponent.swift */,
+				AED2A95B243F9A050082316F /* CoreAppModule.swift */,
+				AED2A95D243F9A210082316F /* ServicesModule.swift */,
+				AED2A95F243F9A440082316F /* RootWindowModule.swift */,
+			);
+			path = di;
+			sourceTree = "<group>";
+		};
 		AEF3D60F242584C9005C77CE = {
 			isa = PBXGroup;
 			children = (
@@ -205,9 +247,10 @@
 		AEF3D61A242584C9005C77CE /* Nexd */ = {
 			isa = PBXGroup;
 			children = (
+				AED2A958243F99880082316F /* di */,
 				AEF3D66D24266460005C77CE /* utilities */,
-				AEF3D64A24259ACE005C77CE /* ui */,
 				AEF3D66A24263A7F005C77CE /* services */,
+				AEF3D64A24259ACE005C77CE /* ui */,
 				AEF3D61B242584C9005C77CE /* AppDelegate.swift */,
 				AEF3D666242630C3005C77CE /* AppConfiguration.swift */,
 				AEF3D61D242584C9005C77CE /* SceneDelegate.swift */,
@@ -233,10 +276,13 @@
 		AEF3D64A24259ACE005C77CE /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				AED2A955243F81F20082316F /* mvvm */,
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
-				AEF3D65024259B2D005C77CE /* SelectRoleViewController.swift */,
+				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
+				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
+				AED2A968244058800082316F /* PhoneCallViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
 				AEC5877A243A853900B6876C /* CallsListViewController.swift */,
@@ -275,6 +321,8 @@
 				AE2A9A97242763CF006066B4 /* TextField.swift */,
 				AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */,
 				AEA2010E24362C0500BD6C1B /* View.swift */,
+				AED2A96A24406C0C0082316F /* MenuButton.swift */,
+				AED2A96C24406C460082316F /* BackButton.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -308,6 +356,7 @@
 				AED8818A24351174006065D2 /* String+Nexd.swift */,
 				AED8818C24351E85006065D2 /* KeyboardDismisser.swift */,
 				AE52A2772437D30800A1166F /* Completable+From.swift */,
+				AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -560,6 +609,8 @@
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
+				AEF3D64C24259ACE005C77CE /* LoginViewController.swift in Sources */,
+				AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */,
 				AEF3D64C24259ACE005C77CE /* StartAuthenticationFlowViewController.swift in Sources */,
 				AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */,
 				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
@@ -570,13 +621,19 @@
 				AE2A9A892426D992006066B4 /* UIColor+Nexd.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */,
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
+				AED2A96B24406C0C0082316F /* MenuButton.swift in Sources */,
 				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
+				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
+				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
+				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
+				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
+				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
@@ -585,18 +642,22 @@
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
+				AED2A954243F78030082316F /* ViewController.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
 				AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */,
+				AED2A96D24406C460082316F /* BackButton.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
+				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* View.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,
-				AEF3D65124259B2D005C77CE /* SelectRoleViewController.swift in Sources */,
+				AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
+				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,
 				AE4EA655243A665900B8E9D6 /* CallsService.swift in Sources */,

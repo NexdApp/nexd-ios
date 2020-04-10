@@ -9,7 +9,6 @@
 import UIKit
 
 extension UIButton {
-
     func style(text: String) {
         backgroundColor = UIColor.greenBackgroundColor
         layer.cornerRadius = 10
@@ -31,5 +30,12 @@ extension UIButton {
         layer.shadowOpacity = 0.3
         layer.shadowRadius = 2
         layer.shadowOffset = CGSize(width: 2.0, height: 2.0)
+    }
+
+    func addBorder(color: UIColor?) {
+        guard let color = color else { return }
+        layer.borderWidth = 2
+        layer.borderColor = color.cgColor
+        layer.cornerRadius = 10
     }
 }

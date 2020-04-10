@@ -6,23 +6,40 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
+import NexdClient
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
     var window: UIWindow?
+    var storage: Storage?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.windowScene = windowScene
+        var propertyInjector: PropertyInjector<SceneDelegate>?
 
-        let rootVC = Storage.shared.authorizationToken == nil ? StartAuthenticationFlowViewController() : SelectRoleViewController()
-        let navigationVC = UINavigationController(rootViewController: rootVC)
-        window?.rootViewController = navigationVC
+        do {
+            let factory = try ComponentFactory.of(AppComponent.self)
+            propertyInjector = factory.build(scene)
+        } catch let error {
+            fatalError("Dependency injection error: \(error)")
+        }
+
+        propertyInjector?.injectProperties(into: self)
+
+        precondition(window != nil)
+        precondition(storage != nil)
+
+        NexdClientAPI.setup(authorizationToken: storage?.authorizationToken)
+
         window?.makeKeyAndVisible()
+    }
+}
+
+extension SceneDelegate {
+    /// Since we don't control creation of our AppDelegate, we have to use "property injection" to populate
+    /// our required properties
+    func injectProperties(_ window: UIWindow, storage: Storage) {
+        self.window = window
+        self.storage = storage
     }
 }
