@@ -117,3 +117,4 @@
 "confirm_button_title" = "Confirm";
 "loading_overlay_message" = "Loading...";
 "ok_button_title" = "OK";
+"seeker_request_create_placeholder_delivery_comment" = "Delivery comment";
