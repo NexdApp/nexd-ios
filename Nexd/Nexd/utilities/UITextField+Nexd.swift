@@ -10,14 +10,20 @@ import UIKit
 
 extension UITextField {
     func styled(placeholder: String? = nil) {
+        font = R.font.proximaNovaSoftBold(size: 22.0)
+
         textColor = .black
-        withBorder()
+        withBottomBorder()
         attributedPlaceholder = placeholder?.asPlaceholder()
     }
 
-    func withBorder(color: UIColor = .textFieldBorderColor) {
-        layer.borderWidth = 1
-        layer.borderColor = color.cgColor
-        layer.cornerRadius = 8
+    func withBottomBorder(color: UIColor = .textFieldBorderColor) {
+        let bottomLine = CALayer()
+        // TODO: Avoid hard coded values and calculate instead...  // swiftlint:disable:this todo
+        let specifiedColor = UIColor(red: CGFloat(0/255.0), green: CGFloat(0/255.0), blue: CGFloat(0/255.0), alpha: CGFloat(0.2))
+        bottomLine.frame = CGRect(x: 27.0, y: 35, width: 300, height: 1.0)
+        bottomLine.backgroundColor = specifiedColor.cgColor
+        self.borderStyle = UITextField.BorderStyle.none
+        self.layer.addSublayer(bottomLine)
     }
 }

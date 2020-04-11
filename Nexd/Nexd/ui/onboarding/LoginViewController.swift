@@ -1,18 +1,23 @@
 //
-//  ViewController.swift
-//  Nexd
+//  LoginViewController.swift
+//  nexd
 //
-//  Created by Tobias Schröpf on 21.03.20.
+//  Created by Julian Manke on 09.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
 import Validator
 
-class LoginViewController: UIViewController {
+class LoginViewController: ViewController<LoginViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: ScreenNavigating
+    }
+
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
@@ -32,7 +37,6 @@ class LoginViewController: UIViewController {
                                                          delegate: self,
                                                          validationRules: .password())
     private lazy var loginButton = UIButton()
-    private lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +62,14 @@ class LoginViewController: UIViewController {
         logo.snp.makeConstraints { make -> Void in
             make.size.equalTo(Style.logoSize)
             make.centerX.equalToSuperview()
-            make.topMargin.equalTo(Style.verticalPadding)
+            make.topMargin.equalTo(68)
         }
 
         contentView.addSubview(email)
         email.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(logo.snp.bottom).offset(Style.verticalPadding)
+            make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
         contentView.addSubview(password)
@@ -83,17 +87,7 @@ class LoginViewController: UIViewController {
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(password.snp_bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(registerButton)
-        registerButton.style(text: R.string.localizable.login_button_title_register())
-        registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
-        registerButton.snp.makeConstraints { make in
-            make.height.equalTo(Style.buttonHeight)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
-            make.top.equalTo(loginButton.snp_bottom).offset(Style.verticalPadding)
-            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
+            make.bottom.equalToSuperview()
         }
     }
 
@@ -105,6 +99,10 @@ class LoginViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
+    }
+
+    override func bind(viewModel: LoginViewController.ViewModel, disposeBag: DisposeBag) {
+
     }
 }
 
@@ -128,7 +126,7 @@ extension LoginViewController {
         AuthenticationService.shared.login(email: email, password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("Login successful!")
-                self?.navigationController?.pushViewController(SelectRoleViewController(), animated: true)
+                self?.viewModel?.navigator.toMainScreen()
             }, onError: { [weak self] error in
                 log.error("Login failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
@@ -137,7 +135,7 @@ extension LoginViewController {
     }
 
     @objc func registerButtonPressed(sender: UIButton!) {
-        navigationController?.pushViewController(RegistrationViewController(), animated: true)
+        viewModel?.navigator.toRegistrationScreen()
     }
 }
 

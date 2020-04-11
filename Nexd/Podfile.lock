@@ -1,6 +1,10 @@
 PODS:
+  - Cleanse (4.2.4)
   - NexdClient (1.0):
     - RxSwift (~> 5.0.0)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
@@ -22,7 +26,9 @@ PODS:
     - ObjcExceptionBridging
 
 DEPENDENCIES:
+  - Cleanse
   - NexdClient (from `lib/openapi`)
+  - NVActivityIndicatorView
   - R.swift
   - RxCocoa
   - RxSwift
@@ -33,6 +39,8 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Cleanse
+    - NVActivityIndicatorView
     - ObjcExceptionBridging
     - R.swift
     - R.swift.Library
@@ -49,7 +57,9 @@ EXTERNAL SOURCES:
     :path: lib/openapi
 
 SPEC CHECKSUMS:
+  Cleanse: 65b6c276880f23a324aca9ba8da6a55bede7ad80
   NexdClient: 9e4020b4159f4e3458837dbcb183b727f86b4337
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
@@ -61,6 +71,6 @@ SPEC CHECKSUMS:
   Validator: 80a6f567220c962dfd2d9928ae98a8c1d164f6f4
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: f892b50a395b13aba5e5d80f5b8d3a82a1b0cd2a
+PODFILE CHECKSUM: 30075dd1cfcdb6af725e5096189fe8e7907f73e7
 
 COCOAPODS: 1.9.1

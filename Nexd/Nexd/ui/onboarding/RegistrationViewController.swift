@@ -12,10 +12,15 @@ import SnapKit
 import UIKit
 import Validator
 
-class RegistrationViewController: UIViewController {
+class RegistrationViewController: ViewController<RegistrationViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: ScreenNavigating
+    }
+
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
+    private lazy var logo = UIImageView()
 
     lazy var scrollView = UIScrollView()
 
@@ -44,8 +49,6 @@ class RegistrationViewController: UIViewController {
 
     lazy var registerButton = UIButton()
 
-    lazy var privacyPolicy = UITextView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismisser = KeyboardDismisser(rootView: view)
@@ -65,11 +68,19 @@ class RegistrationViewController: UIViewController {
             make.left.right.equalTo(view)
         }
 
+        contentView.addSubview(logo)
+        logo.image = R.image.logo()
+        logo.snp.makeConstraints { make -> Void in
+            make.size.equalTo(Style.logoSize)
+            make.centerX.equalToSuperview()
+            make.topMargin.equalTo(68)
+        }
+
         contentView.addSubview(email)
         email.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.topMargin.equalTo(50)
+            make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
         contentView.addSubview(firstName)
@@ -107,23 +118,8 @@ class RegistrationViewController: UIViewController {
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(confirmPassword.snp.bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(privacyPolicy)
-        privacyPolicy.backgroundColor = .clear
-        privacyPolicy.isScrollEnabled = false
-        privacyPolicy.textContainerInset = .zero
-
-        let term = R.string.localizable.registration_term_privacy_policy()
-        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
-        privacyPolicy.snp.makeConstraints { make -> Void in
-            make.height.equalTo(54)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(registerButton.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().offset(-Style.verticalPadding)
+            make.top.equalTo(confirmPassword.snp.bottom).offset(50)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
 
@@ -135,6 +131,10 @@ class RegistrationViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
+    }
+
+    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
+
     }
 }
 
@@ -163,9 +163,8 @@ extension RegistrationViewController {
                                               password: password)
             .subscribe(onCompleted: { [weak self] in
                 log.debug("User registration successful")
-                let userDetailsVC = UserDetailsViewController()
-                userDetailsVC.userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
-                self?.navigationController?.pushViewController(userDetailsVC, animated: true)
+                let userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
+                self?.viewModel?.navigator.toUserDetailsScreen(with: userInformation)
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")
 

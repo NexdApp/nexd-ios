@@ -6,19 +6,23 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import NexdClient
 import RxSwift
 import SnapKit
 import UIKit
 import Validator
 
-class UserDetailsViewController: UIViewController {
+class UserDetailsViewController: ViewController<UserDetailsViewController.ViewModel> {
+    struct ViewModel {
+        let navigator: Navigator
+        var userInformation: UserInformation
+    }
+
     struct UserInformation {
         let firstName: String
         let lastName: String
     }
-
-    var userInformation: UserInformation!
 
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
@@ -38,6 +42,8 @@ class UserDetailsViewController: UIViewController {
                                                 validationRules: .zipCode())
 
     lazy var registerButton = UIButton()
+
+    lazy var privacyPolicy = UITextView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +93,24 @@ class UserDetailsViewController: UIViewController {
             make.top.equalTo(zipCode.snp_bottom).offset(Style.verticalPadding)
             make.bottom.equalToSuperview().offset(-Style.verticalPadding)
         }
+
+        // TODO: Create cirle next to text (according to design spec) // swiftlint:disable:this todo
+        contentView.addSubview(privacyPolicy)
+        privacyPolicy.backgroundColor = .clear
+        privacyPolicy.isScrollEnabled = false
+        privacyPolicy.textContainerInset = .zero
+
+        let term = R.string.localizable.registration_term_privacy_policy()
+        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
+        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
+        privacyPolicy.snp.makeConstraints { make -> Void in
+            make.height.equalTo(54)
+            make.leftMargin.equalTo(8)
+            make.rightMargin.equalTo(-8)
+            make.top.equalTo(registerButton.snp.bottom).offset(8)
+            make.bottomMargin.equalTo(Style.buttonHeight)
+        }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +122,8 @@ class UserDetailsViewController: UIViewController {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
+
+    override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) { }
 }
 
 extension UserDetailsViewController {
@@ -105,6 +131,12 @@ extension UserDetailsViewController {
         let hasInvalidInput = [phone, zipCode]
             .map { $0.validate() }
             .contains(false)
+
+        guard let userInformation = viewModel?.userInformation else {
+            log.warning("Cannot update user, internal error!")
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+            return
+        }
 
         guard !hasInvalidInput else {
             log.warning("Cannot update user, mandatory field is missing!")
@@ -125,7 +157,7 @@ extension UserDetailsViewController {
                                                  phone: phone)
             .subscribe(onSuccess: { [weak self] user in
                 log.debug("User information updated: \(user)")
-                self?.navigationController?.setViewControllers([SelectRoleViewController()], animated: true)
+                self?.viewModel?.navigator.toMainScreen()
             }, onError: { [weak self] error in
                 log.error("UserInformation update failed: \(error)")
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
