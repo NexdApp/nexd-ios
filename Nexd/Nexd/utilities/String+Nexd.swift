@@ -158,6 +158,14 @@ extension String {
                                   ])
     }
 
+    func asListItemDetails() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                    .foregroundColor: R.color.listItemDetailsText()!,
+                                      .font: R.font.proximaNovaSoftRegular(size: 14)!
+                                  ])
+    }
+
     func asAmountText() -> NSAttributedString {
         return NSAttributedString(string: self,
                                   attributes: [

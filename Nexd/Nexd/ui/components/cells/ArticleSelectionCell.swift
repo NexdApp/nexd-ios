@@ -20,7 +20,7 @@ class ArticleSelectionCell: UICollectionViewCell {
     lazy var amount = UITextField()
 
     fileprivate var amountChanged: ((Int) -> Void)?
-    fileprivate let pickerView = PickerView()
+    fileprivate let pickerView = IntegerPickerView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,8 +52,6 @@ class ArticleSelectionCell: UICollectionViewCell {
         amount.inputView = pickerView
         amount.inputAccessoryView = pickerView.toolbar
 
-        pickerView.dataSource = self
-        pickerView.delegate = self
         pickerView.toolbarDelegate = self
 
         pickerView.reloadAllComponents()
@@ -78,20 +76,6 @@ class ArticleSelectionCell: UICollectionViewCell {
     }
 }
 
-extension ArticleSelectionCell: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        100
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        "\(row)"
-    }
-}
-
 extension ArticleSelectionCell: PickerViewDelegate {
     func didTapDone() {
         let row = pickerView.selectedRow(inComponent: 0)
@@ -103,52 +87,5 @@ extension ArticleSelectionCell: PickerViewDelegate {
     func didTapCancel() {
         amount.text = nil
         amount.resignFirstResponder()
-    }
-}
-
-protocol PickerViewDelegate: class {
-    func didTapDone()
-    func didTapCancel()
-}
-
-class PickerView: UIPickerView {
-    public private(set) var toolbar: UIToolbar?
-    public weak var toolbarDelegate: PickerViewDelegate?
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-    }
-
-    private func commonInit() {
-        backgroundColor = .white
-
-        let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = .black
-        toolBar.sizeToFit()
-
-        let doneButton = UIBarButtonItem(title: R.string.localizable.ok_button_title(), style: .plain, target: self, action: #selector(doneTapped))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: R.string.localizable.cancel_button_title(), style: .plain, target: self, action: #selector(cancelTapped))
-
-        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-
-        toolbar = toolBar
-    }
-
-    @objc func doneTapped() {
-        toolbarDelegate?.didTapDone()
-    }
-
-    @objc func cancelTapped() {
-        toolbarDelegate?.didTapCancel()
     }
 }

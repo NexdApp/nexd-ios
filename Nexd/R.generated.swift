@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 14 colors.
+  /// This `R.color` struct is generated, and contains static references to 15 colors.
   struct color {
     /// Color `amountText`.
     static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
@@ -124,6 +124,8 @@ struct R: Rswift.Validatable {
     static let greetingSubline = Rswift.ColorResource(bundle: R.hostingBundle, name: "greetingSubline")
     /// Color `headingText`.
     static let headingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "headingText")
+    /// Color `listItemDetailsText`.
+    static let listItemDetailsText = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemDetailsText")
     /// Color `listItemTitle`.
     static let listItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemTitle")
     /// Color `negativeButtonText`.
@@ -206,6 +208,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func headingText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.headingText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "listItemDetailsText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func listItemDetailsText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.listItemDetailsText, compatibleWith: traitCollection)
     }
     #endif
 

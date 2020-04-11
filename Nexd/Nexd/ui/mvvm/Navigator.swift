@@ -23,6 +23,7 @@ protocol ScreenNavigating {
     func toProfileScreen()
     func toShoppingListOptions()
     func toCheckList()
+    func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
 }
@@ -118,6 +119,11 @@ extension Navigator: ScreenNavigating {
                                                                                                               articlesService: articlesService,
                                                                                                               requestService: requestService))
         push(screen: screen)
+    }
+
+    func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
+        let screen = RequestConfirmationViewController(viewModel: RequestConfirmationViewController.ViewModel(navigator: self, items: items))
+        navigationController.present(screen, animated: true, completion: nil)
     }
 
     func toPhoneCall() {

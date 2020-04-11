@@ -30,14 +30,16 @@ extension NexdClientAPI {
     }
 
     static func requestStarted<T>(request: RequestBuilder<T>) {
-        NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(message: R.string.localizable.loading_overlay_message(),
-                                                                                messageFont: R.font.proximaNovaSoftBold(size: 24),
-                                                                                type: .pacman,
-                                                                                color: R.color.darkButtonText(),
-                                                                                displayTimeThreshold: 500,
-                                                                                minimumDisplayTime: 20000,
-                                                                                backgroundColor: .clear,
-                                                                                textColor: R.color.darkButtonText()))
+        if !NVActivityIndicatorPresenter.sharedInstance.isAnimating {
+            NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(message: R.string.localizable.loading_overlay_message(),
+                                                                                    messageFont: R.font.proximaNovaSoftBold(size: 24),
+                                                                                    type: .pacman,
+                                                                                    color: R.color.darkButtonText(),
+                                                                                    displayTimeThreshold: 500,
+                                                                                    minimumDisplayTime: 20000,
+                                                                                    backgroundColor: .clear,
+                                                                                    textColor: R.color.darkButtonText()))
+        }
 
         log.debug("Start request: \(request)")
 
