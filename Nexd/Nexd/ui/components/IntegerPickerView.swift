@@ -34,7 +34,7 @@ extension IntegerPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         100
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        "\(row)"
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        "\(row)".asAmountText()
     }
 }
