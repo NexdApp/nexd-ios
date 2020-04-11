@@ -15,6 +15,10 @@ enum CallsError: Error {
 }
 
 class CallsService {
+    struct Number: Codable {
+        let number: String?
+    }
+
     static let shared = CallsService()
 
     private lazy var urlSession: URLSession = {
@@ -22,6 +26,15 @@ class CallsService {
 
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }()
+
+    func number() -> Single<Number?> {
+        return CallsAPI.callsControllerGetNumber()
+            .map { json -> Number? in
+                guard let data = json.data(using: .utf8) else { return nil }
+                return try? JSONDecoder().decode(Number.self, from: data)
+            }
+            .asSingle()
+    }
 
     func allCalls() -> Single<[Call]> {
         return CallsAPI.callsControllerCalls()
@@ -68,7 +81,7 @@ class Downloader: NSObject {
     }
 
     func loadFile(url: URL, to localUrl: URL) -> Single<URL> {
-        guard let bearerToken = Storage.shared.authorizationToken else {
+        guard let bearerToken = PersistentStorage.shared.authorizationToken else {
             return Single.error(DownloaderError.missingAuthorizationToken)
         }
 

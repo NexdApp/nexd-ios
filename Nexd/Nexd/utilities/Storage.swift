@@ -6,20 +6,29 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Cleanse
 import Foundation
 import NexdClient
 
-class Storage {
-    static let shared = Storage()
+protocol Storage {
+    var authorizationToken: String? { get }
+}
 
-    private let defaults = UserDefaults.standard
+class PersistentStorage: Storage {
+    static let shared = PersistentStorage(userDefaults: UserDefaults.standard)
+
+    private let defaults: UserDefaults
+
+    init(userDefaults: UserDefaults) {
+        self.defaults = userDefaults
+    }
 
     var authorizationToken: String? {
         get {
             defaults.string(forKey: "authorizationToken")
         }
-        set(email) {
-            defaults.setValue(email, forKey: "authorizationToken")
+        set(token) {
+            defaults.setValue(token, forKey: "authorizationToken")
         }
     }
 }

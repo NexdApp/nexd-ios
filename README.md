@@ -51,6 +51,15 @@ $ docker volume remove nearbuy-backend_data-volume
 $ docker-compose up -d db
 ```
 
-## Known issues
+# Architecture
 
-- update of access token in API client right after registration/login is ingored -> app needs to be killed and restarted
+## Technologies
+
+- API client generated from swagger with [openapi-generator](https://openapi-generator.tech/)
+- [RxSwift & RxCocoa](https://github.com/ReactiveX/RxSwift)
+- [Cleanse](https://github.com/square/Cleanse) for dependency injection
+- [R.swift](https://github.com/mac-cain13/R.swift) for strongly typed access to resources:
+  - Colors: in Collors.xcassets
+  - Images: in Assets.xcassets
+  - Fonts
+  - Strings: maintained in [POEditor](https://poeditor.com)

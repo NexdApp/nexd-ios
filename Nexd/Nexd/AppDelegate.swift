@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import NexdClient
+import Cleanse
 import UIKit
 import XCGLogger
 
@@ -14,7 +14,12 @@ let log = XCGLogger.default
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var factory: ComponentFactory<AppComponent>?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Build our root object in our graph.
+        factory = try? ComponentFactory.of(AppComponent.self)
+
         log.setup(level: .verbose, showThreadName: true, showLevel: true, showFileNames: true, showLineNumbers: true, fileLevel: .debug)
 
         // You can also change the labels for each log level, most useful for alternate languages, French, German etc, but Emoji's are more fun
@@ -27,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.levelDescriptions[.severe] = "🖤"
 
         log.logAppDetails()
-
-        NexdClientAPI.setup(authorizationToken: Storage.shared.authorizationToken)
 
         return true
     }
