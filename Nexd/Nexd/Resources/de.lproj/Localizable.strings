@@ -117,3 +117,4 @@
 "confirm_button_title" = "Bestätigen";
 "loading_overlay_message" = "Wird geladen...";
 "ok_button_title" = "OK";
+"seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
