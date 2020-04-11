@@ -33,6 +33,7 @@
 		AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6A24413AA500823E7C /* PickerView.swift */; };
 		AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */; };
 		AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */; };
+		AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */; };
 		AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5877A243A853900B6876C /* CallsListViewController.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
@@ -130,6 +131,7 @@
 		AEB6AC6A24413AA500823E7C /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerPickerView.swift; sourceTree = "<group>"; };
 		AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationItemView.swift; sourceTree = "<group>"; };
+		AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperOptionsViewController.swift; sourceTree = "<group>"; };
 		AEC5877A243A853900B6876C /* CallsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsListViewController.swift; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -241,6 +243,19 @@
 			path = seeker;
 			sourceTree = "<group>";
 		};
+		AEB6AC7024423D9500823E7C /* helper */ = {
+			isa = PBXGroup;
+			children = (
+				AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */,
+				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
+				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
+				AEC5877A243A853900B6876C /* CallsListViewController.swift */,
+				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
+				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
+			);
+			path = helper;
+			sourceTree = "<group>";
+		};
 		AED2A955243F81F20082316F /* mvvm */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,12 +332,8 @@
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
 				AEB6AC65244129B900823E7C /* seeker */,
+				AEB6AC7024423D9500823E7C /* helper */,
 				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
-				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
-				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
-				AEC5877A243A853900B6876C /* CallsListViewController.swift */,
-				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
-				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE52A2752437B76500A1166F /* UserProfileViewController.swift */,
 				AED8818E24352373006065D2 /* Style.swift */,
 			);
@@ -696,6 +707,7 @@
 				AEA2010F24362C0500BD6C1B /* View.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */,
+				AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */,
 				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
 				AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */,

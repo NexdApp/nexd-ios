@@ -26,6 +26,9 @@ protocol ScreenNavigating {
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
+    func toCallsList()
+    func toTranscribeCall()
+    func toHelperOverview()
 }
 
 class Navigator {
@@ -156,6 +159,21 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelpOptions() {
+        let screen = HelperOptionsViewController(viewModel: HelperOptionsViewController.ViewModel(navigator: self))
+        push(screen: screen)
+    }
+
+    func toCallsList() {
+        let screen = CallsListViewController()
+        push(screen: screen)
+    }
+
+    func toTranscribeCall() {
+        let screen = TranscribeCallViewController()
+        push(screen: screen)
+    }
+
+    func toHelperOverview() {
         let screen = HelperRequestOverviewViewController()
         push(screen: screen)
     }

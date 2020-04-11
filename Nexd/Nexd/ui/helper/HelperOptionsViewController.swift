@@ -1,8 +1,8 @@
 //
-//  ShoppingListOptionViewController.swift
+//  HelperOptionsViewController.swift
 //  nexd
 //
-//  Created by Tobias Schröpf on 10.04.20.
+//  Created by Tobias Schröpf on 11.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
@@ -10,24 +10,24 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewController.ViewModel> {
+class HelperOptionsViewController: ViewController<HelperOptionsViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
 
-        let heading = Driver.just(R.string.localizable.seeker_type_screen_title().asHeading())
-        let selectItemsTitle = Driver.just(R.string.localizable.seeker_type_button_help_request().asDarkButtonText())
+        let heading = Driver.just(R.string.localizable.helper_type_screen_title().asHeading())
+        let transcribeCallTitle = Driver.just(R.string.localizable.helper_type_button_transcript().asDarkButtonText())
 
-        var selectItemTaps: Binder<Void> {
+        var transcribeCallTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
-                viewModel.navigator.toCheckList()
+                viewModel.navigator.toCallsList()
             }
         }
 
-        let makePhonecallTitle = Driver.just(R.string.localizable.seeker_type_button_phone_call().asDarkButtonText())
+        let goShoppingTitle = Driver.just(R.string.localizable.helper_type_button_shopping().asDarkButtonText())
 
-        var makePhonecallTaps: Binder<Void> {
+        var goShoppingTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
-                viewModel.navigator.toPhoneCall()
+                viewModel.navigator.toHelperOverview()
             }
         }
 
@@ -39,8 +39,8 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
 
-    private let selectItemsButton = MenuButton.make(style: .dark)
-    private let makePhonecallButton = MenuButton.make(style: .dark)
+    private let transcribeCallButton = MenuButton.make(style: .dark)
+    private let goShoppingButton = MenuButton.make(style: .dark)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,32 +61,32 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.height.equalTo(84)
         }
 
-        scrollView.addSubview(selectItemsButton)
-        selectItemsButton.snp.makeConstraints { make in
+        scrollView.addSubview(transcribeCallButton)
+        transcribeCallButton.snp.makeConstraints { make in
             make.left.equalTo(view).offset(12)
             make.right.equalTo(view).offset(-12)
             make.top.equalTo(titleLabel.snp.bottom).offset(25)
             make.height.equalTo(132)
         }
 
-        scrollView.addSubview(makePhonecallButton)
-        makePhonecallButton.snp.makeConstraints { make in
+        scrollView.addSubview(goShoppingButton)
+        goShoppingButton.snp.makeConstraints { make in
             make.left.equalTo(view).offset(12)
             make.right.equalTo(view).offset(-12)
-            make.top.equalTo(selectItemsButton.snp.bottom).offset(25)
+            make.top.equalTo(transcribeCallButton.snp.bottom).offset(25)
             make.height.equalTo(132)
             make.bottom.equalToSuperview().offset(-25)
         }
     }
 
-    override func bind(viewModel: ShoppingListOptionViewController.ViewModel, disposeBag: DisposeBag) {
+    override func bind(viewModel: HelperOptionsViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.heading.drive(titleLabel.rx.attributedText),
-            viewModel.selectItemsTitle.drive(selectItemsButton.rx.attributedTitle(for: .normal)),
-            viewModel.makePhonecallTitle.drive(makePhonecallButton.rx.attributedTitle(for: .normal)),
+            viewModel.transcribeCallTitle.drive(transcribeCallButton.rx.attributedTitle(for: .normal)),
+            viewModel.goShoppingTitle.drive(goShoppingButton.rx.attributedTitle(for: .normal)),
 
-            selectItemsButton.rx.tap.bind(to: viewModel.selectItemTaps),
-            makePhonecallButton.rx.tap.bind(to: viewModel.makePhonecallTaps)
+            transcribeCallButton.rx.tap.bind(to: viewModel.transcribeCallTaps),
+            goShoppingButton.rx.tap.bind(to: viewModel.goShoppingTaps)
         )
     }
 }
