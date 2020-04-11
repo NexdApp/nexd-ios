@@ -12,6 +12,8 @@ import UIKit
 protocol ScreenNavigating {
     var root: UIViewController { get }
     func goBack()
+    func showSuccess(title: String, message: String, handler: (() -> Void)?)
+    func showError(title: String, message: String, handler: (() -> Void)?)
 
     func toStartAuthenticationFlow()
     func toLoginScreen()
@@ -21,6 +23,7 @@ protocol ScreenNavigating {
     func toProfileScreen()
     func toShoppingListOptions()
     func toCheckList()
+    func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
 }
@@ -29,6 +32,8 @@ class Navigator {
     private let storage: Storage
     private let userService: UserService
     private let callsService: CallsService
+    private let requestService: RequestService
+    private let articlesService: ArticlesService
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
@@ -36,10 +41,12 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService, callsService: CallsService) {
+    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService, articlesService: ArticlesService) {
         self.storage = storage
         self.userService = userService
         self.callsService = callsService
+        self.requestService = requestService
+        self.articlesService = articlesService
     }
 }
 
@@ -50,6 +57,24 @@ extension Navigator: ScreenNavigating {
 
     func goBack() {
         navigationController.popViewController(animated: true)
+    }
+
+    func showSuccess(title: String, message: String, handler: (() -> Void)?) {
+        if let viewController = navigationController.presentedViewController {
+            viewController.showSuccess(title: title, message: title, handler: handler)
+            return
+        }
+
+        navigationController.topViewController?.showSuccess(title: title, message: title, handler: handler)
+    }
+
+    func showError(title: String, message: String, handler: (() -> Void)? = nil) {
+        if let viewController = navigationController.presentedViewController {
+            viewController.showError(title: title, message: title, handler: handler)
+            return
+        }
+
+        navigationController.topViewController?.showError(title: title, message: title, handler: handler)
     }
 
     func toStartAuthenticationFlow() {
@@ -100,8 +125,29 @@ extension Navigator: ScreenNavigating {
     }
 
     func toCheckList() {
-        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self))
+        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
+                                                                                                              articlesService: articlesService,
+                                                                                                              requestService: requestService))
         push(screen: screen)
+    }
+
+    func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
+        let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
+                                                                    requestService: requestService,
+                                                                    items: items,
+                                                                    onSuccess: { [weak self] in
+                                                                        self?.showError(title: R.string.localizable.seeker_success_title(),
+                                                                                        message: R.string.localizable.seeker_success_message(), handler: {
+                                                                                            self?.navigationController.dismiss(animated: true) {
+                                                                                                self?.goBack()
+                                                                                            }
+                                                                        })
+                                                                    }, onError: { [weak self] _ in
+                                                                        self?.showError(title: R.string.localizable.seeker_error_title(),
+                                                                                        message: R.string.localizable.seeker_error_message(), handler: nil)
+        })
+        let screen = RequestConfirmationViewController(viewModel: viewModel)
+        navigationController.present(screen, animated: true, completion: nil)
     }
 
     func toPhoneCall() {

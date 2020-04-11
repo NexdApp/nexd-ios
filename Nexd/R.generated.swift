@@ -106,8 +106,10 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 11 colors.
+  /// This `R.color` struct is generated, and contains static references to 15 colors.
   struct color {
+    /// Color `amountText`.
+    static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
     /// Color `darkButtonBorder`.
     static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
     /// Color `darkButtonText`.
@@ -122,14 +124,29 @@ struct R: Rswift.Validatable {
     static let greetingSubline = Rswift.ColorResource(bundle: R.hostingBundle, name: "greetingSubline")
     /// Color `headingText`.
     static let headingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "headingText")
+    /// Color `listItemDetailsText`.
+    static let listItemDetailsText = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemDetailsText")
+    /// Color `listItemTitle`.
+    static let listItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemTitle")
     /// Color `negativeButtonText`.
     static let negativeButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "negativeButtonText")
     /// Color `nexdGreen`.
     static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
+    /// Color `positiveButtonText`.
+    static let positiveButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "positiveButtonText")
     /// Color `profileImageBackground`.
     static let profileImageBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileImageBackground")
     /// Color `textfieldStroke`.
     static let textfieldStroke = Rswift.ColorResource(bundle: R.hostingBundle, name: "textfieldStroke")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "amountText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func amountText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.amountText, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "darkButtonBorder", bundle: ..., traitCollection: ...)`
@@ -195,6 +212,24 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "listItemDetailsText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func listItemDetailsText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.listItemDetailsText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "listItemTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func listItemTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.listItemTitle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "negativeButtonText", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -209,6 +244,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func nexdGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.nexdGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "positiveButtonText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func positiveButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.positiveButtonText, compatibleWith: traitCollection)
     }
     #endif
 
@@ -328,7 +372,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 21 images.
+  /// This `R.image` struct is generated, and contains static references to 22 images.
   struct image {
     /// Image `Chevron`.
     static let chevron = Rswift.ImageResource(bundle: R.hostingBundle, name: "Chevron")
@@ -354,6 +398,8 @@ struct R: Rswift.Validatable {
     static let baseline_voicemail_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_voicemail_black_48pt")
     /// Image `baseline_warning_black_18pt`.
     static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
+    /// Image `cancel_icon`.
+    static let cancel_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "cancel_icon")
     /// Image `chevron_left`.
     static let chevron_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "chevron_left")
     /// Image `gradient`.
@@ -458,6 +504,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "cancel_icon", bundle: ..., traitCollection: ...)`
+    static func cancel_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cancel_icon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "chevron_left", bundle: ..., traitCollection: ...)`
     static func chevron_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.chevron_left, compatibleWith: traitCollection)
@@ -525,7 +578,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 102 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 104 localization keys.
     struct localizable {
       /// en translation: - unknown -
       ///
@@ -631,6 +684,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_dialog_deliver_title = Rswift.StringResource(key: "delivery_dialog_deliver_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Delivery comment
+      ///
+      /// Locales: en, de
+      static let seeker_request_create_placeholder_delivery_comment = Rswift.StringResource(key: "seeker_request_create_placeholder_delivery_comment", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Delivery!
       ///
       /// Locales: en, de
@@ -739,6 +796,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static let ok_button_title = Rswift.StringResource(key: "ok_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Open calls:
       ///
       /// Locales: en, de
@@ -1330,6 +1391,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("delivery_dialog_deliver_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Delivery comment
+      ///
+      /// Locales: en, de
+      static func seeker_request_create_placeholder_delivery_comment(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_request_create_placeholder_delivery_comment", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_request_create_placeholder_delivery_comment"
+        }
+
+        return NSLocalizedString("seeker_request_create_placeholder_delivery_comment", bundle: bundle, comment: "")
+      }
+
       /// en translation: Delivery!
       ///
       /// Locales: en, de
@@ -1733,6 +1809,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_button_ok", bundle: bundle, comment: "")
+      }
+
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static func ok_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ok_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ok_button_title"
+        }
+
+        return NSLocalizedString("ok_button_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Open calls:

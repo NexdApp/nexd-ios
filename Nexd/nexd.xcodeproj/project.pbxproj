@@ -27,6 +27,12 @@
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* View.swift */; };
+		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
+		AEB6AC67244129EE00823E7C /* RequestConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */; };
+		AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */; };
+		AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6A24413AA500823E7C /* PickerView.swift */; };
+		AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */; };
+		AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */; };
 		AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5877A243A853900B6876C /* CallsListViewController.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
@@ -44,6 +50,8 @@
 		AED2A96B24406C0C0082316F /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96A24406C0C0082316F /* MenuButton.swift */; };
 		AED2A96D24406C460082316F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96C24406C460082316F /* BackButton.swift */; };
 		AED2A96F2440A2830082316F /* StartAuthenticationFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96E2440A2820082316F /* StartAuthenticationFlowViewController.swift */; };
+		AED2A9712440D6E70082316F /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9702440D6E70082316F /* CancelButton.swift */; };
+		AED2A9732440D7170082316F /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9722440D7170082316F /* ConfirmButton.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -116,6 +124,12 @@
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
+		AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationViewController.swift; sourceTree = "<group>"; };
+		AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Nexd.swift"; sourceTree = "<group>"; };
+		AEB6AC6A24413AA500823E7C /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerPickerView.swift; sourceTree = "<group>"; };
+		AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationItemView.swift; sourceTree = "<group>"; };
 		AEC5877A243A853900B6876C /* CallsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsListViewController.swift; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -133,6 +147,8 @@
 		AED2A96A24406C0C0082316F /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		AED2A96C24406C460082316F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
 		AED2A96E2440A2820082316F /* StartAuthenticationFlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAuthenticationFlowViewController.swift; sourceTree = "<group>"; };
+		AED2A9702440D6E70082316F /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
+		AED2A9722440D7170082316F /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -202,6 +218,27 @@
 				6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AEB6AC622440FEB600823E7C /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				AEF3D65C242604C6005C77CE /* DefaultCell.swift */,
+				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
+				AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		AEB6AC65244129B900823E7C /* seeker */ = {
+			isa = PBXGroup;
+			children = (
+				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
+				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
+				AED2A968244058800082316F /* PhoneCallViewController.swift */,
+				AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */,
+			);
+			path = seeker;
 			sourceTree = "<group>";
 		};
 		AED2A955243F81F20082316F /* mvvm */ = {
@@ -279,10 +316,8 @@
 				AED2A955243F81F20082316F /* mvvm */,
 				AEF3D65B242604C6005C77CE /* components */,
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
+				AEB6AC65244129B900823E7C /* seeker */,
 				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
-				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
-				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
-				AED2A968244058800082316F /* PhoneCallViewController.swift */,
 				AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */,
 				AECE9D272438E03800EDCE0D /* TranscribeCallViewController.swift */,
 				AEC5877A243A853900B6876C /* CallsListViewController.swift */,
@@ -311,8 +346,7 @@
 		AEF3D65B242604C6005C77CE /* components */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D65C242604C6005C77CE /* DefaultCell.swift */,
-				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
+				AEB6AC622440FEB600823E7C /* cells */,
 				AEF3D65E242604DE005C77CE /* DataSource.swift */,
 				AEF3D66024260500005C77CE /* DefaultDataSource.swift */,
 				AEF3D66424261131005C77CE /* SectionHeaderView.swift */,
@@ -323,6 +357,11 @@
 				AEA2010E24362C0500BD6C1B /* View.swift */,
 				AED2A96A24406C0C0082316F /* MenuButton.swift */,
 				AED2A96C24406C460082316F /* BackButton.swift */,
+				AED2A9702440D6E70082316F /* CancelButton.swift */,
+				AED2A9722440D7170082316F /* ConfirmButton.swift */,
+				AEB6AC6A24413AA500823E7C /* PickerView.swift */,
+				AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */,
+				AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -357,6 +396,7 @@
 				AED8818C24351E85006065D2 /* KeyboardDismisser.swift */,
 				AE52A2772437D30800A1166F /* Completable+From.swift */,
 				AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */,
+				AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -623,18 +663,22 @@
 				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
 				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
+				AED2A9732440D7170082316F /* ConfirmButton.swift in Sources */,
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
 				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
+				AED2A9712440D6E70082316F /* CancelButton.swift in Sources */,
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
 				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
+				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
+				AEB6AC67244129EE00823E7C /* RequestConfirmationViewController.swift in Sources */,
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
@@ -646,14 +690,18 @@
 				AED2A96D24406C460082316F /* BackButton.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
+				AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* View.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */,
+				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
+				AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
+				AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
