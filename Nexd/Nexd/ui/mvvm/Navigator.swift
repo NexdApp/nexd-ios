@@ -60,11 +60,21 @@ extension Navigator: ScreenNavigating {
     }
 
     func showSuccess(title: String, message: String, handler: (() -> Void)?) {
-        navigationController.showSuccess(title: title, message: title, handler: handler)
+        if let viewController = navigationController.presentedViewController {
+            viewController.showSuccess(title: title, message: title, handler: handler)
+            return
+        }
+
+        navigationController.topViewController?.showSuccess(title: title, message: title, handler: handler)
     }
 
     func showError(title: String, message: String, handler: (() -> Void)? = nil) {
-        navigationController.showError(title: title, message: title, handler: handler)
+        if let viewController = navigationController.presentedViewController {
+            viewController.showError(title: title, message: title, handler: handler)
+            return
+        }
+
+        navigationController.topViewController?.showError(title: title, message: title, handler: handler)
     }
 
     func toStartAuthenticationFlow() {
@@ -122,7 +132,21 @@ extension Navigator: ScreenNavigating {
     }
 
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
-        let screen = RequestConfirmationViewController(viewModel: RequestConfirmationViewController.ViewModel(navigator: self, items: items))
+        let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
+                                                                    requestService: requestService,
+                                                                    items: items,
+                                                                    onSuccess: { [weak self] in
+                                                                        self?.showError(title: R.string.localizable.seeker_success_title(),
+                                                                                        message: R.string.localizable.seeker_success_message(), handler: {
+                                                                                            self?.navigationController.dismiss(animated: true) {
+                                                                                                self?.goBack()
+                                                                                            }
+                                                                        })
+                                                                    }, onError: { [weak self] _ in
+                                                                        self?.showError(title: R.string.localizable.seeker_error_title(),
+                                                                                        message: R.string.localizable.seeker_error_message(), handler: nil)
+        })
+        let screen = RequestConfirmationViewController(viewModel: viewModel)
         navigationController.present(screen, animated: true, completion: nil)
     }
 

@@ -44,30 +44,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
                     .map { item in RequestConfirmationViewController.Item(itemId: item.itemId, title: item.title, amount: item.amount) }
                 viewModel.navigator.toRequestConfirmation(items: requestItems)
             }
-
-//            let requestService = self.requestService
-//            return userUpdates
-//                .take(1)
-//                .asSingle()
-//                .flatMapCompletable { items -> Completable in
-//                    guard let items = items else { return Completable.empty() }
-//
-//                    let requestItems = items
-//                        .filter { $0.amount > 0 }
-//                        .map { item in RequestService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
-//
-//                    return requestService.submitRequest(items: requestItems)
-//                        .asCompletable()
-//                }
-//                .do(onError: { [weak self] error in
-//                    log.error("Error: \(error)")
-//                    self?.navigator.showError(title: R.string.localizable.seeker_error_title(), message: R.string.localizable.seeker_error_message(), handler: nil)
-//                }, onCompleted: { [weak self] in
-//                    log.debug("Succesful:")
-//                    self?.navigator.showSuccess(title: R.string.localizable.seeker_success_title(), message: R.string.localizable.seeker_success_message()) {
-//                        self?.navigator.goBack()
-//                    }
-//                })
         }
 
         private let userUpdates = BehaviorRelay<[Item]?>(value: nil)
@@ -155,9 +131,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             viewModel.titleText.drive(titleText.rx.attributedText),
             cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps),
             confirmButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.confirmButtonTaps)
-//            confirmButton.rx.controlEvent(.touchUpInside)
-//                .flatMap { _ -> Completable in viewModel.confirmButtonTaps }
-//                .subscribe()
         )
 
         viewModel.items

@@ -20,18 +20,58 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
 
     class ViewModel {
         let navigator: ScreenNavigating
+        let requestService: RequestService
         let items: [Item]
+        let onSuccess: (() -> Void)?
+        let onError: ((Error) -> Void)?
 
         let titleText = Driver.just(R.string.localizable.seeker_detail_screen_title().asHeading())
 
-        init(navigator: ScreenNavigating, items: [Item]) {
+        init(navigator: ScreenNavigating,
+             requestService: RequestService,
+             items: [Item],
+             onSuccess: (() -> Void)? = nil,
+             onError: ((Error) -> Void)? = nil) {
             self.navigator = navigator
+            self.requestService = requestService
             self.items = items
+            self.onSuccess = onSuccess
+            self.onError = onError
+        }
+
+        func confirm(street: String?,
+                     number: String?,
+                     zipCode: String?,
+                     city: String?,
+                     phoneNumber: String?,
+                     additionalRequest: String?,
+                     deliveryComment: String?) -> Completable {
+            let requestItems = items
+                .filter { $0.amount > 0 }
+                .map { item in RequestService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
+
+            let request = RequestService.Request(street: street,
+                                                 number: number,
+                                                 zipCode: zipCode,
+                                                 city: city,
+                                                 items: requestItems,
+                                                 additionalRequest: additionalRequest,
+                                                 deliveryComment: deliveryComment,
+                                                 phoneNumber: phoneNumber)
+
+            return requestService.submitRequest(request: request)
+                .asCompletable()
+                .do(onError: { [weak self] error in
+                    log.error("Error: \(error)")
+                    self?.onError?(error)
+                }, onCompleted: { [weak self] in
+                    log.debug("Succesful:")
+                    self?.onSuccess?()
+                })
         }
     }
 
     private var keyboardObserver: KeyboardObserver?
-    private var keyboardDismisser: KeyboardDismisser?
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
@@ -44,10 +84,10 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     private let additionalRequest = TextField()
     private let deliveryComment = TextField()
 
+    private let confirmButton = ConfirmButton()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardDismisser = KeyboardDismisser(rootView: view)
-
         view.backgroundColor = R.color.nexdGreen()
         view.addSubview(scrollView)
 
@@ -91,6 +131,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         street.withBottomBorder()
         street.placeholder = R.string.localizable.user_input_details_placeholder_street()
         street.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(stackView.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
@@ -100,6 +141,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         number.withBottomBorder()
         number.placeholder = R.string.localizable.user_input_details_placeholder_houseNumber()
         number.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(street.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
@@ -109,6 +151,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         zipCode.withBottomBorder()
         zipCode.placeholder = R.string.localizable.user_input_details_placeholder_zipCode()
         zipCode.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(number.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
@@ -118,6 +161,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         city.withBottomBorder()
         city.placeholder = R.string.localizable.user_input_details_placeholder_city()
         city.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(zipCode.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
@@ -127,6 +171,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         phoneNumber.withBottomBorder()
         phoneNumber.placeholder = R.string.localizable.user_input_details_placeholder_phoneNumber()
         phoneNumber.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(city.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
@@ -136,21 +181,34 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         additionalRequest.withBottomBorder()
         additionalRequest.placeholder = R.string.localizable.seeker_request_create_placeholder_information()
         additionalRequest.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(phoneNumber.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
-            make.bottom.equalToSuperview()
         }
 
         scrollView.addSubview(deliveryComment)
         deliveryComment.withBottomBorder()
-        deliveryComment.placeholder = R.string.localizable.user_input_details_placeholder_phoneNumber()
+        deliveryComment.placeholder = R.string.localizable.seeker_request_create_placeholder_delivery_comment()
         deliveryComment.snp.makeConstraints { make in
+            make.height.equalTo(36)
             make.top.equalTo(additionalRequest.snp.bottom).offset(23)
             make.left.equalToSuperview().offset(13)
             make.right.equalToSuperview().offset(-12)
-            make.bottom.equalToSuperview()
         }
+
+        scrollView.addSubview(confirmButton)
+        confirmButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
+        confirmButton.snp.makeConstraints { make in
+            make.height.equalTo(36)
+            make.left.equalTo(34)
+            make.top.equalTo(deliveryComment.snp.bottom).offset(44)
+            make.bottom.equalToSuperview().offset(-23)
+        }
+    }
+
+    @objc func loginButtonPressed(sender: UIButton!) {
+        log.debug("Hello World")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -165,7 +223,19 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
 
     override func bind(viewModel: RequestConfirmationViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            viewModel.titleText.drive(titleLabel.rx.attributedText)
+            viewModel.titleText.drive(titleLabel.rx.attributedText),
+            confirmButton.rx.controlEvent(.touchUpInside)
+                .flatMap { [weak self] _ -> Completable in
+                    guard let self = self else { return .empty() }
+                    return viewModel.confirm(street: self.street.text,
+                                             number: self.number.text,
+                                             zipCode: self.zipCode.text,
+                                             city: self.city.text,
+                                             phoneNumber: self.phoneNumber.text,
+                                             additionalRequest: self.additionalRequest.text,
+                                             deliveryComment: self.deliveryComment.text)
+                }
+                .subscribe()
         )
     }
 }

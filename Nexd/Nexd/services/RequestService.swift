@@ -11,6 +11,29 @@ import NexdClient
 import RxSwift
 
 class RequestService {
+    struct Request {
+        public var street: String?
+        public var number: String?
+        public var zipCode: String?
+        public var city: String?
+        public var items: [RequestItem]?
+        public var additionalRequest: String?
+        public var deliveryComment: String?
+        public var phoneNumber: String?
+
+        var dto: HelpRequestCreateDto {
+            HelpRequestCreateDto(street: street,
+                                 number: number,
+                                 zipCode: zipCode,
+                                 city: city,
+                                 articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) },
+                                 status: .pending,
+                                 additionalRequest: additionalRequest,
+                                 deliveryComment: deliveryComment,
+                                 phoneNumber: phoneNumber)
+        }
+    }
+
     struct RequestItem {
         let itemId: Int64
         let articleCount: Int64
@@ -18,19 +41,8 @@ class RequestService {
 
     static let shared = RequestService()
 
-    func submitRequest(items: [RequestItem]) -> Single<HelpRequest> {
-        let articles = items.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) }
-
-        let dto = HelpRequestCreateDto(street: nil,
-                                       number: nil,
-                                       zipCode: nil,
-                                       city: nil,
-                                       articles: articles,
-                                       status: .pending,
-                                       additionalRequest: nil,
-                                       deliveryComment: nil,
-                                       phoneNumber: nil)
-        return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: dto).asSingle()
+    func submitRequest(request: Request) -> Single<HelpRequest> {
+        return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()
     }
 
     func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = false, status: [String]? = nil) -> Single<[HelpRequest]> {
