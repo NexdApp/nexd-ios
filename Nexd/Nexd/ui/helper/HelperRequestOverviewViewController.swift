@@ -36,7 +36,9 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .map { requests in requests
                     .map { request in
                         let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
-                        let details = request.createdAt?.difference()
+                        let duration = request.createdAt?.difference()
+                        let type = R.string.localizable.helper_request_overview_item_type_list()
+                        let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
                         return OpenReqeustsCell.Item(title: title, details: details)
                     }
                 }
