@@ -49,7 +49,7 @@ class HelpRequestsService {
         return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
                                                             zipCode: zipCode,
                                                             includeRequester: includeRequester,
-                                                            status: status?.map { $0.rawValue })
+                                                            status: status)
             .asSingle()
     }
 

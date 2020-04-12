@@ -44,13 +44,17 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             }
         }
 
-        private let openHelpRequestUpdates = PublishRelay<[HelpRequest]>()
-        private lazy var openHelpRequests: Observable<[HelpRequest]> = helpRequestsService
-                .openRequests(status: [.pending])
-                .debug("ZEFIX - single")
-                .asObservable()
-                .concat(openHelpRequestUpdates)
-                .share(replay: 1, scope: .forever)
+        private let openHelpRequestUpdateTrigger = PublishRelay<Void>()
+        private lazy var openHelpRequests: Observable<[HelpRequest]> = { helpRequestsService
+            .openRequests(status: [.pending])
+            .asObservable()
+            .concat(openHelpRequestUpdateTrigger.flatMapLatest { [weak self] _ -> Single<[HelpRequest]> in
+                guard let self = self else { return Single.never() }
+
+                return self.helpRequestsService.openRequests(status: [.pending])
+            })
+            .share(replay: 1)
+        }()
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {
             return openHelpRequests
@@ -81,6 +85,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                         .flatMapCompletable { helpList -> Completable in
                             Completable.from { [weak self] in
                                 self?.helpListUpdates.accept(helpList)
+                                self?.openHelpRequestUpdateTrigger.accept(())
                             }
                         }
                 }
