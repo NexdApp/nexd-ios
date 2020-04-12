@@ -34,6 +34,13 @@ class RequestService {
         }
     }
 
+    enum RequestStatus: String {
+        case pending
+        case ongoing
+        case completed
+        case deactivated
+    }
+
     struct RequestItem {
         let itemId: Int64
         let articleCount: Int64
@@ -45,11 +52,11 @@ class RequestService {
         return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()
     }
 
-    func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = false, status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
+    func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = true, status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
         return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
                                                             zipCode: zipCode,
                                                             includeRequester: includeRequester,
-                                                            status: status)
+                                                            status: status?.map { $0.rawValue })
             .asSingle()
     }
 

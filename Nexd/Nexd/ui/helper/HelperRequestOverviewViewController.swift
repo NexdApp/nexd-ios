@@ -15,19 +15,26 @@ import UIKit
 class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
+        private let requestService: RequestService
 
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
-        init(navigator: ScreenNavigating) {
-            self.navigator = navigator
+        var acceptedRequests: Observable<[AcceptedRequestCell.Item]> {
+            return requestService.openRequests()
+                .map { requests in requests
+                    .map { request in
+                        let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
+                        return AcceptedRequestCell.Item(title: title)
+                    }
+                }
+                .asObservable()
         }
-    }
 
-    enum Style {
-        static let headerHeight: CGFloat = 60
-        static let rowHeight: CGFloat = 40
-        static let buttonHeight: CGFloat = 52
+        init(navigator: ScreenNavigating, requestService: RequestService) {
+            self.navigator = navigator
+            self.requestService = requestService
+        }
     }
 
     struct Request {
@@ -50,7 +57,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.registerCell(class: DefaultCell.self)
+        list.registerCell(class: AcceptedRequestCell.self)
 
         return list
     }()
@@ -62,14 +69,14 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
+        list.registerCell(class: DefaultCell.self)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
         return list
     }()
 
     private var dataSource: DefaultSectionedDataSource<DefaultCell.Item>? {
         didSet {
-            acceptedRequestsCollectionView.dataSource = dataSource
+//            acceptedRequestsCollectionView.dataSource = dataSource
             openRequestsCollectionView.dataSource = dataSource
         }
     }
@@ -123,7 +130,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         acceptedRequestsCollectionView.snp.makeConstraints { make -> Void in
             make.left.right.equalToSuperview().inset(12)
             make.top.equalTo(acceptedRequestsHeadingLabel.snp.bottom)
-            make.height.equalTo(174)
+            make.height.equalTo(153)
         }
 
         view.addSubview(openRequestsHeadingLabel)
@@ -187,6 +194,12 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             acceptedRequestsCollectionView.rx.setDelegate(self),
             openRequestsCollectionView.rx.setDelegate(self)
         )
+
+        viewModel.acceptedRequests
+            .bind(to: acceptedRequestsCollectionView.rx.items(class: AcceptedRequestCell.self)) { _, item, cell in
+                cell.bind(to: AcceptedRequestCell.Item(title: item.title))
+            }
+            .disposed(by: disposeBag)
     }
 }
 

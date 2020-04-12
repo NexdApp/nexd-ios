@@ -24,11 +24,12 @@ class AcceptedRequestCell: UICollectionViewCell {
         contentView.addSubview(container)
         container.layer.masksToBounds = true
         container.layer.borderWidth = 1
-        container.layer.borderColor = UIColor.white.cgColor
+        container.layer.borderColor = R.color.darkButtonBorder()?.cgColor
         container.layer.cornerRadius = 10
         container.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.equalTo(39)
+            make.width.equalToSuperview()
+            make.height.equalTo(53)
         }
 
         container.addSubview(title)
@@ -36,20 +37,15 @@ class AcceptedRequestCell: UICollectionViewCell {
         title.backgroundColor = .clear
 
         title.snp.makeConstraints { make -> Void in
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().inset(19)
             make.centerY.equalToSuperview()
         }
 
         container.addSubview(accessoryView)
-
-        accessoryView.backgroundColor = .clear
-        accessoryView.layer.masksToBounds = true
-        accessoryView.layer.cornerRadius = 18.5
-
+        accessoryView.image = R.image.chevron()?.withTintColor(R.color.darkButtonBorder()!)
         accessoryView.snp.makeConstraints { make -> Void in
             make.left.equalTo(title.snp.right).offset(14)
-            make.right.equalToSuperview().offset(-8)
-            make.size.equalTo(CGSize(width: 37, height: 37))
+            make.right.equalToSuperview().inset(23)
             make.centerY.equalToSuperview()
         }
     }

@@ -25,7 +25,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
     class ViewModel {
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
-        private let requestService: RequestService
 
         let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
 
@@ -73,10 +72,9 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             userUpdates.accept(updatedItems)
         }
 
-        init(navigator: ScreenNavigating, articlesService: ArticlesService, requestService: RequestService) {
+        init(navigator: ScreenNavigating, articlesService: ArticlesService) {
             self.navigator = navigator
             self.articlesService = articlesService
-            self.requestService = requestService
         }
     }
 

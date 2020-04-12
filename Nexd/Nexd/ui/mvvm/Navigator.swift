@@ -129,8 +129,7 @@ extension Navigator: ScreenNavigating {
 
     func toCheckList() {
         let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
-                                                                                                              articlesService: articlesService,
-                                                                                                              requestService: requestService))
+                                                                                                              articlesService: articlesService))
         push(screen: screen)
     }
 
@@ -174,7 +173,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelperOverview() {
-        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self))
+        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self, requestService: requestService))
         push(screen: screen)
     }
 
