@@ -21,7 +21,7 @@ class SubMenuButton: Control {
     override func setupConstraints() {
         image.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview()
+            make.right.lessThanOrEqualToSuperview()
         }
 
         label.snp.makeConstraints { make in
@@ -34,7 +34,7 @@ class SubMenuButton: Control {
         let button = SubMenuButton()
 
         button.label.numberOfLines = 1
-        button.label.attributedText = R.string.localizable.confirm_button_title().asPositiveButtonText()
+        button.label.attributedText = title?.asPositiveButtonText()
         button.image.image = R.image.chevron()?.withTintColor(R.color.positiveButtonText()!)
 
         return button

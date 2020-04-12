@@ -35,6 +35,8 @@
 		AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */; };
 		AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */; };
 		AEB6AC75244249B300823E7C /* SubMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC74244249B300823E7C /* SubMenuButton.swift */; };
+		AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */; };
+		AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */; };
 		AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC5877A243A853900B6876C /* CallsListViewController.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
@@ -134,6 +136,8 @@
 		AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationItemView.swift; sourceTree = "<group>"; };
 		AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperOptionsViewController.swift; sourceTree = "<group>"; };
 		AEB6AC74244249B300823E7C /* SubMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuButton.swift; sourceTree = "<group>"; };
+		AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCell.swift; sourceTree = "<group>"; };
+		AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Nexd.swift"; sourceTree = "<group>"; };
 		AEC5877A243A853900B6876C /* CallsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsListViewController.swift; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
@@ -230,6 +234,7 @@
 				AEF3D65C242604C6005C77CE /* DefaultCell.swift */,
 				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
 				AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */,
+				AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -419,6 +424,7 @@
 				AE52A2772437D30800A1166F /* Completable+From.swift */,
 				AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */,
 				AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */,
+				AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -677,6 +683,7 @@
 				AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */,
 				AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */,
 				AECE9D282438E03800EDCE0D /* TranscribeCallViewController.swift in Sources */,
+				AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */,
 				AED8818B24351174006065D2 /* String+Nexd.swift in Sources */,
 				AE2A9A892426D992006066B4 /* UIColor+Nexd.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */,
@@ -727,6 +734,7 @@
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
+				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,

@@ -87,7 +87,7 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.register(ArticleSelectionCell.self, forCellWithReuseIdentifier: ArticleSelectionCell.reuseIdentifier)
+        list.registerCell(class: ArticleSelectionCell.self)
         return list
     }()
 
@@ -134,8 +134,7 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
         )
 
         viewModel.items
-            .bind(to: collectionView.rx.items(cellIdentifier: ArticleSelectionCell.reuseIdentifier,
-                                              cellType: ArticleSelectionCell.self)) { [weak self] _, item, cell in
+            .bind(to: collectionView.rx.items(class: ArticleSelectionCell.self)) { [weak self] _, item, cell in
                 cell.bind(to: ArticleSelectionCell.Item(title: item.title,
                                                         amount: String(item.amount),
                                                         amountChanged: { amount in

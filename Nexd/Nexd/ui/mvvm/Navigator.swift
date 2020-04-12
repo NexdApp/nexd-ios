@@ -174,7 +174,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelperOverview() {
-        let screen = HelperRequestOverviewViewController()
+        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self))
         push(screen: screen)
     }
 
