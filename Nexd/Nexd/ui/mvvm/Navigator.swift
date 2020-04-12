@@ -7,6 +7,7 @@
 //
 
 import Cleanse
+import NexdClient
 import UIKit
 
 protocol ScreenNavigating {
@@ -29,7 +30,7 @@ protocol ScreenNavigating {
     func toCallsList()
     func toTranscribeCall()
     func toHelperOverview()
-    func toCurrentItemsList()
+    func toCurrentItemsList(helpList: HelpList)
 }
 
 class Navigator {
@@ -187,8 +188,8 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCurrentItemsList() {
-        let screen = ShoppingListViewController()
+    func toCurrentItemsList(helpList: HelpList) {
+        let screen = ShoppingListViewController(viewModel: ShoppingListViewController.ViewModel(navigator: self, helpList: helpList))
         push(screen: screen)
     }
 

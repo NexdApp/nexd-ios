@@ -7,192 +7,86 @@
 //
 
 import NexdClient
+import RxCocoa
 import RxSwift
 import SnapKit
 import UIKit
 
-class ShoppingListViewController: UIViewController {
-    enum Style {
-        static let headerHeight: CGFloat = 60
-        static let rowHeight: CGFloat = 40
-        static let buttonHeight: CGFloat = 52
-    }
+class ShoppingListViewController: ViewController<ShoppingListViewController.ViewModel> {
+    class ViewModel {
+        private let navigator: ScreenNavigating
+        let helpList: HelpList
+        let shoppingListHeadingText = Driver.just(R.string.localizable.shopping_list_screen_title().asHeading())
 
-    struct Item {
-        let isSelected: Bool
-        let title: String
-        let itemId: Int64?
-        let requester: User?
-    }
-
-    struct Content {
-        let items: [Item]
-    }
-
-    var shoppingList: HelpList?
-
-    private let disposeBag = DisposeBag()
-
-    private var gradient = GradientView()
-
-    private var collectionView: UICollectionView?
-    private var checkoutButton = UIButton()
-
-    private var dataSource: DataSource<CheckableCell.Item>? {
-        didSet {
-            collectionView?.dataSource = dataSource
+        init(navigator: ScreenNavigating, helpList: HelpList) {
+            self.helpList = helpList
+            self.navigator = navigator
         }
     }
 
-    private var content: Content? {
-        didSet {
-            dataSource = DataSource(reuseIdentifier: CheckableCell.reuseIdentifier,
-                                    items: content?.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) } ?? []) { item, cell in
-                if let cell = cell as? CheckableCell {
-                    cell.bind(to: item)
-                }
-            }
-        }
-    }
+    private let scrollView = UIScrollView()
+    private let shoppingListHeadingLabel = UILabel()
+    private let stackView = UIStackView()
+    private var checkoutButton = SubMenuButton.make(title: R.string.localizable.shopping_list_button_title_checkout())
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.headerReferenceSize = CGSize(width: view.frame.size.width, height: Style.headerHeight)
-        layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
+        view.backgroundColor = R.color.nexdGreen()
 
-        let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        list.backgroundColor = .clear
-        list.delegate = self
-        list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
-
-        title = R.string.localizable.shopping_list_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
         }
 
-        checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed(sender:)), for: .touchUpInside)
-        checkoutButton.style(text: R.string.localizable.shopping_list_button_title_checkout())
-        view.addSubview(checkoutButton)
+        scrollView.addSubview(shoppingListHeadingLabel)
+        shoppingListHeadingLabel.snp.makeConstraints { make -> Void in
+            make.top.equalToSuperview().inset(104)
+            make.left.right.equalToSuperview().inset(24)
+        }
+
+        scrollView.addSubview(stackView)
+        stackView.asCard()
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.snp.makeConstraints { make -> Void in
+            make.top.equalTo(shoppingListHeadingLabel.snp.bottom).offset(8)
+            make.left.right.equalTo(view).inset(12)
+        }
+
+        scrollView.addSubview(checkoutButton)
         checkoutButton.snp.makeConstraints { make in
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.height.equalTo(Style.buttonHeight)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+            make.top.greaterThanOrEqualTo(stackView.snp.bottom).offset(18)
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(56)
         }
 
-        view.addSubview(list)
-        list.snp.makeConstraints { make -> Void in
-            make.left.top.right.equalToSuperview()
-            make.bottom.equalTo(checkoutButton.snp.top).offset(8)
+        guard let viewModel = viewModel else { return }
+        let articles = viewModel.helpList.helpRequests.flatMap { helpRequest -> [HelpRequestArticle] in
+            helpRequest.articles ?? []
         }
+        for article in articles {
+            guard let name = article.article?.name else { continue }
+            let itemView = ShoppingListItemView()
+            itemView.title.attributedText = "\(name)".asListItemTitle()
 
-        collectionView = list
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        loadContent()
-    }
-
-    private func loadContent() {
-        let getShoppingList = shoppingList != nil ?
-            Single.just(shoppingList) :
-            HelpListsService.shared.fetchShoppingLists()
-            .map { lists in
-                var activeList = lists.filter { $0.status == .active }
-                activeList.sort { first, second in first.createdAt < second.createdAt }
-                return activeList.first
+            if let count = article.articleCount {
+                itemView.amount.attributedText = "\(count)x".asListItemDetails()
             }
 
-        getShoppingList
-            .flatMap { [weak self] list -> Single<[HelpRequest]> in
-                guard let self = self, let list = list else {
-                    return Single.just([])
-                }
-                return self.loadAllRequests(for: list)
+            stackView.addArrangedSubview(itemView)
+
+            itemView.snp.makeConstraints { make in
+                make.left.equalTo(view).inset(13)
+                make.height.equalTo(52)
             }
-            .flatMap { requests in
-                ArticlesService.shared.allArticles()
-                    .map { allArticles -> [Item] in
-                        requests.flatMap { request -> [Item] in
-                            guard let articles = request.articles else { return [] }
-
-                            return articles.map { article -> Item in
-                                let details = allArticles.first { $0.id == article.articleId }
-
-                                return Item(isSelected: false,
-                                            title: details?.name ?? "-",
-                                            itemId: article.articleId,
-                                            requester: request.requester)
-                            }
-                        }
-                    }
-            }
-            .subscribe(onSuccess: { [weak self] items in
-                log.debug("List loaded successfully... updating content (items: \(items.count))")
-                self?.content = Content(items: items)
-            }, onError: { [weak self] error in
-                log.error("Load failed: \(error)")
-                self?.showError(title: R.string.localizable.shopping_list_overview_error_title(),
-                                message: R.string.localizable.shopping_list_overview_error_loading_failed_message())
-            })
-            .disposed(by: disposeBag)
-    }
-
-    private func loadAllRequests(for shoppingList: HelpList) -> Single<[HelpRequest]> {
-        return Single.zip(shoppingList.helpRequests
-            .compactMap { $0.id }
-            .map { HelpRequestsService.shared.fetchRequest(requestId: $0) })
-    }
-}
-
-extension ShoppingListViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // nothing yet
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let content = self.content else { return }
-
-        var items = content.items
-        let item = items[indexPath.row]
-        items[indexPath.row] = Item(isSelected: !item.isSelected, title: item.title, itemId: item.itemId, requester: item.requester)
-        self.content = Content(items: items)
-    }
-}
-
-extension ShoppingListViewController {
-    @objc func checkoutButtonPressed(sender: UIButton!) {
-        guard let content = content else { return }
-        let checkoutVC = CheckoutViewController()
-
-        var dict = [String: User]()
-
-        content.items.forEach {
-            guard let user = $0.requester else { return }
-            dict[user.id] = user
         }
+    }
 
-        let checkoutItems = dict.map { userId, user -> CheckoutViewController.UserRequest in
-            let items = content.items
-                .filter { $0.requester?.id == userId }
-                .map { CheckoutViewController.Item.from(item: $0) }
-            return CheckoutViewController.UserRequest(user: user, items: items)
-        }
-        checkoutVC.content = CheckoutViewController.Content(requests: checkoutItems)
-
-        navigationController?.pushViewController(checkoutVC, animated: true)
-//        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
-//            .subscribe(onCompleted: {
-//                log.debug("Shoppping list created!")
-//            }, onError: { error in
-//                log.error("Failed to create shopping list: \(error)")
-//            })
-//            .disposed(by: disposeBag)
+    override func bind(viewModel: ShoppingListViewController.ViewModel, disposeBag: DisposeBag) {
+        disposeBag.insert(
+            viewModel.shoppingListHeadingText.drive(shoppingListHeadingLabel.rx.attributedText)
+        )
     }
 }

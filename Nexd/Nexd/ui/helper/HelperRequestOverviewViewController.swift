@@ -18,10 +18,14 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
 
-        var currentItemsListButtonTaps: Binder<Void> {
-            Binder(self) { viewModel, _ in
-                viewModel.navigator.toCurrentItemsList()
+        func currentItemsListButtonTaps() -> Completable {
+            let navigator = self.navigator
+            return helpList.take(1).flatMap { helpList -> Completable in
+                Completable.from {
+                    navigator.toCurrentItemsList(helpList: helpList)
+                }
             }
+            .asCompletable()
         }
 
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
@@ -115,8 +119,6 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         let availableRequests: [Request]
     }
 
-    private let disposeBag = DisposeBag()
-
     private let currentItemsListButton = SubMenuButton.make(title: R.string.localizable.helper_request_overview_button_title_current_items_list())
     private let acceptedRequestsHeadingLabel = UILabel()
     private var acceptedRequestsCollectionView: UICollectionView = {
@@ -183,7 +185,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            currentItemsListButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.currentItemsListButtonTaps),
+            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap {viewModel.currentItemsListButtonTaps() }.subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
 

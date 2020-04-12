@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJW-KJ-b8D">
-                                <rect key="frame" x="41" y="355.5" width="332" height="195.5"/>
+                                <rect key="frame" x="41" y="356" width="332" height="194.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="alB-We-F4v">
                                         <rect key="frame" x="20" y="20" width="292" height="137"/>
@@ -33,7 +33,7 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Statement about app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyU-5w-Kbw">
-                                        <rect key="frame" x="47" y="165" width="238" height="30.5"/>
+                                        <rect key="frame" x="47.5" y="165" width="237" height="29.5"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Bold" family="Proxima Nova Soft" pointSize="25"/>
                                         <color key="textColor" name="darkButtonText"/>
                                         <nil key="highlightedColor"/>

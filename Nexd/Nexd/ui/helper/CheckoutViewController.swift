@@ -23,9 +23,9 @@ class CheckoutViewController: UIViewController {
         let title: String
         let itemId: Int64?
 
-        static func from(item: ShoppingListViewController.Item) -> Item {
-            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId)
-        }
+//        static func from(item: ShoppingListViewController.Item) -> Item {
+//            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId)
+//        }
     }
 
     struct UserRequest {
