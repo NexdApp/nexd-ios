@@ -31,12 +31,11 @@ class PickerView: UIPickerView {
         backgroundColor = .white
 
         let toolBar = UIToolbar()
-        toolBar.barStyle = UIBarStyle.default
-        toolBar.isTranslucent = true
-        toolBar.tintColor = .black
+        toolBar.barStyle = .default
+        toolBar.tintColor = R.color.nexdGreen()
         toolBar.sizeToFit()
 
-        let doneButton = UIBarButtonItem(title: R.string.localizable.ok_button_title(), style: .plain, target: self, action: #selector(doneTapped))
+        let doneButton = UIBarButtonItem(title: R.string.localizable.ok_button_title(), style: .done, target: self, action: #selector(doneTapped))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: R.string.localizable.cancel_button_title(), style: .plain, target: self, action: #selector(cancelTapped))
 

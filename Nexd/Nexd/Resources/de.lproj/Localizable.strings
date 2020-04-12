@@ -118,3 +118,4 @@
 "loading_overlay_message" = "Wird geladen...";
 "ok_button_title" = "OK";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
+"helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
