@@ -22,11 +22,13 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
         var acceptedRequests: Observable<[AcceptedRequestCell.Item]> {
-            return helpRequestsService.openRequests(userId: "me", includeRequester: true, status: [.ongoing])
-                .map { requests in requests
-                    .map { request in
-                        let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
-                        return AcceptedRequestCell.Item(title: title)
+            return helpListsService.fetchShoppingLists()
+                .map { lists in
+                    lists.flatMap { helpList -> [AcceptedRequestCell.Item] in
+                        helpList.helpRequests.map { helpRequest -> AcceptedRequestCell.Item in
+                            let title = helpRequest.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
+                            return AcceptedRequestCell.Item(title: title)
+                        }
                     }
                 }
                 .asObservable()
@@ -34,14 +36,15 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {
             return helpRequestsService.openRequests(status: [.pending])
-                .map { requests in requests
-                    .map { request in
-                        let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
-                        let duration = request.createdAt?.difference()
-                        let type = R.string.localizable.helper_request_overview_item_type_list()
-                        let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
-                        return OpenReqeustsCell.Item(title: title, details: details)
-                    }
+                .map { requests in
+                    requests
+                        .map { request in
+                            let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
+                            let duration = request.createdAt?.difference()
+                            let type = R.string.localizable.helper_request_overview_item_type_list()
+                            let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
+                            return OpenReqeustsCell.Item(title: title, details: details)
+                        }
                 }
                 .asObservable()
         }
@@ -185,7 +188,7 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayou
 //    }
 // }
 //
-//extension HelperRequestOverviewViewController {
+// extension HelperRequestOverviewViewController {
 //    @objc func startButtonPressed(sender: UIButton!) {
 //        guard let content = content else { return }
 //        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.requestId })
@@ -201,4 +204,4 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayou
 //            })
 //            .disposed(by: disposeBag)
 //    }
-//}
+// }
