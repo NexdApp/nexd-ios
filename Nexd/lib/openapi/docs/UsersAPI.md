@@ -1,6 +1,6 @@
 # UsersAPI
 
-All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -85,7 +85,7 @@ Name | Type | Description  | Notes
 
 # **userControllerGetAll**
 ```swift
-    open class func userControllerGetAll() -> Observable<[User]>
+    open class func userControllerGetAll(xAdminSecret: String) -> Observable<[User]>
 ```
 
 Get all users
@@ -95,12 +95,16 @@ Get all users
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
+let xAdminSecret = "xAdminSecret_example" // String | Secret to access the admin functions.
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **xAdminSecret** | **String** | Secret to access the admin functions. | 
 
 ### Return type
 
@@ -130,7 +134,7 @@ Update profile of a specific user
 import NexdClient
 
 let userId = "userId_example" // String | user id
-let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", telephone: "telephone_example") // UpdateUserDto | 
+let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -169,7 +173,7 @@ Update profile of the requesting user
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", telephone: "telephone_example") // UpdateUserDto | 
+let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

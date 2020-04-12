@@ -578,8 +578,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 104 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 106 localization keys.
     struct localizable {
+      /// en translation: %1$@ ago, %2$@
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_open_request_item_details_format_ios = Rswift.StringResource(key: "helper_request_overview_open_request_item_details_format_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: - unknown -
       ///
       /// Locales: en, de
@@ -680,6 +684,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_button_title_continue = Rswift.StringResource(key: "registration_button_title_continue", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Current Items List
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_button_title_current_items_list = Rswift.StringResource(key: "helper_request_overview_button_title_current_items_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Deliver
       ///
       /// Locales: en, de
@@ -996,6 +1004,23 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_input_details_placeholder_zipCode = Rswift.StringResource(key: "user_input_details_placeholder_zipCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
+      /// en translation: %1$@ ago, %2$@
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_open_request_item_details_format_ios(_ value1: String, _ value2: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("helper_request_overview_open_request_item_details_format_ios", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_open_request_item_details_format_ios"
+        }
+
+        let format = NSLocalizedString("helper_request_overview_open_request_item_details_format_ios", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
 
       /// en translation: - unknown -
       ///
@@ -1374,6 +1399,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_button_title_continue", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Current Items List
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_button_title_current_items_list(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_button_title_current_items_list", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_button_title_current_items_list"
+        }
+
+        return NSLocalizedString("helper_request_overview_button_title_current_items_list", bundle: bundle, comment: "")
       }
 
       /// en translation: Deliver

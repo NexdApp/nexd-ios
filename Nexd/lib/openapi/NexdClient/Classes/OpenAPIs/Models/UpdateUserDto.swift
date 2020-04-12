@@ -23,9 +23,9 @@ public struct UpdateUserDto: Codable {
     public var firstName: String
     public var lastName: String
     public var role: Role? = ._none
-    public var telephone: String?
+    public var phoneNumber: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role?, telephone: String?) {
+    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role?, phoneNumber: String?) {
         self.street = street
         self.number = number
         self.zipCode = zipCode
@@ -33,7 +33,7 @@ public struct UpdateUserDto: Codable {
         self.firstName = firstName
         self.lastName = lastName
         self.role = role
-        self.telephone = telephone
+        self.phoneNumber = phoneNumber
     }
 
 }
