@@ -21,7 +21,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
-        private let helpListUpdates = PublishSubject<HelpList>()
+        private let helpListUpdates = PublishRelay<HelpList>()
         private lazy var helpList = helpListsService.createShoppingList(requestIds: [])
             .asObservable()
             .concat(helpListUpdates)
@@ -44,11 +44,13 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             }
         }
 
-        private var openHelpRequests: Observable<[HelpRequest]> {
-            helpRequestsService.openRequests(status: [.pending])
+        private let openHelpRequestUpdates = PublishRelay<[HelpRequest]>()
+        private lazy var openHelpRequests: Observable<[HelpRequest]> = helpRequestsService
+                .openRequests(status: [.pending])
+                .debug("ZEFIX - single")
                 .asObservable()
+                .concat(openHelpRequestUpdates)
                 .share(replay: 1, scope: .forever)
-        }
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {
             return openHelpRequests
@@ -69,16 +71,16 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             let helpListsService = self.helpListsService
             return openHelpRequests
                 .take(1)
-                .map { requests -> HelpRequest in requests[indexPath.row] }
-                .withLatestFrom(helpList) { helpRequest, helpList -> (HelpRequest, HelpList) in
-                    (helpRequest, helpList)
+                .map { requests -> HelpRequest in
+                    requests[indexPath.row]
                 }
+                .withLatestFrom(helpList) { ($0, $1) }
                 .flatMap { helpRequest, helpList -> Completable in
                     guard let requestId = helpRequest.id else { return Completable.empty() }
                     return helpListsService.addRequest(withId: requestId, to: helpList.id)
                         .flatMapCompletable { helpList -> Completable in
                             Completable.from { [weak self] in
-                                self?.helpListUpdates.onNext(helpList)
+                                self?.helpListUpdates.accept(helpList)
                             }
                         }
                 }
