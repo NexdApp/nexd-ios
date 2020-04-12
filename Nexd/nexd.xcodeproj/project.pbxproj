@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E0104243148E90006A490 /* KeyboardObserver.swift */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
-		AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* ShoppingListService.swift */; };
+		AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* HelpListsService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */; };
 		AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690272427BC46009A8892 /* ShoppingListViewController.swift */; };
 		AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690292427E984009A8892 /* CheckoutViewController.swift */; };
 		AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */; };
 		AE2A9A892426D992006066B4 /* UIColor+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */; };
-		AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* RequestService.swift */; };
+		AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */; };
 		AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2A9A932426FA50006066B4 /* Localizable.strings */; };
 		AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */; };
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
@@ -111,13 +111,13 @@
 		885A0DBDF401BD95331F807C /* Pods-nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.debug.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.debug.xcconfig"; sourceTree = "<group>"; };
 		AE1E0104243148E90006A490 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		AE2690232427A61D009A8892 /* ShoppingListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListService.swift; sourceTree = "<group>"; };
+		AE2690232427A61D009A8892 /* HelpListsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListsService.swift; sourceTree = "<group>"; };
 		AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Nexd.swift"; sourceTree = "<group>"; };
 		AE2690272427BC46009A8892 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AE2690292427E984009A8892 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Nexd.swift"; sourceTree = "<group>"; };
-		AE2A9A8A2426DF09006066B4 /* RequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestService.swift; sourceTree = "<group>"; };
+		AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestsService.swift; sourceTree = "<group>"; };
 		AE2A9A922426FA50006066B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A942426FA67006066B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Nexd.swift"; sourceTree = "<group>"; };
@@ -403,9 +403,9 @@
 			children = (
 				AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */,
 				AEF3D6762426AD56005C77CE /* ArticlesService.swift */,
-				AE2A9A8A2426DF09006066B4 /* RequestService.swift */,
+				AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */,
 				AE26902124278BFC009A8892 /* UserService.swift */,
-				AE2690232427A61D009A8892 /* ShoppingListService.swift */,
+				AE2690232427A61D009A8892 /* HelpListsService.swift */,
 				AECE9D232438D84400EDCE0D /* AudioPlayer.swift */,
 				AE4EA654243A665900B8E9D6 /* CallsService.swift */,
 			);
@@ -707,12 +707,12 @@
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
 				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
-				AE2690242427A61D009A8892 /* ShoppingListService.swift in Sources */,
+				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
-				AE2A9A8B2426DF09006066B4 /* RequestService.swift in Sources */,
+				AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
 				AEB6AC67244129EE00823E7C /* RequestConfirmationViewController.swift in Sources */,
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,

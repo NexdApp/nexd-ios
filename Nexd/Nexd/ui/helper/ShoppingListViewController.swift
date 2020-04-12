@@ -102,7 +102,7 @@ class ShoppingListViewController: UIViewController {
     private func loadContent() {
         let getShoppingList = shoppingList != nil ?
             Single.just(shoppingList) :
-            ShoppingListService.shared.fetchShoppingLists()
+            HelpListsService.shared.fetchShoppingLists()
             .map { lists in
                 var activeList = lists.filter { $0.status == .active }
                 activeList.sort { first, second in first.createdAt < second.createdAt }
@@ -147,7 +147,7 @@ class ShoppingListViewController: UIViewController {
     private func loadAllRequests(for shoppingList: HelpList) -> Single<[HelpRequest]> {
         return Single.zip(shoppingList.helpRequests
             .compactMap { $0.id }
-            .map { RequestService.shared.fetchRequest(requestId: $0) })
+            .map { HelpRequestsService.shared.fetchRequest(requestId: $0) })
     }
 }
 

@@ -35,7 +35,8 @@ class Navigator {
     private let storage: Storage
     private let userService: UserService
     private let callsService: CallsService
-    private let requestService: RequestService
+    private let helpRequestsService: HelpRequestsService
+    private let helpListsService: HelpListsService
     private let articlesService: ArticlesService
 
     lazy var navigationController: UINavigationController = {
@@ -44,11 +45,17 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService, articlesService: ArticlesService) {
+    init(storage: Storage,
+         userService: UserService,
+         callsService: CallsService,
+         helpRequestsService: HelpRequestsService,
+         articlesService: ArticlesService,
+         helpListsService: HelpListsService) {
         self.storage = storage
         self.userService = userService
         self.callsService = callsService
-        self.requestService = requestService
+        self.helpRequestsService = helpRequestsService
+        self.helpListsService = helpListsService
         self.articlesService = articlesService
     }
 }
@@ -135,7 +142,7 @@ extension Navigator: ScreenNavigating {
 
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
         let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
-                                                                    requestService: requestService,
+                                                                    requestService: helpRequestsService,
                                                                     items: items,
                                                                     onSuccess: { [weak self] in
                                                                         self?.showError(title: R.string.localizable.seeker_success_title(),
@@ -173,7 +180,9 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelperOverview() {
-        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self, requestService: requestService))
+        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
+                                                                                                                  helpRequestsService: helpRequestsService,
+                                                                                                                  helpListsService: helpListsService))
         push(screen: screen)
     }
 

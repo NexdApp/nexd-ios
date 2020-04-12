@@ -10,8 +10,8 @@ import Foundation
 import RxSwift
 import NexdClient
 
-class ShoppingListService {
-    static let shared = ShoppingListService()
+class HelpListsService {
+    static let shared = HelpListsService()
 
     func createShoppingList(requestIds: [Int64]) -> Single<HelpList> {
         let dto = HelpListCreateDto(helpRequestsIds: requestIds, status: .active)

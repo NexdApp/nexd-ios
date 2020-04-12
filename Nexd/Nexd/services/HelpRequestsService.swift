@@ -10,7 +10,7 @@ import Foundation
 import NexdClient
 import RxSwift
 
-class RequestService {
+class HelpRequestsService {
     struct Request {
         public var street: String?
         public var number: String?
@@ -39,7 +39,7 @@ class RequestService {
         let articleCount: Int64
     }
 
-    static let shared = RequestService()
+    static let shared = HelpRequestsService()
 
     func submitRequest(request: Request) -> Single<HelpRequest> {
         return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()

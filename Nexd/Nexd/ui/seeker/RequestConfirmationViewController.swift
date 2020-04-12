@@ -20,7 +20,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
 
     class ViewModel {
         let navigator: ScreenNavigating
-        let requestService: RequestService
+        let requestService: HelpRequestsService
         let items: [Item]
         let onSuccess: (() -> Void)?
         let onError: ((Error) -> Void)?
@@ -28,7 +28,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         let titleText = Driver.just(R.string.localizable.seeker_detail_screen_title().asHeading())
 
         init(navigator: ScreenNavigating,
-             requestService: RequestService,
+             requestService: HelpRequestsService,
              items: [Item],
              onSuccess: (() -> Void)? = nil,
              onError: ((Error) -> Void)? = nil) {
@@ -48,9 +48,9 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                      deliveryComment: String?) -> Completable {
             let requestItems = items
                 .filter { $0.amount > 0 }
-                .map { item in RequestService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
+                .map { item in HelpRequestsService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
 
-            let request = RequestService.Request(street: street,
+            let request = HelpRequestsService.Request(street: street,
                                                  number: number,
                                                  zipCode: zipCode,
                                                  city: city,

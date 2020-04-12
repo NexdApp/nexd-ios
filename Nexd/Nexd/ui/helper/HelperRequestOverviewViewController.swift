@@ -15,13 +15,14 @@ import UIKit
 class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
-        private let requestService: RequestService
+        private let helpRequestsService: HelpRequestsService
+        private let helpListsService: HelpListsService
 
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
         var acceptedRequests: Observable<[AcceptedRequestCell.Item]> {
-            return requestService.openRequests()
+            return helpRequestsService.openRequests(userId: "me", includeRequester: true, status: [.ongoing])
                 .map { requests in requests
                     .map { request in
                         let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
@@ -32,7 +33,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {
-            return requestService.openRequests()
+            return helpRequestsService.openRequests(status: [.pending])
                 .map { requests in requests
                     .map { request in
                         let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
@@ -45,9 +46,10 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .asObservable()
         }
 
-        init(navigator: ScreenNavigating, requestService: RequestService) {
+        init(navigator: ScreenNavigating, helpRequestsService: HelpRequestsService, helpListsService: HelpListsService) {
             self.navigator = navigator
-            self.requestService = requestService
+            self.helpRequestsService = helpRequestsService
+            self.helpListsService = helpListsService
         }
     }
 
