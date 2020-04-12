@@ -174,6 +174,22 @@ extension String {
                                   ])
     }
 
+    func asDarkListItemTitle() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.darkListItemTitle()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 35)!
+                                  ])
+    }
+
+    func asDarkListItemDetails() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.darkListItemDetails()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 14)!
+                                  ])
+    }
+
     func parseHtml() -> NSAttributedString? {
         return try? NSAttributedString(
             data: data(using: String.Encoding.unicode, allowLossyConversion: true)!,

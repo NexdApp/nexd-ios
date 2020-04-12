@@ -34,13 +34,6 @@ class RequestService {
         }
     }
 
-    enum RequestStatus: String {
-        case pending
-        case ongoing
-        case completed
-        case deactivated
-    }
-
     struct RequestItem {
         let itemId: Int64
         let articleCount: Int64

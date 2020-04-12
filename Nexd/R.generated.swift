@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 15 colors.
+  /// This `R.color` struct is generated, and contains static references to 18 colors.
   struct color {
     /// Color `amountText`.
     static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
@@ -114,6 +114,12 @@ struct R: Rswift.Validatable {
     static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
     /// Color `darkButtonText`.
     static let darkButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonText")
+    /// Color `darkListItemBorder`.
+    static let darkListItemBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemBorder")
+    /// Color `darkListItemDetails`.
+    static let darkListItemDetails = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemDetails")
+    /// Color `darkListItemTitle`.
+    static let darkListItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemTitle")
     /// Color `defaultBackground`.
     static let defaultBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "defaultBackground")
     /// Color `gradientEnd`.
@@ -163,6 +169,33 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func darkButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.darkButtonText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemBorder", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemBorder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemBorder, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemDetails", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemDetails, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemTitle, compatibleWith: traitCollection)
     }
     #endif
 

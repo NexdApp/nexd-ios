@@ -31,6 +31,18 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .asObservable()
         }
 
+        var openRequests: Observable<[OpenReqeustsCell.Item]> {
+            return requestService.openRequests()
+                .map { requests in requests
+                    .map { request in
+                        let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
+                        let details = request.createdAt?.difference()
+                        return OpenReqeustsCell.Item(title: title, details: details)
+                    }
+                }
+                .asObservable()
+        }
+
         init(navigator: ScreenNavigating, requestService: RequestService) {
             self.navigator = navigator
             self.requestService = requestService
@@ -69,43 +81,9 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.registerCell(class: DefaultCell.self)
-        list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        list.registerCell(class: OpenReqeustsCell.self)
         return list
     }()
-
-    private var dataSource: DefaultSectionedDataSource<DefaultCell.Item>? {
-        didSet {
-//            acceptedRequestsCollectionView.dataSource = dataSource
-            openRequestsCollectionView.dataSource = dataSource
-        }
-    }
-
-    private var content: Content? {
-        didSet {
-            var sections = [DefaultSectionedDataSource<DefaultCell.Item>.Section]()
-            if let content = content {
-                let acceptedItems = content.acceptedRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
-                let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                                                   title: "FIXME",
-                                                                                                   items: acceptedItems)
-
-                let availableItems = content.availableRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
-                let availableRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                                                    title: "FIXME",
-                                                                                                    items: availableItems)
-
-                sections.append(acceptedRequestsSection)
-                sections.append(availableRequestsSection)
-            }
-
-            dataSource = DefaultSectionedDataSource(sections: sections, cellBinder: { item, cell in
-                if let cell = cell as? DefaultCell {
-                    cell.bind(to: item)
-                }
-            })
-        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,45 +123,6 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             make.top.equalTo(openRequestsHeadingLabel.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(8)
         }
-
-//        startButton.addTarget(self, action: #selector(startButtonPressed(sender:)), for: .touchUpInside)
-//        startButton.style(text: R.string.localizable.helper_request_overview_button_title_start())
-//        view.addSubview(startButton)
-//        startButton.snp.makeConstraints { make in
-//            make.leftMargin.equalTo(8)
-//            make.rightMargin.equalTo(-8)
-//            make.height.equalTo(Style.buttonHeight)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
-//        }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        RequestService.shared.openRequests()
-            .flatMap { requests -> Single<[Request]> in
-                Single.zip(requests
-                    .filter { $0.status == .pending }
-                    .compactMap { request in
-                        guard let requesterId = request.requesterId, let requestId = request.id else { return nil }
-                        return UserService.shared.fetchUserInfo(userId: requesterId)
-                            .map { Request(requestId: requestId, title: "\($0.lastName) (\(request.articles?.count ?? 0))") }
-                })
-            }
-            .subscribe(onSuccess: { [weak self] openRequests in
-                log.debug("Open requests: \(openRequests)")
-
-                // Status values:
-                // NEW = 'new',
-                // ONGOING = 'ongoing',
-                // COMPLETED = 'completed',
-                let content = Content(acceptedRequests: [], availableRequests: openRequests)
-
-                self?.content = content
-            }, onError: { error in
-                log.error("Request failed: \(error)")
-            })
-            .disposed(by: disposeBag)
     }
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
@@ -197,7 +136,13 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         viewModel.acceptedRequests
             .bind(to: acceptedRequestsCollectionView.rx.items(class: AcceptedRequestCell.self)) { _, item, cell in
-                cell.bind(to: AcceptedRequestCell.Item(title: item.title))
+                cell.bind(to: item)
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.openRequests
+            .bind(to: openRequestsCollectionView.rx.items(class: OpenReqeustsCell.self)) { _, item, cell in
+                cell.bind(to: item)
             }
             .disposed(by: disposeBag)
     }
@@ -235,21 +180,21 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayou
 //        self.content = Content(acceptedRequests: acceptedRequests, availableRequests: openRequests)
 //    }
 // }
-
-extension HelperRequestOverviewViewController {
-    @objc func startButtonPressed(sender: UIButton!) {
-        guard let content = content else { return }
-        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.requestId })
-            .subscribe(onSuccess: { [weak self] shoppingList in
-                log.debug("Shoppping list created: \(shoppingList)")
-                let shoppingListVC = ShoppingListViewController()
-                shoppingListVC.shoppingList = shoppingList
-                self?.navigationController?.pushViewController(shoppingListVC, animated: true)
-            }, onError: { [weak self] error in
-                log.error("Failed to create shopping list: \(error)")
-                self?.showError(title: R.string.localizable.helper_request_overview_error_title(),
-                                message: R.string.localizable.helper_request_overview_error_message())
-            })
-            .disposed(by: disposeBag)
-    }
-}
+//
+//extension HelperRequestOverviewViewController {
+//    @objc func startButtonPressed(sender: UIButton!) {
+//        guard let content = content else { return }
+//        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.requestId })
+//            .subscribe(onSuccess: { [weak self] shoppingList in
+//                log.debug("Shoppping list created: \(shoppingList)")
+//                let shoppingListVC = ShoppingListViewController()
+//                shoppingListVC.shoppingList = shoppingList
+//                self?.navigationController?.pushViewController(shoppingListVC, animated: true)
+//            }, onError: { [weak self] error in
+//                log.error("Failed to create shopping list: \(error)")
+//                self?.showError(title: R.string.localizable.helper_request_overview_error_title(),
+//                                message: R.string.localizable.helper_request_overview_error_message())
+//            })
+//            .disposed(by: disposeBag)
+//    }
+//}

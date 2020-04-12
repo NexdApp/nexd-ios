@@ -1,21 +1,22 @@
 //
-//  ArticleSelectionCell.swift
+//  OpenReqeustsCell.swift
 //  nexd
 //
-//  Created by Tobias Schröpf on 10.04.20.
+//  Created by Tobias Schröpf on 12.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
 import UIKit
 
-class AcceptedRequestCell: UICollectionViewCell {
+class OpenReqeustsCell: UICollectionViewCell {
     struct Item {
         let title: String
+        let details: String?
     }
 
     private let container = UIView()
     let title = UILabel()
-    private let accessoryView = UIImageView()
+    private let accessoryView = UILabel()
 
     fileprivate var amountChanged: ((Int) -> Void)?
 
@@ -42,11 +43,10 @@ class AcceptedRequestCell: UICollectionViewCell {
         }
 
         container.addSubview(accessoryView)
-        accessoryView.image = R.image.chevron()?.withTintColor(R.color.darkListItemBorder()!)
         accessoryView.snp.makeConstraints { make -> Void in
             make.left.equalTo(title.snp.right).offset(14)
-            make.right.equalToSuperview().inset(23)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(3)
+            make.right.equalToSuperview().inset(13)
         }
     }
 
@@ -56,5 +56,6 @@ class AcceptedRequestCell: UICollectionViewCell {
 
     func bind(to item: Item) {
         title.attributedText = item.title.asDarkListItemTitle()
+        accessoryView.attributedText = item.details?.asDarkListItemDetails()
     }
 }
