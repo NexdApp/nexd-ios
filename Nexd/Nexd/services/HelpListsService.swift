@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import RxSwift
 import NexdClient
+import RxSwift
 
 class HelpListsService {
     static let shared = HelpListsService()
@@ -19,8 +19,13 @@ class HelpListsService {
             .asSingle()
     }
 
+    func addRequest(withId helpRequestId: Int64, to helpListId: Int64) -> Single<HelpList> {
+        return HelpListsAPI.helpListsControllerAddHelpRequestToList(helpListId: helpListId, helpRequestId: helpRequestId)
+            .asSingle()
+    }
+
     func fetchShoppingLists() -> Single<[HelpList]> {
         return HelpListsAPI.helpListsControllerGetUserLists()
-        .asSingle()
+            .asSingle()
     }
 }

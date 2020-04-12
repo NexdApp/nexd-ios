@@ -57,8 +57,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             return Observable.merge(initialLoad.asObservable().ofType(), userUpdates.compactMap { $0 }.asObservable())
         }
 
-        var itemSelected = PublishRelay<IndexPath>()
-
         func itemDidChangeAmount(_ item: Item, amount: Int64) {
             log.debug("itemDidChangeAmount - item: \(item) - amount: \(amount)")
             guard let items = userUpdates.value else { return }
@@ -139,10 +137,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
                                                             self?.viewModel?.itemDidChangeAmount(item, amount: Int64(amount))
                 }))
             }
-            .disposed(by: disposeBag)
-
-        collectionView.rx.itemSelected
-            .bind(to: viewModel.itemSelected)
             .disposed(by: disposeBag)
 
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)
