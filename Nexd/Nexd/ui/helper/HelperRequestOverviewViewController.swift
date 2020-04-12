@@ -98,6 +98,10 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                                 self?.openHelpRequestUpdateTrigger.accept(())
                             }
                         }
+                    .catchError { error -> Completable in
+                        log.error("Adding request failed!")
+                        return Completable.empty()
+                    }
                 }
                 .ignoreElements()
         }

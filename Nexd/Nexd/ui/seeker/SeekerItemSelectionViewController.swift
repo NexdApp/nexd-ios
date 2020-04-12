@@ -18,10 +18,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
         let amount: Int64
     }
 
-    struct Content {
-        let items: [Item]
-    }
-
     class ViewModel {
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService

@@ -68,6 +68,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                     log.debug("Succesful:")
                     self?.onSuccess?()
                 })
+                .catchError { _ in Completable.empty() }
         }
     }
 
@@ -107,7 +108,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         scrollView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
+            make.left.right.equalTo(view).inset(13)
         }
 
         guard let items = viewModel?.items else { return }
