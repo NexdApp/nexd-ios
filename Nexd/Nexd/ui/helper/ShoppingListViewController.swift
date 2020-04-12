@@ -18,6 +18,13 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
         let helpList: HelpList
         let shoppingListHeadingText = Driver.just(R.string.localizable.shopping_list_screen_title().asHeading())
 
+        var checkoutButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toCheckoutScreen(helpList: viewModel.helpList)
+
+            }
+        }
+
         init(navigator: ScreenNavigating, helpList: HelpList) {
             self.helpList = helpList
             self.navigator = navigator
@@ -86,7 +93,8 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
 
     override func bind(viewModel: ShoppingListViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            viewModel.shoppingListHeadingText.drive(shoppingListHeadingLabel.rx.attributedText)
+            viewModel.shoppingListHeadingText.drive(shoppingListHeadingLabel.rx.attributedText),
+            checkoutButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.checkoutButtonTaps)
         )
     }
 }

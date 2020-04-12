@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubMenuButton: Control {
+class SubMenuButton: CustomControl {
     private let image = UIImageView()
     private let label = UILabel()
 

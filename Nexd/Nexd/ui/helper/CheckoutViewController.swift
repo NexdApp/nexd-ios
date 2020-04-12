@@ -6,16 +6,23 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import NexdClient
+import RxCocoa
 import RxSwift
 import SnapKit
-import NexdClient
+import SwiftUI
 import UIKit
 
-class CheckoutViewController: UIViewController {
-    enum Style {
-        static let headerHeight: CGFloat = 60
-        static let rowHeight: CGFloat = 40
-        static let buttonHeight: CGFloat = 52
+class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
+    class ViewModel {
+        private let navigator: ScreenNavigating
+        private let helpList: HelpList
+
+        let tileLabelText = Driver.just(R.string.localizable.checkout_screen_title().asHeading())
+        init(navigator: ScreenNavigating, helpList: HelpList) {
+            self.navigator = navigator
+            self.helpList = helpList
+        }
     }
 
     struct Item {
@@ -37,81 +44,94 @@ class CheckoutViewController: UIViewController {
         let requests: [UserRequest]
     }
 
-    private let disposeBag = DisposeBag()
+//    private var collectionView: UICollectionView? {
+//        didSet {
+//            collectionView?.dataSource = dataSource
+//        }
+//    }
 
-    private var gradient = GradientView()
-    private var collectionView: UICollectionView? {
-        didSet {
-            collectionView?.dataSource = dataSource
-        }
-    }
-    private var completeButton = UIButton()
+//    private var dataSource: DefaultSectionedDataSource<CheckableCell.Item>? {
+//        didSet {
+//            collectionView?.dataSource = dataSource
+//        }
+//    }
+//
+//    var content: Content? {
+//        didSet {
+//            let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
+//                let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
+//                return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: CheckableCell.reuseIdentifier,
+//                                                                              title: "\(request.user.firstName) \(request.user.lastName)",
+//                                                                              items: items)
+//            }
+//
+//            dataSource = DefaultSectionedDataSource(sections: sections ?? [], cellBinder: { item, cell in
+//                if let cell = cell as? CheckableCell {
+//                    cell.bind(to: item)
+//                }
+//            })
+//        }
+//    }
 
-    private var dataSource: DefaultSectionedDataSource<CheckableCell.Item>? {
-        didSet {
-            collectionView?.dataSource = dataSource
-        }
-    }
+//    private var collectionView: UICollectionView = {
+//        let layout = UICollectionViewFlowLayout()
+//        layout.scrollDirection = .vertical
+//
+//        let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
+//        list.backgroundColor = .clear
+//        list.registerCell(class: AcceptedRequestCell.self)
+//
+//        return list
+//    }()
 
-    var content: Content? {
-        didSet {
-            let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
-                let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
-                return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: CheckableCell.reuseIdentifier,
-                                                                              title: "\(request.user.firstName) \(request.user.lastName)",
-                                                                              items: items)
-            }
+    private let list = UIHostingController(rootView: CheckoutListView())
 
-            dataSource = DefaultSectionedDataSource(sections: sections ?? [], cellBinder: { item, cell in
-                if let cell = cell as? CheckableCell {
-                    cell.bind(to: item)
-                }
-            })
-        }
-    }
+    private let titleLabel = UILabel()
+    private let completeButton = SubMenuButton.make(title: R.string.localizable.checkout_button_title_complete())
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = R.color.nexdGreen()
 
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.headerReferenceSize = CGSize(width: view.frame.size.width, height: Style.headerHeight)
-        layout.itemSize = CGSize(width: view.frame.size.width, height: Style.rowHeight)
+        view.addSubview(titleLabel)
 
-        let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        list.backgroundColor = .clear
-        list.delegate = self
-        list.register(CheckableCell.self, forCellWithReuseIdentifier: CheckableCell.reuseIdentifier)
-        list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
+        UITableView.appearance().tableFooterView = UIView()
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
 
-        title = R.string.localizable.checkout_screen_title()
+        addChild(list)
+//        list.view.frame = view.frame
+        view.addSubview(list.view)
+        list.didMove(toParent: self)
+        list.view.backgroundColor = .clear
+//        view.addSubview(collectionView.view)
 
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-
-        completeButton.addTarget(self, action: #selector(completeButtonPressed(sender:)), for: .touchUpInside)
-        completeButton.style(text: R.string.localizable.checkout_button_title_complete())
         view.addSubview(completeButton)
+
+        titleLabel.snp.makeConstraints { make -> Void in
+            make.top.equalToSuperview().inset(104)
+            make.left.right.equalToSuperview().inset(24)
+            make.height.equalTo(42)
+        }
+
+        list.view.snp.makeConstraints { make -> Void in
+            make.left.right.equalToSuperview().inset(12)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.bottom.equalTo(completeButton.snp.top).offset(-8)
+        }
+
         completeButton.snp.makeConstraints { make in
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.height.equalTo(Style.buttonHeight)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-8)
+            make.left.right.equalToSuperview().inset(8)
+            make.height.equalTo(42)
+            make.bottom.equalToSuperview().offset(-8)
         }
-
-        view.addSubview(list)
-        list.snp.makeConstraints { make -> Void in
-            make.left.top.right.equalToSuperview()
-            make.bottom.equalTo(completeButton.snp.top).offset(8)
-        }
-
-        collectionView = list
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func bind(viewModel: CheckoutViewController.ViewModel, disposeBag: DisposeBag) {
+        disposeBag.insert(
+            viewModel.tileLabelText.drive(titleLabel.rx.attributedText)
+        )
     }
 }
 

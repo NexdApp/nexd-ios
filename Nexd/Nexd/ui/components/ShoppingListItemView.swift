@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShoppingListItemView: View {
+class ShoppingListItemView: CustomView {
     let title = UILabel()
     let amount = UILabel()
 
