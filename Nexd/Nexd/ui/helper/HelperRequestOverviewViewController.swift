@@ -30,7 +30,7 @@ class HelperRequestOverviewViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
-    private var gradient = GradientView()
+    private let currentItemsListButton = SubMenuButton.make(title: R.string.localizable.helper_request_overview_button_title_current_items_list())
     private var collectionView: UICollectionView?
     private var startButton = UIButton()
 
@@ -46,13 +46,13 @@ class HelperRequestOverviewViewController: UIViewController {
             if let content = content {
                 let acceptedItems = content.acceptedRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
                 let acceptedRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                                                  title: R.string.localizable.helper_request_overview_heading_accepted_section(),
-                                                                                                  items: acceptedItems)
+                                                                                                   title: R.string.localizable.helper_request_overview_heading_accepted_section(),
+                                                                                                   items: acceptedItems)
 
                 let availableItems = content.availableRequests.map { DefaultCell.Item(icon: R.image.baseline_shopping_basket_black_48pt(), text: $0.title) }
                 let availableRequestsSection = DefaultSectionedDataSource<DefaultCell.Item>.Section(reuseIdentifier: DefaultCell.reuseIdentifier,
-                                                                                                   title: R.string.localizable.helper_request_overview_heading_available_section(),
-                                                                                                   items: availableItems)
+                                                                                                    title: R.string.localizable.helper_request_overview_heading_available_section(),
+                                                                                                    items: availableItems)
 
                 sections.append(acceptedRequestsSection)
                 sections.append(availableRequestsSection)
@@ -69,6 +69,9 @@ class HelperRequestOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = R.string.localizable.helper_request_overview_screen_title()
+        view.backgroundColor = R.color.nexdGreen()
+
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.headerReferenceSize = CGSize(width: view.frame.size.width, height: Style.headerHeight)
@@ -80,11 +83,12 @@ class HelperRequestOverviewViewController: UIViewController {
         list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
         list.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseIdentifier)
 
-        title = R.string.localizable.helper_request_overview_screen_title()
-
-        view.addSubview(gradient)
-        gradient.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        view.addSubview(currentItemsListButton)
+        currentItemsListButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.left.equalTo(view).offset(19)
+            make.right.equalTo(view).offset(-19)
+            make.height.equalTo(74)
         }
 
         startButton.addTarget(self, action: #selector(startButtonPressed(sender:)), for: .touchUpInside)
