@@ -36,7 +36,7 @@ extension NexdClientAPI {
                                                                                     type: .pacman,
                                                                                     color: R.color.darkButtonText(),
                                                                                     displayTimeThreshold: 500,
-                                                                                    minimumDisplayTime: 20000,
+                                                                                    minimumDisplayTime: 200,
                                                                                     backgroundColor: .clear,
                                                                                     textColor: R.color.darkButtonText()))
         }
