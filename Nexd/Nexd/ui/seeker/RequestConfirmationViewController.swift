@@ -198,7 +198,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         }
 
         scrollView.addSubview(confirmButton)
-        confirmButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         confirmButton.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.left.equalTo(34)

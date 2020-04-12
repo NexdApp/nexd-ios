@@ -14,7 +14,7 @@ class UserService {
     static let shared = UserService()
 
     func updateUserInformation(zipCode: String, firstName: String, lastName: String, phone: String) -> Single<User> {
-        let dto = UpdateUserDto(street: nil, number: nil, zipCode: zipCode, city: nil, firstName: firstName, lastName: lastName, role: nil, telephone: phone)
+        let dto = UpdateUserDto(street: nil, number: nil, zipCode: zipCode, city: nil, firstName: firstName, lastName: lastName, role: nil, phoneNumber: phone)
         return UsersAPI.userControllerUpdateMyself(updateUserDto: dto)
             .asSingle()
     }
