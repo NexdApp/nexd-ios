@@ -18,6 +18,12 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
 
+        var currentItemsListButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toCurrentItemsList()
+            }
+        }
+
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
@@ -39,7 +45,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         var acceptedRequestSelected: Binder<IndexPath> {
-            Binder(self) { viewModel, indexPath in
+            Binder(self) { _, indexPath in
                 log.debug("Item selected: \(indexPath)")
             }
         }
@@ -177,6 +183,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
+            currentItemsListButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.currentItemsListButtonTaps),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
 

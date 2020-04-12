@@ -29,6 +29,7 @@ protocol ScreenNavigating {
     func toCallsList()
     func toTranscribeCall()
     func toHelperOverview()
+    func toCurrentItemsList()
 }
 
 class Navigator {
@@ -183,6 +184,11 @@ extension Navigator: ScreenNavigating {
         let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
                                                                                                                   helpRequestsService: helpRequestsService,
                                                                                                                   helpListsService: helpListsService))
+        push(screen: screen)
+    }
+
+    func toCurrentItemsList() {
+        let screen = ShoppingListViewController()
         push(screen: screen)
     }
 
