@@ -23,6 +23,8 @@
 "dialog_button_abort" = "Abbrechen";
 "dialog_button_confirm" = "Bestätigen";
 "error_button_ok" = "OK";
+"error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
+"error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_login_field_missing" = "Bitte ausfüllen";
 "error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
