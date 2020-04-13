@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RequestConfirmationItemView: View {
+class RequestConfirmationItemView: CustomView {
     let title = UILabel()
     let amount = UILabel()
 

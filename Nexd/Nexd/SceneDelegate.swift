@@ -29,9 +29,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         precondition(window != nil)
         precondition(storage != nil)
 
+        swiftUiSetup()
         NexdClientAPI.setup(authorizationToken: storage?.authorizationToken)
 
         window?.makeKeyAndVisible()
+    }
+
+    private func swiftUiSetup() {
+        UITableView.appearance().tableFooterView = UIView()
+        UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
     }
 }
 

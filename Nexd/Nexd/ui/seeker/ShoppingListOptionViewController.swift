@@ -14,7 +14,7 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
     class ViewModel {
         private let navigator: ScreenNavigating
 
-        let heading = Driver.just(R.string.localizable.helper_type_screen_title().asHeading())
+        let heading = Driver.just(R.string.localizable.seeker_type_screen_title().asHeading())
         let selectItemsTitle = Driver.just(R.string.localizable.seeker_type_button_help_request().asDarkButtonText())
 
         var selectItemTaps: Binder<Void> {

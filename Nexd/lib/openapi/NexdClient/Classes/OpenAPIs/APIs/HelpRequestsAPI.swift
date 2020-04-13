@@ -65,16 +65,6 @@ open class HelpRequestsAPI {
     }
 
     /**
-     * enum for parameter status
-     */
-    public enum Status_helpRequestsControllerGetAll: String, CaseIterable {
-        case pending = "pending"
-        case ongoing = "ongoing"
-        case completed = "completed"
-        case deactivated = "deactivated"
-    }
-
-    /**
      Get and filter for various help requests
      
      - parameter userId: (query) If included, filter by userId, \&quot;me\&quot; for the requesting user, otherwise all users are replied. The excludeUserId query inverts the logic and excludes the given userId.  (optional)
@@ -85,7 +75,7 @@ open class HelpRequestsAPI {
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[HelpRequest]>
      */
-    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [HelpRequestStatus]? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[HelpRequest]> {
         return Observable.create { observer -> Disposable in
             helpRequestsControllerGetAllWithRequestBuilder(userId: userId, excludeUserId: excludeUserId, zipCode: zipCode, includeRequester: includeRequester, status: status).execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -113,7 +103,7 @@ open class HelpRequestsAPI {
      - parameter status: (query) Array of status to filter for (optional)
      - returns: RequestBuilder<[HelpRequest]> 
      */
-    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil) -> RequestBuilder<[HelpRequest]> {
+    open class func helpRequestsControllerGetAllWithRequestBuilder(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [HelpRequestStatus]? = nil) -> RequestBuilder<[HelpRequest]> {
         let path = "/help-requests"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil

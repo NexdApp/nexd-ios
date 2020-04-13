@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CancelButton: Control {
+class CancelButton: CustomControl {
     private let image = UIImageView()
     private let label = UILabel()
 

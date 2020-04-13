@@ -19,16 +19,16 @@ struct ServicesModule: Module {
             .to(factory: ArticlesService.init)
 
         binder
-            .bind(RequestService.self)
-            .to(factory: RequestService.init)
+            .bind(HelpRequestsService.self)
+            .to(factory: HelpRequestsService.init)
 
         binder
             .bind(UserService.self)
             .to(factory: UserService.init)
 
         binder
-            .bind(ShoppingListService.self)
-            .to(factory: ShoppingListService.init)
+            .bind(HelpListsService.self)
+            .to(factory: HelpListsService.init)
 
         binder
             .bind(CallsService.self)
