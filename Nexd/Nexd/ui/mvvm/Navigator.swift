@@ -38,6 +38,7 @@ protocol ScreenNavigating {
 
 class Navigator {
     private let storage: Storage
+    private let authenticationService: AuthenticationService
     private let userService: UserService
     private let callsService: CallsService
     private let helpRequestsService: HelpRequestsService
@@ -46,17 +47,19 @@ class Navigator {
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
-        let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
+        let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService, authenticationService: authenticationService))
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
     init(storage: Storage,
+         authenticationService: AuthenticationService,
          userService: UserService,
          callsService: CallsService,
          helpRequestsService: HelpRequestsService,
          articlesService: ArticlesService,
          helpListsService: HelpListsService) {
         self.storage = storage
+        self.authenticationService = authenticationService
         self.userService = userService
         self.callsService = callsService
         self.helpRequestsService = helpRequestsService
@@ -76,20 +79,20 @@ extension Navigator: ScreenNavigating {
 
     func showSuccess(title: String, message: String, handler: (() -> Void)?) {
         if let viewController = navigationController.presentedViewController {
-            viewController.showSuccess(title: title, message: title, handler: handler)
+            viewController.showSuccess(title: title, message: message, handler: handler)
             return
         }
 
-        navigationController.topViewController?.showSuccess(title: title, message: title, handler: handler)
+        navigationController.topViewController?.showSuccess(title: title, message: message, handler: handler)
     }
 
     func showError(title: String, message: String, handler: (() -> Void)? = nil) {
         if let viewController = navigationController.presentedViewController {
-            viewController.showError(title: title, message: title, handler: handler)
+            viewController.showError(title: title, message: message, handler: handler)
             return
         }
 
-        navigationController.topViewController?.showError(title: title, message: title, handler: handler)
+        navigationController.topViewController?.showError(title: title, message: message, handler: handler)
     }
 
     func toStartAuthenticationFlow() {
@@ -119,7 +122,9 @@ extension Navigator: ScreenNavigating {
 
     func toMainScreen() {
         guard let root = navigationController.viewControllers.first, root is MainPageViewController else {
-            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
+            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self,
+                                                                                                userService: userService,
+                                                                                                authenticationService: authenticationService))
             navigationController.setViewControllers([mainScreen], animated: true)
             return
         }
