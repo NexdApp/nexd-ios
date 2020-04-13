@@ -23,6 +23,8 @@
 "dialog_button_abort" = "Abort";
 "dialog_button_confirm" = "Confirm";
 "error_button_ok" = "OK";
+"error_dialog_authentication_failed_message" = "User authentication failed please try to login again.";
+"error_dialog_authentication_failed_title" = "Authentication failed!";
 "error_message_login_failed" = "Login failed. Please try again.";
 "error_message_login_field_missing" = "Please fill in";
 "error_message_registration_failed" = "User registration failed. Please try again.";
