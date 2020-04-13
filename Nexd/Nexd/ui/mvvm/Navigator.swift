@@ -118,8 +118,13 @@ extension Navigator: ScreenNavigating {
     }
 
     func toMainScreen() {
-        let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
-        navigationController.setViewControllers([mainScreen], animated: true)
+        guard let root = navigationController.viewControllers.first, root is MainPageViewController else {
+            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
+            navigationController.setViewControllers([mainScreen], animated: true)
+            return
+        }
+
+        navigationController.popToRootViewController(animated: true)
     }
 
     func toProfileScreen() {

@@ -33,6 +33,10 @@ struct DeliveryConfirmationView: View {
                 Request.from(helpRequest: helpRequest)
             }
         }
+
+        func continueButtonTapped() {
+            navigator.toMainScreen()
+        }
     }
 
     var viewModel: ViewModel
@@ -81,7 +85,7 @@ struct DeliveryConfirmationView: View {
                     }
 
                     NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
-                        log.debug("Implement me!")
+                        self.viewModel.continueButtonTapped()
                     }
                     .padding(.top, 46)
                     .padding(.bottom, 127)
