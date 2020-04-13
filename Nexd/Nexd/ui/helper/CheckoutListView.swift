@@ -6,20 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import Rswift
 import SwiftUI
-
-extension FontResource {
-    func swiftui(size: CGFloat) -> Font {
-        Font.custom(fontName, size: size)
-    }
-}
-
-extension ColorResource {
-    func swiftui() -> Color {
-        Color(name)
-    }
-}
 
 struct CardView: View {
     let request: CheckoutViewController.Request

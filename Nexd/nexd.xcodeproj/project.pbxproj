@@ -25,6 +25,9 @@
 		AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B872443ABF30068DF60 /* ShoppingListItemView.swift */; };
 		AE510B8A2443C2FA0068DF60 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B892443C2FA0068DF60 /* CustomControl.swift */; };
 		AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8B2443C4550068DF60 /* CheckoutListView.swift */; };
+		AE510B8E24445D1F0068DF60 /* DeliveryConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */; };
+		AE510B9024445EC50068DF60 /* FontResource+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8F24445EC50068DF60 /* FontResource+SwiftUI.swift */; };
+		AE510B9224445EDB0068DF60 /* ColorResource+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B9124445EDB0068DF60 /* ColorResource+SwiftUI.swift */; };
 		AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2752437B76500A1166F /* UserProfileViewController.swift */; };
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
@@ -131,6 +134,9 @@
 		AE510B872443ABF30068DF60 /* ShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemView.swift; sourceTree = "<group>"; };
 		AE510B892443C2FA0068DF60 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 		AE510B8B2443C4550068DF60 /* CheckoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListView.swift; sourceTree = "<group>"; };
+		AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryConfirmationView.swift; sourceTree = "<group>"; };
+		AE510B8F24445EC50068DF60 /* FontResource+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontResource+SwiftUI.swift"; sourceTree = "<group>"; };
+		AE510B9124445EDB0068DF60 /* ColorResource+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorResource+SwiftUI.swift"; sourceTree = "<group>"; };
 		AE52A2752437B76500A1166F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
@@ -271,6 +277,7 @@
 				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
 				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE510B8B2443C4550068DF60 /* CheckoutListView.swift */,
+				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -440,6 +447,8 @@
 				AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */,
 				AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */,
 				AEB6AC7C2443362300823E7C /* Date+Nexd.swift */,
+				AE510B8F24445EC50068DF60 /* FontResource+SwiftUI.swift */,
+				AE510B9124445EDB0068DF60 /* ColorResource+SwiftUI.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -738,6 +747,7 @@
 				AEB6AC75244249B300823E7C /* SubMenuButton.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
+				AE510B9224445EDB0068DF60 /* ColorResource+SwiftUI.swift in Sources */,
 				AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
@@ -758,7 +768,9 @@
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,
+				AE510B8E24445D1F0068DF60 /* DeliveryConfirmationView.swift in Sources */,
 				AE4EA655243A665900B8E9D6 /* CallsService.swift in Sources */,
+				AE510B9024445EC50068DF60 /* FontResource+SwiftUI.swift in Sources */,
 				AED2A96F2440A2830082316F /* StartAuthenticationFlowViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

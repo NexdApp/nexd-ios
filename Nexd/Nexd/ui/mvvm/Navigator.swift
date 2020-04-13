@@ -8,6 +8,7 @@
 
 import Cleanse
 import NexdClient
+import SwiftUI
 import UIKit
 
 protocol ScreenNavigating {
@@ -32,6 +33,7 @@ protocol ScreenNavigating {
     func toHelperOverview()
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
+    func toDeliveryConfirmationScreen(helpList: HelpList)
 }
 
 class Navigator {
@@ -196,6 +198,11 @@ extension Navigator: ScreenNavigating {
 
     func toCheckoutScreen(helpList: HelpList) {
         let screen = CheckoutViewController(viewModel: CheckoutViewController.ViewModel(navigator: self, helpList: helpList))
+        push(screen: screen)
+    }
+
+    func toDeliveryConfirmationScreen(helpList: HelpList) {
+        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self)))
         push(screen: screen)
     }
 

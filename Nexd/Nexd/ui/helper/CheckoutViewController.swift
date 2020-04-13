@@ -33,6 +33,12 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
             self.navigator = navigator
             self.helpList = helpList
         }
+
+        var checkoutButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.toDeliveryConfirmationScreen(helpList: viewModel.helpList)
+            }
+        }
     }
 
     struct Item {
@@ -96,7 +102,8 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
 
     override func bind(viewModel: CheckoutViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            viewModel.tileLabelText.drive(titleLabel.rx.attributedText)
+            viewModel.tileLabelText.drive(titleLabel.rx.attributedText),
+            completeButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.checkoutButtonTaps)
         )
 
         list = UIHostingController(rootView: CheckoutListView(requests: viewModel.requests))
