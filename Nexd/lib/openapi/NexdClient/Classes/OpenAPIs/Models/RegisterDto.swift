@@ -12,11 +12,11 @@ public struct RegisterDto: Codable {
 
 
     public var email: String
-    public var firstName: String
-    public var lastName: String
+    public var firstName: String?
+    public var lastName: String?
     public var password: String
 
-    public init(email: String, firstName: String, lastName: String, password: String) {
+    public init(email: String, firstName: String?, lastName: String?, password: String) {
         self.email = email
         self.firstName = firstName
         self.lastName = lastName

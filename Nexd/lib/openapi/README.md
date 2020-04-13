@@ -21,7 +21,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
@@ -34,7 +34,6 @@ Class | Method | HTTP request | Description
 *CallsAPI* | [**callsControllerConverted**](docs/CallsAPI.md#callscontrollerconverted) | **PUT** /call/calls/{sid}/converted | Sets a call as converted to shopping list
 *CallsAPI* | [**callsControllerGetCallUrl**](docs/CallsAPI.md#callscontrollergetcallurl) | **GET** /call/calls/{sid}/record | Redirects the request to the stored record file.
 *CallsAPI* | [**callsControllerGetNumber**](docs/CallsAPI.md#callscontrollergetnumber) | **GET** /call/number | Returns available numbers
-*DefaultAPI* | [**appControllerGetHello**](docs/DefaultAPI.md#appcontrollergethello) | **GET** / | 
 *HelpListsAPI* | [**helpListsControllerAddHelpRequestToList**](docs/HelpListsAPI.md#helplistscontrolleraddhelprequesttolist) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId} | Add a help request to a help list
 *HelpListsAPI* | [**helpListsControllerDeleteHelpRequestFromHelpList**](docs/HelpListsAPI.md#helplistscontrollerdeletehelprequestfromhelplist) | **DELETE** /help-lists/{helpListId}/help-request/{helpRequestId} | Delete a help request from help list
 *HelpListsAPI* | [**helpListsControllerFindOne**](docs/HelpListsAPI.md#helplistscontrollerfindone) | **GET** /help-lists/{helpListId} | Get a specific help list
@@ -69,6 +68,9 @@ Class | Method | HTTP request | Description
  - [HelpRequest](docs/HelpRequest.md)
  - [HelpRequestArticle](docs/HelpRequestArticle.md)
  - [HelpRequestCreateDto](docs/HelpRequestCreateDto.md)
+ - [HelpRequestStatus](docs/HelpRequestStatus.md)
+ - [HttpBadRequestResponse](docs/HttpBadRequestResponse.md)
+ - [HttpConflictResponse](docs/HttpConflictResponse.md)
  - [LoginDto](docs/LoginDto.md)
  - [RegisterDto](docs/RegisterDto.md)
  - [TokenDto](docs/TokenDto.md)
