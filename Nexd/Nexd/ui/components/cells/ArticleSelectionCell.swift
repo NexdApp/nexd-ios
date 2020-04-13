@@ -70,10 +70,6 @@ class ArticleSelectionCell: UICollectionViewCell {
             pickerView.selectRow(value, inComponent: 0, animated: false)
         }
     }
-
-    static var reuseIdentifier: String {
-        return "\(self)"
-    }
 }
 
 extension ArticleSelectionCell: PickerViewDelegate {

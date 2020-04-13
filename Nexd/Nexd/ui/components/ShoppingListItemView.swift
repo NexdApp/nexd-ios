@@ -1,14 +1,14 @@
 //
-//  RequestConfirmationItem.swift
+//  ShoppingListItemView.swift
 //  nexd
 //
-//  Created by Tobias Schröpf on 11.04.20.
+//  Created by Tobias Schröpf on 12.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
 import UIKit
 
-class RequestConfirmationItemView: CustomView {
+class ShoppingListItemView: CustomView {
     let title = UILabel()
     let amount = UILabel()
 

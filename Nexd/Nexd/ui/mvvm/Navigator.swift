@@ -7,6 +7,8 @@
 //
 
 import Cleanse
+import NexdClient
+import SwiftUI
 import UIKit
 
 protocol ScreenNavigating {
@@ -26,13 +28,20 @@ protocol ScreenNavigating {
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
+    func toCallsList()
+    func toTranscribeCall()
+    func toHelperOverview()
+    func toCurrentItemsList(helpList: HelpList)
+    func toCheckoutScreen(helpList: HelpList)
+    func toDeliveryConfirmationScreen(helpList: HelpList)
 }
 
 class Navigator {
     private let storage: Storage
     private let userService: UserService
     private let callsService: CallsService
-    private let requestService: RequestService
+    private let helpRequestsService: HelpRequestsService
+    private let helpListsService: HelpListsService
     private let articlesService: ArticlesService
 
     lazy var navigationController: UINavigationController = {
@@ -41,11 +50,17 @@ class Navigator {
         return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
     }()
 
-    init(storage: Storage, userService: UserService, callsService: CallsService, requestService: RequestService, articlesService: ArticlesService) {
+    init(storage: Storage,
+         userService: UserService,
+         callsService: CallsService,
+         helpRequestsService: HelpRequestsService,
+         articlesService: ArticlesService,
+         helpListsService: HelpListsService) {
         self.storage = storage
         self.userService = userService
         self.callsService = callsService
-        self.requestService = requestService
+        self.helpRequestsService = helpRequestsService
+        self.helpListsService = helpListsService
         self.articlesService = articlesService
     }
 }
@@ -103,8 +118,13 @@ extension Navigator: ScreenNavigating {
     }
 
     func toMainScreen() {
-        let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
-        navigationController.setViewControllers([mainScreen], animated: true)
+        guard let root = navigationController.viewControllers.first, root is MainPageViewController else {
+            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService))
+            navigationController.setViewControllers([mainScreen], animated: true)
+            return
+        }
+
+        navigationController.popToRootViewController(animated: true)
     }
 
     func toProfileScreen() {
@@ -126,14 +146,13 @@ extension Navigator: ScreenNavigating {
 
     func toCheckList() {
         let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
-                                                                                                              articlesService: articlesService,
-                                                                                                              requestService: requestService))
+                                                                                                              articlesService: articlesService))
         push(screen: screen)
     }
 
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
         let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
-                                                                    requestService: requestService,
+                                                                    requestService: helpRequestsService,
                                                                     items: items,
                                                                     onSuccess: { [weak self] in
                                                                         self?.showError(title: R.string.localizable.seeker_success_title(),
@@ -156,7 +175,40 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelpOptions() {
-        let screen = HelperRequestOverviewViewController()
+        let screen = HelperOptionsViewController(viewModel: HelperOptionsViewController.ViewModel(navigator: self))
+        push(screen: screen)
+    }
+
+    func toCallsList() {
+        let screen = CallsListViewController()
+        push(screen: screen)
+    }
+
+    func toTranscribeCall() {
+        let screen = TranscribeCallViewController()
+        push(screen: screen)
+    }
+
+    func toHelperOverview() {
+        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
+                                                                                                                  helpRequestsService: helpRequestsService,
+                                                                                                                  helpListsService: helpListsService))
+        push(screen: screen)
+    }
+
+    func toCurrentItemsList(helpList: HelpList) {
+        let screen = ShoppingListViewController(viewModel: ShoppingListViewController.ViewModel(navigator: self, helpList: helpList))
+        push(screen: screen)
+    }
+
+    func toCheckoutScreen(helpList: HelpList) {
+        let screen = CheckoutViewController(viewModel: CheckoutViewController.ViewModel(navigator: self, helpList: helpList))
+        push(screen: screen)
+    }
+
+    func toDeliveryConfirmationScreen(helpList: HelpList) {
+        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
+        screen.view.backgroundColor = R.color.nexdGreen()
         push(screen: screen)
     }
 

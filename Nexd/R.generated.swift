@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 15 colors.
+  /// This `R.color` struct is generated, and contains static references to 19 colors.
   struct color {
     /// Color `amountText`.
     static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
@@ -114,6 +114,14 @@ struct R: Rswift.Validatable {
     static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
     /// Color `darkButtonText`.
     static let darkButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonText")
+    /// Color `darkHeadingText`.
+    static let darkHeadingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkHeadingText")
+    /// Color `darkListItemBorder`.
+    static let darkListItemBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemBorder")
+    /// Color `darkListItemDetails`.
+    static let darkListItemDetails = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemDetails")
+    /// Color `darkListItemTitle`.
+    static let darkListItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemTitle")
     /// Color `defaultBackground`.
     static let defaultBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "defaultBackground")
     /// Color `gradientEnd`.
@@ -163,6 +171,42 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func darkButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.darkButtonText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkHeadingText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkHeadingText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkHeadingText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemBorder", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemBorder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemBorder, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemDetails", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemDetails, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemTitle, compatibleWith: traitCollection)
     }
     #endif
 
@@ -578,12 +622,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 106 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 111 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
       static let helper_request_overview_open_request_item_details_format_ios = Rswift.StringResource(key: "helper_request_overview_open_request_item_details_format_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: %1$@'s contact information:
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_section_header = Rswift.StringResource(key: "delivery_confirmation_section_header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: - unknown -
       ///
       /// Locales: en, de
@@ -724,6 +772,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let shopping_list_overview_error_title = Rswift.StringResource(key: "shopping_list_overview_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Finish shopping
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_confirm_button_title = Rswift.StringResource(key: "delivery_confirmation_confirm_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: First name
       ///
       /// Locales: en, de
@@ -852,6 +904,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_user_detail_field_missing = Rswift.StringResource(key: "error_message_user_detail_field_missing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Postal Code / Town
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_address_title = Rswift.StringResource(key: "delivery_confirmation_address_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Previous purchases
       ///
       /// Locales: en, de
@@ -924,6 +980,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_request_phoneNumber = Rswift.StringResource(key: "delivery_request_phoneNumber", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Telephone number
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_phone_number_title = Rswift.StringResource(key: "delivery_confirmation_phone_number_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Thank you for completing the orders!
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_screen_title = Rswift.StringResource(key: "delivery_confirmation_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: To collect
       ///
       /// Locales: en, de
@@ -1020,6 +1084,23 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("helper_request_overview_open_request_item_details_format_ios", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation: %1$@'s contact information:
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_section_header(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("delivery_confirmation_section_header", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_section_header"
+        }
+
+        let format = NSLocalizedString("delivery_confirmation_section_header", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: - unknown -
@@ -1551,6 +1632,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("shopping_list_overview_error_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Finish shopping
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_confirm_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_confirm_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_confirm_button_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_confirm_button_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: First name
       ///
       /// Locales: en, de
@@ -2033,6 +2129,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("error_message_user_detail_field_missing", bundle: bundle, comment: "")
       }
 
+      /// en translation: Postal Code / Town
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_address_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_address_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_address_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_address_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Previous purchases
       ///
       /// Locales: en, de
@@ -2301,6 +2412,36 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("delivery_request_phoneNumber", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Telephone number
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_phone_number_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_phone_number_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_phone_number_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_phone_number_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Thank you for completing the orders!
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_screen_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_screen_title", bundle: bundle, comment: "")
       }
 
       /// en translation: To collect

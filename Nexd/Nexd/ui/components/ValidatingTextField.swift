@@ -9,7 +9,7 @@
 import UIKit
 import Validator
 
-class ValidatingTextField: View {
+class ValidatingTextField: CustomView {
     enum State {
         case error(String?)
         case warning(String?)

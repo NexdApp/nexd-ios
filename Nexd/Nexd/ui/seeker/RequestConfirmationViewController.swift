@@ -20,7 +20,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
 
     class ViewModel {
         let navigator: ScreenNavigating
-        let requestService: RequestService
+        let requestService: HelpRequestsService
         let items: [Item]
         let onSuccess: (() -> Void)?
         let onError: ((Error) -> Void)?
@@ -28,7 +28,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         let titleText = Driver.just(R.string.localizable.seeker_detail_screen_title().asHeading())
 
         init(navigator: ScreenNavigating,
-             requestService: RequestService,
+             requestService: HelpRequestsService,
              items: [Item],
              onSuccess: (() -> Void)? = nil,
              onError: ((Error) -> Void)? = nil) {
@@ -48,9 +48,9 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                      deliveryComment: String?) -> Completable {
             let requestItems = items
                 .filter { $0.amount > 0 }
-                .map { item in RequestService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
+                .map { item in HelpRequestsService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
 
-            let request = RequestService.Request(street: street,
+            let request = HelpRequestsService.Request(street: street,
                                                  number: number,
                                                  zipCode: zipCode,
                                                  city: city,
@@ -68,6 +68,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                     log.debug("Succesful:")
                     self?.onSuccess?()
                 })
+                .catchError { _ in Completable.empty() }
         }
     }
 
@@ -98,8 +99,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         scrollView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(75)
-            make.left.equalTo(view).offset(34)
-            make.right.equalTo(view).offset(-36)
+            make.left.equalTo(view).inset(35)
         }
 
         stackView.asCard()
@@ -108,8 +108,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         scrollView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.right.equalTo(view).inset(13)
         }
 
         guard let items = viewModel?.items else { return }
@@ -121,8 +120,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
             stackView.addArrangedSubview(itemView)
 
             itemView.snp.makeConstraints { make in
-                make.left.equalTo(view).offset(13)
-                make.right.equalTo(view).offset(-12)
+                make.left.equalTo(view).inset(13)
                 make.height.equalTo(52)
             }
         }
@@ -133,8 +131,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         street.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(stackView.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(number)
@@ -143,8 +140,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         number.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(street.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(zipCode)
@@ -153,8 +149,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         zipCode.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(number.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(city)
@@ -163,8 +158,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         city.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(zipCode.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(phoneNumber)
@@ -173,8 +167,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         phoneNumber.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(city.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(additionalRequest)
@@ -183,8 +176,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         additionalRequest.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(phoneNumber.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(deliveryComment)
@@ -193,8 +185,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         deliveryComment.snp.makeConstraints { make in
             make.height.equalTo(36)
             make.top.equalTo(additionalRequest.snp.bottom).offset(23)
-            make.left.equalToSuperview().offset(13)
-            make.right.equalToSuperview().offset(-12)
+            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(confirmButton)
@@ -204,10 +195,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
             make.top.equalTo(deliveryComment.snp.bottom).offset(44)
             make.bottom.equalToSuperview().offset(-23)
         }
-    }
-
-    @objc func loginButtonPressed(sender: UIButton!) {
-        log.debug("Hello World")
     }
 
     override func viewWillAppear(_ animated: Bool) {

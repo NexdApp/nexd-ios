@@ -18,14 +18,9 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
         let amount: Int64
     }
 
-    struct Content {
-        let items: [Item]
-    }
-
     class ViewModel {
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
-        private let requestService: RequestService
 
         let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
 
@@ -58,8 +53,6 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             return Observable.merge(initialLoad.asObservable().ofType(), userUpdates.compactMap { $0 }.asObservable())
         }
 
-        var itemSelected = PublishRelay<IndexPath>()
-
         func itemDidChangeAmount(_ item: Item, amount: Int64) {
             log.debug("itemDidChangeAmount - item: \(item) - amount: \(amount)")
             guard let items = userUpdates.value else { return }
@@ -73,10 +66,9 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             userUpdates.accept(updatedItems)
         }
 
-        init(navigator: ScreenNavigating, articlesService: ArticlesService, requestService: RequestService) {
+        init(navigator: ScreenNavigating, articlesService: ArticlesService) {
             self.navigator = navigator
             self.articlesService = articlesService
-            self.requestService = requestService
         }
     }
 
@@ -87,7 +79,7 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
-        list.register(ArticleSelectionCell.self, forCellWithReuseIdentifier: ArticleSelectionCell.reuseIdentifier)
+        list.registerCell(class: ArticleSelectionCell.self)
         return list
     }()
 
@@ -134,18 +126,13 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
         )
 
         viewModel.items
-            .bind(to: collectionView.rx.items(cellIdentifier: ArticleSelectionCell.reuseIdentifier,
-                                              cellType: ArticleSelectionCell.self)) { [weak self] _, item, cell in
+            .bind(to: collectionView.rx.items(class: ArticleSelectionCell.self)) { [weak self] _, item, cell in
                 cell.bind(to: ArticleSelectionCell.Item(title: item.title,
                                                         amount: String(item.amount),
                                                         amountChanged: { amount in
                                                             self?.viewModel?.itemDidChangeAmount(item, amount: Int64(amount))
                 }))
             }
-            .disposed(by: disposeBag)
-
-        collectionView.rx.itemSelected
-            .bind(to: viewModel.itemSelected)
             .disposed(by: disposeBag)
 
         collectionView.rx.setDelegate(self).disposed(by: disposeBag)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfirmButton: Control {
+class ConfirmButton: CustomControl {
     private let image = UIImageView()
     private let label = UILabel()
 
