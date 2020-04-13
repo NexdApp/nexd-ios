@@ -8,6 +8,7 @@
 
 import Rswift
 import SwiftUI
+import NexdClient
 
 struct DeliveryConfirmationView: View {
     struct Request {
