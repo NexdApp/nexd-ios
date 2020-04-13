@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		AE1359102444A2410015D7AB /* NexdUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE13590F2444A2410015D7AB /* NexdUI.swift */; };
+		AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359112444E5460015D7AB /* HTTPStatusCode.swift */; };
+		AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359172444E98E0015D7AB /* Single+Nexd.swift */; };
+		AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */; };
 		AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E0104243148E90006A490 /* KeyboardObserver.swift */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* HelpListsService.swift */; };
@@ -116,6 +119,9 @@
 		6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		885A0DBDF401BD95331F807C /* Pods-nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.debug.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.debug.xcconfig"; sourceTree = "<group>"; };
 		AE13590F2444A2410015D7AB /* NexdUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdUI.swift; sourceTree = "<group>"; };
+		AE1359112444E5460015D7AB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
+		AE1359172444E98E0015D7AB /* Single+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Nexd.swift"; sourceTree = "<group>"; };
+		AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorResponse+Nexd.swift"; sourceTree = "<group>"; };
 		AE1E0104243148E90006A490 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* HelpListsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListsService.swift; sourceTree = "<group>"; };
@@ -258,6 +264,25 @@
 				AE13590F2444A2410015D7AB /* NexdUI.swift */,
 			);
 			path = swiftui;
+			sourceTree = "<group>";
+		};
+		AE1359132444E8220015D7AB /* netwokring */ = {
+			isa = PBXGroup;
+			children = (
+				AE1359112444E5460015D7AB /* HTTPStatusCode.swift */,
+				AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */,
+				AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */,
+			);
+			path = netwokring;
+			sourceTree = "<group>";
+		};
+		AE1359162444E9780015D7AB /* rx */ = {
+			isa = PBXGroup;
+			children = (
+				AE52A2772437D30800A1166F /* Completable+From.swift */,
+				AE1359172444E98E0015D7AB /* Single+Nexd.swift */,
+			);
+			path = rx;
 			sourceTree = "<group>";
 		};
 		AEB6AC622440FEB600823E7C /* cells */ = {
@@ -448,6 +473,8 @@
 		AEF3D66D24266460005C77CE /* utilities */ = {
 			isa = PBXGroup;
 			children = (
+				AE1359162444E9780015D7AB /* rx */,
+				AE1359132444E8220015D7AB /* netwokring */,
 				AE13590B244470BA0015D7AB /* swiftui */,
 				AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */,
 				AEF3D6702426785C005C77CE /* Storage.swift */,
@@ -455,12 +482,10 @@
 				AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */,
 				AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */,
 				AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */,
-				AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */,
 				AE1E0104243148E90006A490 /* KeyboardObserver.swift */,
 				AED8818824351129006065D2 /* UIImageView+Nexd.swift */,
 				AED8818A24351174006065D2 /* String+Nexd.swift */,
 				AED8818C24351E85006065D2 /* KeyboardDismisser.swift */,
-				AE52A2772437D30800A1166F /* Completable+From.swift */,
 				AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */,
 				AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */,
 				AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */,
@@ -713,10 +738,13 @@
 			files = (
 				AED8818F24352373006065D2 /* Style.swift in Sources */,
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
+				AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */,
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
+				AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */,
+				AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */,
 				AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */,
 				AEC5877B243A853900B6876C /* CallsListViewController.swift in Sources */,
 				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,

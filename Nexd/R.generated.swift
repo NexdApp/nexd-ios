@@ -622,7 +622,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 111 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 113 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -668,6 +668,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_registration_password_too_short = Rswift.StringResource(key: "error_message_registration_password_too_short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Authentication failed!
+      ///
+      /// Locales: en, de
+      static let error_dialog_authentication_failed_title = Rswift.StringResource(key: "error_dialog_authentication_failed_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Available requests:
       ///
       /// Locales: en, de
@@ -1004,6 +1008,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_unknown = Rswift.StringResource(key: "error_message_unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: User authentication failed please try to login again.
+      ///
+      /// Locales: en, de
+      static let error_dialog_authentication_failed_message = Rswift.StringResource(key: "error_dialog_authentication_failed_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: User profile
       ///
       /// Locales: en, de
@@ -1238,6 +1246,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_registration_password_too_short", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authentication failed!
+      ///
+      /// Locales: en, de
+      static func error_dialog_authentication_failed_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_dialog_authentication_failed_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_dialog_authentication_failed_title"
+        }
+
+        return NSLocalizedString("error_dialog_authentication_failed_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Available requests:
@@ -2502,6 +2525,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_unknown", bundle: bundle, comment: "")
+      }
+
+      /// en translation: User authentication failed please try to login again.
+      ///
+      /// Locales: en, de
+      static func error_dialog_authentication_failed_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_dialog_authentication_failed_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_dialog_authentication_failed_message"
+        }
+
+        return NSLocalizedString("error_dialog_authentication_failed_message", bundle: bundle, comment: "")
       }
 
       /// en translation: User profile

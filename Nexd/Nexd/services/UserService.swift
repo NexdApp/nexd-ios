@@ -24,6 +24,7 @@ class UserService {
     }
 
     func findMe() -> Single<User> {
-        return UsersAPI.userControllerFindMe().asSingle()
+        return UsersAPI.userControllerFindMe()
+            .asSingle()
     }
 }
