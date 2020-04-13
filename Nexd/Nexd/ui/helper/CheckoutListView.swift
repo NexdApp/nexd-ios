@@ -14,7 +14,7 @@ struct CardView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(request.title)
-                .font(R.font.proximaNovaSoftBold.swiftui(size: 35))
+                .font(R.font.proximaNovaSoftBold.font(size: 35))
                 .foregroundColor(.white)
 
             ZStack {
@@ -25,16 +25,18 @@ struct CardView: View {
                     ForEach(request.articles, id: \.itemId) { article in
                         HStack {
                             Text(article.name)
-                                .font(R.font.proximaNovaSoftRegular.swiftui(size: 18))
-                                .foregroundColor(R.color.listItemTitle.swiftui())
+                                .font(R.font.proximaNovaSoftRegular.font(size: 18))
+                                .foregroundColor(R.color.listItemTitle.color)
                                 .frame(height: 52)
 
                             Spacer()
 
-                            Text("5")
-                                .font(R.font.proximaNovaSoftRegular.swiftui(size: 14))
-                                .foregroundColor(R.color.listItemDetailsText.swiftui())
-                                .frame(height: 52)
+                            article.count.map { count in
+                                Text("\(count)")
+                                    .font(R.font.proximaNovaSoftRegular.font(size: 14))
+                                    .foregroundColor(R.color.listItemDetailsText.color)
+                                    .frame(height: 52)
+                            }
                         }
                         .frame(maxWidth: .infinity)
                     }
@@ -60,11 +62,12 @@ struct CheckoutListView: View {
 extension CheckoutViewController.Request {
     static var example: CheckoutViewController.Request {
         return CheckoutViewController.Request(requestId: 0, title: "asdf",
-                                              articles: [CheckoutViewController.Item(itemId: 1, name: "Nase"), CheckoutViewController.Item(itemId: 2, name: "Apfel")])
+                                              articles: [CheckoutViewController.Item(itemId: 1, name: "Nase", count: 23),
+                                                         CheckoutViewController.Item(itemId: 2, name: "Apfel", count: 42)])
     }
 }
 
- #if DEBUG
+#if DEBUG
     struct CheckoutListView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
@@ -74,6 +77,7 @@ extension CheckoutViewController.Request {
                 CheckoutListView(requests: [.example, .example, .example, .example])
                     .environment(\.colorScheme, .dark)
             }
+            .previewLayout(.sizeThatFits)
         }
     }
- #endif
+#endif

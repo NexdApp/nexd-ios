@@ -202,7 +202,8 @@ extension Navigator: ScreenNavigating {
     }
 
     func toDeliveryConfirmationScreen(helpList: HelpList) {
-        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self)))
+        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
+        screen.view.backgroundColor = R.color.nexdGreen()
         push(screen: screen)
     }
 

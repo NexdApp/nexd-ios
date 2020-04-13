@@ -23,7 +23,7 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
                 Request(requestId: Int(helpRequest.id ?? 0), title: helpRequest.requester?.firstName ?? "-",
                         articles: helpRequest.articles?.compactMap {
                             guard let article = $0.article else { return nil}
-                            return Item(itemId: article.id, name: article.name)
+                            return Item(itemId: article.id, name: article.name, count: $0.articleCount)
                 } ?? [])
             }
         }
@@ -44,6 +44,7 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
     struct Item {
         let itemId: Int64
         let name: String
+        let count: Int64?
     }
 
     struct Request {
