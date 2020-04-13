@@ -10,9 +10,29 @@ import Rswift
 import SwiftUI
 
 struct DeliveryConfirmationView: View {
+    struct Request {
+        let requestId: Int64
+        let requester: String
+        let phoneNumber: String
+        let address: String
+
+        static func from(helpRequest: HelpRequest) -> Request {
+            Request(requestId: helpRequest.id ?? 0,
+                    requester: helpRequest.requester?.firstName ?? "-",
+                    phoneNumber: helpRequest.phoneNumber ?? "-",
+                    address: "\(helpRequest.zipCode ?? "-") / \(helpRequest.city ?? "-")")
+        }
+    }
+
     struct ViewModel {
         let navigator: ScreenNavigating
         let helpList: HelpList
+
+        var requests: [Request] {
+            helpList.helpRequests.map { helpRequest -> Request in
+                Request.from(helpRequest: helpRequest)
+            }
+        }
     }
 
     var viewModel: ViewModel
@@ -25,41 +45,35 @@ struct DeliveryConfirmationView: View {
                         .padding(.top, 109)
                         .padding([.leading, .trailing], 28)
 
-                    ForEach(viewModel.helpList.helpRequests, id: \.id) { helpRequest in
+                    ForEach(viewModel.requests, id: \.requestId) { request in
                         VStack {
-                            helpRequest.requester.map { requester in
-                                NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(requester.firstName)))
-                                    .padding(.top, 26)
-                                    .padding([.leading, .trailing], 28)
-                            }
+                            NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
+                                .padding(.top, 26)
+                                .padding([.leading, .trailing], 28)
 
                             NexdUI.Card {
                                 VStack {
                                     R.string.localizable.delivery_confirmation_phone_number_title.text
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 18))
+                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
                                         .foregroundColor(R.color.darkListItemTitle.color)
 
-                                    helpRequest.phoneNumber.map { phone in
-                                        Text(phone)
-                                            .frame(maxWidth: .infinity, alignment: .trailing)
-                                            .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                            .foregroundColor(R.color.nexdGreen.color)
-                                    }
+                                    Text(request.phoneNumber)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
+                                        .foregroundColor(R.color.nexdGreen.color)
 
                                     Divider()
 
                                     R.string.localizable.delivery_confirmation_address_title.text
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 18))
+                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
                                         .foregroundColor(R.color.darkListItemTitle.color)
 
-                                    helpRequest.zipCode.map { zipCode in
-                                        Text(zipCode)
-                                            .frame(maxWidth: .infinity, alignment: .trailing)
-                                            .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                            .foregroundColor(R.color.nexdGreen.color)
-                                    }
+                                    Text(request.address)
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
+                                        .foregroundColor(R.color.nexdGreen.color)
                                 }
                             }
                             .padding([.leading, .trailing], 12)

@@ -28,12 +28,14 @@ enum NexdUI {
     enum Headings {
         static func title(text: Text) -> some View {
             text
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .font(R.font.proximaNovaSoftBold.font(size: 35))
                 .foregroundColor(R.color.headingText.color)
         }
 
         static func h2Dark(text: Text) -> some View {
             text
+                .frame(maxWidth: .infinity, alignment: .leading)
                 .font(R.font.proximaNovaSoftBold.font(size: 25))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
