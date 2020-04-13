@@ -14,9 +14,19 @@ import SwiftUI
 import UIKit
 
 class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
-    class ViewModel {
+    class ViewModel: ObservableObject {
         private let navigator: ScreenNavigating
-        private let helpList: HelpList
+        @Published var helpList: HelpList
+
+        var requests: [Request] {
+            helpList.helpRequests.map { helpRequest -> Request in
+                Request(requestId: Int(helpRequest.id ?? 0), title: helpRequest.requester?.firstName ?? "-",
+                        articles: helpRequest.articles?.compactMap {
+                            guard let article = $0.article else { return nil}
+                            return Item(itemId: article.id, name: article.name)
+                } ?? [])
+            }
+        }
 
         let tileLabelText = Driver.just(R.string.localizable.checkout_screen_title().asHeading())
         init(navigator: ScreenNavigating, helpList: HelpList) {
@@ -26,67 +36,42 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
     }
 
     struct Item {
-        let isSelected: Bool
+        let itemId: Int64
+        let name: String
+    }
+
+    struct Request {
+        let requestId: Int
         let title: String
-        let itemId: Int64?
-
-//        static func from(item: ShoppingListViewController.Item) -> Item {
-//            return Item(isSelected: item.isSelected, title: item.title, itemId: item.itemId)
-//        }
+        let articles: [Item]
     }
-
-    struct UserRequest {
-        let user: User
-        let items: [Item]
-    }
-
-    struct Content {
-        let requests: [UserRequest]
-    }
-
-//    private var collectionView: UICollectionView? {
-//        didSet {
-//            collectionView?.dataSource = dataSource
-//        }
-//    }
-
-//    private var dataSource: DefaultSectionedDataSource<CheckableCell.Item>? {
-//        didSet {
-//            collectionView?.dataSource = dataSource
-//        }
-//    }
-//
-//    var content: Content? {
-//        didSet {
-//            let sections = content?.requests.map { request -> DefaultSectionedDataSource<CheckableCell.Item>.Section in
-//                let items = request.items.map { CheckableCell.Item(isChecked: $0.isSelected, text: $0.title) }
-//                return DefaultSectionedDataSource<CheckableCell.Item>.Section(reuseIdentifier: CheckableCell.reuseIdentifier,
-//                                                                              title: "\(request.user.firstName) \(request.user.lastName)",
-//                                                                              items: items)
-//            }
-//
-//            dataSource = DefaultSectionedDataSource(sections: sections ?? [], cellBinder: { item, cell in
-//                if let cell = cell as? CheckableCell {
-//                    cell.bind(to: item)
-//                }
-//            })
-//        }
-//    }
-
-//    private var collectionView: UICollectionView = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.scrollDirection = .vertical
-//
-//        let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        list.backgroundColor = .clear
-//        list.registerCell(class: AcceptedRequestCell.self)
-//
-//        return list
-//    }()
-
-    private let list = UIHostingController(rootView: CheckoutListView())
 
     private let titleLabel = UILabel()
+
+    // implemented in SwiftUI - just because I can!!
+    private var list: UIHostingController<CheckoutListView>? {
+        willSet(newList) {
+            guard let list = list else { return }
+
+            list.willMove(toParent: nil)
+            list.view.removeFromSuperview()
+            list.removeFromParent()
+        }
+        didSet {
+            guard let list = list else { return }
+            addChild(list)
+            view.addSubview(list.view)
+            list.didMove(toParent: self)
+            list.view.backgroundColor = .clear
+
+            list.view.snp.makeConstraints { make -> Void in
+                make.left.right.equalToSuperview().inset(12)
+                make.top.equalTo(titleLabel.snp.bottom).offset(8)
+                make.bottom.equalTo(completeButton.snp.top).offset(-8)
+            }
+        }
+    }
+
     private let completeButton = SubMenuButton.make(title: R.string.localizable.checkout_button_title_complete())
 
     override func viewDidLoad() {
@@ -94,19 +79,6 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
         view.backgroundColor = R.color.nexdGreen()
 
         view.addSubview(titleLabel)
-
-        UITableView.appearance().tableFooterView = UIView()
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-
-        addChild(list)
-//        list.view.frame = view.frame
-        view.addSubview(list.view)
-        list.didMove(toParent: self)
-        list.view.backgroundColor = .clear
-//        view.addSubview(collectionView.view)
-
         view.addSubview(completeButton)
 
         titleLabel.snp.makeConstraints { make -> Void in
@@ -115,16 +87,10 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
             make.height.equalTo(42)
         }
 
-        list.view.snp.makeConstraints { make -> Void in
-            make.left.right.equalToSuperview().inset(12)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.bottom.equalTo(completeButton.snp.top).offset(-8)
-        }
-
         completeButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(8)
             make.height.equalTo(42)
-            make.bottom.equalToSuperview().offset(-8)
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(56)
         }
     }
 
@@ -132,15 +98,9 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
         disposeBag.insert(
             viewModel.tileLabelText.drive(titleLabel.rx.attributedText)
         )
-    }
-}
 
-extension CheckoutViewController: UICollectionViewDelegate {
-    func collectionView(_: UICollectionView, willDisplay _: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // nothing yet
+        list = UIHostingController(rootView: CheckoutListView(requests: viewModel.requests))
     }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }
 
 extension CheckoutViewController {

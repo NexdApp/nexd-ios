@@ -21,28 +21,12 @@ extension ColorResource {
     }
 }
 
-struct TestArticle {
-    let articleId: Int
-    let name: String
-}
-
-struct Card {
-    let cardId: Int
-    let title: String
-    let articles: [TestArticle]
-    let answer: String
-
-    static var example: Card {
-        Card(cardId: 123, title: "Anna", articles: [TestArticle(articleId: 1, name: "Apfel"), TestArticle(articleId: 2, name: "Birnen")], answer: "Jodie Whittaker")
-    }
-}
-
 struct CardView: View {
-    let card: Card
+    let request: CheckoutViewController.Request
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text(card.title)
+            Text(request.title)
                 .font(R.font.proximaNovaSoftBold.swiftui(size: 35))
                 .foregroundColor(.white)
 
@@ -51,7 +35,7 @@ struct CardView: View {
                     .fill(Color.white)
 
                 VStack {
-                    ForEach(card.articles, id: \.articleId) { article in
+                    ForEach(request.articles, id: \.itemId) { article in
                         HStack {
                             Text(article.name)
                                 .font(R.font.proximaNovaSoftRegular.swiftui(size: 18))
@@ -75,27 +59,34 @@ struct CardView: View {
 }
 
 struct CheckoutListView: View {
-    var cards: [Card] = [.example, .example]
+    var requests: [CheckoutViewController.Request]
 
     var body: some View {
-        List {
-            ForEach(cards, id: \.cardId) { card in
-                CardView(card: card)
+        return List {
+            ForEach(requests, id: \.requestId) { request in
+                CardView(request: request)
             }
         }
     }
 }
 
-#if DEBUG
+extension CheckoutViewController.Request {
+    static var example: CheckoutViewController.Request {
+        return CheckoutViewController.Request(requestId: 0, title: "asdf",
+                                              articles: [CheckoutViewController.Item(itemId: 1, name: "Nase"), CheckoutViewController.Item(itemId: 2, name: "Apfel")])
+    }
+}
+
+ #if DEBUG
     struct CheckoutListView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                CheckoutListView(cards: [.example, .example, .example, .example])
+                CheckoutListView(requests: [.example, .example, .example, .example])
                     .environment(\.colorScheme, .light)
 
-                CheckoutListView(cards: [.example, .example, .example, .example])
+                CheckoutListView(requests: [.example, .example, .example, .example])
                     .environment(\.colorScheme, .dark)
             }
         }
     }
-#endif
+ #endif
