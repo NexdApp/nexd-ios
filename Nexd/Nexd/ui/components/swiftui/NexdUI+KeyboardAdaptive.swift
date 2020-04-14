@@ -40,7 +40,7 @@ struct KeyboardAdaptive: ViewModifier {
                     let keyboardHeight = $0?.height ?? 0
                     let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
                     let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom) + 50
+                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
 
                     log.debug("keyboardHeight: \(keyboardHeight): focusedTextInputBottom: \(focusedTextInputBottom) - keyboardTop: \(keyboardTop) - safeArey: \(geometry.safeAreaInsets.bottom) = bottomPadding: \(self.bottomPadding)")
                 }
