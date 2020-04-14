@@ -12,6 +12,8 @@ import SwiftUI
 struct TranscribeInfoView: View {
     @ObservedObject var viewModel: ViewModel
 
+    @State var value: Float = 0
+
     var body: some View {
         return VStack {
             Group {
@@ -25,7 +27,8 @@ struct TranscribeInfoView: View {
                     }) { R.image.play.image }
                         .foregroundColor(R.color.playerButton.color)
 
-                    Slider(value: viewModel.$playerProgress, in: 0.0 ... 1.0)
+                    Slider(value: $value, in: 0.0 ... 1.0)
+//                    Slider(value: viewModel.$playerProgress, in: 0.0 ... 1.0)
                         .accentColor(.white)
                 }
 
@@ -66,7 +69,7 @@ extension TranscribeInfoView {
     class ViewModel: ObservableObject {
         private let navigator: ScreenNavigating
 
-        @State var playerProgress: CGFloat = 0.5
+        var playerProgress: Float = 0.5
         @State var firstName: String = ""
 
         init(navigator: ScreenNavigating) {
