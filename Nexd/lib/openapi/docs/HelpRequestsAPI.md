@@ -1,6 +1,6 @@
 # HelpRequestsAPI
 
-All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 # **helpRequestsControllerGetAll**
 ```swift
-    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [String]? = nil) -> Observable<[HelpRequest]>
+    open class func helpRequestsControllerGetAll(userId: String? = nil, excludeUserId: Bool? = nil, zipCode: [String]? = nil, includeRequester: Bool? = nil, status: [HelpRequestStatus]? = nil) -> Observable<[HelpRequest]>
 ```
 
 Get and filter for various help requests
@@ -70,7 +70,7 @@ let userId = "userId_example" // String | If included, filter by userId, \"me\" 
 let excludeUserId = true // Bool | If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. (optional)
 let zipCode = ["inner_example"] // [String] | Filter by an array of zipCodes (optional)
 let includeRequester = true // Bool | If \"true\", the requester object is included in each help request (optional)
-let status = ["status_example"] // [String] | Array of status to filter for (optional)
+let status = [HelpRequestStatus()] // [HelpRequestStatus] | Array of status to filter for (optional)
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
  **excludeUserId** | **Bool** | If true, the given userId (in query) is excluded (and not filtered for as default). Requires the userId query. | [optional] 
  **zipCode** | [**[String]**](String.md) | Filter by an array of zipCodes | [optional] 
  **includeRequester** | **Bool** | If \&quot;true\&quot;, the requester object is included in each help request | [optional] 
- **status** | [**[String]**](String.md) | Array of status to filter for | [optional] 
+ **status** | [**[HelpRequestStatus]**](HelpRequestStatus.md) | Array of status to filter for | [optional] 
 
 ### Return type
 

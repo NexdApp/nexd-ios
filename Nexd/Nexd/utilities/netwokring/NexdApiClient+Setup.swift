@@ -8,6 +8,7 @@
 
 import Foundation
 import NexdClient
+import NVActivityIndicatorView
 
 extension NexdClientAPI {
     static func setup(authorizationToken: String?) {
@@ -28,7 +29,18 @@ extension NexdClientAPI {
         }
     }
 
-    static func logRequest<T>(request: RequestBuilder<T>) {
+    static func requestStarted<T>(request: RequestBuilder<T>) {
+        if !NVActivityIndicatorPresenter.sharedInstance.isAnimating {
+            NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(message: R.string.localizable.loading_overlay_message(),
+                                                                                    messageFont: R.font.proximaNovaSoftBold(size: 24),
+                                                                                    type: .pacman,
+                                                                                    color: R.color.darkButtonText(),
+                                                                                    displayTimeThreshold: 500,
+                                                                                    minimumDisplayTime: 200,
+                                                                                    backgroundColor: .clear,
+                                                                                    textColor: R.color.darkButtonText()))
+        }
+
         log.debug("Start request: \(request)")
 
         if let parametersDescription = request.parametersDescription {
@@ -36,7 +48,9 @@ extension NexdClientAPI {
         }
     }
 
-    static func logResult<T>(result: Result<Response<T>, Error>) {
+    static func requestFinished<T>(result: Result<Response<T>, Error>) {
+        NVActivityIndicatorPresenter.sharedInstance.stopAnimating()
+
         log.debug("Request complete: \(self)")
         switch result {
         case let .success(response):
@@ -71,10 +85,10 @@ private class DebuggableRequestBuilderFactory: RequestBuilderFactory {
 
 private class DebuggableURLSessionRequestBuilder<T>: URLSessionRequestBuilder<T> {
     override func execute(_ apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, Error>) -> Void) {
-        NexdClientAPI.logRequest(request: self)
+        NexdClientAPI.requestStarted(request: self)
 
         super.execute(apiResponseQueue) { result in
-            NexdClientAPI.logResult(result: result)
+            NexdClientAPI.requestFinished(result: result)
             completion(result)
         }
     }
@@ -82,10 +96,10 @@ private class DebuggableURLSessionRequestBuilder<T>: URLSessionRequestBuilder<T>
 
 private class DebuggableDecodableRequestBuilder<T: Decodable>: URLSessionDecodableRequestBuilder<T> {
     override func execute(_ apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue, _ completion: @escaping (Result<Response<T>, Error>) -> Void) {
-        NexdClientAPI.logRequest(request: self)
+        NexdClientAPI.requestStarted(request: self)
 
         super.execute(apiResponseQueue) { result in
-            NexdClientAPI.logResult(result: result)
+            NexdClientAPI.requestFinished(result: result)
             completion(result)
         }
     }

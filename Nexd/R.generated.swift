@@ -106,12 +106,22 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 11 colors.
+  /// This `R.color` struct is generated, and contains static references to 19 colors.
   struct color {
+    /// Color `amountText`.
+    static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
     /// Color `darkButtonBorder`.
     static let darkButtonBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonBorder")
     /// Color `darkButtonText`.
     static let darkButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkButtonText")
+    /// Color `darkHeadingText`.
+    static let darkHeadingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkHeadingText")
+    /// Color `darkListItemBorder`.
+    static let darkListItemBorder = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemBorder")
+    /// Color `darkListItemDetails`.
+    static let darkListItemDetails = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemDetails")
+    /// Color `darkListItemTitle`.
+    static let darkListItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "darkListItemTitle")
     /// Color `defaultBackground`.
     static let defaultBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "defaultBackground")
     /// Color `gradientEnd`.
@@ -122,14 +132,29 @@ struct R: Rswift.Validatable {
     static let greetingSubline = Rswift.ColorResource(bundle: R.hostingBundle, name: "greetingSubline")
     /// Color `headingText`.
     static let headingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "headingText")
+    /// Color `listItemDetailsText`.
+    static let listItemDetailsText = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemDetailsText")
+    /// Color `listItemTitle`.
+    static let listItemTitle = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemTitle")
     /// Color `negativeButtonText`.
     static let negativeButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "negativeButtonText")
     /// Color `nexdGreen`.
     static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
+    /// Color `positiveButtonText`.
+    static let positiveButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "positiveButtonText")
     /// Color `profileImageBackground`.
     static let profileImageBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "profileImageBackground")
     /// Color `textfieldStroke`.
     static let textfieldStroke = Rswift.ColorResource(bundle: R.hostingBundle, name: "textfieldStroke")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "amountText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func amountText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.amountText, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIColor(named: "darkButtonBorder", bundle: ..., traitCollection: ...)`
@@ -146,6 +171,42 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func darkButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.darkButtonText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkHeadingText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkHeadingText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkHeadingText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemBorder", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemBorder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemBorder, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemDetails", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemDetails(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemDetails, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "darkListItemTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func darkListItemTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.darkListItemTitle, compatibleWith: traitCollection)
     }
     #endif
 
@@ -195,6 +256,24 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "listItemDetailsText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func listItemDetailsText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.listItemDetailsText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "listItemTitle", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func listItemTitle(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.listItemTitle, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIColor(named: "negativeButtonText", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
     @available(iOS 11.0, *)
@@ -209,6 +288,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func nexdGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.nexdGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "positiveButtonText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func positiveButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.positiveButtonText, compatibleWith: traitCollection)
     }
     #endif
 
@@ -362,6 +450,8 @@ struct R: Rswift.Validatable {
     static let baseline_voicemail_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_voicemail_black_48pt")
     /// Image `baseline_warning_black_18pt`.
     static let baseline_warning_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_warning_black_18pt")
+    /// Image `cancel_icon`.
+    static let cancel_icon = Rswift.ImageResource(bundle: R.hostingBundle, name: "cancel_icon")
     /// Image `chevron_left`.
     static let chevron_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "chevron_left")
     /// Image `gradient`.
@@ -496,6 +586,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "cancel_icon", bundle: ..., traitCollection: ...)`
+    static func cancel_icon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.cancel_icon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "chevron_left", bundle: ..., traitCollection: ...)`
     static func chevron_left(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.chevron_left, compatibleWith: traitCollection)
@@ -570,8 +667,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 101 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 113 localization keys.
     struct localizable {
+      /// en translation: %1$@ ago, %2$@
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_open_request_item_details_format_ios = Rswift.StringResource(key: "helper_request_overview_open_request_item_details_format_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: %1$@'s contact information:
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_section_header = Rswift.StringResource(key: "delivery_confirmation_section_header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: - unknown -
       ///
       /// Locales: en, de
@@ -608,6 +713,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_registration_password_too_short = Rswift.StringResource(key: "error_message_registration_password_too_short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Authentication failed!
+      ///
+      /// Locales: en, de
+      static let error_dialog_authentication_failed_title = Rswift.StringResource(key: "error_dialog_authentication_failed_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Available requests:
       ///
       /// Locales: en, de
@@ -672,10 +781,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_button_title_continue = Rswift.StringResource(key: "registration_button_title_continue", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Current Items List
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_button_title_current_items_list = Rswift.StringResource(key: "helper_request_overview_button_title_current_items_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Deliver
       ///
       /// Locales: en, de
       static let delivery_dialog_deliver_title = Rswift.StringResource(key: "delivery_dialog_deliver_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Delivery comment
+      ///
+      /// Locales: en, de
+      static let seeker_request_create_placeholder_delivery_comment = Rswift.StringResource(key: "seeker_request_create_placeholder_delivery_comment", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Delivery!
       ///
       /// Locales: en, de
@@ -704,6 +821,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let shopping_list_overview_error_title = Rswift.StringResource(key: "shopping_list_overview_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Finish shopping
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_confirm_button_title = Rswift.StringResource(key: "delivery_confirmation_confirm_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: First name
       ///
       /// Locales: en, de
@@ -748,6 +869,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_item_type_list = Rswift.StringResource(key: "helper_request_overview_item_type_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Loading...
+      ///
+      /// Locales: en, de
+      static let loading_overlay_message = Rswift.StringResource(key: "loading_overlay_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Log out
       ///
       /// Locales: en, de
@@ -780,6 +905,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_button_ok = Rswift.StringResource(key: "error_button_ok", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static let ok_button_title = Rswift.StringResource(key: "ok_button_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Open calls:
       ///
       /// Locales: en, de
@@ -824,6 +953,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_user_detail_field_missing = Rswift.StringResource(key: "error_message_user_detail_field_missing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Postal Code / Town
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_address_title = Rswift.StringResource(key: "delivery_confirmation_address_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Previous purchases
       ///
       /// Locales: en, de
@@ -896,6 +1029,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_request_phoneNumber = Rswift.StringResource(key: "delivery_request_phoneNumber", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Telephone number
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_phone_number_title = Rswift.StringResource(key: "delivery_confirmation_phone_number_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Thank you for completing the orders!
+      ///
+      /// Locales: en, de
+      static let delivery_confirmation_screen_title = Rswift.StringResource(key: "delivery_confirmation_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: To collect
       ///
       /// Locales: en, de
@@ -912,6 +1053,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_unknown = Rswift.StringResource(key: "error_message_unknown", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: User authentication failed please try to login again.
+      ///
+      /// Locales: en, de
+      static let error_dialog_authentication_failed_message = Rswift.StringResource(key: "error_dialog_authentication_failed_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: User profile
       ///
       /// Locales: en, de
@@ -976,6 +1121,40 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_input_details_placeholder_zipCode = Rswift.StringResource(key: "user_input_details_placeholder_zipCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
+      /// en translation: %1$@ ago, %2$@
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_open_request_item_details_format_ios(_ value1: String, _ value2: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("helper_request_overview_open_request_item_details_format_ios", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_open_request_item_details_format_ios"
+        }
+
+        let format = NSLocalizedString("helper_request_overview_open_request_item_details_format_ios", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation: %1$@'s contact information:
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_section_header(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("delivery_confirmation_section_header", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_section_header"
+        }
+
+        let format = NSLocalizedString("delivery_confirmation_section_header", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
 
       /// en translation: - unknown -
       ///
@@ -1112,6 +1291,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_registration_password_too_short", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authentication failed!
+      ///
+      /// Locales: en, de
+      static func error_dialog_authentication_failed_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_dialog_authentication_failed_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_dialog_authentication_failed_title"
+        }
+
+        return NSLocalizedString("error_dialog_authentication_failed_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Available requests:
@@ -1356,6 +1550,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_button_title_continue", bundle: bundle, comment: "")
       }
 
+      /// en translation: Current Items List
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_button_title_current_items_list(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_button_title_current_items_list", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_button_title_current_items_list"
+        }
+
+        return NSLocalizedString("helper_request_overview_button_title_current_items_list", bundle: bundle, comment: "")
+      }
+
       /// en translation: Deliver
       ///
       /// Locales: en, de
@@ -1369,6 +1578,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("delivery_dialog_deliver_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Delivery comment
+      ///
+      /// Locales: en, de
+      static func seeker_request_create_placeholder_delivery_comment(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("seeker_request_create_placeholder_delivery_comment", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_request_create_placeholder_delivery_comment"
+        }
+
+        return NSLocalizedString("seeker_request_create_placeholder_delivery_comment", bundle: bundle, comment: "")
       }
 
       /// en translation: Delivery!
@@ -1474,6 +1698,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("shopping_list_overview_error_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Finish shopping
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_confirm_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_confirm_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_confirm_button_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_confirm_button_title", bundle: bundle, comment: "")
       }
 
       /// en translation: First name
@@ -1641,6 +1880,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_item_type_list", bundle: bundle, comment: "")
       }
 
+      /// en translation: Loading...
+      ///
+      /// Locales: en, de
+      static func loading_overlay_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("loading_overlay_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "loading_overlay_message"
+        }
+
+        return NSLocalizedString("loading_overlay_message", bundle: bundle, comment: "")
+      }
+
       /// en translation: Log out
       ///
       /// Locales: en, de
@@ -1759,6 +2013,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_button_ok", bundle: bundle, comment: "")
+      }
+
+      /// en translation: OK
+      ///
+      /// Locales: en, de
+      static func ok_button_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("ok_button_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "ok_button_title"
+        }
+
+        return NSLocalizedString("ok_button_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Open calls:
@@ -1926,6 +2195,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_user_detail_field_missing", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Postal Code / Town
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_address_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_address_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_address_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_address_title", bundle: bundle, comment: "")
       }
 
       /// en translation: Previous purchases
@@ -2198,6 +2482,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("delivery_request_phoneNumber", bundle: bundle, comment: "")
       }
 
+      /// en translation: Telephone number
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_phone_number_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_phone_number_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_phone_number_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_phone_number_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Thank you for completing the orders!
+      ///
+      /// Locales: en, de
+      static func delivery_confirmation_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delivery_confirmation_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delivery_confirmation_screen_title"
+        }
+
+        return NSLocalizedString("delivery_confirmation_screen_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: To collect
       ///
       /// Locales: en, de
@@ -2256,6 +2570,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_unknown", bundle: bundle, comment: "")
+      }
+
+      /// en translation: User authentication failed please try to login again.
+      ///
+      /// Locales: en, de
+      static func error_dialog_authentication_failed_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_dialog_authentication_failed_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_dialog_authentication_failed_message"
+        }
+
+        return NSLocalizedString("error_dialog_authentication_failed_message", bundle: bundle, comment: "")
       }
 
       /// en translation: User profile

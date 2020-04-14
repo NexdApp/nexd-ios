@@ -17,7 +17,7 @@
                BlueprintIdentifier = "AEF3D617242584C9005C77CE"
                BuildableName = "nexd.app"
                BlueprintName = "nexd"
-               ReferencedContainer = "container:Nexd.xcodeproj">
+               ReferencedContainer = "container:nexd.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "AEF3D62D242584CC005C77CE"
                BuildableName = "nexdTests.xctest"
                BlueprintName = "nexdTests"
-               ReferencedContainer = "container:Nexd.xcodeproj">
+               ReferencedContainer = "container:nexd.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,7 +57,7 @@
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
             BuildableName = "nexd.app"
             BlueprintName = "nexd"
-            ReferencedContainer = "container:Nexd.xcodeproj">
+            ReferencedContainer = "container:nexd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -74,7 +74,7 @@
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
             BuildableName = "nexd.app"
             BlueprintName = "nexd"
-            ReferencedContainer = "container:Nexd.xcodeproj">
+            ReferencedContainer = "container:nexd.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

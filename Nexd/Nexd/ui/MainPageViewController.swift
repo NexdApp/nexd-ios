@@ -22,8 +22,22 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
         private let userService: UserService
+        private let authService: AuthenticationService
 
-        private lazy var profile = userService.findMe().asObservable().share(replay: 1)
+        private lazy var profile = userService.findMe()
+            .onApiErrors { [weak self] errorResponse in
+                log.error(errorResponse.httpStatusCode)
+
+                if errorResponse.httpStatusCode == .notFound || errorResponse.httpStatusCode == .unauthorized {
+                    self?.navigator.showError(title: R.string.localizable.error_dialog_authentication_failed_title(),
+                                              message: R.string.localizable.error_dialog_authentication_failed_message()) {
+                        self?.authService.logout()
+                        self?.navigator.toStartAuthenticationFlow()
+                    }
+                }
+            }
+            .asObservable()
+            .share(replay: 1)
 
         lazy var profileButtonInitials: Driver<String?> = profile
             .map { user in user.initials }
@@ -55,9 +69,10 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
             }
         }
 
-        init(navigator: ScreenNavigating, userService: UserService) {
+        init(navigator: ScreenNavigating, userService: UserService, authenticationService: AuthenticationService) {
             self.navigator = navigator
             self.userService = userService
+            authService = authenticationService
         }
     }
 

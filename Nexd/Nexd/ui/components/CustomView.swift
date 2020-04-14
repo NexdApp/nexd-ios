@@ -9,7 +9,7 @@
 import UIKit
 
 /// View base class which makes the implementation of programmatic layouts with SnapKit easier
-class View: UIView {
+class CustomView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

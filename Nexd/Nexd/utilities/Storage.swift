@@ -20,7 +20,7 @@ class PersistentStorage: Storage {
     private let defaults: UserDefaults
 
     init(userDefaults: UserDefaults) {
-        self.defaults = userDefaults
+        defaults = userDefaults
     }
 
     var authorizationToken: String? {

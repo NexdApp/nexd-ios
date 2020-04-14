@@ -118,6 +118,15 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
+    func asPositiveButtonText() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.positiveButtonText()!,
+            .font: R.font.proximaNovaSoftBold(size: 35)!
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
     func asNegativeButtonText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.negativeButtonText()!,
@@ -139,6 +148,46 @@ extension String {
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
+    }
+
+    func asListItemTitle() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.listItemTitle()!,
+                                      .font: R.font.proximaNovaSoftRegular(size: 20)!
+                                  ])
+    }
+
+    func asListItemDetails() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                    .foregroundColor: R.color.listItemDetailsText()!,
+                                      .font: R.font.proximaNovaSoftRegular(size: 14)!
+                                  ])
+    }
+
+    func asAmountText() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.amountText()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 20)!
+                                  ])
+    }
+
+    func asDarkListItemTitle() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.darkListItemTitle()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 35)!
+                                  ])
+    }
+
+    func asDarkListItemDetails() -> NSAttributedString {
+        return NSAttributedString(string: self,
+                                  attributes: [
+                                      .foregroundColor: R.color.darkListItemDetails()!,
+                                      .font: R.font.proximaNovaSoftBold(size: 14)!
+                                  ])
     }
 
     func parseHtml() -> NSAttributedString? {

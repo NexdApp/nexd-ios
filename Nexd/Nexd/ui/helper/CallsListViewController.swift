@@ -66,7 +66,7 @@ class CallsListViewController: UIViewController {
         let list = UICollectionView(frame: .zero, collectionViewLayout: layout)
         list.backgroundColor = .clear
         list.delegate = self
-        list.register(DefaultCell.self, forCellWithReuseIdentifier: DefaultCell.reuseIdentifier)
+        list.registerCell(class: DefaultCell.self)
 
         view.addSubview(list)
         list.snp.makeConstraints { make -> Void in

@@ -101,12 +101,13 @@ open class UsersAPI {
     /**
      Get all users
      
+     - parameter xAdminSecret: (header) Secret to access the admin functions. 
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[User]>
      */
-    open class func userControllerGetAll(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[User]> {
+    open class func userControllerGetAll(xAdminSecret: String, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[User]> {
         return Observable.create { observer -> Disposable in
-            userControllerGetAllWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            userControllerGetAllWithRequestBuilder(xAdminSecret: xAdminSecret).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -125,18 +126,23 @@ open class UsersAPI {
      - BASIC:
        - type: http
        - name: bearer
+     - parameter xAdminSecret: (header) Secret to access the admin functions. 
      - returns: RequestBuilder<[User]> 
      */
-    open class func userControllerGetAllWithRequestBuilder() -> RequestBuilder<[User]> {
+    open class func userControllerGetAllWithRequestBuilder(xAdminSecret: String) -> RequestBuilder<[User]> {
         let path = "/users"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
+        let nillableHeaders: [String: Any?] = [
+            "x-admin-secret": xAdminSecret.encodeToJSON()
+        ]
+        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<[User]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false, headers: headerParameters)
     }
 
     /**
