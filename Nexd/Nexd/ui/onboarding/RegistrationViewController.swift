@@ -47,6 +47,16 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
                                                         isSecureTextEntry: true,
                                                         validationRules: .passwordConfirmation(dynamicTarget: { [weak self] in self?.password.value ?? "" }))
 
+    private lazy var emailImageView = UIImageView()
+
+    private lazy var firstNameImageView = UIImageView()
+
+    private lazy var lastNameImageView = UIImageView()
+
+    private lazy var passwordImageView = UIImageView()
+
+    private lazy var confirmPasswordImageView = UIImageView()
+
     lazy var registerButton = UIButton()
 
     override func viewDidLoad() {
@@ -55,6 +65,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
+        setupImageViews()
 
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
@@ -83,11 +94,27 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
+        contentView.addSubview(emailImageView)
+        emailImageView.snp.makeConstraints { make -> Void in
+            make.centerY.equalTo(email.snp_centerY).offset(-7.5)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+            make.right.equalToSuperview().offset(-41)
+        }
+
         contentView.addSubview(firstName)
         firstName.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(email.snp.bottom).offset(Style.verticalPadding)
+        }
+
+        contentView.addSubview(firstNameImageView)
+        firstNameImageView.snp.makeConstraints { make -> Void in
+            make.centerY.equalTo(firstName.snp_centerY).offset(-7.5)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(lastName)
@@ -97,6 +124,14 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(firstName.snp.bottom).offset(Style.verticalPadding)
         }
 
+        contentView.addSubview(lastNameImageView)
+        lastNameImageView.snp.makeConstraints { make -> Void in
+            make.centerY.equalTo(lastName.snp_centerY).offset(-7.5)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+            make.right.equalToSuperview().offset(-41)
+        }
+
         contentView.addSubview(password)
         password.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
@@ -104,11 +139,27 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(lastName.snp.bottom).offset(Style.verticalPadding)
         }
 
+        contentView.addSubview(passwordImageView)
+        passwordImageView.snp.makeConstraints { make -> Void in
+            make.centerY.equalTo(password.snp_centerY).offset(-7.5)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+            make.right.equalToSuperview().offset(-41)
+        }
+
         contentView.addSubview(confirmPassword)
         confirmPassword.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp.bottom).offset(Style.verticalPadding)
+        }
+
+        contentView.addSubview(confirmPasswordImageView)
+        confirmPasswordImageView.snp.makeConstraints { make -> Void in
+            make.centerY.equalTo(confirmPassword.snp_centerY).offset(-7.5)
+            make.height.equalTo(24)
+            make.width.equalTo(24)
+            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(registerButton)
@@ -135,6 +186,23 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
 
     override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
 
+    }
+
+    private func setupImageViews() {
+        emailImageView.image = R.image.mail1()
+        emailImageView.contentMode = .scaleAspectFit
+
+        firstNameImageView.image = R.image.person1()
+        firstNameImageView.contentMode = .scaleAspectFit
+
+        lastNameImageView.image = R.image.person1()
+        lastNameImageView.contentMode = .scaleAspectFit
+
+        passwordImageView.image = R.image.lock2()
+        passwordImageView.contentMode = .scaleAspectFit
+
+        confirmPasswordImageView.image = R.image.lock1()
+        confirmPasswordImageView.contentMode = .scaleAspectFit
     }
 }
 
