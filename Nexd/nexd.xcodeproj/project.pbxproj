@@ -69,6 +69,9 @@
 		AED2A9712440D6E70082316F /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9702440D6E70082316F /* CancelButton.swift */; };
 		AED2A9732440D7170082316F /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9722440D7170082316F /* ConfirmButton.swift */; };
 		AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E5272445F15200A3DFA1 /* TranscribeInfoView.swift */; };
+		AED5E52A2446232D00A3DFA1 /* NexdUI+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */; };
+		AED5E52C2446236500A3DFA1 /* NexdUI+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */; };
+		AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */; };
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
@@ -183,6 +186,9 @@
 		AED2A9702440D6E70082316F /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		AED2A9722440D7170082316F /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
 		AED5E5272445F15200A3DFA1 /* TranscribeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeInfoView.swift; sourceTree = "<group>"; };
+		AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+TextField.swift"; sourceTree = "<group>"; };
+		AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Card.swift"; sourceTree = "<group>"; };
+		AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+KeyboardAdaptive.swift"; sourceTree = "<group>"; };
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
@@ -267,6 +273,9 @@
 			isa = PBXGroup;
 			children = (
 				AE13590F2444A2410015D7AB /* NexdUI.swift */,
+				AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */,
+				AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */,
+				AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -799,17 +808,20 @@
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
 				AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */,
+				AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */,
 				AED2A954243F78030082316F /* ViewController.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
 				AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */,
 				AED2A96D24406C460082316F /* BackButton.swift in Sources */,
 				AEB6AC75244249B300823E7C /* SubMenuButton.swift in Sources */,
+				AED5E52C2446236500A3DFA1 /* NexdUI+Card.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */,
 				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
+				AED5E52A2446232D00A3DFA1 /* NexdUI+TextField.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */,
 				AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,

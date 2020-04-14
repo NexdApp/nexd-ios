@@ -28,8 +28,7 @@ protocol ScreenNavigating {
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
-    func toCallsList()
-    func toTranscribeCall()
+    func toTranscribeInfoView()
     func toHelperOverview()
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
@@ -184,14 +183,8 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCallsList() {
-        let screen = CallsListViewController()
-        push(screen: screen)
-    }
-
-    func toTranscribeCall() {
-        let screen = TranscribeCallViewController()
-        push(screen: screen)
+    func toTranscribeInfoView() {
+        push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self)))
     }
 
     func toHelperOverview() {
@@ -212,9 +205,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toDeliveryConfirmationScreen(helpList: HelpList) {
-        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
-        screen.view.backgroundColor = R.color.nexdGreen()
-        push(screen: screen)
+        push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
     }
 
     private func push(screen: UIViewController) {
