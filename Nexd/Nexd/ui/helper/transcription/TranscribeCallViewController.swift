@@ -34,8 +34,8 @@ class TranscribeCallViewController: UIViewController {
         }
 
         playPauseButton.addTarget(self, action: #selector(playPauseButtonPressed(sender:)), for: .touchUpInside)
-        playPauseButton.setImage(R.image.round_play_arrow_black_36pt(), for: .normal)
-        playPauseButton.setImage(R.image.round_pause_black_36pt(), for: .selected)
+        playPauseButton.setImage(R.image.play(), for: .normal)
+        playPauseButton.setImage(R.image.pause(), for: .selected)
         playPauseButton.tintColor = .buttonTextColor
 
         view.addSubview(playPauseButton)
