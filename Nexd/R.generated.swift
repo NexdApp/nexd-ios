@@ -416,12 +416,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 26 images.
   struct image {
     /// Image `Chevron`.
     static let chevron = Rswift.ImageResource(bundle: R.hostingBundle, name: "Chevron")
-    /// Image `Person`.
-    static let person = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person")
+    /// Image `Lock 1`.
+    static let lock1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Lock 1")
+    /// Image `Lock 2`.
+    static let lock2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Lock 2")
+    /// Image `Mail 1`.
+    static let mail1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Mail 1")
+    /// Image `Person 1`.
+    static let person1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person 1")
+    /// Image `Rectangle 11`.
+    static let rectangle11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Rectangle 11")
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
     /// Image `baseline_account_box_black_24pt`.
@@ -448,6 +456,8 @@ struct R: Rswift.Validatable {
     static let chevron_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "chevron_left")
     /// Image `gradient`.
     static let gradient = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient")
+    /// Image `hashtag`.
+    static let hashtag = Rswift.ImageResource(bundle: R.hostingBundle, name: "hashtag")
     /// Image `logo_white`.
     static let logo_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo_white")
     /// Image `logo`.
@@ -471,9 +481,37 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Person", bundle: ..., traitCollection: ...)`
-    static func person(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.person, compatibleWith: traitCollection)
+    /// `UIImage(named: "Lock 1", bundle: ..., traitCollection: ...)`
+    static func lock1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Lock 2", bundle: ..., traitCollection: ...)`
+    static func lock2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Mail 1", bundle: ..., traitCollection: ...)`
+    static func mail1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.mail1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Person 1", bundle: ..., traitCollection: ...)`
+    static func person1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.person1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Rectangle 11", bundle: ..., traitCollection: ...)`
+    static func rectangle11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rectangle11, compatibleWith: traitCollection)
     }
     #endif
 
@@ -565,6 +603,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "gradient", bundle: ..., traitCollection: ...)`
     static func gradient(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.gradient, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "hashtag", bundle: ..., traitCollection: ...)`
+    static func hashtag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.hashtag, compatibleWith: traitCollection)
     }
     #endif
 
