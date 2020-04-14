@@ -34,6 +34,7 @@
 		AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2752437B76500A1166F /* UserProfileViewController.swift */; };
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
+		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
 		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
@@ -146,6 +147,7 @@
 		AE52A2752437B76500A1166F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
+		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 		AE13590B244470BA0015D7AB /* swiftui */ = {
 			isa = PBXGroup;
 			children = (
+				AE9775B42445E1A200765324 /* PreviewMocks.swift */,
 				AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */,
 			);
 			path = swiftui;
@@ -793,6 +796,7 @@
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
+				AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */,
 				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */,
 				AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */,
