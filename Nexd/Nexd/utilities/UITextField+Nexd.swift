@@ -19,8 +19,11 @@ extension UITextField {
 
     func withBottomBorder(color: UIColor = .textFieldBorderColor) {
         let bottomLine = CALayer()
-        // TODO: Make CGRect size device dependent // swiftlint:disable:this todo
-        bottomLine.frame = CGRect(x: 27.0, y: 35, width: 350, height: 1.0)
+        /// Get information about screen width, without having to inject it (which may cause lifecycle issues).
+        let screenWidth = UIApplication.shared.windows.filter {$0.isKeyWindow}.first?.frame.width
+        let lineWidth = screenWidth != nil ? screenWidth! - 2 * Style.textFieldUnderliningHorizontalPadding : 0
+        let bottomLineXPosition = Style.textFieldUnderliningHorizontalPadding - Style.standardLayoutMarginByApple
+        bottomLine.frame = CGRect(x: bottomLineXPosition, y: 35, width: lineWidth, height: Style.textFieldUnderliningHeight)
         bottomLine.backgroundColor = R.color.textfieldStroke()?.cgColor
         self.borderStyle = UITextField.BorderStyle.none
         self.layer.addSublayer(bottomLine)

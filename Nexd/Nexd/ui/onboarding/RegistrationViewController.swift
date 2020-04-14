@@ -20,7 +20,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
-    private lazy var logo = UIImageView()
+    lazy var logo = UIImageView()
 
     lazy var scrollView = UIScrollView()
 
@@ -67,6 +67,24 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
         title = R.string.localizable.registration_screen_title()
         setupImageViews()
 
+        setupLayoutConstraints()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        keyboardObserver = nil
+    }
+
+    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
+
+    }
+
+    private func setupLayoutConstraints() {
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -172,20 +190,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(confirmPassword.snp.bottom).offset(50)
             make.bottom.equalToSuperview().offset(-20)
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        keyboardObserver = nil
-    }
-
-    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
-
     }
 
     private func setupImageViews() {
