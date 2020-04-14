@@ -35,14 +35,13 @@ struct KeyboardAdaptive: ViewModifier {
     func body(content: Content) -> some View {
         GeometryReader { geometry in
             content
-                .padding(.bottom, self.bottomPadding)
+//                .padding(.bottom, self.bottomPadding)
+                .offset(x: 0, y: -self.bottomPadding)
                 .onReceive(Publishers.keyboardHeight) {
                     let keyboardHeight = $0?.height ?? 0
                     let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
                     let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding = max(0, focusedTextInputBottom - keyboardTop - geometry.safeAreaInsets.bottom)
-
-                    log.debug("keyboardHeight: \(keyboardHeight): focusedTextInputBottom: \(focusedTextInputBottom) - keyboardTop: \(keyboardTop) - safeArey: \(geometry.safeAreaInsets.bottom) = bottomPadding: \(self.bottomPadding)")
+                    self.bottomPadding = max(0, focusedTextInputBottom - (keyboardTop + geometry.safeAreaInsets.bottom))
                 }
                 .animation(.easeOut(duration: 0.16))
         }
