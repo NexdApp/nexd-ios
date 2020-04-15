@@ -25,7 +25,7 @@ class AudioPlayer: NSObject {
         }
     }
 
-    private let player: AVAudioPlayer
+    private let player: AVAudioPlayer?
 
     fileprivate let isPlaying = BehaviorRelay<Bool>(value: false)
 
@@ -43,39 +43,33 @@ class AudioPlayer: NSObject {
             }
     }
 
-    init?(url: URL) {
-        do {
-            player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
-        } catch let error {
-            log.error("Could not create player: \(error)")
-            return nil
-        }
+    init(url: URL) {
+        player = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
 
         super.init()
-        player.delegate = self
+        player?.delegate = self
     }
 
     init?(data: Data, fileTypeHint: String?) {
-        do {
-            player = try AVAudioPlayer(data: data, fileTypeHint: fileTypeHint)
-        } catch {
-            log.error("Could not play: ")
-            return nil
-        }
+        player = try? AVAudioPlayer(data: data, fileTypeHint: fileTypeHint)
 
         super.init()
-        player.delegate = self
+        player?.delegate = self
     }
 
     func seekTo(time: TimeInterval) {
-        player.currentTime = time
+        player?.currentTime = time
     }
 
     func seekTo(progress: Float) {
+        guard let player = player else { return }
+
         player.currentTime = TimeInterval(progress * Float(player.duration))
     }
 
     func play() {
+        guard let player = player else { return }
+
         if !player.isPlaying {
             player.play()
         }
@@ -84,23 +78,27 @@ class AudioPlayer: NSObject {
     }
 
     func pause() {
+        guard let player = player else { return }
+
         player.pause()
         isPlaying.accept(false)
     }
 
     func stop() {
+        guard let player = player else { return }
+
         player.stop()
         player.currentTime = 0
         isPlaying.accept(false)
     }
 
-    static func sampleWav() -> AudioPlayer? {
+    static func sampleWav() -> AudioPlayer {
         let path = Bundle.main.path(forResource: "cymbal.wav", ofType: nil)!
         let url = URL(fileURLWithPath: path)
         return AudioPlayer(url: url)
     }
 
-    static func sampleMp3() -> AudioPlayer? {
+    static func sampleMp3() -> AudioPlayer {
         let path = Bundle.main.path(forResource: "recording.mp3", ofType: nil)!
         let url = URL(fileURLWithPath: path)
         return AudioPlayer(url: url)

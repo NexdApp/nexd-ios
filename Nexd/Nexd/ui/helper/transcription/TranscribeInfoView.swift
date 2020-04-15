@@ -7,12 +7,11 @@
 //
 
 import Combine
+import RxCombine
 import SwiftUI
 
 struct TranscribeInfoView: View {
     @ObservedObject var viewModel: ViewModel
-
-    @State var value: Float = 0
 
     var body: some View {
         return VStack {
@@ -23,12 +22,19 @@ struct TranscribeInfoView: View {
 
                 HStack {
                     Button(action: {
-                        log.debug("Play/pause toggle")
-                    }) { R.image.play.image }
+                        self.viewModel.onPlayPause()
+                    },
+                           label: {
+                        viewModel.isPlaying ? R.image.pause.image : R.image.play.image
+                    })
+                        .frame(width: 35, height: 35)
                         .foregroundColor(R.color.playerButton.color)
 
-                    Slider(value: $value, in: 0.0 ... 1.0)
-//                    Slider(value: viewModel.$playerProgress, in: 0.0 ... 1.0)
+                    Slider(value: $viewModel.progress, in: 0.0 ... 1.0,
+                           onEditingChanged: { isEditing in
+                            guard !isEditing else { return }
+                            self.viewModel.onSliderMoved()
+                    })
                         .accentColor(.white)
                 }
 
@@ -62,18 +68,57 @@ struct TranscribeInfoView: View {
         }
         .padding(.bottom, 0)
         .keyboardAdaptive()
+        .onAppear { self.viewModel.bind() }
+        .onDisappear { self.viewModel.unbind() }
     }
 }
 
 extension TranscribeInfoView {
     class ViewModel: ObservableObject {
         private let navigator: ScreenNavigating
+        private let player: AudioPlayer
 
-        var playerProgress: Float = 0.5
-        @State var firstName: String = ""
+        private var cancellableSet: Set<AnyCancellable>?
+
+        @Published var isPlaying: Bool = false
+        @Published var progress: Float = 0
+        @Published var firstName: String = ""
+
+        func onPlayPause() {
+            isPlaying ? player.pause() : player.play()
+        }
+
+        func onSliderMoved() {
+            player.seekTo(progress: progress)
+        }
 
         init(navigator: ScreenNavigating) {
             self.navigator = navigator
+            player = AudioPlayer.sampleMp3()
+        }
+
+        func bind() {
+            var cancellableSet = Set<AnyCancellable>()
+
+            player.state.publisher
+                .map { $0.isPlaying }
+                .receive(on: RunLoop.main)
+                .replaceError(with: false)
+                .assign(to: \.isPlaying, on: self)
+                .store(in: &cancellableSet)
+
+            player.state.publisher
+                .map { $0.progress }
+                .receive(on: RunLoop.main)
+                .replaceError(with: 0)
+                .assign(to: \.progress, on: self)
+                .store(in: &cancellableSet)
+
+            self.cancellableSet = cancellableSet
+        }
+
+        func unbind() {
+            cancellableSet = nil
         }
     }
 
