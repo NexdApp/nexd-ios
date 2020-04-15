@@ -3,6 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**firstName** | **String** |  | [optional] 
+**lastName** | **String** |  | [optional] 
 **street** | **String** |  | [optional] 
 **number** | **String** |  | [optional] 
 **zipCode** | **String** |  | [optional] 

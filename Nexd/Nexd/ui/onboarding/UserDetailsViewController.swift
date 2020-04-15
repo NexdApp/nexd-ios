@@ -212,12 +212,6 @@ extension UserDetailsViewController {
             .map { $0.validate() }
             .contains(false)
 
-        guard let userInformation = viewModel?.userInformation else {
-            log.warning("Cannot update user, internal error!")
-            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
-            return
-        }
-
         guard !hasInvalidInput else {
             log.warning("Cannot update user, mandatory field is missing!")
             showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
@@ -231,10 +225,7 @@ extension UserDetailsViewController {
         }
 
         log.debug("Send registration to backend")
-        UserService.shared.updateUserInformation(zipCode: zipCode,
-                                                 firstName: userInformation.firstName,
-                                                 lastName: userInformation.lastName,
-                                                 phone: phone)
+        UserService.shared.updateUserInformation(zipCode: zipCode, phone: phone)
             .subscribe(onSuccess: { [weak self] user in
                 log.debug("User information updated: \(user)")
                 self?.viewModel?.navigator.toMainScreen()

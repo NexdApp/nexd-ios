@@ -97,7 +97,7 @@ Register with email and password
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let registerDto = RegisterDto(email: "email_example", firstName: "firstName_example", lastName: "lastName_example", password: "password_example") // RegisterDto | 
+let registerDto = RegisterDto(email: "email_example", firstName: "firstName_example", lastName: "lastName_example", phoneNumber: "phoneNumber_example", password: "password_example") // RegisterDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

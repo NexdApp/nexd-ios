@@ -14,7 +14,7 @@ import UIKit
 
 extension User {
     var initials: String {
-        "\(firstName.first?.description ?? "")\(lastName.first?.description ?? "")"
+        "\(firstName?.first?.description ?? "")\(lastName?.first?.description ?? "")"
     }
 }
 
@@ -44,7 +44,11 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
             .asDriver(onErrorJustReturn: nil)
 
         lazy var greeting: Driver<NSAttributedString?> = profile
-            .map { user in R.string.localizable.role_screen_title_ios(user.firstName).asGreeting() + "\n" + R.string.localizable.role_screen_subtitle().asGreetingSubline() }
+            .map { user in
+                R.string.localizable.role_screen_title_ios(user.firstName ?? user.lastName ?? "???")
+                    .asGreeting() + "\n" + R.string.localizable.role_screen_subtitle()
+                    .asGreetingSubline()
+            }
             .asDriver(onErrorJustReturn: nil)
 
         var profileButtonTaps: Binder<Void> {

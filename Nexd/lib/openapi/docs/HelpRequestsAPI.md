@@ -150,7 +150,7 @@ Add a help request
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let helpRequestCreateDto = HelpRequestCreateDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
+let helpRequestCreateDto = HelpRequestCreateDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -229,7 +229,7 @@ Modify a help request (e.g. address or articles)
 import NexdClient
 
 let helpRequestId = 987 // Int64 | Id of the help request
-let helpRequestCreateDto = HelpRequestCreateDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
+let helpRequestCreateDto = HelpRequestCreateDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleCount: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

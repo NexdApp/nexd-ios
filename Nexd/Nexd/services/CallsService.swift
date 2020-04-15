@@ -28,17 +28,22 @@ class CallsService {
     }()
 
     func number() -> Single<Number?> {
-        return CallsAPI.callsControllerGetNumber()
-            .map { json -> Number? in
-                guard let data = json.data(using: .utf8) else { return nil }
-                return try? JSONDecoder().decode(Number.self, from: data)
-            }
-            .asSingle()
+        log.error("NOT IMPLEMENTED YET!!")
+        return Single.error(CallsError.downloadFailed)
+
+//        return CallsAPI.callsControllerGetNumber()
+//            .map { json -> Number? in
+//                guard let data = json.data(using: .utf8) else { return nil }
+//                return try? JSONDecoder().decode(Number.self, from: data)
+//            }
+//            .asSingle()
     }
 
     func allCalls() -> Single<[Call]> {
-        return CallsAPI.callsControllerCalls()
-            .asSingle()
+        log.error("NOT IMPLEMENTED YET!!")
+        return Single.error(CallsError.downloadFailed)
+//        return CallsAPI.callsControllerCalls()
+//            .asSingle()
     }
 
     func downloadCallFile(sid: String) -> Single<URL> {

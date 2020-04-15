@@ -12,25 +12,29 @@ public struct Call: Codable {
 
 
     public var sid: String
-    public var created: Date
-    public var recordUrl: String?
-    public var transcriptionUrl: String?
-    public var convertedHelpRequest: HelpRequest?
+    public var createdAt: Date
+    public var updatedAt: Date
+    public var recordingUrl: String?
+//    public var convertedHelpRequest: HelpRequest?
     public var phoneNumber: String?
     public var country: String?
     public var zip: String?
     public var city: String?
+    public var converterId: String
+    public var converter: User?
 
-    public init(sid: String, created: Date, recordUrl: String?, transcriptionUrl: String?, convertedHelpRequest: HelpRequest?, phoneNumber: String?, country: String?, zip: String?, city: String?) {
+    public init(sid: String, createdAt: Date, updatedAt: Date, recordingUrl: String?, convertedHelpRequest: HelpRequest?, phoneNumber: String?, country: String?, zip: String?, city: String?, converterId: String, converter: User?) {
         self.sid = sid
-        self.created = created
-        self.recordUrl = recordUrl
-        self.transcriptionUrl = transcriptionUrl
-        self.convertedHelpRequest = convertedHelpRequest
+        self.createdAt = createdAt
+        self.updatedAt = updatedAt
+        self.recordingUrl = recordingUrl
+//        self.convertedHelpRequest = convertedHelpRequest
         self.phoneNumber = phoneNumber
         self.country = country
         self.zip = zip
         self.city = city
+        self.converterId = converterId
+        self.converter = converter
     }
 
 }

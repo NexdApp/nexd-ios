@@ -134,7 +134,7 @@ Update profile of a specific user
 import NexdClient
 
 let userId = "userId_example" // String | user id
-let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
+let updateUserDto = UpdateUserDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -173,7 +173,7 @@ Update profile of the requesting user
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let updateUserDto = UpdateUserDto(street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", firstName: "firstName_example", lastName: "lastName_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
+let updateUserDto = UpdateUserDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", role: "role_example", phoneNumber: "phoneNumber_example") // UpdateUserDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
