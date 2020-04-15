@@ -3,14 +3,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**firstName** | **String** |  | [optional] 
+**lastName** | **String** |  | [optional] 
 **street** | **String** |  | [optional] 
 **number** | **String** |  | [optional] 
 **zipCode** | **String** |  | [optional] 
 **city** | **String** |  | [optional] 
 **id** | **String** |  | 
-**firstName** | **String** |  | 
-**lastName** | **String** |  | 
-**email** | **String** |  | 
+**email** | **String** |  | [optional] 
 **role** | **String** |  | [optional] [default to ._none]
 **phoneNumber** | **String** |  | [optional] 
 

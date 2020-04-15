@@ -21,7 +21,7 @@ class CallsListViewController: UIViewController {
         let call: Call
 
         var title: String {
-            return call.created.description
+            return call.sid
         }
 
         static func from(call: Call) -> Item {

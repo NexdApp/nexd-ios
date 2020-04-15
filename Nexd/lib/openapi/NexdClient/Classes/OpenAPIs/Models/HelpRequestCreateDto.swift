@@ -17,6 +17,8 @@ public struct HelpRequestCreateDto: Codable {
         case completed = "completed"
         case deactivated = "deactivated"
     }
+    public var firstName: String?
+    public var lastName: String?
     public var street: String?
     public var number: String?
     public var zipCode: String?
@@ -27,7 +29,9 @@ public struct HelpRequestCreateDto: Codable {
     public var deliveryComment: String?
     public var phoneNumber: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, articles: [CreateHelpRequestArticleDto]?, status: Status?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?) {
+    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, articles: [CreateHelpRequestArticleDto]?, status: Status?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?) {
+        self.firstName = firstName
+        self.lastName = lastName
         self.street = street
         self.number = number
         self.zipCode = zipCode

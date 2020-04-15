@@ -16,22 +16,22 @@ public struct UpdateUserDto: Codable {
         case seeker = "seeker"
         case _none = "none"
     }
+    public var firstName: String?
+    public var lastName: String?
     public var street: String?
     public var number: String?
     public var zipCode: String?
     public var city: String?
-    public var firstName: String
-    public var lastName: String
     public var role: Role? = ._none
     public var phoneNumber: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, firstName: String, lastName: String, role: Role?, phoneNumber: String?) {
+    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, role: Role?, phoneNumber: String?) {
+        self.firstName = firstName
+        self.lastName = lastName
         self.street = street
         self.number = number
         self.zipCode = zipCode
         self.city = city
-        self.firstName = firstName
-        self.lastName = lastName
         self.role = role
         self.phoneNumber = phoneNumber
     }

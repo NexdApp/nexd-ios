@@ -17,6 +17,8 @@ public struct HelpRequest: Codable {
         case completed = "completed"
         case deactivated = "deactivated"
     }
+    public var firstName: String?
+    public var lastName: String?
     public var street: String?
     public var number: String?
     public var zipCode: String?
@@ -33,8 +35,11 @@ public struct HelpRequest: Codable {
     public var requesterId: String?
     public var requester: User?
     public var helpList: HelpList?
+    public var call: Call?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, helpListId: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpList: HelpList?) {
+    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, helpListId: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpList: HelpList?, call: Call?) {
+        self.firstName = firstName
+        self.lastName = lastName
         self.street = street
         self.number = number
         self.zipCode = zipCode
@@ -51,9 +56,12 @@ public struct HelpRequest: Codable {
         self.requesterId = requesterId
         self.requester = requester
         self.helpList = helpList
+        self.call = call
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable { 
+        case firstName
+        case lastName
         case street
         case number
         case zipCode
@@ -70,6 +78,7 @@ public struct HelpRequest: Codable {
         case requesterId
         case requester
         case helpList
+        case call
     }
 
 }
