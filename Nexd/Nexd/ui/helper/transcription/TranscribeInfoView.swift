@@ -25,12 +25,12 @@ struct TranscribeInfoView: View {
                         self.viewModel.onPlayPause()
                     },
                            label: {
-                        viewModel.isPlaying ? R.image.pause.image : R.image.play.image
+                        viewModel.state.isPlaying ? R.image.pause.image : R.image.play.image
                     })
                         .frame(width: 35, height: 35)
                         .foregroundColor(R.color.playerButton.color)
 
-                    Slider(value: $viewModel.progress, in: 0.0 ... 1.0,
+                    Slider(value: $viewModel.state.progress, in: 0.0 ... 1.0,
                            onEditingChanged: { isEditing in
                                guard !isEditing else { return }
                                self.viewModel.onSliderMoved()
@@ -75,21 +75,24 @@ struct TranscribeInfoView: View {
 
 extension TranscribeInfoView {
     class ViewModel: ObservableObject {
+        class ViewState: ObservableObject {
+            @Published var isPlaying: Bool = false
+            @Published var progress: Double = 0
+            @Published var firstName: String = ""
+        }
+
         private let navigator: ScreenNavigating
         private let player: AudioPlayer
 
         private var cancellableSet: Set<AnyCancellable>?
-
-        @Published var isPlaying: Bool = false
-        @Published var progress: Float = 0
-        @Published var firstName: String = ""
+        var state = ViewState()
 
         func onPlayPause() {
-            isPlaying ? player.pause() : player.play()
+            state.isPlaying ? player.pause() : player.play()
         }
 
         func onSliderMoved() {
-            player.seekTo(progress: progress)
+            player.seekTo(progress: Float(state.progress))
         }
 
         init(navigator: ScreenNavigating) {
@@ -102,17 +105,25 @@ extension TranscribeInfoView {
 
             player.state.publisher
                 .map { $0.isPlaying }
+                .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .replaceError(with: false)
-                .assign(to: \.isPlaying, on: self)
+                .assign(to: \.isPlaying, on: state)
                 .store(in: &cancellableSet)
 
             player.state.publisher
-                .map { $0.progress }
+                .map { Double($0.progress) }
+                .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .replaceError(with: 0)
                 .debug()
-                .assign(to: \.progress, on: self)
+                .assign(to: \.progress, on: state)
+                .store(in: &cancellableSet)
+
+            state.objectWillChange
+                .sink { [weak self] _ in
+                    self?.objectWillChange.send()
+                }
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet
