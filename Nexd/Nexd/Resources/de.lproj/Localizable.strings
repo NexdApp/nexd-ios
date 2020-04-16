@@ -41,7 +41,7 @@
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
 "helper_request_finished_screen_title" = "Vorherige Anfragen:";
-"helper_request_overview_button_previous_requests" = "Previous purchases";
+"helper_request_overview_button_previous_requests" = "Vorherige Anfragen";
 "helper_request_overview_button_summary_details" = "Insg. ";
 "helper_request_overview_button_summary_title" = "Einkaufen";
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
@@ -110,10 +110,15 @@
 "shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_screen_title" = "Einkaufsliste";
+"transcribe_articles_button_title_confirm" = "Bestätigen";
+"transcribe_articles_screen_title" = "EInkaufszettel";
 "transcribe_info_button_title_confirm" = "Info bestätigen";
+"transcribe_info_input_text_title_city" = "Stadt";
 "transcribe_info_input_text_title_first_name" = "Vorname";
 "transcribe_info_input_text_title_last_name" = "Nachname";
 "transcribe_info_input_text_title_postal_code" = "Postleitzahl";
+"transcribe_info_input_text_title_street" = "Straße";
+"transcribe_info_input_text_title_street_number" = "Nummer";
 "transcribe_info_screen_title" = "Anruferinfos";
 "user_input_details_confirm" = "Bestätigen";
 "user_input_details_placeholder_city" = "Ort";
