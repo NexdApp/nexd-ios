@@ -20,7 +20,7 @@ struct TranscribeListView: View {
                 HStack {
                     Spacer()
                 }
-                NexdUI.Headings.title(text: R.string.localizable.transcribe_info_screen_title.text)
+                NexdUI.Headings.title(text: R.string.localizable.transcribe_articles_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 71)
 
@@ -50,7 +50,7 @@ struct TranscribeListView: View {
                     }
                 }
 
-                NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
+                NexdUI.Buttons.default(text: R.string.localizable.transcribe_articles_button_title_confirm.text) {
                     log.debug("IMPLEMENT ME!!!")
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
