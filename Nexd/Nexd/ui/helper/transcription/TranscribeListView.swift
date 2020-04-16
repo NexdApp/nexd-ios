@@ -7,25 +7,55 @@
 //
 
 import Combine
-import SwiftUI
 import NexdClient
+import SwiftUI
 
-extension Article: Identifiable {
-
-}
+extension Article: Identifiable {}
 
 struct TranscribeListView: View {
     @ObservedObject var viewModel: ViewModel
     var body: some View {
         return VStack {
             Group {
+                HStack {
+                    Spacer()
+                }
                 NexdUI.Headings.title(text: R.string.localizable.transcribe_info_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 71)
 
-                ForEach(viewModel.state.articles) { article in
-                    Text(article.name)
+                NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
+                              progress: $viewModel.state.progress,
+                              onPlayPause: { self.viewModel.onPlayPause() },
+                              onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
+
+                List(viewModel.state.articles) { article in
+                    HStack {
+                        HStack {
+                            Text(article.name)
+                                .font(R.font.proximaNovaSoftMedium.font(size: 18))
+                                .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
+                                .padding(.leading, 14)
+                        }
+                        .padding(.trailing, 14)
+                        .background(Color.white)
+                        .cornerRadius(10)
+
+                        Text("0")
+                            .font(R.font.proximaNovaSoftBold.font(size: 20))
+                            .foregroundColor(R.color.amountText.color)
+                            .frame(width: 37, height: 37, alignment: .center)
+                            .background(Color.white)
+                            .cornerRadius(18.5)
+                    }
                 }
+
+                NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
+                    log.debug("IMPLEMENT ME!!!")
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 33)
+                .padding(.bottom, 53)
             }
             .padding(.leading, 26)
             .padding(.trailing, 33)
@@ -115,3 +145,19 @@ extension TranscribeListView {
         }
     }
 }
+
+#if DEBUG
+    struct TranscribeListView_Previews: PreviewProvider {
+        static var previews: some View {
+            Group {
+                TranscribeListView(viewModel: TranscribeListView.ViewModel(navigator: PreviewNavigator(), articlesService: ArticlesService()))
+                    .environment(\.colorScheme, .light)
+
+                TranscribeListView(viewModel: TranscribeListView.ViewModel(navigator: PreviewNavigator(), articlesService: ArticlesService()))
+                    .environment(\.colorScheme, .dark)
+            }
+            .background(R.color.nexdGreen.color)
+            .previewLayout(.sizeThatFits)
+        }
+    }
+#endif
