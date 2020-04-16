@@ -8,7 +8,6 @@
 
 import Rswift
 import SwiftUI
-import UIKit
 
 extension FontResource {
     func font(size: CGFloat) -> Font {
@@ -24,11 +23,11 @@ extension ColorResource {
 
 extension StringResource {
     var localizedStringKey: LocalizedStringKey {
-        LocalizedStringKey(self.key)
+        LocalizedStringKey(key)
     }
 
     var text: Text {
-        Text(self.localizedStringKey)
+        Text(localizedStringKey)
     }
 }
 
