@@ -29,6 +29,9 @@
 		AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0672448C2CB00601DDF /* TranscribeListView.swift */; };
 		AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */; };
 		AE50F06C2448DCFA00601DDF /* Publisher+Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F06B2448DCFA00601DDF /* Publisher+Debugging.swift */; };
+		AE50F06E2448F76D00601DDF /* NexdUI+NumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F06D2448F76D00601DDF /* NexdUI+NumberInputView.swift */; };
+		AE50F070244902D700601DDF /* UIApplication+EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */; };
+		AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0712449048B00601DDF /* NexdUI+DismissingKeyboard.swift */; };
 		AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B872443ABF30068DF60 /* ShoppingListItemView.swift */; };
 		AE510B8A2443C2FA0068DF60 /* CustomControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B892443C2FA0068DF60 /* CustomControl.swift */; };
 		AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8B2443C4550068DF60 /* CheckoutListView.swift */; };
@@ -149,6 +152,9 @@
 		AE50F0672448C2CB00601DDF /* TranscribeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeListView.swift; sourceTree = "<group>"; };
 		AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Player.swift"; sourceTree = "<group>"; };
 		AE50F06B2448DCFA00601DDF /* Publisher+Debugging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Debugging.swift"; sourceTree = "<group>"; };
+		AE50F06D2448F76D00601DDF /* NexdUI+NumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+NumberInputView.swift"; sourceTree = "<group>"; };
+		AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+EndEditing.swift"; sourceTree = "<group>"; };
+		AE50F0712449048B00601DDF /* NexdUI+DismissingKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+DismissingKeyboard.swift"; sourceTree = "<group>"; };
 		AE510B872443ABF30068DF60 /* ShoppingListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListItemView.swift; sourceTree = "<group>"; };
 		AE510B892443C2FA0068DF60 /* CustomControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomControl.swift; sourceTree = "<group>"; };
 		AE510B8B2443C4550068DF60 /* CheckoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListView.swift; sourceTree = "<group>"; };
@@ -280,9 +286,11 @@
 			children = (
 				AE13590F2444A2410015D7AB /* NexdUI.swift */,
 				AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */,
+				AE50F06D2448F76D00601DDF /* NexdUI+NumberInputView.swift */,
 				AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */,
-				AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */,
 				AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */,
+				AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */,
+				AE50F0712449048B00601DDF /* NexdUI+DismissingKeyboard.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -522,6 +530,7 @@
 				AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */,
 				AEB6AC7C2443362300823E7C /* Date+Nexd.swift */,
 				AE50F06B2448DCFA00601DDF /* Publisher+Debugging.swift */,
+				AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -809,6 +818,7 @@
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
+				AE50F070244902D700601DDF /* UIApplication+EndEditing.swift in Sources */,
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
@@ -821,6 +831,7 @@
 				AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */,
 				AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */,
 				AED2A954243F78030082316F /* ViewController.swift in Sources */,
+				AE50F06E2448F76D00601DDF /* NexdUI+NumberInputView.swift in Sources */,
 				AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */,
 				AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */,
 				AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */,
@@ -847,6 +858,7 @@
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
+				AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */,
 				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,

@@ -41,7 +41,9 @@ struct TranscribeListView: View {
                         .background(Color.white)
                         .cornerRadius(10)
 
-                        Text("0")
+                        NexdUI.NumberInputView(onValueConfirmed: { value in
+                        log.debug("TODO: Save to view model -> refresh list: \(value)")
+                        })
                             .font(R.font.proximaNovaSoftBold.font(size: 20))
                             .foregroundColor(R.color.amountText.color)
                             .frame(width: 37, height: 37, alignment: .center)
@@ -62,6 +64,7 @@ struct TranscribeListView: View {
         }
         .padding(.bottom, 0)
         .keyboardAdaptive()
+//        .dismissingKeyboard()
         .onAppear { self.viewModel.bind() }
         .onDisappear { self.viewModel.unbind() }
     }

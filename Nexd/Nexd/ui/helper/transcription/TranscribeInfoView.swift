@@ -52,6 +52,7 @@ struct TranscribeInfoView: View {
         }
         .padding(.bottom, 0)
         .keyboardAdaptive()
+        .dismissingKeyboard()
         .onAppear { self.viewModel.bind() }
         .onDisappear { self.viewModel.unbind() }
     }

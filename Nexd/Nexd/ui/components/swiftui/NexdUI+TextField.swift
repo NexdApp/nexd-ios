@@ -81,7 +81,7 @@ extension NexdUI {
             uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         }
     }
-}   
+}
 
 #if DEBUG
     struct TextField_Previews: PreviewProvider {
