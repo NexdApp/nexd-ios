@@ -29,6 +29,7 @@ protocol ScreenNavigating {
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
+    func toTranscribeListView()
     func toHelperOverview()
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
@@ -185,6 +186,10 @@ extension Navigator: ScreenNavigating {
 
     func toTranscribeInfoView() {
         push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self)))
+    }
+
+    func toTranscribeListView() {
+        push(screen: TranscribeListView.createScreen(viewModel: TranscribeListView.ViewModel(navigator: self, articlesService: articlesService)))
     }
 
     func toHelperOverview() {

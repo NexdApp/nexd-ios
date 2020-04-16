@@ -20,44 +20,28 @@ struct TranscribeInfoView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 71)
 
-                HStack {
-                    Button(action: {
-                        self.viewModel.onPlayPause()
-                    },
-                           label: {
-                        viewModel.state.isPlaying ? R.image.pause.image : R.image.play.image
-                    })
-                        .frame(width: 35, height: 35)
-                        .foregroundColor(R.color.playerButton.color)
-
-                    Slider(value: $viewModel.state.progress, in: 0.0 ... 1.0,
-                           onEditingChanged: { isEditing in
-                               guard !isEditing else { return }
-                               self.viewModel.onSliderMoved()
-                    })
-                        .accentColor(.white)
-                }
+                NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
+                              progress: $viewModel.state.progress,
+                              onPlayPause: { self.viewModel.onPlayPause() },
+                              onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
 
                 NexdUI.TextField(tag: 0,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
-                                 onChanged: { text in log.debug("Text changed: \(text)") },
                                  onCommit: { string in log.debug("should commit: \(string ?? "-")") })
                     .padding(.top, 44)
 
                 NexdUI.TextField(tag: 1,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
-                                 onChanged: { text in log.debug("Text changed: \(text)") },
                                  onCommit: { string in log.debug("should commit: \(string ?? "-")") })
                     .padding(.top, 30)
 
                 NexdUI.TextField(tag: 2,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
-                                 onChanged: { text in log.debug("Text changed: \(text)") },
                                  onCommit: { string in log.debug("should commit: \(string ?? "-")") })
                     .padding(.top, 30)
 
                 NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
-                    log.debug("IMPLEMENT ME!")
+                    self.viewModel.navigator.toTranscribeListView()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 64)
@@ -81,7 +65,7 @@ extension TranscribeInfoView {
             @Published var firstName: String = ""
         }
 
-        private let navigator: ScreenNavigating
+        let navigator: ScreenNavigating
         private let player: AudioPlayer
 
         private var cancellableSet: Set<AnyCancellable>?
@@ -91,8 +75,8 @@ extension TranscribeInfoView {
             state.isPlaying ? player.pause() : player.play()
         }
 
-        func onSliderMoved() {
-            player.seekTo(progress: Float(state.progress))
+        func onSliderMoved(to progress: Double) {
+            player.seekTo(progress: Float(progress))
         }
 
         init(navigator: ScreenNavigating) {
@@ -164,13 +148,3 @@ extension TranscribeInfoView {
         }
     }
 #endif
-
-extension Publisher {
-    func debug(message: String = "") -> Publishers.HandleEvents<Self> {
-        handleEvents(receiveSubscription: { subscription in log.debug("receiveSubscription: \(subscription)") },
-                     receiveOutput: { output in log.debug("receiveOutput: \(output)") },
-                     receiveCompletion: { error in log.debug("receiveCompletion: \(error)") },
-                     receiveCancel: { log.debug("receiveCancel") },
-                     receiveRequest: { demand in log.debug("receiveRequest: \(demand)") })
-    }
-}
