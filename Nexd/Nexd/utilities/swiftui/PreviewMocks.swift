@@ -125,7 +125,6 @@ extension HelpRequest {
                     city: nil,
                     id: nil,
                     helpListId: nil,
-                    callId: nil,
                     createdAt: nil,
                     priority: nil,
                     additionalRequest: nil,
@@ -135,7 +134,8 @@ extension HelpRequest {
                     articles: nil,
                     requesterId: nil,
                     requester: nil,
-                    helpList: nil)
+                    helpList: nil,
+                    callSid: nil)
     }
 }
 

@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**convertedHelpRequestId** | **Int64** |  | [optional] 
 **sid** | **String** |  | 
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **recordingUrl** | **String** |  | [optional] 
-**convertedHelpRequestId** | **Double** |  | [optional] 
 **phoneNumber** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
 **zip** | **String** |  | [optional] 

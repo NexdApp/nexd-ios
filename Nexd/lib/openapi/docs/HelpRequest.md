@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **city** | **String** |  | [optional] 
 **id** | **Int64** |  | [optional] 
 **helpListId** | **Int64** |  | [optional] 
-**callId** | **Int64** |  | [optional] 
 **createdAt** | **Date** |  | [optional] 
 **priority** | **String** |  | [optional] 
 **additionalRequest** | **String** |  | [optional] 
@@ -22,6 +21,7 @@ Name | Type | Description | Notes
 **requesterId** | **String** |  | [optional] 
 **requester** | [**User**](User.md) |  | [optional] 
 **helpList** | [**HelpList**](HelpList.md) |  | [optional] 
+**callSid** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
