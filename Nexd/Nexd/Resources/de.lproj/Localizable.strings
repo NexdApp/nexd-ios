@@ -111,6 +111,8 @@
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_screen_title" = "Einkaufsliste";
 "transcribe_articles_button_title_confirm" = "Bestätigen";
+"transcribe_articles_error_message" = "Speichern fehlgeschlagen. Bitte überprüfe, dass die eingegebenen Daten korrekt und valide sind!";
+"transcribe_articles_error_title" = "Anfrage fehlgeschlagen!";
 "transcribe_articles_screen_title" = "EInkaufszettel";
 "transcribe_end_button_title_complete" = "Fertig";
 "transcribe_end_screen_title_ios" = "Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!";
