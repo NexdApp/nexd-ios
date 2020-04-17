@@ -8,10 +8,12 @@
 
 import Combine
 import NexdClient
+import RxSwift
 import SwiftUI
 
 struct TranscribeListView: View {
     @ObservedObject var viewModel: ViewModel
+
     var body: some View {
         return VStack {
             Group {
@@ -40,7 +42,9 @@ struct TranscribeListView: View {
                         .cornerRadius(10)
 
                         NexdUI.NumberInputView(text: String(listItem.amount),
-                                               onValueConfirmed: { self.viewModel.onAmountChanged(for: listItem, to: $0) })
+                                               onValueConfirmed: { amount in
+                                                   self.viewModel.onAmountChanged(for: listItem, to: amount)
+                        })
                             .font(R.font.proximaNovaSoftBold.font(size: 20))
                             .foregroundColor(R.color.amountText.color)
                             .frame(width: 37, height: 37, alignment: .center)
@@ -104,17 +108,10 @@ extension TranscribeListView {
         }
 
         func onAmountChanged(for listItem: ListItem, to amount: Int) {
-            log.debug("Amount changed for article: \(listItem.id), amount: \(amount)")
-
             state.listItems = state.listItems.map { item -> ListItem in
                 guard listItem.id == item.id else { return item }
-
-                let updated = ListItem(id: item.id, title: item.title, amount: Int64(amount))
-                log.debug("Updating item: \(updated)")
-                return updated
+                return ListItem(id: item.id, title: item.title, amount: Int64(amount))
             }
-
-            log.debug("updated items: \(state.listItems)")
         }
 
         init(navigator: ScreenNavigating, articlesService: ArticlesService) {
@@ -127,6 +124,7 @@ extension TranscribeListView {
             var cancellableSet = Set<AnyCancellable>()
             articlesService.allArticles()
                 .asObservable()
+                .concat(Observable.never())
                 .share(replay: 1, scope: .whileConnected)
                 .publisher
                 .receive(on: RunLoop.main)
@@ -154,7 +152,9 @@ extension TranscribeListView {
                 .store(in: &cancellableSet)
 
             state.objectWillChange
-                .sink { [weak self] in self?.objectWillChange.send() }
+                .sink { [weak self] in
+                    self?.objectWillChange.send()
+                }
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet

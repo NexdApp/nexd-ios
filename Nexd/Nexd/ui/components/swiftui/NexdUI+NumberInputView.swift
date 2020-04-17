@@ -11,25 +11,11 @@ import UIKit
 
 extension NexdUI {
     final class NumberInputView: UIViewRepresentable {
-        fileprivate var uiView: UITextField {
-            let wrappedView = UITextField()
-
-            wrappedView.backgroundColor = R.color.defaultBackground()
-            wrappedView.textAlignment = .center
-            wrappedView.inputView = pickerView
-            wrappedView.inputAccessoryView = pickerView.toolbar
-
-            wrappedView.attributedText = text?.asAmountText()
-
-            pickerView.toolbarDelegate = self
-            pickerView.reloadAllComponents()
-
-            return wrappedView
-        }
-
         let text: String?
-        var onValueConfirmed: ((Int) -> Void)?
-        var onCancel: (() -> Void)?
+        let onValueConfirmed: ((Int) -> Void)?
+        let onCancel: (() -> Void)?
+
+        fileprivate let pickerView = IntegerPickerView()
 
         init(text: String? = nil, onValueConfirmed: ((Int) -> Void)? = nil, onCancel: (() -> Void)? = nil) {
             self.text = text
@@ -37,16 +23,23 @@ extension NexdUI {
             self.onCancel = onCancel
         }
 
-        fileprivate let pickerView = IntegerPickerView()
-
         func makeUIView(context: UIViewRepresentableContext<NumberInputView>) -> UITextField {
-            return uiView
+            let wrappedView = UITextField()
+
+            wrappedView.backgroundColor = R.color.defaultBackground()
+            wrappedView.textAlignment = .center
+
+            return wrappedView
         }
 
         func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<NumberInputView>) {
+            uiView.attributedText = text?.asAmountText()
             uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
             uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+            uiView.inputView = pickerView
+            uiView.inputAccessoryView = pickerView.toolbar
 
+            pickerView.toolbarDelegate = self
             pickerView.reloadAllComponents()
         }
     }
