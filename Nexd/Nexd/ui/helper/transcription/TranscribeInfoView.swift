@@ -7,7 +7,9 @@
 //
 
 import Combine
+import NexdClient
 import RxCombine
+import RxSwift
 import SwiftUI
 
 struct TranscribeInfoView: View {
@@ -41,7 +43,7 @@ struct TranscribeInfoView: View {
                     .padding(.top, 30)
 
                 NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
-                    self.viewModel.navigator.toTranscribeListView()
+                    self.viewModel.onConfirmButtonTapped()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 64)
@@ -59,36 +61,76 @@ struct TranscribeInfoView: View {
 }
 
 extension TranscribeInfoView {
+    enum TranscribeError: Error {
+        case recordingDownloadFailed
+    }
+
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
+            fileprivate var player: AudioPlayer?
+
+            @Published var call: Call?
             @Published var isPlaying: Bool = false
             @Published var progress: Double = 0
             @Published var firstName: String = ""
         }
 
-        let navigator: ScreenNavigating
-        private let player: AudioPlayer
+        private let navigator: ScreenNavigating
+        private let phoneService: PhoneService
 
         private var cancellableSet: Set<AnyCancellable>?
         var state = ViewState()
 
         func onPlayPause() {
-            state.isPlaying ? player.pause() : player.play()
+            state.isPlaying ? state.player?.pause() : state.player?.play()
         }
 
         func onSliderMoved(to progress: Double) {
-            player.seekTo(progress: Float(progress))
+            state.player?.seekTo(progress: Float(progress))
         }
 
-        init(navigator: ScreenNavigating) {
+        func onConfirmButtonTapped() {
+            navigator.toTranscribeListView()
+        }
+
+        init(navigator: ScreenNavigating, phoneService: PhoneService) {
             self.navigator = navigator
-            player = AudioPlayer.sampleMp3()
+            self.phoneService = phoneService
         }
 
         func bind() {
             var cancellableSet = Set<AnyCancellable>()
 
-            player.state.publisher
+            let call = phoneService.oneCall()
+                .asObservable()
+                .share(replay: 1, scope: .whileConnected)
+
+            call
+                .publisher
+                .replaceError(with: nil)
+                .assign(to: \.call, on: state)
+                .store(in: &cancellableSet)
+
+            let player = call
+                .flatMap { [weak self] call -> Single<URL> in
+                    guard let self = self, let call = call else { return Single.error(TranscribeError.recordingDownloadFailed) }
+                    return self.phoneService.downloadRecoring(for: call)
+                }
+                .map { url in AudioPlayer(url: url) }
+
+            player
+                .publisher
+                .map { player -> AudioPlayer? in player }
+                .replaceError(with: nil)
+                .assign(to: \.player, on: state)
+                .store(in: &cancellableSet)
+
+            let playerState = player
+                .flatMap { $0.state }
+
+            playerState
+            .debug("ZEFIX - playerState")
+                .publisher
                 .map { $0.isPlaying }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
@@ -96,12 +138,11 @@ extension TranscribeInfoView {
                 .assign(to: \.isPlaying, on: state)
                 .store(in: &cancellableSet)
 
-            player.state.publisher
+            playerState.publisher
                 .map { Double($0.progress) }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .replaceError(with: 0)
-                .debug()
                 .assign(to: \.progress, on: state)
                 .store(in: &cancellableSet)
 
@@ -129,7 +170,7 @@ extension TranscribeInfoView {
 #if DEBUG
     struct TranscribeInfoView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = TranscribeInfoView.ViewModel(navigator: PreviewNavigator())
+            let viewModel = TranscribeInfoView.ViewModel(navigator: PreviewNavigator(), phoneService: PhoneService())
             return Group {
                 TranscribeInfoView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)

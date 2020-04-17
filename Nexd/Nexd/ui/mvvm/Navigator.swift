@@ -40,7 +40,7 @@ class Navigator {
     private let storage: Storage
     private let authenticationService: AuthenticationService
     private let userService: UserService
-    private let callsService: CallsService
+    private let phoneService: PhoneService
     private let helpRequestsService: HelpRequestsService
     private let helpListsService: HelpListsService
     private let articlesService: ArticlesService
@@ -54,14 +54,14 @@ class Navigator {
     init(storage: Storage,
          authenticationService: AuthenticationService,
          userService: UserService,
-         callsService: CallsService,
+         phoneService: PhoneService,
          helpRequestsService: HelpRequestsService,
          articlesService: ArticlesService,
          helpListsService: HelpListsService) {
         self.storage = storage
         self.authenticationService = authenticationService
         self.userService = userService
-        self.callsService = callsService
+        self.phoneService = phoneService
         self.helpRequestsService = helpRequestsService
         self.helpListsService = helpListsService
         self.articlesService = articlesService
@@ -175,7 +175,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toPhoneCall() {
-        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(callsService: callsService, navigator: self))
+        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(phoneService: phoneService, navigator: self))
         push(screen: screen)
     }
 
@@ -185,7 +185,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toTranscribeInfoView() {
-        push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self)))
+        push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self, phoneService: phoneService)))
     }
 
     func toTranscribeListView() {
