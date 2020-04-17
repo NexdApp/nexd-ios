@@ -22,7 +22,7 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
                 viewModel.navigator.toCheckList()
             }
         }
-        
+
         let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
 
         var backButtonTaps: Binder<Void> {
