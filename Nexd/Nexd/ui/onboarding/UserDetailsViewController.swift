@@ -245,7 +245,7 @@ private extension ValidationRuleSet where InputType == String {
     }
 
     static func phone() -> ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
+        ValidationRuleSet(rules: [ValidationRulePattern(pattern: "^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\\s\\./0-9]*$", error: ValidationErrors.phoneNumberInvalid)])
     }
 
     static func zipCode() -> ValidationRuleSet<String> {
