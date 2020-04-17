@@ -26,28 +26,50 @@ struct TranscribeInfoView: View {
                               progress: $viewModel.state.progress,
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
+                    .padding([.top, .bottom], 26)
 
-                NexdUI.TextField(tag: 0,
-                                 placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
-                                 onChanged: { string in self.viewModel.state.firstName = string })
-                    .padding(.top, 44)
+                List {
+                    NexdUI.TextField(tag: 0,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
+                                     onChanged: { string in self.viewModel.state.firstName = string })
+                        .padding(.top, 12)
 
-                NexdUI.TextField(tag: 1,
-                                 placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
-                                 onChanged: { string in self.viewModel.state.lastName = string })
-                    .padding(.top, 30)
+                    NexdUI.TextField(tag: 1,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
+                                     onChanged: { string in self.viewModel.state.lastName = string })
+                        .padding(.top, 12)
 
-                NexdUI.TextField(tag: 2,
-                                 placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
-                                 onChanged: { string in self.viewModel.state.zipCode = string })
-                    .padding(.top, 30)
+                    NexdUI.TextField(tag: 2,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
+                                     onChanged: { string in self.viewModel.state.zipCode = string })
+                        .padding(.top, 12)
+
+                    NexdUI.TextField(tag: 3,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_city(),
+                                     onChanged: { string in self.viewModel.state.city = string })
+                        .padding(.top, 12)
+
+                    NexdUI.TextField(tag: 4,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street(),
+                                     onChanged: { string in self.viewModel.state.street = string })
+                        .padding(.top, 12)
+
+                    NexdUI.TextField(tag: 5,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street_number(),
+                                     onChanged: { string in self.viewModel.state.streetNumber = string })
+                        .padding(.top, 12)
+
+                    NexdUI.TextField(tag: 6,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number(),
+                                     onChanged: { string in self.viewModel.state.phoneNumber = string })
+                        .padding(.top, 12)
+                }
 
                 NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
                     self.viewModel.onConfirmButtonTapped()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 64)
-                .padding(.bottom, 53)
+                .padding([.top, .bottom], 26)
             }
             .padding(.leading, 26)
             .padding(.trailing, 33)
@@ -75,6 +97,10 @@ extension TranscribeInfoView {
             @Published var firstName: String?
             @Published var lastName: String?
             @Published var zipCode: String?
+            @Published var city: String?
+            @Published var street: String?
+            @Published var streetNumber: String?
+            @Published var phoneNumber: String?
         }
 
         private let navigator: ScreenNavigating
@@ -96,15 +122,15 @@ extension TranscribeInfoView {
                                            call: state.call,
                                            transcribedRequest: HelpRequestCreateDto(firstName: state.firstName,
                                                                                     lastName: state.lastName,
-                                                                                    street: nil,
-                                                                                    number: nil,
+                                                                                    street: state.street,
+                                                                                    number: state.streetNumber,
                                                                                     zipCode: state.zipCode,
-                                                                                    city: nil,
+                                                                                    city: state.city,
                                                                                     articles: nil,
                                                                                     status: .pending,
                                                                                     additionalRequest: nil,
                                                                                     deliveryComment: nil,
-                                                                                    phoneNumber: nil))
+                                                                                    phoneNumber: state.phoneNumber))
         }
 
         init(navigator: ScreenNavigating, phoneService: PhoneService) {

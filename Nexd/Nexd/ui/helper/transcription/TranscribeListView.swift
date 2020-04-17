@@ -118,7 +118,7 @@ extension TranscribeListView {
         }
 
         func onConfirmButtonPressed() {
-            guard let call = call, var cancellableSet = cancellableSet else {
+            guard let call = call else {
                 log.error("No call object found!")
                 return
             }
@@ -127,13 +127,20 @@ extension TranscribeListView {
             dto.articles = state.listItems.filter { item in item.amount > 0 }
                 .map { CreateHelpRequestArticleDto(articleId: $0.id, articleCount: $0.amount) }
 
-            phoneService.convertCallToHelpRequest(sid: call.sid, dto: dto)
-                .publisher
-                .eraseToAnyPublisher()
-                .ignoreOutput()
-                .sink(receiveCompletion: { log.debug("ZEFIX: \($0)") },
-                      receiveValue: { _ in })
-                .store(in: &cancellableSet)
+            cancellableSet?.insert(
+                phoneService.convertCallToHelpRequest(sid: call.sid, dto: dto)
+                    .publisher
+                    .sink(receiveCompletion: { completion in
+                        if case let .failure(error) = completion {
+                            log.error("Creating help request failed: \(error)")
+
+                            self.navigator.showError(title: "Request failed", message: "Request to create HelpRequest has failed!", handler: nil)
+                        }
+                    },
+                          receiveValue: { value in
+                        log.debug("ZEFIX - receiveValue: \(value)")
+                    })
+            )
         }
 
         init(navigator: ScreenNavigating,
