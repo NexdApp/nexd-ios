@@ -63,6 +63,11 @@ class PhoneService {
 
         return Downloader(localUrl: destinationUrl).loadFile(url: url, to: destinationUrl)
     }
+
+    func convertCallToHelpRequest(sid: String, dto: HelpRequestCreateDto) -> Single<Call> {
+        PhoneAPI.phoneControllerConverted(sid: sid, helpRequestCreateDto: dto)
+            .asSingle()
+    }
 }
 
 enum DownloaderError: Error {

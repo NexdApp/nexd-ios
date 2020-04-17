@@ -29,7 +29,7 @@ protocol ScreenNavigating {
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
-    func toTranscribeListView()
+    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto)
     func toHelperOverview()
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
@@ -188,8 +188,13 @@ extension Navigator: ScreenNavigating {
         push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self, phoneService: phoneService)))
     }
 
-    func toTranscribeListView() {
-        push(screen: TranscribeListView.createScreen(viewModel: TranscribeListView.ViewModel(navigator: self, articlesService: articlesService)))
+    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto) {
+        push(screen: TranscribeListView.createScreen(viewModel: TranscribeListView.ViewModel(navigator: self,
+                                                                                             articlesService: articlesService,
+                                                                                             phoneService: phoneService,
+                                                                                             player: player,
+                                                                                             call: call,
+                                                                                             transcribedRequest: transcribedRequest)))
     }
 
     func toHelperOverview() {

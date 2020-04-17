@@ -29,17 +29,17 @@ struct TranscribeInfoView: View {
 
                 NexdUI.TextField(tag: 0,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
-                                 onCommit: { string in log.debug("should commit: \(string ?? "-")") })
+                                 onChanged: { string in self.viewModel.state.firstName = string })
                     .padding(.top, 44)
 
                 NexdUI.TextField(tag: 1,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
-                                 onCommit: { string in log.debug("should commit: \(string ?? "-")") })
+                                 onChanged: { string in self.viewModel.state.lastName = string })
                     .padding(.top, 30)
 
                 NexdUI.TextField(tag: 2,
                                  placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
-                                 onCommit: { string in log.debug("should commit: \(string ?? "-")") })
+                                 onChanged: { string in self.viewModel.state.zipCode = string })
                     .padding(.top, 30)
 
                 NexdUI.Buttons.default(text: R.string.localizable.transcribe_info_button_title_confirm.text) {
@@ -72,13 +72,15 @@ extension TranscribeInfoView {
             @Published var call: Call?
             @Published var isPlaying: Bool = false
             @Published var progress: Double = 0
-            @Published var firstName: String = ""
+            @Published var firstName: String?
+            @Published var lastName: String?
+            @Published var zipCode: String?
         }
 
         private let navigator: ScreenNavigating
         private let phoneService: PhoneService
-
         private var cancellableSet: Set<AnyCancellable>?
+
         var state = ViewState()
 
         func onPlayPause() {
@@ -90,7 +92,19 @@ extension TranscribeInfoView {
         }
 
         func onConfirmButtonTapped() {
-            navigator.toTranscribeListView()
+            navigator.toTranscribeListView(player: state.player,
+                                           call: state.call,
+                                           transcribedRequest: HelpRequestCreateDto(firstName: state.firstName,
+                                                                                    lastName: state.lastName,
+                                                                                    street: nil,
+                                                                                    number: nil,
+                                                                                    zipCode: state.zipCode,
+                                                                                    city: nil,
+                                                                                    articles: nil,
+                                                                                    status: .pending,
+                                                                                    additionalRequest: nil,
+                                                                                    deliveryComment: nil,
+                                                                                    phoneNumber: nil))
         }
 
         init(navigator: ScreenNavigating, phoneService: PhoneService) {
@@ -117,6 +131,7 @@ extension TranscribeInfoView {
                     return self.phoneService.downloadRecoring(for: call)
                 }
                 .map { url in AudioPlayer(url: url) }
+                .share(replay: 1, scope: .whileConnected)
 
             player
                 .publisher
@@ -129,7 +144,6 @@ extension TranscribeInfoView {
                 .flatMap { $0.state }
 
             playerState
-            .debug("ZEFIX - playerState")
                 .publisher
                 .map { $0.isPlaying }
                 .removeDuplicates()

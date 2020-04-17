@@ -36,7 +36,9 @@ class AudioPlayer: NSObject {
                     return Observable.empty()
                 }
 
-                guard isPlaying else { return Observable.just(PlayerState.from(player: player)) }
+                guard isPlaying else {
+                    return Observable.just(PlayerState.from(player: player))
+                }
 
                 return Observable<Int>.interval(.milliseconds(500), scheduler: MainScheduler.asyncInstance)
                     .map { _ in PlayerState.from(player: player) }

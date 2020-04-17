@@ -54,7 +54,7 @@ struct TranscribeListView: View {
                 }
 
                 NexdUI.Buttons.default(text: R.string.localizable.transcribe_articles_button_title_confirm.text) {
-                    log.debug("IMPLEMENT ME!!!")
+                    self.viewModel.onConfirmButtonPressed()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 33)
@@ -92,19 +92,22 @@ extension TranscribeListView {
             @Published var listItems: [ListItem] = []
         }
 
-        let navigator: ScreenNavigating
+        private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
-        private let player: AudioPlayer
+        private let phoneService: PhoneService
+        private let player: AudioPlayer?
+        private let call: Call?
+        private let transcribedRequest: HelpRequestCreateDto
 
         private var cancellableSet: Set<AnyCancellable>?
         var state = ViewState()
 
         func onPlayPause() {
-            state.isPlaying ? player.pause() : player.play()
+            state.isPlaying ? player?.pause() : player?.play()
         }
 
         func onSliderMoved(to progress: Double) {
-            player.seekTo(progress: Float(progress))
+            player?.seekTo(progress: Float(progress))
         }
 
         func onAmountChanged(for listItem: ListItem, to amount: Int) {
@@ -114,10 +117,37 @@ extension TranscribeListView {
             }
         }
 
-        init(navigator: ScreenNavigating, articlesService: ArticlesService) {
+        func onConfirmButtonPressed() {
+            guard let call = call, var cancellableSet = cancellableSet else {
+                log.error("No call object found!")
+                return
+            }
+
+            var dto = transcribedRequest
+            dto.articles = state.listItems.filter { item in item.amount > 0 }
+                .map { CreateHelpRequestArticleDto(articleId: $0.id, articleCount: $0.amount) }
+
+            phoneService.convertCallToHelpRequest(sid: call.sid, dto: dto)
+                .publisher
+                .eraseToAnyPublisher()
+                .ignoreOutput()
+                .sink(receiveCompletion: { log.debug("ZEFIX: \($0)") },
+                      receiveValue: { _ in })
+                .store(in: &cancellableSet)
+        }
+
+        init(navigator: ScreenNavigating,
+             articlesService: ArticlesService,
+             phoneService: PhoneService,
+             player: AudioPlayer?,
+             call: Call?,
+             transcribedRequest: HelpRequestCreateDto) {
             self.navigator = navigator
             self.articlesService = articlesService
-            player = AudioPlayer.sampleMp3()
+            self.phoneService = phoneService
+            self.player = player
+            self.call = call
+            self.transcribedRequest = transcribedRequest
         }
 
         func bind() {
@@ -135,7 +165,7 @@ extension TranscribeListView {
                 .assign(to: \.listItems, on: state)
                 .store(in: &cancellableSet)
 
-            player.state.publisher
+            player?.state.publisher
                 .map { $0.isPlaying }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
@@ -143,7 +173,7 @@ extension TranscribeListView {
                 .assign(to: \.isPlaying, on: state)
                 .store(in: &cancellableSet)
 
-            player.state.publisher
+            player?.state.publisher
                 .map { Double($0.progress) }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
@@ -165,19 +195,3 @@ extension TranscribeListView {
         }
     }
 }
-
-#if DEBUG
-    struct TranscribeListView_Previews: PreviewProvider {
-        static var previews: some View {
-            Group {
-                TranscribeListView(viewModel: TranscribeListView.ViewModel(navigator: PreviewNavigator(), articlesService: ArticlesService()))
-                    .environment(\.colorScheme, .light)
-
-                TranscribeListView(viewModel: TranscribeListView.ViewModel(navigator: PreviewNavigator(), articlesService: ArticlesService()))
-                    .environment(\.colorScheme, .dark)
-            }
-            .background(R.color.nexdGreen.color)
-            .previewLayout(.sizeThatFits)
-        }
-    }
-#endif
