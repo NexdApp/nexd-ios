@@ -111,6 +111,8 @@
 "shopping_list_overview_error_title" = "Error!";
 "shopping_list_screen_title" = "Shopping list";
 "transcribe_articles_button_title_confirm" = "Confirm";
+"transcribe_articles_error_message" = "Saving the help request failed. Please make sure the data is correct and valid!";
+"transcribe_articles_error_title" = "Request failed!";
 "transcribe_articles_screen_title" = "Shopping list";
 "transcribe_end_button_title_complete" = "Done";
 "transcribe_end_screen_title_ios" = "Thank you for helping complete the request!";
