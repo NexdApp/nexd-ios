@@ -112,6 +112,8 @@
 "shopping_list_screen_title" = "Shopping list";
 "transcribe_articles_button_title_confirm" = "Confirm";
 "transcribe_articles_screen_title" = "Shopping list";
+"transcribe_end_button_title_complete" = "Done";
+"transcribe_end_screen_title_ios" = "Thank you for helping complete the request!";
 "transcribe_info_button_title_confirm" = "Confirm Info";
 "transcribe_info_input_text_title_city" = "City";
 "transcribe_info_input_text_title_first_name" = "First name";
