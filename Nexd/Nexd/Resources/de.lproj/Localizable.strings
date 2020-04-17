@@ -117,6 +117,8 @@
 "transcribe_end_button_title_complete" = "Fertig";
 "transcribe_end_screen_title_ios" = "Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!";
 "transcribe_info_button_title_confirm" = "Info bestätigen";
+"transcribe_info_error_message_no_calls" = "Keine Anrufe gefunden, die übersetzt werden können. Bitte versuch es später wieder!";
+"transcribe_info_error_title_no_calls" = "Keine Anrufe vorhanden!";
 "transcribe_info_input_text_title_city" = "Stadt";
 "transcribe_info_input_text_title_first_name" = "Vorname";
 "transcribe_info_input_text_title_last_name" = "Nachname";
