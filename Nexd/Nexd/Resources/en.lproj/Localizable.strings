@@ -58,7 +58,7 @@
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_unknown_requester" = "- unknown -";
 "helper_request_transcript_button_done" = "Add order to Current Item List";
-"helper_type_button_shopping" = "I\\'d like to shop!";
+"helper_type_button_shopping" = "I'd like to shop!";
 "helper_type_button_transcript" = "Transcript a call!";
 "helper_type_screen_title" = "How would you like to help?";
 "loading_overlay_message" = "Loading...";
