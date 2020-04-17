@@ -40,8 +40,13 @@ class PhoneService {
     }
 
     func oneCall() -> Single<Call?> {
-        PhoneAPI.phoneControllerGetCalls(limit: 1)
+        PhoneAPI.phoneControllerGetCalls(limit: 1, converted: false)
             .map { $0.first }
+            .asSingle()
+    }
+
+    func convertCallToHelpRequest(sid: String, dto: HelpRequestCreateDto) -> Single<Call> {
+        PhoneAPI.phoneControllerConverted(sid: sid, helpRequestCreateDto: dto)
             .asSingle()
     }
 
@@ -62,11 +67,6 @@ class PhoneService {
         }
 
         return Downloader(localUrl: destinationUrl).loadFile(url: url, to: destinationUrl)
-    }
-
-    func convertCallToHelpRequest(sid: String, dto: HelpRequestCreateDto) -> Single<Call> {
-        PhoneAPI.phoneControllerConverted(sid: sid, helpRequestCreateDto: dto)
-            .asSingle()
     }
 }
 

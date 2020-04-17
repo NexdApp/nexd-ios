@@ -678,7 +678,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 126 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 128 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -884,7 +884,7 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_request_create_heading = Rswift.StringResource(key: "seeker_request_create_heading", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: I\'d like to shop!
+      /// en translation: I'd like to shop!
       ///
       /// Locales: en, de
       static let helper_type_button_shopping = Rswift.StringResource(key: "helper_type_button_shopping", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
@@ -1032,10 +1032,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_detail_button_accepted = Rswift.StringResource(key: "helper_request_detail_button_accepted", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Request failed!
+      ///
+      /// Locales: en, de
+      static let transcribe_articles_error_title = Rswift.StringResource(key: "transcribe_articles_error_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Role
       ///
       /// Locales: en, de
       static let role_selection_screen_title = Rswift.StringResource(key: "role_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Saving the help request failed. Please make sure the data is correct and valid!
+      ///
+      /// Locales: en, de
+      static let transcribe_articles_error_message = Rswift.StringResource(key: "transcribe_articles_error_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Select items
       ///
       /// Locales: en, de
@@ -1958,7 +1966,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("seeker_request_create_heading", bundle: bundle, comment: "")
       }
 
-      /// en translation: I\'d like to shop!
+      /// en translation: I'd like to shop!
       ///
       /// Locales: en, de
       static func helper_type_button_shopping(preferredLanguages: [String]? = nil) -> String {
@@ -2515,6 +2523,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_detail_button_accepted", bundle: bundle, comment: "")
       }
 
+      /// en translation: Request failed!
+      ///
+      /// Locales: en, de
+      static func transcribe_articles_error_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_articles_error_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_articles_error_title"
+        }
+
+        return NSLocalizedString("transcribe_articles_error_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Role
       ///
       /// Locales: en, de
@@ -2528,6 +2551,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("role_selection_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Saving the help request failed. Please make sure the data is correct and valid!
+      ///
+      /// Locales: en, de
+      static func transcribe_articles_error_message(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_articles_error_message", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_articles_error_message"
+        }
+
+        return NSLocalizedString("transcribe_articles_error_message", bundle: bundle, comment: "")
       }
 
       /// en translation: Select items

@@ -76,6 +76,10 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toTranscribeListView")
     }
 
+    func toTranscribeEndView() {
+        log.debug("toTranscribeEndView")
+    }
+
     func toHelperOverview() {
         log.debug("toHelperOverview")
     }

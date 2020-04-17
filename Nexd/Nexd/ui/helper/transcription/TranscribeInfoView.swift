@@ -26,7 +26,6 @@ struct TranscribeInfoView: View {
                               progress: $viewModel.state.progress,
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
-                    .padding([.top, .bottom], 26)
 
                 List {
                     NexdUI.TextField(tag: 0,
@@ -69,7 +68,8 @@ struct TranscribeInfoView: View {
                     self.viewModel.onConfirmButtonTapped()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding([.top, .bottom], 26)
+                .padding(.top, 33)
+                .padding(.bottom, 53)
             }
             .padding(.leading, 26)
             .padding(.trailing, 33)
@@ -84,7 +84,7 @@ struct TranscribeInfoView: View {
 
 extension TranscribeInfoView {
     enum TranscribeError: Error {
-        case recordingDownloadFailed
+        case noCallsAvailable
     }
 
     class ViewModel: ObservableObject {
@@ -139,6 +139,7 @@ extension TranscribeInfoView {
         }
 
         func bind() {
+            let navigator = self.navigator
             var cancellableSet = Set<AnyCancellable>()
 
             let call = phoneService.oneCall()
@@ -153,10 +154,15 @@ extension TranscribeInfoView {
 
             let player = call
                 .flatMap { [weak self] call -> Single<URL> in
-                    guard let self = self, let call = call else { return Single.error(TranscribeError.recordingDownloadFailed) }
+                    guard let self = self, let call = call else { return Single.error(TranscribeError.noCallsAvailable) }
                     return self.phoneService.downloadRecoring(for: call)
                 }
                 .map { url in AudioPlayer(url: url) }
+            .catchError { error -> Completable in
+                Completable.from {
+                    navigator.showError(title: <#T##String#>, message: <#T##String#>, handler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+                }
+            }
                 .share(replay: 1, scope: .whileConnected)
 
             player

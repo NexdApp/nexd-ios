@@ -134,12 +134,16 @@ extension TranscribeListView {
                         if case let .failure(error) = completion {
                             log.error("Creating help request failed: \(error)")
 
-                            self.navigator.showError(title: "Request failed", message: "Request to create HelpRequest has failed!", handler: nil)
+                            self.navigator.showError(title: R.string.localizable.transcribe_articles_error_title(),
+                                                     message: R.string.localizable.transcribe_articles_error_message(),
+                                                     handler: nil)
+
+                            return
                         }
+
+                        self.navigator.toTranscribeEndView()
                     },
-                          receiveValue: { value in
-                        log.debug("ZEFIX - receiveValue: \(value)")
-                    })
+                          receiveValue: { _ in })
             )
         }
 
