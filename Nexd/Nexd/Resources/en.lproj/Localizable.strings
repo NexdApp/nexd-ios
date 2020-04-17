@@ -116,6 +116,7 @@
 "transcribe_info_input_text_title_city" = "City";
 "transcribe_info_input_text_title_first_name" = "First name";
 "transcribe_info_input_text_title_last_name" = "Last name";
+"transcribe_info_input_text_title_phone_number" = "Phone number";
 "transcribe_info_input_text_title_postal_code" = "Postal code";
 "transcribe_info_input_text_title_street" = "Street";
 "transcribe_info_input_text_title_street_number" = "Number";
