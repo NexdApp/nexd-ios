@@ -16,25 +16,25 @@ public struct User: Codable {
         case seeker = "seeker"
         case _none = "none"
     }
+    public var firstName: String?
+    public var lastName: String?
     public var street: String?
     public var number: String?
     public var zipCode: String?
     public var city: String?
     public var id: String
-    public var firstName: String
-    public var lastName: String
-    public var email: String
+    public var email: String?
     public var role: Role? = ._none
     public var phoneNumber: String?
 
-    public init(street: String?, number: String?, zipCode: String?, city: String?, id: String, firstName: String, lastName: String, email: String, role: Role?, phoneNumber: String?) {
+    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, id: String, email: String?, role: Role?, phoneNumber: String?) {
+        self.firstName = firstName
+        self.lastName = lastName
         self.street = street
         self.number = number
         self.zipCode = zipCode
         self.city = city
         self.id = id
-        self.firstName = firstName
-        self.lastName = lastName
         self.email = email
         self.role = role
         self.phoneNumber = phoneNumber

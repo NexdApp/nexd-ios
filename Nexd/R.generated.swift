@@ -416,12 +416,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 22 images.
+  /// This `R.image` struct is generated, and contains static references to 27 images.
   struct image {
     /// Image `Chevron`.
     static let chevron = Rswift.ImageResource(bundle: R.hostingBundle, name: "Chevron")
-    /// Image `Person`.
-    static let person = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person")
+    /// Image `Lock 1`.
+    static let lock1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Lock 1")
+    /// Image `Lock 2`.
+    static let lock2 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Lock 2")
+    /// Image `Mail 1`.
+    static let mail1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Mail 1")
+    /// Image `Person 1`.
+    static let person1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person 1")
+    /// Image `Rectangle 11`.
+    static let rectangle11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Rectangle 11")
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
     /// Image `baseline_account_box_black_24pt`.
@@ -448,6 +456,8 @@ struct R: Rswift.Validatable {
     static let chevron_left = Rswift.ImageResource(bundle: R.hostingBundle, name: "chevron_left")
     /// Image `gradient`.
     static let gradient = Rswift.ImageResource(bundle: R.hostingBundle, name: "gradient")
+    /// Image `hashtag`.
+    static let hashtag = Rswift.ImageResource(bundle: R.hostingBundle, name: "hashtag")
     /// Image `logo_white`.
     static let logo_white = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo_white")
     /// Image `logo`.
@@ -471,9 +481,37 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "Person", bundle: ..., traitCollection: ...)`
-    static func person(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.person, compatibleWith: traitCollection)
+    /// `UIImage(named: "Lock 1", bundle: ..., traitCollection: ...)`
+    static func lock1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Lock 2", bundle: ..., traitCollection: ...)`
+    static func lock2(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.lock2, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Mail 1", bundle: ..., traitCollection: ...)`
+    static func mail1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.mail1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Person 1", bundle: ..., traitCollection: ...)`
+    static func person1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.person1, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Rectangle 11", bundle: ..., traitCollection: ...)`
+    static func rectangle11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.rectangle11, compatibleWith: traitCollection)
     }
     #endif
 
@@ -569,6 +607,13 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "hashtag", bundle: ..., traitCollection: ...)`
+    static func hashtag(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.hashtag, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
     static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
@@ -622,7 +667,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 113 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 123 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -684,6 +729,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_label_privacy_policy_agreement = Rswift.StringResource(key: "registration_label_privacy_policy_agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Call Transcript
+      ///
+      /// Locales: en, de
+      static let transcribe_info_screen_title = Rswift.StringResource(key: "transcribe_info_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Cancel
       ///
       /// Locales: en, de
@@ -700,6 +749,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_item_selection_screen_title = Rswift.StringResource(key: "seeker_item_selection_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: City
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_city = Rswift.StringResource(key: "transcribe_info_input_text_title_city", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Complete
       ///
       /// Locales: en, de
@@ -723,7 +776,15 @@ struct R: Rswift.Validatable {
       /// en translation: Confirm
       ///
       /// Locales: en, de
+      static let transcribe_articles_button_title_confirm = Rswift.StringResource(key: "transcribe_articles_button_title_confirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Confirm
+      ///
+      /// Locales: en, de
       static let user_input_details_confirm = Rswift.StringResource(key: "user_input_details_confirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Confirm Info
+      ///
+      /// Locales: en, de
+      static let transcribe_info_button_title_confirm = Rswift.StringResource(key: "transcribe_info_button_title_confirm", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Confirm password
       ///
       /// Locales: en, de
@@ -784,6 +845,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholder_firstName = Rswift.StringResource(key: "registration_placeholder_firstName", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: First name
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_first_name = Rswift.StringResource(key: "transcribe_info_input_text_title_first_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: How would you like to help?
       ///
       /// Locales: en, de
@@ -820,6 +885,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholder_lastName = Rswift.StringResource(key: "registration_placeholder_lastName", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Last name
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_last_name = Rswift.StringResource(key: "transcribe_info_input_text_title_last_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: List
       ///
       /// Locales: en, de
@@ -856,6 +925,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_input_details_placeholder_houseNumber = Rswift.StringResource(key: "user_input_details_placeholder_houseNumber", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Number
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_street_number = Rswift.StringResource(key: "transcribe_info_input_text_title_street_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: OK
       ///
       /// Locales: en, de
@@ -912,6 +985,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_confirmation_address_title = Rswift.StringResource(key: "delivery_confirmation_address_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Postal code
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_postal_code = Rswift.StringResource(key: "transcribe_info_input_text_title_postal_code", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Previous purchases
       ///
       /// Locales: en, de
@@ -956,6 +1033,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let shopping_list_screen_title = Rswift.StringResource(key: "shopping_list_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Shopping list
+      ///
+      /// Locales: en, de
+      static let transcribe_articles_screen_title = Rswift.StringResource(key: "transcribe_articles_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Shopping list could not be loaded. Please try again!
       ///
       /// Locales: en, de
@@ -968,6 +1049,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_button_title_start = Rswift.StringResource(key: "helper_request_overview_button_title_start", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Street
+      ///
+      /// Locales: en, de
+      static let transcribe_info_input_text_title_street = Rswift.StringResource(key: "transcribe_info_input_text_title_street", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Street
       ///
       /// Locales: en, de
@@ -1310,6 +1395,21 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
+      /// en translation: Call Transcript
+      ///
+      /// Locales: en, de
+      static func transcribe_info_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_screen_title"
+        }
+
+        return NSLocalizedString("transcribe_info_screen_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Cancel
       ///
       /// Locales: en, de
@@ -1368,6 +1468,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_item_selection_screen_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: City
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_city(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_city", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_city"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_city", bundle: bundle, comment: "")
       }
 
       /// en translation: Complete
@@ -1448,6 +1563,21 @@ struct R: Rswift.Validatable {
       /// en translation: Confirm
       ///
       /// Locales: en, de
+      static func transcribe_articles_button_title_confirm(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_articles_button_title_confirm", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_articles_button_title_confirm"
+        }
+
+        return NSLocalizedString("transcribe_articles_button_title_confirm", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Confirm
+      ///
+      /// Locales: en, de
       static func user_input_details_confirm(preferredLanguages: [String]? = nil) -> String {
         guard let preferredLanguages = preferredLanguages else {
           return NSLocalizedString("user_input_details_confirm", bundle: hostingBundle, comment: "")
@@ -1458,6 +1588,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("user_input_details_confirm", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Confirm Info
+      ///
+      /// Locales: en, de
+      static func transcribe_info_button_title_confirm(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_button_title_confirm", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_button_title_confirm"
+        }
+
+        return NSLocalizedString("transcribe_info_button_title_confirm", bundle: bundle, comment: "")
       }
 
       /// en translation: Confirm password
@@ -1685,6 +1830,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholder_firstName", bundle: bundle, comment: "")
       }
 
+      /// en translation: First name
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_first_name(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_first_name", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_first_name"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_first_name", bundle: bundle, comment: "")
+      }
+
       /// en translation: How would you like to help?
       ///
       /// Locales: en, de
@@ -1820,6 +1980,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholder_lastName", bundle: bundle, comment: "")
       }
 
+      /// en translation: Last name
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_last_name(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_last_name", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_last_name"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_last_name", bundle: bundle, comment: "")
+      }
+
       /// en translation: List
       ///
       /// Locales: en, de
@@ -1953,6 +2128,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("user_input_details_placeholder_houseNumber", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Number
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_street_number(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_street_number", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_street_number"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_street_number", bundle: bundle, comment: "")
       }
 
       /// en translation: OK
@@ -2167,6 +2357,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("delivery_confirmation_address_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Postal code
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_postal_code(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_postal_code", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_postal_code"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_postal_code", bundle: bundle, comment: "")
+      }
+
       /// en translation: Previous purchases
       ///
       /// Locales: en, de
@@ -2332,6 +2537,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("shopping_list_screen_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Shopping list
+      ///
+      /// Locales: en, de
+      static func transcribe_articles_screen_title(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_articles_screen_title", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_articles_screen_title"
+        }
+
+        return NSLocalizedString("transcribe_articles_screen_title", bundle: bundle, comment: "")
+      }
+
       /// en translation: Shopping list could not be loaded. Please try again!
       ///
       /// Locales: en, de
@@ -2375,6 +2595,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helper_request_overview_button_title_start", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Street
+      ///
+      /// Locales: en, de
+      static func transcribe_info_input_text_title_street(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_input_text_title_street", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_input_text_title_street"
+        }
+
+        return NSLocalizedString("transcribe_info_input_text_title_street", bundle: bundle, comment: "")
       }
 
       /// en translation: Street

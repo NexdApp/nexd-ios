@@ -13,8 +13,8 @@ import RxSwift
 class UserService {
     static let shared = UserService()
 
-    func updateUserInformation(zipCode: String, firstName: String, lastName: String, phone: String) -> Single<User> {
-        let dto = UpdateUserDto(street: nil, number: nil, zipCode: zipCode, city: nil, firstName: firstName, lastName: lastName, role: nil, phoneNumber: phone)
+    func updateUserInformation(zipCode: String, phone: String) -> Single<User> {
+        let dto = UpdateUserDto(firstName: nil, lastName: nil, street: nil, number: nil, zipCode: zipCode, city: nil, role: nil, phoneNumber: phone)
         return UsersAPI.userControllerUpdateMyself(updateUserDto: dto)
             .asSingle()
     }

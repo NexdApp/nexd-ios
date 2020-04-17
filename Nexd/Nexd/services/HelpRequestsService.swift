@@ -22,15 +22,15 @@ class HelpRequestsService {
         public var phoneNumber: String?
 
         var dto: HelpRequestCreateDto {
-            HelpRequestCreateDto(street: street,
+            HelpRequestCreateDto(firstName: nil,
+                                 lastName: nil,
+                                 street: street,
                                  number: number,
                                  zipCode: zipCode,
                                  city: city,
                                  articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) },
                                  status: .pending,
-                                 additionalRequest: additionalRequest,
-                                 deliveryComment: deliveryComment,
-                                 phoneNumber: phoneNumber)
+                                 additionalRequest: additionalRequest, deliveryComment: deliveryComment, phoneNumber: phoneNumber)
         }
     }
 

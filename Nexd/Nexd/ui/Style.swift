@@ -14,4 +14,7 @@ enum Style {
     static let buttonHeight: CGFloat = 70
     static let verticalPadding: CGFloat = 16
     static let textFieldHeight: CGFloat = 36
+    static let standardLayoutMarginByApple: CGFloat = 8.0
+    static let textFieldUnderliningHorizontalPadding: CGFloat = 27.0
+    static let textFieldUnderliningHeight: CGFloat = 1.0
 }

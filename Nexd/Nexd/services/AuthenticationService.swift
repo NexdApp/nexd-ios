@@ -13,8 +13,8 @@ import RxSwift
 class AuthenticationService {
     static let shared = AuthenticationService()
 
-    func register(email: String, firstName: String, lastName: String, password: String) -> Completable {
-        let dto = RegisterDto(email: email, firstName: firstName, lastName: lastName, password: password)
+    func register(email: String, firstName: String?, lastName: String?, password: String) -> Completable {
+        let dto = RegisterDto(email: email, firstName: firstName, lastName: lastName, phoneNumber: nil, password: password)
         return AuthAPI.authControllerRegister(registerDto: dto)
             .asSingle()
             .flatMapCompletable { [weak self] response -> Completable in

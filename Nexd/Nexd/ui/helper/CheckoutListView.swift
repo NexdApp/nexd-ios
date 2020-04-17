@@ -59,15 +59,15 @@ struct CheckoutListView: View {
     }
 }
 
-extension CheckoutViewController.Request {
-    static var example: CheckoutViewController.Request {
-        return CheckoutViewController.Request(requestId: 0, title: "asdf",
-                                              articles: [CheckoutViewController.Item(itemId: 1, name: "Nase", count: 23),
-                                                         CheckoutViewController.Item(itemId: 2, name: "Apfel", count: 42)])
-    }
-}
-
 #if DEBUG
+    extension CheckoutViewController.Request {
+        static var example: CheckoutViewController.Request {
+            return CheckoutViewController.Request(requestId: 0, title: "asdf",
+                                                  articles: [CheckoutViewController.Item(itemId: 1, name: "Nase", count: 23),
+                                                             CheckoutViewController.Item(itemId: 2, name: "Apfel", count: 42)])
+        }
+    }
+
     struct CheckoutListView_Previews: PreviewProvider {
         static var previews: some View {
             Group {
@@ -77,6 +77,7 @@ extension CheckoutViewController.Request {
                 CheckoutListView(requests: [.example, .example, .example, .example])
                     .environment(\.colorScheme, .dark)
             }
+            .background(R.color.nexdGreen.color)
             .previewLayout(.sizeThatFits)
         }
     }
