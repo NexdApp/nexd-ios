@@ -25,6 +25,7 @@ public struct HelpRequest: Codable {
     public var city: String?
     public var id: Int64?
     public var helpListId: Int64?
+    public var callId: Int64?
     public var createdAt: Date?
     public var priority: String?
     public var additionalRequest: String?
@@ -35,9 +36,8 @@ public struct HelpRequest: Codable {
     public var requesterId: String?
     public var requester: User?
     public var helpList: HelpList?
-    public var call: Call?
 
-    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, helpListId: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpList: HelpList?, call: Call?) {
+    public init(firstName: String?, lastName: String?, street: String?, number: String?, zipCode: String?, city: String?, id: Int64?, helpListId: Int64?, callId: Int64?, createdAt: Date?, priority: String?, additionalRequest: String?, deliveryComment: String?, phoneNumber: String?, status: Status?, articles: [HelpRequestArticle]?, requesterId: String?, requester: User?, helpList: HelpList?) {
         self.firstName = firstName
         self.lastName = lastName
         self.street = street
@@ -46,6 +46,7 @@ public struct HelpRequest: Codable {
         self.city = city
         self.id = id
         self.helpListId = helpListId
+        self.callId = callId
         self.createdAt = createdAt
         self.priority = priority
         self.additionalRequest = additionalRequest
@@ -56,7 +57,6 @@ public struct HelpRequest: Codable {
         self.requesterId = requesterId
         self.requester = requester
         self.helpList = helpList
-        self.call = call
     }
 
     public enum CodingKeys: String, CodingKey, CaseIterable { 
@@ -68,6 +68,7 @@ public struct HelpRequest: Codable {
         case city
         case id
         case helpListId
+        case callId
         case createdAt = "created_at"
         case priority
         case additionalRequest
@@ -78,7 +79,6 @@ public struct HelpRequest: Codable {
         case requesterId
         case requester
         case helpList
-        case call
     }
 
 }
