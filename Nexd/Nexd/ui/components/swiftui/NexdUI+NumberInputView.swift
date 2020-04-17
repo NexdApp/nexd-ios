@@ -19,16 +19,20 @@ extension NexdUI {
             wrappedView.inputView = pickerView
             wrappedView.inputAccessoryView = pickerView.toolbar
 
+            wrappedView.attributedText = text?.asAmountText()
+
             pickerView.toolbarDelegate = self
             pickerView.reloadAllComponents()
 
             return wrappedView
         }
 
+        let text: String?
         var onValueConfirmed: ((Int) -> Void)?
         var onCancel: (() -> Void)?
 
-        init(onValueConfirmed: ((Int) -> Void)? = nil, onCancel: (() -> Void)? = nil) {
+        init(text: String? = nil, onValueConfirmed: ((Int) -> Void)? = nil, onCancel: (() -> Void)? = nil) {
+            self.text = text
             self.onValueConfirmed = onValueConfirmed
             self.onCancel = onCancel
         }

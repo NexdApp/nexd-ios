@@ -10,8 +10,6 @@ import Combine
 import NexdClient
 import SwiftUI
 
-extension Article: Identifiable {}
-
 struct TranscribeListView: View {
     @ObservedObject var viewModel: ViewModel
     var body: some View {
@@ -29,10 +27,10 @@ struct TranscribeListView: View {
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
 
-                List(viewModel.state.articles) { article in
+                List(viewModel.state.listItems) { listItem in
                     HStack {
                         HStack {
-                            Text(article.name)
+                            Text(listItem.title)
                                 .font(R.font.proximaNovaSoftMedium.font(size: 18))
                                 .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
                                 .padding(.leading, 14)
@@ -41,9 +39,8 @@ struct TranscribeListView: View {
                         .background(Color.white)
                         .cornerRadius(10)
 
-                        NexdUI.NumberInputView(onValueConfirmed: { value in
-                        log.debug("TODO: Save to view model -> refresh list: \(value)")
-                        })
+                        NexdUI.NumberInputView(text: String(listItem.amount),
+                                               onValueConfirmed: { self.viewModel.onAmountChanged(for: listItem, to: $0) })
                             .font(R.font.proximaNovaSoftBold.font(size: 20))
                             .foregroundColor(R.color.amountText.color)
                             .frame(width: 37, height: 37, alignment: .center)
@@ -64,7 +61,6 @@ struct TranscribeListView: View {
         }
         .padding(.bottom, 0)
         .keyboardAdaptive()
-//        .dismissingKeyboard()
         .onAppear { self.viewModel.bind() }
         .onDisappear { self.viewModel.unbind() }
     }
@@ -77,13 +73,19 @@ struct TranscribeListView: View {
 }
 
 extension TranscribeListView {
+    struct ListItem: Identifiable {
+        let id: Int64
+        let title: String
+        let amount: Int64
+    }
+
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
             @Published var isPlaying: Bool = false
             @Published var progress: Double = 0
             @Published var firstName: String = ""
 
-            @Published var articles: [Article] = []
+            @Published var listItems: [ListItem] = []
         }
 
         let navigator: ScreenNavigating
@@ -101,6 +103,20 @@ extension TranscribeListView {
             player.seekTo(progress: Float(progress))
         }
 
+        func onAmountChanged(for listItem: ListItem, to amount: Int) {
+            log.debug("Amount changed for article: \(listItem.id), amount: \(amount)")
+
+            state.listItems = state.listItems.map { item -> ListItem in
+                guard listItem.id == item.id else { return item }
+
+                let updated = ListItem(id: item.id, title: item.title, amount: Int64(amount))
+                log.debug("Updating item: \(updated)")
+                return updated
+            }
+
+            log.debug("updated items: \(state.listItems)")
+        }
+
         init(navigator: ScreenNavigating, articlesService: ArticlesService) {
             self.navigator = navigator
             self.articlesService = articlesService
@@ -115,7 +131,10 @@ extension TranscribeListView {
                 .publisher
                 .receive(on: RunLoop.main)
                 .replaceError(with: [])
-                .assign(to: \.articles, on: state)
+                .map { articles -> [ListItem] in
+                    articles.map { ListItem(id: $0.id, title: $0.name, amount: 0) }
+                }
+                .assign(to: \.listItems, on: state)
                 .store(in: &cancellableSet)
 
             player.state.publisher
@@ -135,9 +154,7 @@ extension TranscribeListView {
                 .store(in: &cancellableSet)
 
             state.objectWillChange
-                .sink { [weak self] _ in
-                    self?.objectWillChange.send()
-                }
+                .sink { [weak self] in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet
