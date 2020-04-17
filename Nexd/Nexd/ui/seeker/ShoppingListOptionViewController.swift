@@ -22,6 +22,14 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
                 viewModel.navigator.toCheckList()
             }
         }
+        
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
 
         let makePhonecallTitle = Driver.just(R.string.localizable.seeker_type_button_phone_call().asDarkButtonText())
 
@@ -38,6 +46,7 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
+    private let backButton = BackButton.make()
 
     private let selectItemsButton = MenuButton.make(style: .dark)
     private let makePhonecallButton = MenuButton.make(style: .dark)
@@ -61,6 +70,14 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.height.equalTo(84)
         }
 
+        scrollView.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(12)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(25)
+            make.height.equalTo(132)
+        }
+
         scrollView.addSubview(selectItemsButton)
         selectItemsButton.snp.makeConstraints { make in
             make.left.equalTo(view).offset(12)
@@ -82,10 +99,12 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
     override func bind(viewModel: ShoppingListOptionViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.heading.drive(titleLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.selectItemsTitle.drive(selectItemsButton.rx.attributedTitle(for: .normal)),
             viewModel.makePhonecallTitle.drive(makePhonecallButton.rx.attributedTitle(for: .normal)),
 
             selectItemsButton.rx.tap.bind(to: viewModel.selectItemTaps),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             makePhonecallButton.rx.tap.bind(to: viewModel.makePhonecallTaps)
         )
     }
