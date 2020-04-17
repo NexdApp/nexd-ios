@@ -9,11 +9,17 @@
 import Combine
 
 extension Publisher {
-    func debug(message: String = "") -> Publishers.HandleEvents<Self> {
-        handleEvents(receiveSubscription: { subscription in log.debug("receiveSubscription: \(subscription)") },
-                     receiveOutput: { output in log.debug("receiveOutput: \(output)") },
-                     receiveCompletion: { error in log.debug("receiveCompletion: \(error)") },
-                     receiveCancel: { log.debug("receiveCancel") },
-                     receiveRequest: { demand in log.debug("receiveRequest: \(demand)") })
+    func debug(_ identifier: String = "", file: StaticString = #file, line: Int = #line, function: StaticString = #function) -> Publishers.HandleEvents<Self> {
+        handleEvents(receiveSubscription: { subscription in
+            log.debug("[\(identifier)] receiveSubscription: \(subscription)", functionName: function, fileName: file, lineNumber: line)
+        }, receiveOutput: { output in
+            log.debug("[\(identifier)] receiveOutput: \(output)", functionName: function, fileName: file, lineNumber: line)
+        }, receiveCompletion: { error in
+            log.debug("[\(identifier)] receiveCompletion: \(error)", functionName: function, fileName: file, lineNumber: line)
+        }, receiveCancel: {
+            log.debug("[\(identifier)] receiveCancel", functionName: function, fileName: file, lineNumber: line)
+        }, receiveRequest: { demand in
+            log.debug("[\(identifier)] receiveRequest: \(demand)", functionName: function, fileName: file, lineNumber: line)
+        })
     }
 }
