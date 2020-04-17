@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **createdAt** | **Date** |  | 
 **updatedAt** | **Date** |  | 
 **recordingUrl** | **String** |  | [optional] 
-**convertedHelpRequest** | [**HelpRequest**](HelpRequest.md) |  | [optional] 
+**convertedHelpRequestId** | **Double** |  | [optional] 
 **phoneNumber** | **String** |  | [optional] 
 **country** | **String** |  | [optional] 
 **zip** | **String** |  | [optional] 
