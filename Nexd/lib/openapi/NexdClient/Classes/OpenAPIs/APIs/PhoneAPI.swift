@@ -124,9 +124,9 @@ open class PhoneAPI {
      Returns available numbers
      
      - parameter apiResponseQueue: The queue on which api response is dispatched.
-     - returns: Observable<String>
+     - returns: Observable<[PhoneNumberDto]>
      */
-    open class func phoneControllerGetNumbers(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<String> {
+    open class func phoneControllerGetNumbers(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[PhoneNumberDto]> {
         return Observable.create { observer -> Disposable in
             phoneControllerGetNumbersWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
                 switch result {
@@ -144,16 +144,16 @@ open class PhoneAPI {
     /**
      Returns available numbers
      - GET /phone/numbers
-     - returns: RequestBuilder<String> 
+     - returns: RequestBuilder<[PhoneNumberDto]> 
      */
-    open class func phoneControllerGetNumbersWithRequestBuilder() -> RequestBuilder<String> {
+    open class func phoneControllerGetNumbersWithRequestBuilder() -> RequestBuilder<[PhoneNumberDto]> {
         let path = "/phone/numbers"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
         let url = URLComponents(string: URLString)
 
-        let requestBuilder: RequestBuilder<String>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
+        let requestBuilder: RequestBuilder<[PhoneNumberDto]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
