@@ -15,6 +15,8 @@ extension ValidationRuleSet where InputType == String {
         case missingLastName
         case passwordTooShort
         case passwordConfirmationFailed
+        case phoneNumberInvalid = "Phone number is invalid"
+        case zipCodeInvalid = "ZIP code is invalid"
         var message: String {
             switch self {
             case .emailInvalid:
@@ -54,5 +56,13 @@ extension ValidationRuleSet where InputType == String {
     static func passwordConfirmation(dynamicTarget: @escaping (() -> String)) -> ValidationRuleSet<String> {
         ValidationRuleSet<String>(rules: [ValidationRuleEquality<String>(dynamicTarget: dynamicTarget,
                                                                          error: ValidationErrors.passwordConfirmationFailed)])
+    }
+
+    static var phone: ValidationRuleSet<String> {
+        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
+    }
+
+    static var zipCode: ValidationRuleSet<String> {
+        ValidationRuleSet<String>(rules: [ValidationRulePattern(pattern: "^[0-9]+$", error: ValidationErrors.zipCodeInvalid)])
     }
 }
