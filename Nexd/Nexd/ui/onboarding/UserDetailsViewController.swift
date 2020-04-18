@@ -238,17 +238,17 @@ extension UserDetailsViewController {
 }
 
 private extension ValidationRuleSet where InputType == String {
-    enum ValidationErrors: String, ValidationError {
+    enum UsrValidationErrors: String, ValidationError {
         case phoneNumberInvalid = "Phone number is invalid"
         case zipCodeInvalid = "ZIP code is invalid"
         var message: String { return rawValue }
     }
 
     static func phone() -> ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
+        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: UsrValidationErrors.phoneNumberInvalid)])
     }
 
     static func zipCode() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRulePattern(pattern: "^[0-9]+$", error: ValidationErrors.zipCodeInvalid)])
+        ValidationRuleSet<String>(rules: [ValidationRulePattern(pattern: "^[0-9]+$", error: UsrValidationErrors.zipCodeInvalid)])
     }
 }

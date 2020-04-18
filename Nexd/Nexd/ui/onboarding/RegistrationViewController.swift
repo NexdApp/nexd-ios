@@ -26,36 +26,31 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
 
     lazy var email = ValidatingTextField.make(tag: 0,
                                               placeholder: R.string.localizable.registration_placeholder_email(),
+                                              icon: R.image.mail1(),
                                               keyboardType: .emailAddress,
-                                              validationRules: .email())
+                                              validationRules: .email)
 
     lazy var firstName = ValidatingTextField.make(tag: 1,
                                                   placeholder: R.string.localizable.registration_placeholder_firstName(),
-                                                  validationRules: .firstName())
+                                                  icon: R.image.person1(),
+                                                  validationRules: .firstName)
 
     lazy var lastName = ValidatingTextField.make(tag: 2,
                                                  placeholder: R.string.localizable.registration_placeholder_lastName(),
-                                                 validationRules: .lastName())
+                                                 icon: R.image.person1(),
+                                                 validationRules: .lastName)
 
     lazy var password = ValidatingTextField.make(tag: 3,
                                                  placeholder: R.string.localizable.registration_placeholder_password(),
+                                                 icon: R.image.lock2(),
                                                  isSecureTextEntry: true,
-                                                 validationRules: .password())
+                                                 validationRules: .password)
 
     lazy var confirmPassword = ValidatingTextField.make(tag: 4,
                                                         placeholder: R.string.localizable.registration_placeholder_confirm_password(),
+                                                        icon: R.image.lock1(),
                                                         isSecureTextEntry: true,
                                                         validationRules: .passwordConfirmation(dynamicTarget: { [weak self] in self?.password.value ?? "" }))
-
-    private lazy var emailImageView = UIImageView()
-
-    private lazy var firstNameImageView = UIImageView()
-
-    private lazy var lastNameImageView = UIImageView()
-
-    private lazy var passwordImageView = UIImageView()
-
-    private lazy var confirmPasswordImageView = UIImageView()
 
     lazy var registerButton = UIButton()
 
@@ -65,7 +60,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
 
         view.backgroundColor = .white
         title = R.string.localizable.registration_screen_title()
-        setupImageViews()
 
         setupLayoutConstraints()
     }
@@ -80,9 +74,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
         keyboardObserver = nil
     }
 
-    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {
-
-    }
+    override func bind(viewModel: RegistrationViewController.ViewModel, disposeBag: DisposeBag) {}
 
     private func setupLayoutConstraints() {
         view.addSubview(scrollView)
@@ -112,27 +104,11 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
-        contentView.addSubview(emailImageView)
-        emailImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(email.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
-        }
-
         contentView.addSubview(firstName)
         firstName.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(email.snp.bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(firstNameImageView)
-        firstNameImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(firstName.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(lastName)
@@ -142,14 +118,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(firstName.snp.bottom).offset(Style.verticalPadding)
         }
 
-        contentView.addSubview(lastNameImageView)
-        lastNameImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(lastName.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
-        }
-
         contentView.addSubview(password)
         password.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
@@ -157,27 +125,11 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(lastName.snp.bottom).offset(Style.verticalPadding)
         }
 
-        contentView.addSubview(passwordImageView)
-        passwordImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(password.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
-        }
-
         contentView.addSubview(confirmPassword)
         confirmPassword.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp.bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(confirmPasswordImageView)
-        confirmPasswordImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(confirmPassword.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(registerButton)
@@ -190,23 +142,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.top.equalTo(confirmPassword.snp.bottom).offset(50)
             make.bottom.equalToSuperview().offset(-20)
         }
-    }
-
-    private func setupImageViews() {
-        emailImageView.image = R.image.mail1()
-        emailImageView.contentMode = .scaleAspectFit
-
-        firstNameImageView.image = R.image.person1()
-        firstNameImageView.contentMode = .scaleAspectFit
-
-        lastNameImageView.image = R.image.person1()
-        lastNameImageView.contentMode = .scaleAspectFit
-
-        passwordImageView.image = R.image.lock2()
-        passwordImageView.contentMode = .scaleAspectFit
-
-        confirmPasswordImageView.image = R.image.lock1()
-        confirmPasswordImageView.contentMode = .scaleAspectFit
     }
 }
 
@@ -240,40 +175,13 @@ extension RegistrationViewController {
             }, onError: { [weak self] error in
                 log.error("User registration failed: \(error)")
 
+                if let errorResponse = error as? ErrorResponse, errorResponse.httpStatusCode == .conflict {
+                    log.debug("User already exists")
+                    self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
+                }
+
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
             })
             .disposed(by: disposeBag)
-    }
-}
-
-private extension ValidationRuleSet where InputType == String {
-    enum ValidationErrors: String, ValidationError {
-        case emailInvalid = "Email address is invalid!"
-        case missingFirstName = "Frist name must not be empty!"
-        case missingLastName = "Last name must not be empty!"
-        case passwordTooShort = "Password is too short!"
-        case passwordConfirmationFailed = "Passwords do not match!"
-        var message: String { return rawValue }
-    }
-
-    static func email() -> ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
-    }
-
-    static func firstName() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 1, error: ValidationErrors.missingFirstName)])
-    }
-
-    static func lastName() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 1, error: ValidationErrors.missingLastName)])
-    }
-
-    static func password() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
-    }
-
-    static func passwordConfirmation(dynamicTarget: @escaping (() -> String)) -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRuleEquality<String>(dynamicTarget: dynamicTarget,
-                                                                         error: ValidationErrors.passwordConfirmationFailed)])
     }
 }

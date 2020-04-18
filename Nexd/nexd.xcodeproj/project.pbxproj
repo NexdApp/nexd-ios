@@ -74,6 +74,7 @@
 		AED2A96F2440A2830082316F /* StartAuthenticationFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96E2440A2820082316F /* StartAuthenticationFlowViewController.swift */; };
 		AED2A9712440D6E70082316F /* CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9702440D6E70082316F /* CancelButton.swift */; };
 		AED2A9732440D7170082316F /* ConfirmButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A9722440D7170082316F /* ConfirmButton.swift */; };
+		AED50B90244BA69F00A51677 /* ValidationRuleSet+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED50B8F244BA69F00A51677 /* ValidationRuleSet+Nexd.swift */; };
 		AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E5272445F15200A3DFA1 /* TranscribeInfoView.swift */; };
 		AED5E52A2446232D00A3DFA1 /* NexdUI+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */; };
 		AED5E52C2446236500A3DFA1 /* NexdUI+Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */; };
@@ -197,6 +198,7 @@
 		AED2A96E2440A2820082316F /* StartAuthenticationFlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAuthenticationFlowViewController.swift; sourceTree = "<group>"; };
 		AED2A9702440D6E70082316F /* CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelButton.swift; sourceTree = "<group>"; };
 		AED2A9722440D7170082316F /* ConfirmButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmButton.swift; sourceTree = "<group>"; };
+		AED50B8F244BA69F00A51677 /* ValidationRuleSet+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ValidationRuleSet+Nexd.swift"; sourceTree = "<group>"; };
 		AED5E5272445F15200A3DFA1 /* TranscribeInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeInfoView.swift; sourceTree = "<group>"; };
 		AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+TextField.swift"; sourceTree = "<group>"; };
 		AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Card.swift"; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				AE50F06B2448DCFA00601DDF /* Publisher+Debugging.swift */,
 				AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */,
 				AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */,
+				AED50B8F244BA69F00A51677 /* ValidationRuleSet+Nexd.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,
 				AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */,
 				AEF3D6712426785C005C77CE /* Storage.swift in Sources */,
+				AED50B90244BA69F00A51677 /* ValidationRuleSet+Nexd.swift in Sources */,
 				AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */,
 				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
