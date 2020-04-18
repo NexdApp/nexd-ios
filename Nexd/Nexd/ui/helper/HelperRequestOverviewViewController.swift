@@ -28,7 +28,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             .asCompletable()
         }
 
-        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
 
         var backButtonTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
@@ -164,9 +164,9 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         view.addSubview(backButton)
         backButton.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(12)
+            make.left.equalTo(view).offset(17)
             make.right.equalTo(view).offset(-12)
-            make.top.equalTo(view).offset(25)
+            make.top.equalTo(view).offset(26)
             make.height.equalTo(132)
         }
 

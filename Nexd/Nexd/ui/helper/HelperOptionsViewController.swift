@@ -23,7 +23,7 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
             }
         }
 
-        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
 
         var backButtonTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
@@ -63,9 +63,9 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
 
         scrollView.addSubview(backButton)
         backButton.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(12)
+            make.left.equalTo(view).offset(20)
             make.right.equalTo(view).offset(-12)
-            make.top.equalTo(view).offset(25)
+            make.top.equalTo(view).offset(36)
             make.height.equalTo(132)
         }
 
