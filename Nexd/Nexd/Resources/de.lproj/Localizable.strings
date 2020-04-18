@@ -31,7 +31,8 @@
 "error_message_registration_field_missing" = "Bitte ausfüllen";
 "error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
 "error_message_registration_password_match" = "Passwörter stimmen nicht überein";
-"error_message_registration_password_too_short" = "mind. 6 Zeichen";
+"error_message_registration_password_too_short" = "mind. 8 Zeichen";
+"error_message_registration_user_already_exists" = "Das Benutzerkonto existiert bereits.";
 "error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_unknown" = "Unbekannter Fehler";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
