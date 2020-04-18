@@ -218,4 +218,3 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayou
         CGSize(width: collectionView.frame.size.width, height: 67)
     }
 }
-
