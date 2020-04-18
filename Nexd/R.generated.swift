@@ -678,7 +678,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 130 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 131 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -704,6 +704,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_accepted_section = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Account is already registered!
+      ///
+      /// Locales: en, de
+      static let error_message_registration_user_already_exists = Rswift.StringResource(key: "error_message_registration_user_already_exists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Add order to Current Item List
       ///
       /// Locales: en, de
@@ -720,7 +724,7 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_request_address = Rswift.StringResource(key: "delivery_request_address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: At least 6 characters
+      /// en translation: At least 8 characters
       ///
       /// Locales: en, de
       static let error_message_registration_password_too_short = Rswift.StringResource(key: "error_message_registration_password_too_short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
@@ -1297,6 +1301,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_heading_accepted_section", bundle: bundle, comment: "")
       }
 
+      /// en translation: Account is already registered!
+      ///
+      /// Locales: en, de
+      static func error_message_registration_user_already_exists(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_registration_user_already_exists", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_registration_user_already_exists"
+        }
+
+        return NSLocalizedString("error_message_registration_user_already_exists", bundle: bundle, comment: "")
+      }
+
       /// en translation: Add order to Current Item List
       ///
       /// Locales: en, de
@@ -1357,7 +1376,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("delivery_request_address", bundle: bundle, comment: "")
       }
 
-      /// en translation: At least 6 characters
+      /// en translation: At least 8 characters
       ///
       /// Locales: en, de
       static func error_message_registration_password_too_short(preferredLanguages: [String]? = nil) -> String {

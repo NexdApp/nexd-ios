@@ -177,7 +177,7 @@ extension RegistrationViewController {
 
                 if let errorResponse = error as? ErrorResponse, errorResponse.httpStatusCode == .conflict {
                     log.debug("User already exists")
-                    self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
+                    self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_user_already_exists())
                 }
 
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
