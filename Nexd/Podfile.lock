@@ -14,6 +14,9 @@ PODS:
   - RxCocoa (5.1.0):
     - RxRelay (~> 5)
     - RxSwift (~> 5)
+  - RxCombine (1.5.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
   - RxRelay (5.1.0):
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
@@ -31,6 +34,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - R.swift
   - RxCocoa
+  - RxCombine
   - RxSwift
   - SnapKit
   - SwiftLint
@@ -45,6 +49,7 @@ SPEC REPOS:
     - R.swift
     - R.swift.Library
     - RxCocoa
+    - RxCombine
     - RxRelay
     - RxSwift
     - SnapKit
@@ -64,6 +69,7 @@ SPEC CHECKSUMS:
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   RxCocoa: 13d2a4d7546a34b8ececae8c281e4ea1dbb94f2b
+  RxCombine: 925daa294863a3be0eea14febad34eaa138e16e2
   RxRelay: a168bd6caf712d00c676ac344e9295afc93b418e
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
@@ -71,6 +77,6 @@ SPEC CHECKSUMS:
   Validator: 80a6f567220c962dfd2d9928ae98a8c1d164f6f4
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 30075dd1cfcdb6af725e5096189fe8e7907f73e7
+PODFILE CHECKSUM: bfb7febe173c432fa4458cc7f424e7707d5387f0
 
 COCOAPODS: 1.9.1

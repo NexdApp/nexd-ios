@@ -31,7 +31,7 @@ struct ServicesModule: Module {
             .to(factory: HelpListsService.init)
 
         binder
-            .bind(CallsService.self)
-            .to(factory: CallsService.init)
+            .bind(PhoneService.self)
+            .to(factory: PhoneService.init)
     }
 }

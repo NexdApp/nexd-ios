@@ -19,7 +19,7 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
 
         var transcribeCallTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
-                viewModel.navigator.toCallsList()
+                viewModel.navigator.toTranscribeInfoView()
             }
         }
 

@@ -36,6 +36,12 @@ class ArticleSelectionCell: UICollectionViewCell {
         amount.layer.masksToBounds = true
         amount.layer.cornerRadius = 18.5
 
+        amount.inputView = pickerView
+        amount.inputAccessoryView = pickerView.toolbar
+
+        pickerView.toolbarDelegate = self
+        pickerView.reloadAllComponents()
+
         title.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview()
             make.height.equalTo(48)
@@ -48,13 +54,6 @@ class ArticleSelectionCell: UICollectionViewCell {
             make.size.equalTo(CGSize(width: 37, height: 37))
             make.centerY.equalToSuperview()
         }
-
-        amount.inputView = pickerView
-        amount.inputAccessoryView = pickerView.toolbar
-
-        pickerView.toolbarDelegate = self
-
-        pickerView.reloadAllComponents()
     }
 
     required init?(coder: NSCoder) {
@@ -81,7 +80,7 @@ extension ArticleSelectionCell: PickerViewDelegate {
     }
 
     func didTapCancel() {
-        amount.text = nil
+//        amount.text = nil
         amount.resignFirstResponder()
     }
 }

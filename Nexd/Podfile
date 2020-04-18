@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+platform :ios, '13.0'
 
 inhibit_all_warnings!
 
@@ -14,6 +14,7 @@ target 'nexd' do
   pod 'R.swift'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'RxCombine'
   pod 'SnapKit'
   pod 'SwiftLint'
   pod 'Validator'

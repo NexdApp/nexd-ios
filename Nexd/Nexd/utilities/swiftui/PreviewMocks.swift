@@ -68,12 +68,16 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toHelpOptions")
     }
 
-    func toCallsList() {
-        log.debug("toCallsList")
+    func toTranscribeInfoView() {
+        log.debug("toTranscribeInfoView")
     }
 
-    func toTranscribeCall() {
-        log.debug("toTranscribeCall")
+    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto) {
+        log.debug("toTranscribeListView")
+    }
+
+    func toTranscribeEndView() {
+        log.debug("toTranscribeEndView")
     }
 
     func toHelperOverview() {
