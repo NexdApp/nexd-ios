@@ -28,8 +28,9 @@ protocol ScreenNavigating {
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
     func toPhoneCall()
     func toHelpOptions()
-    func toCallsList()
-    func toTranscribeCall()
+    func toTranscribeInfoView()
+    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto)
+    func toTranscribeEndView()
     func toHelperOverview()
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
@@ -40,7 +41,7 @@ class Navigator {
     private let storage: Storage
     private let authenticationService: AuthenticationService
     private let userService: UserService
-    private let callsService: CallsService
+    private let phoneService: PhoneService
     private let helpRequestsService: HelpRequestsService
     private let helpListsService: HelpListsService
     private let articlesService: ArticlesService
@@ -54,14 +55,14 @@ class Navigator {
     init(storage: Storage,
          authenticationService: AuthenticationService,
          userService: UserService,
-         callsService: CallsService,
+         phoneService: PhoneService,
          helpRequestsService: HelpRequestsService,
          articlesService: ArticlesService,
          helpListsService: HelpListsService) {
         self.storage = storage
         self.authenticationService = authenticationService
         self.userService = userService
-        self.callsService = callsService
+        self.phoneService = phoneService
         self.helpRequestsService = helpRequestsService
         self.helpListsService = helpListsService
         self.articlesService = articlesService
@@ -175,7 +176,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toPhoneCall() {
-        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(callsService: callsService, navigator: self))
+        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(phoneService: phoneService, navigator: self))
         push(screen: screen)
     }
 
@@ -184,14 +185,21 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCallsList() {
-        let screen = CallsListViewController()
-        push(screen: screen)
+    func toTranscribeInfoView() {
+        push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self, phoneService: phoneService)))
     }
 
-    func toTranscribeCall() {
-        let screen = TranscribeCallViewController()
-        push(screen: screen)
+    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto) {
+        push(screen: TranscribeListView.createScreen(viewModel: TranscribeListView.ViewModel(navigator: self,
+                                                                                             articlesService: articlesService,
+                                                                                             phoneService: phoneService,
+                                                                                             player: player,
+                                                                                             call: call,
+                                                                                             transcribedRequest: transcribedRequest)))
+    }
+
+    func toTranscribeEndView() {
+        push(screen: TranscribeEndView.createScreen(viewModel: TranscribeEndView.ViewModel(navigator: self)))
     }
 
     func toHelperOverview() {
@@ -212,9 +220,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toDeliveryConfirmationScreen(helpList: HelpList) {
-        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
-        screen.view.backgroundColor = R.color.nexdGreen()
-        push(screen: screen)
+        push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
     }
 
     private func push(screen: UIViewController) {

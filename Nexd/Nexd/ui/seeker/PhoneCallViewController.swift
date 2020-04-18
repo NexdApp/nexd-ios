@@ -14,15 +14,17 @@ enum PhoneCallError: Error {
 }
 class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel> {
     class ViewModel {
-        private let callsService: CallsService
+        private let phoneService: PhoneService
         private let navigator: ScreenNavigating
 
-        private lazy var phoneNumber = callsService.number()
+        private lazy var phoneNumber = phoneService.numbers()
         private let placeholder = R.string.localizable.seeker_phone_call_text_ios("???").asHeading()
 
         var text: Driver<NSAttributedString?> {
-            phoneNumber.map { number in
-                guard let number = number?.number else { throw PhoneCallError.phoneNumberUnknown }
+            phoneNumber.map { numbers in
+                let dto = numbers.filter { dto -> Bool in dto.country == Locale.current.regionCode }.first ?? numbers.first
+
+                guard let number = dto?.number else { throw PhoneCallError.phoneNumberUnknown }
                 return R.string.localizable.seeker_phone_call_text_ios(number).asHeading()
             }
             .asObservable()
@@ -38,8 +40,8 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
             }
         }
 
-        init(callsService: CallsService, navigator: ScreenNavigating) {
-            self.callsService = callsService
+        init(phoneService: PhoneService, navigator: ScreenNavigating) {
+            self.phoneService = phoneService
             self.navigator = navigator
         }
     }

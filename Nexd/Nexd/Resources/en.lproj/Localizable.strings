@@ -58,7 +58,7 @@
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_unknown_requester" = "- unknown -";
 "helper_request_transcript_button_done" = "Add order to Current Item List";
-"helper_type_button_shopping" = "I\\'d like to shop!";
+"helper_type_button_shopping" = "I'd like to shop!";
 "helper_type_button_transcript" = "Transcript a call!";
 "helper_type_screen_title" = "How would you like to help?";
 "loading_overlay_message" = "Loading...";
@@ -111,11 +111,18 @@
 "shopping_list_overview_error_title" = "Error!";
 "shopping_list_screen_title" = "Shopping list";
 "transcribe_articles_button_title_confirm" = "Confirm";
+"transcribe_articles_error_message" = "Saving the help request failed. Please make sure the data is correct and valid!";
+"transcribe_articles_error_title" = "Request failed!";
 "transcribe_articles_screen_title" = "Shopping list";
+"transcribe_end_button_title_complete" = "Done";
+"transcribe_end_screen_title_ios" = "Thank you for helping complete the request!";
 "transcribe_info_button_title_confirm" = "Confirm Info";
+"transcribe_info_error_message_no_calls" = "Currently there are no calls waiting for translation. Please try again later!";
+"transcribe_info_error_title_no_calls" = "No calls found!";
 "transcribe_info_input_text_title_city" = "City";
 "transcribe_info_input_text_title_first_name" = "First name";
 "transcribe_info_input_text_title_last_name" = "Last name";
+"transcribe_info_input_text_title_phone_number" = "Phone number";
 "transcribe_info_input_text_title_postal_code" = "Postal code";
 "transcribe_info_input_text_title_street" = "Street";
 "transcribe_info_input_text_title_street_number" = "Number";

@@ -14,12 +14,8 @@ enum CallsError: Error {
     case downloadFailed
 }
 
-class CallsService {
-    struct Number: Codable {
-        let number: String?
-    }
-
-    static let shared = CallsService()
+class PhoneService {
+    static let shared = PhoneService()
 
     private lazy var urlSession: URLSession = {
         let config = URLSessionConfiguration.default
@@ -27,38 +23,35 @@ class CallsService {
         return URLSession(configuration: config, delegate: nil, delegateQueue: nil)
     }()
 
-    func number() -> Single<Number?> {
-        log.error("NOT IMPLEMENTED YET!!")
-        return Single.error(CallsError.downloadFailed)
-
-//        return CallsAPI.callsControllerGetNumber()
-//            .map { json -> Number? in
-//                guard let data = json.data(using: .utf8) else { return nil }
-//                return try? JSONDecoder().decode(Number.self, from: data)
-//            }
-//            .asSingle()
+    func numbers() -> Single<[PhoneNumberDto]> {
+        return PhoneAPI.phoneControllerGetNumbers()
+            .asSingle()
     }
 
-    func allCalls() -> Single<[Call]> {
-        log.error("NOT IMPLEMENTED YET!!")
-        return Single.error(CallsError.downloadFailed)
-//        return CallsAPI.callsControllerCalls()
-//            .asSingle()
+    func oneCall() -> Single<Call?> {
+        PhoneAPI.phoneControllerGetCalls(limit: 1, converted: false)
+            .map { $0.first }
+            .asSingle()
     }
 
-    func downloadCallFile(sid: String) -> Single<URL> {
+    func convertCallToHelpRequest(sid: String, dto: HelpRequestCreateDto) -> Single<Call> {
+        PhoneAPI.phoneControllerConverted(sid: sid, helpRequestCreateDto: dto)
+            .asSingle()
+    }
+
+    func downloadRecoring(for call: Call) -> Single<URL> {
         guard let documentsUrl = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true) else {
             log.error("Cannot create download URL path!")
             return Single.error(CallsError.downloadFailed)
         }
 
-        let destinationUrl = documentsUrl.appendingPathComponent("\(sid).wav")
+        let destinationUrl = documentsUrl.appendingPathComponent("\(call.sid).wav")
         if FileManager.default.fileExists(atPath: destinationUrl.path) {
             log.debug("file already exists [\(destinationUrl.path)]")
             return Single.just(destinationUrl)
         }
 
-        guard let url = URL(string: "\(NexdClientAPI.basePath)/call/calls/\(sid)/record") else {
+        guard let recordingUrl = call.recordingUrl, let url = URL(string: recordingUrl) else {
             return Single.error(CallsError.downloadFailed)
         }
 

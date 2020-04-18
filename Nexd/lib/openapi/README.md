@@ -70,6 +70,7 @@ Class | Method | HTTP request | Description
  - [HttpBadRequestResponse](docs/HttpBadRequestResponse.md)
  - [HttpConflictResponse](docs/HttpConflictResponse.md)
  - [LoginDto](docs/LoginDto.md)
+ - [PhoneNumberDto](docs/PhoneNumberDto.md)
  - [RegisterDto](docs/RegisterDto.md)
  - [TokenDto](docs/TokenDto.md)
  - [UpdateUserDto](docs/UpdateUserDto.md)
