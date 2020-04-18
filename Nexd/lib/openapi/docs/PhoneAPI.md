@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 # **phoneControllerGetNumbers**
 ```swift
-    open class func phoneControllerGetNumbers() -> Observable<String>
+    open class func phoneControllerGetNumbers() -> Observable<[PhoneNumberDto]>
 ```
 
 Returns available numbers
@@ -118,7 +118,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**String**
+[**[PhoneNumberDto]**](PhoneNumberDto.md)
 
 ### Authorization
 

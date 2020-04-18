@@ -20,10 +20,10 @@ public struct Call: Codable {
     public var country: String?
     public var zip: String?
     public var city: String?
-    public var converterId: String
+    public var converterId: String?
     public var converter: User?
 
-    public init(convertedHelpRequestId: Int64?, sid: String, createdAt: Date, updatedAt: Date, recordingUrl: String?, phoneNumber: String?, country: String?, zip: String?, city: String?, converterId: String, converter: User?) {
+    public init(convertedHelpRequestId: Int64?, sid: String, createdAt: Date, updatedAt: Date, recordingUrl: String?, phoneNumber: String?, country: String?, zip: String?, city: String?, converterId: String?, converter: User?) {
         self.convertedHelpRequestId = convertedHelpRequestId
         self.sid = sid
         self.createdAt = createdAt
