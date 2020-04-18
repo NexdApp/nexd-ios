@@ -41,8 +41,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             helpList
                 .map { helpList -> [AcceptedRequestCell.Item] in
                     helpList.helpRequests.map { helpRequest -> AcceptedRequestCell.Item in
-                        let title = helpRequest.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
-                        return AcceptedRequestCell.Item(title: title)
+                        return AcceptedRequestCell.Item(title: helpRequest.displayName)
                     }
                 }
                 .asObservable()
@@ -71,7 +70,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .map { requests in
                     requests
                         .map { request in
-                            let title = request.requester?.firstName ?? R.string.localizable.helper_request_overview_unknown_requester()
+                            let title = request.displayName
                             let duration = request.createdAt?.difference()
                             let type = R.string.localizable.helper_request_overview_item_type_list()
                             let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
@@ -219,3 +218,4 @@ extension HelperRequestOverviewViewController: UICollectionViewDelegateFlowLayou
         CGSize(width: collectionView.frame.size.width, height: 67)
     }
 }
+

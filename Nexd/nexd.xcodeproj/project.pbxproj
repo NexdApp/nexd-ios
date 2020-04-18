@@ -56,6 +56,7 @@
 		AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */; };
 		AEB6AC7B24432E7F00823E7C /* OpenReqeustsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */; };
 		AEB6AC7D2443362300823E7C /* Date+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7C2443362300823E7C /* Date+Nexd.swift */; };
+		AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
 		AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */ = {isa = PBXBuildFile; fileRef = AECE9D252438D93E00EDCE0D /* cymbal.wav */; };
@@ -178,6 +179,7 @@
 		AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Nexd.swift"; sourceTree = "<group>"; };
 		AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenReqeustsCell.swift; sourceTree = "<group>"; };
 		AEB6AC7C2443362300823E7C /* Date+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Nexd.swift"; sourceTree = "<group>"; };
+		AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpRequest+UI.swift"; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		AECE9D252438D93E00EDCE0D /* cymbal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cymbal.wav; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 				AEB6AC7C2443362300823E7C /* Date+Nexd.swift */,
 				AE50F06B2448DCFA00601DDF /* Publisher+Debugging.swift */,
 				AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */,
+				AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -857,6 +860,7 @@
 				AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */,
 				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
+				AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AE1359102444A2410015D7AB /* NexdUI.swift in Sources */,
 				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,

@@ -158,11 +158,16 @@ extension TranscribeInfoView {
                     return self.phoneService.downloadRecoring(for: call)
                 }
                 .map { url in AudioPlayer(url: url) }
-            .catchError { error -> Completable in
-                Completable.from {
-                    navigator.showError(title: <#T##String#>, message: <#T##String#>, handler: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+                .catchError { error in
+                    log.warning("Cannot download call information: \(error)")
+                    return Completable.from {
+                        navigator.showError(title: R.string.localizable.transcribe_info_error_title_no_calls(),
+                                            message: R.string.localizable.transcribe_info_error_message_no_calls(),
+                                            handler: { navigator.goBack() })
+                    }
+                    .asObservable()
+                    .ofType()
                 }
-            }
                 .share(replay: 1, scope: .whileConnected)
 
             player

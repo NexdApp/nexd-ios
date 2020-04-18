@@ -678,7 +678,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 128 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 130 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -812,6 +812,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_button_title_current_items_list = Rswift.StringResource(key: "helper_request_overview_button_title_current_items_list", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Currently there are no calls waiting for translation. Please try again later!
+      ///
+      /// Locales: en, de
+      static let transcribe_info_error_message_no_calls = Rswift.StringResource(key: "transcribe_info_error_message_no_calls", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Deliver
       ///
       /// Locales: en, de
@@ -936,6 +940,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_type_button_phone_call = Rswift.StringResource(key: "seeker_type_button_phone_call", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: No calls found!
+      ///
+      /// Locales: en, de
+      static let transcribe_info_error_title_no_calls = Rswift.StringResource(key: "transcribe_info_error_title_no_calls", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: No.
       ///
       /// Locales: en, de
@@ -1696,6 +1704,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_button_title_current_items_list", bundle: bundle, comment: "")
       }
 
+      /// en translation: Currently there are no calls waiting for translation. Please try again later!
+      ///
+      /// Locales: en, de
+      static func transcribe_info_error_message_no_calls(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_error_message_no_calls", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_error_message_no_calls"
+        }
+
+        return NSLocalizedString("transcribe_info_error_message_no_calls", bundle: bundle, comment: "")
+      }
+
       /// en translation: Deliver
       ///
       /// Locales: en, de
@@ -2159,6 +2182,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_type_button_phone_call", bundle: bundle, comment: "")
+      }
+
+      /// en translation: No calls found!
+      ///
+      /// Locales: en, de
+      static func transcribe_info_error_title_no_calls(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("transcribe_info_error_title_no_calls", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "transcribe_info_error_title_no_calls"
+        }
+
+        return NSLocalizedString("transcribe_info_error_title_no_calls", bundle: bundle, comment: "")
       }
 
       /// en translation: No.
