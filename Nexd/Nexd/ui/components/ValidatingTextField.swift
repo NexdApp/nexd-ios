@@ -88,6 +88,7 @@ class ValidatingTextField: CustomView {
                      placeholder: String? = nil,
                      keyboardType: UIKeyboardType? = nil,
                      isSecureTextEntry: Bool? = nil,
+                     autoCapitalizationType: UITextAutocapitalizationType = .sentences,
                      delegate: UITextFieldDelegate? = nil,
                      validationRules: ValidationRuleSet<String>? = nil) -> ValidatingTextField {
         let view = ValidatingTextField()
@@ -104,6 +105,9 @@ class ValidatingTextField: CustomView {
             view.textField.isSecureTextEntry = isSecureTextEntry
         }
 
+        view.textField.autocapitalizationType = autoCapitalizationType
+        view.textField.autocorrectionType = .no
+        view.textField.spellCheckingType = .no
         view.textField.delegate = delegate
 
         if let rules = validationRules {

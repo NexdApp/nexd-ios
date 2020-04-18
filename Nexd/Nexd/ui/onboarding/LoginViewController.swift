@@ -28,6 +28,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
     private lazy var email = ValidatingTextField.make(tag: 0,
                                                       placeholder: R.string.localizable.login_placeholder_username(),
                                                       keyboardType: .emailAddress,
+                                                      autoCapitalizationType: .none,
                                                       delegate: self,
                                                       validationRules: .email())
 
