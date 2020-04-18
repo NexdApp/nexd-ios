@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 19 colors.
+  /// This `R.color` struct is generated, and contains static references to 20 colors.
   struct color {
     /// Color `amountText`.
     static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
@@ -140,6 +140,8 @@ struct R: Rswift.Validatable {
     static let negativeButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "negativeButtonText")
     /// Color `nexdGreen`.
     static let nexdGreen = Rswift.ColorResource(bundle: R.hostingBundle, name: "nexdGreen")
+    /// Color `playerButton`.
+    static let playerButton = Rswift.ColorResource(bundle: R.hostingBundle, name: "playerButton")
     /// Color `positiveButtonText`.
     static let positiveButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "positiveButtonText")
     /// Color `profileImageBackground`.
@@ -288,6 +290,15 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func nexdGreen(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.nexdGreen, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "playerButton", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func playerButton(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.playerButton, compatibleWith: traitCollection)
     }
     #endif
 
@@ -468,10 +479,10 @@ struct R: Rswift.Validatable {
     static let outline_directions_walk_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_directions_walk_black_48pt")
     /// Image `outline_shopping_cart_black_48pt`.
     static let outline_shopping_cart_black_48pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "outline_shopping_cart_black_48pt")
-    /// Image `round_pause_black_36pt`.
-    static let round_pause_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_pause_black_36pt")
-    /// Image `round_play_arrow_black_36pt`.
-    static let round_play_arrow_black_36pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "round_play_arrow_black_36pt")
+    /// Image `pause`.
+    static let pause = Rswift.ImageResource(bundle: R.hostingBundle, name: "pause")
+    /// Image `play`.
+    static let play = Rswift.ImageResource(bundle: R.hostingBundle, name: "play")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "Chevron", bundle: ..., traitCollection: ...)`
@@ -649,16 +660,16 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "round_pause_black_36pt", bundle: ..., traitCollection: ...)`
-    static func round_pause_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.round_pause_black_36pt, compatibleWith: traitCollection)
+    /// `UIImage(named: "pause", bundle: ..., traitCollection: ...)`
+    static func pause(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.pause, compatibleWith: traitCollection)
     }
     #endif
 
     #if os(iOS) || os(tvOS)
-    /// `UIImage(named: "round_play_arrow_black_36pt", bundle: ..., traitCollection: ...)`
-    static func round_play_arrow_black_36pt(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
-      return UIKit.UIImage(resource: R.image.round_play_arrow_black_36pt, compatibleWith: traitCollection)
+    /// `UIImage(named: "play", bundle: ..., traitCollection: ...)`
+    static func play(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.play, compatibleWith: traitCollection)
     }
     #endif
 

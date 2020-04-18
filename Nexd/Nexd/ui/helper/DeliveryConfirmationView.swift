@@ -25,21 +25,6 @@ struct DeliveryConfirmationView: View {
         }
     }
 
-    struct ViewModel {
-        let navigator: ScreenNavigating
-        let helpList: HelpList
-
-        var requests: [Request] {
-            helpList.helpRequests.map { helpRequest -> Request in
-                Request.from(helpRequest: helpRequest)
-            }
-        }
-
-        func continueButtonTapped() {
-            navigator.toMainScreen()
-        }
-    }
-
     var viewModel: ViewModel
 
     var body: some View {
@@ -97,19 +82,45 @@ struct DeliveryConfirmationView: View {
     }
 }
 
+extension DeliveryConfirmationView {
+    struct ViewModel {
+        let navigator: ScreenNavigating
+        let helpList: HelpList
+
+        var requests: [Request] {
+            helpList.helpRequests.map { helpRequest -> Request in
+                Request.from(helpRequest: helpRequest)
+            }
+        }
+
+        func continueButtonTapped() {
+            navigator.toMainScreen()
+        }
+    }
+
+    static func createScreen(viewModel: ViewModel) -> UIViewController {
+        let screen = UIHostingController(rootView: DeliveryConfirmationView(viewModel: viewModel))
+        screen.view.backgroundColor = R.color.nexdGreen()
+        return screen
+    }
+ }
+
 #if DEBUG
     struct DeliveryConfirmationView_Previews: PreviewProvider {
         static var previews: some View {
             let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helpList: HelpList.with())
             return Group {
                 DeliveryConfirmationView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.locale, .init(identifier: "de"))
 
                 DeliveryConfirmationView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.colorScheme, .light)
                     .environment(\.locale, .init(identifier: "en"))
 
                 DeliveryConfirmationView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.colorScheme, .dark)
                     .environment(\.locale, .init(identifier: "en"))
             }

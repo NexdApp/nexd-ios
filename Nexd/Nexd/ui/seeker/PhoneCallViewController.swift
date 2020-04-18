@@ -14,10 +14,10 @@ enum PhoneCallError: Error {
 }
 class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel> {
     class ViewModel {
-        private let callsService: CallsService
+        private let phoneService: PhoneService
         private let navigator: ScreenNavigating
 
-        private lazy var phoneNumber = callsService.numbers()
+        private lazy var phoneNumber = phoneService.numbers()
         private let placeholder = R.string.localizable.seeker_phone_call_text_ios("???").asHeading()
 
         var text: Driver<NSAttributedString?> {
@@ -40,8 +40,8 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
             }
         }
 
-        init(callsService: CallsService, navigator: ScreenNavigating) {
-            self.callsService = callsService
+        init(phoneService: PhoneService, navigator: ScreenNavigating) {
+            self.phoneService = phoneService
             self.navigator = navigator
         }
     }

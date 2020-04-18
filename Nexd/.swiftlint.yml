@@ -3,9 +3,11 @@ included: # paths to include during linting. `--path` is ignored if present.
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
-  - Source/ExcludedFolder
-  - Source/ExcludedFile.swift
-  - Source/*/ExcludedFile.swift # Exclude files with a wildcard
+identifier_name:
+  excluded:
+    - id
+nesting:
+  type_level: 2 # allow view models to have nested view state
 line_length: 180
 function_body_length:
   - 100

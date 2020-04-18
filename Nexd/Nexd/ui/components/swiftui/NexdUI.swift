@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Combine
 import Rswift
 import SwiftUI
 
@@ -40,24 +41,6 @@ enum NexdUI {
                 .foregroundColor(R.color.darkHeadingText.color)
         }
     }
-
-    struct Card<Content: View>: View {
-        let content: Content
-
-        init(@ViewBuilder content: () -> Content) {
-            self.content = content()
-        }
-
-        var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.white)
-
-                content
-                    .padding(8)
-            }
-        }
-    }
 }
 
 #if DEBUG
@@ -72,12 +55,6 @@ enum NexdUI {
 
                 NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header("Anna")))
                     .background(R.color.nexdGreen.color)
-
-                NexdUI.Card {
-                    Text("Card")
-                }
-                .padding(20)
-                .background(R.color.nexdGreen.color)
             }
             .previewLayout(.sizeThatFits)
         }
