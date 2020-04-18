@@ -42,6 +42,7 @@ class ValidatingTextField: CustomView {
         addSubview(textField)
         addSubview(errorLabel)
         errorLabel.textAlignment = .left
+        errorLabel.numberOfLines = 2
     }
 
     override func setupConstraints() {

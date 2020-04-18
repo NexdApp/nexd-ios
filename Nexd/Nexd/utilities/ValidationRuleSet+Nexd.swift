@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import PhoneNumberKit
 import Validator
 
 extension ValidationRuleSet where InputType == String {
@@ -15,8 +16,8 @@ extension ValidationRuleSet where InputType == String {
         case missingLastName
         case passwordTooShort
         case passwordConfirmationFailed
-        case phoneNumberInvalid = "Phone number is invalid"
-        case zipCodeInvalid = "ZIP code is invalid"
+        case phoneNumberInvalid
+        case zipCodeInvalid
         var message: String {
             switch self {
             case .emailInvalid:
@@ -33,6 +34,12 @@ extension ValidationRuleSet where InputType == String {
 
             case .passwordConfirmationFailed:
                 return R.string.localizable.error_message_registration_password_match()
+
+            case .phoneNumberInvalid:
+                return R.string.localizable.error_message_input_validation_phone_number_invalid()
+
+            case .zipCodeInvalid:
+                return R.string.localizable.error_message_input_validation_zip_code_invalid()
             }
         }
     }
@@ -59,7 +66,12 @@ extension ValidationRuleSet where InputType == String {
     }
 
     static var phone: ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
+        let phoneNumberKit = PhoneNumberKit()
+        return ValidationRuleSet<String>(rules: [ValidationRuleCondition(error: ValidationErrors.phoneNumberInvalid, condition: { phoneNumber -> Bool in
+            guard let phoneNumber = phoneNumber else { return false}
+            return phoneNumberKit.isValidPhoneNumber(phoneNumber)
+        })])
+
     }
 
     static var zipCode: ValidationRuleSet<String> {

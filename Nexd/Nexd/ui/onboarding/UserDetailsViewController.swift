@@ -40,7 +40,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
                                               keyboardType: .phonePad,
                                               validationRules: .phone)
 
-    lazy var zipCode = ValidatingTextField.make(tag: 0,
+    lazy var zipCode = ValidatingTextField.make(tag: 1,
                                                 placeholder: R.string.localizable.registration_placeholder_zip(),
                                                 icon: R.image.hashtag(),
                                                 keyboardType: .phonePad,

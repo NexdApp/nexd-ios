@@ -678,8 +678,12 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 131 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 133 localization keys.
     struct localizable {
+      /// en translation: 
+      ///
+      /// Locales: en, de
+      static let error_message_input_validation_zip_code_invalid = Rswift.StringResource(key: "error_message_input_validation_zip_code_invalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
@@ -992,6 +996,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let transcribe_info_input_text_title_phone_number = Rswift.StringResource(key: "transcribe_info_input_text_title_phone_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Phone number doesn't match the expected format: +4915112345678
+      ///
+      /// Locales: en, de
+      static let error_message_input_validation_phone_number_invalid = Rswift.StringResource(key: "error_message_input_validation_phone_number_invalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Place
       ///
       /// Locales: en, de
@@ -1204,6 +1212,21 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let user_input_details_placeholder_zipCode = Rswift.StringResource(key: "user_input_details_placeholder_zipCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
+      /// en translation: 
+      ///
+      /// Locales: en, de
+      static func error_message_input_validation_zip_code_invalid(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_input_validation_zip_code_invalid", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_input_validation_zip_code_invalid"
+        }
+
+        return NSLocalizedString("error_message_input_validation_zip_code_invalid", bundle: bundle, comment: "")
+      }
 
       /// en translation: %1$@ ago, %2$@
       ///
@@ -2381,6 +2404,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("transcribe_info_input_text_title_phone_number", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Phone number doesn't match the expected format: +4915112345678
+      ///
+      /// Locales: en, de
+      static func error_message_input_validation_phone_number_invalid(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_input_validation_phone_number_invalid", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_input_validation_phone_number_invalid"
+        }
+
+        return NSLocalizedString("error_message_input_validation_phone_number_invalid", bundle: bundle, comment: "")
       }
 
       /// en translation: Place

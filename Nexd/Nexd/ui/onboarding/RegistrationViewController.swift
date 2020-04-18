@@ -50,7 +50,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
                                                         placeholder: R.string.localizable.registration_placeholder_confirm_password(),
                                                         icon: R.image.lock1(),
                                                         isSecureTextEntry: true,
-                                                        validationRules: .passwordConfirmation(dynamicTarget: { [weak self] in self?.password.value ?? "" }))
+                                                        validationRules: .passwordConfirmation { [weak self] in self?.password.value ?? "" })
 
     lazy var registerButton = UIButton()
 
