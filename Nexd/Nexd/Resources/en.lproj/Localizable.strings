@@ -31,7 +31,8 @@
 "error_message_registration_field_missing" = "Please fill in";
 "error_message_registration_invalid_email" = "Invalid E-mail address";
 "error_message_registration_password_match" = "Passwords dont match";
-"error_message_registration_password_too_short" = "At least 6 characters";
+"error_message_registration_password_too_short" = "At least 8 characters";
+"error_message_registration_user_already_exists" = "Account is already registered!";
 "error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
 "error_message_unknown" = "Unknown error";
 "error_message_user_detail_field_missing" = "Please fill in";
