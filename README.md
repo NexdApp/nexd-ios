@@ -17,6 +17,7 @@ $ open Nexd.xcworkspace
 # Update REST client
 
 Needs to be done when the backend deployed changes.
+Make sure [openapi-generator](https://openapi-generator.tech/docs/faq-generators/) is installed on your mac
 
 ## From local backend
 
@@ -29,7 +30,6 @@ $ ./update_swagger_client.sh
 ```
 $ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
 ```
-
 
 ## From producton backend
 
