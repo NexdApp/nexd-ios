@@ -25,6 +25,8 @@
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
+"error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678)";
+"error_message_input_validation_zip_code_invalid" = "";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_login_field_missing" = "Bitte ausfüllen";
 "error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
