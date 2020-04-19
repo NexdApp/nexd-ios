@@ -48,7 +48,7 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
 
     private let content = UIView()
     private let text = UITextView()
-    private let backButton = BackButton.make()
+    private let backButton = BackButton.make(tintColor: R.color.negativeButtonText()!)
 
     override func viewDidLoad() {
         super.viewDidLoad()

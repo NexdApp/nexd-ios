@@ -39,6 +39,15 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
                 viewModel.navigator.toDeliveryConfirmationScreen(helpList: viewModel.helpList)
             }
         }
+
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
     }
 
     struct Item {
@@ -54,6 +63,7 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
     }
 
     private let titleLabel = UILabel()
+    private let backButton = BackButton.make()
 
     // implemented in SwiftUI - just because I can!!
     private var list: UIHostingController<CheckoutListView>? {
@@ -88,6 +98,14 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
         view.addSubview(titleLabel)
         view.addSubview(completeButton)
 
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(13)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(132)
+        }
+
         titleLabel.snp.makeConstraints { make -> Void in
             make.top.equalToSuperview().inset(104)
             make.left.right.equalToSuperview().inset(24)
@@ -104,6 +122,8 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
     override func bind(viewModel: CheckoutViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.tileLabelText.drive(titleLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             completeButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.checkoutButtonTaps)
         )
 

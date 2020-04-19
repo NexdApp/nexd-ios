@@ -12,6 +12,18 @@ import SwiftUI
 
 enum NexdUI {
     enum Buttons {
+        static func back(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    R.image.chevron_left.image
+                        .foregroundColor(R.color.darkButtonText.color)
+                    text
+                        .font(R.font.proximaNovaSoftBold.font(size: 23))
+                        .foregroundColor(R.color.darkButtonText.color)
+                }
+            }
+        }
+
         static func `default`(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
