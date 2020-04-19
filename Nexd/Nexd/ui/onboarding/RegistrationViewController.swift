@@ -28,6 +28,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
                                               placeholder: R.string.localizable.registration_placeholder_email(),
                                               icon: R.image.mail1(),
                                               keyboardType: .emailAddress,
+                                              autoCapitalizationType: .none,
                                               validationRules: .email)
 
     lazy var firstName = ValidatingTextField.make(tag: 1,

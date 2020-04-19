@@ -29,6 +29,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
                                                       placeholder: R.string.localizable.login_placeholder_username(),
                                                       icon: R.image.person1(),
                                                       keyboardType: .emailAddress,
+                                                      autoCapitalizationType: .none,
                                                       delegate: self,
                                                       validationRules: .email)
 
