@@ -47,9 +47,12 @@ class Navigator {
     private let articlesService: ArticlesService
 
     lazy var navigationController: UINavigationController = {
-        let loginPage = StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))
+        let loginPage = StartAuthenticationFlowView.createScreen(viewModel: StartAuthenticationFlowView.ViewModel(navigator: self))
         let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService, authenticationService: authenticationService))
-        return UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
+
+        let controller = UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
+        controller.navigationBar.isHidden = true
+        return controller
     }()
 
     init(storage: Storage,
@@ -97,8 +100,8 @@ extension Navigator: ScreenNavigating {
     }
 
     func toStartAuthenticationFlow() {
-        guard let index = navigationController.viewControllers.firstIndex(where: { $0 is StartAuthenticationFlowViewController }) else {
-            navigationController.setViewControllers([StartAuthenticationFlowViewController(viewModel: StartAuthenticationFlowViewController.ViewModel(navigator: self))],
+        guard let index = navigationController.viewControllers.firstIndex(where: { ($0 is UIHostingController<StartAuthenticationFlowView>) }) else {
+            navigationController.setViewControllers([StartAuthenticationFlowView.createScreen(viewModel: StartAuthenticationFlowView.ViewModel(navigator: self))],
                                                     animated: true)
             return
         }

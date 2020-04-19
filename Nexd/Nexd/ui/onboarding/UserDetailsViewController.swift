@@ -36,27 +36,24 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 
     lazy var phone = ValidatingTextField.make(tag: 0,
                                               placeholder: R.string.localizable.registration_placeholder_phone(),
+                                              icon: R.image.hashtag(),
                                               keyboardType: .phonePad,
-                                              validationRules: .phone())
+                                              validationRules: .phone)
 
-    lazy var zipCode = ValidatingTextField.make(tag: 0,
+    lazy var zipCode = ValidatingTextField.make(tag: 1,
                                                 placeholder: R.string.localizable.registration_placeholder_zip(),
+                                                icon: R.image.hashtag(),
                                                 keyboardType: .phonePad,
-                                                validationRules: .zipCode())
+                                                validationRules: .zipCode)
 
     lazy var registerButton = UIButton()
 
     lazy var privacyPolicy = UITextView()
 
-    lazy var phoneNumberImageView = UIImageView()
-
-    lazy var postalCodeImageView = UIImageView()
-
     lazy var confirmTermsOfUseButton = UIButton()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImageViews()
         confirmTermsOfUseButton.addTarget(self, action: #selector(confirmTermsOfUseButtonPressed), for: .touchUpInside)
 
         keyboardDismisser = KeyboardDismisser(rootView: view)
@@ -91,27 +88,11 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
-        contentView.addSubview(phoneNumberImageView)
-        phoneNumberImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(phone.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
-        }
-
         contentView.addSubview(zipCode)
         zipCode.snp.makeConstraints { make -> Void in
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
             make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(postalCodeImageView)
-        postalCodeImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(zipCode.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(privacyPolicy)
@@ -121,7 +102,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 
         let term = R.string.localizable.registration_term_privacy_policy()
         let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
+        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacy")
         privacyPolicy.snp.makeConstraints { make -> Void in
             make.height.equalTo(54)
             make.rightMargin.equalTo(-8)
@@ -164,14 +145,6 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
     }
 
     override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) { }
-
-    private func setupImageViews() {
-        phoneNumberImageView.image = R.image.hashtag()
-        phoneNumberImageView.contentMode = .scaleAspectFit
-
-        postalCodeImageView.image = R.image.hashtag()
-        postalCodeImageView.contentMode = .scaleAspectFit
-    }
 
     private func drawCircle(on button: UIButton) {
         let buttonWidth = button.frame.size.width
@@ -234,21 +207,5 @@ extension UserDetailsViewController {
                 self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
             })
             .disposed(by: disposeBag)
-    }
-}
-
-private extension ValidationRuleSet where InputType == String {
-    enum ValidationErrors: String, ValidationError {
-        case phoneNumberInvalid = "Phone number is invalid"
-        case zipCodeInvalid = "ZIP code is invalid"
-        var message: String { return rawValue }
-    }
-
-    static func phone() -> ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRuleLength(min: 3, error: ValidationErrors.phoneNumberInvalid)])
-    }
-
-    static func zipCode() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRulePattern(pattern: "^[0-9]+$", error: ValidationErrors.zipCodeInvalid)])
     }
 }

@@ -41,7 +41,8 @@ class ValidatingTextField: CustomView {
     override func setupView() {
         addSubview(textField)
         addSubview(errorLabel)
-        errorLabel.textAlignment = .right
+        errorLabel.textAlignment = .left
+        errorLabel.numberOfLines = 2
     }
 
     override func setupConstraints() {
@@ -53,7 +54,7 @@ class ValidatingTextField: CustomView {
 
         errorLabel.snp.makeConstraints { make in
             make.top.equalTo(textField.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(42)
         }
     }
 
@@ -86,6 +87,7 @@ class ValidatingTextField: CustomView {
 
     static func make(tag: Int,
                      placeholder: String? = nil,
+                     icon: UIImage? = nil,
                      keyboardType: UIKeyboardType? = nil,
                      isSecureTextEntry: Bool? = nil,
                      delegate: UITextFieldDelegate? = nil,
@@ -93,8 +95,7 @@ class ValidatingTextField: CustomView {
         let view = ValidatingTextField()
 
         view.textField.tag = tag
-        view.textField.styled()
-        view.textField.attributedPlaceholder = placeholder?.asPlaceholder()
+        view.textField.styled(placeholder: placeholder, icon: icon)
 
         if let keyboardType = keyboardType {
             view.textField.keyboardType = keyboardType
