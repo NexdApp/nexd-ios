@@ -25,13 +25,16 @@
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
+"error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678";
+"error_message_input_validation_zip_code_invalid" = "Bitte gib die korrekte Postleitzahl an";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_login_field_missing" = "Bitte ausfüllen";
 "error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_registration_field_missing" = "Bitte ausfüllen";
 "error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
 "error_message_registration_password_match" = "Passwörter stimmen nicht überein";
-"error_message_registration_password_too_short" = "mind. 6 Zeichen";
+"error_message_registration_password_too_short" = "mind. 8 Zeichen";
+"error_message_registration_user_already_exists" = "Das Benutzerkonto existiert bereits.";
 "error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
 "error_message_unknown" = "Unbekannter Fehler";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";

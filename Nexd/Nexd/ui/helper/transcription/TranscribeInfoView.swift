@@ -27,7 +27,7 @@ struct TranscribeInfoView: View {
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
 
-                List {
+                ScrollView {
                     NexdUI.TextField(tag: 0,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
                                      onChanged: { string in self.viewModel.state.firstName = string })

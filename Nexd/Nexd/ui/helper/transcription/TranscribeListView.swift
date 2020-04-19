@@ -34,6 +34,7 @@ struct TranscribeListView: View {
                         HStack {
                             Text(listItem.title)
                                 .font(R.font.proximaNovaSoftMedium.font(size: 18))
+                                .foregroundColor(R.color.listItemTitle.color)
                                 .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
                                 .padding(.leading, 14)
                         }

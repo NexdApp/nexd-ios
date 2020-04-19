@@ -27,15 +27,17 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
     private lazy var logo = UIImageView()
     private lazy var email = ValidatingTextField.make(tag: 0,
                                                       placeholder: R.string.localizable.login_placeholder_username(),
+                                                      icon: R.image.person1(),
                                                       keyboardType: .emailAddress,
                                                       delegate: self,
-                                                      validationRules: .email())
+                                                      validationRules: .email)
 
     private lazy var password = ValidatingTextField.make(tag: 1,
                                                          placeholder: R.string.localizable.login_placeholder_password(),
+                                                         icon: R.image.lock2(),
                                                          isSecureTextEntry: true,
                                                          delegate: self,
-                                                         validationRules: .password())
+                                                         validationRules: .password)
     private lazy var loginButton = UIButton()
 
     private lazy var usernameImageView = UIImageView()
@@ -45,8 +47,6 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismisser = KeyboardDismisser(rootView: view)
-
-        setupImageViews()
 
         view.backgroundColor = .white
         title = R.string.localizable.login_screen_title()
@@ -126,14 +126,6 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
     override func bind(viewModel: LoginViewController.ViewModel, disposeBag: DisposeBag) {
 
     }
-
-    fileprivate func setupImageViews() {
-        usernameImageView.image = R.image.person1()
-        usernameImageView.contentMode = .scaleAspectFit
-
-        passwordImageView.image = R.image.lock2()
-        passwordImageView.contentMode = .scaleAspectFit
-    }
 }
 
 extension LoginViewController {
@@ -184,21 +176,5 @@ extension LoginViewController: UITextFieldDelegate {
         }
 
         return false
-    }
-}
-
-private extension ValidationRuleSet where InputType == String {
-    enum ValidationErrors: String, ValidationError {
-        case emailInvalid = "Email address is invalid"
-        case passwordTooShort = "Password is too short!"
-        var message: String { return rawValue }
-    }
-
-    static func email() -> ValidationRuleSet<String> {
-        ValidationRuleSet(rules: [ValidationRulePattern(pattern: EmailValidationPattern.standard, error: ValidationErrors.emailInvalid)])
-    }
-
-    static func password() -> ValidationRuleSet<String> {
-        ValidationRuleSet<String>(rules: [ValidationRuleLength(min: 5, error: ValidationErrors.passwordTooShort)])
     }
 }

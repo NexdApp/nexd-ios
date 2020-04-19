@@ -8,6 +8,12 @@ PODS:
   - ObjcExceptionBridging (1.0.1):
     - ObjcExceptionBridging/ObjcExceptionBridging (= 1.0.1)
   - ObjcExceptionBridging/ObjcExceptionBridging (1.0.1)
+  - PhoneNumberKit (3.2.0):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.2.0)
+    - PhoneNumberKit/UIKit (= 3.2.0)
+  - PhoneNumberKit/PhoneNumberKitCore (3.2.0)
+  - PhoneNumberKit/UIKit (3.2.0):
+    - PhoneNumberKit/PhoneNumberKitCore
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
@@ -32,6 +38,7 @@ DEPENDENCIES:
   - Cleanse
   - NexdClient (from `lib/openapi`)
   - NVActivityIndicatorView
+  - PhoneNumberKit
   - R.swift
   - RxCocoa
   - RxCombine
@@ -46,6 +53,7 @@ SPEC REPOS:
     - Cleanse
     - NVActivityIndicatorView
     - ObjcExceptionBridging
+    - PhoneNumberKit
     - R.swift
     - R.swift.Library
     - RxCocoa
@@ -66,6 +74,7 @@ SPEC CHECKSUMS:
   NexdClient: 9e4020b4159f4e3458837dbcb183b727f86b4337
   NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   ObjcExceptionBridging: c30e00eb3700467e695faeea30e26e18bd445001
+  PhoneNumberKit: df411d46177d1492da84e10b6c093846dd861452
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
   RxCocoa: 13d2a4d7546a34b8ececae8c281e4ea1dbb94f2b
@@ -77,6 +86,6 @@ SPEC CHECKSUMS:
   Validator: 80a6f567220c962dfd2d9928ae98a8c1d164f6f4
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: bfb7febe173c432fa4458cc7f424e7707d5387f0
+PODFILE CHECKSUM: e0040e03b2f49f19ea31cc9fca3d6c6435f28792
 
 COCOAPODS: 1.9.1
