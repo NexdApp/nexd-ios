@@ -11,6 +11,7 @@ target 'nexd' do
   pod 'Cleanse'
   pod 'NexdClient', :path => 'lib/openapi'
   pod 'NVActivityIndicatorView'
+  pod 'PhoneNumberKit'
   pod 'R.swift'
   pod 'RxSwift'
   pod 'RxCocoa'

@@ -106,7 +106,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.color` struct is generated, and contains static references to 20 colors.
+  /// This `R.color` struct is generated, and contains static references to 23 colors.
   struct color {
     /// Color `amountText`.
     static let amountText = Rswift.ColorResource(bundle: R.hostingBundle, name: "amountText")
@@ -132,6 +132,12 @@ struct R: Rswift.Validatable {
     static let greetingSubline = Rswift.ColorResource(bundle: R.hostingBundle, name: "greetingSubline")
     /// Color `headingText`.
     static let headingText = Rswift.ColorResource(bundle: R.hostingBundle, name: "headingText")
+    /// Color `lightButtonBackground`.
+    static let lightButtonBackground = Rswift.ColorResource(bundle: R.hostingBundle, name: "lightButtonBackground")
+    /// Color `lightButtonIcon`.
+    static let lightButtonIcon = Rswift.ColorResource(bundle: R.hostingBundle, name: "lightButtonIcon")
+    /// Color `lightButtonText`.
+    static let lightButtonText = Rswift.ColorResource(bundle: R.hostingBundle, name: "lightButtonText")
     /// Color `listItemDetailsText`.
     static let listItemDetailsText = Rswift.ColorResource(bundle: R.hostingBundle, name: "listItemDetailsText")
     /// Color `listItemTitle`.
@@ -254,6 +260,33 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func headingText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.headingText, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "lightButtonBackground", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func lightButtonBackground(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.lightButtonBackground, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "lightButtonIcon", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func lightButtonIcon(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.lightButtonIcon, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "lightButtonText", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func lightButtonText(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.lightButtonText, compatibleWith: traitCollection)
     }
     #endif
 
@@ -427,7 +460,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 27 images.
+  /// This `R.image` struct is generated, and contains static references to 28 images.
   struct image {
     /// Image `Chevron`.
     static let chevron = Rswift.ImageResource(bundle: R.hostingBundle, name: "Chevron")
@@ -441,6 +474,8 @@ struct R: Rswift.Validatable {
     static let person1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Person 1")
     /// Image `Rectangle 11`.
     static let rectangle11 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Rectangle 11")
+    /// Image `Shopbag 1`.
+    static let shopbag1 = Rswift.ImageResource(bundle: R.hostingBundle, name: "Shopbag 1")
     /// Image `baseline_account_box_black_18pt`.
     static let baseline_account_box_black_18pt = Rswift.ImageResource(bundle: R.hostingBundle, name: "baseline_account_box_black_18pt")
     /// Image `baseline_account_box_black_24pt`.
@@ -523,6 +558,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "Rectangle 11", bundle: ..., traitCollection: ...)`
     static func rectangle11(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.rectangle11, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "Shopbag 1", bundle: ..., traitCollection: ...)`
+    static func shopbag1(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.shopbag1, compatibleWith: traitCollection)
     }
     #endif
 
@@ -678,7 +720,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 130 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 133 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -704,6 +746,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_accepted_section = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Account is already registered!
+      ///
+      /// Locales: en, de
+      static let error_message_registration_user_already_exists = Rswift.StringResource(key: "error_message_registration_user_already_exists", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Add order to Current Item List
       ///
       /// Locales: en, de
@@ -720,7 +766,7 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let delivery_request_address = Rswift.StringResource(key: "delivery_request_address", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: At least 6 characters
+      /// en translation: At least 8 characters
       ///
       /// Locales: en, de
       static let error_message_registration_password_too_short = Rswift.StringResource(key: "error_message_registration_password_too_short", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
@@ -988,6 +1034,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let transcribe_info_input_text_title_phone_number = Rswift.StringResource(key: "transcribe_info_input_text_title_phone_number", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Phone number doesn't match the expected format: +4915112345678
+      ///
+      /// Locales: en, de
+      static let error_message_input_validation_phone_number_invalid = Rswift.StringResource(key: "error_message_input_validation_phone_number_invalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Place
       ///
       /// Locales: en, de
@@ -996,6 +1046,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_phone_call_text_ios = Rswift.StringResource(key: "seeker_phone_call_text_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Please enter the valid zip code
+      ///
+      /// Locales: en, de
+      static let error_message_input_validation_zip_code_invalid = Rswift.StringResource(key: "error_message_input_validation_zip_code_invalid", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Please fill in
       ///
       /// Locales: en, de
@@ -1297,6 +1351,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_request_overview_heading_accepted_section", bundle: bundle, comment: "")
       }
 
+      /// en translation: Account is already registered!
+      ///
+      /// Locales: en, de
+      static func error_message_registration_user_already_exists(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_registration_user_already_exists", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_registration_user_already_exists"
+        }
+
+        return NSLocalizedString("error_message_registration_user_already_exists", bundle: bundle, comment: "")
+      }
+
       /// en translation: Add order to Current Item List
       ///
       /// Locales: en, de
@@ -1357,7 +1426,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("delivery_request_address", bundle: bundle, comment: "")
       }
 
-      /// en translation: At least 6 characters
+      /// en translation: At least 8 characters
       ///
       /// Locales: en, de
       static func error_message_registration_password_too_short(preferredLanguages: [String]? = nil) -> String {
@@ -2364,6 +2433,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transcribe_info_input_text_title_phone_number", bundle: bundle, comment: "")
       }
 
+      /// en translation: Phone number doesn't match the expected format: +4915112345678
+      ///
+      /// Locales: en, de
+      static func error_message_input_validation_phone_number_invalid(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_input_validation_phone_number_invalid", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_input_validation_phone_number_invalid"
+        }
+
+        return NSLocalizedString("error_message_input_validation_phone_number_invalid", bundle: bundle, comment: "")
+      }
+
       /// en translation: Place
       ///
       /// Locales: en, de
@@ -2394,6 +2478,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("seeker_phone_call_text_ios", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Please enter the valid zip code
+      ///
+      /// Locales: en, de
+      static func error_message_input_validation_zip_code_invalid(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_input_validation_zip_code_invalid", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_input_validation_zip_code_invalid"
+        }
+
+        return NSLocalizedString("error_message_input_validation_zip_code_invalid", bundle: bundle, comment: "")
       }
 
       /// en translation: Please fill in

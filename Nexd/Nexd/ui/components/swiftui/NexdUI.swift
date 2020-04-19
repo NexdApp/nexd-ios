@@ -24,6 +24,27 @@ enum NexdUI {
                 }
             }
         }
+
+        static func lightButton(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    text
+                        .font(R.font.proximaNovaSoftBold.font(size: 25))
+                        .foregroundColor(R.color.lightButtonText.color)
+                        .padding(.leading, 29)
+                        .padding(.trailing, 8)
+
+                    Spacer()
+                        .frame(height: 70)
+
+                    R.image.chevron.image
+                        .foregroundColor(R.color.lightButtonIcon.color)
+                        .padding(.trailing, 27)
+                }
+                .background(R.color.lightButtonBackground.color)
+                .cornerRadius(10)
+            }
+        }
     }
 
     enum Headings {

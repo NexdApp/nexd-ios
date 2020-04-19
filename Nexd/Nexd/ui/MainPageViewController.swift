@@ -103,7 +103,6 @@ class MainPageViewController: ViewController<MainPageViewController.ViewModel> {
         super.viewDidLoad()
 
         view.backgroundColor = R.color.nexdGreen()
-        navigationController?.navigationBar.isHidden = true
 
         bottomBackground.backgroundColor = .white
         view.addSubview(bottomBackground)
