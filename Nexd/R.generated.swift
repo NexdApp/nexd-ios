@@ -678,7 +678,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 130 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 131 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -1172,6 +1172,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_overview_empty_label = Rswift.StringResource(key: "seeker_overview_empty_label", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: You need to agree to the terms of use
+      ///
+      /// Locales: en, de
+      static let error_message_user_terms_of_use_consent_missing = Rswift.StringResource(key: "error_message_user_terms_of_use_consent_missing", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Your request
       ///
       /// Locales: en, de
@@ -3056,6 +3060,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_overview_empty_label", bundle: bundle, comment: "")
+      }
+
+      /// en translation: You need to agree to the terms of use
+      ///
+      /// Locales: en, de
+      static func error_message_user_terms_of_use_consent_missing(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_user_terms_of_use_consent_missing", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_user_terms_of_use_consent_missing"
+        }
+
+        return NSLocalizedString("error_message_user_terms_of_use_consent_missing", bundle: bundle, comment: "")
       }
 
       /// en translation: Your request

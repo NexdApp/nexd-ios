@@ -23,11 +23,9 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
         let firstName: String
         let lastName: String
     }
-
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
-
     private let caShapeLayer = CAShapeLayer()
 
     lazy var scrollView = UIScrollView()
@@ -46,18 +44,15 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 
     lazy var registerButton = UIButton()
 
-    lazy var privacyPolicy = UITextView()
 
     lazy var phoneNumberImageView = UIImageView()
 
     lazy var postalCodeImageView = UIImageView()
 
-    lazy var confirmTermsOfUseButton = UIButton()
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupImageViews()
-        confirmTermsOfUseButton.addTarget(self, action: #selector(confirmTermsOfUseButtonPressed), for: .touchUpInside)
 
         keyboardDismisser = KeyboardDismisser(rootView: view)
 
@@ -114,28 +109,6 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.right.equalToSuperview().offset(-41)
         }
 
-        contentView.addSubview(privacyPolicy)
-        privacyPolicy.backgroundColor = .clear
-        privacyPolicy.isScrollEnabled = false
-        privacyPolicy.textContainerInset = .zero
-
-        let term = R.string.localizable.registration_term_privacy_policy()
-        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacypage")
-        privacyPolicy.snp.makeConstraints { make -> Void in
-            make.height.equalTo(54)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(zipCode.snp.bottom).offset(50)
-        }
-
-        contentView.addSubview(confirmTermsOfUseButton)
-        confirmTermsOfUseButton.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(privacyPolicy.snp_centerY).offset(-7.5)
-            make.left.equalToSuperview().offset(27)
-            make.right.equalTo(privacyPolicy.snp.left).offset(-9)
-            make.height.equalTo(26)
-            make.width.equalTo(26)
-        }
 
         contentView.addSubview(registerButton)
         registerButton.style(text: R.string.localizable.registration_button_title_send())
@@ -144,7 +117,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(privacyPolicy.snp_bottom).offset(150)
+            make.top.equalTo(zipCode.snp_bottom).offset(250)
             make.bottom.equalToSuperview().offset(-20)
         }
     }
@@ -160,7 +133,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
     }
 
     override func viewDidLayoutSubviews() {
-        drawCircle(on: confirmTermsOfUseButton)
+
     }
 
     override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) { }
@@ -199,18 +172,13 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 }
 
 extension UserDetailsViewController {
-    @objc func confirmTermsOfUseButtonPressed() {
-        if caShapeLayer.fillColor == UIColor.clear.cgColor {
-            caShapeLayer.fillColor = R.color.nexdGreen()?.cgColor
-        } else {
-            caShapeLayer.fillColor = UIColor.clear.cgColor
-        }
-    }
+ 
 
     @objc func registerButtonPressed(sender: UIButton!) {
         let hasInvalidInput = [phone, zipCode]
             .map { $0.validate() }
             .contains(false)
+
 
         guard !hasInvalidInput else {
             log.warning("Cannot update user, mandatory field is missing!")

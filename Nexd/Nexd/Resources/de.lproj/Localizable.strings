@@ -36,6 +36,7 @@
 "error_message_unknown" = "Unbekannter Fehler";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "error_title" = "Fehler";
+"error_message_user_terms_of_use_consent_missing" = "Bitte den Nutzungsbedingungen zustimmen";
 "helper_call_overview_screen_title" = "Offene Anrufe:";
 "helper_request_detail_button_accept" = "Mach ich!";
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";

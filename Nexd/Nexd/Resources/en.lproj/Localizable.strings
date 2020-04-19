@@ -35,6 +35,7 @@
 "error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
 "error_message_unknown" = "Unknown error";
 "error_message_user_detail_field_missing" = "Please fill in";
+"error_message_user_terms_of_use_consent_missing" = "You need to agree to the terms of use";
 "error_title" = "Error";
 "helper_call_overview_screen_title" = "Open calls:";
 "helper_request_detail_button_accept" = "Will do!";
