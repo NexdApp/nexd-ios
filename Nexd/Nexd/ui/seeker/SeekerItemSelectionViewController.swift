@@ -24,7 +24,9 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
         let titleText = Driver.just(R.string.localizable.seeker_item_selection_screen_title().asHeading())
 
-        var cancelButtonTaps: Binder<Void> {
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
                 viewModel.navigator.goBack()
             }
@@ -84,28 +86,30 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
     }()
 
     private var confirmButton = ConfirmButton()
-    private var cancelButton = CancelButton()
+    private let backButton = BackButton.make()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = R.color.nexdGreen()
 
-        view.addSubview(titleText)
-        titleText.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(75)
-            make.left.equalToSuperview().offset(35)
-            make.right.equalToSuperview().offset(35)
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(12)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(22)
+            make.height.equalTo(22)
         }
 
-        view.addSubview(cancelButton)
-        cancelButton.snp.makeConstraints { make in
-            make.left.equalTo(34)
+        view.addSubview(titleText)
+        titleText.snp.makeConstraints { make in
+            make.top.equalTo(backButton.snp.bottom).offset(29)
+            make.left.equalToSuperview().offset(35)
+            make.right.equalToSuperview().offset(35)
         }
 
         view.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
             make.left.equalTo(34)
-            make.top.equalTo(cancelButton.snp.bottom).offset(10)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
         }
 
@@ -114,14 +118,16 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
             make.left.equalToSuperview().offset(34)
             make.right.equalToSuperview().offset(-36)
             make.top.equalTo(titleText.snp.bottom).offset(20)
-            make.bottom.equalTo(cancelButton.snp.top).offset(-32)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-32)
         }
     }
 
     override func bind(viewModel: SeekerItemSelectionViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.titleText.drive(titleText.rx.attributedText),
-            cancelButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.cancelButtonTaps),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
+
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             confirmButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.confirmButtonTaps)
         )
 
