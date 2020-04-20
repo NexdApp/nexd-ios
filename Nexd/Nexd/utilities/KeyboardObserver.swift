@@ -32,6 +32,7 @@ class KeyboardObserver {
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
             return
         }
+
         keyboardWillShow?(keyboardSize)
     }
 
@@ -41,7 +42,7 @@ class KeyboardObserver {
 
     static func insetting(scrollView: UIScrollView) -> KeyboardObserver {
         return KeyboardObserver(keyboardWillShow: { keyboardSize in
-            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height - 150, right: 0.0)
+            let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize.height, right: 0.0)
             scrollView.contentInset = contentInsets
             scrollView.scrollIndicatorInsets = contentInsets
 

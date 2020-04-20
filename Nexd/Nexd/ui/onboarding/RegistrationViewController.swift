@@ -79,13 +79,11 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardObserver = KeyboardObserver.insetting(scrollView: scrollView)
-        
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         keyboardObserver = nil
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -346,4 +344,3 @@ private extension ValidationRuleSet where InputType == String {
                                                                          error: ValidationErrors.passwordConfirmationFailed)])
     }
 }
-
