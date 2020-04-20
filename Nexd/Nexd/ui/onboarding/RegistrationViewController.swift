@@ -280,7 +280,7 @@ extension RegistrationViewController {
 
         guard didAgreeTermsOfUse else {
             log.warning("Cannot update user, did not agree to privacy policy")
-            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_user_terms_of_use_consent_missing())
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
             return
         }
         guard !hasInvalidInput else {
