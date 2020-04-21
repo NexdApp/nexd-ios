@@ -6,7 +6,7 @@ on:
 
 jobs:
   poeditor:
-    runs-on: macos-10.15
+    runs-on: ubuntu-latest
     steps:
       - name: English
         uses: joelwmale/webhook-action@master
