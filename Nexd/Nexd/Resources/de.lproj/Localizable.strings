@@ -8,7 +8,7 @@
 "delivery_confirmation_phone_number_title" = "Telefonnummer";
 "delivery_confirmation_screen_title" = "Vielen Dank für deine Hilfe!";
 "delivery_confirmation_section_header" = "Kontaktinformation für %1$@:";
-"delivery_dialog_deliver_description" = "Bestätigen Sie die Abgabe aller angenommen Aufträge";
+"delivery_dialog_deliver_description" = "Bestätige die Abgabe aller angenommen Aufträge";
 "delivery_dialog_deliver_title" = "Abgeben";
 "delivery_dialog_delivery_button_confirm" = "Bestätigen";
 "delivery_request_address" = "Adresse: ";
