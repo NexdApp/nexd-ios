@@ -19,27 +19,41 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     }
 
     class ViewModel {
-        let navigator: ScreenNavigating
-        let requestService: HelpRequestsService
-        let items: [Item]
-        let onSuccess: (() -> Void)?
-        let onError: ((Error) -> Void)?
+        private let navigator: ScreenNavigating
+        private let userService: UserService
+        private let helpRequestsService: HelpRequestsService
+        fileprivate let items: [Item]
+        private let onSuccess: (() -> Void)?
+        private let onError: ((Error) -> Void)?
+
+        private lazy var profile = userService.findMe().asObservable().share(replay: 1)
 
         let titleText = Driver.just(R.string.localizable.seeker_detail_screen_title().asHeading())
+        var firstName: Driver<String?> { profile.map { $0.firstName }.asDriver(onErrorJustReturn: nil) }
+        var lastName: Driver<String?> { profile.map { $0.lastName }.asDriver(onErrorJustReturn: nil) }
+        var street: Driver<String?> { profile.map { $0.street }.asDriver(onErrorJustReturn: nil) }
+        var number: Driver<String?> { profile.map { $0.number }.asDriver(onErrorJustReturn: nil) }
+        var zipCode: Driver<String?> { profile.map { $0.zipCode }.asDriver(onErrorJustReturn: nil) }
+        var city: Driver<String?> { profile.map { $0.city }.asDriver(onErrorJustReturn: nil) }
+        var phoneNumber: Driver<String?> { profile.map { $0.phoneNumber }.asDriver(onErrorJustReturn: nil) }
 
         init(navigator: ScreenNavigating,
-             requestService: HelpRequestsService,
+             userService: UserService,
+             helpRequestsService: HelpRequestsService,
              items: [Item],
              onSuccess: (() -> Void)? = nil,
              onError: ((Error) -> Void)? = nil) {
             self.navigator = navigator
-            self.requestService = requestService
+            self.userService = userService
+            self.helpRequestsService = helpRequestsService
             self.items = items
             self.onSuccess = onSuccess
             self.onError = onError
         }
 
-        func confirm(street: String?,
+        func confirm(firstName: String?,
+                     lastName: String?,
+                     street: String?,
                      number: String?,
                      zipCode: String?,
                      city: String?,
@@ -50,22 +64,23 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                 .filter { $0.amount > 0 }
                 .map { item in HelpRequestsService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
 
-            let request = HelpRequestsService.Request(street: street,
-                                                 number: number,
-                                                 zipCode: zipCode,
-                                                 city: city,
-                                                 items: requestItems,
-                                                 additionalRequest: additionalRequest,
-                                                 deliveryComment: deliveryComment,
-                                                 phoneNumber: phoneNumber)
+            let request = HelpRequestsService.Request(firstName: firstName,
+                                                      lastName: lastName,
+                                                      street: street,
+                                                      number: number,
+                                                      zipCode: zipCode,
+                                                      city: city,
+                                                      items: requestItems,
+                                                      additionalRequest: additionalRequest,
+                                                      deliveryComment: deliveryComment,
+                                                      phoneNumber: phoneNumber)
 
-            return requestService.submitRequest(request: request)
+            return helpRequestsService.submitRequest(request: request)
                 .asCompletable()
                 .do(onError: { [weak self] error in
                     log.error("Error: \(error)")
                     self?.onError?(error)
                 }, onCompleted: { [weak self] in
-                    log.debug("Succesful:")
                     self?.onSuccess?()
                 })
                 .catchError { _ in Completable.empty() }
@@ -77,6 +92,8 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
     private let stackView = UIStackView()
+    private let firstName = TextField()
+    private let lastName = TextField()
     private let street = TextField()
     private let number = TextField()
     private let zipCode = TextField()
@@ -125,12 +142,30 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
             }
         }
 
+        scrollView.addSubview(firstName)
+        firstName.withBottomBorder()
+        firstName.placeholder = R.string.localizable.user_input_details_placeholder_firstname()
+        firstName.snp.makeConstraints { make in
+            make.height.equalTo(36)
+            make.top.equalTo(stackView.snp.bottom).offset(23)
+            make.left.equalToSuperview().inset(13)
+        }
+
+        scrollView.addSubview(lastName)
+        lastName.withBottomBorder()
+        lastName.placeholder = R.string.localizable.user_input_details_placeholder_lastname()
+        lastName.snp.makeConstraints { make in
+            make.height.equalTo(36)
+            make.top.equalTo(firstName.snp.bottom).offset(23)
+            make.left.equalToSuperview().inset(13)
+        }
+
         scrollView.addSubview(street)
         street.withBottomBorder()
         street.placeholder = R.string.localizable.user_input_details_placeholder_street()
         street.snp.makeConstraints { make in
             make.height.equalTo(36)
-            make.top.equalTo(stackView.snp.bottom).offset(23)
+            make.top.equalTo(lastName.snp.bottom).offset(23)
             make.left.equalToSuperview().inset(13)
         }
 
@@ -210,10 +245,19 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     override func bind(viewModel: RequestConfirmationViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.titleText.drive(titleLabel.rx.attributedText),
+            viewModel.firstName.drive(firstName.rx.text),
+            viewModel.lastName.drive(lastName.rx.text),
+            viewModel.street.drive(street.rx.text),
+            viewModel.number.drive(number.rx.text),
+            viewModel.zipCode.drive(zipCode.rx.text),
+            viewModel.city.drive(city.rx.text),
+            viewModel.phoneNumber.drive(phoneNumber.rx.text),
             confirmButton.rx.controlEvent(.touchUpInside)
                 .flatMap { [weak self] _ -> Completable in
                     guard let self = self else { return .empty() }
-                    return viewModel.confirm(street: self.street.text,
+                    return viewModel.confirm(firstName: self.firstName.text,
+                                             lastName: self.lastName.text,
+                                             street: self.street.text,
                                              number: self.number.text,
                                              zipCode: self.zipCode.text,
                                              city: self.city.text,

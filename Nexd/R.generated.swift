@@ -720,7 +720,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 133 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 135 localization keys.
     struct localizable {
       /// en translation: %1$@ ago, %2$@
       ///
@@ -914,6 +914,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let transcribe_info_input_text_title_first_name = Rswift.StringResource(key: "transcribe_info_input_text_title_first_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: First name
+      ///
+      /// Locales: en, de
+      static let user_input_details_placeholder_firstname = Rswift.StringResource(key: "user_input_details_placeholder_firstname", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: How would you like to help?
       ///
       /// Locales: en, de
@@ -954,6 +958,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let transcribe_info_input_text_title_last_name = Rswift.StringResource(key: "transcribe_info_input_text_title_last_name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Last name
+      ///
+      /// Locales: en, de
+      static let user_input_details_placeholder_lastname = Rswift.StringResource(key: "user_input_details_placeholder_lastname", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: List
       ///
       /// Locales: en, de
@@ -1983,6 +1991,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("transcribe_info_input_text_title_first_name", bundle: bundle, comment: "")
       }
 
+      /// en translation: First name
+      ///
+      /// Locales: en, de
+      static func user_input_details_placeholder_firstname(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("user_input_details_placeholder_firstname", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "user_input_details_placeholder_firstname"
+        }
+
+        return NSLocalizedString("user_input_details_placeholder_firstname", bundle: bundle, comment: "")
+      }
+
       /// en translation: How would you like to help?
       ///
       /// Locales: en, de
@@ -2131,6 +2154,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("transcribe_info_input_text_title_last_name", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Last name
+      ///
+      /// Locales: en, de
+      static func user_input_details_placeholder_lastname(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("user_input_details_placeholder_lastname", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "user_input_details_placeholder_lastname"
+        }
+
+        return NSLocalizedString("user_input_details_placeholder_lastname", bundle: bundle, comment: "")
       }
 
       /// en translation: List

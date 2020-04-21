@@ -132,7 +132,9 @@
 "transcribe_info_screen_title" = "Call Transcript";
 "user_input_details_confirm" = "Confirm";
 "user_input_details_placeholder_city" = "Place";
+"user_input_details_placeholder_firstname" = "First name";
 "user_input_details_placeholder_houseNumber" = "No.";
+"user_input_details_placeholder_lastname" = "Last name";
 "user_input_details_placeholder_phoneNumber" = "Tel.";
 "user_input_details_placeholder_street" = "Street";
 "user_input_details_placeholder_zipCode" = "Zip code";
