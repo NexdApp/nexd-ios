@@ -16,15 +16,15 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
     struct ViewModel {
         let navigator: ScreenNavigating
     }
-    
+
     private var didAgreeTermsOfUse: Bool = false
 
     private let disposeBag = DisposeBag()
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
-    
+
     private let caShapeLayer = CAShapeLayer()
-    
+
     lazy var logo = UIImageView()
 
     lazy var scrollView = UIScrollView()
@@ -59,9 +59,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
                                                         validationRules: .passwordConfirmation { [weak self] in self?.password.value ?? "" })
 
     lazy var registerButton = UIButton()
-    
     lazy var privacyPolicy = UITextView()
-    
     lazy var confirmTermsOfUseButton = UIButton()
 
     override func viewDidLoad() {
@@ -86,7 +84,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
         super.viewDidDisappear(animated)
         keyboardObserver = nil
     }
-    
     override func viewDidLayoutSubviews() {
         drawCircle(on: confirmTermsOfUseButton)
     }
@@ -148,12 +145,10 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.rightMargin.equalTo(-8)
             make.top.equalTo(password.snp.bottom).offset(Style.verticalPadding)
         }
-        
         contentView.addSubview(privacyPolicy)
         privacyPolicy.backgroundColor = .clear
         privacyPolicy.isScrollEnabled = false
         privacyPolicy.textContainerInset = .zero
-        
         let term = R.string.localizable.registration_term_privacy_policy()
         let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
         privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacy")
@@ -162,7 +157,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.rightMargin.equalTo(-8)
             make.top.equalTo(confirmPassword.snp.bottom).offset(12)
         }
-        
         contentView.addSubview(confirmTermsOfUseButton)
         confirmTermsOfUseButton.snp.makeConstraints { make -> Void in
             make.centerY.equalTo(privacyPolicy.snp_centerY).offset(-7.5)
@@ -183,7 +177,6 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
             make.bottom.equalToSuperview().offset(-20)
         }
     }
-    
     private func drawCircle(on button: UIButton) {
         let buttonWidth = button.frame.size.width
         let buttonHeight = button.frame.size.height
@@ -218,15 +211,13 @@ extension RegistrationViewController {
         }
         didAgreeTermsOfUse = !didAgreeTermsOfUse
     }
-    
     @objc func registerButtonPressed(sender: UIButton!) {
         let hasInvalidInput = [email, firstName, lastName, password, confirmPassword]
             .map { $0.validate() }
             .contains(false)
-        
         guard didAgreeTermsOfUse else {
             log.warning("Cannot regitster user! Did not agree to Privacy Policy")
-            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_field_missing())
+            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_did_not_consent_privacy_policy())
             return
         }
 

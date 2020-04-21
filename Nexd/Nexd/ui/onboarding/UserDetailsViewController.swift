@@ -28,7 +28,6 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
     private var keyboardObserver: KeyboardObserver?
     private var keyboardDismisser: KeyboardDismisser?
 
-
     lazy var scrollView = UIScrollView()
 
     lazy var logo = UIImageView()
@@ -46,8 +45,6 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
                                                 validationRules: .zipCode)
 
     lazy var registerButton = UIButton()
-
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,8 +88,6 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
         }
 
-
-
         contentView.addSubview(registerButton)
         registerButton.style(text: R.string.localizable.registration_button_title_send())
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
@@ -115,16 +110,10 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
         keyboardObserver = nil
     }
 
-    
-
     override func bind(viewModel: UserDetailsViewController.ViewModel, disposeBag: DisposeBag) { }
 
-    
 }
-
 extension UserDetailsViewController {
-    
-
     @objc func registerButtonPressed(sender: UIButton!) {
         let hasInvalidInput = [phone, zipCode]
             .map { $0.validate() }

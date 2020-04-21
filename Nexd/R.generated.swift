@@ -720,8 +720,16 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 135 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 143 localization keys.
     struct localizable {
+      /// en translation:  (%1$d / %2$d)
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_heading_accepted_section_counter = Rswift.StringResource(key: "helper_request_overview_heading_accepted_section_counter", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation:  (zip %1$s)
+      ///
+      /// Locales: en, de
+      static let helper_request_overview_heading_open_section_zip = Rswift.StringResource(key: "helper_request_overview_heading_open_section_zip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
@@ -786,6 +794,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_label_privacy_policy_agreement = Rswift.StringResource(key: "registration_label_privacy_policy_agreement", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: By creating an account, I agree to Nexd's %1$s
+      ///
+      /// Locales: en, de
+      static let registration_label_privacy_policy_agreement_android = Rswift.StringResource(key: "registration_label_privacy_policy_agreement_android", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Call Transcript
       ///
       /// Locales: en, de
@@ -942,6 +954,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_type_button_shopping = Rswift.StringResource(key: "helper_type_button_shopping", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Input
+      ///
+      /// Locales: en, de
+      static let select_text_dialog_text_hint_default = Rswift.StringResource(key: "select_text_dialog_text_hint_default", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Input further information
       ///
       /// Locales: en, de
@@ -1054,6 +1070,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_phone_call_text_ios = Rswift.StringResource(key: "seeker_phone_call_text_ios", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Please click to confirm our Privacy Policy in order to use our services.
+      ///
+      /// Locales: en, de
+      static let error_message_did_not_consent_privacy_policy = Rswift.StringResource(key: "error_message_did_not_consent_privacy_policy", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Please enter the valid zip code
       ///
       /// Locales: en, de
@@ -1238,6 +1258,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_detail_screen_title = Rswift.StringResource(key: "seeker_detail_screen_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Your request could not be deleted
+      ///
+      /// Locales: en, de
+      static let helper_request_detail_message_error_on_cancellation = Rswift.StringResource(key: "helper_request_detail_message_error_on_cancellation", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Your request could not be sent! Please try again.
       ///
       /// Locales: en, de
@@ -1246,6 +1270,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_error_message = Rswift.StringResource(key: "seeker_error_message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Your request was deleted
+      ///
+      /// Locales: en, de
+      static let helper_request_detail_message_cancelled = Rswift.StringResource(key: "helper_request_detail_message_cancelled", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Your request was sent successfully.
       ///
       /// Locales: en, de
@@ -1261,7 +1289,45 @@ struct R: Rswift.Validatable {
       /// en translation: Zip code
       ///
       /// Locales: en, de
+      static let helper_request_overview_button_filter_zip = Rswift.StringResource(key: "helper_request_overview_button_filter_zip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: Zip code
+      ///
+      /// Locales: en, de
       static let user_input_details_placeholder_zipCode = Rswift.StringResource(key: "user_input_details_placeholder_zipCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
+      /// en translation:  (%1$d / %2$d)
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_heading_accepted_section_counter(_ value1: Int, _ value2: Int, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("helper_request_overview_heading_accepted_section_counter", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1, value2)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_heading_accepted_section_counter"
+        }
+
+        let format = NSLocalizedString("helper_request_overview_heading_accepted_section_counter", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1, value2)
+      }
+
+      /// en translation:  (zip %1$s)
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_heading_open_section_zip(_ value1: UnsafePointer<unichar>, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("helper_request_overview_heading_open_section_zip", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_heading_open_section_zip"
+        }
+
+        let format = NSLocalizedString("helper_request_overview_heading_open_section_zip", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
 
       /// en translation: %1$@ ago, %2$@
       ///
@@ -1508,6 +1574,23 @@ struct R: Rswift.Validatable {
         }
 
         let format = NSLocalizedString("registration_label_privacy_policy_agreement", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: By creating an account, I agree to Nexd's %1$s
+      ///
+      /// Locales: en, de
+      static func registration_label_privacy_policy_agreement_android(_ value1: UnsafePointer<unichar>, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("registration_label_privacy_policy_agreement_android", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "registration_label_privacy_policy_agreement_android"
+        }
+
+        let format = NSLocalizedString("registration_label_privacy_policy_agreement_android", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
       }
 
@@ -2096,6 +2179,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("helper_type_button_shopping", bundle: bundle, comment: "")
       }
 
+      /// en translation: Input
+      ///
+      /// Locales: en, de
+      static func select_text_dialog_text_hint_default(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("select_text_dialog_text_hint_default", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "select_text_dialog_text_hint_default"
+        }
+
+        return NSLocalizedString("select_text_dialog_text_hint_default", bundle: bundle, comment: "")
+      }
+
       /// en translation: Input further information
       ///
       /// Locales: en, de
@@ -2516,6 +2614,21 @@ struct R: Rswift.Validatable {
 
         let format = NSLocalizedString("seeker_phone_call_text_ios", bundle: bundle, comment: "")
         return String(format: format, locale: locale, value1)
+      }
+
+      /// en translation: Please click to confirm our Privacy Policy in order to use our services.
+      ///
+      /// Locales: en, de
+      static func error_message_did_not_consent_privacy_policy(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("error_message_did_not_consent_privacy_policy", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "error_message_did_not_consent_privacy_policy"
+        }
+
+        return NSLocalizedString("error_message_did_not_consent_privacy_policy", bundle: bundle, comment: "")
       }
 
       /// en translation: Please enter the valid zip code
@@ -3210,6 +3323,21 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("seeker_detail_screen_title", bundle: bundle, comment: "")
       }
 
+      /// en translation: Your request could not be deleted
+      ///
+      /// Locales: en, de
+      static func helper_request_detail_message_error_on_cancellation(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_detail_message_error_on_cancellation", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_detail_message_error_on_cancellation"
+        }
+
+        return NSLocalizedString("helper_request_detail_message_error_on_cancellation", bundle: bundle, comment: "")
+      }
+
       /// en translation: Your request could not be sent! Please try again.
       ///
       /// Locales: en, de
@@ -3238,6 +3366,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_error_message", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Your request was deleted
+      ///
+      /// Locales: en, de
+      static func helper_request_detail_message_cancelled(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_detail_message_cancelled", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_detail_message_cancelled"
+        }
+
+        return NSLocalizedString("helper_request_detail_message_cancelled", bundle: bundle, comment: "")
       }
 
       /// en translation: Your request was sent successfully.
@@ -3283,6 +3426,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("registration_placeholder_zip", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Zip code
+      ///
+      /// Locales: en, de
+      static func helper_request_overview_button_filter_zip(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("helper_request_overview_button_filter_zip", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "helper_request_overview_button_filter_zip"
+        }
+
+        return NSLocalizedString("helper_request_overview_button_filter_zip", bundle: bundle, comment: "")
       }
 
       /// en translation: Zip code
