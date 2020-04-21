@@ -33,7 +33,7 @@
 "error_message_registration_failed" = "User registration failed. Please try again.";
 "error_message_registration_field_missing" = "Please fill in";
 "error_message_registration_invalid_email" = "Invalid E-mail address";
-"error_message_registration_password_match" = "Passwords dont match";
+"error_message_registration_password_match" = "Passwords don't match";
 "error_message_registration_password_too_short" = "At least 8 characters";
 "error_message_registration_user_already_exists" = "Account is already registered!";
 "error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
@@ -74,7 +74,7 @@
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
 "login_placeholder_password" = "Password";
-"login_placeholder_username" = "Username";
+"login_placeholder_username" = "E-mail";
 "login_screen_title" = "Login";
 "ok_button_title" = "OK";
 "registration_button_privacy_policy" = "Privacy Policy";
@@ -105,7 +105,9 @@
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
-"seeker_phone_call_text" = "<![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>";
+
+/*Fuzzy*/
+"seeker_phone_call_text" = "\"Please call </br><b>%1$s</b></br>to record your shopping order.\"";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
 "seeker_request_create_heading" = "I need:";
 "seeker_request_create_placeholder_delivery_comment" = "Delivery comment";
