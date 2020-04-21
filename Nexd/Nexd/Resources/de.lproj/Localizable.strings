@@ -8,7 +8,7 @@
 "delivery_confirmation_phone_number_title" = "Telefonnummer";
 "delivery_confirmation_screen_title" = "Vielen Dank für deine Hilfe!";
 "delivery_confirmation_section_header" = "Kontaktinformation für %1$@:";
-"delivery_dialog_deliver_description" = "Bestätige die Abgabe aller angenommen Aufträge";
+"delivery_dialog_deliver_description" = "Bestätigen Sie die Abgabe aller angenommen Aufträge";
 "delivery_dialog_deliver_title" = "Abgeben";
 "delivery_dialog_delivery_button_confirm" = "Bestätigen";
 "delivery_request_address" = "Adresse: ";
@@ -74,7 +74,7 @@
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
 "login_placeholder_password" = "Passwort";
-"login_placeholder_username" = "Benutzername";
+"login_placeholder_username" = "E-Mail";
 "login_screen_title" = "Login";
 "ok_button_title" = "OK";
 "registration_button_privacy_policy" = "Datenschutzhinweise";
@@ -91,7 +91,7 @@
 "registration_placeholder_zip" = "Postleitzahl";
 "registration_screen_title" = "Registrierung";
 "registration_term_privacy_policy" = "Datenschutzbestimmungen";
-"role_screen_subtitle" = "Was möchten Sie heute tun?";
+"role_screen_subtitle" = "Was möchtest Du heute tun?";
 "role_screen_title" = "Wilkommen, ";
 "role_screen_title_ios" = "Willkommen, %@";
 "role_selection_button_logout" = "Ausloggen";
@@ -100,12 +100,14 @@
 "role_selection_seeker" = "Ich brauche etwas!";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
-"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
+"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche erneut.";
 "seeker_error_title" = "Fehler!";
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
 "seeker_overview_screen_title" = "Your requests:";
-"seeker_phone_call_text" = "<![CDATA[Rufen Sie bitte <br><b>%1$s</b><br>um Ihre Einkaufsliste aufzuzeigen.]]>";
+
+/*Fuzzy*/
+"seeker_phone_call_text" = "\"Rufen Sie bitte </br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen.\"";
 "seeker_phone_call_text_ios" = "Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen.";
 "seeker_request_create_heading" = "Ich benötige:";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
