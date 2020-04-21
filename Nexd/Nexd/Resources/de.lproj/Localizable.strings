@@ -108,7 +108,7 @@
 
 /*Fuzzy*/
 "seeker_phone_call_text" = "\"Rufen Sie bitte </br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen.\"";
-"seeker_phone_call_text_ios" = "Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen.";
+"seeker_phone_call_text_ios" = "Ruf bitte %@ an um deine Einkaufsliste aufzuzeichnen.";
 "seeker_request_create_heading" = "Ich benötige:";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
 "seeker_request_create_placeholder_information" = "Zusätzliche Informationen";
