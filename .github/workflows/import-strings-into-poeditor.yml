@@ -6,13 +6,15 @@ on:
 
 jobs:
   poeditor:
-    runs-on: ubuntu-latest
+    runs-on: macos-10.15
     steps:
       - name: English
-        uses: distributhor/workflow-webhook@v1
+        uses: joelwmale/webhook-action@master
         env:
-          webhook_url: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
+          data: ""
       - name: German
         uses: joelwmale/webhook-action@master
         env:
-          webhook_url: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+          data: ""
