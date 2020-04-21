@@ -25,6 +25,7 @@
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
+"error_message_did_not_consent_privacy_policy" = "Bitte bestätigen sie unsere Datenschutzbestimmungen um fortzufahren.";
 "error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678";
 "error_message_input_validation_zip_code_invalid" = "Bitte gib die korrekte Postleitzahl an";
 "error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
@@ -42,8 +43,11 @@
 "helper_call_overview_screen_title" = "Offene Anrufe:";
 "helper_request_detail_button_accept" = "Mach ich!";
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
+"helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
+"helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
 "helper_request_finished_screen_title" = "Vorherige Anfragen:";
+"helper_request_overview_button_filter_zip" = "Postleitzahl";
 "helper_request_overview_button_previous_requests" = "Vorherige Anfragen";
 "helper_request_overview_button_summary_details" = "Insg. ";
 "helper_request_overview_button_summary_title" = "Einkaufen";
@@ -52,7 +56,9 @@
 "helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
+"helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
 "helper_request_overview_heading_available_section" = "Suchen:";
+"helper_request_overview_heading_open_section_zip" = " (PLZ %1$s)";
 "helper_request_overview_item_type_list" = "Liste";
 "helper_request_overview_item_type_recording" = "Sprachnachricht";
 
@@ -75,6 +81,7 @@
 "registration_button_title_continue" = "Weiter";
 "registration_button_title_send" = "Bestätigen";
 "registration_label_privacy_policy_agreement" = "Mit der Registrierung akzeptiere ich die %1$@";
+"registration_label_privacy_policy_agreement_android" = "Mit der Registrierung akzeptiere ich die %1$s";
 "registration_placeholder_confirm_password" = "Passwort bestätigen";
 "registration_placeholder_email" = "E-Mail";
 "registration_placeholder_firstName" = "Vorname";
@@ -109,6 +116,7 @@
 "seeker_type_button_help_request" = "Artikel auswählen";
 "seeker_type_button_phone_call" = "Einen Anruf tätigen";
 "seeker_type_screen_title" = "Wie würden Sie gerne Ihre Liste erstellen?";
+"select_text_dialog_text_hint_default" = "Eingeben";
 "shopping_list_button_title_checkout" = "Zur Kasse";
 "shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
 "shopping_list_overview_error_title" = "Fehler!";
@@ -142,12 +150,6 @@
 
 /*Logout button title*/
 "user_profile_button_title_logout" = "Abmelden";
-
-/*Logout button title*/
-"user_profile_button_title_logout" = "Abmelden";
-
-/*Title of the user profile screen*/
-"user_profile_screen_title" = "Benutzerprofil";
 
 /*Title of the user profile screen*/
 "user_profile_screen_title" = "Benutzerprofil";
