@@ -161,7 +161,8 @@ extension Navigator: ScreenNavigating {
 
     func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
         let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
-                                                                    requestService: helpRequestsService,
+                                                                    userService: userService,
+                                                                    helpRequestsService: helpRequestsService,
                                                                     items: items,
                                                                     onSuccess: { [weak self] in
                                                                         self?.showError(title: R.string.localizable.seeker_success_title(),

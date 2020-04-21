@@ -132,7 +132,9 @@
 "transcribe_info_screen_title" = "Anruferinfos";
 "user_input_details_confirm" = "Bestätigen";
 "user_input_details_placeholder_city" = "Ort";
+"user_input_details_placeholder_firstname" = "Vorname";
 "user_input_details_placeholder_houseNumber" = "Nr.";
+"user_input_details_placeholder_lastname" = "Nachname";
 "user_input_details_placeholder_phoneNumber" = "Tel. Nr.";
 "user_input_details_placeholder_street" = "Straße";
 "user_input_details_placeholder_zipCode" = "PLZ";

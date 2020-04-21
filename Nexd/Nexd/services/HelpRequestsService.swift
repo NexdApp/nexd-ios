@@ -12,6 +12,8 @@ import RxSwift
 
 class HelpRequestsService {
     struct Request {
+        public var firstName: String?
+        public var lastName: String?
         public var street: String?
         public var number: String?
         public var zipCode: String?
@@ -22,8 +24,8 @@ class HelpRequestsService {
         public var phoneNumber: String?
 
         var dto: HelpRequestCreateDto {
-            HelpRequestCreateDto(firstName: nil,
-                                 lastName: nil,
+            HelpRequestCreateDto(firstName: firstName,
+                                 lastName: lastName,
                                  street: street,
                                  number: number,
                                  zipCode: zipCode,
