@@ -58,7 +58,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
                                                         isSecureTextEntry: true,
                                                         validationRules: .passwordConfirmation { [weak self] in self?.password.value ?? "" })
 
-    lazy var registerButton = UIButton()
+    lazy var registerButton = MenuButton.make(style: .solid)
     lazy var privacyPolicy = UITextView()
     lazy var confirmTermsOfUseButton = UIButton()
 
@@ -167,7 +167,7 @@ class RegistrationViewController: ViewController<RegistrationViewController.View
         }
 
         contentView.addSubview(registerButton)
-        registerButton.style(text: R.string.localizable.registration_button_title_continue())
+        registerButton.setAttributedTitle(R.string.localizable.registration_button_title_continue().asSolidButtonText(), for: .normal)
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)

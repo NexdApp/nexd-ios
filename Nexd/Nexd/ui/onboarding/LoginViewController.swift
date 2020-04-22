@@ -39,7 +39,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
                                                          isSecureTextEntry: true,
                                                          delegate: self,
                                                          validationRules: .password)
-    private lazy var loginButton = MenuButton.make(style: .dark)
+    private lazy var loginButton = MenuButton.make(style: .solid)
 
     private lazy var usernameImageView = UIImageView()
 
@@ -103,7 +103,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
         }
 
         contentView.addSubview(loginButton)
-        loginButton.style(text: R.string.localizable.login_button_title_login())
+        loginButton.setAttributedTitle(R.string.localizable.login_button_title_login().asSolidButtonText(), for: .normal)
         loginButton.addTarget(self, action: #selector(loginButtonPressed(sender:)), for: .touchUpInside)
         loginButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)

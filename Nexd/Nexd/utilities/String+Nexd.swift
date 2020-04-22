@@ -118,6 +118,15 @@ extension String {
         return NSAttributedString(string: self, attributes: attributes)
     }
 
+    func asSolidButtonText() -> NSAttributedString {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: R.color.solidButtonText()!,
+            .font: R.font.proximaNovaSoftBold(size: 25)!
+        ]
+
+        return NSAttributedString(string: self, attributes: attributes)
+    }
+
     func asPositiveButtonText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.positiveButtonText()!,

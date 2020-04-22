@@ -44,7 +44,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
                                                 keyboardType: .phonePad,
                                                 validationRules: .zipCode)
 
-    lazy var registerButton = UIButton()
+    lazy var registerButton = MenuButton.make(style: .solid)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
         }
 
         contentView.addSubview(registerButton)
-        registerButton.style(text: R.string.localizable.registration_button_title_send())
+        registerButton.setAttributedTitle(R.string.localizable.registration_button_title_send().asSolidButtonText(), for: .normal)
         registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
         registerButton.snp.makeConstraints { make in
             make.height.equalTo(Style.buttonHeight)
