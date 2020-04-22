@@ -224,7 +224,9 @@ extension Navigator: ScreenNavigating {
     }
 
     func toDeliveryConfirmationScreen(helpList: HelpList) {
-        push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self, helpList: helpList)))
+        push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self,
+                                                                                                         helpList: helpList,
+                                                                                                         helpListsService: helpListsService)))
     }
 
     private func push(screen: UIViewController) {

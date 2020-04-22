@@ -28,4 +28,10 @@ class HelpListsService {
         return HelpListsAPI.helpListsControllerGetUserLists()
             .asSingle()
     }
+
+    func completeHelpList(helpListId: Int64, helpRequestsIds: [Int64]?) -> Single<HelpList> {
+        let dto = HelpListCreateDto(helpRequestsIds: helpRequestsIds, status: .completed)
+        return HelpListsAPI.helpListsControllerUpdateHelpLists(helpListId: helpListId, helpListCreateDto: dto)
+            .asSingle()
+    }
 }
