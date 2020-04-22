@@ -730,10 +730,12 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_open_section_zip = Rswift.StringResource(key: "helper_request_overview_heading_open_section_zip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
       /// en translation: "Please call </br><b>%1$s</b></br>to record your shopping order."
       ///
       /// Locales: en, de
       static let seeker_phone_call_text = Rswift.StringResource(key: "seeker_phone_call_text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
