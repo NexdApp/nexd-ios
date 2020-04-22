@@ -730,6 +730,12 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_heading_open_section_zip = Rswift.StringResource(key: "helper_request_overview_heading_open_section_zip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
+      /// en translation: "Please call </br><b>%1$s</b></br>to record your shopping order."
+      ///
+      /// Locales: en, de
+      static let seeker_phone_call_text = Rswift.StringResource(key: "seeker_phone_call_text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
@@ -742,10 +748,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let helper_request_overview_unknown_requester = Rswift.StringResource(key: "helper_request_overview_unknown_requester", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: <![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>
-      ///
-      /// Locales: en, de
-      static let seeker_phone_call_text = Rswift.StringResource(key: "seeker_phone_call_text", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Abort
       ///
       /// Locales: en, de
@@ -894,6 +896,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let seeker_success_title = Rswift.StringResource(key: "seeker_success_title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
+      /// en translation: E-mail
+      ///
+      /// Locales: en, de
+      static let login_placeholder_username = Rswift.StringResource(key: "login_placeholder_username", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: E-mail
       ///
       /// Locales: en, de
@@ -1046,7 +1052,7 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let registration_placeholder_password = Rswift.StringResource(key: "registration_placeholder_password", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: Passwords dont match
+      /// en translation: Passwords don't match
       ///
       /// Locales: en, de
       static let error_message_registration_password_match = Rswift.StringResource(key: "error_message_registration_password_match", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
@@ -1230,10 +1236,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, de
       static let error_message_registration_failed = Rswift.StringResource(key: "error_message_registration_failed", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
-      /// en translation: Username
-      ///
-      /// Locales: en, de
-      static let login_placeholder_username = Rswift.StringResource(key: "login_placeholder_username", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "de"], comment: nil)
       /// en translation: Welcome, 
       ///
       /// Locales: en, de
@@ -1329,6 +1331,23 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
+      /// en translation: "Please call </br><b>%1$s</b></br>to record your shopping order."
+      ///
+      /// Locales: en, de
+      static func seeker_phone_call_text(_ value1: UnsafePointer<unichar>, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("seeker_phone_call_text", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "seeker_phone_call_text"
+        }
+
+        let format = NSLocalizedString("seeker_phone_call_text", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: %1$@ ago, %2$@
       ///
       /// Locales: en, de
@@ -1376,23 +1395,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("helper_request_overview_unknown_requester", bundle: bundle, comment: "")
-      }
-
-      /// en translation: <![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>
-      ///
-      /// Locales: en, de
-      static func seeker_phone_call_text(_ value1: UnsafePointer<unichar>, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("seeker_phone_call_text", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "seeker_phone_call_text"
-        }
-
-        let format = NSLocalizedString("seeker_phone_call_text", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: Abort
@@ -1952,6 +1954,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("seeker_success_title", bundle: bundle, comment: "")
+      }
+
+      /// en translation: E-mail
+      ///
+      /// Locales: en, de
+      static func login_placeholder_username(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("login_placeholder_username", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "login_placeholder_username"
+        }
+
+        return NSLocalizedString("login_placeholder_username", bundle: bundle, comment: "")
       }
 
       /// en translation: E-mail
@@ -2524,7 +2541,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("registration_placeholder_password", bundle: bundle, comment: "")
       }
 
-      /// en translation: Passwords dont match
+      /// en translation: Passwords don't match
       ///
       /// Locales: en, de
       static func error_message_registration_password_match(preferredLanguages: [String]? = nil) -> String {
@@ -3214,21 +3231,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("error_message_registration_failed", bundle: bundle, comment: "")
-      }
-
-      /// en translation: Username
-      ///
-      /// Locales: en, de
-      static func login_placeholder_username(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("login_placeholder_username", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "login_placeholder_username"
-        }
-
-        return NSLocalizedString("login_placeholder_username", bundle: bundle, comment: "")
       }
 
       /// en translation: Welcome, 
