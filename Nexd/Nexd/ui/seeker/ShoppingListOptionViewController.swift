@@ -86,14 +86,16 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.height.equalTo(132)
         }
 
-        scrollView.addSubview(makePhonecallButton)
-        makePhonecallButton.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(12)
-            make.right.equalTo(view).offset(-12)
-            make.top.equalTo(selectItemsButton.snp.bottom).offset(25)
-            make.height.equalTo(132)
-            make.bottom.equalToSuperview().offset(-25)
-        }
+//        Make Phone Call Button will be reenabled as soon as the hotline is getting better
+//        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
+//        scrollView.addSubview(makePhonecallButton)
+//        makePhonecallButton.snp.makeConstraints { make in
+//            make.left.equalTo(view).offset(12)
+//            make.right.equalTo(view).offset(-12)
+//            make.top.equalTo(selectItemsButton.snp.bottom).offset(25)
+//            make.height.equalTo(132)
+//            make.bottom.equalToSuperview().offset(-25)
+//        }
     }
 
     override func bind(viewModel: ShoppingListOptionViewController.ViewModel, disposeBag: DisposeBag) {
