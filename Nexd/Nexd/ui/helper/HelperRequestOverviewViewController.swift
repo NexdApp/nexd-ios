@@ -80,7 +80,8 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                         .map { request in
                             let title = request.displayName
                             let duration = request.createdAt?.difference()
-                            let type = R.string.localizable.helper_request_overview_item_type_list()
+                            let type = request.callSid == nil ? R.string.localizable.helper_request_overview_item_type_list()
+                                : R.string.localizable.helper_request_overview_item_type_recording()
                             let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
                             return OpenReqeustsCell.Item(title: title, details: details)
                         }
