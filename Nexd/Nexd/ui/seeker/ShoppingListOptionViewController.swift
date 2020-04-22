@@ -86,7 +86,7 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.height.equalTo(132)
         }
 
-//        TODO: Make Phone Call Button will be reenabled as soon as the hotline is getting better
+//        Make Phone Call Button will be reenabled as soon as the hotline is getting better
 //        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
 //        scrollView.addSubview(makePhonecallButton)
 //        makePhonecallButton.snp.makeConstraints { make in
