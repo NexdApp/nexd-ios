@@ -39,7 +39,7 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
                                                          isSecureTextEntry: true,
                                                          delegate: self,
                                                          validationRules: .password)
-    private lazy var loginButton = UIButton()
+    private lazy var loginButton = MenuButton.make(style: .dark)
 
     private lazy var usernameImageView = UIImageView()
 
