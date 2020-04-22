@@ -47,12 +47,12 @@ enum NexdUI {
                         .padding(.trailing, 8)
 
                     Spacer()
-                        .frame(height: 70)
 
                     R.image.chevron.image
                         .foregroundColor(R.color.lightButtonIcon.color)
                         .padding(.trailing, 27)
                 }
+                .frame(height: 70)
                 .background(R.color.lightButtonBackground.color)
                 .cornerRadius(10)
             }
