@@ -67,7 +67,6 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.top.equalToSuperview().offset(100)
             make.left.equalTo(view).offset(19)
             make.right.equalTo(view).offset(-19)
-            make.height.equalTo(84)
         }
 
         scrollView.addSubview(backButton)

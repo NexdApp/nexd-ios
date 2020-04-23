@@ -95,7 +95,7 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.height.equalTo(Style.buttonHeight)
             make.leftMargin.equalTo(8)
             make.rightMargin.equalTo(-8)
-            make.top.equalTo(zipCode.snp_bottom).offset(180)
+            make.top.greaterThanOrEqualTo(zipCode.snp.bottom).offset(80)
             make.bottom.equalToSuperview().offset(-20)
         }
     }
