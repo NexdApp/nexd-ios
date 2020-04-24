@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UIKit
+import Validator
 
 extension NexdUI {
     class WrappableTextField: UITextField, UITextFieldDelegate {
@@ -48,15 +49,8 @@ extension NexdUI {
         open override func editingRect(forBounds bounds: CGRect) -> CGRect {
             return bounds.inset(by: padding)
         }
-    }
 
-    struct TextField: UIViewRepresentable {
-        var tag: Int = 0
-        var placeholder: String?
-        var onChanged: ((String) -> Void)?
-        var onCommit: ((String?) -> Void)?
-
-        func makeUIView(context: UIViewRepresentableContext<TextField>) -> WrappableTextField {
+        static func make(tag: Int, placeholder: String?, onChanged: ((String) -> Void)?, onCommit: ((String?) -> Void)?) -> WrappableTextField {
             let textField = WrappableTextField()
 
             textField.font = R.font.proximaNovaSoftBold(size: 22.0)
@@ -75,10 +69,60 @@ extension NexdUI {
 
             return textField
         }
+    }
+
+    struct InputValidation {
+        let rules: ValidationRuleSet<String>
+        let handler: (ValidationResult) -> Void
+    }
+
+    struct TextField: UIViewRepresentable {
+        var tag: Int = 0
+        var placeholder: String?
+        var onChanged: ((String) -> Void)?
+        var onCommit: ((String?) -> Void)?
+        var inputValidation: InputValidation?
+
+        func makeUIView(context: UIViewRepresentableContext<TextField>) -> WrappableTextField {
+            var textField = WrappableTextField.make(tag: tag,
+                                                    placeholder: placeholder,
+                                                    onChanged: onChanged,
+                                                    onCommit: onCommit)
+
+            if let inputValidation = inputValidation {
+                textField.validationRules = inputValidation.rules
+                textField.validationHandler = inputValidation.handler
+                textField.validateOnInputChange(enabled: true)
+            }
+
+            return textField
+        }
 
         func updateUIView(_ uiView: WrappableTextField, context: UIViewRepresentableContext<TextField>) {
             uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
             uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        }
+    }
+
+    struct ValidatingTextField: View {
+        var tag: Int = 0
+        var placeholder: String?
+        var onChanged: ((String) -> Void)?
+        var onCommit: ((String?) -> Void)?
+        var inputValidation: InputValidation?
+
+        var body: some View {
+            VStack {
+                NexdUI.TextField(tag: tag,
+                                 placeholder: placeholder,
+                                 onChanged: onChanged,
+                                 onCommit: onCommit,
+                                 inputValidation: inputValidation)
+
+                Text("ERROR MESSAGE HERE PLEASE")
+                    .font(R.font.proximaNovaSoftBold.font(size: 12))
+                    .foregroundColor(R.color.errorTint.color)
+            }
         }
     }
 }

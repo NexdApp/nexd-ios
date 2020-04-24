@@ -45,11 +45,10 @@
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
 		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
-		AEB6AC67244129EE00823E7C /* RequestConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */; };
+		AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */; };
 		AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */; };
 		AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6A24413AA500823E7C /* PickerView.swift */; };
 		AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */; };
-		AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */; };
 		AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */; };
 		AEB6AC75244249B300823E7C /* SubMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC74244249B300823E7C /* SubMenuButton.swift */; };
 		AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */; };
@@ -169,11 +168,10 @@
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
-		AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationViewController.swift; sourceTree = "<group>"; };
+		AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationView.swift; sourceTree = "<group>"; };
 		AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Nexd.swift"; sourceTree = "<group>"; };
 		AEB6AC6A24413AA500823E7C /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerPickerView.swift; sourceTree = "<group>"; };
-		AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationItemView.swift; sourceTree = "<group>"; };
 		AEB6AC7124423DC900823E7C /* HelperOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperOptionsViewController.swift; sourceTree = "<group>"; };
 		AEB6AC74244249B300823E7C /* SubMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuButton.swift; sourceTree = "<group>"; };
 		AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCell.swift; sourceTree = "<group>"; };
@@ -334,7 +332,7 @@
 				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 				AED2A968244058800082316F /* PhoneCallViewController.swift */,
-				AEB6AC66244129EE00823E7C /* RequestConfirmationViewController.swift */,
+				AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */,
 			);
 			path = seeker;
 			sourceTree = "<group>";
@@ -490,7 +488,6 @@
 				AE510B892443C2FA0068DF60 /* CustomControl.swift */,
 				AEB6AC6A24413AA500823E7C /* PickerView.swift */,
 				AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */,
-				AEB6AC6E24413BEF00823E7C /* RequestConfirmationItemView.swift */,
 				AE510B872443ABF30068DF60 /* ShoppingListItemView.swift */,
 			);
 			path = components;
@@ -823,7 +820,7 @@
 				AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
-				AEB6AC67244129EE00823E7C /* RequestConfirmationViewController.swift in Sources */,
+				AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */,
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
@@ -855,7 +852,6 @@
 				AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */,
 				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
-				AEB6AC6F24413BEF00823E7C /* RequestConfirmationItemView.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEB6AC7D2443362300823E7C /* Date+Nexd.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,

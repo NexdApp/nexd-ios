@@ -11,7 +11,7 @@ import UIKit
 extension String {
     func asDefaultText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 16)
+            .font: R.font.proximaNovaSoftBold(size: 16)!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -19,7 +19,7 @@ extension String {
 
     func asListHeader() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.boldSystemFont(ofSize: 20)
+            .font: R.font.proximaNovaSoftBold(size: 20)!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -28,7 +28,7 @@ extension String {
     func asTitle() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.titleTextColor,
-            .font: UIFont.boldSystemFont(ofSize: 36)
+            .font: R.font.proximaNovaSoftBold(size: 36)!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -45,7 +45,7 @@ extension String {
     func asErrorLabel() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.errorTintColor,
-            .font: UIFont.systemFont(ofSize: 12)
+            .font: R.font.proximaNovaSoftRegular(size: 12)!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -54,7 +54,7 @@ extension String {
     func asWarningLabel() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: UIColor.warningTintColor,
-            .font: UIFont.systemFont(ofSize: 12)
+            .font: R.font.proximaNovaSoftRegular(size: 12)!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -62,7 +62,7 @@ extension String {
 
     func asLink(range: Range<String.Index>?, target: String) -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 16)
+            .font: R.font.proximaNovaSoftRegular(size: 16)!
         ]
 
         let attributedString = NSMutableAttributedString(string: self, attributes: attributes)

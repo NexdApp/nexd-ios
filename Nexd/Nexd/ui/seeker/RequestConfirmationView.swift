@@ -45,7 +45,29 @@ struct RequestConfirmationView: View {
                     .padding(.top, 23)
                     .padding([.leading, .trailing], 13)
 
-                    Text("TBD")
+                        NexdUI.ValidatingTextField(tag: 0,
+                                                   placeholder: "Test: Phone",
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   inputValidation: NexdUI.InputValidation(rules: .phone,
+                                                                                                               handler: { result in
+                                                                       switch result {
+                                                                       case .valid:
+                                                   //                        view.state = .normal
+                                                                           log.debug("Validatiion: OK")
+                                                                       case let .invalid(failureErrors):
+                                                                           let messages = failureErrors.map { $0.message }
+
+                                                                           log.debug("Validatiion failed: \(String(describing: messages.first))")
+                                                   //                        view.state = .error(messages.first)
+                                                                       }
+                                                                   }))
+
+
+                    NexdUI.TextField(tag: 0,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
+                                     onChanged: { string in log.debug(string) })
+                        .padding(.top, 12)
+
                 }
         }
     }
