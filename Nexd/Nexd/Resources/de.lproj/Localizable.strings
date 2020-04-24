@@ -28,15 +28,15 @@
 "error_message_did_not_consent_privacy_policy" = "Bitte bestätigen sie unsere Datenschutzbestimmungen um fortzufahren.";
 "error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678";
 "error_message_input_validation_zip_code_invalid" = "Bitte gib die korrekte Postleitzahl an";
-"error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_login_failed" = "Login fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_login_field_missing" = "Bitte ausfüllen";
-"error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_registration_field_missing" = "Bitte ausfüllen";
 "error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
 "error_message_registration_password_match" = "Passwörter stimmen nicht überein";
 "error_message_registration_password_too_short" = "mind. 8 Zeichen";
 "error_message_registration_user_already_exists" = "Das Benutzerkonto existiert bereits.";
-"error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_unknown" = "Unbekannter Fehler";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "error_title" = "Fehler";
@@ -53,7 +53,7 @@
 "helper_request_overview_button_summary_title" = "Einkaufen";
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
 "helper_request_overview_button_title_start" = "Start";
-"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.";
+"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
@@ -93,7 +93,7 @@
 "registration_screen_title" = "Registrierung";
 "registration_term_privacy_policy" = "Datenschutzbestimmungen";
 "role_screen_subtitle" = "Was möchtest Du heute tun?";
-"role_screen_title" = "Wilkommen, ";
+"role_screen_title" = "Willkommen, ";
 "role_screen_title_ios" = "Willkommen, %@";
 "role_selection_button_logout" = "Ausloggen";
 "role_selection_helper" = "Ich kann helfen!";
@@ -101,7 +101,7 @@
 "role_selection_seeker" = "Ich brauche etwas!";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
-"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.";
+"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "seeker_error_title" = "Fehler!";
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
@@ -121,7 +121,7 @@
 "seeker_type_screen_title" = "Wie würden Sie gerne Ihre Liste erstellen?";
 "select_text_dialog_text_hint_default" = "Eingeben";
 "shopping_list_button_title_checkout" = "Zur Kasse";
-"shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
+"shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuche es erneut.";
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_screen_title" = "Einkaufsliste";
 "transcribe_articles_button_title_confirm" = "Bestätigen";
