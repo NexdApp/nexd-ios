@@ -70,6 +70,7 @@
 "helper_type_button_shopping" = "Ich möchte shoppen!";
 "helper_type_button_transcript" = "Einen Anruf übersetzen!";
 "helper_type_screen_title" = "Wie würden Sie gerne helfen?";
+"keyboard_accessory_text_done" = "Fertig";
 "loading_overlay_message" = "Wird geladen...";
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
