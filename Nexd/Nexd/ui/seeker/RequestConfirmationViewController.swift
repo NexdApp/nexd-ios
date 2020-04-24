@@ -15,8 +15,38 @@ struct RequestConfirmationView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        return VStack {
-            Text("Hello World")
+        return
+            ScrollView {
+                VStack {
+                    NexdUI.Headings.title(text: R.string.localizable.seeker_detail_screen_title.text)
+                        .padding(.top, 75)
+                        .padding(.leading, 35)
+
+                    NexdUI.Card {
+                        VStack {
+                            ForEach(viewModel.items) { item in
+                                HStack {
+                                    Text(item.title)
+                                        .padding(.trailing, 8)
+                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
+                                        .foregroundColor(R.color.listItemTitle.color)
+
+                                    Spacer()
+
+                                    Text("\(item.amount)x")
+                                        .font(R.font.proximaNovaSoftBold.font(size: 14))
+                                        .foregroundColor(R.color.listItemDetailsText.color)
+                                }
+                                .frame(height: 52)
+                            }
+                        }
+                        .padding([.top, .bottom], 8)
+                    }
+                    .padding(.top, 23)
+                    .padding([.leading, .trailing], 13)
+
+                    Text("TBD")
+                }
         }
     }
 
@@ -204,8 +234,8 @@ struct RequestConfirmationView: View {
 }
 
 extension RequestConfirmationView {
-    struct Item {
-        let itemId: Int64
+    struct Item: Identifiable {
+        let id: Int64
         let title: String
         let amount: Int64
     }
@@ -254,7 +284,7 @@ extension RequestConfirmationView {
                      deliveryComment: String?) -> Completable {
             let requestItems = items
                 .filter { $0.amount > 0 }
-                .map { item in HelpRequestsService.RequestItem(itemId: item.itemId, articleCount: item.amount) }
+                .map { item in HelpRequestsService.RequestItem(itemId: item.id, articleCount: item.amount) }
 
             let request = HelpRequestsService.Request(firstName: firstName,
                                                       lastName: lastName,
@@ -292,7 +322,10 @@ extension RequestConfirmationView {
             let viewModel = RequestConfirmationView.ViewModel(navigator: PreviewNavigator(),
                                                               userService: UserService(),
                                                               helpRequestsService: HelpRequestsService(),
-                                                              items: [])
+                                                              items: [RequestConfirmationView.Item(id: 0, title: "Klopapier", amount: 10),
+                                                                      RequestConfirmationView.Item(id: 1, title: "Zwiebeln", amount: 3),
+                                                                      RequestConfirmationView.Item(id: 2, title: "Tomaten", amount: 25),
+                                                                      RequestConfirmationView.Item(id: 3, title: "Hefe", amount: 8)])
             return Group {
                 RequestConfirmationView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)
