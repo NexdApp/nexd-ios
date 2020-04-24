@@ -35,6 +35,7 @@ extension NexdUI {
         }
 
         func textFieldDidEndEditing(_ textField: UITextField) {
+            validate()
             onCommitHandler?(textField.text)
         }
 
@@ -98,6 +99,7 @@ extension NexdUI {
 
     struct TextField: UIViewRepresentable {
         var tag: Int = 0
+        @Binding var text: String?
         var placeholder: String?
         var onChanged: ((String) -> Void)?
         var onCommit: ((String?) -> Void)?
@@ -107,7 +109,10 @@ extension NexdUI {
         func makeUIView(context: UIViewRepresentableContext<TextField>) -> WrappableTextField {
             var textField = WrappableTextField.make(tag: tag,
                                                     placeholder: placeholder,
-                                                    onChanged: onChanged,
+                                                    onChanged: { string in
+                                                        self.text = string
+                                                        self.onChanged?(string)
+                                                    },
                                                     onCommit: onCommit,
                                                     inputConfiguration: inputConfiguration)
 
@@ -123,6 +128,8 @@ extension NexdUI {
         func updateUIView(_ uiView: WrappableTextField, context: UIViewRepresentableContext<TextField>) {
             uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
             uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+
+            uiView.text = text
         }
     }
 
@@ -130,6 +137,7 @@ extension NexdUI {
         @State private var errorMessage: String?
 
         var tag: Int = 0
+        @Binding var text: String?
         var placeholder: String?
         var onChanged: ((String) -> Void)?
         var onCommit: ((String?) -> Void)?
@@ -160,6 +168,7 @@ extension NexdUI {
                 }
 
                 NexdUI.TextField(tag: tag,
+                                 text: $text,
                                  placeholder: placeholder,
                                  onChanged: onChanged,
                                  onCommit: onCommit,
@@ -174,7 +183,7 @@ extension NexdUI {
     struct TextField_Previews: PreviewProvider {
         static var previews: some View {
             Group {
-                NexdUI.TextField(placeholder: "Placeholder")
+                NexdUI.TextField(text: Binding.constant("Test"), placeholder: "Placeholder")
             }
             .previewLayout(.sizeThatFits)
         }
