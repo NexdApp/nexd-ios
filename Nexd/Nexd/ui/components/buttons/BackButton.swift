@@ -33,14 +33,14 @@ class BackButton: UIButton {
                       height: contentRect.size.height)
     }
 
-    static func make() -> BackButton {
+    static func make(tintColor: UIColor = R.color.darkButtonText()!) -> BackButton {
         let button = BackButton()
 
         button.backgroundColor = .clear
         button.titleLabel?.numberOfLines = 1
         button.contentHorizontalAlignment = .left
 
-        button.image = R.image.chevron_left()
+        button.image = R.image.chevron_left()?.withTintColor(tintColor)
 
         return button
     }

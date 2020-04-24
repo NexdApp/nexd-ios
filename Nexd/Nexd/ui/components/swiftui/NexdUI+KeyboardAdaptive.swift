@@ -11,9 +11,9 @@ import SwiftUI
 
 /// Inspired by: https://www.vadimbulavin.com/how-to-move-swiftui-view-when-keyboard-covers-text-field/
 extension Publishers {
-    static var keyboardHeight: AnyPublisher<CGRect?, Never> {
+    static var keyboardFrame: AnyPublisher<CGRect?, Never> {
         let willShow = NotificationCenter.default.publisher(for: UIApplication.keyboardDidShowNotification)
-            .map { $0.keyboardHeight }
+            .map { notification -> CGRect? in notification.keyboardFrame }
 
         let willHide = NotificationCenter.default.publisher(for: UIApplication.keyboardWillHideNotification)
             .map { _ -> CGRect? in nil }
@@ -24,7 +24,7 @@ extension Publishers {
 }
 
 extension Notification {
-    var keyboardHeight: CGRect? {
+    var keyboardFrame: CGRect? {
         return userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
     }
 }
@@ -33,18 +33,18 @@ struct KeyboardAdaptive: ViewModifier {
     @State private var bottomPadding: CGFloat = 0
 
     func body(content: Content) -> some View {
-        GeometryReader { geometry in
             content
-//                .padding(.bottom, self.bottomPadding)
                 .offset(x: 0, y: -self.bottomPadding)
-                .onReceive(Publishers.keyboardHeight) {
-                    let keyboardHeight = $0?.height ?? 0
-                    let keyboardTop = geometry.frame(in: .global).height - keyboardHeight
+                .onReceive(Publishers.keyboardFrame) { keyboardFrame in
+                    guard let keyboardFrame = keyboardFrame else {
+                        self.bottomPadding = 0
+                        return
+                    }
+
                     let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding = max(0, focusedTextInputBottom - (keyboardTop + geometry.safeAreaInsets.bottom))
+                    self.bottomPadding += max(0, focusedTextInputBottom - keyboardFrame.minY)
                 }
                 .animation(.easeOut(duration: 0.16))
-        }
     }
 }
 

@@ -25,6 +25,14 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
             }
         }
 
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
         init(navigator: ScreenNavigating, helpList: HelpList) {
             self.helpList = helpList
             self.navigator = navigator
@@ -33,6 +41,7 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
 
     private let scrollView = UIScrollView()
     private let shoppingListHeadingLabel = UILabel()
+    private let backButton = BackButton.make()
     private let stackView = UIStackView()
     private var checkoutButton = SubMenuButton.make(title: R.string.localizable.shopping_list_button_title_checkout())
 
@@ -51,6 +60,14 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
         shoppingListHeadingLabel.snp.makeConstraints { make -> Void in
             make.top.equalToSuperview().inset(104)
             make.left.right.equalToSuperview().inset(24)
+        }
+
+        scrollView.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(13)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(132)
         }
 
         scrollView.addSubview(stackView)
@@ -94,6 +111,8 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
     override func bind(viewModel: ShoppingListViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.shoppingListHeadingText.drive(shoppingListHeadingLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             checkoutButton.rx.controlEvent(.touchUpInside).bind(to: viewModel.checkoutButtonTaps)
         )
     }

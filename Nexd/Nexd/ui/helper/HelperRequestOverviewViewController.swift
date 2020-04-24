@@ -28,6 +28,14 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             .asCompletable()
         }
 
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
@@ -72,7 +80,8 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                         .map { request in
                             let title = request.displayName
                             let duration = request.createdAt?.difference()
-                            let type = R.string.localizable.helper_request_overview_item_type_list()
+                            let type = request.callSid == nil ? R.string.localizable.helper_request_overview_item_type_list()
+                                : R.string.localizable.helper_request_overview_item_type_recording()
                             let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
                             return OpenReqeustsCell.Item(title: title, details: details)
                         }
@@ -146,11 +155,21 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         return list
     }()
 
+    private let backButton = BackButton.make()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = R.string.localizable.helper_request_overview_screen_title()
         view.backgroundColor = R.color.nexdGreen()
+
+        view.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(17)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(26)
+            make.height.equalTo(132)
+        }
 
         view.addSubview(currentItemsListButton)
         currentItemsListButton.snp.makeConstraints { make in
@@ -190,9 +209,11 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         disposeBag.insert(
             currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap {viewModel.currentItemsListButtonTaps() }.subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
 
             acceptedRequestsCollectionView.rx.itemSelected.bind(to: viewModel.acceptedRequestSelected),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             acceptedRequestsCollectionView.rx.setDelegate(self),
 
             openRequestsCollectionView.rx.itemSelected.flatMap(viewModel.openRequestSelected(indexPath:)).subscribe(),

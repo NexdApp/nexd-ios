@@ -12,17 +12,22 @@ import RxSwift
 import SwiftUI
 
 struct TranscribeListView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         return VStack {
             Group {
-                HStack {
-                    Spacer()
+                NexdUI.Buttons.back(text: R.string.localizable.back_button_title.text) {
+                    self.presentationMode.wrappedValue.dismiss()
                 }
+                    .frame(maxWidth: .infinity, maxHeight: 20, alignment: .leading)
+                    .padding(.top, 22)
+                    .offset(x: -12)
+
                 NexdUI.Headings.title(text: R.string.localizable.transcribe_articles_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 71)
+                    .padding(.top, 29)
 
                 NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
                               progress: $viewModel.state.progress,

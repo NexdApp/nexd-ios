@@ -6,9 +6,10 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import Combine
+import NexdClient
 import Rswift
 import SwiftUI
-import NexdClient
 
 struct DeliveryConfirmationView: View {
     struct Request {
@@ -19,7 +20,7 @@ struct DeliveryConfirmationView: View {
 
         static func from(helpRequest: HelpRequest) -> Request {
             Request(requestId: helpRequest.id ?? 0,
-                    requester: helpRequest.requester?.firstName ?? "-",
+                    requester: helpRequest.firstName ?? "-",
                     phoneNumber: helpRequest.phoneNumber ?? "-",
                     address: "\(helpRequest.zipCode ?? "-") / \(helpRequest.city ?? "-")")
         }
@@ -83,9 +84,12 @@ struct DeliveryConfirmationView: View {
 }
 
 extension DeliveryConfirmationView {
-    struct ViewModel {
+    class ViewModel: ObservableObject {
         let navigator: ScreenNavigating
         let helpList: HelpList
+        let helpListsService: HelpListsService
+
+        private var cancellableSet = Set<AnyCancellable>()
 
         var requests: [Request] {
             helpList.helpRequests.map { helpRequest -> Request in
@@ -93,8 +97,27 @@ extension DeliveryConfirmationView {
             }
         }
 
+        init(navigator: ScreenNavigating, helpList: HelpList, helpListsService: HelpListsService) {
+            self.navigator = navigator
+            self.helpList = helpList
+            self.helpListsService = helpListsService
+        }
+
         func continueButtonTapped() {
-            navigator.toMainScreen()
+            cancellableSet.insert(
+                helpListsService.completeHelpList(helpListId: helpList.id,
+                                                  helpRequestsIds: helpList.helpRequests.compactMap { $0.id })
+                    .publisher
+                    .sink(receiveCompletion: { [weak self] completion in
+                        if case let .failure(error) = completion {
+                            log.error("Finishing the help list failed: \(error)")
+                            return
+                        }
+
+                        self?.navigator.toMainScreen()
+                    },
+                          receiveValue: { _ in })
+            )
         }
     }
 
@@ -103,12 +126,12 @@ extension DeliveryConfirmationView {
         screen.view.backgroundColor = R.color.nexdGreen()
         return screen
     }
- }
+}
 
 #if DEBUG
     struct DeliveryConfirmationView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helpList: HelpList.with())
+            let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helpList: HelpList.with(), helpListsService: HelpListsService())
             return Group {
                 DeliveryConfirmationView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)

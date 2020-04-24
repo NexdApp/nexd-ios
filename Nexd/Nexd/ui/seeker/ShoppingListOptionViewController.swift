@@ -23,6 +23,14 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             }
         }
 
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
         let makePhonecallTitle = Driver.just(R.string.localizable.seeker_type_button_phone_call().asDarkButtonText())
 
         var makePhonecallTaps: Binder<Void> {
@@ -38,6 +46,7 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
+    private let backButton = BackButton.make()
 
     private let selectItemsButton = MenuButton.make(style: .dark)
     private let makePhonecallButton = MenuButton.make(style: .dark)
@@ -58,7 +67,14 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.top.equalToSuperview().offset(100)
             make.left.equalTo(view).offset(19)
             make.right.equalTo(view).offset(-19)
-            make.height.equalTo(84)
+        }
+
+        scrollView.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(12)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(25)
+            make.height.equalTo(132)
         }
 
         scrollView.addSubview(selectItemsButton)
@@ -69,23 +85,27 @@ class ShoppingListOptionViewController: ViewController<ShoppingListOptionViewCon
             make.height.equalTo(132)
         }
 
-        scrollView.addSubview(makePhonecallButton)
-        makePhonecallButton.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(12)
-            make.right.equalTo(view).offset(-12)
-            make.top.equalTo(selectItemsButton.snp.bottom).offset(25)
-            make.height.equalTo(132)
-            make.bottom.equalToSuperview().offset(-25)
-        }
+//        Make Phone Call Button will be reenabled as soon as the hotline is getting better
+//        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
+//        scrollView.addSubview(makePhonecallButton)
+//        makePhonecallButton.snp.makeConstraints { make in
+//            make.left.equalTo(view).offset(12)
+//            make.right.equalTo(view).offset(-12)
+//            make.top.equalTo(selectItemsButton.snp.bottom).offset(25)
+//            make.height.equalTo(132)
+//            make.bottom.equalToSuperview().offset(-25)
+//        }
     }
 
     override func bind(viewModel: ShoppingListOptionViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.heading.drive(titleLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.selectItemsTitle.drive(selectItemsButton.rx.attributedTitle(for: .normal)),
             viewModel.makePhonecallTitle.drive(makePhonecallButton.rx.attributedTitle(for: .normal)),
 
             selectItemsButton.rx.tap.bind(to: viewModel.selectItemTaps),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             makePhonecallButton.rx.tap.bind(to: viewModel.makePhonecallTaps)
         )
     }

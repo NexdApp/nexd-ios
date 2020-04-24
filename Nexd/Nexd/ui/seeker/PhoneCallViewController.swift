@@ -32,7 +32,7 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
             .asDriver(onErrorJustReturn: placeholder)
         }
 
-        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asNegativeButtonText())
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
 
         var backButtonTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
@@ -57,7 +57,7 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
 
         view.addSubview(content)
         content.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.center.equalTo(view)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
@@ -70,14 +70,15 @@ class PhoneCallViewController: ViewController<PhoneCallViewController.ViewModel>
         text.dataDetectorTypes = .phoneNumber
         text.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
+            make.centerY.centerX.equalToSuperview()
         }
 
-        content.addSubview(backButton)
+        view.addSubview(backButton)
         backButton.snp.makeConstraints { make in
-            make.top.equalTo(text.snp.bottom).offset(44)
-            make.left.equalToSuperview().offset(28)
-            make.right.equalToSuperview().offset(-28)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(view).offset(25)
+            make.left.equalTo(view).offset(12)
+            make.right.equalTo(view).offset(-12)
+            make.height.equalTo(132)
         }
     }
 

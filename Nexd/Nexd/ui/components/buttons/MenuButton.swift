@@ -12,6 +12,7 @@ class MenuButton: UIButton {
     enum Style {
         case light
         case dark
+        case solid
 
         var borderColor: UIColor? {
             switch self {
@@ -20,6 +21,9 @@ class MenuButton: UIButton {
 
             case .dark:
                 return R.color.darkButtonBorder()
+
+            case .solid:
+                return nil
             }
         }
 
@@ -30,9 +34,37 @@ class MenuButton: UIButton {
 
             case .dark:
                 return R.color.darkButtonText()
+
+            case .solid:
+                return R.color.solidButtonText()
             }
         }
 
+        var backgroundColor: UIColor? {
+            switch self {
+            case .light:
+                return .clear
+
+            case .dark:
+                return .clear
+
+            case .solid:
+                return R.color.solidButtonBackground()
+            }
+        }
+
+        var chevronColor: UIColor? {
+            switch self {
+            case .light:
+                return R.color.nexdGreen()
+
+            case .dark:
+                return R.color.darkButtonBorder()
+
+            case .solid:
+                return R.color.solidButtonIcon()
+            }
+        }
     }
 
     private var image: UIImage? {
@@ -50,17 +82,30 @@ class MenuButton: UIButton {
                       height: image.size.height)
     }
 
+    override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
+        let imageWidth: CGFloat = image?.size.width ?? 0
+        let padding: CGFloat = imageWidth > 0 ? 8 : 0
+        return CGRect(x: contentRect.minX,
+                      y: contentRect.minY,
+                      width: contentRect.size.width - imageWidth - 17 - padding,
+                      height: contentRect.size.height)
+    }
+
     static func make(style: Style) -> MenuButton {
         let button = MenuButton()
 
-        button.backgroundColor = .clear
-        button.addBorder(color: style.borderColor)
+        button.backgroundColor = style.backgroundColor
+        if let borderColor = style.borderColor {
+            button.addBorder(color: borderColor)
+        } else {
+            button.layer.cornerRadius = 10
+        }
 
         button.titleLabel?.numberOfLines = 2
         button.contentHorizontalAlignment = .left
-        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 25, bottom: 10, right: 10)
 
-        button.image = R.image.chevron()?.withTintColor(style.borderColor!)
+        button.image = R.image.chevron()?.withTintColor(style.chevronColor!)
 
         return button
     }

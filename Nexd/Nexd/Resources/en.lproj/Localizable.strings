@@ -25,6 +25,7 @@
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "User authentication failed please try to login again.";
 "error_dialog_authentication_failed_title" = "Authentication failed!";
+"error_message_did_not_consent_privacy_policy" = "Please click to confirm our Privacy Policy in order to use our services.";
 "error_message_input_validation_phone_number_invalid" = "Phone number doesn't match the expected format: +4915112345678";
 "error_message_input_validation_zip_code_invalid" = "Please enter the valid zip code";
 "error_message_login_failed" = "Login failed. Please try again.";
@@ -32,7 +33,7 @@
 "error_message_registration_failed" = "User registration failed. Please try again.";
 "error_message_registration_field_missing" = "Please fill in";
 "error_message_registration_invalid_email" = "Invalid E-mail address";
-"error_message_registration_password_match" = "Passwords dont match";
+"error_message_registration_password_match" = "Passwords don't match";
 "error_message_registration_password_too_short" = "At least 8 characters";
 "error_message_registration_user_already_exists" = "Account is already registered!";
 "error_message_registration_validation_failed" = "User registration failed. Please make sure you input valid data.";
@@ -42,8 +43,11 @@
 "helper_call_overview_screen_title" = "Open calls:";
 "helper_request_detail_button_accept" = "Will do!";
 "helper_request_detail_button_accepted" = "Request already accepted";
+"helper_request_detail_message_cancelled" = "Your request was deleted";
+"helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
 "helper_request_finished_screen_title" = "Completed requests:";
+"helper_request_overview_button_filter_zip" = "Zip code";
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "helper_request_overview_button_summary_details" = "Total ";
 "helper_request_overview_button_summary_title" = "Shopping";
@@ -52,7 +56,9 @@
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
+"helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
 "helper_request_overview_heading_available_section" = "Available requests:";
+"helper_request_overview_heading_open_section_zip" = " (zip %1$s)";
 "helper_request_overview_item_type_list" = "List";
 "helper_request_overview_item_type_recording" = "Recording";
 
@@ -64,17 +70,19 @@
 "helper_type_button_shopping" = "I'd like to shop!";
 "helper_type_button_transcript" = "Transcript a call!";
 "helper_type_screen_title" = "How would you like to help?";
+"keyboard_accessory_text_done" = "Done";
 "loading_overlay_message" = "Loading...";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
 "login_placeholder_password" = "Password";
-"login_placeholder_username" = "Username";
+"login_placeholder_username" = "E-mail";
 "login_screen_title" = "Login";
 "ok_button_title" = "OK";
 "registration_button_privacy_policy" = "Privacy Policy";
 "registration_button_title_continue" = "Continue";
 "registration_button_title_send" = "Send";
 "registration_label_privacy_policy_agreement" = "By creating an account, I agree to Nexd's %1$@";
+"registration_label_privacy_policy_agreement_android" = "By creating an account, I agree to Nexd's %1$s";
 "registration_placeholder_confirm_password" = "Confirm password";
 "registration_placeholder_email" = "E-mail";
 "registration_placeholder_firstName" = "First name";
@@ -98,7 +106,9 @@
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
-"seeker_phone_call_text" = "<![CDATA[Please call <br><b>%1$s</b><br>to record your shopping order.]]>";
+
+/*Fuzzy*/
+"seeker_phone_call_text" = "\"Please call </br><b>%1$s</b></br>to record your shopping order.\"";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
 "seeker_request_create_heading" = "I need:";
 "seeker_request_create_placeholder_delivery_comment" = "Delivery comment";
@@ -109,6 +119,7 @@
 "seeker_type_button_help_request" = "Select items";
 "seeker_type_button_phone_call" = "Make a\nphone call";
 "seeker_type_screen_title" = "How would you like to make your list?";
+"select_text_dialog_text_hint_default" = "Input";
 "shopping_list_button_title_checkout" = "Checkout";
 "shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
 "shopping_list_overview_error_title" = "Error!";
@@ -132,7 +143,9 @@
 "transcribe_info_screen_title" = "Call Transcript";
 "user_input_details_confirm" = "Confirm";
 "user_input_details_placeholder_city" = "Place";
+"user_input_details_placeholder_firstname" = "First name";
 "user_input_details_placeholder_houseNumber" = "No.";
+"user_input_details_placeholder_lastname" = "Last name";
 "user_input_details_placeholder_phoneNumber" = "Tel.";
 "user_input_details_placeholder_street" = "Street";
 "user_input_details_placeholder_zipCode" = "Zip code";
@@ -140,12 +153,6 @@
 
 /*Logout button title*/
 "user_profile_button_title_logout" = "Logout";
-
-/*Logout button title*/
-"user_profile_button_title_logout" = "Logout";
-
-/*Title of the user profile screen*/
-"user_profile_screen_title" = "User profile";
 
 /*Title of the user profile screen*/
 "user_profile_screen_title" = "User profile";

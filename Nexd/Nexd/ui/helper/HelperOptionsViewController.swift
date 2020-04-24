@@ -23,6 +23,14 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
             }
         }
 
+        let backButtonTitle = Driver.just(R.string.localizable.back_button_title().asBackButtonText())
+
+        var backButtonTaps: Binder<Void> {
+            Binder(self) { viewModel, _ in
+                viewModel.navigator.goBack()
+            }
+        }
+
         let goShoppingTitle = Driver.just(R.string.localizable.helper_type_button_shopping().asDarkButtonText())
 
         var goShoppingTaps: Binder<Void> {
@@ -38,6 +46,7 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
+    private let backButton = BackButton.make()
 
     private let transcribeCallButton = MenuButton.make(style: .dark)
     private let goShoppingButton = MenuButton.make(style: .dark)
@@ -50,6 +59,14 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
         scrollView.snp.makeConstraints { make in
             make.left.bottom.right.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+
+        scrollView.addSubview(backButton)
+        backButton.snp.makeConstraints { make in
+            make.left.equalTo(view).offset(20)
+            make.right.equalTo(view).offset(-12)
+            make.top.equalTo(view).offset(36)
+            make.height.equalTo(132)
         }
 
         scrollView.addSubview(titleLabel)
@@ -82,10 +99,12 @@ class HelperOptionsViewController: ViewController<HelperOptionsViewController.Vi
     override func bind(viewModel: HelperOptionsViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
             viewModel.heading.drive(titleLabel.rx.attributedText),
+            viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.transcribeCallTitle.drive(transcribeCallButton.rx.attributedTitle(for: .normal)),
             viewModel.goShoppingTitle.drive(goShoppingButton.rx.attributedTitle(for: .normal)),
 
             transcribeCallButton.rx.tap.bind(to: viewModel.transcribeCallTaps),
+            backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             goShoppingButton.rx.tap.bind(to: viewModel.goShoppingTaps)
         )
     }

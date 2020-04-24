@@ -12,10 +12,35 @@ import SwiftUI
 
 enum NexdUI {
     enum Buttons {
+        static func back(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    R.image.chevron_left.image
+                        .foregroundColor(R.color.darkButtonText.color)
+                    text
+                        .font(R.font.proximaNovaSoftBold.font(size: 23))
+                        .foregroundColor(R.color.darkButtonText.color)
+                }
+            }
+        }
+
         static func `default`(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
                     text
+                        .font(R.font.proximaNovaSoftBold.font(size: 35))
+                        .foregroundColor(R.color.positiveButtonText.color)
+
+                    R.image.chevron.image
+                        .foregroundColor(R.color.positiveButtonText.color)
+                }
+            }
+        }
+
+        static func confirm(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    R.string.localizable.confirm_button_title.text
                         .font(R.font.proximaNovaSoftBold.font(size: 35))
                         .foregroundColor(R.color.positiveButtonText.color)
 
@@ -35,12 +60,12 @@ enum NexdUI {
                         .padding(.trailing, 8)
 
                     Spacer()
-                        .frame(height: 70)
 
                     R.image.chevron.image
                         .foregroundColor(R.color.lightButtonIcon.color)
                         .padding(.trailing, 27)
                 }
+                .frame(height: 70)
                 .background(R.color.lightButtonBackground.color)
                 .cornerRadius(10)
             }

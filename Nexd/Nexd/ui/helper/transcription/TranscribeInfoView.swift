@@ -13,14 +13,22 @@ import RxSwift
 import SwiftUI
 
 struct TranscribeInfoView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         return VStack {
             Group {
+                NexdUI.Buttons.back(text: R.string.localizable.back_button_title.text) {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+                .frame(maxWidth: .infinity, maxHeight: 20, alignment: .leading)
+                .padding(.top, 22)
+                .offset(x: -12)
+
                 NexdUI.Headings.title(text: R.string.localizable.transcribe_info_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 71)
+                    .padding(.top, 29)
 
                 NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
                               progress: $viewModel.state.progress,
@@ -29,38 +37,38 @@ struct TranscribeInfoView: View {
 
                 ScrollView {
                     NexdUI.TextField(tag: 0,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
-                                     onChanged: { string in self.viewModel.state.firstName = string })
+                                     text: $viewModel.state.firstName,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 1,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
-                                     onChanged: { string in self.viewModel.state.lastName = string })
+                                     text: $viewModel.state.lastName,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_last_name())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 2,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
-                                     onChanged: { string in self.viewModel.state.zipCode = string })
+                                     text: $viewModel.state.zipCode,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 3,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_city(),
-                                     onChanged: { string in self.viewModel.state.city = string })
+                                     text: $viewModel.state.city,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_city())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 4,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street(),
-                                     onChanged: { string in self.viewModel.state.street = string })
+                                     text: $viewModel.state.street,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 5,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street_number(),
-                                     onChanged: { string in self.viewModel.state.streetNumber = string })
+                                     text: $viewModel.state.streetNumber,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street_number())
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 6,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number(),
-                                     onChanged: { string in self.viewModel.state.phoneNumber = string })
+                                     text: $viewModel.state.phoneNumber,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number())
                         .padding(.top, 12)
                 }
 

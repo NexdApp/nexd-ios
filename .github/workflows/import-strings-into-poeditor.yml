@@ -1,0 +1,20 @@
+name: Import Strings into POEditor
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  poeditor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
+          data: ""
+      - name: German
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+          data: ""
