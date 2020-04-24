@@ -53,7 +53,7 @@
 "helper_request_overview_button_summary_title" = "Einkaufen";
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
 "helper_request_overview_button_title_start" = "Start";
-"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
+"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
@@ -64,7 +64,7 @@
 
 /*Fuzzy*/
 "helper_request_overview_open_request_item_details_format_ios" = "vor %1$@, %2$@";
-"helper_request_overview_screen_title" = "Übersicht";
+"helper_request_overview_screen_title" = "Einkaufsliste";
 "helper_request_overview_unknown_requester" = "- UNBEKANNT -";
 "helper_request_transcript_button_done" = "Füge Bestellung zur aktuellen Shoppingliste hinzu";
 "helper_type_button_shopping" = "Ich möchte shoppen!";
@@ -101,15 +101,15 @@
 "role_selection_seeker" = "Ich brauche etwas!";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
-"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche erneut.";
+"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.";
 "seeker_error_title" = "Fehler!";
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
-"seeker_overview_screen_title" = "Your requests:";
+"seeker_overview_screen_title" = "Deine Anfragen:";
 
 /*Fuzzy*/
 "seeker_phone_call_text" = "\"Rufen Sie bitte </br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen.\"";
-"seeker_phone_call_text_ios" = "Ruf bitte %@ an um deine Einkaufsliste aufzuzeigen.";
+"seeker_phone_call_text_ios" = "Rufen Sie bitte %@ um Ihre Einkaufsliste aufzuzeigen.";
 "seeker_request_create_heading" = "Ich benötige:";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
 "seeker_request_create_placeholder_information" = "Zusätzliche Informationen";
