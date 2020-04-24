@@ -88,6 +88,7 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     }
 
     private var keyboardObserver: KeyboardObserver?
+    private var textFieldTags: Int = 0
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
@@ -108,7 +109,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
         super.viewDidLoad()
         view.backgroundColor = R.color.nexdGreen()
         view.addSubview(scrollView)
-
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -141,86 +141,67 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                 make.height.equalTo(52)
             }
         }
+        let textFields = [firstName, lastName, street, number, zipCode, city, phoneNumber, additionalRequest, deliveryComment]
+        for (index, textView) in textFields.enumerated() {
+            scrollView.addSubview(textView)
+            textView.withBottomBorder()
+            textView.snp.makeConstraints { make in
+                make.height.equalTo(36)
+                make.left.equalToSuperview().inset(13)
+            }
+            textView.tag = index
+            textView.delegate = self
+            if textView == textFields.last {
+                textView.returnKeyType = .done
+            }
+            print("DEBUG: \(textView.tag)")
+        }
+        addInputAccessoryForTextFields(textFields: textFields, dismissable: true, previousNextable: true)
 
-        scrollView.addSubview(firstName)
-        firstName.withBottomBorder()
         firstName.placeholder = R.string.localizable.user_input_details_placeholder_firstname()
         firstName.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(stackView.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
 
-        scrollView.addSubview(lastName)
-        lastName.withBottomBorder()
         lastName.placeholder = R.string.localizable.user_input_details_placeholder_lastname()
         lastName.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(firstName.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
-
-        scrollView.addSubview(street)
-        street.withBottomBorder()
         street.placeholder = R.string.localizable.user_input_details_placeholder_street()
         street.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(lastName.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
 
-        scrollView.addSubview(number)
-        number.withBottomBorder()
         number.placeholder = R.string.localizable.user_input_details_placeholder_houseNumber()
         number.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(street.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
+        number.keyboardType = .numberPad
 
-        scrollView.addSubview(zipCode)
-        zipCode.withBottomBorder()
         zipCode.placeholder = R.string.localizable.user_input_details_placeholder_zipCode()
         zipCode.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(number.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
-
-        scrollView.addSubview(city)
-        city.withBottomBorder()
+        zipCode.keyboardType = .numberPad
         city.placeholder = R.string.localizable.user_input_details_placeholder_city()
         city.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(zipCode.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
 
-        scrollView.addSubview(phoneNumber)
-        phoneNumber.withBottomBorder()
         phoneNumber.placeholder = R.string.localizable.user_input_details_placeholder_phoneNumber()
         phoneNumber.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(city.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
-
-        scrollView.addSubview(additionalRequest)
-        additionalRequest.withBottomBorder()
+        phoneNumber.keyboardType = .phonePad
+        phoneNumber.returnKeyType = .default
         additionalRequest.placeholder = R.string.localizable.seeker_request_create_placeholder_information()
         additionalRequest.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(phoneNumber.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
 
-        scrollView.addSubview(deliveryComment)
-        deliveryComment.withBottomBorder()
         deliveryComment.placeholder = R.string.localizable.seeker_request_create_placeholder_delivery_comment()
         deliveryComment.snp.makeConstraints { make in
-            make.height.equalTo(36)
             make.top.equalTo(additionalRequest.snp.bottom).offset(23)
-            make.left.equalToSuperview().inset(13)
         }
 
         scrollView.addSubview(confirmButton)
@@ -267,5 +248,48 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
                 }
                 .subscribe()
         )
+    }
+}
+extension RequestConfirmationViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print("DEBUG: \(textField.tag)")
+        if let nextResponder = self.view.viewWithTag(textField.tag + 1) as? UITextField {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return false
+    }
+    func addInputAccessoryForTextFields(textFields: [UITextField], dismissable: Bool = true, previousNextable: Bool = false) {
+        for (index, textField) in textFields.enumerated() {
+            let toolbar: UIToolbar = UIToolbar()
+            toolbar.sizeToFit()
+            var items = [UIBarButtonItem]()
+            if previousNextable {
+                let previousButton = UIBarButtonItem(image: UIImage(named: "chevron_left"), style: .plain, target: nil, action: nil)
+                previousButton.width = 30
+                if textField == textFields.first {
+                    previousButton.isEnabled = false
+                } else {
+                    previousButton.target = textFields[index - 1]
+                    previousButton.action = #selector(UITextField.becomeFirstResponder)
+                }
+                let nextButton = UIBarButtonItem(image: UIImage(named: "Chevron"), style: .plain, target: nil, action: nil)
+                nextButton.width = 30
+                if textField == textFields.last {
+                    nextButton.isEnabled = false
+                } else {
+                    nextButton.target = textFields[index + 1]
+                    nextButton.action = #selector(UITextField.becomeFirstResponder)
+                }
+                items.append(contentsOf: [previousButton, nextButton])
+            }
+            let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: view, action: #selector(UIView.endEditing))
+            items.append(contentsOf: [spacer, doneButton])
+            toolbar.setItems(items, animated: false)
+            textField.inputAccessoryView = toolbar
+        }
     }
 }
