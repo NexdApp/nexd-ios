@@ -20,7 +20,7 @@ struct DeliveryConfirmationView: View {
 
         static func from(helpRequest: HelpRequest) -> Request {
             Request(requestId: helpRequest.id ?? 0,
-                    requester: helpRequest.requester?.firstName ?? "-",
+                    requester: helpRequest.firstName ?? "-",
                     phoneNumber: helpRequest.phoneNumber ?? "-",
                     address: "\(helpRequest.zipCode ?? "-") / \(helpRequest.city ?? "-")")
         }

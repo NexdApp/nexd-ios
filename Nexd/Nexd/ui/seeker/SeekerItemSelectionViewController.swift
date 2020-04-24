@@ -38,7 +38,7 @@ class SeekerItemSelectionViewController: ViewController<SeekerItemSelectionViewC
 
                 let requestItems = items
                     .filter { $0.amount > 0 }
-                    .map { item in RequestConfirmationViewController.Item(itemId: item.itemId, title: item.title, amount: item.amount) }
+                    .map { item in RequestConfirmationView.Item(id: item.itemId, title: item.title, amount: item.amount) }
                 viewModel.navigator.toRequestConfirmation(items: requestItems)
             }
         }

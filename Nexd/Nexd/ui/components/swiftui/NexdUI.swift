@@ -37,6 +37,19 @@ enum NexdUI {
             }
         }
 
+        static func confirm(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    R.string.localizable.confirm_button_title.text
+                        .font(R.font.proximaNovaSoftBold.font(size: 35))
+                        .foregroundColor(R.color.positiveButtonText.color)
+
+                    R.image.chevron.image
+                        .foregroundColor(R.color.positiveButtonText.color)
+                }
+            }
+        }
+
         static func lightButton(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {

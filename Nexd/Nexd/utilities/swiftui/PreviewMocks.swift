@@ -56,7 +56,7 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toCheckList")
     }
 
-    func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
+    func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
         log.debug("toRequestConfirmation - items: \(items)")
     }
 

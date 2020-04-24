@@ -25,7 +25,7 @@ protocol ScreenNavigating {
     func toProfileScreen()
     func toShoppingListOptions()
     func toCheckList()
-    func toRequestConfirmation(items: [RequestConfirmationViewController.Item])
+    func toRequestConfirmation(items: [RequestConfirmationView.Item])
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
@@ -159,8 +159,8 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toRequestConfirmation(items: [RequestConfirmationViewController.Item]) {
-        let viewModel = RequestConfirmationViewController.ViewModel(navigator: self,
+    func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
+        let viewModel = RequestConfirmationView.ViewModel(navigator: self,
                                                                     userService: userService,
                                                                     helpRequestsService: helpRequestsService,
                                                                     items: items,
@@ -175,7 +175,7 @@ extension Navigator: ScreenNavigating {
                                                                         self?.showError(title: R.string.localizable.seeker_error_title(),
                                                                                         message: R.string.localizable.seeker_error_message(), handler: nil)
         })
-        let screen = RequestConfirmationViewController(viewModel: viewModel)
+        let screen = RequestConfirmationView.createScreen(viewModel: viewModel)
         navigationController.present(screen, animated: true, completion: nil)
     }
 
