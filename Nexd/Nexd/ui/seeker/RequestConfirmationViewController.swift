@@ -88,7 +88,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
     }
 
     private var keyboardObserver: KeyboardObserver?
-    private var textFieldTags: Int = 0
 
     private let scrollView = UIScrollView()
     private let titleLabel = UILabel()
