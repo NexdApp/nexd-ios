@@ -20,7 +20,7 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
 
         var requests: [Request] {
             helpList.helpRequests.map { helpRequest -> Request in
-                Request(requestId: Int(helpRequest.id ?? 0), title: helpRequest.requester?.firstName ?? "-",
+                Request(requestId: Int(helpRequest.id ?? 0), title: helpRequest.firstName ?? "-",
                         articles: helpRequest.articles?.compactMap {
                             guard let article = $0.article else { return nil}
                             return Item(itemId: article.id, name: article.name, count: $0.articleCount)
@@ -47,7 +47,6 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
                 viewModel.navigator.goBack()
             }
         }
-
     }
 
     struct Item {
@@ -128,23 +127,5 @@ class CheckoutViewController: ViewController<CheckoutViewController.ViewModel> {
         )
 
         list = UIHostingController(rootView: CheckoutListView(requests: viewModel.requests))
-    }
-}
-
-extension CheckoutViewController {
-    @objc func completeButtonPressed(sender: UIButton!) {
-//        guard let content = content else { return }
-//        ShoppingListService.shared.createShoppingList(requestIds: content.acceptedRequests.map { $0.id })
-//            .subscribe(onSuccess: { [weak self] shoppingList in
-//                log.debug("Shoppping list created: \(shoppingList)")
-//                let shoppingListVC = ShoppingListViewController()
-//                shoppingListVC.shoppingList = shoppingList
-//                self?.navigationController?.pushViewController(shoppingListVC, animated: true)
-//            }, onError: { [weak self] error in
-//                log.error("Failed to create shopping list: \(error)")
-//                self?.showError(title: R.string.localizable.helper_request_overview_error_title(),
-//                                message: R.string.localizable.helper_request_overview_error_message())
-//            })
-//            .disposed(by: disposeBag)
     }
 }
