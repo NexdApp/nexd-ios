@@ -252,7 +252,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
 }
 extension RequestConfirmationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("DEBUG: \(textField.tag)")
         if let nextResponder = self.view.viewWithTag(textField.tag + 1) as? UITextField {
             nextResponder.becomeFirstResponder()
         } else {
