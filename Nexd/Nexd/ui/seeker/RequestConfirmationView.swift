@@ -8,7 +8,6 @@
 
 import RxCocoa
 import RxSwift
-import SnapKit
 import SwiftUI
 
 struct RequestConfirmationView: View {
@@ -45,31 +44,78 @@ struct RequestConfirmationView: View {
                     .padding(.top, 23)
                     .padding([.leading, .trailing], 13)
 
+                    Group {
                         NexdUI.ValidatingTextField(tag: 0,
-                                                   placeholder: "Test: Phone",
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_firstname(),
                                                    onChanged: { string in log.debug("onChanged: \(string)") },
-                                                   inputValidation: NexdUI.InputValidation(rules: .phone,
-                                                                                                               handler: { result in
-                                                                       switch result {
-                                                                       case .valid:
-                                                   //                        view.state = .normal
-                                                                           log.debug("Validatiion: OK")
-                                                                       case let .invalid(failureErrors):
-                                                                           let messages = failureErrors.map { $0.message }
+                                                   validationRules: .firstName,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .alphabet,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
 
-                                                                           log.debug("Validatiion failed: \(String(describing: messages.first))")
-                                                   //                        view.state = .error(messages.first)
-                                                                       }
-                                                                   }))
+                        NexdUI.ValidatingTextField(tag: 1,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_lastname(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: .lastName,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .alphabet,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
 
+                        NexdUI.ValidatingTextField(tag: 2,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_street(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: nil,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
 
-                    NexdUI.TextField(tag: 0,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
-                                     onChanged: { string in log.debug(string) })
-                        .padding(.top, 12)
+                        NexdUI.ValidatingTextField(tag: 3,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_houseNumber(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: nil,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
 
+                        NexdUI.ValidatingTextField(tag: 4,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_zipCode(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: .zipCode,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad,
+                                                                                                 autocapitalizationType: .none,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
+
+                        NexdUI.ValidatingTextField(tag: 5,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_city(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: nil,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
+
+                        NexdUI.ValidatingTextField(tag: 6,
+                                                   placeholder: R.string.localizable.user_input_details_placeholder_phoneNumber(),
+                                                   onChanged: { string in log.debug("onChanged: \(string)") },
+                                                   validationRules: .phone,
+                                                   inputConfiguration: NexdUI.InputConfiguration(keyboardType: .phonePad,
+                                                                                                 autocorrectionType: .no,
+                                                                                                 spellCheckingType: .no))
+
+                        NexdUI.TextField(tag: 7,
+                                         placeholder: R.string.localizable.seeker_request_create_placeholder_information(),
+                                         onChanged: { string in log.debug("onChanged: \(string)") })
+
+                        NexdUI.TextField(tag: 8,
+                                         placeholder: R.string.localizable.seeker_request_create_placeholder_delivery_comment(),
+                                         onChanged: { string in log.debug("onChanged: \(string)") })
+                    }
+                    .padding(.top, 8)
+                    .padding([.leading, .trailing], 13)
                 }
-        }
+            }
+            .keyboardAdaptive()
+            .dismissingKeyboard()
     }
 
 //    private var keyboardObserver: KeyboardObserver?
