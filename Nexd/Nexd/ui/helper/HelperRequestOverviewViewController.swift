@@ -40,7 +40,17 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
 
         private let helpListUpdates = PublishRelay<HelpList>()
-        private lazy var helpList = helpListsService.createShoppingList(requestIds: [])
+        private lazy var helpList = helpListsService
+            .fetchShoppingLists()
+            .flatMap({ [weak self] existingLists -> Single<HelpList> in
+                if let existingList = existingLists.filter({ $0.status == .active }).first {
+                    return Single.just(existingList)
+                }
+
+                guard let self = self else { return Single.never() }
+
+                return self.helpListsService.createShoppingList(requestIds: [])
+            })
             .asObservable()
             .concat(helpListUpdates)
             .share(replay: 1)
@@ -49,7 +59,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             helpList
                 .map { helpList -> [AcceptedRequestCell.Item] in
                     helpList.helpRequests.map { helpRequest -> AcceptedRequestCell.Item in
-                        return AcceptedRequestCell.Item(title: helpRequest.displayName)
+                        AcceptedRequestCell.Item(title: helpRequest.displayName)
                     }
                 }
                 .asObservable()
@@ -106,10 +116,10 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                                 self?.openHelpRequestUpdateTrigger.accept(())
                             }
                         }
-                    .catchError { error -> Completable in
-                        log.error("Adding request failed!")
-                        return Completable.empty()
-                    }
+                        .catchError { error -> Completable in
+                            log.error("Adding request failed!")
+                            return Completable.empty()
+                        }
                 }
                 .ignoreElements()
         }
@@ -207,7 +217,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap {viewModel.currentItemsListButtonTaps() }.subscribe(),
+            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap { viewModel.currentItemsListButtonTaps() }.subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
