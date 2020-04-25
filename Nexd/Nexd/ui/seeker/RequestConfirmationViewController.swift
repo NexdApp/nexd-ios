@@ -153,7 +153,6 @@ class RequestConfirmationViewController: ViewController<RequestConfirmationViewC
             if textView == textFields.last {
                 textView.returnKeyType = .done
             }
-            print("DEBUG: \(textView.tag)")
         }
         addInputAccessoryForTextFields(textFields: textFields, dismissable: true, previousNextable: true)
 
