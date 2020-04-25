@@ -21,7 +21,6 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
         var checkoutButtonTaps: Binder<Void> {
             Binder(self) { viewModel, _ in
                 viewModel.navigator.toCheckoutScreen(helpList: viewModel.helpList)
-
             }
         }
 
@@ -90,14 +89,19 @@ class ShoppingListViewController: ViewController<ShoppingListViewController.View
         let articles = viewModel.helpList.helpRequests.flatMap { helpRequest -> [HelpRequestArticle] in
             helpRequest.articles ?? []
         }
-        for article in articles {
-            guard let name = article.article?.name else { continue }
+
+        let groupedArticles = Dictionary(grouping: articles, by: { $0.articleId })
+
+        for (_, articleList) in groupedArticles {
+            guard let name = articleList.first?.article?.name else { continue }
             let itemView = ShoppingListItemView()
             itemView.title.attributedText = "\(name)".asListItemTitle()
 
-            if let count = article.articleCount {
-                itemView.amount.attributedText = "\(count)x".asListItemDetails()
+            let count = articleList.reduce(0) { count, article -> Int64 in
+                return count + (article.articleCount ?? 0)
             }
+
+            itemView.amount.attributedText = "\(count)x".asListItemDetails()
 
             stackView.addArrangedSubview(itemView)
 
