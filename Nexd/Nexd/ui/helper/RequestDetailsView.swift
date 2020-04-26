@@ -20,30 +20,30 @@ struct RequestDetailsView: View {
                 .padding([.leading, .trailing], 25)
                 .padding(.top, 70)
 
-            NexdUI.Card {
-                VStack {
-                    ForEach(viewModel.articles) { item in
-                        HStack {
-                            Text(item.title)
-                                .padding(.trailing, 8)
-                                .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                .foregroundColor(R.color.listItemTitle.color)
+            ScrollView {
+                NexdUI.Card {
+                    VStack {
+                        ForEach(viewModel.articles) { item in
+                            HStack {
+                                Text(item.title)
+                                    .padding(.trailing, 8)
+                                    .font(R.font.proximaNovaSoftBold.font(size: 18))
+                                    .foregroundColor(R.color.listItemTitle.color)
 
-                            Spacer()
+                                Spacer()
 
-                            Text("\(item.amount)x")
-                                .font(R.font.proximaNovaSoftBold.font(size: 14))
-                                .foregroundColor(R.color.listItemDetailsText.color)
+                                Text("\(item.amount)x")
+                                    .font(R.font.proximaNovaSoftBold.font(size: 14))
+                                    .foregroundColor(R.color.listItemDetailsText.color)
+                            }
+                            .frame(height: 52)
                         }
-                        .frame(height: 52)
                     }
+                    .padding([.top, .bottom], 8)
                 }
-                .padding([.top, .bottom], 8)
+                .padding([.top, .bottom], 24)
+                .padding([.leading, .trailing], 12)
             }
-            .padding([.top, .bottom], 24)
-            .padding([.leading, .trailing], 12)
-
-            Spacer()
 
             NexdUI.Buttons.lightButton(text: viewModel.type.buttonTitle) {
                 self.viewModel.confirmButtonTapped()
