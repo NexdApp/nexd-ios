@@ -41,6 +41,8 @@
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AE7CD520244A6B7300214E88 /* TranscribeEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */; };
+		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
+		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
@@ -164,6 +166,8 @@
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEndView.swift; sourceTree = "<group>"; };
+		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
+		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 			children = (
 				AE9775B42445E1A200765324 /* PreviewMocks.swift */,
 				AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */,
+				AE8352EC24562D1500531228 /* ModalScreen.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE510B8B2443C4550068DF60 /* CheckoutListView.swift */,
 				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
+				AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -810,6 +816,7 @@
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AED2A9712440D6E70082316F /* CancelButton.swift in Sources */,
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
+				AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */,
 				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
@@ -822,6 +829,7 @@
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
 				AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */,
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
+				AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,

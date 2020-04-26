@@ -65,10 +65,21 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .asObservable()
         }
 
-        var acceptedRequestSelected: Binder<IndexPath> {
-            Binder(self) { _, indexPath in
-                log.debug("Item selected: \(indexPath)")
-            }
+        func acceptedRequestSelected(indexPath: IndexPath) -> Completable {
+            log.debug("Item selected: \(indexPath)")
+            return helpList
+                .take(1)
+                .flatMap { [weak self] helpList -> Completable in
+                    guard let self = self else { return Completable.empty() }
+                    return self.navigator.removingHelperRequest(request: helpList.helpRequests[indexPath.row], to: helpList)
+                        .flatMapCompletable { [weak self] updatedHelpList in
+                            Completable.from {
+                                self?.helpListUpdates.accept(updatedHelpList)
+                                self?.openHelpRequestUpdateTrigger.accept(())
+                            }
+                        }
+                }
+                .ignoreElements()
         }
 
         private let openHelpRequestUpdateTrigger = PublishRelay<Void>()
@@ -100,25 +111,18 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         func openRequestSelected(indexPath: IndexPath) -> Completable {
-            let helpListsService = self.helpListsService
             return openHelpRequests
                 .take(1)
-                .map { requests -> HelpRequest in
-                    requests[indexPath.row]
-                }
+                .map { requests -> HelpRequest in requests[indexPath.row] }
                 .withLatestFrom(helpList) { ($0, $1) }
-                .flatMap { helpRequest, helpList -> Completable in
-                    guard let requestId = helpRequest.id else { return Completable.empty() }
-                    return helpListsService.addRequest(withId: requestId, to: helpList.id)
-                        .flatMapCompletable { helpList -> Completable in
-                            Completable.from { [weak self] in
-                                self?.helpListUpdates.accept(helpList)
+                .flatMap { [weak self] helpRequest, helpList -> Completable in
+                    guard let self = self else { return Completable.empty() }
+                    return self.navigator.addingHelperRequest(request: helpRequest, to: helpList)
+                        .flatMapCompletable { [weak self] updatedHelpList in
+                            Completable.from {
+                                self?.helpListUpdates.accept(updatedHelpList)
                                 self?.openHelpRequestUpdateTrigger.accept(())
                             }
-                        }
-                        .catchError { error -> Completable in
-                            log.error("Adding request failed!")
-                            return Completable.empty()
                         }
                 }
                 .ignoreElements()
@@ -129,16 +133,6 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             self.helpRequestsService = helpRequestsService
             self.helpListsService = helpListsService
         }
-    }
-
-    struct Request {
-        let requestId: Int64
-        let title: String
-    }
-
-    struct Content {
-        let acceptedRequests: [Request]
-        let availableRequests: [Request]
     }
 
     private let currentItemsListButton = SubMenuButton.make(title: R.string.localizable.helper_request_overview_button_title_current_items_list())
@@ -222,7 +216,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
 
-            acceptedRequestsCollectionView.rx.itemSelected.bind(to: viewModel.acceptedRequestSelected),
+            acceptedRequestsCollectionView.rx.itemSelected.flatMapLatest(viewModel.acceptedRequestSelected(indexPath:)).subscribe(),
             backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             acceptedRequestsCollectionView.rx.setDelegate(self),
 
