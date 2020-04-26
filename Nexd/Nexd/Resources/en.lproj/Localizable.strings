@@ -43,6 +43,7 @@
 "helper_call_overview_screen_title" = "Open calls:";
 "helper_request_detail_button_accept" = "Will do!";
 "helper_request_detail_button_accepted" = "Request already accepted";
+"helper_request_detail_button_remove" = "Remove from shopping list!";
 "helper_request_detail_message_cancelled" = "Your request was deleted";
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
