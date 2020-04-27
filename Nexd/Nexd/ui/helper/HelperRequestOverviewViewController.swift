@@ -15,6 +15,7 @@ import UIKit
 class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
+        private let userService: UserService
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
 
@@ -37,7 +38,18 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
-        let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
+
+        let openRequestsFilterButtonTitle = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
+        var openRequestsFilterButtonDetails: Driver<NSAttributedString?> {
+            return userProfile
+                .map { user -> String in
+                    guard let zipCode = user.zipCode else { return R.string.localizable.helper_request_overview_filter_inactive() }
+
+                    return R.string.localizable.helper_request_overview_filter_selected_zip(zipCode)
+                }
+                .map { zipCode -> NSAttributedString in zipCode.asFilterButtonDetails() }
+                .asDriver(onErrorJustReturn: nil)
+        }
 
         private let helpListUpdates = PublishRelay<HelpList>()
         private lazy var helpList = helpListsService
@@ -66,7 +78,6 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         func acceptedRequestSelected(indexPath: IndexPath) -> Completable {
-            log.debug("Item selected: \(indexPath)")
             return helpList
                 .take(1)
                 .flatMap { [weak self] helpList -> Completable in
@@ -81,6 +92,10 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 }
                 .ignoreElements()
         }
+
+        private lazy var userProfile = userService.findMe()
+            .asObservable()
+            .share(replay: 1)
 
         private let openHelpRequestUpdateTrigger = PublishRelay<Void>()
         private lazy var openHelpRequests: Observable<[HelpRequest]> = { helpRequestsService
@@ -128,8 +143,9 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .ignoreElements()
         }
 
-        init(navigator: ScreenNavigating, helpRequestsService: HelpRequestsService, helpListsService: HelpListsService) {
+        init(navigator: ScreenNavigating, userService: UserService, helpRequestsService: HelpRequestsService, helpListsService: HelpListsService) {
             self.navigator = navigator
+            self.userService = userService
             self.helpRequestsService = helpRequestsService
             self.helpListsService = helpListsService
         }
@@ -148,7 +164,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         return list
     }()
 
-    private let openRequestsHeadingLabel = UILabel()
+    private let openRequestsFilterButton = FilterButton()
     private var openRequestsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -195,8 +211,8 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             make.height.equalTo(153)
         }
 
-        view.addSubview(openRequestsHeadingLabel)
-        openRequestsHeadingLabel.snp.makeConstraints { make in
+        view.addSubview(openRequestsFilterButton)
+        openRequestsFilterButton.snp.makeConstraints { make in
             make.top.equalTo(acceptedRequestsCollectionView.snp.bottom).offset(11)
             make.left.right.equalToSuperview().inset(19)
         }
@@ -204,7 +220,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         view.addSubview(openRequestsCollectionView)
         openRequestsCollectionView.snp.makeConstraints { make -> Void in
             make.left.right.equalToSuperview().inset(12)
-            make.top.equalTo(openRequestsHeadingLabel.snp.bottom)
+            make.top.equalTo(openRequestsFilterButton.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(8)
         }
     }
@@ -214,7 +230,8 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap { viewModel.currentItemsListButtonTaps() }.subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
-            viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
+            viewModel.openRequestsFilterButtonTitle.drive(openRequestsFilterButton.titleLabel.rx.attributedText),
+            viewModel.openRequestsFilterButtonDetails.drive(openRequestsFilterButton.detailsLabel.rx.attributedText),
 
             acceptedRequestsCollectionView.rx.itemSelected.flatMapLatest(viewModel.acceptedRequestSelected(indexPath:)).subscribe(),
             backButton.rx.tap.bind(to: viewModel.backButtonTaps),

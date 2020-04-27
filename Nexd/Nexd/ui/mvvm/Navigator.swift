@@ -35,6 +35,7 @@ protocol ScreenNavigating {
     func toHelperOverview()
     func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
     func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
+    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?>
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
@@ -211,6 +212,7 @@ extension Navigator: ScreenNavigating {
 
     func toHelperOverview() {
         let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
+                                                                                                                  userService: userService,
                                                                                                                   helpRequestsService: helpRequestsService,
                                                                                                                   helpListsService: helpListsService))
         push(screen: screen)
@@ -229,9 +231,9 @@ extension Navigator: ScreenNavigating {
                                                                                                  helpRequest: request,
                                                                                                  helpList: helpList,
                                                                                                  onFinished: { [weak self] helpList in
-                                                                                                    log.debug("helpList: \(helpList)")
-                                                                                                    single(.success(helpList))
-                                                                                                    self?.dismiss(completion: nil)
+                                                                                                     log.debug("helpList: \(helpList)")
+                                                                                                     single(.success(helpList))
+                                                                                                     self?.dismiss(completion: nil)
             }))
             self.present(screen: screen)
 
@@ -252,9 +254,27 @@ extension Navigator: ScreenNavigating {
                                                                                                  helpRequest: request,
                                                                                                  helpList: helpList,
                                                                                                  onFinished: { [weak self] helpList in
-                                                                                                    log.debug("helpList: \(helpList)")
-                                                                                                    single(.success(helpList))
-                                                                                                    self?.dismiss(completion: nil)
+                                                                                                     log.debug("helpList: \(helpList)")
+                                                                                                     single(.success(helpList))
+                                                                                                     self?.dismiss(completion: nil)
+            }))
+            self.present(screen: screen)
+
+            return Disposables.create()
+        }
+    }
+
+    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?> {
+        return Single.create { [weak self] single -> Disposable in
+            guard let self = self else {
+                single(.success(nil))
+                return Disposables.create()
+            }
+
+            let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
+                                                                                                                           onFinished: { [weak self] result in
+                                                                                                                               single(.success(result))
+                                                                                                                               self?.dismiss(completion: nil)
             }))
             self.present(screen: screen)
 

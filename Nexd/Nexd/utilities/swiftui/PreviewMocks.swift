@@ -95,6 +95,11 @@ class PreviewNavigator: ScreenNavigating {
         return Single.never()
     }
 
+    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?> {
+        log.debug("changingHelperRequestFilterSettings")
+        return Single.never()
+    }
+
     func toCurrentItemsList(helpList: HelpList) {
         log.debug("toCurrentItemsList - helpList: \(helpList)")
     }

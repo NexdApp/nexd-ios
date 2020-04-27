@@ -49,6 +49,8 @@
 "helper_request_detail_screen_title" = "To collect";
 "helper_request_finished_screen_title" = "Completed requests:";
 "helper_request_overview_button_filter_zip" = "Zip code";
+"helper_request_overview_filter_selected_zip" = "Open requests for regtion: %1$@";
+"helper_request_overview_filter_inactive" = "All open requests";
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "helper_request_overview_button_summary_details" = "Total ";
 "helper_request_overview_button_summary_title" = "Shopping";
