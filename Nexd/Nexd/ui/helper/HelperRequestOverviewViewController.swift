@@ -51,6 +51,14 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .asDriver(onErrorJustReturn: nil)
         }
 
+        func openRequestsFilterButtonTaps() -> Completable {
+            let navigator = self.navigator
+            return userProfile.take(1).asSingle().flatMap { user in
+                navigator.changingHelperRequestFilterSettings(zipCode: user.zipCode)
+            }
+            .asCompletable()
+        }
+
         private let helpListUpdates = PublishRelay<HelpList>()
         private lazy var helpList = helpListsService
             .fetchShoppingLists()
@@ -227,11 +235,12 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap { viewModel.currentItemsListButtonTaps() }.subscribe(),
+            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap(viewModel.currentItemsListButtonTaps).subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
             viewModel.openRequestsFilterButtonTitle.drive(openRequestsFilterButton.titleLabel.rx.attributedText),
             viewModel.openRequestsFilterButtonDetails.drive(openRequestsFilterButton.detailsLabel.rx.attributedText),
+            openRequestsFilterButton.rx.controlEvent(.touchUpInside).flatMapLatest(viewModel.openRequestsFilterButtonTaps).subscribe(),
 
             acceptedRequestsCollectionView.rx.itemSelected.flatMapLatest(viewModel.acceptedRequestSelected(indexPath:)).subscribe(),
             backButton.rx.tap.bind(to: viewModel.backButtonTaps),

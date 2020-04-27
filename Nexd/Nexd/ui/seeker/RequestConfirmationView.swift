@@ -52,7 +52,9 @@ struct RequestConfirmationView: View {
                                                    validationRules: .firstName,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .alphabet,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: false,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 1,
                                                    text: $viewModel.state.lastName,
@@ -60,7 +62,9 @@ struct RequestConfirmationView: View {
                                                    validationRules: .lastName,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .alphabet,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 2,
                                                    text: $viewModel.state.street,
@@ -68,7 +72,9 @@ struct RequestConfirmationView: View {
                                                    validationRules: nil,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 3,
                                                    text: $viewModel.state.houseNumber,
@@ -76,7 +82,9 @@ struct RequestConfirmationView: View {
                                                    validationRules: nil,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 4,
                                                    text: $viewModel.state.zipCode,
@@ -85,7 +93,9 @@ struct RequestConfirmationView: View {
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad,
                                                                                                  autocapitalizationType: .none,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 5,
                                                    text: $viewModel.state.city,
@@ -93,7 +103,9 @@ struct RequestConfirmationView: View {
                                                    validationRules: nil,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .default,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.ValidatingTextField(tag: 6,
                                                    text: $viewModel.state.phoneNumber,
@@ -101,15 +113,19 @@ struct RequestConfirmationView: View {
                                                    validationRules: .phone,
                                                    inputConfiguration: NexdUI.InputConfiguration(keyboardType: .phonePad,
                                                                                                  autocorrectionType: .no,
-                                                                                                 spellCheckingType: .no))
+                                                                                                 spellCheckingType: .no,
+                                                                                                 hasPrevious: true,
+                                                                                                 hasNext: true))
 
                         NexdUI.TextField(tag: 7,
                                          text: $viewModel.state.information,
-                                         placeholder: R.string.localizable.seeker_request_create_placeholder_information())
+                                         placeholder: R.string.localizable.seeker_request_create_placeholder_information(),
+                                         inputConfiguration: NexdUI.InputConfiguration(hasPrevious: true, hasNext: true))
 
                         NexdUI.TextField(tag: 8,
                                          text: $viewModel.state.deliveryComment,
-                                         placeholder: R.string.localizable.seeker_request_create_placeholder_delivery_comment())
+                                         placeholder: R.string.localizable.seeker_request_create_placeholder_delivery_comment(),
+                                         inputConfiguration: NexdUI.InputConfiguration(hasPrevious: true, hasNext: false, hasDone: true))
                     }
                     .padding(.top, 8)
                     .padding([.leading, .trailing], 13)

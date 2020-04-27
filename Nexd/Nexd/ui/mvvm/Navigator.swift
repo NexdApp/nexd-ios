@@ -35,7 +35,7 @@ protocol ScreenNavigating {
     func toHelperOverview()
     func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
     func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
-    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?>
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?>
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
@@ -264,7 +264,7 @@ extension Navigator: ScreenNavigating {
         }
     }
 
-    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?> {
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
         return Single.create { [weak self] single -> Disposable in
             guard let self = self else {
                 single(.success(nil))
@@ -272,6 +272,7 @@ extension Navigator: ScreenNavigating {
             }
 
             let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
+                                                                                                                           zipCode: zipCode,
                                                                                                                            onFinished: { [weak self] result in
                                                                                                                                single(.success(result))
                                                                                                                                self?.dismiss(completion: nil)

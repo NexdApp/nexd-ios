@@ -85,12 +85,19 @@ extension NexdUI {
         var autocapitalizationType: UITextAutocapitalizationType = .sentences
         var autocorrectionType: UITextAutocorrectionType = .default
         var spellCheckingType: UITextSpellCheckingType = .default
+        var returnKeyType: UIReturnKeyType = .default
+        var hasPrevious: Bool = false
+        var hasNext: Bool = false
+        var hasDone: Bool = false
 
         func apply(to textField: UITextField) {
             textField.keyboardType = keyboardType
             textField.autocapitalizationType = autocapitalizationType
             textField.autocorrectionType = autocorrectionType
             textField.spellCheckingType = spellCheckingType
+            textField.returnKeyType = returnKeyType
+
+            textField.addInputAccessory(hasPrevious: hasPrevious, hasNext: hasNext, hasDone: hasDone)
         }
     }
 

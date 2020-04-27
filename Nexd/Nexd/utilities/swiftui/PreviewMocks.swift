@@ -95,7 +95,7 @@ class PreviewNavigator: ScreenNavigating {
         return Single.never()
     }
 
-    func changingHelperRequestFilterSettings() -> Single<HelperRequestFilterSettingsView.Result?> {
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
         log.debug("changingHelperRequestFilterSettings")
         return Single.never()
     }
