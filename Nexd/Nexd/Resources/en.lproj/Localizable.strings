@@ -41,6 +41,7 @@
 "error_message_user_detail_field_missing" = "Please fill in";
 "error_title" = "Error";
 "helper_call_overview_screen_title" = "Open calls:";
+"helper_overview_error_empty_zipcode" = "";
 "helper_request_detail_button_accept" = "Will do!";
 "helper_request_detail_button_accepted" = "Request already accepted";
 "helper_request_detail_button_remove" = "Remove from shopping list!";
@@ -121,6 +122,7 @@
 "seeker_type_button_phone_call" = "Make a\nphone call";
 "seeker_type_screen_title" = "How would you like to make your list?";
 "select_text_dialog_text_hint_default" = "Input";
+"shopping_list_button_checkout" = "Order Completed";
 "shopping_list_button_title_checkout" = "Checkout";
 "shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
 "shopping_list_overview_error_title" = "Error!";
