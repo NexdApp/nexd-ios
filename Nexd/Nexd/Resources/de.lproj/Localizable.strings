@@ -41,6 +41,7 @@
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "error_title" = "Fehler";
 "helper_call_overview_screen_title" = "Offene Anrufe:";
+"helper_overview_error_empty_zipcode" = "Keine PLZ ausgewählt";
 "helper_request_detail_button_accept" = "Mach ich!";
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
 "helper_request_detail_button_remove" = "Von Einkafusliste entfernen!";
@@ -121,6 +122,7 @@
 "seeker_type_button_phone_call" = "Einen Anruf tätigen";
 "seeker_type_screen_title" = "Wie würdest du gerne deine Liste erstellen?";
 "select_text_dialog_text_hint_default" = "Eingeben";
+"shopping_list_button_checkout" = "Zur Kasse";
 "shopping_list_button_title_checkout" = "Zur Kasse";
 "shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuche es erneut.";
 "shopping_list_overview_error_title" = "Fehler!";
