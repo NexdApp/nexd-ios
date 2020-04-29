@@ -19,6 +19,13 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
 
+        private lazy var myZipCode = userService.findMe()
+            .map { $0.zipCode }
+
+        private let zipCodeChanges = PublishRelay<String?>()
+        private lazy var zipCode = myZipCode.asObservable().concat(zipCodeChanges.asObservable())
+            .share(replay: 1)
+
         func currentItemsListButtonTaps() -> Completable {
             let navigator = self.navigator
             return helpList.take(1).flatMap { helpList -> Completable in
@@ -41,9 +48,9 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         let openRequestsFilterButtonTitle = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
         var openRequestsFilterButtonDetails: Driver<NSAttributedString?> {
-            return userProfile
-                .map { user -> String in
-                    guard let zipCode = user.zipCode else { return R.string.localizable.helper_request_overview_filter_inactive() }
+            return zipCode
+                .map { zipCode -> String in
+                    guard let zipCode = zipCode else { return R.string.localizable.helper_request_overview_filter_inactive() }
 
                     return R.string.localizable.helper_request_overview_filter_selected_zip(zipCode)
                 }
@@ -53,10 +60,15 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
         func openRequestsFilterButtonTaps() -> Completable {
             let navigator = self.navigator
-            return userProfile.take(1).asSingle().flatMap { user in
-                navigator.changingHelperRequestFilterSettings(zipCode: user.zipCode)
-            }
-            .asCompletable()
+            return zipCode
+                .take(1)
+                .asSingle()
+                .flatMap { zipCode in navigator.changingHelperRequestFilterSettings(zipCode: zipCode) }
+                .flatMapCompletable { result -> Completable in
+                    Completable.from { [weak self] in
+                        self?.zipCodeChanges.accept(result?.zipCode)
+                    }
+                }
         }
 
         private let helpListUpdates = PublishRelay<HelpList>()
@@ -101,20 +113,20 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .ignoreElements()
         }
 
-        private lazy var userProfile = userService.findMe()
-            .asObservable()
-            .share(replay: 1)
-
         private let openHelpRequestUpdateTrigger = PublishRelay<Void>()
-        private lazy var openHelpRequests: Observable<[HelpRequest]> = { helpRequestsService
-            .openRequests(status: [.pending])
-            .asObservable()
-            .concat(openHelpRequestUpdateTrigger.flatMapLatest { [weak self] _ -> Single<[HelpRequest]> in
-                guard let self = self else { return Single.never() }
+        private lazy var openHelpRequests: Observable<[HelpRequest]> = {
+            Observable.combineLatest(openHelpRequestUpdateTrigger .startWith(()),
+                                     zipCode)
+                .flatMapLatest { [weak self] _, zipCode -> Single<[HelpRequest]> in
+                    guard let self = self else { return Single.never() }
 
-                return self.helpRequestsService.openRequests(status: [.pending])
-            })
-            .share(replay: 1)
+                    guard let zipCode = zipCode else {
+                        return self.helpRequestsService.openRequests(status: [.pending])
+                    }
+
+                    return self.helpRequestsService.openRequests(zipCode: [zipCode], status: [.pending])
+                }
+                .share(replay: 1)
         }()
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {

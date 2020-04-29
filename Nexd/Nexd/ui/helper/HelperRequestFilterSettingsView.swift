@@ -50,7 +50,7 @@ struct HelperRequestFilterSettingsView: View {
 
 extension HelperRequestFilterSettingsView {
     struct Result {
-        let zipCode: String
+        let zipCode: String?
     }
 
     class ViewModel: ObservableObject {
@@ -68,7 +68,7 @@ extension HelperRequestFilterSettingsView {
         }
 
         func confirmButtonTapped() {
-            log.debug("Confirm")
+            onFinished(Result(zipCode: zipCode))
         }
     }
 
