@@ -17,13 +17,10 @@ extension NexdUI {
         }
 
         var body: some View {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
-                    .fill(Color.white)
-
-                content
-                    .padding(8)
-            }
+            content
+                .padding(8)
+                .background(Color.white)
+                .cornerRadius(10)
         }
     }
 }

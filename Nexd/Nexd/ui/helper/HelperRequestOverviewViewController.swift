@@ -15,8 +15,16 @@ import UIKit
 class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewViewController.ViewModel> {
     class ViewModel {
         private let navigator: ScreenNavigating
+        private let userService: UserService
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
+
+        private lazy var myZipCode = userService.findMe()
+            .map { $0.zipCode }
+
+        private let zipCodeChanges = PublishRelay<String?>()
+        private lazy var zipCode = myZipCode.asObservable().concat(zipCodeChanges.asObservable())
+            .share(replay: 1)
 
         func currentItemsListButtonTaps() -> Completable {
             let navigator = self.navigator
@@ -37,10 +45,44 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         let acceptedRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_accepted_section().asHeading())
-        let openRequestsHeadingText = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
+
+        let openRequestsFilterButtonTitle = Driver.just(R.string.localizable.helper_request_overview_heading_available_section().asHeading())
+        var openRequestsFilterButtonDetails: Driver<NSAttributedString?> {
+            return zipCode
+                .map { zipCode -> String in
+                    guard let zipCode = zipCode else { return R.string.localizable.helper_request_overview_filter_inactive() }
+
+                    return R.string.localizable.helper_request_overview_filter_selected_zip(zipCode)
+                }
+                .map { zipCode -> NSAttributedString in zipCode.asFilterButtonDetails() }
+                .asDriver(onErrorJustReturn: nil)
+        }
+
+        func openRequestsFilterButtonTaps() -> Completable {
+            let navigator = self.navigator
+            return zipCode
+                .take(1)
+                .asSingle()
+                .flatMap { zipCode in navigator.changingHelperRequestFilterSettings(zipCode: zipCode) }
+                .flatMapCompletable { result -> Completable in
+                    Completable.from { [weak self] in
+                        self?.zipCodeChanges.accept(result?.zipCode)
+                    }
+                }
+        }
 
         private let helpListUpdates = PublishRelay<HelpList>()
-        private lazy var helpList = helpListsService.createShoppingList(requestIds: [])
+        private lazy var helpList = helpListsService
+            .fetchShoppingLists()
+            .flatMap({ [weak self] existingLists -> Single<HelpList> in
+                if let existingList = existingLists.filter({ $0.status == .active }).first {
+                    return Single.just(existingList)
+                }
+
+                guard let self = self else { return Single.never() }
+
+                return self.helpListsService.createShoppingList(requestIds: [])
+            })
             .asObservable()
             .concat(helpListUpdates)
             .share(replay: 1)
@@ -49,28 +91,42 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             helpList
                 .map { helpList -> [AcceptedRequestCell.Item] in
                     helpList.helpRequests.map { helpRequest -> AcceptedRequestCell.Item in
-                        return AcceptedRequestCell.Item(title: helpRequest.displayName)
+                        AcceptedRequestCell.Item(title: helpRequest.displayName)
                     }
                 }
                 .asObservable()
         }
 
-        var acceptedRequestSelected: Binder<IndexPath> {
-            Binder(self) { _, indexPath in
-                log.debug("Item selected: \(indexPath)")
-            }
+        func acceptedRequestSelected(indexPath: IndexPath) -> Completable {
+            return helpList
+                .take(1)
+                .flatMap { [weak self] helpList -> Completable in
+                    guard let self = self else { return Completable.empty() }
+                    return self.navigator.removingHelperRequest(request: helpList.helpRequests[indexPath.row], to: helpList)
+                        .flatMapCompletable { [weak self] updatedHelpList in
+                            Completable.from {
+                                self?.helpListUpdates.accept(updatedHelpList)
+                                self?.openHelpRequestUpdateTrigger.accept(())
+                            }
+                        }
+                }
+                .ignoreElements()
         }
 
         private let openHelpRequestUpdateTrigger = PublishRelay<Void>()
-        private lazy var openHelpRequests: Observable<[HelpRequest]> = { helpRequestsService
-            .openRequests(status: [.pending])
-            .asObservable()
-            .concat(openHelpRequestUpdateTrigger.flatMapLatest { [weak self] _ -> Single<[HelpRequest]> in
-                guard let self = self else { return Single.never() }
+        private lazy var openHelpRequests: Observable<[HelpRequest]> = {
+            Observable.combineLatest(openHelpRequestUpdateTrigger .startWith(()),
+                                     zipCode)
+                .flatMapLatest { [weak self] _, zipCode -> Single<[HelpRequest]> in
+                    guard let self = self else { return Single.never() }
 
-                return self.helpRequestsService.openRequests(status: [.pending])
-            })
-            .share(replay: 1)
+                    guard let zipCode = zipCode else {
+                        return self.helpRequestsService.openRequests(status: [.pending])
+                    }
+
+                    return self.helpRequestsService.openRequests(zipCode: [zipCode], status: [.pending])
+                }
+                .share(replay: 1)
         }()
 
         var openRequests: Observable<[OpenReqeustsCell.Item]> {
@@ -90,45 +146,29 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         }
 
         func openRequestSelected(indexPath: IndexPath) -> Completable {
-            let helpListsService = self.helpListsService
             return openHelpRequests
                 .take(1)
-                .map { requests -> HelpRequest in
-                    requests[indexPath.row]
-                }
+                .map { requests -> HelpRequest in requests[indexPath.row] }
                 .withLatestFrom(helpList) { ($0, $1) }
-                .flatMap { helpRequest, helpList -> Completable in
-                    guard let requestId = helpRequest.id else { return Completable.empty() }
-                    return helpListsService.addRequest(withId: requestId, to: helpList.id)
-                        .flatMapCompletable { helpList -> Completable in
-                            Completable.from { [weak self] in
-                                self?.helpListUpdates.accept(helpList)
+                .flatMap { [weak self] helpRequest, helpList -> Completable in
+                    guard let self = self else { return Completable.empty() }
+                    return self.navigator.addingHelperRequest(request: helpRequest, to: helpList)
+                        .flatMapCompletable { [weak self] updatedHelpList in
+                            Completable.from {
+                                self?.helpListUpdates.accept(updatedHelpList)
                                 self?.openHelpRequestUpdateTrigger.accept(())
                             }
                         }
-                    .catchError { error -> Completable in
-                        log.error("Adding request failed!")
-                        return Completable.empty()
-                    }
                 }
                 .ignoreElements()
         }
 
-        init(navigator: ScreenNavigating, helpRequestsService: HelpRequestsService, helpListsService: HelpListsService) {
+        init(navigator: ScreenNavigating, userService: UserService, helpRequestsService: HelpRequestsService, helpListsService: HelpListsService) {
             self.navigator = navigator
+            self.userService = userService
             self.helpRequestsService = helpRequestsService
             self.helpListsService = helpListsService
         }
-    }
-
-    struct Request {
-        let requestId: Int64
-        let title: String
-    }
-
-    struct Content {
-        let acceptedRequests: [Request]
-        let availableRequests: [Request]
     }
 
     private let currentItemsListButton = SubMenuButton.make(title: R.string.localizable.helper_request_overview_button_title_current_items_list())
@@ -144,7 +184,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         return list
     }()
 
-    private let openRequestsHeadingLabel = UILabel()
+    private let openRequestsFilterButton = FilterButton()
     private var openRequestsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -191,8 +231,8 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
             make.height.equalTo(153)
         }
 
-        view.addSubview(openRequestsHeadingLabel)
-        openRequestsHeadingLabel.snp.makeConstraints { make in
+        view.addSubview(openRequestsFilterButton)
+        openRequestsFilterButton.snp.makeConstraints { make in
             make.top.equalTo(acceptedRequestsCollectionView.snp.bottom).offset(11)
             make.left.right.equalToSuperview().inset(19)
         }
@@ -200,19 +240,21 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
         view.addSubview(openRequestsCollectionView)
         openRequestsCollectionView.snp.makeConstraints { make -> Void in
             make.left.right.equalToSuperview().inset(12)
-            make.top.equalTo(openRequestsHeadingLabel.snp.bottom)
+            make.top.equalTo(openRequestsFilterButton.snp.bottom)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(8)
         }
     }
 
     override func bind(viewModel: HelperRequestOverviewViewController.ViewModel, disposeBag: DisposeBag) {
         disposeBag.insert(
-            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap {viewModel.currentItemsListButtonTaps() }.subscribe(),
+            currentItemsListButton.rx.controlEvent(.touchUpInside).flatMap(viewModel.currentItemsListButtonTaps).subscribe(),
             viewModel.acceptedRequestsHeadingText.drive(acceptedRequestsHeadingLabel.rx.attributedText),
             viewModel.backButtonTitle.drive(backButton.rx.attributedTitle(for: .normal)),
-            viewModel.openRequestsHeadingText.drive(openRequestsHeadingLabel.rx.attributedText),
+            viewModel.openRequestsFilterButtonTitle.drive(openRequestsFilterButton.titleLabel.rx.attributedText),
+            viewModel.openRequestsFilterButtonDetails.drive(openRequestsFilterButton.detailsLabel.rx.attributedText),
+            openRequestsFilterButton.rx.controlEvent(.touchUpInside).flatMapLatest(viewModel.openRequestsFilterButtonTaps).subscribe(),
 
-            acceptedRequestsCollectionView.rx.itemSelected.bind(to: viewModel.acceptedRequestSelected),
+            acceptedRequestsCollectionView.rx.itemSelected.flatMapLatest(viewModel.acceptedRequestSelected(indexPath:)).subscribe(),
             backButton.rx.tap.bind(to: viewModel.backButtonTaps),
             acceptedRequestsCollectionView.rx.setDelegate(self),
 

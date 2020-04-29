@@ -12,7 +12,7 @@ import Validator
 
 extension NexdUI {
     class WrappableTextField: UITextField, UITextFieldDelegate {
-        var textFieldChangedHandler: ((String) -> Void)?
+        var textFieldChangedHandler: ((String?) -> Void)?
         var onCommitHandler: ((String?) -> Void)?
 
         private let padding = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -26,16 +26,7 @@ extension NexdUI {
             return false
         }
 
-        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            if let currentValue = textField.text as NSString? {
-                let proposedValue = currentValue.replacingCharacters(in: range, with: string) as String
-                textFieldChangedHandler?(proposedValue)
-            }
-            return true
-        }
-
         func textFieldDidEndEditing(_ textField: UITextField) {
-            validate()
             onCommitHandler?(textField.text)
         }
 
@@ -51,9 +42,13 @@ extension NexdUI {
             return bounds.inset(by: padding)
         }
 
+        @objc internal func onEditingChanged(_ sender: UITextField) {
+            textFieldChangedHandler?(sender.text)
+        }
+
         static func make(tag: Int,
                          placeholder: String?,
-                         onChanged: ((String) -> Void)?,
+                         onChanged: ((String?) -> Void)?,
                          onCommit: ((String?) -> Void)?,
                          inputConfiguration: InputConfiguration?) -> WrappableTextField {
             let textField = WrappableTextField()
@@ -74,6 +69,8 @@ extension NexdUI {
 
             inputConfiguration?.apply(to: textField)
 
+            textField.addTarget(textField, action: #selector(onEditingChanged), for: .editingChanged)
+
             return textField
         }
     }
@@ -88,12 +85,19 @@ extension NexdUI {
         var autocapitalizationType: UITextAutocapitalizationType = .sentences
         var autocorrectionType: UITextAutocorrectionType = .default
         var spellCheckingType: UITextSpellCheckingType = .default
+        var returnKeyType: UIReturnKeyType = .default
+        var hasPrevious: Bool = false
+        var hasNext: Bool = false
+        var hasDone: Bool = false
 
         func apply(to textField: UITextField) {
             textField.keyboardType = keyboardType
             textField.autocapitalizationType = autocapitalizationType
             textField.autocorrectionType = autocorrectionType
             textField.spellCheckingType = spellCheckingType
+            textField.returnKeyType = returnKeyType
+
+            textField.addInputAccessory(hasPrevious: hasPrevious, hasNext: hasNext, hasDone: hasDone)
         }
     }
 
@@ -101,7 +105,7 @@ extension NexdUI {
         var tag: Int = 0
         @Binding var text: String?
         var placeholder: String?
-        var onChanged: ((String) -> Void)?
+        var onChanged: ((String?) -> Void)?
         var onCommit: ((String?) -> Void)?
         var inputValidation: InputValidation?
         var inputConfiguration: InputConfiguration?
@@ -120,6 +124,7 @@ extension NexdUI {
                 textField.validationRules = inputValidation.rules
                 textField.validationHandler = inputValidation.handler
                 textField.validateOnInputChange(enabled: true)
+                textField.validateOnEditingEnd(enabled: true)
             }
 
             return textField
@@ -139,7 +144,7 @@ extension NexdUI {
         var tag: Int = 0
         @Binding var text: String?
         var placeholder: String?
-        var onChanged: ((String) -> Void)?
+        var onChanged: ((String?) -> Void)?
         var onCommit: ((String?) -> Void)?
         var validationRules: ValidationRuleSet<String>?
         var inputConfiguration: InputConfiguration?

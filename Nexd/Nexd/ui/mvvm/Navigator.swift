@@ -8,6 +8,7 @@
 
 import Cleanse
 import NexdClient
+import RxSwift
 import SwiftUI
 import UIKit
 
@@ -32,6 +33,9 @@ protocol ScreenNavigating {
     func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto)
     func toTranscribeEndView()
     func toHelperOverview()
+    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
+    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?>
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
@@ -140,7 +144,7 @@ extension Navigator: ScreenNavigating {
         let profileScreen = UserProfileViewController()
         profileScreen.onUserLoggedOut = { [weak self] in
             log.debug("User logged out!")
-            self?.navigationController.dismiss(animated: true) { [weak self] in
+            self?.dismiss { [weak self] in
                 self?.toStartAuthenticationFlow()
             }
         }
@@ -161,22 +165,22 @@ extension Navigator: ScreenNavigating {
 
     func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
         let viewModel = RequestConfirmationView.ViewModel(navigator: self,
-                                                                    userService: userService,
-                                                                    helpRequestsService: helpRequestsService,
-                                                                    items: items,
-                                                                    onSuccess: { [weak self] in
-                                                                        self?.showError(title: R.string.localizable.seeker_success_title(),
-                                                                                        message: R.string.localizable.seeker_success_message(), handler: {
-                                                                                            self?.navigationController.dismiss(animated: true) {
-                                                                                                self?.goBack()
-                                                                                            }
-                                                                        })
-                                                                    }, onError: { [weak self] _ in
-                                                                        self?.showError(title: R.string.localizable.seeker_error_title(),
-                                                                                        message: R.string.localizable.seeker_error_message(), handler: nil)
+                                                          userService: userService,
+                                                          helpRequestsService: helpRequestsService,
+                                                          items: items,
+                                                          onSuccess: { [weak self] in
+                                                              self?.showError(title: R.string.localizable.seeker_success_title(),
+                                                                              message: R.string.localizable.seeker_success_message(), handler: {
+                                                                                  self?.navigationController.dismiss(animated: true) {
+                                                                                      self?.goBack()
+                                                                                  }
+                                                              })
+                                                          }, onError: { [weak self] _ in
+                                                              self?.showError(title: R.string.localizable.seeker_error_title(),
+                                                                              message: R.string.localizable.seeker_error_message(), handler: nil)
         })
         let screen = RequestConfirmationView.createScreen(viewModel: viewModel)
-        navigationController.present(screen, animated: true, completion: nil)
+        present(screen: screen)
     }
 
     func toPhoneCall() {
@@ -208,9 +212,75 @@ extension Navigator: ScreenNavigating {
 
     func toHelperOverview() {
         let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
+                                                                                                                  userService: userService,
                                                                                                                   helpRequestsService: helpRequestsService,
                                                                                                                   helpListsService: helpListsService))
         push(screen: screen)
+    }
+
+    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+        return Single.create { [weak self] single -> Disposable in
+            guard let self = self else {
+                single(.success(helpList))
+                return Disposables.create()
+            }
+
+            let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .addRequestToHelpList,
+                                                                                                 navigator: self,
+                                                                                                 helpListService: self.helpListsService,
+                                                                                                 helpRequest: request,
+                                                                                                 helpList: helpList,
+                                                                                                 onFinished: { [weak self] helpList in
+                                                                                                     log.debug("helpList: \(helpList)")
+                                                                                                     single(.success(helpList))
+                                                                                                     self?.dismiss(completion: nil)
+            }))
+            self.present(screen: screen)
+
+            return Disposables.create()
+        }
+    }
+
+    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+        return Single.create { [weak self] single -> Disposable in
+            guard let self = self else {
+                single(.success(helpList))
+                return Disposables.create()
+            }
+
+            let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .removeRequestFromHelpList,
+                                                                                                 navigator: self,
+                                                                                                 helpListService: self.helpListsService,
+                                                                                                 helpRequest: request,
+                                                                                                 helpList: helpList,
+                                                                                                 onFinished: { [weak self] helpList in
+                                                                                                     log.debug("helpList: \(helpList)")
+                                                                                                     single(.success(helpList))
+                                                                                                     self?.dismiss(completion: nil)
+            }))
+            self.present(screen: screen)
+
+            return Disposables.create()
+        }
+    }
+
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
+        return Single.create { [weak self] single -> Disposable in
+            guard let self = self else {
+                single(.success(nil))
+                return Disposables.create()
+            }
+
+            let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
+                                                                                                                           zipCode: zipCode,
+                                                                                                                           onFinished: { [weak self] result in
+                                                                                                                               single(.success(result))
+                                                                                                                               self?.dismiss(completion: nil)
+            }))
+            self.present(screen: screen)
+
+            return Disposables.create()
+        }
     }
 
     func toCurrentItemsList(helpList: HelpList) {
@@ -231,5 +301,13 @@ extension Navigator: ScreenNavigating {
 
     private func push(screen: UIViewController) {
         navigationController.pushViewController(screen, animated: true)
+    }
+
+    private func present(screen: UIViewController) {
+        navigationController.present(screen, animated: true, completion: nil)
+    }
+
+    private func dismiss(completion: (() -> Void)? = nil) {
+        navigationController.dismiss(animated: true, completion: completion)
     }
 }

@@ -24,6 +24,11 @@ class HelpListsService {
             .asSingle()
     }
 
+    func removeRequest(withId helpRequestId: Int64, from helpListId: Int64) -> Single<HelpList> {
+        return HelpListsAPI.helpListsControllerDeleteHelpRequestFromHelpList(helpListId: helpListId, helpRequestId: helpRequestId)
+            .asSingle()
+    }
+
     func fetchShoppingLists() -> Single<[HelpList]> {
         return HelpListsAPI.helpListsControllerGetUserLists()
             .asSingle()

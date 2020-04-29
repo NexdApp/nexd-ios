@@ -8,7 +8,7 @@
 "delivery_confirmation_phone_number_title" = "Telefonnummer";
 "delivery_confirmation_screen_title" = "Vielen Dank für deine Hilfe!";
 "delivery_confirmation_section_header" = "Kontaktinformation für %1$@:";
-"delivery_dialog_deliver_description" = "Bestätigen Sie die Abgabe aller angenommen Aufträge";
+"delivery_dialog_deliver_description" = "Bitte bestätige die Abgabe aller angenommen Aufträge";
 "delivery_dialog_deliver_title" = "Abgeben";
 "delivery_dialog_delivery_button_confirm" = "Bestätigen";
 "delivery_request_address" = "Adresse: ";
@@ -28,32 +28,39 @@
 "error_message_did_not_consent_privacy_policy" = "Bitte bestätigen sie unsere Datenschutzbestimmungen um fortzufahren.";
 "error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678";
 "error_message_input_validation_zip_code_invalid" = "Bitte gib die korrekte Postleitzahl an";
-"error_message_login_failed" = "Login fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_login_failed" = "Login fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_login_field_missing" = "Bitte ausfüllen";
-"error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_registration_failed" = "Registrierung fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_registration_field_missing" = "Bitte ausfüllen";
 "error_message_registration_invalid_email" = "Ungültige E-Mail Adresse";
 "error_message_registration_password_match" = "Passwörter stimmen nicht überein";
 "error_message_registration_password_too_short" = "mind. 8 Zeichen";
 "error_message_registration_user_already_exists" = "Das Benutzerkonto existiert bereits.";
-"error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuchen Sie es erneut.";
+"error_message_registration_validation_failed" = "Registrierung fehlgeschlagen. Bitte versuche es erneut.";
 "error_message_unknown" = "Unbekannter Fehler";
 "error_message_user_detail_field_missing" = "Bitte ausfüllen";
 "error_title" = "Fehler";
 "helper_call_overview_screen_title" = "Offene Anrufe:";
+"helper_overview_error_empty_zipcode" = "Keine PLZ ausgewählt";
 "helper_request_detail_button_accept" = "Mach ich!";
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
+"helper_request_detail_button_remove" = "Von Einkafusliste entfernen!";
 "helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
 "helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
+"helper_request_filter_settings_screen_title" = "Filtereinstellungen";
+"helper_request_filter_settings_heading_zipcode" = "Postleitzahl für Umkreissuche:";
+"helper_request_filter_settings_placeholder_zipcode" = "Postleitzahl";
 "helper_request_finished_screen_title" = "Vorherige Anfragen:";
 "helper_request_overview_button_filter_zip" = "Postleitzahl";
+"helper_request_overview_filter_selected_zip" = "Offene Anfragen für die Region: %1$@";
+"helper_request_overview_filter_inactive" = "Alle offenen Anfragen";
 "helper_request_overview_button_previous_requests" = "Vorherige Anfragen";
 "helper_request_overview_button_summary_details" = "Insg. ";
 "helper_request_overview_button_summary_title" = "Einkaufen";
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
 "helper_request_overview_button_title_start" = "Start";
-"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuchen Sie er erneut.";
+"helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
@@ -64,12 +71,12 @@
 
 /*Fuzzy*/
 "helper_request_overview_open_request_item_details_format_ios" = "vor %1$@, %2$@";
-"helper_request_overview_screen_title" = "Übersicht";
+"helper_request_overview_screen_title" = "Einkaufsliste";
 "helper_request_overview_unknown_requester" = "- UNBEKANNT -";
 "helper_request_transcript_button_done" = "Füge Bestellung zur aktuellen Shoppingliste hinzu";
 "helper_type_button_shopping" = "Ich möchte shoppen!";
 "helper_type_button_transcript" = "Einen Anruf übersetzen!";
-"helper_type_screen_title" = "Wie würden Sie gerne helfen?";
+"helper_type_screen_title" = "Wie würdest du gerne helfen?";
 "keyboard_accessory_text_done" = "Fertig";
 "loading_overlay_message" = "Wird geladen...";
 "login_button_title_login" = "Einloggen";
@@ -92,8 +99,8 @@
 "registration_placeholder_zip" = "Postleitzahl";
 "registration_screen_title" = "Registrierung";
 "registration_term_privacy_policy" = "Datenschutzbestimmungen";
-"role_screen_subtitle" = "Was möchtest Du heute tun?";
-"role_screen_title" = "Wilkommen, ";
+"role_screen_subtitle" = "Was möchtest du heute tun?";
+"role_screen_title" = "Willkommen, ";
 "role_screen_title_ios" = "Willkommen, %@";
 "role_selection_button_logout" = "Ausloggen";
 "role_selection_helper" = "Ich kann helfen!";
@@ -101,15 +108,15 @@
 "role_selection_seeker" = "Ich brauche etwas!";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
-"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche erneut.";
+"seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "seeker_error_title" = "Fehler!";
 "seeker_item_selection_screen_title" = "Artikel";
-"seeker_overview_empty_label" = "Sie haben noch keine Anfragen aufgegeben. Klicken Sie rechts unten, um Ihre erste Anfrage zu erstellen.";
-"seeker_overview_screen_title" = "Your requests:";
+"seeker_overview_empty_label" = "Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen.";
+"seeker_overview_screen_title" = "Deine Anfragen:";
 
 /*Fuzzy*/
-"seeker_phone_call_text" = "\"Rufen Sie bitte </br><b>%1$s</b></br>um Ihre Einkaufsliste aufzuzeigen.\"";
-"seeker_phone_call_text_ios" = "Ruf bitte %@ an um deine Einkaufsliste aufzuzeigen.";
+"seeker_phone_call_text" = "\\Bitte ruf </br><b>%1$s</b></br> an, um deine Einkaufsliste aufzuzeigen.\\";
+"seeker_phone_call_text_ios" = "Ruf bitte %@, um deine Einkaufsliste aufzuzeigen.";
 "seeker_request_create_heading" = "Ich benötige:";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
 "seeker_request_create_placeholder_information" = "Zusätzliche Informationen";
@@ -118,16 +125,17 @@
 "seeker_success_title" = "Fertig!";
 "seeker_type_button_help_request" = "Artikel auswählen";
 "seeker_type_button_phone_call" = "Einen Anruf tätigen";
-"seeker_type_screen_title" = "Wie würden Sie gerne Ihre Liste erstellen?";
+"seeker_type_screen_title" = "Wie würdest du gerne deine Liste erstellen?";
 "select_text_dialog_text_hint_default" = "Eingeben";
+"shopping_list_button_checkout" = "Zur Kasse";
 "shopping_list_button_title_checkout" = "Zur Kasse";
-"shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuchen Sie es erneut.";
+"shopping_list_overview_error_loading_failed_message" = "Beim Laden der Einkaufsliste ist ein Fehler aufgetreten! Bitte versuche es erneut.";
 "shopping_list_overview_error_title" = "Fehler!";
 "shopping_list_screen_title" = "Einkaufsliste";
 "transcribe_articles_button_title_confirm" = "Bestätigen";
 "transcribe_articles_error_message" = "Speichern fehlgeschlagen. Bitte überprüfe, dass die eingegebenen Daten korrekt und valide sind!";
 "transcribe_articles_error_title" = "Anfrage fehlgeschlagen!";
-"transcribe_articles_screen_title" = "EInkaufszettel";
+"transcribe_articles_screen_title" = "Einkaufszettel";
 "transcribe_end_button_title_complete" = "Fertig";
 "transcribe_end_screen_title_ios" = "Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!";
 "transcribe_info_button_title_confirm" = "Info bestätigen";
@@ -149,7 +157,7 @@
 "user_input_details_placeholder_phoneNumber" = "Tel. Nr.";
 "user_input_details_placeholder_street" = "Straße";
 "user_input_details_placeholder_zipCode" = "PLZ";
-"user_input_details_screen_title" = "Geben Sie weitere Details ein";
+"user_input_details_screen_title" = "Gib weitere Details ein";
 
 /*Logout button title*/
 "user_profile_button_title_logout" = "Abmelden";

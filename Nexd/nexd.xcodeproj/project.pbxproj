@@ -11,6 +11,7 @@
 		AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359112444E5460015D7AB /* HTTPStatusCode.swift */; };
 		AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359172444E98E0015D7AB /* Single+Nexd.swift */; };
 		AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */; };
+		AE15C14324575AD4006AEFCB /* HelperRequestFilterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */; };
 		AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E0104243148E90006A490 /* KeyboardObserver.swift */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* HelpListsService.swift */; };
@@ -24,6 +25,7 @@
 		AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */; };
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
+		AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2AF7832457622F00A1331F /* FilterButton.swift */; };
 		AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE4EA65224394AEA00B8E9D6 /* recording.mp3 */; };
 		AE4EA655243A665900B8E9D6 /* PhoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA654243A665900B8E9D6 /* PhoneService.swift */; };
 		AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0672448C2CB00601DDF /* TranscribeListView.swift */; };
@@ -41,6 +43,8 @@
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AE7CD520244A6B7300214E88 /* TranscribeEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */; };
+		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
+		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
 		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
@@ -133,6 +137,7 @@
 		AE1359112444E5460015D7AB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AE1359172444E98E0015D7AB /* Single+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Nexd.swift"; sourceTree = "<group>"; };
 		AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorResponse+Nexd.swift"; sourceTree = "<group>"; };
+		AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestFilterSettingsView.swift; sourceTree = "<group>"; };
 		AE1E0104243148E90006A490 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* HelpListsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListsService.swift; sourceTree = "<group>"; };
@@ -147,6 +152,7 @@
 		AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		AE2AF7832457622F00A1331F /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		AE4EA65224394AEA00B8E9D6 /* recording.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = recording.mp3; sourceTree = "<group>"; };
 		AE4EA654243A665900B8E9D6 /* PhoneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneService.swift; sourceTree = "<group>"; };
 		AE50F0672448C2CB00601DDF /* TranscribeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeListView.swift; sourceTree = "<group>"; };
@@ -164,6 +170,8 @@
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEndView.swift; sourceTree = "<group>"; };
+		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
+		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
 		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
@@ -277,6 +285,7 @@
 			children = (
 				AE9775B42445E1A200765324 /* PreviewMocks.swift */,
 				AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */,
+				AE8352EC24562D1500531228 /* ModalScreen.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -347,6 +356,8 @@
 				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE510B8B2443C4550068DF60 /* CheckoutListView.swift */,
 				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
+				AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */,
+				AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -359,6 +370,7 @@
 				AED2A9702440D6E70082316F /* CancelButton.swift */,
 				AED2A9722440D7170082316F /* ConfirmButton.swift */,
 				AEB6AC74244249B300823E7C /* SubMenuButton.swift */,
+				AE2AF7832457622F00A1331F /* FilterButton.swift */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -784,6 +796,7 @@
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */,
+				AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
 				AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */,
@@ -810,6 +823,7 @@
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AED2A9712440D6E70082316F /* CancelButton.swift in Sources */,
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
+				AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */,
 				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
@@ -822,7 +836,9 @@
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
 				AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */,
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
+				AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
+				AE15C14324575AD4006AEFCB /* HelperRequestFilterSettingsView.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,

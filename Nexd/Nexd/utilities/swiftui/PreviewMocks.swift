@@ -8,6 +8,7 @@
 
 import Foundation
 import NexdClient
+import RxSwift
 
 class PreviewNavigator: ScreenNavigating {
     var root: UIViewController = UIViewController()
@@ -82,6 +83,21 @@ class PreviewNavigator: ScreenNavigating {
 
     func toHelperOverview() {
         log.debug("toHelperOverview")
+    }
+
+    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+        log.debug("toRequestDetails")
+        return Single.never()
+    }
+
+    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+        log.debug("removingHelperRequest")
+        return Single.never()
+    }
+
+    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
+        log.debug("changingHelperRequestFilterSettings")
+        return Single.never()
     }
 
     func toCurrentItemsList(helpList: HelpList) {
