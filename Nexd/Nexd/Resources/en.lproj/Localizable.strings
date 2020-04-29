@@ -49,7 +49,12 @@
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
 "helper_request_finished_screen_title" = "Completed requests:";
+"helper_request_filter_settings_screen_title" = "Filter settings";
+"helper_request_filter_settings_heading_zipcode" = "Zip code for local search:";
+"helper_request_filter_settings_placeholder_zipcode" = "Zip code";
 "helper_request_overview_button_filter_zip" = "Zip code";
+"helper_request_overview_filter_selected_zip" = "Open requests for regtion: %1$@";
+"helper_request_overview_filter_inactive" = "All open requests";
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "helper_request_overview_button_summary_details" = "Total ";
 "helper_request_overview_button_summary_title" = "Shopping";

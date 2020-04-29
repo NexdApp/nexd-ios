@@ -11,6 +11,7 @@
 		AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359112444E5460015D7AB /* HTTPStatusCode.swift */; };
 		AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359172444E98E0015D7AB /* Single+Nexd.swift */; };
 		AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */; };
+		AE15C14324575AD4006AEFCB /* HelperRequestFilterSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */; };
 		AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1E0104243148E90006A490 /* KeyboardObserver.swift */; };
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* HelpListsService.swift */; };
@@ -24,6 +25,7 @@
 		AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */; };
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
+		AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2AF7832457622F00A1331F /* FilterButton.swift */; };
 		AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE4EA65224394AEA00B8E9D6 /* recording.mp3 */; };
 		AE4EA655243A665900B8E9D6 /* PhoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA654243A665900B8E9D6 /* PhoneService.swift */; };
 		AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0672448C2CB00601DDF /* TranscribeListView.swift */; };
@@ -135,6 +137,7 @@
 		AE1359112444E5460015D7AB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AE1359172444E98E0015D7AB /* Single+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Nexd.swift"; sourceTree = "<group>"; };
 		AE1359192444EBBC0015D7AB /* ErrorResponse+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ErrorResponse+Nexd.swift"; sourceTree = "<group>"; };
+		AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestFilterSettingsView.swift; sourceTree = "<group>"; };
 		AE1E0104243148E90006A490 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* HelpListsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListsService.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		AE2AF7832457622F00A1331F /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		AE4EA65224394AEA00B8E9D6 /* recording.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = recording.mp3; sourceTree = "<group>"; };
 		AE4EA654243A665900B8E9D6 /* PhoneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneService.swift; sourceTree = "<group>"; };
 		AE50F0672448C2CB00601DDF /* TranscribeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeListView.swift; sourceTree = "<group>"; };
@@ -353,6 +357,7 @@
 				AE510B8B2443C4550068DF60 /* CheckoutListView.swift */,
 				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
 				AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */,
+				AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				AED2A9702440D6E70082316F /* CancelButton.swift */,
 				AED2A9722440D7170082316F /* ConfirmButton.swift */,
 				AEB6AC74244249B300823E7C /* SubMenuButton.swift */,
+				AE2AF7832457622F00A1331F /* FilterButton.swift */,
 			);
 			path = buttons;
 			sourceTree = "<group>";
@@ -790,6 +796,7 @@
 				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */,
+				AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
 				AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */,
@@ -831,6 +838,7 @@
 				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
 				AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
+				AE15C14324575AD4006AEFCB /* HelperRequestFilterSettingsView.swift in Sources */,
 				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
 				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,

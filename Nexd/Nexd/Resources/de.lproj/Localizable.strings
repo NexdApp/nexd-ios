@@ -48,8 +48,13 @@
 "helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
 "helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
+"helper_request_filter_settings_screen_title" = "Filtereinstellungen";
+"helper_request_filter_settings_heading_zipcode" = "Postleitzahl für Umkreissuche:";
+"helper_request_filter_settings_placeholder_zipcode" = "Postleitzahl";
 "helper_request_finished_screen_title" = "Vorherige Anfragen:";
 "helper_request_overview_button_filter_zip" = "Postleitzahl";
+"helper_request_overview_filter_selected_zip" = "Offene Anfragen für die Region: %1$@";
+"helper_request_overview_filter_inactive" = "Alle offenen Anfragen";
 "helper_request_overview_button_previous_requests" = "Vorherige Anfragen";
 "helper_request_overview_button_summary_details" = "Insg. ";
 "helper_request_overview_button_summary_title" = "Einkaufen";
