@@ -48,13 +48,11 @@
 "helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
 "helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
-"helper_request_filter_settings_screen_title" = "Filtereinstellungen";
 "helper_request_filter_settings_heading_zipcode" = "Postleitzahl für Umkreissuche:";
 "helper_request_filter_settings_placeholder_zipcode" = "Postleitzahl";
+"helper_request_filter_settings_screen_title" = "Filtereinstellungen";
 "helper_request_finished_screen_title" = "Vorherige Anfragen:";
 "helper_request_overview_button_filter_zip" = "Postleitzahl";
-"helper_request_overview_filter_selected_zip" = "Offene Anfragen für die Region: %1$@";
-"helper_request_overview_filter_inactive" = "Alle offenen Anfragen";
 "helper_request_overview_button_previous_requests" = "Vorherige Anfragen";
 "helper_request_overview_button_summary_details" = "Insg. ";
 "helper_request_overview_button_summary_title" = "Einkaufen";
@@ -62,6 +60,8 @@
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
+"helper_request_overview_filter_inactive" = "Alle offenen Anfragen";
+"helper_request_overview_filter_selected_zip" = "Offene Anfragen für die Region: %1$@";
 "helper_request_overview_heading_accepted_section" = "Angenommen:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
 "helper_request_overview_heading_available_section" = "Suchen:";
@@ -115,7 +115,7 @@
 "seeker_overview_screen_title" = "Deine Anfragen:";
 
 /*Fuzzy*/
-"seeker_phone_call_text" = "\\Bitte ruf </br><b>%1$s</b></br> an, um deine Einkaufsliste aufzuzeigen.\\";
+"seeker_phone_call_text" = "Rufe bitte </br><b>%1$s</b></br>um deine Einkaufsliste aufzuzeichnen.";
 "seeker_phone_call_text_ios" = "Ruf bitte %@, um deine Einkaufsliste aufzuzeigen.";
 "seeker_request_create_heading" = "Ich benötige:";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
@@ -149,6 +149,9 @@
 "transcribe_info_input_text_title_street" = "Straße";
 "transcribe_info_input_text_title_street_number" = "Nummer";
 "transcribe_info_screen_title" = "Anruferinfos";
+"transcript_error_empty_calls" = "Es gibt zur Zeit keine Anrufe zum übersetzen";
+"transcript_summary_button_transcript" = "Einen weiteren Anruf übertragen";
+"transcript_summary_title" = "Danke, dass du %1$s's Bestellung vervollständigt hast!";
 "user_input_details_confirm" = "Bestätigen";
 "user_input_details_placeholder_city" = "Ort";
 "user_input_details_placeholder_firstname" = "Vorname";
