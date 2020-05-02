@@ -26,7 +26,6 @@
 		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
 		AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2AF7832457622F00A1331F /* FilterButton.swift */; };
-		AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE4EA65224394AEA00B8E9D6 /* recording.mp3 */; };
 		AE4EA655243A665900B8E9D6 /* PhoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA654243A665900B8E9D6 /* PhoneService.swift */; };
 		AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0672448C2CB00601DDF /* TranscribeListView.swift */; };
 		AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */; };
@@ -62,7 +61,6 @@
 		AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
 		AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECE9D232438D84400EDCE0D /* AudioPlayer.swift */; };
-		AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */ = {isa = PBXBuildFile; fileRef = AECE9D252438D93E00EDCE0D /* cymbal.wav */; };
 		AED2A954243F78030082316F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A953243F78030082316F /* ViewController.swift */; };
 		AED2A957243F820F0082316F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A956243F820F0082316F /* Navigator.swift */; };
 		AED2A95A243F99980082316F /* AppComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A959243F99980082316F /* AppComponent.swift */; };
@@ -153,7 +151,6 @@
 		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		AE2AF7832457622F00A1331F /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
-		AE4EA65224394AEA00B8E9D6 /* recording.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = recording.mp3; sourceTree = "<group>"; };
 		AE4EA654243A665900B8E9D6 /* PhoneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneService.swift; sourceTree = "<group>"; };
 		AE50F0672448C2CB00601DDF /* TranscribeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeListView.swift; sourceTree = "<group>"; };
 		AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Player.swift"; sourceTree = "<group>"; };
@@ -189,7 +186,6 @@
 		AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpRequest+UI.swift"; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		AECE9D232438D84400EDCE0D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		AECE9D252438D93E00EDCE0D /* cymbal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cymbal.wav; sourceTree = "<group>"; };
 		AED2A953243F78030082316F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AED2A956243F820F0082316F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		AED2A959243F99980082316F /* AppComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppComponent.swift; sourceTree = "<group>"; };
@@ -476,8 +472,6 @@
 				E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */,
 				E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */,
 				E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */,
-				AE4EA65224394AEA00B8E9D6 /* recording.mp3 */,
-				AECE9D252438D93E00EDCE0D /* cymbal.wav */,
 				AE2A9A932426FA50006066B4 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -665,11 +659,9 @@
 				E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */,
 				AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */,
 				E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */,
-				AECE9D262438D93E00EDCE0D /* cymbal.wav in Resources */,
 				AEC5877F243D224800B6876C /* Colors.xcassets in Resources */,
 				AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */,
 				E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */,
-				AE4EA65324394AEA00B8E9D6 /* recording.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
