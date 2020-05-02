@@ -4,13 +4,13 @@ All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**articlesControllerFindAll**](ArticlesAPI.md#articlescontrollerfindall) | **GET** /articles | List articles
-[**articlesControllerInsertOne**](ArticlesAPI.md#articlescontrollerinsertone) | **POST** /articles | Create an article
+[**articlesControllerFindAll**](ArticlesAPI.md#articlescontrollerfindall) | **GET** /article/articles | List articles
+[**articlesControllerInsertOne**](ArticlesAPI.md#articlescontrollerinsertone) | **POST** /article/articles | Create an article
 
 
 # **articlesControllerFindAll**
 ```swift
-    open class func articlesControllerFindAll() -> Observable<[Article]>
+    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> Observable<[Article]>
 ```
 
 List articles
@@ -20,12 +20,22 @@ List articles
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
+let limit = 987 // Double | Maximum number of articles  (optional)
+let startsWith = "startsWith_example" // String | Starts with the given string. Empty string does not filter. (optional)
+let language = AvailableLanguages() // AvailableLanguages |  (optional)
+let onlyVerified = true // Bool | true to only gets the list of curated articles (default: true) (optional)
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **limit** | **Double** | Maximum number of articles  | [optional] 
+ **startsWith** | **String** | Starts with the given string. Empty string does not filter. | [optional] 
+ **language** | [**AvailableLanguages**](.md) |  | [optional] 
+ **onlyVerified** | **Bool** | true to only gets the list of curated articles (default: true) | [optional] 
 
 ### Return type
 
@@ -44,7 +54,7 @@ No authorization required
 
 # **articlesControllerInsertOne**
 ```swift
-    open class func articlesControllerInsertOne(xAdminSecret: String, createArticleDto: CreateArticleDto) -> Observable<Article>
+    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto) -> Observable<Article>
 ```
 
 Create an article
@@ -54,8 +64,7 @@ Create an article
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let xAdminSecret = "xAdminSecret_example" // String | Secret to access the admin functions.
-let createArticleDto = CreateArticleDto(name: "name_example") // CreateArticleDto | 
+let createArticleDto = CreateArticleDto(name: "name_example", language: "language_example") // CreateArticleDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```
@@ -64,7 +73,6 @@ let createArticleDto = CreateArticleDto(name: "name_example") // CreateArticleDt
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **xAdminSecret** | **String** | Secret to access the admin functions. | 
  **createArticleDto** | [**CreateArticleDto**](CreateArticleDto.md) |  | 
 
 ### Return type

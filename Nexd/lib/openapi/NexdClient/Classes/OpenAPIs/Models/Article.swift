@@ -11,14 +11,29 @@ import Foundation
 public struct Article: Codable { 
 
 
+    public enum Language: String, Codable, CaseIterable {
+        case deDe = "de-DE"
+        case enUs = "en-US"
+    }
     /** Auto-incremented ID of an article. */
     public var id: Int64
-    /** Name of the article, should also contain the unit. */
+    /** Name of the article (without unit) */
     public var name: String
+    /** Language key of this article */
+    public var language: Language
+    public var categoryId: Int64?
+    public var status: Bool?
+    public var unitIdOrder: [Double]?
+    public var category: Category?
 
-    public init(id: Int64, name: String) {
+    public init(id: Int64, name: String, language: Language, categoryId: Int64?, status: Bool?, unitIdOrder: [Double]?, category: Category?) {
         self.id = id
         self.name = name
+        self.language = language
+        self.categoryId = categoryId
+        self.status = status
+        self.unitIdOrder = unitIdOrder
+        self.category = category
     }
 
 }

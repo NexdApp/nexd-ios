@@ -131,7 +131,7 @@ extension TranscribeListView {
 
             var dto = transcribedRequest
             dto.articles = state.listItems.filter { item in item.amount > 0 }
-                .map { CreateHelpRequestArticleDto(articleId: $0.id, articleCount: $0.amount) }
+                .map { CreateHelpRequestArticleDto(articleId: $0.id, articleName: nil, language: nil, articleCount: $0.amount, unitId: nil) }
 
             cancellableSet?.insert(
                 phoneService.convertCallToHelpRequest(sid: call.sid, dto: dto)

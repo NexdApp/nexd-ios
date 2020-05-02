@@ -25,8 +25,8 @@ All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ArticlesAPI* | [**articlesControllerFindAll**](docs/ArticlesAPI.md#articlescontrollerfindall) | **GET** /articles | List articles
-*ArticlesAPI* | [**articlesControllerInsertOne**](docs/ArticlesAPI.md#articlescontrollerinsertone) | **POST** /articles | Create an article
+*ArticlesAPI* | [**articlesControllerFindAll**](docs/ArticlesAPI.md#articlescontrollerfindall) | **GET** /article/articles | List articles
+*ArticlesAPI* | [**articlesControllerInsertOne**](docs/ArticlesAPI.md#articlescontrollerinsertone) | **POST** /article/articles | Create an article
 *AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 *AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
 *AuthAPI* | [**authControllerRegister**](docs/AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
@@ -59,9 +59,11 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Article](docs/Article.md)
+ - [AvailableLanguages](docs/AvailableLanguages.md)
  - [BackendErrorEntry](docs/BackendErrorEntry.md)
  - [BackendErrorResponse](docs/BackendErrorResponse.md)
  - [Call](docs/Call.md)
+ - [Category](docs/Category.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
  - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
  - [CreateOrUpdateHelpRequestArticleDto](docs/CreateOrUpdateHelpRequestArticleDto.md)
