@@ -68,6 +68,8 @@
 "helper_request_overview_heading_open_section_zip" = " (PLZ %1$s)";
 "helper_request_overview_item_type_list" = "Liste";
 "helper_request_overview_item_type_recording" = "Sprachnachricht";
+
+/*Fuzzy*/
 "helper_request_overview_open_request_item_details_format_ios" = "vor %1$@, %2$@";
 "helper_request_overview_screen_title" = "Einkaufsliste";
 "helper_request_overview_unknown_requester" = "- UNBEKANNT -";
@@ -111,6 +113,8 @@
 "seeker_item_selection_screen_title" = "Artikel";
 "seeker_overview_empty_label" = "Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen.";
 "seeker_overview_screen_title" = "Deine Anfragen:";
+
+/*Fuzzy*/
 "seeker_phone_call_text" = "Rufe bitte </br><b>%1$s</b></br>um deine Einkaufsliste aufzuzeichnen.";
 "seeker_phone_call_text_ios" = "Ruf bitte %@, um deine Einkaufsliste aufzuzeigen.";
 "seeker_request_create_heading" = "Ich benötige:";
