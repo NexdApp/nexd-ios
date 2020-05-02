@@ -68,8 +68,6 @@
 "helper_request_overview_heading_open_section_zip" = " (zip %1$s)";
 "helper_request_overview_item_type_list" = "List";
 "helper_request_overview_item_type_recording" = "Recording";
-
-/*Fuzzy*/
 "helper_request_overview_open_request_item_details_format_ios" = "%1$@ ago, %2$@";
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_unknown_requester" = "- unknown -";
@@ -113,8 +111,6 @@
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
-
-/*Fuzzy*/
 "seeker_phone_call_text" = "Please call </br><b>%1$s</b></br>to record your shopping order.";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
 "seeker_request_create_heading" = "I need:";
