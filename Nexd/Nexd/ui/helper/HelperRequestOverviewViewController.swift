@@ -121,10 +121,10 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                     guard let self = self else { return Single.never() }
 
                     guard let zipCode = zipCode else {
-                        return self.helpRequestsService.openRequests(status: [.pending])
+                        return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, status: [.pending])
                     }
 
-                    return self.helpRequestsService.openRequests(zipCode: [zipCode], status: [.pending])
+                    return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, zipCode: [zipCode], status: [.pending])
                 }
                 .share(replay: 1)
         }()
