@@ -41,10 +41,6 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
                                                          validationRules: .password)
     private lazy var loginButton = MenuButton.make(style: .solid)
 
-    private lazy var usernameImageView = UIImageView()
-
-    private lazy var passwordImageView = UIImageView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         keyboardDismisser = KeyboardDismisser(rootView: view)
@@ -79,27 +75,11 @@ class LoginViewController: ViewController<LoginViewController.ViewModel> {
             make.top.equalTo(logo.snp.bottom).offset(134)
         }
 
-        contentView.addSubview(usernameImageView)
-        usernameImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(email.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
-        }
-
         contentView.addSubview(password)
         password.snp.makeConstraints { make -> Void in
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
             make.top.equalTo(email.snp_bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(passwordImageView)
-        passwordImageView.snp.makeConstraints { make -> Void in
-            make.centerY.equalTo(password.snp_centerY).offset(-7.5)
-            make.height.equalTo(24)
-            make.width.equalTo(24)
-            make.right.equalToSuperview().offset(-41)
         }
 
         contentView.addSubview(loginButton)
