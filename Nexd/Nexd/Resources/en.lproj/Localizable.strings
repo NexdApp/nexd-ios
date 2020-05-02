@@ -48,13 +48,11 @@
 "helper_request_detail_message_cancelled" = "Your request was deleted";
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
-"helper_request_finished_screen_title" = "Completed requests:";
-"helper_request_filter_settings_screen_title" = "Filter settings";
 "helper_request_filter_settings_heading_zipcode" = "Zip code for local search:";
 "helper_request_filter_settings_placeholder_zipcode" = "Zip code";
+"helper_request_filter_settings_screen_title" = "Filter settings";
+"helper_request_finished_screen_title" = "Completed requests:";
 "helper_request_overview_button_filter_zip" = "Zip code";
-"helper_request_overview_filter_selected_zip" = "Open requests for regtion: %1$@";
-"helper_request_overview_filter_inactive" = "All open requests";
 "helper_request_overview_button_previous_requests" = "Previous purchases";
 "helper_request_overview_button_summary_details" = "Total ";
 "helper_request_overview_button_summary_title" = "Shopping";
@@ -62,6 +60,8 @@
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
+"helper_request_overview_filter_inactive" = "All open requests";
+"helper_request_overview_filter_selected_zip" = "Open requests for regtion: %1$@";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
 "helper_request_overview_heading_available_section" = "Available requests:";
@@ -115,7 +115,7 @@
 "seeker_overview_screen_title" = "Your requests:";
 
 /*Fuzzy*/
-"seeker_phone_call_text" = "\"Please call </br><b>%1$s</b></br>to record your shopping order.\"";
+"seeker_phone_call_text" = "Please call </br><b>%1$s</b></br>to record your shopping order.";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
 "seeker_request_create_heading" = "I need:";
 "seeker_request_create_placeholder_delivery_comment" = "Delivery comment";
@@ -149,6 +149,9 @@
 "transcribe_info_input_text_title_street" = "Street";
 "transcribe_info_input_text_title_street_number" = "Number";
 "transcribe_info_screen_title" = "Call Transcript";
+"transcript_error_empty_calls" = "There are no calls to transcript currently";
+"transcript_summary_button_transcript" = "Transcribe another call";
+"transcript_summary_title" = "Thank you for helping complete %1$s's order!";
 "user_input_details_confirm" = "Confirm";
 "user_input_details_placeholder_city" = "Place";
 "user_input_details_placeholder_firstname" = "First name";
