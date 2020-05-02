@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**authControllerLogin**](AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 [**authControllerRefreshToken**](AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
 [**authControllerRegister**](AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
+[**authControllerResetEmailPasswordInitiate**](AuthAPI.md#authcontrollerresetemailpasswordinitiate) | **GET** /auth/reset_email_password_initiate/{email} | Email password reset initiation
+[**authControllerResetPasswordComplete**](AuthAPI.md#authcontrollerresetpasswordcomplete) | **POST** /auth/reset_email_password_complete | Email password reset initiation
 
 
 # **authControllerLogin**
@@ -111,6 +113,82 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TokenDto**](TokenDto.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authControllerResetEmailPasswordInitiate**
+```swift
+    open class func authControllerResetEmailPasswordInitiate(email: String) -> Observable<Void>
+```
+
+Email password reset initiation
+
+### Example 
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import NexdClient
+
+let email = "email_example" // String | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email** | **String** |  | 
+
+### Return type
+
+Void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **authControllerResetPasswordComplete**
+```swift
+    open class func authControllerResetPasswordComplete(emailPasswordResetDto: EmailPasswordResetDto) -> Observable<Void>
+```
+
+Email password reset initiation
+
+### Example 
+```swift
+// The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
+import NexdClient
+
+let emailPasswordResetDto = EmailPasswordResetDto(email: "email_example", passwordResetToken: "passwordResetToken_example", password: "password_example") // EmailPasswordResetDto | 
+
+// TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailPasswordResetDto** | [**EmailPasswordResetDto**](EmailPasswordResetDto.md) |  | 
+
+### Return type
+
+Void (empty response body)
 
 ### Authorization
 

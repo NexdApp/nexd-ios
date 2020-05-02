@@ -131,4 +131,87 @@ open class AuthAPI {
         return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
+    /**
+     Email password reset initiation
+     
+     - parameter email: (path)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<Void>
+     */
+    open class func authControllerResetEmailPasswordInitiate(email: String, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+        return Observable.create { observer -> Disposable in
+            authControllerResetEmailPasswordInitiateWithRequestBuilder(email: email).execute(apiResponseQueue) { result -> Void in
+                switch result {
+                case .success:
+                    observer.onNext(())
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    /**
+     Email password reset initiation
+     - GET /auth/reset_email_password_initiate/{email}
+     - parameter email: (path)  
+     - returns: RequestBuilder<Void> 
+     */
+    open class func authControllerResetEmailPasswordInitiateWithRequestBuilder(email: String) -> RequestBuilder<Void> {
+        var path = "/auth/reset_email_password_initiate/{email}"
+        let emailPreEscape = "\(APIHelper.mapValueToPathItem(email))"
+        let emailPostEscape = emailPreEscape.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? ""
+        path = path.replacingOccurrences(of: "{email}", with: emailPostEscape, options: .literal, range: nil)
+        let URLString = NexdClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Email password reset initiation
+     
+     - parameter emailPasswordResetDto: (body)  
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<Void>
+     */
+    open class func authControllerResetPasswordComplete(emailPasswordResetDto: EmailPasswordResetDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Void> {
+        return Observable.create { observer -> Disposable in
+            authControllerResetPasswordCompleteWithRequestBuilder(emailPasswordResetDto: emailPasswordResetDto).execute(apiResponseQueue) { result -> Void in
+                switch result {
+                case .success:
+                    observer.onNext(())
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    /**
+     Email password reset initiation
+     - POST /auth/reset_email_password_complete
+     - parameter emailPasswordResetDto: (body)  
+     - returns: RequestBuilder<Void> 
+     */
+    open class func authControllerResetPasswordCompleteWithRequestBuilder(emailPasswordResetDto: EmailPasswordResetDto) -> RequestBuilder<Void> {
+        let path = "/auth/reset_email_password_complete"
+        let URLString = NexdClientAPI.basePath + path
+        let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: emailPasswordResetDto)
+
+        let url = URLComponents(string: URLString)
+
+        let requestBuilder: RequestBuilder<Void>.Type = NexdClientAPI.requestBuilderFactory.getNonDecodableBuilder()
+
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
+    }
+
 }
