@@ -54,6 +54,15 @@ class AudioPlayer: NSObject {
         player = AVPlayer(url: url)
 
         super.init()
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didPlayToEnd(notification:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     func seekTo(progress: Float) {
@@ -66,6 +75,8 @@ class AudioPlayer: NSObject {
     func play() {
         guard let player = player else { return }
 
+        try? AVAudioSession.sharedInstance().setActive(true)
+
         player.play()
 
         isPlaying.accept(true)
@@ -76,6 +87,8 @@ class AudioPlayer: NSObject {
 
         player.pause()
         isPlaying.accept(false)
+
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
 
     func stop() {
@@ -84,5 +97,13 @@ class AudioPlayer: NSObject {
         player.pause()
         player.seek(to: .zero)
         isPlaying.accept(false)
+
+        try? AVAudioSession.sharedInstance().setActive(false)
+    }
+
+    @objc
+    private func didPlayToEnd(notification: Notification) {
+        guard let item = notification.object as? AVPlayerItem, item == player?.currentItem else { return }
+        stop()
     }
 }

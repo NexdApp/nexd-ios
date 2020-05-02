@@ -6,6 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
+import AVFoundation
 import Cleanse
 import UIKit
 import XCGLogger
@@ -32,6 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         log.levelDescriptions[.severe] = "🖤"
 
         log.logAppDetails()
+
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
+        } catch {
+            log.error("Failed to set audio session category.")
+        }
 
         return true
     }
