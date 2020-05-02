@@ -30,6 +30,8 @@ Class | Method | HTTP request | Description
 *AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 *AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh
 *AuthAPI* | [**authControllerRegister**](docs/AuthAPI.md#authcontrollerregister) | **POST** /auth/register | Register with email and password 
+*AuthAPI* | [**authControllerResetEmailPasswordInitiate**](docs/AuthAPI.md#authcontrollerresetemailpasswordinitiate) | **GET** /auth/reset_email_password_initiate/{email} | Email password reset initiation
+*AuthAPI* | [**authControllerResetPasswordComplete**](docs/AuthAPI.md#authcontrollerresetpasswordcomplete) | **POST** /auth/reset_email_password_complete | Email password reset initiation
 *HelpListsAPI* | [**helpListsControllerAddHelpRequestToList**](docs/HelpListsAPI.md#helplistscontrolleraddhelprequesttolist) | **PUT** /help-lists/{helpListId}/help-request/{helpRequestId} | Add a help request to a help list
 *HelpListsAPI* | [**helpListsControllerDeleteHelpRequestFromHelpList**](docs/HelpListsAPI.md#helplistscontrollerdeletehelprequestfromhelplist) | **DELETE** /help-lists/{helpListId}/help-request/{helpRequestId} | Delete a help request from help list
 *HelpListsAPI* | [**helpListsControllerFindOne**](docs/HelpListsAPI.md#helplistscontrollerfindone) | **GET** /help-lists/{helpListId} | Get a specific help list
@@ -57,18 +59,19 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [Article](docs/Article.md)
+ - [BackendErrorEntry](docs/BackendErrorEntry.md)
+ - [BackendErrorResponse](docs/BackendErrorResponse.md)
  - [Call](docs/Call.md)
  - [CreateArticleDto](docs/CreateArticleDto.md)
  - [CreateHelpRequestArticleDto](docs/CreateHelpRequestArticleDto.md)
  - [CreateOrUpdateHelpRequestArticleDto](docs/CreateOrUpdateHelpRequestArticleDto.md)
+ - [EmailPasswordResetDto](docs/EmailPasswordResetDto.md)
  - [HelpList](docs/HelpList.md)
  - [HelpListCreateDto](docs/HelpListCreateDto.md)
  - [HelpRequest](docs/HelpRequest.md)
  - [HelpRequestArticle](docs/HelpRequestArticle.md)
  - [HelpRequestCreateDto](docs/HelpRequestCreateDto.md)
  - [HelpRequestStatus](docs/HelpRequestStatus.md)
- - [HttpBadRequestResponse](docs/HttpBadRequestResponse.md)
- - [HttpConflictResponse](docs/HttpConflictResponse.md)
  - [LoginDto](docs/LoginDto.md)
  - [PhoneNumberDto](docs/PhoneNumberDto.md)
  - [RegisterDto](docs/RegisterDto.md)

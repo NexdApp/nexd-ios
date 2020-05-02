@@ -3,6 +3,8 @@ name: Import Strings into POEditor
 on:
   push:
     branches: [ develop ]
+    paths:
+      - 'Nexd/**/Localizable.strings'
 
 jobs:
   poeditor:
@@ -13,8 +15,23 @@ jobs:
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_ENGLISH }}
           data: ""
+
       - name: German
         uses: joelwmale/webhook-action@master
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_UPLOAD_GERMAN }}
+          data: ""
+
+      # update ios translations from POEditor
+
+      - name: Update Android English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_ANDROID_ENGLISH }}
+          data: ""
+
+      - name: Update Android English
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_POEDITOR_ANDROID_GERMAN }}
           data: ""
