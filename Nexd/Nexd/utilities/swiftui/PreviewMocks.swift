@@ -163,9 +163,11 @@ extension HelpRequestArticle {
     static func with(articleId: Int64, name: String, count: Int64? = nil, done: Bool? = nil) -> HelpRequestArticle {
         HelpRequestArticle(id: articleId,
                            articleId: articleId,
-                           articleCount: count,
-                           article: Article(id: articleId, name: name),
-                           articleDone: done,
+                           unitId: nil,
+                           articleCount: nil,
+                           article: Article(id: articleId, name: name, language: .deDe, categoryId: nil, status: nil, unitIdOrder: nil, category: nil),
+                           unit: nil,
+                           articleDone: nil,
                            helpRequest: nil)
     }
 }

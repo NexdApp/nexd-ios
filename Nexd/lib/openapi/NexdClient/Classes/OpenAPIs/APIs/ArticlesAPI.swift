@@ -14,12 +14,16 @@ open class ArticlesAPI {
     /**
      List articles
      
+     - parameter limit: (query) Maximum number of articles  (optional)
+     - parameter startsWith: (query) Starts with the given string. Empty string does not filter. (optional)
+     - parameter language: (query)  (optional)
+     - parameter onlyVerified: (query) true to only gets the list of curated articles (default: true) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Article]>
      */
-    open class func articlesControllerFindAll(apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Article]> {
+    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Article]> {
         return Observable.create { observer -> Disposable in
-            articlesControllerFindAllWithRequestBuilder().execute(apiResponseQueue) { result -> Void in
+            articlesControllerFindAllWithRequestBuilder(limit: limit, startsWith: startsWith, language: language, onlyVerified: onlyVerified).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -34,15 +38,25 @@ open class ArticlesAPI {
 
     /**
      List articles
-     - GET /articles
+     - GET /article/articles
+     - parameter limit: (query) Maximum number of articles  (optional)
+     - parameter startsWith: (query) Starts with the given string. Empty string does not filter. (optional)
+     - parameter language: (query)  (optional)
+     - parameter onlyVerified: (query) true to only gets the list of curated articles (default: true) (optional)
      - returns: RequestBuilder<[Article]> 
      */
-    open class func articlesControllerFindAllWithRequestBuilder() -> RequestBuilder<[Article]> {
-        let path = "/articles"
+    open class func articlesControllerFindAllWithRequestBuilder(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> RequestBuilder<[Article]> {
+        let path = "/article/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
         
-        let url = URLComponents(string: URLString)
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "limit": limit?.encodeToJSON(), 
+            "startsWith": startsWith?.encodeToJSON(), 
+            "language": language?.encodeToJSON(), 
+            "onlyVerified": onlyVerified?.encodeToJSON()
+        ])
 
         let requestBuilder: RequestBuilder<[Article]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
@@ -52,14 +66,13 @@ open class ArticlesAPI {
     /**
      Create an article
      
-     - parameter xAdminSecret: (header) Secret to access the admin functions. 
      - parameter createArticleDto: (body)  
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<Article>
      */
-    open class func articlesControllerInsertOne(xAdminSecret: String, createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Article> {
+    open class func articlesControllerInsertOne(createArticleDto: CreateArticleDto, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<Article> {
         return Observable.create { observer -> Disposable in
-            articlesControllerInsertOneWithRequestBuilder(xAdminSecret: xAdminSecret, createArticleDto: createArticleDto).execute(apiResponseQueue) { result -> Void in
+            articlesControllerInsertOneWithRequestBuilder(createArticleDto: createArticleDto).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -74,25 +87,20 @@ open class ArticlesAPI {
 
     /**
      Create an article
-     - POST /articles
-     - parameter xAdminSecret: (header) Secret to access the admin functions. 
+     - POST /article/articles
      - parameter createArticleDto: (body)  
      - returns: RequestBuilder<Article> 
      */
-    open class func articlesControllerInsertOneWithRequestBuilder(xAdminSecret: String, createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
-        let path = "/articles"
+    open class func articlesControllerInsertOneWithRequestBuilder(createArticleDto: CreateArticleDto) -> RequestBuilder<Article> {
+        let path = "/article/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters = JSONEncodingHelper.encodingParameters(forEncodableObject: createArticleDto)
 
         let url = URLComponents(string: URLString)
-        let nillableHeaders: [String: Any?] = [
-            "x-admin-secret": xAdminSecret.encodeToJSON()
-        ]
-        let headerParameters = APIHelper.rejectNilHeaders(nillableHeaders)
 
         let requestBuilder: RequestBuilder<Article>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
-        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true, headers: headerParameters)
+        return requestBuilder.init(method: "POST", URLString: (url?.string ?? URLString), parameters: parameters, isBody: true)
     }
 
 }

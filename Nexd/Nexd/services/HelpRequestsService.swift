@@ -30,7 +30,11 @@ class HelpRequestsService {
                                  number: number,
                                  zipCode: zipCode,
                                  city: city,
-                                 articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) },
+                                 articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId,
+                                                                                    articleName: nil,
+                                                                                    language: nil,
+                                                                                    articleCount: $0.articleCount,
+                                                                                    unitId: nil) },
                                  status: .pending,
                                  additionalRequest: additionalRequest, deliveryComment: deliveryComment, phoneNumber: phoneNumber)
         }
