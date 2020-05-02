@@ -1,6 +1,6 @@
 # ArticlesAPI
 
-All URIs are relative to *https://nexd-backend-staging.herokuapp.com:443/api/v1*
+All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
