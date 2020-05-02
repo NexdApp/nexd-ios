@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | **String** | Name of the article (without unit) | 
 **language** | **String** | Language key of this article | 
 **categoryId** | **Int64** |  | [optional] 
-**status** | **Bool** |  | [optional] 
+**status** | **String** |  | [optional] 
 **unitIdOrder** | **[Double]** |  | [optional] 
 **category** | [**Category**](Category.md) |  | [optional] 
 

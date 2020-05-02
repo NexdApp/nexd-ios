@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **unitId** | **Int64** |  | [optional] 
 **articleCount** | **Int64** |  | [optional] 
 **article** | [**Article**](Article.md) |  | [optional] 
-**unit** | [**Article**](Article.md) |  | [optional] 
+**unit** | [**Unit**](Unit.md) |  | [optional] 
 **articleDone** | **Bool** |  | [optional] 
 **helpRequest** | [**HelpRequest**](HelpRequest.md) |  | [optional] 
 

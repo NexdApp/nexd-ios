@@ -15,6 +15,11 @@ public struct Article: Codable {
         case deDe = "de-DE"
         case enUs = "en-US"
     }
+    public enum Status: String, Codable, CaseIterable {
+        case deactivated = "deactivated"
+        case active = "active"
+        case verified = "verified"
+    }
     /** Auto-incremented ID of an article. */
     public var id: Int64
     /** Name of the article (without unit) */
@@ -22,11 +27,11 @@ public struct Article: Codable {
     /** Language key of this article */
     public var language: Language
     public var categoryId: Int64?
-    public var status: Bool?
+    public var status: Status?
     public var unitIdOrder: [Double]?
     public var category: Category?
 
-    public init(id: Int64, name: String, language: Language, categoryId: Int64?, status: Bool?, unitIdOrder: [Double]?, category: Category?) {
+    public init(id: Int64, name: String, language: Language, categoryId: Int64?, status: Status?, unitIdOrder: [Double]?, category: Category?) {
         self.id = id
         self.name = name
         self.language = language

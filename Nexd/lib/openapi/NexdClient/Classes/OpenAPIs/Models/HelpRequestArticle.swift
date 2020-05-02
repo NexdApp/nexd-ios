@@ -16,11 +16,11 @@ public struct HelpRequestArticle: Codable {
     public var unitId: Int64?
     public var articleCount: Int64?
     public var article: Article?
-    public var unit: Article?
+    public var unit: Unit?
     public var articleDone: Bool?
     public var helpRequest: HelpRequest?
 
-    public init(id: Int64?, articleId: Int64?, unitId: Int64?, articleCount: Int64?, article: Article?, unit: Article?, articleDone: Bool?, helpRequest: HelpRequest?) {
+    public init(id: Int64?, articleId: Int64?, unitId: Int64?, articleCount: Int64?, article: Article?, unit: Unit?, articleDone: Bool?, helpRequest: HelpRequest?) {
         self.id = id
         self.articleId = articleId
         self.unitId = unitId

@@ -78,6 +78,7 @@ Class | Method | HTTP request | Description
  - [PhoneNumberDto](docs/PhoneNumberDto.md)
  - [RegisterDto](docs/RegisterDto.md)
  - [TokenDto](docs/TokenDto.md)
+ - [Unit](docs/Unit.md)
  - [UpdateUserDto](docs/UpdateUserDto.md)
  - [User](docs/User.md)
 
