@@ -51,8 +51,13 @@ class HelpRequestsService {
         return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()
     }
 
-    func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = true, status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
+    func openRequests(userId: String? = nil,
+                      excludeUserId: Bool? = nil,
+                      zipCode: [String]? = nil,
+                      includeRequester: Bool = true,
+                      status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
         return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
+                                                            excludeUserId: excludeUserId,
                                                             zipCode: zipCode,
                                                             includeRequester: includeRequester,
                                                             status: status)
