@@ -191,7 +191,7 @@ extension TranscribeListView {
                 .store(in: &cancellableSet)
 
             player?.state.publisher
-                .map { Double($0.progress) }
+                .map { $0.progress ?? 0 }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .replaceError(with: 0)

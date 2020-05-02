@@ -161,10 +161,8 @@ extension TranscribeInfoView {
                 .store(in: &cancellableSet)
 
             let player = call
-                .flatMap { [weak self] call -> Single<URL> in
-                    guard let self = self, let call = call else { return Single.error(TranscribeError.noCallsAvailable) }
-                    return self.phoneService.downloadRecoring(for: call)
-                }
+                .compactMap { $0?.recordingUrl }
+                .compactMap { URL(string: $0) }
                 .map { url in AudioPlayer(url: url) }
                 .catchError { error in
                     log.warning("Cannot download call information: \(error)")
@@ -198,7 +196,7 @@ extension TranscribeInfoView {
                 .store(in: &cancellableSet)
 
             playerState.publisher
-                .map { Double($0.progress) }
+                .map { $0.progress ?? 0 }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
                 .replaceError(with: 0)

@@ -14,18 +14,23 @@ import RxSwift
 class AudioPlayer: NSObject {
     struct PlayerState {
         let isPlaying: Bool
-        let currentTime: TimeInterval
-        let duration: TimeInterval
-        var progress: Float { Float(currentTime / duration) }
+        let currentTime: CMTime?
+        let duration: CMTime?
+        var progress: Double? {
+            guard let currentTime = currentTime, let duration = duration else {
+                return nil
+            }
+            return currentTime.seconds / duration.seconds
+        }
 
-        fileprivate static func from(player: AVAudioPlayer) -> PlayerState {
-            return PlayerState(isPlaying: player.isPlaying,
-                               currentTime: player.currentTime,
-                               duration: player.duration)
+        fileprivate static func from(player: AVPlayer) -> PlayerState {
+            return PlayerState(isPlaying: player.timeControlStatus == .playing,
+                               currentTime: player.currentTime(),
+                               duration: player.currentItem?.duration)
         }
     }
 
-    private let player: AVAudioPlayer?
+    private let player: AVPlayer?
 
     fileprivate let isPlaying = BehaviorRelay<Bool>(value: false)
 
@@ -46,35 +51,33 @@ class AudioPlayer: NSObject {
     }
 
     init(url: URL) {
-        player = try? AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.wav.rawValue)
+        player = AVPlayer(url: url)
 
         super.init()
-        player?.delegate = self
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didPlayToEnd(notification:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
+                                               object: nil)
     }
 
-    init?(data: Data, fileTypeHint: String?) {
-        player = try? AVAudioPlayer(data: data, fileTypeHint: fileTypeHint)
-
-        super.init()
-        player?.delegate = self
-    }
-
-    func seekTo(time: TimeInterval) {
-        player?.currentTime = time
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     func seekTo(progress: Float) {
-        guard let player = player else { return }
+        guard let currentItem = player?.currentItem else { return }
 
-        player.currentTime = TimeInterval(progress * Float(player.duration))
+        let time = CMTime(value: CMTimeValue(Double(progress) * currentItem.duration.seconds * 60000.0), timescale: 60000)
+        player?.seek(to: time)
     }
 
     func play() {
         guard let player = player else { return }
 
-        if !player.isPlaying {
-            player.play()
-        }
+        try? AVAudioSession.sharedInstance().setActive(true)
+
+        player.play()
 
         isPlaying.accept(true)
     }
@@ -84,31 +87,23 @@ class AudioPlayer: NSObject {
 
         player.pause()
         isPlaying.accept(false)
+
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
 
     func stop() {
         guard let player = player else { return }
 
-        player.stop()
-        player.currentTime = 0
+        player.pause()
+        player.seek(to: .zero)
         isPlaying.accept(false)
+
+        try? AVAudioSession.sharedInstance().setActive(false)
     }
 
-    static func sampleWav() -> AudioPlayer {
-        let path = Bundle.main.path(forResource: "cymbal.wav", ofType: nil)!
-        let url = URL(fileURLWithPath: path)
-        return AudioPlayer(url: url)
-    }
-
-    static func sampleMp3() -> AudioPlayer {
-        let path = Bundle.main.path(forResource: "recording.mp3", ofType: nil)!
-        let url = URL(fileURLWithPath: path)
-        return AudioPlayer(url: url)
-    }
-}
-
-extension AudioPlayer: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        isPlaying.accept(false)
+    @objc
+    private func didPlayToEnd(notification: Notification) {
+        guard let item = notification.object as? AVPlayerItem, item == player?.currentItem else { return }
+        stop()
     }
 }
