@@ -114,7 +114,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toLoginScreen() {
-        let screen = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        let screen = LoginView.createScreen(viewModel: LoginView.ViewModel(navigator: self))
         push(screen: screen)
     }
 

@@ -11,6 +11,28 @@ import UIKit
 import Validator
 
 extension NexdUI {
+    enum TextFieldStyle {
+        case `default`
+        case onboarding
+
+        func apply(to textField: WrappableTextField) {
+            textField.font = R.font.proximaNovaSoftBold(size: 22.0)
+            textField.tintColor = .black
+            textField.textColor = .black
+
+            switch self {
+            case .default:
+                textField.backgroundColor = .white
+                textField.layer.cornerRadius = 10
+                textField.clipsToBounds = true
+
+            case .onboarding:
+                textField.backgroundColor = .clear
+                textField.underline()
+            }
+        }
+    }
+
     class WrappableTextField: UITextField, UITextFieldDelegate {
         var textFieldChangedHandler: ((String?) -> Void)?
         var onCommitHandler: ((String?) -> Void)?
@@ -31,41 +53,59 @@ extension NexdUI {
         }
 
         open override func textRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.inset(by: padding)
+            let rightViewSize = rightView?.bounds.size ?? .zero
+
+            return CGRect(x: bounds.origin.x + padding.left,
+                          y: bounds.origin.y + padding.top,
+                          width: bounds.size.width - padding.left - padding.right - rightViewSize.width - 8,
+                          height: bounds.size.height - padding.top - padding.bottom)
         }
 
         open override func placeholderRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.inset(by: padding)
+            return textRect(forBounds: bounds)
         }
 
         open override func editingRect(forBounds bounds: CGRect) -> CGRect {
-            return bounds.inset(by: padding)
+            return textRect(forBounds: bounds)
+        }
+
+        override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
+            guard let size = rightView?.bounds.size else { return .zero }
+
+            return CGRect(x: bounds.maxX - size.width - padding.right,
+                          y: (bounds.height / 2) - (size.height / 2),
+                          width: size.width,
+                          height: size.height)
         }
 
         @objc internal func onEditingChanged(_ sender: UITextField) {
             textFieldChangedHandler?(sender.text)
         }
 
-        static func make(tag: Int,
+        static func make(style: TextFieldStyle,
+                         tag: Int,
                          placeholder: String?,
+                         icon: UIImage? = nil,
                          onChanged: ((String?) -> Void)?,
                          onCommit: ((String?) -> Void)?,
                          inputConfiguration: InputConfiguration?) -> WrappableTextField {
             let textField = WrappableTextField()
 
-            textField.font = R.font.proximaNovaSoftBold(size: 22.0)
-            textField.backgroundColor = .white
-            textField.tintColor = .black
-            textField.textColor = .black
             textField.attributedPlaceholder = placeholder?.asPlaceholder()
 
-            textField.layer.cornerRadius = 10
-            textField.clipsToBounds = true
+            style.apply(to: textField)
 
             textField.tag = tag
             textField.delegate = textField
             textField.onCommitHandler = onCommit
             textField.textFieldChangedHandler = onChanged
+
+            if let icon = icon {
+                let imageView = UIImageView(image: icon.withRenderingMode(.alwaysTemplate))
+                imageView.sizeToFit()
+                textField.rightViewMode = .always
+                textField.rightView = imageView
+            }
 
             inputConfiguration?.apply(to: textField)
 
@@ -81,6 +121,7 @@ extension NexdUI {
     }
 
     struct InputConfiguration {
+        var isSecureTextEntry: Bool = false
         var keyboardType: UIKeyboardType = .default
         var autocapitalizationType: UITextAutocapitalizationType = .sentences
         var autocorrectionType: UITextAutocorrectionType = .default
@@ -91,6 +132,7 @@ extension NexdUI {
         var hasDone: Bool = false
 
         func apply(to textField: UITextField) {
+            textField.isSecureTextEntry = isSecureTextEntry
             textField.keyboardType = keyboardType
             textField.autocapitalizationType = autocapitalizationType
             textField.autocorrectionType = autocorrectionType
@@ -102,20 +144,26 @@ extension NexdUI {
     }
 
     struct TextField: UIViewRepresentable {
+        var style: TextFieldStyle = .default
         var tag: Int = 0
         @Binding var text: String?
         var placeholder: String?
+        var icon: UIImage?
         var onChanged: ((String?) -> Void)?
         var onCommit: ((String?) -> Void)?
         var inputValidation: InputValidation?
         var inputConfiguration: InputConfiguration?
 
         func makeUIView(context: UIViewRepresentableContext<TextField>) -> WrappableTextField {
-            var textField = WrappableTextField.make(tag: tag,
+            var textField = WrappableTextField.make(style: style,
+                                                    tag: tag,
                                                     placeholder: placeholder,
+                                                    icon: icon,
                                                     onChanged: { string in
+                                                        // swiftformat:disable redundantSelf
                                                         self.text = string
                                                         self.onChanged?(string)
+                                                        // swiftformat:enable redundantSelf
                                                     },
                                                     onCommit: onCommit,
                                                     inputConfiguration: inputConfiguration)
@@ -141,9 +189,11 @@ extension NexdUI {
     struct ValidatingTextField: View {
         @State private var errorMessage: String?
 
+        var style: TextFieldStyle = .default
         var tag: Int = 0
         @Binding var text: String?
         var placeholder: String?
+        var icon: UIImage?
         var onChanged: ((String?) -> Void)?
         var onCommit: ((String?) -> Void)?
         var validationRules: ValidationRuleSet<String>?
@@ -166,19 +216,24 @@ extension NexdUI {
 
         var body: some View {
             VStack {
-                errorMessage.map { errorMessage in
-                    Text(errorMessage)
-                        .font(R.font.proximaNovaSoftBold.font(size: 12))
-                        .foregroundColor(R.color.errorTint.color)
-                }
-
-                NexdUI.TextField(tag: tag,
+                NexdUI.TextField(style: style,
+                                 tag: tag,
                                  text: $text,
                                  placeholder: placeholder,
+                                 icon: icon,
                                  onChanged: onChanged,
                                  onCommit: onCommit,
                                  inputValidation: inputValidation,
                                  inputConfiguration: inputConfiguration)
+
+                errorMessage.map { errorMessage in
+                    Text(errorMessage)
+                        .font(R.font.proximaNovaSoftBold.font(size: 12))
+                        .foregroundColor(R.color.errorTint.color)
+                        .padding([.leading, .trailing], 8)
+                        .offset(y: -22)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
     }

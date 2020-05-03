@@ -9,6 +9,20 @@
 import UIKit
 
 extension UITextField {
+    func underline() {
+        let bottomBorder = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        bottomBorder.backgroundColor = R.color.textfieldStroke()
+        bottomBorder.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(bottomBorder)
+
+        // MARK: Setup Anchors
+
+        bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        bottomBorder.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        bottomBorder.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true // Set Border-Strength
+    }
+
     func addInputAccessory(hasPrevious: Bool = false, hasNext: Bool = false, hasDone: Bool = true) {
         guard hasPrevious || hasNext || hasDone else { return }
 

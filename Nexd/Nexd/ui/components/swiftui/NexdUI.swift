@@ -70,6 +70,27 @@ enum NexdUI {
                 .cornerRadius(10)
             }
         }
+
+        static func solidButton(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    text
+                        .font(R.font.proximaNovaSoftBold.font(size: 25))
+                        .foregroundColor(R.color.solidButtonText.color)
+                        .padding(.leading, 29)
+                        .padding(.trailing, 8)
+
+                    Spacer()
+
+                    R.image.chevron.image
+                        .foregroundColor(R.color.solidButtonIcon.color)
+                        .padding(.trailing, 27)
+                }
+                .frame(height: 70)
+                .background(R.color.solidButtonBackground.color)
+                .cornerRadius(10)
+            }
+        }
     }
 
     enum Headings {
@@ -93,15 +114,22 @@ enum NexdUI {
     struct NexdUI_Previews: PreviewProvider {
         static var previews: some View {
             Group {
+                NexdUI.Buttons.back(text: Text("Back"), action: {})
+
                 NexdUI.Buttons.default(text: R.string.localizable.checkout_button_title_complete.text, action: {})
-                    .background(R.color.nexdGreen.color)
+
+                NexdUI.Buttons.confirm { }
+
+                NexdUI.Buttons.lightButton(text: Text("Light Button"), action: {})
+
+                NexdUI.Buttons.solidButton(text: Text("Dark Button"), action: {})
+                    .background(Color.white)
 
                 NexdUI.Headings.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
-                    .background(R.color.nexdGreen.color)
 
                 NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header("Anna")))
-                    .background(R.color.nexdGreen.color)
             }
+            .background(R.color.nexdGreen.color)
             .previewLayout(.sizeThatFits)
         }
     }
