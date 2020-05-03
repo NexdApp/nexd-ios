@@ -6,10 +6,9 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-import RxSwift
-import SnapKit
+import Combine
 import SwiftUI
-import UIKit
+import Validator
 
 struct LoginView: View {
     @ObservedObject var viewModel: ViewModel
@@ -27,6 +26,7 @@ struct LoginView: View {
                                            icon: R.image.person1(),
                                            validationRules: .email,
                                            inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
+                                                                                         autocapitalizationType: .none,
                                                                                          autocorrectionType: .no,
                                                                                          spellCheckingType: .no,
                                                                                          hasPrevious: false,
@@ -52,28 +52,90 @@ struct LoginView: View {
             Spacer()
 
             NexdUI.Buttons.solidButton(text: R.string.localizable.login_button_title_login.text) {
-                log.debug("ZEFIX - implement me!")
+                self.viewModel.loginButtonTapped()
             }
             .padding([.bottom, .leading, .trailing], 12)
         }
         .keyboardAdaptive()
         .dismissingKeyboard()
+        .alert(item: $viewModel.state.dialog) { dialog -> Alert in
+            Alert(title: Text(dialog.title),
+                  message: Text(dialog.message),
+                  dismissButton: .default(R.string.localizable.ok_button_title.text))
+        }
+        .onAppear { self.viewModel.bind() }
+        .onDisappear { self.viewModel.unbind() }
     }
 }
 
 extension LoginView {
+    struct Dialog: Identifiable {
+        var id = UUID()
+        let title: String
+        let message: String
+    }
+
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
             @Published var username: String?
             @Published var password: String?
+            @Published var dialog: Dialog?
         }
 
         private let navigator: ScreenNavigating
+        private var cancellableSet: Set<AnyCancellable>?
 
         var state = ViewState()
 
         init(navigator: ScreenNavigating) {
             self.navigator = navigator
+        }
+
+        func loginButtonTapped() {
+            guard let email = state.username, let password = state.password else {
+                log.warning("Missing mandatory login information!")
+                return
+            }
+
+            guard email.validate(rules: .email).isValid, password.validate(rules: .password).isValid else {
+                state.dialog = Dialog(title: R.string.localizable.error_title(),
+                                      message: R.string.localizable.error_message_registration_validation_failed())
+                return
+            }
+
+            cancellableSet?.insert(
+                AuthenticationService.shared.login(email: email, password: password)
+                    .publisher
+                    .sink(
+                        receiveCompletion: { [weak self] completion in
+                            if case let .failure(error) = completion {
+                                log.error("Login failed: \(error)")
+                                self?.state.dialog = Dialog(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
+                                return
+                            }
+
+                            log.debug("Login successful!")
+                            self?.navigator.toMainScreen()
+                        },
+                        receiveValue: { _ in }
+                    )
+            )
+        }
+
+        func bind() {
+            var cancellableSet = Set<AnyCancellable>()
+
+            state.objectWillChange
+                .sink { [weak self] in
+                    self?.objectWillChange.send()
+                }
+                .store(in: &cancellableSet)
+
+            self.cancellableSet = cancellableSet
+        }
+
+        func unbind() {
+            cancellableSet = nil
         }
     }
 
@@ -107,37 +169,3 @@ extension LoginView {
         }
     }
 #endif
-
-//
-// extension LoginViewController {
-//    @objc func loginButtonPressed(sender: UIButton!) {
-//        let hasInvalidInput = [email, password]
-//            .map { $0.validate() }
-//            .contains(false)
-//
-//        guard !hasInvalidInput else {
-//            log.warning("Cannot login user! Validation failed!")
-//            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
-//            return
-//        }
-//
-//        guard let email = email.value, let password = password.value else {
-//            log.warning("Missing mandatory login information!")
-//            return
-//        }
-//
-//        AuthenticationService.shared.login(email: email, password: password)
-//            .subscribe(onCompleted: { [weak self] in
-//                log.debug("Login successful!")
-//                self?.viewModel?.navigator.toMainScreen()
-//            }, onError: { [weak self] error in
-//                log.error("Login failed: \(error)")
-//                self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_login_failed())
-//            })
-//            .disposed(by: disposeBag)
-//    }
-//
-//    @objc func registerButtonPressed(sender: UIButton!) {
-//        viewModel?.navigator.toRegistrationScreen()
-//    }
-// }
