@@ -225,15 +225,20 @@ extension NexdUI {
                                  onCommit: onCommit,
                                  inputValidation: inputValidation,
                                  inputConfiguration: inputConfiguration)
-
-                errorMessage.map { errorMessage in
-                    Text(errorMessage)
-                        .font(R.font.proximaNovaSoftBold.font(size: 12))
-                        .foregroundColor(R.color.errorTint.color)
-                        .padding([.leading, .trailing], 8)
-                        .offset(y: -22)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
+                    .overlay(
+                        errorMessage.map { errorMessage in
+                            VStack {
+                                Text(errorMessage)
+                                    .font(R.font.proximaNovaSoftBold.font(size: 12))
+                                    .foregroundColor(R.color.errorTint.color)
+                                    .frame(maxWidth: .infinity, minHeight: 30, alignment: .bottomLeading)
+                                    .padding([.leading, .trailing], 8)
+                            }
+                            .background(Color.white)
+                            .opacity(0.8)
+                            .padding([.leading, .trailing], 12)
+                            .offset(y: -30)
+                    }, alignment: .top)
             }
         }
     }
