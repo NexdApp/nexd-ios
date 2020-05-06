@@ -10,11 +10,11 @@ import UIKit
 
 extension UIButton {
     func style(text: String) {
-        backgroundColor = UIColor.greenBackgroundColor
+        backgroundColor = R.color.solidButtonBackground()
         layer.cornerRadius = 10
 
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.buttonTextColor,
+            .foregroundColor: R.color.solidButtonText()!,
             .font: R.font.proximaNovaSoftBold(size: 25)!
         ]
 

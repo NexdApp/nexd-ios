@@ -119,7 +119,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toRegistrationScreen() {
-        let screen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
+        let screen = RegistrationView.createScreen(viewModel: RegistrationView.ViewModel(navigator: self))
         push(screen: screen)
     }
 

@@ -12,8 +12,4 @@ extension UILabel {
     func styleDefault() {
         textColor = .black
     }
-
-    func styleHeader() {
-        textColor = .headingTextColor
-    }
 }

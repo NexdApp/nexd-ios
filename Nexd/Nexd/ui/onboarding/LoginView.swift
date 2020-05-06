@@ -23,7 +23,7 @@ struct LoginView: View {
                                            tag: 0,
                                            text: $viewModel.state.username,
                                            placeholder: R.string.localizable.login_placeholder_username(),
-                                           icon: R.image.person1(),
+                                           icon: R.image.mail1(),
                                            validationRules: .email,
                                            inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
                                                                                          autocapitalizationType: .none,
@@ -69,12 +69,6 @@ struct LoginView: View {
 }
 
 extension LoginView {
-    struct Dialog: Identifiable {
-        var id = UUID()
-        let title: String
-        let message: String
-    }
-
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
             @Published var username: String?

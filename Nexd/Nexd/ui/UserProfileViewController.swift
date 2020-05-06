@@ -24,7 +24,6 @@ class UserProfileViewController: UIViewController {
         view.backgroundColor = .white
 
         view.addSubview(titleLabel)
-        titleLabel.styleHeader()
         titleLabel.attributedText = R.string.localizable.user_profile_screen_title().asTitle()
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(Style.verticalPadding)

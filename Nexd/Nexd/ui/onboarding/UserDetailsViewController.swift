@@ -32,17 +32,17 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 
     lazy var logo = UIImageView()
 
-    lazy var phone = ValidatingTextField.make(tag: 0,
-                                              placeholder: R.string.localizable.registration_placeholder_phone(),
-                                              icon: R.image.hashtag(),
-                                              keyboardType: .phonePad,
-                                              validationRules: .phone)
-
-    lazy var zipCode = ValidatingTextField.make(tag: 1,
-                                                placeholder: R.string.localizable.registration_placeholder_zip(),
-                                                icon: R.image.hashtag(),
-                                                keyboardType: .phonePad,
-                                                validationRules: .zipCode)
+//    lazy var phone = ValidatingTextField.make(tag: 0,
+//                                              placeholder: R.string.localizable.registration_placeholder_phone(),
+//                                              icon: R.image.hashtag(),
+//                                              keyboardType: .phonePad,
+//                                              validationRules: .phone)
+//
+//    lazy var zipCode = ValidatingTextField.make(tag: 1,
+//                                                placeholder: R.string.localizable.registration_placeholder_zip(),
+//                                                icon: R.image.hashtag(),
+//                                                keyboardType: .phonePad,
+//                                                validationRules: .zipCode)
 
     lazy var registerButton = MenuButton.make(style: .solid)
 
@@ -74,30 +74,30 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
             make.topMargin.equalTo(68)
         }
 
-        contentView.addSubview(phone)
-        phone.snp.makeConstraints { make -> Void in
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(logo.snp.bottom).offset(134)
-        }
+//        contentView.addSubview(phone)
+//        phone.snp.makeConstraints { make -> Void in
+//            make.leftMargin.equalTo(8)
+//            make.rightMargin.equalTo(-8)
+//            make.top.equalTo(logo.snp.bottom).offset(134)
+//        }
 
-        contentView.addSubview(zipCode)
-        zipCode.snp.makeConstraints { make -> Void in
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
-        }
-
-        contentView.addSubview(registerButton)
-        registerButton.setAttributedTitle(R.string.localizable.registration_button_title_send().asSolidButtonText(), for: .normal)
-        registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
-        registerButton.snp.makeConstraints { make in
-            make.height.equalTo(Style.buttonHeight)
-            make.leftMargin.equalTo(8)
-            make.rightMargin.equalTo(-8)
-            make.top.greaterThanOrEqualTo(zipCode.snp.bottom).offset(80)
-            make.bottom.equalToSuperview().offset(-20)
-        }
+//        contentView.addSubview(zipCode)
+//        zipCode.snp.makeConstraints { make -> Void in
+//            make.leftMargin.equalTo(8)
+//            make.rightMargin.equalTo(-8)
+//            make.top.equalTo(phone.snp_bottom).offset(Style.verticalPadding)
+//        }
+//
+//        contentView.addSubview(registerButton)
+//        registerButton.setAttributedTitle(R.string.localizable.registration_button_title_send().asSolidButtonText(), for: .normal)
+//        registerButton.addTarget(self, action: #selector(registerButtonPressed(sender:)), for: .touchUpInside)
+//        registerButton.snp.makeConstraints { make in
+//            make.height.equalTo(Style.buttonHeight)
+//            make.leftMargin.equalTo(8)
+//            make.rightMargin.equalTo(-8)
+//            make.top.greaterThanOrEqualTo(zipCode.snp.bottom).offset(80)
+//            make.bottom.equalToSuperview().offset(-20)
+//        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,31 +115,31 @@ class UserDetailsViewController: ViewController<UserDetailsViewController.ViewMo
 }
 extension UserDetailsViewController {
     @objc func registerButtonPressed(sender: UIButton!) {
-        let hasInvalidInput = [phone, zipCode]
-            .map { $0.validate() }
-            .contains(false)
+//        let hasInvalidInput = [phone, zipCode]
+//            .map { $0.validate() }
+//            .contains(false)
+//
+//        guard !hasInvalidInput else {
+//            log.warning("Cannot update user, mandatory field is missing!")
+//            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+//            return
+//        }
 
-        guard !hasInvalidInput else {
-            log.warning("Cannot update user, mandatory field is missing!")
-            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
-            return
-        }
-
-        guard let zipCode = zipCode.value, let phone = phone.value else {
-            log.warning("Cannot update user, mandatory field is missing!")
-            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
-            return
-        }
+//        guard let zipCode = zipCode.value, let phone = phone.value else {
+//            log.warning("Cannot update user, mandatory field is missing!")
+//            showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_validation_failed())
+//            return
+//        }
 
         log.debug("Send registration to backend")
-        UserService.shared.updateUserInformation(zipCode: zipCode, phone: phone)
-            .subscribe(onSuccess: { [weak self] user in
-                log.debug("User information updated: \(user)")
-                self?.viewModel?.navigator.toMainScreen()
-            }, onError: { [weak self] error in
-                log.error("UserInformation update failed: \(error)")
-                self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
-            })
-            .disposed(by: disposeBag)
+//        UserService.shared.updateUserInformation(zipCode: zipCode, phone: phone)
+//            .subscribe(onSuccess: { [weak self] user in
+//                log.debug("User information updated: \(user)")
+//                self?.viewModel?.navigator.toMainScreen()
+//            }, onError: { [weak self] error in
+//                log.error("UserInformation update failed: \(error)")
+//                self?.showError(title: R.string.localizable.error_title(), message: R.string.localizable.error_message_registration_failed())
+//            })
+//            .disposed(by: disposeBag)
     }
 }
