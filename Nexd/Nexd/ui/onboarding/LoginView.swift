@@ -14,7 +14,7 @@ struct LoginView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        return VStack {
+        VStack {
             R.image.logo.image
                 .padding([.top, .leading, .trailing], 42)
 

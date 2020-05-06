@@ -15,122 +15,128 @@ struct RegistrationView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        VStack {
-            R.image.logo.image
-                .padding([.top, .leading, .trailing], 42)
+        ScrollView {
+            VStack {
+                R.image.logo.image
+                    .padding([.top, .leading, .trailing], 42)
 
-            Group {
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 0,
-                                           text: $viewModel.state.email,
-                                           placeholder: R.string.localizable.registration_placeholder_email(),
-                                           icon: R.image.mail1(),
-                                           validationRules: .email,
-                                           inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
-                                                                                         autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: false,
-                                                                                         hasNext: true))
-                    .padding(.top, 90)
+                Group {
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 0,
+                                               text: $viewModel.state.email,
+                                               placeholder: R.string.localizable.registration_placeholder_email(),
+                                               icon: R.image.mail1(),
+                                               validationRules: .email,
+                                               inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: false,
+                                                                                             hasNext: true))
+                        .padding(.top, 42)
 
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 1,
-                                           text: $viewModel.state.firstname,
-                                           placeholder: R.string.localizable.registration_placeholder_firstName(),
-                                           icon: R.image.person1(),
-                                           validationRules: .firstName,
-                                           inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: true,
-                                                                                         hasNext: true,
-                                                                                         hasDone: false))
-                    .padding(.top, 34)
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 1,
+                                               text: $viewModel.state.firstname,
+                                               placeholder: R.string.localizable.registration_placeholder_firstName(),
+                                               icon: R.image.person1(),
+                                               validationRules: .firstName,
+                                               inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true,
+                                                                                             hasDone: false))
+                        .padding(.top, 34)
 
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 2,
-                                           text: $viewModel.state.lastname,
-                                           placeholder: R.string.localizable.registration_placeholder_lastName(),
-                                           icon: R.image.person1(),
-                                           validationRules: .lastName,
-                                           inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: true,
-                                                                                         hasNext: true,
-                                                                                         hasDone: false))
-                    .padding(.top, 34)
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 2,
+                                               text: $viewModel.state.lastname,
+                                               placeholder: R.string.localizable.registration_placeholder_lastName(),
+                                               icon: R.image.person1(),
+                                               validationRules: .lastName,
+                                               inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true,
+                                                                                             hasDone: false))
+                        .padding(.top, 34)
 
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 3,
-                                           text: $viewModel.state.password,
-                                           placeholder: R.string.localizable.registration_placeholder_password(),
-                                           icon: R.image.lock2(),
-                                           validationRules: .password,
-                                           inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
-                                                                                         autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: true,
-                                                                                         hasNext: true,
-                                                                                         hasDone: false))
-                    .padding(.top, 34)
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 3,
+                                               text: $viewModel.state.password,
+                                               placeholder: R.string.localizable.registration_placeholder_password(),
+                                               icon: R.image.lock2(),
+                                               validationRules: .password,
+                                               inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true,
+                                                                                             hasDone: false))
+                        .padding(.top, 34)
 
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 4,
-                                           text: $viewModel.state.confirmPassword,
-                                           placeholder: R.string.localizable.registration_placeholder_confirm_password(),
-                                           icon: R.image.lock2(),
-                                           validationRules: .passwordConfirmation { self.viewModel.state.password ?? "" },
-                                           inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
-                                                                                         autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: true,
-                                                                                         hasNext: false,
-                                                                                         hasDone: true))
-                    .padding(.top, 34)
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 4,
+                                               text: $viewModel.state.confirmPassword,
+                                               placeholder: R.string.localizable.registration_placeholder_confirm_password(),
+                                               icon: R.image.lock2(),
+                                               validationRules: .passwordConfirmation { self.viewModel.state.password ?? "" },
+                                               inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: false,
+                                                                                             hasDone: true))
+                        .padding(.top, 34)
 
-                HStack {
-                    Button(action: viewModel.privacyPolicyCheckboxTapped) {
-                        ZStack {
-                            Circle()
-                                .stroke(R.color.nexdGreen.color, lineWidth: 3)
-                                .frame(width: 30, height: 30)
+                    HStack {
+                        Button(action: viewModel.privacyPolicyCheckboxTapped) {
+                            ZStack {
+                                Circle()
+                                    .stroke(R.color.nexdGreen.color, lineWidth: 3)
+                                    .frame(width: 30, height: 30)
 
-                            if viewModel.state.isPrivacyPolicyAccepted {
-                                R.image.baseline_check_black_48pt.image
-                                    .resizable()
-                                    .foregroundColor(R.color.nexdGreen.color)
-                                    .frame(width: 25, height: 25)
-                            } else {
-                                EmptyView()
+                                if viewModel.state.isPrivacyPolicyAccepted {
+                                    R.image.baseline_check_black_48pt.image
+                                        .resizable()
+                                        .foregroundColor(R.color.nexdGreen.color)
+                                        .frame(width: 25, height: 25)
+                                } else {
+                                    EmptyView()
+                                }
                             }
                         }
+
+                        PrivacyPolicyText()
+                            .padding(.leading, 8)
+                            .frame(height: 42)
                     }
-
-                    PrivacyPolicyText()
+                    .padding(.top, 34)
                 }
-            }
-            .padding([.leading, .trailing], 28)
+                .padding([.leading, .trailing], 28)
 
-            Spacer()
+                Spacer()
 
-            NexdUI.Buttons.solidButton(text: R.string.localizable.registration_button_title_continue.text) {
-                self.viewModel.continueButtonTapped()
+                NexdUI.Buttons.solidButton(text: R.string.localizable.registration_button_title_continue.text) {
+                    self.viewModel.continueButtonTapped()
+                }
+                .padding(.top, 34)
+                .padding([.bottom, .leading, .trailing], 12)
             }
-            .padding([.bottom, .leading, .trailing], 12)
+            .keyboardAdaptive()
+            .dismissingKeyboard()
+            .alert(item: $viewModel.state.dialog) { dialog -> Alert in
+                Alert(title: Text(dialog.title),
+                      message: Text(dialog.message),
+                      dismissButton: .default(R.string.localizable.ok_button_title.text))
+            }
+            .onAppear { self.viewModel.bind() }
+            .onDisappear { self.viewModel.unbind() }
         }
-        .keyboardAdaptive()
-        .dismissingKeyboard()
-        .alert(item: $viewModel.state.dialog) { dialog -> Alert in
-            Alert(title: Text(dialog.title),
-                  message: Text(dialog.message),
-                  dismissButton: .default(R.string.localizable.ok_button_title.text))
-        }
-        .onAppear { self.viewModel.bind() }
-        .onDisappear { self.viewModel.unbind() }
     }
 }
 
@@ -244,16 +250,14 @@ struct PrivacyPolicyText: UIViewRepresentable {
         let privacyPolicy = UITextView()
         privacyPolicy.backgroundColor = .clear
         privacyPolicy.textContainerInset = .zero
-        let term = R.string.localizable.registration_term_privacy_policy()
-        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
-        privacyPolicy.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacy")
-
         privacyPolicy.textContainer.lineBreakMode = .byWordWrapping
+        privacyPolicy.textContainer.heightTracksTextView = true
         return privacyPolicy
     }
 
     func updateUIView(_ uiView: UITextView, context: UIViewRepresentableContext<PrivacyPolicyText>) {
-        uiView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        let term = R.string.localizable.registration_term_privacy_policy()
+        let formatted = R.string.localizable.registration_label_privacy_policy_agreement(term)
+        uiView.attributedText = formatted.asLink(range: formatted.range(of: term), target: "https://www.nexd.app/privacy")
     }
 }
