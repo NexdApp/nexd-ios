@@ -37,7 +37,7 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toRegistrationScreen")
     }
 
-    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation) {
+    func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation) {
         log.debug("toUserDetailsScreen - userInformation: \(userInformation)")
     }
 

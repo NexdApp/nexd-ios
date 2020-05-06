@@ -207,7 +207,7 @@ extension RegistrationView {
                             }
 
                             log.debug("User registration successful")
-                            let userInformation = UserDetailsViewController.UserInformation(firstName: firstName, lastName: lastName)
+                            let userInformation = UserDetailsView.UserInformation(firstName: firstName, lastName: lastName)
                             self?.navigator.toUserDetailsScreen(with: userInformation)
                         },
                         receiveValue: { _ in }
