@@ -83,6 +83,7 @@
 "login_button_title_register" = "Registrieren";
 "login_placeholder_password" = "Passwort";
 "login_placeholder_username" = "E-Mail";
+"login_screen_title" = "Login";
 "ok_button_title" = "OK";
 "registration_button_privacy_policy" = "Datenschutzhinweise";
 "registration_button_title_continue" = "Weiter";
