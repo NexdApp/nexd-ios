@@ -19,12 +19,10 @@
 		AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690272427BC46009A8892 /* ShoppingListViewController.swift */; };
 		AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690292427E984009A8892 /* CheckoutViewController.swift */; };
 		AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */; };
-		AE2A9A892426D992006066B4 /* UIColor+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */; };
 		AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */; };
 		AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2A9A932426FA50006066B4 /* Localizable.strings */; };
 		AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */; };
-		AE2A9A98242763CF006066B4 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A97242763CF006066B4 /* TextField.swift */; };
-		AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */; };
+		AE2A9A9A24278989006066B4 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsView.swift */; };
 		AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2AF7832457622F00A1331F /* FilterButton.swift */; };
 		AE4EA655243A665900B8E9D6 /* PhoneService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4EA654243A665900B8E9D6 /* PhoneService.swift */; };
 		AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE50F0672448C2CB00601DDF /* TranscribeListView.swift */; };
@@ -44,8 +42,8 @@
 		AE7CD520244A6B7300214E88 /* TranscribeEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */; };
 		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
 		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
+		AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E23592462A7CB00AC261D /* Dialog.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
-		AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
 		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
 		AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */; };
@@ -97,17 +95,15 @@
 		AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66024260500005C77CE /* DefaultDataSource.swift */; };
 		AEF3D66524261131005C77CE /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66424261131005C77CE /* SectionHeaderView.swift */; };
 		AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D666242630C3005C77CE /* AppConfiguration.swift */; };
-		AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66824263149005C77CE /* RegistrationViewController.swift */; };
+		AEF3D66924263149005C77CE /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66824263149005C77CE /* RegistrationView.swift */; };
 		AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */; };
 		AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */; };
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
-		AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
 		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
-		AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D67A2426C88B005C77CE /* GradientView.swift */; };
 		C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */; };
-		E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */; };
+		E6914F55243FCAA400F0ACD2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginView.swift */; };
 		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
 		E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */; };
 		E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */; };
@@ -143,13 +139,11 @@
 		AE2690272427BC46009A8892 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AE2690292427E984009A8892 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Nexd.swift"; sourceTree = "<group>"; };
-		AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestsService.swift; sourceTree = "<group>"; };
 		AE2A9A922426FA50006066B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A942426FA67006066B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Nexd.swift"; sourceTree = "<group>"; };
-		AE2A9A97242763CF006066B4 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		AE2A9A9924278989006066B4 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
 		AE2AF7832457622F00A1331F /* FilterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterButton.swift; sourceTree = "<group>"; };
 		AE4EA654243A665900B8E9D6 /* PhoneService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneService.swift; sourceTree = "<group>"; };
 		AE50F0672448C2CB00601DDF /* TranscribeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeListView.swift; sourceTree = "<group>"; };
@@ -169,8 +163,8 @@
 		AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEndView.swift; sourceTree = "<group>"; };
 		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
 		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
+		AE8E23592462A7CB00AC261D /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
-		AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatingTextField.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
 		AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationView.swift; sourceTree = "<group>"; };
@@ -226,19 +220,17 @@
 		AEF3D66024260500005C77CE /* DefaultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultDataSource.swift; sourceTree = "<group>"; };
 		AEF3D66424261131005C77CE /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		AEF3D666242630C3005C77CE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
-		AEF3D66824263149005C77CE /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		AEF3D66824263149005C77CE /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Nexd.swift"; sourceTree = "<group>"; };
 		AEF3D6702426785C005C77CE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
-		AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSectionedDataSource.swift; sourceTree = "<group>"; };
 		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		AEF3D6782426B970005C77CE /* CheckableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableCell.swift; sourceTree = "<group>"; };
-		AEF3D67A2426C88B005C77CE /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.release.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.release.xcconfig"; sourceTree = "<group>"; };
 		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
-		E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E6914F54243FCAA400F0ACD2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular-webfont.ttf"; sourceTree = "<group>"; };
@@ -296,6 +288,7 @@
 				AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */,
 				AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */,
 				AE50F0712449048B00601DDF /* NexdUI+DismissingKeyboard.swift */,
+				AE8E23592462A7CB00AC261D /* Dialog.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -486,10 +479,6 @@
 				AEF3D65E242604DE005C77CE /* DataSource.swift */,
 				AEF3D66024260500005C77CE /* DefaultDataSource.swift */,
 				AEF3D66424261131005C77CE /* SectionHeaderView.swift */,
-				AEF3D67224267E89005C77CE /* DefaultSectionedDataSource.swift */,
-				AEF3D67A2426C88B005C77CE /* GradientView.swift */,
-				AE2A9A97242763CF006066B4 /* TextField.swift */,
-				AEA2010C24362BCD00BD6C1B /* ValidatingTextField.swift */,
 				AEA2010E24362C0500BD6C1B /* CustomView.swift */,
 				AE510B892443C2FA0068DF60 /* CustomControl.swift */,
 				AEB6AC6A24413AA500823E7C /* PickerView.swift */,
@@ -522,7 +511,6 @@
 				AEF3D66E24266472005C77CE /* UIViewController+Nexd.swift */,
 				AEF3D6702426785C005C77CE /* Storage.swift */,
 				AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */,
-				AE2A9A882426D992006066B4 /* UIColor+Nexd.swift */,
 				AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */,
 				AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */,
 				AE1E0104243148E90006A490 /* KeyboardObserver.swift */,
@@ -545,9 +533,9 @@
 			isa = PBXGroup;
 			children = (
 				AED50B91244BBD3B00A51677 /* StartAuthenticationFlowView.swift */,
-				E6914F54243FCAA400F0ACD2 /* LoginViewController.swift */,
-				AEF3D66824263149005C77CE /* RegistrationViewController.swift */,
-				AE2A9A9924278989006066B4 /* UserDetailsViewController.swift */,
+				E6914F54243FCAA400F0ACD2 /* LoginView.swift */,
+				AEF3D66824263149005C77CE /* RegistrationView.swift */,
+				AE2A9A9924278989006066B4 /* UserDetailsView.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
@@ -785,7 +773,6 @@
 				AE50F06C2448DCFA00601DDF /* Publisher+Debugging.swift in Sources */,
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
 				AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */,
-				AEF3D67B2426C89A005C77CE /* GradientView.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */,
 				AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */,
@@ -800,12 +787,11 @@
 				AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */,
 				AED8818B24351174006065D2 /* String+Nexd.swift in Sources */,
 				AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */,
-				AE2A9A892426D992006066B4 /* UIColor+Nexd.swift in Sources */,
-				AEF3D66924263149005C77CE /* RegistrationViewController.swift in Sources */,
+				AEF3D66924263149005C77CE /* RegistrationView.swift in Sources */,
 				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
 				AEB6AC7B24432E7F00823E7C /* OpenReqeustsCell.swift in Sources */,
 				AED2A96B24406C0C0082316F /* MenuButton.swift in Sources */,
-				AE2A9A9A24278989006066B4 /* UserDetailsViewController.swift in Sources */,
+				AE2A9A9A24278989006066B4 /* UserDetailsView.swift in Sources */,
 				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
 				AED2A9732440D7170082316F /* ConfirmButton.swift in Sources */,
@@ -827,13 +813,11 @@
 				AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */,
 				AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */,
 				AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */,
-				E6914F55243FCAA400F0ACD2 /* LoginViewController.swift in Sources */,
+				E6914F55243FCAA400F0ACD2 /* LoginView.swift in Sources */,
 				AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */,
 				AE26902224278BFC009A8892 /* UserService.swift in Sources */,
 				AE15C14324575AD4006AEFCB /* HelperRequestFilterSettingsView.swift in Sources */,
-				AE2A9A98242763CF006066B4 /* TextField.swift in Sources */,
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
-				AEF3D67324267E89005C77CE /* DefaultSectionedDataSource.swift in Sources */,
 				AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */,
 				AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */,
 				AED2A954243F78030082316F /* ViewController.swift in Sources */,
@@ -868,11 +852,11 @@
 				AED50B90244BA69F00A51677 /* ValidationRuleSet+Nexd.swift in Sources */,
 				AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */,
 				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
+				AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */,
 				AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */,
 				AE1359102444A2410015D7AB /* NexdUI.swift in Sources */,
-				AEA2010D24362BCD00BD6C1B /* ValidatingTextField.swift in Sources */,
 				AE510B8E24445D1F0068DF60 /* DeliveryConfirmationView.swift in Sources */,
 				AE4EA655243A665900B8E9D6 /* PhoneService.swift in Sources */,
 				AE510B9024445EC50068DF60 /* R.swift+SwiftUI.swift in Sources */,

@@ -30,19 +30,19 @@ extension Notification {
 }
 
 struct KeyboardAdaptive: ViewModifier {
-    @State private var bottomPadding: CGFloat = 0
+    @State private var bottomOffset: CGFloat = 0
 
     func body(content: Content) -> some View {
             content
-                .offset(x: 0, y: -self.bottomPadding)
+                .offset(x: 0, y: -self.bottomOffset)
                 .onReceive(Publishers.keyboardFrame) { keyboardFrame in
                     guard let keyboardFrame = keyboardFrame else {
-                        self.bottomPadding = 0
+                        self.bottomOffset = 0
                         return
                     }
 
                     let focusedTextInputBottom = UIResponder.currentFirstResponder?.globalFrame?.maxY ?? 0
-                    self.bottomPadding += max(0, focusedTextInputBottom - keyboardFrame.minY)
+                    self.bottomOffset += max(0, focusedTextInputBottom - keyboardFrame.minY)
                 }
                 .animation(.easeOut(duration: 0.16))
     }

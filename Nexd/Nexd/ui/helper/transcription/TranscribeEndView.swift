@@ -13,7 +13,7 @@ struct TranscribeEndView: View {
 
     var body: some View {
         return VStack {
-            NexdUI.Headings.title(text: R.string.localizable.transcribe_end_screen_title_ios.text)
+            NexdUI.Texts.title(text: R.string.localizable.transcribe_end_screen_title_ios.text)
                 .padding(.top, 225)
                 .padding([.leading, .trailing], 45)
 

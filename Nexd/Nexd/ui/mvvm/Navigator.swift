@@ -21,7 +21,7 @@ protocol ScreenNavigating {
     func toStartAuthenticationFlow()
     func toLoginScreen()
     func toRegistrationScreen()
-    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
+    func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation)
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
@@ -114,17 +114,17 @@ extension Navigator: ScreenNavigating {
     }
 
     func toLoginScreen() {
-        let screen = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        let screen = LoginView.createScreen(viewModel: LoginView.ViewModel(navigator: self))
         push(screen: screen)
     }
 
     func toRegistrationScreen() {
-        let screen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
+        let screen = RegistrationView.createScreen(viewModel: RegistrationView.ViewModel(navigator: self))
         push(screen: screen)
     }
 
-    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation) {
-        let screen = UserDetailsViewController(viewModel: UserDetailsViewController.ViewModel(navigator: self, userInformation: userInformation))
+    func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation) {
+        let screen = UserDetailsView.createScreen(viewModel: UserDetailsView.ViewModel(navigator: self, userInformation: userInformation))
         push(screen: screen)
     }
 

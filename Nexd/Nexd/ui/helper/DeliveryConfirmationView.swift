@@ -32,13 +32,13 @@ struct DeliveryConfirmationView: View {
         return
             ScrollView {
                 VStack(alignment: .leading) {
-                    NexdUI.Headings.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
+                    NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
                         .padding(.top, 109)
                         .padding([.leading, .trailing], 28)
 
                     ForEach(viewModel.requests, id: \.requestId) { request in
                         VStack {
-                            NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
+                            NexdUI.Texts.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
                                 .padding(.top, 26)
                                 .padding([.leading, .trailing], 28)
 

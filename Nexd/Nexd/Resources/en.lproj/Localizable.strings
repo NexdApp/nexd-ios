@@ -83,7 +83,6 @@
 "login_button_title_register" = "Register";
 "login_placeholder_password" = "Password";
 "login_placeholder_username" = "E-mail";
-"login_screen_title" = "Login";
 "ok_button_title" = "OK";
 "registration_button_privacy_policy" = "Privacy Policy";
 "registration_button_title_continue" = "Continue";
@@ -153,6 +152,7 @@
 "transcript_summary_button_transcript" = "Transcribe another call";
 "transcript_summary_title" = "Thank you for helping complete %1$s's order!";
 "user_input_details_confirm" = "Confirm";
+"user_input_details_explanation_text" = "Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty.";
 "user_input_details_placeholder_city" = "Place";
 "user_input_details_placeholder_firstname" = "First name";
 "user_input_details_placeholder_houseNumber" = "No.";
