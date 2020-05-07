@@ -18,7 +18,7 @@ struct RequestConfirmationView: View {
         return
             ScrollView {
                 VStack {
-                    NexdUI.Headings.title(text: R.string.localizable.seeker_detail_screen_title.text)
+                    NexdUI.Texts.title(text: R.string.localizable.seeker_detail_screen_title.text)
                         .padding(.top, 75)
                         .padding(.leading, 35)
 

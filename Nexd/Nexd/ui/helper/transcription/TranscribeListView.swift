@@ -25,7 +25,7 @@ struct TranscribeListView: View {
                     .padding(.top, 22)
                     .offset(x: -12)
 
-                NexdUI.Headings.title(text: R.string.localizable.transcribe_articles_screen_title.text)
+                NexdUI.Texts.title(text: R.string.localizable.transcribe_articles_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 29)
 

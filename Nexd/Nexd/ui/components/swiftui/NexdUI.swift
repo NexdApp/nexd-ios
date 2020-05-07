@@ -112,7 +112,7 @@ enum NexdUI {
         }
     }
 
-    enum Headings {
+    enum Texts {
         static func title(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -124,6 +124,13 @@ enum NexdUI {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .foregroundColor(R.color.darkHeadingText.color)
+        }
+
+        static func defaultDark(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 16))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
     }
@@ -144,9 +151,9 @@ enum NexdUI {
                 NexdUI.Buttons.solidButton(text: Text("Dark Button"), action: {})
                     .background(Color.white)
 
-                NexdUI.Headings.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
+                NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
 
-                NexdUI.Headings.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header("Anna")))
+                NexdUI.Texts.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header("Anna")))
             }
             .background(R.color.nexdGreen.color)
             .previewLayout(.sizeThatFits)

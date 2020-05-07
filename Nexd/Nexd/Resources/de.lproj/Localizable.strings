@@ -152,6 +152,7 @@
 "transcript_summary_button_transcript" = "Einen weiteren Anruf übertragen";
 "transcript_summary_title" = "Danke, dass du %1$s's Bestellung vervollständigt hast!";
 "user_input_details_confirm" = "Bestätigen";
+"user_input_details_explanation_text" = "Das Benutzerkonto wurde erstellt. Du kannst zusätzlich weitere Informationen hinterlegen um künftig die Erstellung deiner Anfragen zu vereinfachen. Alle Felder sind jedoch optional und können leer gelassen werden.";
 "user_input_details_placeholder_city" = "Ort";
 "user_input_details_placeholder_firstname" = "Vorname";
 "user_input_details_placeholder_houseNumber" = "Nr.";
