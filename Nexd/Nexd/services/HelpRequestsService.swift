@@ -45,8 +45,6 @@ class HelpRequestsService {
         let articleCount: Int64
     }
 
-    static let shared = HelpRequestsService()
-
     func submitRequest(request: Request) -> Single<HelpRequest> {
         return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()
     }

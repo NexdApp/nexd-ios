@@ -36,7 +36,7 @@
 		AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8B2443C4550068DF60 /* CheckoutListView.swift */; };
 		AE510B8E24445D1F0068DF60 /* DeliveryConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */; };
 		AE510B9024445EC50068DF60 /* R.swift+SwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */; };
-		AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2752437B76500A1166F /* UserProfileViewController.swift */; };
+		AE52A2762437B76500A1166F /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2752437B76500A1166F /* UserProfileView.swift */; };
 		AE52A2782437D30800A1166F /* Completable+From.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE52A2772437D30800A1166F /* Completable+From.swift */; };
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AE7CD520244A6B7300214E88 /* TranscribeEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */; };
@@ -81,14 +81,13 @@
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
-		AED8818F24352373006065D2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818E24352373006065D2 /* Style.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
 		AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */; };
 		AEF3D633242584CC005C77CE /* NexdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D632242584CC005C77CE /* NexdTests.swift */; };
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
-		AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* MainPageViewController.swift */; };
+		AEF3D65124259B2D005C77CE /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* MainPageView.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
 		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D65F242604DE005C77CE /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65E242604DE005C77CE /* DataSource.swift */; };
@@ -157,7 +156,7 @@
 		AE510B8B2443C4550068DF60 /* CheckoutListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutListView.swift; sourceTree = "<group>"; };
 		AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryConfirmationView.swift; sourceTree = "<group>"; };
 		AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "R.swift+SwiftUI.swift"; sourceTree = "<group>"; };
-		AE52A2752437B76500A1166F /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		AE52A2752437B76500A1166F /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		AE52A2772437D30800A1166F /* Completable+From.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Completable+From.swift"; sourceTree = "<group>"; };
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEndView.swift; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
-		AED8818E24352373006065D2 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -213,7 +211,7 @@
 		AEF3D632242584CC005C77CE /* NexdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdTests.swift; sourceTree = "<group>"; };
 		AEF3D634242584CC005C77CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
-		AEF3D65024259B2D005C77CE /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
+		AEF3D65024259B2D005C77CE /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
 		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D65E242604DE005C77CE /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -451,9 +449,8 @@
 				AEF3D67C2426CC2D005C77CE /* onboarding */,
 				AEB6AC65244129B900823E7C /* seeker */,
 				AEB6AC7024423D9500823E7C /* helper */,
-				AEF3D65024259B2D005C77CE /* MainPageViewController.swift */,
-				AE52A2752437B76500A1166F /* UserProfileViewController.swift */,
-				AED8818E24352373006065D2 /* Style.swift */,
+				AEF3D65024259B2D005C77CE /* MainPageView.swift */,
+				AE52A2752437B76500A1166F /* UserProfileView.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -769,7 +766,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AED8818F24352373006065D2 /* Style.swift in Sources */,
 				AE50F06C2448DCFA00601DDF /* Publisher+Debugging.swift in Sources */,
 				AEF3D66124260500005C77CE /* DefaultDataSource.swift in Sources */,
 				AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */,
@@ -839,8 +835,8 @@
 				AED5E52A2446232D00A3DFA1 /* NexdUI+TextField.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */,
 				AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */,
-				AE52A2762437B76500A1166F /* UserProfileViewController.swift in Sources */,
-				AEF3D65124259B2D005C77CE /* MainPageViewController.swift in Sources */,
+				AE52A2762437B76500A1166F /* UserProfileView.swift in Sources */,
+				AEF3D65124259B2D005C77CE /* MainPageView.swift in Sources */,
 				AEB6AC7224423DC900823E7C /* HelperOptionsViewController.swift in Sources */,
 				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,

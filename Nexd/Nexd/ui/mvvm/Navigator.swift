@@ -114,17 +114,17 @@ extension Navigator: ScreenNavigating {
     }
 
     func toLoginScreen() {
-        let screen = LoginView.createScreen(viewModel: LoginView.ViewModel(navigator: self))
+        let screen = LoginView.createScreen(viewModel: LoginView.ViewModel(navigator: self, authenticationService: authenticationService))
         push(screen: screen)
     }
 
     func toRegistrationScreen() {
-        let screen = RegistrationView.createScreen(viewModel: RegistrationView.ViewModel(navigator: self))
+        let screen = RegistrationView.createScreen(viewModel: RegistrationView.ViewModel(navigator: self, authenticationService: authenticationService))
         push(screen: screen)
     }
 
     func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation) {
-        let screen = UserDetailsView.createScreen(viewModel: UserDetailsView.ViewModel(navigator: self, userInformation: userInformation))
+        let screen = UserDetailsView.createScreen(viewModel: UserDetailsView.ViewModel(navigator: self, userService: userService, userInformation: userInformation))
         push(screen: screen)
     }
 
@@ -141,15 +141,19 @@ extension Navigator: ScreenNavigating {
     }
 
     func toProfileScreen() {
-        let profileScreen = UserProfileViewController()
-        profileScreen.onUserLoggedOut = { [weak self] in
-            log.debug("User logged out!")
-            self?.dismiss { [weak self] in
-                self?.toStartAuthenticationFlow()
-            }
-        }
+        let screen = UserProfileView.createScreen(viewModel: UserProfileView.ViewModel(navigator: self,
+                                                                                       authenticationService: authenticationService,
+                                                                                       userService: userService,
+                                                                                       onFinished: { [weak self] didLogout in
+                                                                                           self?.dismiss { [weak self] in
+                                                                                               if didLogout {
+                                                                                                   log.debug("User logged out!")
+                                                                                                   self?.toStartAuthenticationFlow()
+                                                                                               }
+                                                                                           }
+        }))
 
-        navigationController.present(profileScreen, animated: true, completion: nil)
+        present(screen: screen)
     }
 
     func toShoppingListOptions() {

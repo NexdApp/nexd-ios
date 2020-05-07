@@ -11,8 +11,6 @@ import NexdClient
 import RxSwift
 
 class UserService {
-    static let shared = UserService()
-
     func updateUserInformation(firstName: String? = nil,
                                lastName: String? = nil,
                                street: String? = nil,

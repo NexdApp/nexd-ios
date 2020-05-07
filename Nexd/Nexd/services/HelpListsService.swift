@@ -11,8 +11,6 @@ import NexdClient
 import RxSwift
 
 class HelpListsService {
-    static let shared = HelpListsService()
-
     func createShoppingList(requestIds: [Int64]) -> Single<HelpList> {
         let dto = HelpListCreateDto(helpRequestsIds: requestIds, status: .active)
         return HelpListsAPI.helpListsControllerInsertNewHelpList(helpListCreateDto: dto)

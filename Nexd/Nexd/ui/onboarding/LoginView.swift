@@ -83,12 +83,14 @@ extension LoginView {
         }
 
         private let navigator: ScreenNavigating
+        private let authenticationService: AuthenticationService
         private var cancellableSet: Set<AnyCancellable>?
 
         var state = ViewState()
 
-        init(navigator: ScreenNavigating) {
+        init(navigator: ScreenNavigating, authenticationService: AuthenticationService) {
             self.navigator = navigator
+            self.authenticationService = authenticationService
         }
 
         func backButtonTapped() {
@@ -108,7 +110,7 @@ extension LoginView {
             }
 
             cancellableSet?.insert(
-                AuthenticationService.shared.login(email: email, password: password)
+                authenticationService.login(email: email, password: password)
                     .publisher
                     .sink(
                         receiveCompletion: { [weak self] completion in
@@ -153,7 +155,7 @@ extension LoginView {
 #if DEBUG
     struct LoginView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = LoginView.ViewModel(navigator: PreviewNavigator())
+            let viewModel = LoginView.ViewModel(navigator: PreviewNavigator(), authenticationService: AuthenticationService())
             return Group {
                 LoginView(viewModel: viewModel)
                     .background(R.color.defaultBackground.color)

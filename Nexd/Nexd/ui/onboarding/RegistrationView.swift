@@ -159,12 +159,14 @@ extension RegistrationView {
         }
 
         private let navigator: ScreenNavigating
+        private let authenticationService: AuthenticationService
         private var cancellableSet: Set<AnyCancellable>?
 
         var state = ViewState()
 
-        init(navigator: ScreenNavigating) {
+        init(navigator: ScreenNavigating, authenticationService: AuthenticationService) {
             self.navigator = navigator
+            self.authenticationService = authenticationService
         }
 
         func backButtonTapped() {
@@ -204,7 +206,7 @@ extension RegistrationView {
 
             log.debug("Send registration to backend")
             cancellableSet?.insert(
-                AuthenticationService.shared.register(email: email, firstName: firstName, lastName: lastName, password: password)
+                authenticationService.register(email: email, firstName: firstName, lastName: lastName, password: password)
                     .publisher
                     .sink(
                         receiveCompletion: { [weak self] completion in

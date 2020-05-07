@@ -11,8 +11,6 @@ import NexdClient
 import RxSwift
 
 class ArticlesService {
-    static let shared = ArticlesService()
-
     func allArticles() -> Single<[Article]> {
         return ArticlesAPI.articlesControllerFindAll().asSingle()
     }

@@ -15,8 +15,6 @@ enum CallsError: Error {
 }
 
 class PhoneService {
-    static let shared = PhoneService()
-
     private lazy var urlSession: URLSession = {
         let config = URLSessionConfiguration.default
 

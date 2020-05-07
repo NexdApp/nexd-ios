@@ -76,6 +76,7 @@ struct UserDetailsView: View {
                                                text: $viewModel.state.phoneNumber,
                                                placeholder: R.string.localizable.user_input_details_placeholder_phoneNumber(),
                                                icon: R.image.hashtag(),
+                                               validationRules: .phone,
                                                inputConfiguration: NexdUI.InputConfiguration(keyboardType: .phonePad,
                                                                                              autocapitalizationType: .none,
                                                                                              autocorrectionType: .no,
@@ -124,13 +125,15 @@ extension UserDetailsView {
         }
 
         private let navigator: ScreenNavigating
+        private let userService: UserService
         private let userInformation: UserInformation
         private var cancellableSet: Set<AnyCancellable>?
 
         var state = ViewState()
 
-        init(navigator: ScreenNavigating, userInformation: UserInformation) {
+        init(navigator: ScreenNavigating, userService: UserService, userInformation: UserInformation) {
             self.navigator = navigator
+            self.userService = userService
             self.userInformation = userInformation
         }
 
@@ -138,7 +141,7 @@ extension UserDetailsView {
             log.debug("Send user information to backend")
 
             cancellableSet?.insert(
-                UserService.shared.updateUserInformation(street: state.street,
+                userService.updateUserInformation(street: state.street,
                                                          number: state.streetNumber,
                                                          zipCode: state.zipCode,
                                                          city: state.city,
@@ -188,6 +191,7 @@ extension UserDetailsView {
     struct UserDetailsView_Previews: PreviewProvider {
         static var previews: some View {
             let viewModel = UserDetailsView.ViewModel(navigator: PreviewNavigator(),
+                                                      userService: UserService(),
                                                       userInformation: UserDetailsView.UserInformation(firstName: "", lastName: ""))
             return Group {
                 UserDetailsView(viewModel: viewModel)
