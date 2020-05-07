@@ -68,6 +68,7 @@ enum NexdUI {
                 .frame(height: 70)
                 .background(R.color.lightButtonBackground.color)
                 .cornerRadius(10)
+                .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
             }
         }
 
@@ -89,7 +90,25 @@ enum NexdUI {
                 .frame(height: 70)
                 .background(R.color.solidButtonBackground.color)
                 .cornerRadius(10)
+                .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
             }
+        }
+
+        static func solidBackButton(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                ZStack {
+                    Circle()
+                        .fill(R.color.solidButtonBackground.color)
+                        .frame(width: 32, height: 32)
+                        .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
+
+                    R.image.chevron_left.image
+                        .resizable()
+                        .foregroundColor(R.color.solidButtonIcon.color)
+                        .frame(width: 10, height: 17)
+                }
+            }
+            .position(x: 28, y: 28)
         }
     }
 

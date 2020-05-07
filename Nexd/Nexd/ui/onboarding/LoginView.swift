@@ -14,57 +14,63 @@ struct LoginView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        VStack {
-            R.image.logo.image
-                .padding([.top, .leading, .trailing], 42)
+        ZStack {
+            VStack {
+                R.image.logo.image
+                    .padding([.top, .leading, .trailing], 42)
 
-            Group {
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 0,
-                                           text: $viewModel.state.username,
-                                           placeholder: R.string.localizable.login_placeholder_username(),
-                                           icon: R.image.mail1(),
-                                           validationRules: .email,
-                                           inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
-                                                                                         autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: false,
-                                                                                         hasNext: true))
-                    .padding(.top, 160)
+                Group {
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 0,
+                                               text: $viewModel.state.username,
+                                               placeholder: R.string.localizable.login_placeholder_username(),
+                                               icon: R.image.mail1(),
+                                               validationRules: .email,
+                                               inputConfiguration: NexdUI.InputConfiguration(keyboardType: .emailAddress,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: false,
+                                                                                             hasNext: true))
+                        .padding(.top, 160)
 
-                NexdUI.ValidatingTextField(style: .onboarding,
-                                           tag: 1,
-                                           text: $viewModel.state.password,
-                                           placeholder: R.string.localizable.login_placeholder_password(),
-                                           icon: R.image.lock2(),
-                                           validationRules: .password,
-                                           inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
-                                                                                         autocapitalizationType: .none,
-                                                                                         autocorrectionType: .no,
-                                                                                         spellCheckingType: .no,
-                                                                                         hasPrevious: true, hasNext: false,
-                                                                                         hasDone: true))
-                    .padding(.top, 34)
+                    NexdUI.ValidatingTextField(style: .onboarding,
+                                               tag: 1,
+                                               text: $viewModel.state.password,
+                                               placeholder: R.string.localizable.login_placeholder_password(),
+                                               icon: R.image.lock2(),
+                                               validationRules: .password,
+                                               inputConfiguration: NexdUI.InputConfiguration(isSecureTextEntry: true,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true, hasNext: false,
+                                                                                             hasDone: true))
+                        .padding(.top, 34)
+                }
+                .padding([.leading, .trailing], 28)
+
+                Spacer()
+
+                NexdUI.Buttons.solidButton(text: R.string.localizable.login_button_title_login.text) {
+                    self.viewModel.loginButtonTapped()
+                }
+                .padding([.bottom, .leading, .trailing], 12)
             }
-            .padding([.leading, .trailing], 28)
-
-            Spacer()
-
-            NexdUI.Buttons.solidButton(text: R.string.localizable.login_button_title_login.text) {
-                self.viewModel.loginButtonTapped()
+            .keyboardAdaptive()
+            .dismissingKeyboard()
+            .alert(item: $viewModel.state.dialog) { dialog -> Alert in
+                Alert(title: Text(dialog.title),
+                      message: Text(dialog.message),
+                      dismissButton: .default(R.string.localizable.ok_button_title.text))
             }
-            .padding([.bottom, .leading, .trailing], 12)
+            .onAppear { self.viewModel.bind() }
+            .onDisappear { self.viewModel.unbind() }
+
+            NexdUI.Buttons.solidBackButton {
+                self.viewModel.backButtonTapped()
+            }
         }
-        .keyboardAdaptive()
-        .dismissingKeyboard()
-        .alert(item: $viewModel.state.dialog) { dialog -> Alert in
-            Alert(title: Text(dialog.title),
-                  message: Text(dialog.message),
-                  dismissButton: .default(R.string.localizable.ok_button_title.text))
-        }
-        .onAppear { self.viewModel.bind() }
-        .onDisappear { self.viewModel.unbind() }
     }
 }
 
@@ -83,6 +89,10 @@ extension LoginView {
 
         init(navigator: ScreenNavigating) {
             self.navigator = navigator
+        }
+
+        func backButtonTapped() {
+            navigator.goBack()
         }
 
         func loginButtonTapped() {
