@@ -1,29 +1,49 @@
 //
-//  UserDetailsViewController.swift
+//  UserProfileViewController.swift
 //  Nexd
 //
-//  Created by Tobias Schröpf on 21.03.20.
+//  Created by Tobias Schröpf on 03.04.20.
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
 import Combine
 import SwiftUI
 
-struct UserDetailsView: View {
+struct UserProfileView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         ScrollView {
             VStack {
-                R.image.logo.image
+                NexdUI.Texts.title(text: R.string.localizable.user_profile_screen_title.text)
                     .padding([.top, .leading, .trailing], 42)
 
                 Group {
-                    NexdUI.Texts.defaultDark(text: R.string.localizable.user_input_details_explanation_text.text)
-                        .padding(.top, 42)
+                    NexdUI.ValidatingTextField(tag: 0,
+                                               text: $viewModel.state.firstName,
+                                               placeholder: R.string.localizable.registration_placeholder_firstName(),
+                                               icon: R.image.person1(),
+                                               validationRules: .firstName,
+                                               inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true))
+                        .padding(.top, 34)
 
-                    NexdUI.ValidatingTextField(style: .onboarding,
-                                               tag: 0,
+                    NexdUI.ValidatingTextField(tag: 1,
+                                               text: $viewModel.state.lastName,
+                                               placeholder: R.string.localizable.registration_placeholder_lastName(),
+                                               icon: R.image.person1(),
+                                               validationRules: .lastName,
+                                               inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true))
+                        .padding(.top, 34)
+
+                    NexdUI.ValidatingTextField(tag: 2,
                                                text: $viewModel.state.street,
                                                placeholder: R.string.localizable.user_input_details_placeholder_street(),
                                                icon: R.image.person1(),
@@ -33,8 +53,7 @@ struct UserDetailsView: View {
                                                                                              hasNext: true))
                         .padding(.top, 34)
 
-                    NexdUI.ValidatingTextField(style: .onboarding,
-                                               tag: 1,
+                    NexdUI.ValidatingTextField(tag: 3,
                                                text: $viewModel.state.streetNumber,
                                                placeholder: R.string.localizable.user_input_details_placeholder_houseNumber(),
                                                icon: R.image.hashtag(),
@@ -45,8 +64,7 @@ struct UserDetailsView: View {
                                                                                              hasNext: true))
                         .padding(.top, 34)
 
-                    NexdUI.ValidatingTextField(style: .onboarding,
-                                               tag: 2,
+                    NexdUI.ValidatingTextField(tag: 4,
                                                text: $viewModel.state.zipCode,
                                                placeholder: R.string.localizable.user_input_details_placeholder_zipCode(),
                                                icon: R.image.hashtag(),
@@ -59,8 +77,7 @@ struct UserDetailsView: View {
                                                                                              hasNext: true))
                         .padding(.top, 34)
 
-                    NexdUI.ValidatingTextField(style: .onboarding,
-                                               tag: 3,
+                    NexdUI.ValidatingTextField(tag: 5,
                                                text: $viewModel.state.city,
                                                placeholder: R.string.localizable.user_input_details_placeholder_city(),
                                                icon: R.image.person1(),
@@ -71,8 +88,7 @@ struct UserDetailsView: View {
                                                                                              hasNext: true))
                         .padding(.top, 34)
 
-                    NexdUI.ValidatingTextField(style: .onboarding,
-                                               tag: 4,
+                    NexdUI.ValidatingTextField(tag: 6,
                                                text: $viewModel.state.phoneNumber,
                                                placeholder: R.string.localizable.user_input_details_placeholder_phoneNumber(),
                                                icon: R.image.hashtag(),
@@ -89,11 +105,16 @@ struct UserDetailsView: View {
 
                 Spacer()
 
-                NexdUI.Buttons.solidButton(text: R.string.localizable.user_input_details_confirm.text) {
-                    self.viewModel.continueButtonTapped()
+                NexdUI.Buttons.lightButton(text: R.string.localizable.confirm_button_title.text) {
+                    self.viewModel.confirmButtonTapped()
                 }
                 .padding(.top, 34)
-                .padding([.bottom, .leading, .trailing], 12)
+                .padding([.leading, .trailing], 12)
+
+                NexdUI.Buttons.lightButton(text: R.string.localizable.user_profile_button_title_logout.text) {
+                    self.viewModel.logoutButtonTapped()
+                }
+                .padding(12)
             }
             .keyboardAdaptive()
             .dismissingKeyboard()
@@ -108,14 +129,11 @@ struct UserDetailsView: View {
     }
 }
 
-extension UserDetailsView {
-    struct UserInformation {
-        let firstName: String
-        let lastName: String
-    }
-
+extension UserProfileView {
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
+            @Published var firstName: String?
+            @Published var lastName: String?
             @Published var street: String?
             @Published var streetNumber: String?
             @Published var zipCode: String?
@@ -125,27 +143,32 @@ extension UserDetailsView {
         }
 
         private let navigator: ScreenNavigating
+        private let authenticationService: AuthenticationService
         private let userService: UserService
-        private let userInformation: UserInformation
+        private var onFinished: ((Bool) -> Void)?
+
         private var cancellableSet: Set<AnyCancellable>?
 
         var state = ViewState()
 
-        init(navigator: ScreenNavigating, userService: UserService, userInformation: UserInformation) {
+        init(navigator: ScreenNavigating, authenticationService: AuthenticationService, userService: UserService, onFinished: ((Bool) -> Void)?) {
             self.navigator = navigator
+            self.authenticationService = authenticationService
             self.userService = userService
-            self.userInformation = userInformation
+            self.onFinished = onFinished
         }
 
-        func continueButtonTapped() {
+        func confirmButtonTapped() {
             log.debug("Send user information to backend")
 
             cancellableSet?.insert(
-                userService.updateUserInformation(street: state.street,
-                                                         number: state.streetNumber,
-                                                         zipCode: state.zipCode,
-                                                         city: state.city,
-                                                         phoneNumber: state.phoneNumber)
+                userService.updateUserInformation(firstName: state.firstName,
+                                                  lastName: state.lastName,
+                                                  street: state.street,
+                                                  number: state.streetNumber,
+                                                  zipCode: state.zipCode,
+                                                  city: state.city,
+                                                  phoneNumber: state.phoneNumber)
                     .publisher
                     .sink(
                         receiveCompletion: { [weak self] completion in
@@ -156,15 +179,41 @@ extension UserDetailsView {
                             }
 
                             log.debug("User information updated...")
-                            self?.navigator.toMainScreen()
+                            self?.onFinished?(false)
                         },
                         receiveValue: { _ in }
                     )
             )
         }
 
+        func logoutButtonTapped() {
+            authenticationService.logout()
+            onFinished?(true)
+        }
+
         func bind() {
             var cancellableSet = Set<AnyCancellable>()
+
+            cancellableSet.insert(
+                userService.findMe()
+                    .publisher
+                    .receive(on: RunLoop.main)
+                    .sink(
+                        receiveCompletion: { completion in
+                            if case let .failure(error) = completion {
+                                log.error("UserInformation update failed: \(error)")
+                            }
+                        },
+                        receiveValue: { [weak self] profile in
+                            self?.state.firstName = profile.firstName
+                            self?.state.lastName = profile.lastName
+                            self?.state.phoneNumber = profile.phoneNumber
+                            self?.state.street = profile.street
+                            self?.state.streetNumber = profile.number
+                            self?.state.zipCode = profile.zipCode
+                            self?.state.city = profile.city
+                        }
+                    ))
 
             state.objectWillChange
                 .sink { [weak self] in
@@ -180,31 +229,32 @@ extension UserDetailsView {
         }
     }
 
-    static func createScreen(viewModel: UserDetailsView.ViewModel) -> UIViewController {
-        let screen = UIHostingController(rootView: UserDetailsView(viewModel: viewModel))
-        screen.view.backgroundColor = R.color.defaultBackground()
+    static func createScreen(viewModel: UserProfileView.ViewModel) -> UIViewController {
+        let screen = UIHostingController(rootView: UserProfileView(viewModel: viewModel))
+        screen.view.backgroundColor = R.color.nexdGreen()
         return screen
     }
 }
 
 #if DEBUG
-    struct UserDetailsView_Previews: PreviewProvider {
+    struct UserProfileView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = UserDetailsView.ViewModel(navigator: PreviewNavigator(),
+            let viewModel = UserProfileView.ViewModel(navigator: PreviewNavigator(),
+                                                      authenticationService: AuthenticationService(),
                                                       userService: UserService(),
-                                                      userInformation: UserDetailsView.UserInformation(firstName: "", lastName: ""))
+                                                      onFinished: { _ in })
             return Group {
-                UserDetailsView(viewModel: viewModel)
-                    .background(R.color.defaultBackground.color)
+                UserProfileView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.locale, .init(identifier: "de"))
 
-                UserDetailsView(viewModel: viewModel)
-                    .background(R.color.defaultBackground.color)
+                UserProfileView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.colorScheme, .light)
                     .environment(\.locale, .init(identifier: "en"))
 
-                UserDetailsView(viewModel: viewModel)
-                    .background(R.color.defaultBackground.color)
+                UserProfileView(viewModel: viewModel)
+                    .background(R.color.nexdGreen.color)
                     .environment(\.colorScheme, .dark)
                     .environment(\.locale, .init(identifier: "en"))
             }

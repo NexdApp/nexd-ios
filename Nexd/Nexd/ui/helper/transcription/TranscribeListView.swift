@@ -12,22 +12,14 @@ import RxSwift
 import SwiftUI
 
 struct TranscribeListView: View {
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
         return VStack {
             Group {
-                NexdUI.Buttons.back(text: R.string.localizable.back_button_title.text) {
-                    self.presentationMode.wrappedValue.dismiss()
-                }
-                    .frame(maxWidth: .infinity, maxHeight: 20, alignment: .leading)
-                    .padding(.top, 22)
-                    .offset(x: -12)
-
                 NexdUI.Texts.title(text: R.string.localizable.transcribe_articles_screen_title.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 29)
+                    .padding(.top, 70)
 
                 NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
                               progress: $viewModel.state.progress,
@@ -73,6 +65,7 @@ struct TranscribeListView: View {
         .keyboardAdaptive()
         .onAppear { self.viewModel.bind() }
         .onDisappear { self.viewModel.unbind() }
+        .withBackButton { self.viewModel.onBackButtonPressed() }
     }
 
     static func createScreen(viewModel: TranscribeListView.ViewModel) -> UIViewController {
@@ -107,6 +100,10 @@ extension TranscribeListView {
 
         private var cancellableSet: Set<AnyCancellable>?
         var state = ViewState()
+
+        func onBackButtonPressed() {
+            navigator.goBack()
+        }
 
         func onPlayPause() {
             state.isPlaying ? player?.pause() : player?.play()
