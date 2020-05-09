@@ -52,7 +52,7 @@ class Navigator {
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowView.createScreen(viewModel: StartAuthenticationFlowView.ViewModel(navigator: self))
-        let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService, authenticationService: authenticationService))
+        let mainPage = MainPageView.createScreen(viewModel: MainPageView.ViewModel(navigator: self, authService: authenticationService, userService: userService))
 
         let controller = UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
         controller.navigationBar.isHidden = true
@@ -129,15 +129,8 @@ extension Navigator: ScreenNavigating {
     }
 
     func toMainScreen() {
-        guard let root = navigationController.viewControllers.first, root is MainPageViewController else {
-            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self,
-                                                                                                userService: userService,
-                                                                                                authenticationService: authenticationService))
-            navigationController.setViewControllers([mainScreen], animated: true)
-            return
-        }
-
-        navigationController.popToRootViewController(animated: true)
+        let mainScreen = MainPageView.createScreen(viewModel: MainPageView.ViewModel(navigator: self, authService: authenticationService, userService: userService))
+        navigationController.setViewControllers([mainScreen], animated: true)
     }
 
     func toProfileScreen() {

@@ -54,34 +54,6 @@ extension String {
         return attributedString
     }
 
-    func asGreeting() -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 58
-        paragraphStyle.maximumLineHeight = 58
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.nexdGreen()!,
-            .font: R.font.proximaNovaSoftBold(size: 48)!,
-            .paragraphStyle: paragraphStyle
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
-    }
-
-    func asGreetingSubline() -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 42
-        paragraphStyle.maximumLineHeight = 42
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.greetingSubline()!,
-            .font: R.font.proximaNovaSoftBold(size: 35)!,
-            .paragraphStyle: paragraphStyle
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
-    }
-
     func asLightButtonText() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .foregroundColor: R.color.nexdGreen()!,

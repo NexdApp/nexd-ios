@@ -72,6 +72,29 @@ enum NexdUI {
             }
         }
 
+        static func lightMainMenuButton(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                HStack {
+                    text
+                        .font(R.font.proximaNovaSoftBold.font(size: 28))
+                        .foregroundColor(R.color.lightButtonText.color)
+                        .padding(.leading, 19)
+                        .padding(.trailing, 8)
+
+                    Spacer()
+
+                    R.image.chevron.image
+                        .foregroundColor(R.color.nexdGreen.color)
+                        .padding(.trailing, 27)
+                }
+                .frame(height: 92)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(R.color.nexdGreen.color, lineWidth: 2)
+                )
+            }
+        }
+
         static func solidButton(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
@@ -148,8 +171,14 @@ enum NexdUI {
 
                 NexdUI.Buttons.lightButton(text: Text("Light Button"), action: {})
 
+                NexdUI.Buttons.lightMainMenuButton(text: Text("Light Main Menu Button!"), action: {})
+                .background(Color.white)
+
                 NexdUI.Buttons.solidButton(text: Text("Dark Button"), action: {})
                     .background(Color.white)
+
+                    NexdUI.Buttons.solidBackButton(action: {})
+                        .background(Color.white)
 
                 NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
 
