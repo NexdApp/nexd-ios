@@ -186,7 +186,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelpOptions() {
-        let screen = HelperOptionsViewController(viewModel: HelperOptionsViewController.ViewModel(navigator: self))
+        let screen = HelperOptionsView.createScreen(viewModel: HelperOptionsView.ViewModel(navigator: self))
         push(screen: screen)
     }
 
