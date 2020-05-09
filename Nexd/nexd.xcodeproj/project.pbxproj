@@ -88,7 +88,6 @@
 		AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D63E24258FDA005C77CE /* R.generated.swift */; };
 		AEF3D65124259B2D005C77CE /* MainPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65024259B2D005C77CE /* MainPageView.swift */; };
 		AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */; };
-		AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D65C242604C6005C77CE /* DefaultCell.swift */; };
 		AEF3D667242630C3005C77CE /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D666242630C3005C77CE /* AppConfiguration.swift */; };
 		AEF3D66924263149005C77CE /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66824263149005C77CE /* RegistrationView.swift */; };
 		AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */; };
@@ -96,7 +95,6 @@
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
-		AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6782426B970005C77CE /* CheckableCell.swift */; };
 		C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */; };
 		E6914F55243FCAA400F0ACD2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginView.swift */; };
 		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
@@ -208,7 +206,6 @@
 		AEF3D63E24258FDA005C77CE /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		AEF3D65024259B2D005C77CE /* MainPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageView.swift; sourceTree = "<group>"; };
 		AEF3D6522425A138005C77CE /* HelperRequestOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewViewController.swift; sourceTree = "<group>"; };
-		AEF3D65C242604C6005C77CE /* DefaultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultCell.swift; sourceTree = "<group>"; };
 		AEF3D666242630C3005C77CE /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		AEF3D66824263149005C77CE /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		AEF3D66B24263AA0005C77CE /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
@@ -216,7 +213,6 @@
 		AEF3D6702426785C005C77CE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerItemSelectionViewController.swift; sourceTree = "<group>"; };
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
-		AEF3D6782426B970005C77CE /* CheckableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableCell.swift; sourceTree = "<group>"; };
 		BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.release.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.release.xcconfig"; sourceTree = "<group>"; };
 		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -306,8 +302,6 @@
 		AEB6AC622440FEB600823E7C /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D65C242604C6005C77CE /* DefaultCell.swift */,
-				AEF3D6782426B970005C77CE /* CheckableCell.swift */,
 				AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */,
 				AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */,
 				AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */,
@@ -772,7 +766,6 @@
 				AED8818B24351174006065D2 /* String+Nexd.swift in Sources */,
 				AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationView.swift in Sources */,
-				AEF3D65D242604C6005C77CE /* DefaultCell.swift in Sources */,
 				AEB6AC7B24432E7F00823E7C /* OpenReqeustsCell.swift in Sources */,
 				AE2A9A9A24278989006066B4 /* UserDetailsView.swift in Sources */,
 				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
@@ -787,7 +780,6 @@
 				AED2A96724404EF10082316F /* ShoppingListOptionView.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
-				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
 				AE50F070244902D700601DDF /* UIApplication+EndEditing.swift in Sources */,
