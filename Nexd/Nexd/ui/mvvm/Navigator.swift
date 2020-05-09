@@ -150,7 +150,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toShoppingListOptions() {
-        let screen = ShoppingListOptionViewController(viewModel: ShoppingListOptionViewController.ViewModel(navigator: self))
+        let screen = ShoppingListOptionView.createScreen(viewModel: ShoppingListOptionView.ViewModel(navigator: self))
         push(screen: screen)
     }
 

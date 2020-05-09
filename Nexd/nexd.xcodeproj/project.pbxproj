@@ -43,6 +43,7 @@
 		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
 		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E23592462A7CB00AC261D /* Dialog.swift */; };
+		AE8E235C2466ED7A00AC261D /* NexdUI+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E235B2466ED7A00AC261D /* NexdUI+BackButton.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
 		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
@@ -66,7 +67,7 @@
 		AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95D243F9A210082316F /* ServicesModule.swift */; };
 		AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A95F243F9A440082316F /* RootWindowModule.swift */; };
 		AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */; };
-		AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */; };
+		AED2A96724404EF10082316F /* ShoppingListOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96624404EF10082316F /* ShoppingListOptionView.swift */; };
 		AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A968244058800082316F /* PhoneCallViewController.swift */; };
 		AED2A96B24406C0C0082316F /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96A24406C0C0082316F /* MenuButton.swift */; };
 		AED2A96D24406C460082316F /* BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED2A96C24406C460082316F /* BackButton.swift */; };
@@ -163,6 +164,7 @@
 		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
 		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE8E23592462A7CB00AC261D /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
+		AE8E235B2466ED7A00AC261D /* NexdUI+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+BackButton.swift"; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
@@ -186,7 +188,7 @@
 		AED2A95D243F9A210082316F /* ServicesModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesModule.swift; sourceTree = "<group>"; };
 		AED2A95F243F9A440082316F /* RootWindowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootWindowModule.swift; sourceTree = "<group>"; };
 		AED2A96424404AB80082316F /* NSAttribuedString+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAttribuedString+Nexd.swift"; sourceTree = "<group>"; };
-		AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListOptionViewController.swift; sourceTree = "<group>"; };
+		AED2A96624404EF10082316F /* ShoppingListOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListOptionView.swift; sourceTree = "<group>"; };
 		AED2A968244058800082316F /* PhoneCallViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneCallViewController.swift; sourceTree = "<group>"; };
 		AED2A96A24406C0C0082316F /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		AED2A96C24406C460082316F /* BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButton.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				AE13590F2444A2410015D7AB /* NexdUI.swift */,
 				AED5E5292446232D00A3DFA1 /* NexdUI+TextField.swift */,
 				AE50F06D2448F76D00601DDF /* NexdUI+NumberInputView.swift */,
+				AE8E235B2466ED7A00AC261D /* NexdUI+BackButton.swift */,
 				AED5E52B2446236500A3DFA1 /* NexdUI+Card.swift */,
 				AE50F0692448CB1C00601DDF /* NexdUI+Player.swift */,
 				AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */,
@@ -325,7 +328,7 @@
 		AEB6AC65244129B900823E7C /* seeker */ = {
 			isa = PBXGroup;
 			children = (
-				AED2A96624404EF10082316F /* ShoppingListOptionViewController.swift */,
+				AED2A96624404EF10082316F /* ShoppingListOptionView.swift */,
 				AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */,
 				AED2A968244058800082316F /* PhoneCallViewController.swift */,
 				AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */,
@@ -771,6 +774,7 @@
 				AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */,
+				AE8E235C2466ED7A00AC261D /* NexdUI+BackButton.swift in Sources */,
 				AE2AF7842457622F00A1331F /* FilterButton.swift in Sources */,
 				AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */,
 				AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */,
@@ -798,7 +802,7 @@
 				AED2A9712440D6E70082316F /* CancelButton.swift in Sources */,
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
 				AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */,
-				AED2A96724404EF10082316F /* ShoppingListOptionViewController.swift in Sources */,
+				AED2A96724404EF10082316F /* ShoppingListOptionView.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
 				AEF3D6792426B970005C77CE /* CheckableCell.swift in Sources */,
