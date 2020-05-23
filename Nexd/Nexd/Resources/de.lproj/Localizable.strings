@@ -78,7 +78,7 @@
 "helper_type_button_transcript" = "Einen Anruf übersetzen!";
 "helper_type_screen_title" = "Wie würdest du gerne helfen?";
 "keyboard_accessory_text_done" = "Fertig";
-"loading_overlay_message" = "Wird geladen...";
+"loading_overlay_message" = "Wird geladen…";
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
 "login_placeholder_password" = "Passwort";
@@ -117,9 +117,12 @@
 /*Fuzzy*/
 "seeker_phone_call_text" = "Rufe bitte </br><b>%1$s</b></br>um deine Einkaufsliste aufzuzeichnen.";
 "seeker_phone_call_text_ios" = "Ruf bitte %@, um deine Einkaufsliste aufzuzeigen.";
+"seeker_request_create_confirm_address" = "Bitte bestätige deine Lieferadresse";
 "seeker_request_create_heading" = "Ich benötige:";
+"seeker_request_create_no_articles" = "Bitte mindestens 1 Artikel wählen";
 "seeker_request_create_placeholder_delivery_comment" = "Lieferhinweis";
 "seeker_request_create_placeholder_information" = "Zusätzliche Informationen";
+"seeker_request_create_submit" = "Anfrage senden";
 "seeker_submit_button_title" = "Senden";
 "seeker_success_message" = "Die Anfrage wurde erfolgreich aufgegeben.";
 "seeker_success_title" = "Fertig!";
