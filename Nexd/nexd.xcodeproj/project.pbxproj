@@ -81,6 +81,7 @@
 		AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818824351129006065D2 /* UIImageView+Nexd.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
+		AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -196,6 +197,7 @@
 		AED8818824351129006065D2 /* UIImageView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
+		AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeViewState.swift; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				AED5E5272445F15200A3DFA1 /* TranscribeInfoView.swift */,
 				AE50F0672448C2CB00601DDF /* TranscribeListView.swift */,
 				AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */,
+				AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */,
 			);
 			path = transcription;
 			sourceTree = "<group>";
@@ -783,6 +786,7 @@
 				AED2A96724404EF10082316F /* ShoppingListOptionView.swift in Sources */,
 				AEF3D66F24266472005C77CE /* UIViewController+Nexd.swift in Sources */,
 				AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */,
+				AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
 				AE50F070244902D700601DDF /* UIApplication+EndEditing.swift in Sources */,

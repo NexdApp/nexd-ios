@@ -127,26 +127,11 @@ extension TranscribeInfoView {
     }
 
     class ViewModel: ObservableObject {
-        class ViewState: ObservableObject {
-            fileprivate var player: AudioPlayer?
-
-            @Published var call: Call?
-            @Published var isPlaying: Bool = false
-            @Published var progress: Double = 0
-            @Published var firstName: String?
-            @Published var lastName: String?
-            @Published var zipCode: String?
-            @Published var city: String?
-            @Published var street: String?
-            @Published var streetNumber: String?
-            @Published var phoneNumber: String?
-        }
-
         private let navigator: ScreenNavigating
         private let phoneService: PhoneService
         private var cancellableSet: Set<AnyCancellable>?
 
-        var state = ViewState()
+        var state: TranscribeViewState
 
         func onBackButtonPressed() {
             navigator.goBack()
@@ -161,24 +146,13 @@ extension TranscribeInfoView {
         }
 
         func onConfirmButtonTapped() {
-            navigator.toTranscribeListView(player: state.player,
-                                           call: state.call,
-                                           transcribedRequest: HelpRequestCreateDto(firstName: state.firstName,
-                                                                                    lastName: state.lastName,
-                                                                                    street: state.street,
-                                                                                    number: state.streetNumber,
-                                                                                    zipCode: state.zipCode,
-                                                                                    city: state.city,
-                                                                                    articles: nil,
-                                                                                    status: .pending,
-                                                                                    additionalRequest: nil,
-                                                                                    deliveryComment: nil,
-                                                                                    phoneNumber: state.phoneNumber))
+            navigator.toTranscribeListView(state: state)
         }
 
-        init(navigator: ScreenNavigating, phoneService: PhoneService) {
+        init(navigator: ScreenNavigating, phoneService: PhoneService, state: TranscribeViewState = TranscribeViewState()) {
             self.navigator = navigator
             self.phoneService = phoneService
+            self.state = state
         }
 
         func bind() {
