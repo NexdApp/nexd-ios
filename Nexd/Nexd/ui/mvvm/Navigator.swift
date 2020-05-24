@@ -21,7 +21,7 @@ protocol ScreenNavigating {
     func toStartAuthenticationFlow()
     func toLoginScreen()
     func toRegistrationScreen()
-    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation)
+    func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation)
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
@@ -30,7 +30,7 @@ protocol ScreenNavigating {
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
-    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto)
+    func toTranscribeListView(state: TranscribeViewState)
     func toTranscribeEndView()
     func toHelperOverview()
     func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
@@ -52,7 +52,7 @@ class Navigator {
 
     lazy var navigationController: UINavigationController = {
         let loginPage = StartAuthenticationFlowView.createScreen(viewModel: StartAuthenticationFlowView.ViewModel(navigator: self))
-        let mainPage = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self, userService: userService, authenticationService: authenticationService))
+        let mainPage = MainPageView.createScreen(viewModel: MainPageView.ViewModel(navigator: self, authService: authenticationService, userService: userService))
 
         let controller = UINavigationController(rootViewController: storage.authorizationToken == nil ? loginPage : mainPage)
         controller.navigationBar.isHidden = true
@@ -114,46 +114,43 @@ extension Navigator: ScreenNavigating {
     }
 
     func toLoginScreen() {
-        let screen = LoginViewController(viewModel: LoginViewController.ViewModel(navigator: self))
+        let screen = LoginView.createScreen(viewModel: LoginView.ViewModel(navigator: self, authenticationService: authenticationService))
         push(screen: screen)
     }
 
     func toRegistrationScreen() {
-        let screen = RegistrationViewController(viewModel: RegistrationViewController.ViewModel(navigator: self))
+        let screen = RegistrationView.createScreen(viewModel: RegistrationView.ViewModel(navigator: self, authenticationService: authenticationService))
         push(screen: screen)
     }
 
-    func toUserDetailsScreen(with userInformation: UserDetailsViewController.UserInformation) {
-        let screen = UserDetailsViewController(viewModel: UserDetailsViewController.ViewModel(navigator: self, userInformation: userInformation))
+    func toUserDetailsScreen(with userInformation: UserDetailsView.UserInformation) {
+        let screen = UserDetailsView.createScreen(viewModel: UserDetailsView.ViewModel(navigator: self, userService: userService, userInformation: userInformation))
         push(screen: screen)
     }
 
     func toMainScreen() {
-        guard let root = navigationController.viewControllers.first, root is MainPageViewController else {
-            let mainScreen = MainPageViewController(viewModel: MainPageViewController.ViewModel(navigator: self,
-                                                                                                userService: userService,
-                                                                                                authenticationService: authenticationService))
-            navigationController.setViewControllers([mainScreen], animated: true)
-            return
-        }
-
-        navigationController.popToRootViewController(animated: true)
+        let mainScreen = MainPageView.createScreen(viewModel: MainPageView.ViewModel(navigator: self, authService: authenticationService, userService: userService))
+        navigationController.setViewControllers([mainScreen], animated: true)
     }
 
     func toProfileScreen() {
-        let profileScreen = UserProfileViewController()
-        profileScreen.onUserLoggedOut = { [weak self] in
-            log.debug("User logged out!")
-            self?.dismiss { [weak self] in
-                self?.toStartAuthenticationFlow()
-            }
-        }
+        let screen = UserProfileView.createScreen(viewModel: UserProfileView.ViewModel(navigator: self,
+                                                                                       authenticationService: authenticationService,
+                                                                                       userService: userService,
+                                                                                       onFinished: { [weak self] didLogout in
+                                                                                           self?.dismiss { [weak self] in
+                                                                                               if didLogout {
+                                                                                                   log.debug("User logged out!")
+                                                                                                   self?.toStartAuthenticationFlow()
+                                                                                               }
+                                                                                           }
+        }))
 
-        navigationController.present(profileScreen, animated: true, completion: nil)
+        present(screen: screen)
     }
 
     func toShoppingListOptions() {
-        let screen = ShoppingListOptionViewController(viewModel: ShoppingListOptionViewController.ViewModel(navigator: self))
+        let screen = ShoppingListOptionView.createScreen(viewModel: ShoppingListOptionView.ViewModel(navigator: self))
         push(screen: screen)
     }
 
@@ -189,7 +186,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelpOptions() {
-        let screen = HelperOptionsViewController(viewModel: HelperOptionsViewController.ViewModel(navigator: self))
+        let screen = HelperOptionsView.createScreen(viewModel: HelperOptionsView.ViewModel(navigator: self))
         push(screen: screen)
     }
 
@@ -197,13 +194,11 @@ extension Navigator: ScreenNavigating {
         push(screen: TranscribeInfoView.createScreen(viewModel: TranscribeInfoView.ViewModel(navigator: self, phoneService: phoneService)))
     }
 
-    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto) {
+    func toTranscribeListView(state: TranscribeViewState) {
         push(screen: TranscribeListView.createScreen(viewModel: TranscribeListView.ViewModel(navigator: self,
                                                                                              articlesService: articlesService,
                                                                                              phoneService: phoneService,
-                                                                                             player: player,
-                                                                                             call: call,
-                                                                                             transcribedRequest: transcribedRequest)))
+                                                                                             state: state)))
     }
 
     func toTranscribeEndView() {
