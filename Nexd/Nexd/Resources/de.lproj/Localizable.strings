@@ -42,9 +42,11 @@
 "error_title" = "Fehler";
 "helper_call_overview_screen_title" = "Offene Anrufe:";
 "helper_overview_error_empty_zipcode" = "Keine PLZ ausgewählt";
+"helper_request_detail_additional_request_header" = "Zusätzliche Info";
 "helper_request_detail_button_accept" = "Mach ich!";
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
 "helper_request_detail_button_remove" = "Von Einkafusliste entfernen!";
+"helper_request_detail_delivery_address_header" = "Lieferaddresse";
 "helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
 "helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";
