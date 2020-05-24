@@ -28,39 +28,77 @@ struct TranscribeInfoView: View {
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
 
                 ScrollView {
-                    NexdUI.TextField(tag: 0,
-                                     text: $viewModel.state.firstName,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name())
-                        .padding(.top, 12)
-
                     NexdUI.TextField(tag: 1,
-                                     text: $viewModel.state.lastName,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_last_name())
+                                     text: $viewModel.state.firstName,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
+                                     inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                   autocorrectionType: .no,
+                                                                                   spellCheckingType: .no,
+                                                                                   hasNext: true))
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 2,
-                                     text: $viewModel.state.zipCode,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code())
+                                     text: $viewModel.state.lastName,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
+                                     inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                   autocorrectionType: .no,
+                                                                                   spellCheckingType: .no,
+                                                                                   hasPrevious: true,
+                                                                                   hasNext: true))
                         .padding(.top, 12)
 
-                    NexdUI.TextField(tag: 3,
-                                     text: $viewModel.state.city,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_city())
+                    NexdUI.ValidatingTextField(tag: 3,
+                                               text: $viewModel.state.zipCode,
+                                               placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
+                                               validationRules: .zipCode,
+                                               inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasNext: true))
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 4,
-                                     text: $viewModel.state.street,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street())
+                                     text: $viewModel.state.city,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_city(),
+                                     inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                   autocorrectionType: .no,
+                                                                                   spellCheckingType: .no,
+                                                                                   hasPrevious: true,
+                                                                                   hasNext: true))
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 5,
-                                     text: $viewModel.state.streetNumber,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street_number())
+                                     text: $viewModel.state.street,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street(),
+                                     inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                   autocorrectionType: .no,
+                                                                                   spellCheckingType: .no,
+                                                                                   hasPrevious: true,
+                                                                                   hasNext: true))
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 6,
-                                     text: $viewModel.state.phoneNumber,
-                                     placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number())
+                                     text: $viewModel.state.streetNumber,
+                                     placeholder: R.string.localizable.transcribe_info_input_text_title_street_number(),
+                                     inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
+                                                                                   autocorrectionType: .no,
+                                                                                   spellCheckingType: .no,
+                                                                                   hasPrevious: true,
+                                                                                   hasNext: true))
+                        .padding(.top, 12)
+
+                    NexdUI.ValidatingTextField(tag: 7,
+                                               text: $viewModel.state.phoneNumber,
+                                               placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number(),
+                                               validationRules: .phone,
+                                               inputConfiguration: NexdUI.InputConfiguration(keyboardType: .phonePad,
+                                                                                             autocapitalizationType: .none,
+                                                                                             autocorrectionType: .no,
+                                                                                             spellCheckingType: .no,
+                                                                                             hasPrevious: true,
+                                                                                             hasDone: true))
                         .padding(.top, 12)
                 }
 
@@ -89,26 +127,11 @@ extension TranscribeInfoView {
     }
 
     class ViewModel: ObservableObject {
-        class ViewState: ObservableObject {
-            fileprivate var player: AudioPlayer?
-
-            @Published var call: Call?
-            @Published var isPlaying: Bool = false
-            @Published var progress: Double = 0
-            @Published var firstName: String?
-            @Published var lastName: String?
-            @Published var zipCode: String?
-            @Published var city: String?
-            @Published var street: String?
-            @Published var streetNumber: String?
-            @Published var phoneNumber: String?
-        }
-
         private let navigator: ScreenNavigating
         private let phoneService: PhoneService
         private var cancellableSet: Set<AnyCancellable>?
 
-        var state = ViewState()
+        var state: TranscribeViewState
 
         func onBackButtonPressed() {
             navigator.goBack()
@@ -123,24 +146,13 @@ extension TranscribeInfoView {
         }
 
         func onConfirmButtonTapped() {
-            navigator.toTranscribeListView(player: state.player,
-                                           call: state.call,
-                                           transcribedRequest: HelpRequestCreateDto(firstName: state.firstName,
-                                                                                    lastName: state.lastName,
-                                                                                    street: state.street,
-                                                                                    number: state.streetNumber,
-                                                                                    zipCode: state.zipCode,
-                                                                                    city: state.city,
-                                                                                    articles: nil,
-                                                                                    status: .pending,
-                                                                                    additionalRequest: nil,
-                                                                                    deliveryComment: nil,
-                                                                                    phoneNumber: state.phoneNumber))
+            navigator.toTranscribeListView(state: state)
         }
 
-        init(navigator: ScreenNavigating, phoneService: PhoneService) {
+        init(navigator: ScreenNavigating, phoneService: PhoneService, state: TranscribeViewState = TranscribeViewState()) {
             self.navigator = navigator
             self.phoneService = phoneService
+            self.state = state
         }
 
         func bind() {

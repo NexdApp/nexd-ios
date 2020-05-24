@@ -76,57 +76,40 @@ struct TranscribeListView: View {
 }
 
 extension TranscribeListView {
-    struct ListItem: Identifiable {
-        let id: Int64
-        let title: String
-        let amount: Int64
-    }
-
     class ViewModel: ObservableObject {
-        class ViewState: ObservableObject {
-            @Published var isPlaying: Bool = false
-            @Published var progress: Double = 0
-            @Published var firstName: String = ""
-
-            @Published var listItems: [ListItem] = []
-        }
-
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
         private let phoneService: PhoneService
-        private let player: AudioPlayer?
-        private let call: Call?
-        private let transcribedRequest: HelpRequestCreateDto
+        fileprivate var state: TranscribeViewState
 
         private var cancellableSet: Set<AnyCancellable>?
-        var state = ViewState()
 
         func onBackButtonPressed() {
             navigator.goBack()
         }
 
         func onPlayPause() {
-            state.isPlaying ? player?.pause() : player?.play()
+            state.isPlaying ? state.player?.pause() : state.player?.play()
         }
 
         func onSliderMoved(to progress: Double) {
-            player?.seekTo(progress: Float(progress))
+            state.player?.seekTo(progress: Float(progress))
         }
 
-        func onAmountChanged(for listItem: ListItem, to amount: Int) {
-            state.listItems = state.listItems.map { item -> ListItem in
+        func onAmountChanged(for listItem: TranscribeViewState.ListItem, to amount: Int) {
+            state.listItems = state.listItems.map { item -> TranscribeViewState.ListItem in
                 guard listItem.id == item.id else { return item }
-                return ListItem(id: item.id, title: item.title, amount: Int64(amount))
+                return TranscribeViewState.ListItem(id: item.id, title: item.title, amount: Int64(amount))
             }
         }
 
         func onConfirmButtonPressed() {
-            guard let call = call else {
+            guard let call = state.call else {
                 log.error("No call object found!")
                 return
             }
 
-            var dto = transcribedRequest
+            var dto = state.createDto()
             dto.articles = state.listItems.filter { item in item.amount > 0 }
                 .map { CreateHelpRequestArticleDto(articleId: $0.id, articleName: nil, language: nil, articleCount: $0.amount, unitId: nil) }
 
@@ -153,15 +136,11 @@ extension TranscribeListView {
         init(navigator: ScreenNavigating,
              articlesService: ArticlesService,
              phoneService: PhoneService,
-             player: AudioPlayer?,
-             call: Call?,
-             transcribedRequest: HelpRequestCreateDto) {
+             state: TranscribeViewState) {
             self.navigator = navigator
             self.articlesService = articlesService
             self.phoneService = phoneService
-            self.player = player
-            self.call = call
-            self.transcribedRequest = transcribedRequest
+            self.state = state
         }
 
         func bind() {
@@ -173,13 +152,19 @@ extension TranscribeListView {
                 .publisher
                 .receive(on: RunLoop.main)
                 .replaceError(with: [])
-                .map { articles -> [ListItem] in
-                    articles.map { ListItem(id: $0.id, title: $0.name, amount: 0) }
+                .map { articles -> [TranscribeViewState.ListItem] in
+                    articles.map { [weak self] article in
+                        // reusse items from view state to avoid losing prefilled information when user left screen and returned back to it
+                        if let item = self?.state.listItems.first(where: { article.id == $0.id }) {
+                            return item
+                        }
+                        return TranscribeViewState.ListItem(id: article.id, title: article.name, amount: 0)
+                    }
                 }
                 .assign(to: \.listItems, on: state)
                 .store(in: &cancellableSet)
 
-            player?.state.publisher
+            state.player?.state.publisher
                 .map { $0.isPlaying }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
@@ -187,7 +172,7 @@ extension TranscribeListView {
                 .assign(to: \.isPlaying, on: state)
                 .store(in: &cancellableSet)
 
-            player?.state.publisher
+            state.player?.state.publisher
                 .map { $0.progress ?? 0 }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)

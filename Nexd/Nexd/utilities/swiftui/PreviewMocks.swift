@@ -73,7 +73,7 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toTranscribeInfoView")
     }
 
-    func toTranscribeListView(player: AudioPlayer?, call: Call?, transcribedRequest: HelpRequestCreateDto) {
+    func toTranscribeListView(state: TranscribeViewState) {
         log.debug("toTranscribeListView")
     }
 
