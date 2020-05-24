@@ -154,6 +154,7 @@ extension TranscribeListView {
                 .replaceError(with: [])
                 .map { articles -> [TranscribeViewState.ListItem] in
                     articles.map { [weak self] article in
+                        // reusse items from view state to avoid losing prefilled information when user left screen and returned back to it
                         if let item = self?.state.listItems.first(where: { article.id == $0.id }) {
                             return item
                         }
