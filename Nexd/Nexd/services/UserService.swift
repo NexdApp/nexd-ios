@@ -11,10 +11,14 @@ import NexdClient
 import RxSwift
 
 class UserService {
-    static let shared = UserService()
-
-    func updateUserInformation(zipCode: String, phone: String) -> Single<User> {
-        let dto = UpdateUserDto(firstName: nil, lastName: nil, street: nil, number: nil, zipCode: zipCode, city: nil, role: nil, phoneNumber: phone)
+    func updateUserInformation(firstName: String? = nil,
+                               lastName: String? = nil,
+                               street: String? = nil,
+                               number: String? = nil,
+                               zipCode: String? = nil,
+                               city: String? = nil,
+                               phoneNumber: String? = nil) -> Single<User> {
+        let dto = UpdateUserDto(firstName: firstName, lastName: lastName, street: street, number: number, zipCode: zipCode, city: city, role: nil, phoneNumber: phoneNumber)
         return UsersAPI.userControllerUpdateMyself(updateUserDto: dto)
             .asSingle()
     }

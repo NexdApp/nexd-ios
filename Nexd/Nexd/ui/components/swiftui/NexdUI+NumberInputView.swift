@@ -24,21 +24,20 @@ extension NexdUI {
         }
 
         func makeUIView(context: UIViewRepresentableContext<NumberInputView>) -> UITextField {
-            let wrappedView = UITextField()
+            let uiView = UITextField()
 
-            wrappedView.backgroundColor = R.color.defaultBackground()
-            wrappedView.textAlignment = .center
+            uiView.backgroundColor = R.color.defaultBackground()
+            uiView.textAlignment = .center
+            uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
+            uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
 
-            return wrappedView
+            return uiView
         }
 
         func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<NumberInputView>) {
             uiView.attributedText = text?.asAmountText()
-            uiView.setContentHuggingPriority(.defaultHigh, for: .vertical)
-            uiView.setContentHuggingPriority(.defaultLow, for: .horizontal)
             uiView.inputView = pickerView
             uiView.inputAccessoryView = pickerView.toolbar
-
             pickerView.toolbarDelegate = self
             pickerView.reloadAllComponents()
         }

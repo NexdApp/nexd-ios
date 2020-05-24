@@ -30,7 +30,11 @@ class HelpRequestsService {
                                  number: number,
                                  zipCode: zipCode,
                                  city: city,
-                                 articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId, articleCount: $0.articleCount) },
+                                 articles: items?.map { CreateHelpRequestArticleDto(articleId: $0.itemId,
+                                                                                    articleName: nil,
+                                                                                    language: nil,
+                                                                                    articleCount: $0.articleCount,
+                                                                                    unitId: nil) },
                                  status: .pending,
                                  additionalRequest: additionalRequest, deliveryComment: deliveryComment, phoneNumber: phoneNumber)
         }
@@ -41,14 +45,17 @@ class HelpRequestsService {
         let articleCount: Int64
     }
 
-    static let shared = HelpRequestsService()
-
     func submitRequest(request: Request) -> Single<HelpRequest> {
         return HelpRequestsAPI.helpRequestsControllerInsertRequestWithArticles(helpRequestCreateDto: request.dto).asSingle()
     }
 
-    func openRequests(userId: String? = nil, zipCode: [String]? = nil, includeRequester: Bool = true, status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
+    func openRequests(userId: String? = nil,
+                      excludeUserId: Bool? = nil,
+                      zipCode: [String]? = nil,
+                      includeRequester: Bool = true,
+                      status: [HelpRequestStatus]? = nil) -> Single<[HelpRequest]> {
         return HelpRequestsAPI.helpRequestsControllerGetAll(userId: userId,
+                                                            excludeUserId: excludeUserId,
                                                             zipCode: zipCode,
                                                             includeRequester: includeRequester,
                                                             status: status)

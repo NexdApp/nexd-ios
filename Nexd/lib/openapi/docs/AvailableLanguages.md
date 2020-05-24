@@ -1,10 +1,8 @@
-# CreateArticleDto
+# AvailableLanguages
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** | Name of the article. If the name already exists, no new article will be added. | 
-**language** | **String** | Language of the article, e.g. the user | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

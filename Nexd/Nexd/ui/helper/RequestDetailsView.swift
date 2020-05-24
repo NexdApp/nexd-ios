@@ -16,7 +16,7 @@ struct RequestDetailsView: View {
 
     var body: some View {
         VStack {
-            NexdUI.Headings.title(text: Text(viewModel.title))
+            NexdUI.Texts.title(text: Text(viewModel.title))
                 .padding([.leading, .trailing], 25)
                 .padding(.top, 70)
 

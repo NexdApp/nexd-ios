@@ -27,7 +27,7 @@ extension String {
 
     func asTitle() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.titleTextColor,
+            .foregroundColor: R.color.headingText()!,
             .font: R.font.proximaNovaSoftBold(size: 36)!
         ]
 
@@ -36,25 +36,7 @@ extension String {
 
     func asPlaceholder() -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.textFieldPlaceholderTextColor
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
-    }
-
-    func asErrorLabel() -> NSAttributedString {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.errorTintColor,
-            .font: R.font.proximaNovaSoftRegular(size: 12)!
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
-    }
-
-    func asWarningLabel() -> NSAttributedString {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.warningTintColor,
-            .font: R.font.proximaNovaSoftRegular(size: 12)!
+            .foregroundColor: R.color.textfieldStroke()!
         ]
 
         return NSAttributedString(string: self, attributes: attributes)
@@ -70,34 +52,6 @@ extension String {
         guard let range = range else { return attributedString }
         attributedString.addAttribute(.link, value: target, range: NSRange(range, in: self))
         return attributedString
-    }
-
-    func asGreeting() -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 58
-        paragraphStyle.maximumLineHeight = 58
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.nexdGreen()!,
-            .font: R.font.proximaNovaSoftBold(size: 48)!,
-            .paragraphStyle: paragraphStyle
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
-    }
-
-    func asGreetingSubline() -> NSAttributedString {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 42
-        paragraphStyle.maximumLineHeight = 42
-
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: R.color.greetingSubline()!,
-            .font: R.font.proximaNovaSoftBold(size: 35)!,
-            .paragraphStyle: paragraphStyle
-        ]
-
-        return NSAttributedString(string: self, attributes: attributes)
     }
 
     func asLightButtonText() -> NSAttributedString {

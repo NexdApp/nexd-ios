@@ -17,6 +17,8 @@ public struct BackendErrorEntry: Codable {
         case validationPasswordTooShort = "VALIDATION_PASSWORD_TOO_SHORT"
         case usersUserExists = "USERS_USER_EXISTS"
         case usersUserNotFound = "USERS_USER_NOT_FOUND"
+        case articleArticleNeedsLanguage = "ARTICLE_ARTICLE_NEEDS_LANGUAGE"
+        case articleArticleNeedsName = "ARTICLE_ARTICLE_NEEDS_NAME"
     }
     /** Specific error code from enum */
     public var errorCode: ErrorCode

@@ -14,11 +14,11 @@ struct HelperRequestFilterSettingsView: View {
 
     var body: some View {
         VStack {
-            NexdUI.Headings.title(text: R.string.localizable.helper_request_filter_settings_screen_title.text)
+            NexdUI.Texts.title(text: R.string.localizable.helper_request_filter_settings_screen_title.text)
                 .padding([.leading, .trailing], 25)
                 .padding(.top, 70)
 
-            NexdUI.Headings.h2Dark(text: R.string.localizable.helper_request_filter_settings_heading_zipcode.text)
+            NexdUI.Texts.h2Dark(text: R.string.localizable.helper_request_filter_settings_heading_zipcode.text)
                 .padding(.top, 48)
                 .padding([.leading, .trailing], 12)
 

@@ -41,7 +41,7 @@
 "error_message_user_detail_field_missing" = "Please fill in";
 "error_title" = "Error";
 "helper_call_overview_screen_title" = "Open calls:";
-"helper_overview_error_empty_zipcode" = "";
+"helper_overview_error_empty_zipcode" = "Zip code not selected";
 "helper_request_detail_button_accept" = "Will do!";
 "helper_request_detail_button_accepted" = "Request already accepted";
 "helper_request_detail_button_remove" = "Remove from shopping list!";
@@ -61,15 +61,13 @@
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
 "helper_request_overview_filter_inactive" = "All open requests";
-"helper_request_overview_filter_selected_zip" = "Open requests for regtion: %1$@";
+"helper_request_overview_filter_selected_zip" = "Open requests for region: %1$@";
 "helper_request_overview_heading_accepted_section" = "Accepted requests:";
 "helper_request_overview_heading_accepted_section_counter" = " (%1$d / %2$d)";
 "helper_request_overview_heading_available_section" = "Available requests:";
 "helper_request_overview_heading_open_section_zip" = " (zip %1$s)";
 "helper_request_overview_item_type_list" = "List";
 "helper_request_overview_item_type_recording" = "Recording";
-
-/*Fuzzy*/
 "helper_request_overview_open_request_item_details_format_ios" = "%1$@ ago, %2$@";
 "helper_request_overview_screen_title" = "Overview";
 "helper_request_overview_unknown_requester" = "- unknown -";
@@ -78,7 +76,7 @@
 "helper_type_button_transcript" = "Transcript a call!";
 "helper_type_screen_title" = "How would you like to help?";
 "keyboard_accessory_text_done" = "Done";
-"loading_overlay_message" = "Loading...";
+"loading_overlay_message" = "Loading…";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
 "login_placeholder_password" = "Password";
@@ -117,9 +115,12 @@
 /*Fuzzy*/
 "seeker_phone_call_text" = "Please call </br><b>%1$s</b></br>to record your shopping order.";
 "seeker_phone_call_text_ios" = "Please call %@ to record your shopping order.";
+"seeker_request_create_confirm_address" = "Please confirm your delivery address";
 "seeker_request_create_heading" = "I need:";
+"seeker_request_create_no_articles" = "Please enter at least 1 article";
 "seeker_request_create_placeholder_delivery_comment" = "Delivery comment";
 "seeker_request_create_placeholder_information" = "Additional information";
+"seeker_request_create_submit" = "Submit Request";
 "seeker_submit_button_title" = "Submit";
 "seeker_success_message" = "Your request was sent successfully.";
 "seeker_success_title" = "Done!";
@@ -153,6 +154,7 @@
 "transcript_summary_button_transcript" = "Transcribe another call";
 "transcript_summary_title" = "Thank you for helping complete %1$s's order!";
 "user_input_details_confirm" = "Confirm";
+"user_input_details_explanation_text" = "Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty.";
 "user_input_details_placeholder_city" = "Place";
 "user_input_details_placeholder_firstname" = "First name";
 "user_input_details_placeholder_houseNumber" = "No.";
