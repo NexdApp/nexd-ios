@@ -53,8 +53,8 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toShoppingListOptions")
     }
 
-    func toCheckList() {
-        log.debug("toCheckList")
+    func toArticleSelection() {
+        log.debug("toArticleSelection")
     }
 
     func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
@@ -165,7 +165,7 @@ extension HelpRequestArticle {
                            articleId: articleId,
                            unitId: nil,
                            articleCount: nil,
-                           article: Article(id: articleId, name: name, language: .deDe, categoryId: nil, status: nil, unitIdOrder: nil, category: nil),
+                           article: Article(id: articleId, name: name, language: .de, statusOverwritten: nil, unitIdOrder: nil, categoryId: nil, status: nil, category: nil),
                            unit: nil,
                            articleDone: nil,
                            helpRequest: nil)

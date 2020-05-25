@@ -9,6 +9,6 @@ import Foundation
 
 
 public enum AvailableLanguages: String, Codable, CaseIterable {
-    case deDe = "de-DE"
-    case enUs = "en-US"
+    case de = "de"
+    case en = "en"
 }

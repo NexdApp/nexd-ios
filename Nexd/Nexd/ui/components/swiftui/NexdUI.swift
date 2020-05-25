@@ -67,6 +67,20 @@ enum NexdUI {
             }
         }
 
+        static func darkButton(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftBold.font(size: 28))
+                    .foregroundColor(R.color.darkButtonBorder.color)
+                    .padding([.leading, .trailing], 12)
+            }
+            .frame(maxHeight: .infinity)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(R.color.darkButtonBorder.color, lineWidth: 2)
+            )
+        }
+
         static func lightButton(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
@@ -194,6 +208,9 @@ enum NexdUI {
 
                 NexdUI.Buttons.confirm {}
                     .padding(8)
+
+//                NexdUI.Buttons.darkButton(text: Text("Dark Button"), action: {})
+//                    .padding(8)
 
                 NexdUI.Buttons.lightButton(text: Text("Light Button"), action: {})
                     .padding(8)

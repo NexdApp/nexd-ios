@@ -12,20 +12,26 @@ public struct Unit: Codable {
 
 
     public enum Language: String, Codable, CaseIterable {
-        case deDe = "de-DE"
-        case enUs = "en-US"
+        case de = "de"
+        case en = "en"
     }
     /** Auto-incremented ID of a unit. */
-    public var id: Int64
+    public var id: Int64?
     /** Name of the unit */
     public var name: String
+    /** Abbreviated name of the unit */
+    public var nameShort: String
     /** Language key of this unit */
     public var language: Language
+    /** Some default ordering, in case there is no automatic ordering for an article, no need in the frontend. */
+    public var defaultOrder: Int64?
 
-    public init(id: Int64, name: String, language: Language) {
+    public init(id: Int64?, name: String, nameShort: String, language: Language, defaultOrder: Int64?) {
         self.id = id
         self.name = name
+        self.nameShort = nameShort
         self.language = language
+        self.defaultOrder = defaultOrder
     }
 
 }

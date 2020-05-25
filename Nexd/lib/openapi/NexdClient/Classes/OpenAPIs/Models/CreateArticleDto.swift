@@ -12,8 +12,8 @@ public struct CreateArticleDto: Codable {
 
 
     public enum Language: String, Codable, CaseIterable {
-        case deDe = "de-DE"
-        case enUs = "en-US"
+        case de = "de"
+        case en = "en"
     }
     /** Name of the article. If the name already exists, no new article will be added. */
     public var name: String

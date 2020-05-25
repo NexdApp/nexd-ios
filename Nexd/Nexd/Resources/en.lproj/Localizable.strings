@@ -110,6 +110,8 @@
 "seeker_detail_screen_title" = "Your request";
 "seeker_error_message" = "Your request could not be sent! Please try again.";
 "seeker_error_title" = "Error!";
+"seeker_item_selection_add_article_placeholer" = "Add article";
+"seeker_item_selection_article_amount_placeholer" = "Amount";
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";

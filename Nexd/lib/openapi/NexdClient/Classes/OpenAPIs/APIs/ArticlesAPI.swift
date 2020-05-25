@@ -39,6 +39,9 @@ open class ArticlesAPI {
     /**
      List articles
      - GET /article/articles
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter limit: (query) Maximum number of articles  (optional)
      - parameter startsWith: (query) Starts with the given string. Empty string does not filter. (optional)
      - parameter language: (query)  (optional)
@@ -59,6 +62,52 @@ open class ArticlesAPI {
         ])
 
         let requestBuilder: RequestBuilder<[Article]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get a list of units
+     
+     - parameter language: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<[Unit]>
+     */
+    open class func articlesControllerGetUnits(language: AvailableLanguages? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Unit]> {
+        return Observable.create { observer -> Disposable in
+            articlesControllerGetUnitsWithRequestBuilder(language: language).execute(apiResponseQueue) { result -> Void in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body!)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    /**
+     Get a list of units
+     - GET /article/units
+     - BASIC:
+       - type: http
+       - name: bearer
+     - parameter language: (query)  (optional)
+     - returns: RequestBuilder<[Unit]> 
+     */
+    open class func articlesControllerGetUnitsWithRequestBuilder(language: AvailableLanguages? = nil) -> RequestBuilder<[Unit]> {
+        let path = "/article/units"
+        let URLString = NexdClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "language": language?.encodeToJSON()
+        ])
+
+        let requestBuilder: RequestBuilder<[Unit]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -88,6 +137,9 @@ open class ArticlesAPI {
     /**
      Create an article
      - POST /article/articles
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter createArticleDto: (body)  
      - returns: RequestBuilder<Article> 
      */

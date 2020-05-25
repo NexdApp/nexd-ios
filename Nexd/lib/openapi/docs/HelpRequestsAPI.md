@@ -26,7 +26,7 @@ import NexdClient
 
 let helpRequestId = 987 // Int64 | Id of the help request
 let articleId = 987 // Int64 | Id of the article
-let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(articleCount: 123, articleDone: false) // CreateOrUpdateHelpRequestArticleDto | 
+let createOrUpdateHelpRequestArticleDto = CreateOrUpdateHelpRequestArticleDto(articleCount: 123, unitId: 123, articleDone: false) // CreateOrUpdateHelpRequestArticleDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

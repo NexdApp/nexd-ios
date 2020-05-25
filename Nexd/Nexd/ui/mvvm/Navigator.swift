@@ -25,7 +25,7 @@ protocol ScreenNavigating {
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
-    func toCheckList()
+    func toArticleSelection()
     func toRequestConfirmation(items: [RequestConfirmationView.Item])
     func toPhoneCall()
     func toHelpOptions()
@@ -154,9 +154,9 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCheckList() {
-        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
-                                                                                                              articlesService: articlesService))
+    func toArticleSelection() {
+        let screen = SeekerItemSelectionView.createScreen(viewModel: SeekerItemSelectionView.ViewModel(navigator: self,
+                                                                                                       articlesService: articlesService))
         push(screen: screen)
     }
 
