@@ -35,8 +35,6 @@ class ScreenshotTests: XCTestCase {
         app.enableUiTesting()
         app.changeBaseUrl(to: "http://localhost:\(Constants.mockBackendPort)")
 
-        app.launch()
-
         self.app = app
     }
 
@@ -45,26 +43,51 @@ class ScreenshotTests: XCTestCase {
     }
 
     func testInitialScreen() {
-        mockBackend.onLogin { dto -> User? in
-            return nil
+        app?.logout()
+
+        app?.launch()
+        snapshot("initial")
+    }
+
+    func testLoginScreen() {
+        app?.login()
+
+        mockBackend.onGetProfile { () -> User? in
+            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
         }
 
-        sleep(50000)
-        snapshot("initial")
+        app?.launch()
+        snapshot("login")
     }
 }
 
 extension XCUIApplication {
     func enableUiTesting() {
-        launchArguments += [UiTestingArguments.uiTestingEnabled.rawValue]
+        add(argument: .uiTestingEnabled)
     }
 
     func disableUiTesting() {
-        launchArguments = launchArguments.filter { $0 != UiTestingArguments.uiTestingEnabled.rawValue }
+        remove(argument: .uiTestingEnabled)
+    }
+
+    func login() {
+        add(argument: .loginForTesting)
+    }
+
+    func logout() {
+        add(argument: .logoutForTesting)
     }
 
     func changeBaseUrl(to url: String) {
         launchEnvironment[UiTestingVariables.baseUrl.rawValue] = url
+    }
+
+    private func add(argument: UiTestingArguments) {
+        launchArguments += [argument.rawValue]
+    }
+
+    private func remove(argument: UiTestingArguments) {
+        launchArguments = launchArguments.filter { $0 != argument.rawValue }
     }
 }
 
@@ -112,6 +135,14 @@ extension HttpServer {
         POST["/auth/login"] = { request in
             let body = try? JSONDecoder().decode(LoginDto.self, from: Data(request.body))
             guard let response = handler(body) else { return .notFound }
+
+            return .ok(.text(response.jsonString ?? ""))
+        }
+    }
+
+    func onGetProfile(_ handler: @escaping () -> User?) {
+        GET["/users/me"] = { request in
+            guard let response = handler() else { return .notFound }
 
             return .ok(.text(response.jsonString ?? ""))
         }

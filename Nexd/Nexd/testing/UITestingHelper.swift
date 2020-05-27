@@ -15,6 +15,14 @@ import UIKit
                 return
             }
 
+            if ProcessInfo.processInfo.isLoggedInForTesting {
+                UserDefaults.standard.setValue("TESTING_ONLY", forKey: "authorizationToken")
+            }
+
+            if ProcessInfo.processInfo.isLoggedOutForTesting {
+                UserDefaults.standard.removeObject(forKey: "authorizationToken")
+            }
+
             log.debug("UI Testing is enabled!")
         }
     }
@@ -24,6 +32,14 @@ extension ProcessInfo {
     #if DEBUG
     var isUiTestingEnabled: Bool {
         ProcessInfo.processInfo.arguments.contains(UiTestingArguments.uiTestingEnabled.rawValue)
+    }
+
+    var isLoggedInForTesting: Bool {
+        ProcessInfo.processInfo.arguments.contains(UiTestingArguments.loginForTesting.rawValue)
+    }
+
+    var isLoggedOutForTesting: Bool {
+        ProcessInfo.processInfo.arguments.contains(UiTestingArguments.logoutForTesting.rawValue)
     }
     #endif
 

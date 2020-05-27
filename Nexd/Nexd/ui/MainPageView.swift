@@ -169,7 +169,9 @@ extension MainPageView {
 #if DEBUG
     struct MainPageView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = MainPageView.ViewModel(navigator: PreviewNavigator(), authService: AuthenticationService(), userService: UserService())
+            let viewModel = MainPageView.ViewModel(navigator: PreviewNavigator(),
+                                                   authService: AuthenticationService(storage: PersistentStorage(userDefaults: UserDefaults.standard)),
+                                                   userService: UserService())
             return Group {
                 MainPageView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)
