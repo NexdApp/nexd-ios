@@ -211,7 +211,6 @@
 		AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nexdScreenshots.swift; sourceTree = "<group>"; };
 		AEEEDEF7247E67C40007E961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
-		AEEEDEFF247E6CFE0007E961 /* Snapfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Snapfile; sourceTree = SOURCE_ROOT; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,7 +405,6 @@
 		AEEEDEF4247E67C40007E961 /* nexdScreenshots */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEDEFF247E6CFE0007E961 /* Snapfile */,
 				AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */,
 				AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */,
 				AEEEDEF7247E67C40007E961 /* Info.plist */,
