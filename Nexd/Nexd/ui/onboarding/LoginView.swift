@@ -155,7 +155,8 @@ extension LoginView {
 #if DEBUG
     struct LoginView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = LoginView.ViewModel(navigator: PreviewNavigator(), authenticationService: AuthenticationService())
+            let viewModel = LoginView.ViewModel(navigator: PreviewNavigator(),
+                                                authenticationService: AuthenticationService(storage: PersistentStorage(userDefaults: UserDefaults.standard)))
             return Group {
                 LoginView(viewModel: viewModel)
                     .background(R.color.defaultBackground.color)

@@ -11,12 +11,10 @@ import Foundation
 import NexdClient
 
 protocol Storage {
-    var authorizationToken: String? { get }
+    var authorizationToken: String? { get set }
 }
 
 class PersistentStorage: Storage {
-    static let shared = PersistentStorage(userDefaults: UserDefaults.standard)
-
     private let defaults: UserDefaults
 
     init(userDefaults: UserDefaults) {

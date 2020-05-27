@@ -31,6 +31,11 @@ fastlane ios lint
 fastlane ios test
 ```
 Run the tests
+### ios create_screenshots
+```
+fastlane ios create_screenshots
+```
+Create screenshots
 ### ios testflight_beta
 ```
 fastlane ios testflight_beta

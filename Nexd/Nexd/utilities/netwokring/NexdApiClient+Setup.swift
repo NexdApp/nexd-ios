@@ -16,7 +16,8 @@ extension NexdClientAPI {
             NexdClientAPI.requestBuilderFactory = DebuggableRequestBuilderFactory()
         #endif
 
-        if let baseUrl = AppConfiguration.baseUrl {
+        if let baseUrl = ProcessInfo.processInfo.baseUrl {
+            log.debug("Setting base URL to: \(baseUrl)")
             NexdClientAPI.basePath = baseUrl
         }
 

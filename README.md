@@ -74,6 +74,14 @@ $ docker-compose up -d db
   - releases are prepared in release branches (named something like `release/*`)
   - releae branches are merged into `master` and `master` will be deployed automatically to testflight
 
+# Creating screenshots
+
+```
+bundle exec fastlane create_screenshots
+```
+
+Screenshots can then be found in: `fastlane/screenshots`
+
 # FAQ:
 
 ## Where can I find:

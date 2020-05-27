@@ -240,7 +240,7 @@ extension UserProfileView {
     struct UserProfileView_Previews: PreviewProvider {
         static var previews: some View {
             let viewModel = UserProfileView.ViewModel(navigator: PreviewNavigator(),
-                                                      authenticationService: AuthenticationService(),
+                                                      authenticationService: AuthenticationService(storage: PersistentStorage(userDefaults: UserDefaults.standard)),
                                                       userService: UserService(),
                                                       onFinished: { _ in })
             return Group {
