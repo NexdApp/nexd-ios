@@ -3,27 +3,34 @@ platform :ios, '13.0'
 
 inhibit_all_warnings!
 
-target 'nexd' do
-  # Comment the next line if you don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for Nexd
-  pod 'Cleanse'
+abstract_target 'CommonPods' do
   pod 'NexdClient', :path => 'lib/openapi'
-  pod 'NVActivityIndicatorView'
-  pod 'PhoneNumberKit'
-  pod 'R.swift'
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxCombine'
-  pod 'SnapKit'
-  pod 'SwiftLint'
-  pod 'Validator'
-  pod 'XCGLogger'
+
+  target 'nexd' do
+    # Comment the next line if you don't want to use dynamic frameworks
+    use_frameworks!
+
+    # Pods for Nexd
+    pod 'Cleanse'
+    pod 'NVActivityIndicatorView'
+    pod 'PhoneNumberKit'
+    pod 'R.swift'
+    pod 'RxSwift'
+    pod 'RxCocoa'
+    pod 'RxCombine'
+    pod 'SnapKit'
+    pod 'SwiftLint'
+    pod 'Validator'
+    pod 'XCGLogger'
+  end
 
   target 'nexdTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
+  target 'nexdScreenshots' do
+    # Mock HTTP server
+    pod 'Swifter'
+  end
 end

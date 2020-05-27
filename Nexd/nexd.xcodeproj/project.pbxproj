@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10936C0F3820024D29BCD702 /* libPods-nexdTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFECF7180543182E731C90E4 /* libPods-nexdTests.a */; };
+		4AB92DF41137362A538EA381 /* libPods-CommonPods-nexdScreenshots.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91A297512CB90728B4F927E4 /* libPods-CommonPods-nexdScreenshots.a */; };
+		9BDDB08C9CD7CADF7666D85A /* Pods_CommonPods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7814445C871B029EA5AFAAF /* Pods_CommonPods_nexd.framework */; };
 		AE1359102444A2410015D7AB /* NexdUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE13590F2444A2410015D7AB /* NexdUI.swift */; };
 		AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359112444E5460015D7AB /* HTTPStatusCode.swift */; };
 		AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1359172444E98E0015D7AB /* Single+Nexd.swift */; };
@@ -82,7 +85,7 @@
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AED8818D24351E85006065D2 /* KeyboardDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818C24351E85006065D2 /* KeyboardDismisser.swift */; };
 		AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */; };
-		AEEEDEF6247E67C40007E961 /* nexdScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */; };
+		AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */; };
 		AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */; };
 		AEEEDF02247E766E0007E961 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF01247E766D0007E961 /* UITestingHelper.swift */; };
 		AEEEDF06247E98DE0007E961 /* UiTestingArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF05247E98DE0007E961 /* UiTestingArguments.swift */; };
@@ -103,13 +106,11 @@
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
 		AEF3D6752426912F005C77CE /* SeekerItemSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6742426912F005C77CE /* SeekerItemSelectionViewController.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
-		C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */; };
 		E6914F55243FCAA400F0ACD2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginView.swift */; };
 		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
 		E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */; };
 		E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */; };
 		E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */; };
-		FFCBC08C9AB985704A26A1E7 /* Pods_nexdTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,11 +131,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08C756D94BE444B5BFC4745F /* Pods-CommonPods-nexdScreenshots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-nexdScreenshots.release.xcconfig"; path = "Target Support Files/Pods-CommonPods-nexdScreenshots/Pods-CommonPods-nexdScreenshots.release.xcconfig"; sourceTree = "<group>"; };
 		170FD32DBA6DD6B32509C3C9 /* Pods-Nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.debug.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.debug.xcconfig"; sourceTree = "<group>"; };
-		35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		486AAE296D909DFC2821DE4E /* Pods-nexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdTests.release.xcconfig"; path = "Target Support Files/Pods-nexdTests/Pods-nexdTests.release.xcconfig"; sourceTree = "<group>"; };
-		6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_nexdTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E76B6CF1CDCFE8F7D6231CA /* Pods-CommonPods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-nexd.release.xcconfig"; path = "Target Support Files/Pods-CommonPods-nexd/Pods-CommonPods-nexd.release.xcconfig"; sourceTree = "<group>"; };
+		7927964F4E3A40588BD658DC /* Pods-nexd-nexdScreenshots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd-nexdScreenshots.debug.xcconfig"; path = "Target Support Files/Pods-nexd-nexdScreenshots/Pods-nexd-nexdScreenshots.debug.xcconfig"; sourceTree = "<group>"; };
 		885A0DBDF401BD95331F807C /* Pods-nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.debug.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.debug.xcconfig"; sourceTree = "<group>"; };
+		8F1AB78B266802DF448EFA85 /* Pods-nexd-nexdScreenshots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd-nexdScreenshots.release.xcconfig"; path = "Target Support Files/Pods-nexd-nexdScreenshots/Pods-nexd-nexdScreenshots.release.xcconfig"; sourceTree = "<group>"; };
+		91A297512CB90728B4F927E4 /* libPods-CommonPods-nexdScreenshots.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CommonPods-nexdScreenshots.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		960F80B01A0E19C7DEA45890 /* Pods-nexdScreenshots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdScreenshots.debug.xcconfig"; path = "Target Support Files/Pods-nexdScreenshots/Pods-nexdScreenshots.debug.xcconfig"; sourceTree = "<group>"; };
+		96D812FD99B8F119E05497BE /* Pods-CommonPods-nexdScreenshots.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-nexdScreenshots.debug.xcconfig"; path = "Target Support Files/Pods-CommonPods-nexdScreenshots/Pods-CommonPods-nexdScreenshots.debug.xcconfig"; sourceTree = "<group>"; };
 		AE13590F2444A2410015D7AB /* NexdUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NexdUI.swift; sourceTree = "<group>"; };
 		AE1359112444E5460015D7AB /* HTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCode.swift; sourceTree = "<group>"; };
 		AE1359172444E98E0015D7AB /* Single+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Single+Nexd.swift"; sourceTree = "<group>"; };
@@ -212,7 +218,7 @@
 		AED8818C24351E85006065D2 /* KeyboardDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDismisser.swift; sourceTree = "<group>"; };
 		AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeViewState.swift; sourceTree = "<group>"; };
 		AEEEDEF3247E67C40007E961 /* nexdScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nexdScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nexdScreenshots.swift; sourceTree = "<group>"; };
+		AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		AEEEDEF7247E67C40007E961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		AEEEDF01247E766D0007E961 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
@@ -239,14 +245,18 @@
 		AEF3D6762426AD56005C77CE /* ArticlesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticlesService.swift; sourceTree = "<group>"; };
 		BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexd.release.xcconfig"; path = "Target Support Files/Pods-nexd/Pods-nexd.release.xcconfig"; sourceTree = "<group>"; };
 		BB8BAEE1DEF583ED1E6599F4 /* Pods-NexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.debug.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C7814445C871B029EA5AFAAF /* Pods_CommonPods_nexd.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommonPods_nexd.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
+		DFECF7180543182E731C90E4 /* libPods-nexdTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nexdTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6914F54243FCAA400F0ACD2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular-webfont.ttf"; sourceTree = "<group>"; };
 		E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-semibold-webfont.ttf"; sourceTree = "<group>"; };
 		F1E7BF07394EEF7D7982A0F9 /* Pods-nexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdTests.debug.xcconfig"; path = "Target Support Files/Pods-nexdTests/Pods-nexdTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F58378AA02318A86E3297036 /* Pods-nexdScreenshots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdScreenshots.release.xcconfig"; path = "Target Support Files/Pods-nexdScreenshots/Pods-nexdScreenshots.release.xcconfig"; sourceTree = "<group>"; };
 		F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
+		F5D531A059263FB8C03DB57D /* Pods-CommonPods-nexd.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonPods-nexd.debug.xcconfig"; path = "Target Support Files/Pods-CommonPods-nexd/Pods-CommonPods-nexd.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +264,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB92DF41137362A538EA381 /* libPods-CommonPods-nexdScreenshots.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,7 +272,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6F9DC93F7999234B185ACF2 /* Pods_nexd.framework in Frameworks */,
+				9BDDB08C9CD7CADF7666D85A /* Pods_CommonPods_nexd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFCBC08C9AB985704A26A1E7 /* Pods_nexdTests.framework in Frameworks */,
+				10936C0F3820024D29BCD702 /* libPods-nexdTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,8 +290,9 @@
 		ADC00A67FE5460AED668653F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				35136F03C95F3992A6BAEDFD /* Pods_nexd.framework */,
-				6716B0BAB729209EF82D3B1A /* Pods_nexdTests.framework */,
+				C7814445C871B029EA5AFAAF /* Pods_CommonPods_nexd.framework */,
+				91A297512CB90728B4F927E4 /* libPods-CommonPods-nexdScreenshots.a */,
+				DFECF7180543182E731C90E4 /* libPods-nexdTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -413,7 +425,7 @@
 			isa = PBXGroup;
 			children = (
 				AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */,
-				AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */,
+				AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */,
 				AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */,
 				AEEEDEF7247E67C40007E961 /* Info.plist */,
 			);
@@ -586,6 +598,14 @@
 				BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */,
 				F1E7BF07394EEF7D7982A0F9 /* Pods-nexdTests.debug.xcconfig */,
 				486AAE296D909DFC2821DE4E /* Pods-nexdTests.release.xcconfig */,
+				960F80B01A0E19C7DEA45890 /* Pods-nexdScreenshots.debug.xcconfig */,
+				F58378AA02318A86E3297036 /* Pods-nexdScreenshots.release.xcconfig */,
+				7927964F4E3A40588BD658DC /* Pods-nexd-nexdScreenshots.debug.xcconfig */,
+				8F1AB78B266802DF448EFA85 /* Pods-nexd-nexdScreenshots.release.xcconfig */,
+				F5D531A059263FB8C03DB57D /* Pods-CommonPods-nexd.debug.xcconfig */,
+				4E76B6CF1CDCFE8F7D6231CA /* Pods-CommonPods-nexd.release.xcconfig */,
+				96D812FD99B8F119E05497BE /* Pods-CommonPods-nexdScreenshots.debug.xcconfig */,
+				08C756D94BE444B5BFC4745F /* Pods-CommonPods-nexdScreenshots.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -597,6 +617,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AEEEDEFA247E67C40007E961 /* Build configuration list for PBXNativeTarget "nexdScreenshots" */;
 			buildPhases = (
+				25183BD75364E7BE2D68B9C8 /* [CP] Check Pods Manifest.lock */,
 				AEEEDEEF247E67C40007E961 /* Sources */,
 				AEEEDEF0247E67C40007E961 /* Frameworks */,
 				AEEEDEF1247E67C40007E961 /* Resources */,
@@ -728,21 +749,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		25183BD75364E7BE2D68B9C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CommonPods-nexdScreenshots-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7F5AF015A4002CFDE0BCCA9C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-nexd/Pods-nexd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CommonPods-nexd/Pods-CommonPods-nexd-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-nexd/Pods-nexd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CommonPods-nexd/Pods-CommonPods-nexd-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-nexd/Pods-nexd-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CommonPods-nexd/Pods-CommonPods-nexd-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		98DCC7DF67737DC9E09A7DDD /* [CP] Check Pods Manifest.lock */ = {
@@ -799,7 +842,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -820,7 +863,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-nexd-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CommonPods-nexd-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -835,7 +878,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEEEDF0A247E98F10007E961 /* UiTestingVariables.swift in Sources */,
-				AEEEDEF6247E67C40007E961 /* nexdScreenshots.swift in Sources */,
+				AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */,
 				AEEEDF07247E98DE0007E961 /* UiTestingArguments.swift in Sources */,
 				AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */,
 			);
@@ -982,6 +1025,7 @@
 /* Begin XCBuildConfiguration section */
 		AEEEDEFB247E67C40007E961 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96D812FD99B8F119E05497BE /* Pods-CommonPods-nexdScreenshots.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
@@ -1002,6 +1046,7 @@
 		};
 		AEEEDEFC247E67C40007E961 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08C756D94BE444B5BFC4745F /* Pods-CommonPods-nexdScreenshots.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z69PDUT2Z9;
@@ -1144,7 +1189,7 @@
 		};
 		AEF3D638242584CC005C77CE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 885A0DBDF401BD95331F807C /* Pods-nexd.debug.xcconfig */;
+			baseConfigurationReference = F5D531A059263FB8C03DB57D /* Pods-CommonPods-nexd.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1166,7 +1211,7 @@
 		};
 		AEF3D639242584CC005C77CE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA9217C4FA791A8A83068198 /* Pods-nexd.release.xcconfig */;
+			baseConfigurationReference = 4E76B6CF1CDCFE8F7D6231CA /* Pods-CommonPods-nexd.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

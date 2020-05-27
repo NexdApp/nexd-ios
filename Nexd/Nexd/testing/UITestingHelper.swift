@@ -20,7 +20,6 @@ import UIKit
     }
 #endif
 
-
 extension ProcessInfo {
     #if DEBUG
     var isUiTestingEnabled: Bool {

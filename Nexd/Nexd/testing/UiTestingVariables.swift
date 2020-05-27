@@ -10,6 +10,6 @@ import Foundation
 
 #if DEBUG
 enum UiTestingVariables: String {
-    case baseUrl = "BASE_URL"
+    case baseUrl = "REST_BASE_URL"
 }
 #endif
