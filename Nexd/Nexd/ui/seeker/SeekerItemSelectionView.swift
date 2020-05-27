@@ -10,22 +10,6 @@ import Combine
 import NexdClient
 import SwiftUI
 
-extension View {
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape(RoundedCorner(radius: radius, corners: corners))
-    }
-}
-
-struct RoundedCorner: Shape {
-    var radius: CGFloat = .infinity
-    var corners: UIRectCorner = .allCorners
-
-    func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        return Path(path.cgPath)
-    }
-}
-
 // TODO: - send correct locale for backend requests
 // TODO: - check if automatic selection of unit works when a suggestion is accepted
 // TODO: - order units, move "favorite" units to the top
@@ -136,6 +120,8 @@ extension SeekerItemSelectionView {
 
         var state: ViewState = ViewState()
 
+        private var articleNameInput = PassthroughSubject<String?, Never>()
+
         init(navigator: ScreenNavigating, articlesService: ArticlesService) {
             self.navigator = navigator
             self.articlesService = articlesService
@@ -147,18 +133,7 @@ extension SeekerItemSelectionView {
 
         func articleNameChanged(text: String?) {
             state.acceptedSuggestion = nil
-
-            guard let text = text, !text.isEmpty else {
-                state.suggestions = nil
-                return
-            }
-
-            articlesService.allArticles(limit: 5, startsWith: text, language: .de, onlyVerified: false)
-                .publisher
-                .map { articles -> [Article]? in articles }
-                .replaceError(with: nil)
-                .assign(to: \.suggestions, on: state)
-                .store(in: &cancellableSet)
+            articleNameInput.send(text)
         }
 
         func suggestionAccepted(suggestion: Article) {
@@ -192,6 +167,26 @@ extension SeekerItemSelectionView {
                 .sink { [weak self] in
                     self?.objectWillChange.send()
                 }
+                .store(in: &cancellableSet)
+
+            articleNameInput
+                .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
+                .eraseToAnyPublisher()
+                .flatMap { [weak self] inputText -> AnyPublisher<[Article]?, Never> in
+                    guard let self = self, let inputText = inputText, !inputText.isEmpty else {
+                        return Just<[Article]?>(nil).eraseToAnyPublisher()
+                    }
+
+                    return self.articlesService.allArticles(limit: 5,
+                                                            startsWith: inputText,
+                                                            language: .de,
+                                                            onlyVerified: false)
+                        .map { articles -> [Article]? in articles }
+                        .publisher
+                        .replaceError(with: nil)
+                        .eraseToAnyPublisher()
+                }
+                .assign(to: \.suggestions, on: state)
                 .store(in: &cancellableSet)
 
             articlesService.allUnits(language: .de)
