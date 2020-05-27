@@ -96,6 +96,9 @@
 		AEEEDF0F247EF8800007E961 /* Encodable+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF0E247EF8800007E961 /* Encodable+JSON.swift */; };
 		AEEEDF11247EF89D0007E961 /* HttpServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */; };
 		AEEEDF13247EF8F40007E961 /* XCUIApplication+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */; };
+		AEEEDF16247EFD520007E961 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF15247EFD520007E961 /* AccessibilityIdentifiers.swift */; };
+		AEEEDF17247EFE330007E961 /* AccessibilityIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF15247EFD520007E961 /* AccessibilityIdentifiers.swift */; };
+		AEEEDF1A247EFF1D0007E961 /* View+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF18247EFEBF0007E961 /* View+Accessibility.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -233,6 +236,8 @@
 		AEEEDF0E247EF8800007E961 /* Encodable+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+JSON.swift"; sourceTree = "<group>"; };
 		AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpServer+Mock.swift"; sourceTree = "<group>"; };
 		AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Mock.swift"; sourceTree = "<group>"; };
+		AEEEDF15247EFD520007E961 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
+		AEEEDF18247EFEBF0007E961 /* View+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Accessibility.swift"; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -311,6 +316,7 @@
 				AE9775B42445E1A200765324 /* PreviewMocks.swift */,
 				AE510B8F24445EC50068DF60 /* R.swift+SwiftUI.swift */,
 				AE8352EC24562D1500531228 /* ModalScreen.swift */,
+				AEEEDF18247EFEBF0007E961 /* View+Accessibility.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				AEEEDF01247E766D0007E961 /* UITestingHelper.swift */,
 				AEEEDF05247E98DE0007E961 /* UiTestingArguments.swift */,
 				AEEEDF08247E98F10007E961 /* UiTestingVariables.swift */,
+				AEEEDF15247EFD520007E961 /* AccessibilityIdentifiers.swift */,
 			);
 			path = testing;
 			sourceTree = "<group>";
@@ -897,6 +904,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEEEDF16247EFD520007E961 /* AccessibilityIdentifiers.swift in Sources */,
 				AEEEDF0A247E98F10007E961 /* UiTestingVariables.swift in Sources */,
 				AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */,
 				AEEEDF07247E98DE0007E961 /* UiTestingArguments.swift in Sources */,
@@ -938,6 +946,7 @@
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
 				AE510B8A2443C2FA0068DF60 /* CustomControl.swift in Sources */,
 				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
+				AEEEDF1A247EFF1D0007E961 /* View+Accessibility.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
 				AED2A969244058800082316F /* PhoneCallViewController.swift in Sources */,
 				AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */,
@@ -983,6 +992,7 @@
 				AEB6AC7224423DC900823E7C /* HelperOptionsView.swift in Sources */,
 				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
+				AEEEDF17247EFE330007E961 /* AccessibilityIdentifiers.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,
 				AEB6AC7D2443362300823E7C /* Date+Nexd.swift in Sources */,
 				AEF3D63F24258FDA005C77CE /* R.generated.swift in Sources */,

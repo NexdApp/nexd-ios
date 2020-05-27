@@ -47,6 +47,7 @@ struct MainPageView: View {
                                 .padding(.top, -70)
                             }
                         )
+                        .identified(by: .mainPageProfileButton)
 
                         Group {
                             Text(R.string.localizable.role_screen_title_ios(self.viewModel.state.displayName))
@@ -62,11 +63,13 @@ struct MainPageView: View {
                             NexdUI.Buttons.lightMainMenuButton(text: R.string.localizable.role_selection_seeker.text) {
                                 self.viewModel.seekerButtonTapped()
                             }
+                            .identified(by: .mainPageSeekerButton)
 
                             NexdUI.Buttons.lightMainMenuButton(text: R.string.localizable.role_selection_helper.text) {
                                 self.viewModel.helperButtonTapped()
                             }
                             .padding(.bottom, 18)
+                            .identified(by: .mainPageHelperButton)
                         }
                         .padding([.leading, .trailing], 25)
                     }

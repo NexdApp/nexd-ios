@@ -46,7 +46,7 @@ class ScreenshotTests: XCTestCase {
         app?.logout()
 
         app?.launch()
-        snapshot("initial")
+        snapshot("Initial")
     }
 
     func testLoginScreen() {
@@ -57,6 +57,20 @@ class ScreenshotTests: XCTestCase {
         }
 
         app?.launch()
-        snapshot("login")
+        snapshot("Login")
+    }
+
+    func testHelperOverviewScreen() {
+        app?.login()
+
+        mockBackend.onGetProfile { () -> User? in
+            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
+        }
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
+
+        snapshot("HelperOverview")
     }
 }
