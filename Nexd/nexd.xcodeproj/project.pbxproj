@@ -92,6 +92,10 @@
 		AEEEDF07247E98DE0007E961 /* UiTestingArguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF05247E98DE0007E961 /* UiTestingArguments.swift */; };
 		AEEEDF09247E98F10007E961 /* UiTestingVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF08247E98F10007E961 /* UiTestingVariables.swift */; };
 		AEEEDF0A247E98F10007E961 /* UiTestingVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF08247E98F10007E961 /* UiTestingVariables.swift */; };
+		AEEEDF0D247EF84C0007E961 /* HttpRequest+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF0C247EF84C0007E961 /* HttpRequest+Mock.swift */; };
+		AEEEDF0F247EF8800007E961 /* Encodable+JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF0E247EF8800007E961 /* Encodable+JSON.swift */; };
+		AEEEDF11247EF89D0007E961 /* HttpServer+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */; };
+		AEEEDF13247EF8F40007E961 /* XCUIApplication+Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -225,6 +229,10 @@
 		AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = nexdScreenshots.xctestplan; sourceTree = "<group>"; };
 		AEEEDF05247E98DE0007E961 /* UiTestingArguments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiTestingArguments.swift; sourceTree = "<group>"; };
 		AEEEDF08247E98F10007E961 /* UiTestingVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiTestingVariables.swift; sourceTree = "<group>"; };
+		AEEEDF0C247EF84C0007E961 /* HttpRequest+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpRequest+Mock.swift"; sourceTree = "<group>"; };
+		AEEEDF0E247EF8800007E961 /* Encodable+JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+JSON.swift"; sourceTree = "<group>"; };
+		AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpServer+Mock.swift"; sourceTree = "<group>"; };
+		AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIApplication+Mock.swift"; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -424,7 +432,7 @@
 		AEEEDEF4247E67C40007E961 /* nexdScreenshots */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */,
+				AEEEDF0B247EF8250007E961 /* helpers */,
 				AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */,
 				AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */,
 				AEEEDEF7247E67C40007E961 /* Info.plist */,
@@ -440,6 +448,18 @@
 				AEEEDF08247E98F10007E961 /* UiTestingVariables.swift */,
 			);
 			path = testing;
+			sourceTree = "<group>";
+		};
+		AEEEDF0B247EF8250007E961 /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */,
+				AEEEDF0E247EF8800007E961 /* Encodable+JSON.swift */,
+				AEEEDF0C247EF84C0007E961 /* HttpRequest+Mock.swift */,
+				AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */,
+				AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 		AEF3D60F242584C9005C77CE = {
@@ -842,7 +862,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$SRCROOT/R.generated.swift",
+				$SRCROOT/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -880,7 +900,11 @@
 				AEEEDF0A247E98F10007E961 /* UiTestingVariables.swift in Sources */,
 				AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */,
 				AEEEDF07247E98DE0007E961 /* UiTestingArguments.swift in Sources */,
+				AEEEDF11247EF89D0007E961 /* HttpServer+Mock.swift in Sources */,
 				AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */,
+				AEEEDF0D247EF84C0007E961 /* HttpRequest+Mock.swift in Sources */,
+				AEEEDF0F247EF8800007E961 /* Encodable+JSON.swift in Sources */,
+				AEEEDF13247EF8F40007E961 /* XCUIApplication+Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
