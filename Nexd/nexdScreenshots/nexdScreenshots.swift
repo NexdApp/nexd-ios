@@ -26,6 +26,10 @@ class nexdScreenshots: XCTestCase {
     func testInitialScreen() {
         let app = XCUIApplication()
         setupSnapshot(app)
+
+        app.enableUiTesting()
+        app.changeBaseUrl(to: "http://www.google.de")
+
         app.launch()
 
         snapshot("initial")
@@ -38,6 +42,10 @@ extension XCUIApplication {
     }
 
     func disableUiTesting() {
-        
+        launchArguments = launchArguments.filter { $0 != UiTestingArguments.uiTestingEnabled.rawValue }
+    }
+
+    func changeBaseUrl(to url: String) {
+        launchEnvironment[UiTestingVariables.baseUrl.rawValue] = url
     }
 }

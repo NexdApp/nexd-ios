@@ -9,17 +9,26 @@
 import UIKit
 
 #if DEBUG
-enum UiTestingArguments: String {
-    case uiTestingEnabled = "UI_TESTING_ENABLED"
-}
+    enum UITestingHelper {
+        static func setupUiTestingIfNecessary() {
+            guard ProcessInfo.processInfo.isUiTestingEnabled else {
+                return
+            }
 
-enum UiTestingVariables: String {
-    case uiTestingEnabled = "UI_TESTING_ENABLED"
-}
+            log.debug("UI Testing is enabled!")
+        }
+    }
 #endif
 
+
 extension ProcessInfo {
+    #if DEBUG
     var isUiTestingEnabled: Bool {
         ProcessInfo.processInfo.arguments.contains(UiTestingArguments.uiTestingEnabled.rawValue)
+    }
+    #endif
+
+    var baseUrl: String? {
+        ProcessInfo.processInfo.environment[UiTestingVariables.baseUrl.rawValue]
     }
 }
