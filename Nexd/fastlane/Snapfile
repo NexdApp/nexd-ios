@@ -33,6 +33,6 @@ clear_previous_screenshots(true)
 # fastlane action snapshot
 
 
-reinstall_app = true
-erase_simulator = true
-override_status_bar = true
+reinstall_app(true)
+erase_simulator(true)
+override_status_bar(true)

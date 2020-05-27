@@ -84,6 +84,8 @@
 		AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */; };
 		AEEEDEF6247E67C40007E961 /* nexdScreenshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */; };
 		AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */; };
+		AEEEDF02247E766E0007E961 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF01247E766D0007E961 /* UITestingHelper.swift */; };
+		AEEEDF03247E766E0007E961 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF01247E766D0007E961 /* UITestingHelper.swift */; };
 		AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61B242584C9005C77CE /* AppDelegate.swift */; };
 		AEF3D61E242584C9005C77CE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D61D242584C9005C77CE /* SceneDelegate.swift */; };
 		AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEF3D624242584CC005C77CE /* Assets.xcassets */; };
@@ -211,6 +213,8 @@
 		AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nexdScreenshots.swift; sourceTree = "<group>"; };
 		AEEEDEF7247E67C40007E961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		AEEEDF01247E766D0007E961 /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
+		AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = nexdScreenshots.xctestplan; sourceTree = "<group>"; };
 		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -407,9 +411,18 @@
 			children = (
 				AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */,
 				AEEEDEF5247E67C40007E961 /* nexdScreenshots.swift */,
+				AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */,
 				AEEEDEF7247E67C40007E961 /* Info.plist */,
 			);
 			path = nexdScreenshots;
+			sourceTree = "<group>";
+		};
+		AEEEDF00247E76560007E961 /* testing */ = {
+			isa = PBXGroup;
+			children = (
+				AEEEDF01247E766D0007E961 /* UITestingHelper.swift */,
+			);
+			path = testing;
 			sourceTree = "<group>";
 		};
 		AEF3D60F242584C9005C77CE = {
@@ -437,6 +450,7 @@
 		AEF3D61A242584C9005C77CE /* Nexd */ = {
 			isa = PBXGroup;
 			children = (
+				AEEEDF00247E76560007E961 /* testing */,
 				AED2A958243F99880082316F /* di */,
 				AEF3D66D24266460005C77CE /* utilities */,
 				AEF3D66A24263A7F005C77CE /* services */,
@@ -817,6 +831,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEEEDEF6247E67C40007E961 /* nexdScreenshots.swift in Sources */,
+				AEEEDF03247E766E0007E961 /* UITestingHelper.swift in Sources */,
 				AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -827,6 +842,7 @@
 			files = (
 				AE50F06C2448DCFA00601DDF /* Publisher+Debugging.swift in Sources */,
 				AE13591A2444EBBC0015D7AB /* ErrorResponse+Nexd.swift in Sources */,
+				AEEEDF02247E766E0007E961 /* UITestingHelper.swift in Sources */,
 				AECE9D242438D84400EDCE0D /* AudioPlayer.swift in Sources */,
 				AED5E5282445F15200A3DFA1 /* TranscribeInfoView.swift in Sources */,
 				AE8E235C2466ED7A00AC261D /* NexdUI+BackButton.swift in Sources */,

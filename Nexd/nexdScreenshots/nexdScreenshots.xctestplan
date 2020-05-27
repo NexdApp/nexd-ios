@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "CA8C6692-A6B2-4BFE-952B-84BED4BEC332",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:nexd.xcodeproj",
+      "identifier" : "AEF3D617242584C9005C77CE",
+      "name" : "nexd"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:nexd.xcodeproj",
+        "identifier" : "AEEEDEF2247E67C40007E961",
+        "name" : "nexdScreenshots"
+      }
+    }
+  ],
+  "version" : 1
+}

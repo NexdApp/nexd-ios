@@ -31,3 +31,13 @@ class nexdScreenshots: XCTestCase {
         snapshot("initial")
     }
 }
+
+extension XCUIApplication {
+    func enableUiTesting() {
+        launchArguments += [UiTestingArguments.uiTestingEnabled.rawValue]
+    }
+
+    func disableUiTesting() {
+        
+    }
+}
