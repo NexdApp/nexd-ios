@@ -1,4 +1,4 @@
-name: TestFlight
+name: Screenshots
 
 on:
   push:
