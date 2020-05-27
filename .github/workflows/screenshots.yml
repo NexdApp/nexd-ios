@@ -16,7 +16,7 @@ jobs:
         bundle install
         bundle exec fastlane create_screenshots
     - name: Archive screenshots
-        uses: actions/upload-artifact@v1
-        with:
-          name: screenshots
-          path: Nexd/fastlane/screenshots
+      uses: actions/upload-artifact@v1
+      with:
+        name: screenshots
+        path: Nexd/fastlane/screenshots
