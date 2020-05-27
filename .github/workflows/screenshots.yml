@@ -1,9 +1,8 @@
 name: Screenshots
 
-on: [push]
-# on:
-#   push:
-#     branches: [ master, develop ]
+on:
+  push:
+    branches: [ master, develop ]
 
 jobs:
   screenshots:
