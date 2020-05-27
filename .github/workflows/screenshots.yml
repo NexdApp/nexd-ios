@@ -1,11 +1,12 @@
 name: Screenshots
 
-on:
-  push:
-    branches: [ master, develop ]
+on: [push]
+# on:
+#   push:
+#     branches: [ master, develop ]
 
 jobs:
-  testflight:
+  screenshots:
     runs-on: macos-10.15
 
     steps:
