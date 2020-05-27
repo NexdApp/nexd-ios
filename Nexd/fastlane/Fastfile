@@ -28,6 +28,7 @@ platform :ios do
 
   desc "Create screenshots"
   lane :create_screenshots do
+    bootstrap
     snapshot(output_directory: "./fastlane/screenshots")
     frameit(path: "./fastlane/screenshots")
   end
