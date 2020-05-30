@@ -57,7 +57,23 @@ enum NexdUI {
             .position(x: 28, y: 28)
         }
 
-        static func solidDeleteButton(action: @escaping () -> Void) -> some View {
+        static func addButton(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                ZStack {
+                    Circle()
+                        .fill(R.color.lightButtonBackground.color)
+                        .frame(width: 32, height: 32)
+                        .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
+
+                    R.image.baseline_add_black_24pt.image
+                        .resizable()
+                        .foregroundColor(R.color.lightButtonIcon.color)
+                        .frame(width: 24, height: 24)
+                }
+            }
+        }
+
+        static func deleteButton(action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 ZStack {
                     Circle()

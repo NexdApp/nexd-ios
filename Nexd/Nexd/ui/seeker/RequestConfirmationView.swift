@@ -34,9 +34,15 @@ struct RequestConfirmationView: View {
 
                                     Spacer()
 
-                                    Text("\(item.amount)x")
+                                    Text(String(item.amount))
                                         .font(R.font.proximaNovaSoftBold.font(size: 14))
                                         .foregroundColor(R.color.listItemDetailsText.color)
+
+                                    item.unit.map { unit in
+                                        Text(String(unit.nameShort))
+                                            .font(R.font.proximaNovaSoftBold.font(size: 14))
+                                            .foregroundColor(R.color.listItemDetailsText.color)
+                                    }
                                 }
                                 .frame(height: 52)
                             }
@@ -174,7 +180,6 @@ extension RequestConfirmationView {
     }
 
     class ViewModel: ObservableObject {
-
         private let navigator: ScreenNavigating
         private let userService: UserService
         private let helpRequestsService: HelpRequestsService
@@ -297,7 +302,7 @@ extension RequestConfirmationView {
                              deliveryComment: String?) -> Completable {
             let articleDtos = state.items
                 .filter { $0.amount > 0 }
-                .map { $0.dto  }
+                .map { $0.dto }
 
             let dto = HelpRequestCreateDto(firstName: firstName,
                                            lastName: lastName,

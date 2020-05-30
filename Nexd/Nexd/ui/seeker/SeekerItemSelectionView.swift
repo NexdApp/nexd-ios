@@ -33,9 +33,17 @@ struct SeekerItemSelectionView: View {
 
     var body: some View {
         VStack {
-            NexdUI.Texts.title(text: R.string.localizable.seeker_item_selection_screen_title.text)
-                .padding(.top, 70)
-                .padding([.leading, .trailing], 20)
+            HStack {
+                NexdUI.Texts.title(text: R.string.localizable.seeker_item_selection_screen_title.text)
+
+                Spacer()
+
+                NexdUI.Buttons.addButton {
+                    self.viewModel.addItemEntryTapped()
+                }
+            }
+            .padding(.top, 70)
+            .padding([.leading, .trailing], 20)
 
             ScrollView {
                 VStack(spacing: 12) {
@@ -52,7 +60,7 @@ struct SeekerItemSelectionView: View {
                                     Text(unit.nameShort)
                                 }
 
-                                NexdUI.Buttons.solidDeleteButton {
+                                NexdUI.Buttons.deleteButton {
                                     self.viewModel.removeItem(item: item)
                                 }
                             }
@@ -60,16 +68,6 @@ struct SeekerItemSelectionView: View {
                         .onTapGesture { self.viewModel.editItem(item: item) }
                         .padding([.leading, .trailing], 35)
                     }
-
-                    NexdUI.Card {
-                        HStack {
-                            Text("... hinzufügen")
-
-                            Spacer()
-                        }
-                    }
-                    .onTapGesture { self.viewModel.addItemEntryTapped() }
-                    .padding([.leading, .trailing], 35)
                 }
             }
 
