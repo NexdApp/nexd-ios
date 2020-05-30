@@ -25,8 +25,11 @@ protocol ScreenNavigating {
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
-    func toArticleSelection()
-    func toRequestConfirmation(items: [RequestConfirmationView.Item])
+    func toCreateShoppingList()
+    func toArticleInput(itemSelectionViewState: ItemSelectionViewState,
+                        with item: ItemSelectionViewState.Item?,
+                        onItemSaved: @escaping ((ItemSelectionViewState.Item) -> Void))
+    func toRequestConfirmation(state: ItemSelectionViewState)
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
@@ -154,17 +157,33 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toArticleSelection() {
+    func toCreateShoppingList() {
         let screen = SeekerItemSelectionView.createScreen(viewModel: SeekerItemSelectionView.ViewModel(navigator: self,
                                                                                                        articlesService: articlesService))
         push(screen: screen)
     }
 
-    func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
+    func toArticleInput(itemSelectionViewState: ItemSelectionViewState,
+                        with item: ItemSelectionViewState.Item?,
+                        onItemSaved: @escaping ((ItemSelectionViewState.Item) -> Void)) {
+        let screen = SeekerArticleInputView.createScreen(viewModel: SeekerArticleInputView.ViewModel(navigator: self,
+                                                                                                     articlesService: articlesService,
+                                                                                                     itemSelectionViewState: itemSelectionViewState,
+                                                                                                     item: item,
+                                                                                                     onDone: { [weak self] item in
+                                                                                                         onItemSaved(item)
+                                                                                                         self?.dismiss()
+                                                                                                     },
+                                                                                                     onCancel: { [weak self] in self?.dismiss() }))
+
+        present(screen: screen)
+    }
+
+    func toRequestConfirmation(state: ItemSelectionViewState) {
         let viewModel = RequestConfirmationView.ViewModel(navigator: self,
                                                           userService: userService,
                                                           helpRequestsService: helpRequestsService,
-                                                          items: items,
+                                                          state: state,
                                                           onSuccess: { [weak self] in
                                                               self?.showError(title: R.string.localizable.seeker_success_title(),
                                                                               message: R.string.localizable.seeker_success_message(), handler: {
@@ -172,7 +191,8 @@ extension Navigator: ScreenNavigating {
                                                                                       self?.goBack()
                                                                                   }
                                                               })
-                                                          }, onError: { [weak self] _ in
+                                                          },
+                                                          onError: { [weak self] _ in
                                                               self?.showError(title: R.string.localizable.seeker_error_title(),
                                                                               message: R.string.localizable.seeker_error_message(), handler: nil)
         })

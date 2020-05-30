@@ -22,6 +22,7 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved.*/
 "dialog_button_abort" = "Abbrechen";
 "dialog_button_confirm" = "Bestätigen";
+"done_button_title" = "Fertig";
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";

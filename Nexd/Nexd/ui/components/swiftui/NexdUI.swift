@@ -24,6 +24,22 @@ enum NexdUI {
             }
         }
 
+        static func cancel(text: Text = R.string.localizable.cancel_button_title.text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftMedium.font(size: 23))
+                    .foregroundColor(R.color.darkButtonText.color)
+            }
+        }
+
+        static func done(text: Text = R.string.localizable.done_button_title.text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftBold.font(size: 23))
+                    .foregroundColor(R.color.darkButtonText.color)
+            }
+        }
+
         static func solidBackButton(action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 ZStack {
@@ -39,6 +55,22 @@ enum NexdUI {
                 }
             }
             .position(x: 28, y: 28)
+        }
+
+        static func solidDeleteButton(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                ZStack {
+                    Circle()
+                        .fill(R.color.solidButtonBackground.color)
+                        .frame(width: 32, height: 32)
+                        .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
+
+                    R.image.baseline_delete_black_24pt.image
+                        .resizable()
+                        .foregroundColor(R.color.solidButtonIcon.color)
+                        .frame(width: 24, height: 24)
+                }
+            }
         }
 
         static func `default`(text: Text, action: @escaping () -> Void) -> some View {

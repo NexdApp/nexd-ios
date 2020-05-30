@@ -22,6 +22,7 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved.*/
 "dialog_button_abort" = "Abort";
 "dialog_button_confirm" = "Confirm";
+"done_button_title" = "Done";
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "User authentication failed please try to login again.";
 "error_dialog_authentication_failed_title" = "Authentication failed!";

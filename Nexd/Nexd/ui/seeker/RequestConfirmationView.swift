@@ -7,6 +7,7 @@
 //
 
 import Combine
+import NexdClient
 import RxCocoa
 import RxSwift
 import SwiftUI
@@ -24,9 +25,9 @@ struct RequestConfirmationView: View {
 
                     NexdUI.Card {
                         VStack {
-                            ForEach(viewModel.items) { item in
+                            ForEach(viewModel.state.items) { item in
                                 HStack {
-                                    Text(item.title)
+                                    Text(item.name)
                                         .padding(.trailing, 8)
                                         .font(R.font.proximaNovaSoftBold.font(size: 18))
                                         .foregroundColor(R.color.listItemTitle.color)
@@ -148,49 +149,54 @@ struct RequestConfirmationView: View {
 
 extension RequestConfirmationView {
     struct Item: Identifiable {
-        let id: Int64
-        let title: String
+        let id = UUID()
+
+        let article: Article?
+        let name: String
         let amount: Int64
+        let unitId: Int64?
+
+        var dto: CreateHelpRequestArticleDto {
+            guard let article = article else {
+                return CreateHelpRequestArticleDto(articleId: nil,
+                                                   articleName: name,
+                                                   language: CreateHelpRequestArticleDto.Language.current,
+                                                   articleCount: amount,
+                                                   unitId: unitId)
+            }
+
+            return CreateHelpRequestArticleDto(articleId: article.id,
+                                               articleName: nil,
+                                               language: nil,
+                                               articleCount: amount,
+                                               unitId: nil)
+        }
     }
 
     class ViewModel: ObservableObject {
-        class ViewState: ObservableObject {
-            fileprivate var player: AudioPlayer?
-
-            @Published var firstName: String?
-            @Published var lastName: String?
-            @Published var street: String?
-            @Published var houseNumber: String?
-            @Published var zipCode: String?
-            @Published var city: String?
-            @Published var phoneNumber: String?
-            @Published var information: String?
-            @Published var deliveryComment: String?
-        }
 
         private let navigator: ScreenNavigating
         private let userService: UserService
         private let helpRequestsService: HelpRequestsService
-        fileprivate let items: [Item]
         private let onSuccess: (() -> Void)?
         private let onError: ((Error) -> Void)?
 
         private var cancellableSet: Set<AnyCancellable>?
 
-        var state = ViewState()
+        var state: ItemSelectionViewState
 
         private lazy var profile = userService.findMe().asObservable().share(replay: 1).publisher
 
         init(navigator: ScreenNavigating,
              userService: UserService,
              helpRequestsService: HelpRequestsService,
-             items: [Item],
+             state: ItemSelectionViewState,
              onSuccess: (() -> Void)? = nil,
              onError: ((Error) -> Void)? = nil) {
             self.navigator = navigator
             self.userService = userService
             self.helpRequestsService = helpRequestsService
-            self.items = items
+            self.state = state
             self.onSuccess = onSuccess
             self.onError = onError
         }
@@ -289,22 +295,23 @@ extension RequestConfirmationView {
                              phoneNumber: String?,
                              additionalRequest: String?,
                              deliveryComment: String?) -> Completable {
-            let requestItems = items
+            let articleDtos = state.items
                 .filter { $0.amount > 0 }
-                .map { item in HelpRequestsService.RequestItem(itemId: item.id, articleCount: item.amount) }
+                .map { $0.dto  }
 
-            let request = HelpRequestsService.Request(firstName: firstName,
-                                                      lastName: lastName,
-                                                      street: street,
-                                                      number: number,
-                                                      zipCode: zipCode,
-                                                      city: city,
-                                                      items: requestItems,
-                                                      additionalRequest: additionalRequest,
-                                                      deliveryComment: deliveryComment,
-                                                      phoneNumber: phoneNumber)
+            let dto = HelpRequestCreateDto(firstName: firstName,
+                                           lastName: lastName,
+                                           street: street,
+                                           number: number,
+                                           zipCode: zipCode,
+                                           city: city,
+                                           articles: articleDtos,
+                                           status: nil,
+                                           additionalRequest: additionalRequest,
+                                           deliveryComment: deliveryComment,
+                                           phoneNumber: phoneNumber)
 
-            return helpRequestsService.submitRequest(request: request)
+            return helpRequestsService.submitRequest(dto: dto)
                 .asCompletable()
         }
     }
@@ -322,10 +329,7 @@ extension RequestConfirmationView {
             let viewModel = RequestConfirmationView.ViewModel(navigator: PreviewNavigator(),
                                                               userService: UserService(),
                                                               helpRequestsService: HelpRequestsService(),
-                                                              items: [RequestConfirmationView.Item(id: 0, title: "Klopapier", amount: 10),
-                                                                      RequestConfirmationView.Item(id: 1, title: "Zwiebeln", amount: 3),
-                                                                      RequestConfirmationView.Item(id: 2, title: "Tomaten", amount: 25),
-                                                                      RequestConfirmationView.Item(id: 3, title: "Hefe", amount: 8)])
+                                                              state: ItemSelectionViewState())
             return Group {
                 RequestConfirmationView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)

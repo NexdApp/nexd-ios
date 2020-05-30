@@ -10,115 +10,93 @@ import Combine
 import NexdClient
 import SwiftUI
 
-// TODO: - send correct locale for backend requests
-// TODO: - check if automatic selection of unit works when a suggestion is accepted
-// TODO: - order units, move "favorite" units to the top
+extension AvailableLanguages {
+    static var current: AvailableLanguages {
+        let currentLanguages = Bundle.main.preferredLocalizations
+            .compactMap { AvailableLanguages(rawValue: $0) }
+
+        return currentLanguages.first ?? .en
+    }
+}
+
+extension CreateHelpRequestArticleDto.Language {
+    static var current: CreateHelpRequestArticleDto.Language {
+        let currentLanguages = Bundle.main.preferredLocalizations
+            .compactMap { CreateHelpRequestArticleDto.Language(rawValue: $0) }
+
+        return currentLanguages.first ?? .en
+    }
+}
 
 struct SeekerItemSelectionView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 30) {
-            ZStack {
-                VStack {
-                    HStack(alignment: .top) {
-                        VStack(spacing: 0) {
-                            NexdUI.TextField(tag: 1,
-                                             text: $viewModel.state.articleName,
-                                             placeholder: R.string.localizable.seeker_item_selection_add_article_placeholer(),
-                                             onChanged: { string in self.viewModel.articleNameChanged(text: string) },
-                                             inputConfiguration: NexdUI.InputConfiguration(hasDone: true))
+        VStack {
+            NexdUI.Texts.title(text: R.string.localizable.seeker_item_selection_screen_title.text)
+                .padding(.top, 70)
+                .padding([.leading, .trailing], 20)
 
-                            viewModel.state.suggestions.map { suggestions in
-                                VStack {
-                                    ForEach(suggestions) { suggestion in
-                                        NexdUI.Texts.defaultDark(text: Text(suggestion.name))
-                                            .frame(maxWidth: .infinity, minHeight: 40)
-                                            .contentShape(Rectangle())
-                                            .onTapGesture { self.viewModel.suggestionAccepted(suggestion: suggestion) }
-                                    }
+            ScrollView {
+                VStack(spacing: 12) {
+                    ForEach(viewModel.state.items) { item in
+                        NexdUI.Card {
+                            HStack {
+                                Text(item.name)
+
+                                Spacer()
+
+                                Text(String(item.amount))
+
+                                item.unit.map { unit in
+                                    Text(unit.nameShort)
+                                }
+
+                                NexdUI.Buttons.solidDeleteButton {
+                                    self.viewModel.removeItem(item: item)
                                 }
                             }
                         }
-                        .background(Color.white)
-                        .cornerRadius(10)
-
-                        NexdUI.TextField(tag: 2,
-                                         text: $viewModel.state.amount,
-                                         placeholder: R.string.localizable.seeker_item_selection_article_amount_placeholer(),
-                                         inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad, hasDone: true))
-
-                        NexdUI.Buttons.darkButton(text: Text(viewModel.state.unit?.nameShort ?? "???")) {
-                            self.viewModel.onUnitButtonTapped()
-                        }
-                        .frame(height: 48)
+                        .onTapGesture { self.viewModel.editItem(item: item) }
+                        .padding([.leading, .trailing], 35)
                     }
-                    .padding(.top, 70)
-                    .padding([.leading, .trailing], 12)
 
-                    Spacer()
-                }
+                    NexdUI.Card {
+                        HStack {
+                            Text("... hinzufügen")
 
-                if self.viewModel.state.isUnitsPickerVisible {
-                    VStack {
-                        Spacer()
-
-                        VStack(spacing: 0) {
-                            viewModel.state.units.map { units in
-                                List(units) { unit in
-                                    NexdUI.Texts.defaultDark(text: Text("\(unit.name) (\(unit.nameShort))"))
-                                        .frame(maxWidth: .infinity, minHeight: 40)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture { self.viewModel.unitSelected(unit: unit) }
-                                }
-                                .frame(maxWidth: .infinity, maxHeight: 320)
-                            }
+                            Spacer()
                         }
-                        .padding(8)
-                        .background(Color.white)
-                        .cornerRadius(10, corners: [.topLeft, .topRight])
                     }
-                    .transition(.move(edge: .bottom))
-                    .contentShape(Rectangle())
-                    .onTapGesture { self.viewModel.dismissUnitPicker() }
+                    .onTapGesture { self.viewModel.addItemEntryTapped() }
+                    .padding([.leading, .trailing], 35)
                 }
             }
+
+            Spacer()
+
+            NexdUI.Buttons.confirm {
+                self.viewModel.confirmButtonTapped()
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.top, 33)
+            .padding(.bottom, 53)
+            .padding(.leading, 35)
         }
-        .dismissingKeyboard()
         .onAppear { self.viewModel.bind() }
         .onDisappear { self.viewModel.unbind() }
         .withBackButton { self.viewModel.backButtonTapped() }
     }
 }
 
-extension Article: Identifiable {}
-
 extension SeekerItemSelectionView {
     class ViewModel: ObservableObject {
-        struct Unit: Identifiable {
-            let id: Int64?
-            let name: String
-            let nameShort: String
-        }
-
-        class ViewState: ObservableObject {
-            @Published var articleName: String?
-            @Published var acceptedSuggestion: Article?
-            @Published var suggestions: [Article]?
-
-            @Published var amount: String?
-
-            @Published var unit: Unit?
-            @Published var units: [Unit]?
-            @Published var isUnitsPickerVisible: Bool = false
-        }
-
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
 
         private var cancellableSet = Set<AnyCancellable>()
 
-        var state: ViewState = ViewState()
+        var state: ItemSelectionViewState = ItemSelectionViewState()
 
         private var articleNameInput = PassthroughSubject<String?, Never>()
 
@@ -131,33 +109,32 @@ extension SeekerItemSelectionView {
             navigator.goBack()
         }
 
-        func articleNameChanged(text: String?) {
-            state.acceptedSuggestion = nil
-            articleNameInput.send(text)
-        }
+        func editItem(item: ItemSelectionViewState.Item) {
+            navigator.toArticleInput(itemSelectionViewState: state, with: item) { [weak self] updatedtem in
+                guard let self = self else { return }
 
-        func suggestionAccepted(suggestion: Article) {
-            state.articleName = suggestion.name
-            state.acceptedSuggestion = suggestion
-            state.suggestions = nil
+                log.debug("Item updated: \(updatedtem)")
+                guard let existingItem = self.state.items.firstIndex(where: { $0.id == item.id }) else {
+                    self.state.items.append(updatedtem)
+                    return
+                }
 
-            if let unitId = suggestion.unitIdOrder?.first {
-                state.unit = state.units?.first { $0.id == unitId }
+                self.state.items[existingItem] = updatedtem
             }
         }
 
-        func onUnitButtonTapped() {
-            UIApplication.shared.endEditing()
-            state.isUnitsPickerVisible = true
+        func removeItem(item: ItemSelectionViewState.Item) {
+            state.items.removeAll { $0.id == item.id }
         }
 
-        func unitSelected(unit: Unit) {
-            state.unit = unit
-            dismissUnitPicker()
+        func addItemEntryTapped() {
+            navigator.toArticleInput(itemSelectionViewState: state, with: nil) { [weak self] item in
+                self?.state.items.append(item)
+            }
         }
 
-        func dismissUnitPicker() {
-            state.isUnitsPickerVisible = false
+        func confirmButtonTapped() {
+            navigator.toRequestConfirmation(state: state)
         }
 
         func bind() {
@@ -169,39 +146,19 @@ extension SeekerItemSelectionView {
                 }
                 .store(in: &cancellableSet)
 
-            articleNameInput
-                .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
-                .eraseToAnyPublisher()
-                .flatMap { [weak self] inputText -> AnyPublisher<[Article]?, Never> in
-                    guard let self = self, let inputText = inputText, !inputText.isEmpty else {
-                        return Just<[Article]?>(nil).eraseToAnyPublisher()
-                    }
-
-                    return self.articlesService.allArticles(limit: 5,
-                                                            startsWith: inputText,
-                                                            language: .de,
-                                                            onlyVerified: false)
-                        .map { articles -> [Article]? in articles }
-                        .publisher
-                        .replaceError(with: nil)
-                        .eraseToAnyPublisher()
-                }
-                .assign(to: \.suggestions, on: state)
-                .store(in: &cancellableSet)
-
-            articlesService.allUnits(language: .de)
+            articlesService.allUnits(language: state.language)
                 .publisher
                 .sink(receiveCompletion: { completion in
                     if case let .failure(error) = completion {
                         log.error("Loading units failed: \(error)")
                         return
                     }
-                }) { [weak self] units in
+                }, receiveValue: { [weak self] units in
                     log.debug("Received units: \(units)")
                     self?.state.units = units
                         .sorted { first, second -> Bool in first.name < second.name }
-                        .map { unit in Unit(id: unit.id, name: unit.name, nameShort: unit.nameShort) }
-                }
+                        .map { unit in ItemSelectionViewState.Unit(id: unit.id, name: unit.name, nameShort: unit.nameShort) }
+                })
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet

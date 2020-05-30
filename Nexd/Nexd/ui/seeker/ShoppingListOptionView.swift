@@ -46,7 +46,7 @@ extension ShoppingListOptionView {
         }
 
         func selectItemsTapped() {
-            navigator.toArticleSelection()
+            navigator.toCreateShoppingList()
         }
 
         func makePhoneCallTapped() {
