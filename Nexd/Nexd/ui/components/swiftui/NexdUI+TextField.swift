@@ -90,6 +90,7 @@ extension NexdUI {
                          onCommit: ((String?) -> Void)?,
                          inputConfiguration: InputConfiguration?) -> WrappableTextField {
             let textField = WrappableTextField()
+            textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
 
             textField.attributedPlaceholder = placeholder?.asPlaceholder()
 
@@ -238,7 +239,8 @@ extension NexdUI {
                             .opacity(0.8)
                             .padding([.leading, .trailing], 12)
                             .offset(y: -30)
-                    }, alignment: .top)
+                        }, alignment: .top
+                    )
             }
         }
     }

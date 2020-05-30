@@ -241,6 +241,13 @@ enum NexdUI {
                 .font(R.font.proximaNovaSoftBold.font(size: 16))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
+
+        static func detailsText(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .foregroundColor(R.color.darkHeadingText.color)
+        }
     }
 }
 

@@ -46,27 +46,41 @@ struct SeekerItemSelectionView: View {
             .padding([.leading, .trailing], 20)
 
             ScrollView {
-                VStack(spacing: 12) {
-                    ForEach(viewModel.state.items) { item in
-                        NexdUI.Card {
-                            HStack {
-                                Text(item.name)
+                if viewModel.state.items.isEmpty {
+                    VStack {
+                        NexdUI.Texts.detailsText(text: R.string.localizable.seeker_item_selection_no_items_text.text)
+                            .padding([.leading, .trailing], 35)
 
-                                Spacer()
+                        R.image.nexdIllustration2.image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120)
+                            .padding(.top, 40)
+                            .background(Circle().fill(Color.white))
+                    }
+                } else {
+                    VStack(spacing: 12) {
+                        ForEach(viewModel.state.items) { item in
+                            NexdUI.Card {
+                                HStack {
+                                    Text(item.name)
 
-                                Text(String(item.amount))
+                                    Spacer()
 
-                                item.unit.map { unit in
-                                    Text(unit.nameShort)
-                                }
+                                    Text(String(item.amount))
 
-                                NexdUI.Buttons.deleteButton {
-                                    self.viewModel.removeItem(item: item)
+                                    item.unit.map { unit in
+                                        Text(unit.nameShort)
+                                    }
+
+                                    NexdUI.Buttons.deleteButton {
+                                        self.viewModel.removeItem(item: item)
+                                    }
                                 }
                             }
+                            .onTapGesture { self.viewModel.editItem(item: item) }
+                            .padding([.leading, .trailing], 35)
                         }
-                        .onTapGesture { self.viewModel.editItem(item: item) }
-                        .padding([.leading, .trailing], 35)
                     }
                 }
             }

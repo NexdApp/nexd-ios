@@ -107,6 +107,9 @@
 "role_selection_helper" = "I can help";
 "role_selection_screen_title" = "Role";
 "role_selection_seeker" = "I need something";
+"seeker_article_input_description" = "To add a new article to the list provide its name, amount and unit.";
+"seeker_article_input_title" = "Add article";
+"seeker_article_input_unit_picker_title" = "Unit";
 "seeker_detail_placeholder_information" = "Additional information";
 "seeker_detail_screen_title" = "Your request";
 "seeker_error_message" = "Your request could not be sent! Please try again.";
@@ -114,6 +117,7 @@
 "seeker_item_selection_add_article_placeholer" = "Add article";
 "seeker_item_selection_article_amount_placeholer" = "Amount";
 "seeker_item_selection_screen_title" = "Chose items";
+"seeker_item_selection_no_items_text" = "Press the '+' button to add your first item to the list.";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
 

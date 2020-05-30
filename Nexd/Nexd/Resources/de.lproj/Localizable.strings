@@ -109,13 +109,17 @@
 "role_selection_helper" = "Ich kann helfen!";
 "role_selection_screen_title" = "Rolle";
 "role_selection_seeker" = "Ich brauche etwas!";
+"seeker_article_input_description" = "Bitte gib den Namen, Anzahl und Maßeinheit des Artikels an den du zur Liste hinzufügen möchtest.";
+"seeker_article_input_title" = "Artikel hinzufügen";
+"seeker_article_input_unit_picker_title" = "Unit";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
 "seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "seeker_error_title" = "Fehler!";
-"seeker_item_selection_add_article_placeholer" = "Artikel hinzufügen";
+"seeker_item_selection_add_article_placeholer" = "Artikel Name";
 "seeker_item_selection_article_amount_placeholer" = "Menge";
 "seeker_item_selection_screen_title" = "Artikel";
+"seeker_item_selection_no_items_text" = "Benutze bitte den '+' Knopf um deinen ersten Artikel zur Liste hinzuzufügen.";
 "seeker_overview_empty_label" = "Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen.";
 "seeker_overview_screen_title" = "Deine Anfragen:";
 

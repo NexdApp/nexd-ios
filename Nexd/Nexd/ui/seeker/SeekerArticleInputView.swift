@@ -19,77 +19,99 @@ struct SeekerArticleInputView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        ZStack {
-            VStack {
-                HStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        NexdUI.TextField(tag: 1,
-                                         text: $viewModel.state.articleName,
-                                         placeholder: R.string.localizable.seeker_item_selection_add_article_placeholer(),
-                                         onChanged: { string in self.viewModel.articleNameChanged(text: string) },
-                                         inputConfiguration: NexdUI.InputConfiguration(hasDone: true))
+        GeometryReader { geometry in
+            ZStack {
+                VStack {
+                    NexdUI.Texts.title(text: R.string.localizable.seeker_article_input_title.text)
 
-                        viewModel.state.suggestions.map { suggestions in
-                            VStack {
-                                ForEach(suggestions) { suggestion in
-                                    NexdUI.Texts.defaultDark(text: Text(suggestion.name))
-                                        .frame(maxWidth: .infinity, minHeight: 40)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture { self.viewModel.suggestionAccepted(suggestion: suggestion) }
+                    HStack(alignment: .top, spacing: 8) {
+                        VStack(spacing: 0) {
+                            NexdUI.TextField(tag: 1,
+                                             text: self.$viewModel.state.articleName,
+                                             placeholder: R.string.localizable.seeker_item_selection_add_article_placeholer(),
+                                             onChanged: { string in self.viewModel.articleNameChanged(text: string) },
+                                             inputConfiguration: NexdUI.InputConfiguration(hasDone: true))
+
+                            self.viewModel.state.suggestions.map { suggestions in
+                                VStack {
+                                    ForEach(suggestions) { suggestion in
+                                        NexdUI.Texts.defaultDark(text: Text(suggestion.name))
+                                            .frame(maxWidth: .infinity, minHeight: 40)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture { self.viewModel.suggestionAccepted(suggestion: suggestion) }
+                                    }
                                 }
                             }
                         }
-                    }
-                    .background(Color.white)
-                    .cornerRadius(10)
+                        .background(Color.white)
+                        .cornerRadius(10)
 
-                    NexdUI.TextField(tag: 2,
-                                     text: $viewModel.state.amount,
-                                     placeholder: R.string.localizable.seeker_item_selection_article_amount_placeholer(),
-                                     inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad, hasDone: true))
+                        NexdUI.TextField(tag: 2,
+                                         text: self.$viewModel.state.amount,
+                                         placeholder: R.string.localizable.seeker_item_selection_article_amount_placeholer(),
+                                         inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad, hasDone: true))
+                            .frame(maxWidth: 110)
 
-                    NexdUI.Buttons.darkButton(text: Text(viewModel.state.unit?.nameShort ?? "???")) {
-                        self.viewModel.onUnitButtonTapped()
+                        NexdUI.Buttons.darkButton(text: Text(self.viewModel.state.unit?.nameShort ?? "-")) {
+                            self.viewModel.onUnitButtonTapped()
+                        }
+                        .frame(height: 48)
                     }
-                    .frame(height: 48)
+
+                    NexdUI.Texts.detailsText(text: R.string.localizable.seeker_article_input_description.text)
+                        .padding(.top, 32)
+                        .padding([.leading, .trailing], 23)
+
+                    R.image.nexdIllustration1.image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
+                        .padding(.top, 40)
+                        .background(Circle().fill(Color.white))
+
+                    Spacer()
                 }
                 .padding(.top, 70)
-                .padding([.leading, .trailing], 12)
+                .padding([.leading, .trailing], 20)
+                .frame(width: geometry.size.width)
 
-                Spacer()
-            }
+                if self.viewModel.state.isUnitsPickerVisible {
+                    VStack {
+                        Spacer()
 
-            if self.viewModel.state.isUnitsPickerVisible {
-                VStack {
-                    Spacer()
+                        VStack(spacing: 0) {
+                            R.string.localizable.seeker_article_input_unit_picker_title.text
+                                .padding(8)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .font(R.font.proximaNovaSoftBold.font(size: 35))
+                                .foregroundColor(R.color.greetingSubline.color)
 
-                    VStack(spacing: 0) {
-                        viewModel.itemSelectionViewState.units.map { units in
-                            List(units) { unit in
-                                NexdUI.Texts.defaultDark(text: Text("\(unit.name) (\(unit.nameShort))"))
-                                    .frame(maxWidth: .infinity, minHeight: 40)
-                                    .contentShape(Rectangle())
-                                    .onTapGesture { self.viewModel.unitSelected(unit: unit) }
+                            self.viewModel.itemSelectionViewState.units.map { units in
+                                List(units) { unit in
+                                    NexdUI.Texts.defaultDark(text: Text("\(unit.name) (\(unit.nameShort))"))
+                                        .frame(maxWidth: .infinity, minHeight: 40)
+                                        .contentShape(Rectangle())
+                                        .onTapGesture { self.viewModel.unitSelected(unit: unit) }
+                                }
+                                .frame(maxWidth: .infinity, maxHeight: 320)
                             }
-                            .frame(maxWidth: .infinity, maxHeight: 320)
                         }
+                        .padding(8)
+                        .background(Color.white)
+                        .cornerRadius(10, corners: [.topLeft, .topRight])
                     }
-                    .padding(8)
-                    .background(Color.white)
-                    .cornerRadius(10, corners: [.topLeft, .topRight])
+                    .contentShape(Rectangle())
+                    .onTapGesture { self.viewModel.dismissUnitPicker() }
                 }
-                .transition(.move(edge: .bottom))
-                .contentShape(Rectangle())
-                .onTapGesture { self.viewModel.dismissUnitPicker() }
             }
+            .dismissingKeyboard()
+            .onAppear { self.viewModel.bind() }
+            .onDisappear { self.viewModel.unbind() }
+            .withModalButtons(
+                onCancel: { self.viewModel.cancelButtonTapped() },
+                onDone: { self.viewModel.doneButtonTapped() }
+            )
         }
-        .dismissingKeyboard()
-        .onAppear { self.viewModel.bind() }
-        .onDisappear { self.viewModel.unbind() }
-        .withModalButtons(
-            onCancel: { self.viewModel.cancelButtonTapped() },
-            onDone: { self.viewModel.doneButtonTapped() }
-        )
     }
 }
 
