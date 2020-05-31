@@ -41,6 +41,7 @@ struct SeekerItemSelectionView: View {
                 NexdUI.Buttons.addButton {
                     self.viewModel.addItemEntryTapped()
                 }
+                .identified(by: .seekerItemSelectionAddButton)
             }
             .padding(.top, 70)
             .padding([.leading, .trailing], 20)

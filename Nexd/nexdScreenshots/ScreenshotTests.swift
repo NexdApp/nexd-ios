@@ -49,28 +49,71 @@ class ScreenshotTests: XCTestCase {
         snapshot("Initial")
     }
 
-    func testLoginScreen() {
+    func testMainScreen() {
         app?.login()
 
-        mockBackend.onGetProfile { () -> User? in
-            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
-        }
+        mockBackend
+            .withDefaultUserProfile()
 
         app?.launch()
-        snapshot("Login")
+        snapshot("MainPage")
     }
 
     func testHelperOverviewScreen() {
         app?.login()
 
-        mockBackend.onGetProfile { () -> User? in
-            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
-        }
+        mockBackend
+            .withDefaultUserProfile()
 
         app?.launch()
 
         app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
 
         snapshot("HelperOverview")
+    }
+
+    func testCreateHelpRequestFlow() {
+        let articlesCalled = expectation(description: "Articles REST call")
+
+        app?.login()
+
+        mockBackend
+            .withDefaultUserProfile()
+            .withDefaultUnits()
+            .withDefaultArticles { articlesCalled.fulfill() }
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageSeekerButton.rawValue].tap()
+
+        snapshot("SeekerItemSelection_empty")
+
+        app?.buttons[AccessibilityIdentifier.seekerItemSelectionAddButton.rawValue].tap()
+
+        snapshot("SeekerArticleInput_empty")
+
+        let nameTextField = app?.textFields[AccessibilityIdentifier.seekerArticleInputNameTextField.rawValue].firstMatch
+        nameTextField?.tap()
+        nameTextField?.typeText("Ap")
+
+        waitForExpectations(timeout: 2.0, handler: nil)
+
+        snapshot("SeekerArticleInput_suggestions")
+
+        app?.staticTexts[AccessibilityIdentifier.seekerArticleInputNameSuggestion.rawValue].firstMatch.tap()
+
+        let amountTextField = app?.textFields[AccessibilityIdentifier.seekerArticleInputAmountTextField.rawValue].firstMatch
+        amountTextField?.tap()
+        amountTextField?.typeText("5")
+
+        let unitButton = app?.buttons[AccessibilityIdentifier.seekerArticleInputUnitButton.rawValue].firstMatch
+        unitButton?.tap()
+
+        snapshot("SeekerArticleInput_unit_picker")
+
+        let doneButton = app?.buttons[AccessibilityIdentifier.modalDoneButton.rawValue].firstMatch
+        doneButton?.tap()
+
+        snapshot("SeekerItemSelection_one_item")
     }
 }

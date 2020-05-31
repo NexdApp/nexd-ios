@@ -10,18 +10,18 @@ import SwiftUI
 
 struct CancelButtonModifier: ViewModifier {
     let text: Text
+    let identifier: AccessibilityIdentifier
     let action: () -> Void
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(NexdUI.Buttons.cancel(text: text, action: action)
-            .padding(20), alignment: .topLeading)
+            .overlay(NexdUI.Buttons.cancel(text: text, action: action).padding(20).identified(by: identifier), alignment: .topLeading)
     }
 }
 
 extension View {
-    func withCancelButton(text: Text = R.string.localizable.cancel_button_title.text, action: @escaping (() -> Void)) -> some View {
-        ModifiedContent(content: self, modifier: CancelButtonModifier(text: text, action: action))
+    func withCancelButton(text: Text = R.string.localizable.cancel_button_title.text, identifier: AccessibilityIdentifier = .cancelButton, action: @escaping (() -> Void)) -> some View {
+        ModifiedContent(content: self, modifier: CancelButtonModifier(text: text, identifier: identifier, action: action))
     }
 }

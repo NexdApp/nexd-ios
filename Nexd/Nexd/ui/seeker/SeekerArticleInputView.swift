@@ -27,6 +27,7 @@ struct SeekerArticleInputView: View {
                                              onChanged: { string in self.viewModel.articleNameChanged(text: string) },
                                              onCommit: { _ in self.viewModel.articleNameLostFocus() },
                                              inputConfiguration: NexdUI.InputConfiguration(hasDone: true))
+                                .identified(by: .seekerArticleInputNameTextField)
 
                             self.viewModel.state.suggestions.map { suggestions in
                                 VStack {
@@ -36,6 +37,7 @@ struct SeekerArticleInputView: View {
                                             .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
                                             .contentShape(Rectangle())
                                             .onTapGesture { self.viewModel.suggestionAccepted(suggestion: suggestion) }
+                                            .identified(by: .seekerArticleInputNameSuggestion)
                                     }
                                 }
                             }
@@ -48,11 +50,13 @@ struct SeekerArticleInputView: View {
                                          placeholder: R.string.localizable.seeker_item_selection_article_amount_placeholer(),
                                          inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad, hasDone: true))
                             .frame(maxWidth: 110)
+                            .identified(by: .seekerArticleInputAmountTextField)
 
                         NexdUI.Buttons.darkButton(text: Text(self.viewModel.state.unit?.nameShort ?? "-")) {
                             self.viewModel.onUnitButtonTapped()
                         }
                         .frame(height: 48)
+                        .identified(by: .seekerArticleInputUnitButton)
                     }
 
                     NexdUI.Texts.detailsText(text: R.string.localizable.seeker_article_input_description.text)

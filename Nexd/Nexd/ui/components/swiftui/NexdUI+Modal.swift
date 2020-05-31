@@ -10,7 +10,7 @@ import SwiftUI
 
 extension View {
     func withModalButtons(onCancel: @escaping (() -> Void), onDone: @escaping (() -> Void)) -> some View {
-        withCancelButton(action: onCancel)
-            .withDoneButton(action: onDone)
+        withCancelButton(identifier: .modalCancelButton, action: onCancel)
+            .withDoneButton(identifier: .modalDoneButton, action: onDone)
     }
 }
