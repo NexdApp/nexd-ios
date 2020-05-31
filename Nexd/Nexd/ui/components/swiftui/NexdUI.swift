@@ -248,6 +248,32 @@ enum NexdUI {
                 .font(R.font.proximaNovaSoftBold.font(size: 25))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
+
+        static func suggestion(text: String, highlight: String?) -> some View {
+            guard let highlight = highlight, let highlightRange = text.range(of: highlight, options: .caseInsensitive), !highlightRange.isEmpty else {
+                return Text(text).notMatchingText()
+            }
+
+            let prefix = text[..<highlightRange.lowerBound]
+            let match = text[highlightRange.lowerBound ..< highlightRange.upperBound]
+            let suffix = text[highlightRange.upperBound ..< text.endIndex]
+
+            return Text(prefix).notMatchingText()
+                + Text(match).matchingText()
+                + Text(suffix).notMatchingText()
+        }
+    }
+}
+
+extension Text {
+    fileprivate func matchingText() -> Text {
+        font(R.font.proximaNovaSoftBold.font(size: 16))
+            .foregroundColor(R.color.matchingText.color)
+    }
+
+    fileprivate func notMatchingText() -> Text {
+        font(R.font.proximaNovaSoftMedium.font(size: 16))
+            .foregroundColor(R.color.notMatchingText.color)
     }
 }
 

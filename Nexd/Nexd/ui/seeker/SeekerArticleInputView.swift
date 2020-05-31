@@ -12,7 +12,6 @@ import SwiftUI
 
 // TODO: - order units, move "favorite" units to the top
 // TODO: - only use "approved" items as suggestions
-// TODO: - use bold font in suggestions for parts of the strings which match exactly the string entered by the user
 
 struct SeekerArticleInputView: View {
     @ObservedObject var viewModel: ViewModel
@@ -35,8 +34,9 @@ struct SeekerArticleInputView: View {
                             self.viewModel.state.suggestions.map { suggestions in
                                 VStack {
                                     ForEach(suggestions) { suggestion in
-                                        NexdUI.Texts.defaultDark(text: Text(suggestion.name))
-                                            .frame(maxWidth: .infinity, minHeight: 40)
+                                        NexdUI.Texts.suggestion(text: suggestion.name, highlight: self.viewModel.state.articleName)
+                                            .padding([.leading, .trailing], 8)
+                                            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
                                             .contentShape(Rectangle())
                                             .onTapGesture { self.viewModel.suggestionAccepted(suggestion: suggestion) }
                                     }
