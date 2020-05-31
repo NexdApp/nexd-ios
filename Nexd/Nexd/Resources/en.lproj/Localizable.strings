@@ -146,6 +146,7 @@
 "transcribe_articles_error_message" = "Saving the help request failed. Please make sure the data is correct and valid!";
 "transcribe_articles_error_title" = "Request failed!";
 "transcribe_articles_screen_title" = "Shopping list";
+"transcribe_articles_selection_no_items_text" = "Press the '+' button to add the items ordered in the recorded voice call to the list.";
 "transcribe_end_button_title_complete" = "Done";
 "transcribe_end_screen_title_ios" = "Thank you for helping complete the request!";
 "transcribe_info_button_title_confirm" = "Confirm Info";

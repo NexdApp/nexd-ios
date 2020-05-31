@@ -21,7 +21,9 @@ struct CancelButtonModifier: ViewModifier {
 }
 
 extension View {
-    func withCancelButton(text: Text = R.string.localizable.cancel_button_title.text, identifier: AccessibilityIdentifier = .cancelButton, action: @escaping (() -> Void)) -> some View {
+    func withCancelButton(text: Text = R.string.localizable.cancel_button_title.text,
+                          identifier: AccessibilityIdentifier = .cancelButton,
+                          action: @escaping (() -> Void)) -> some View {
         ModifiedContent(content: self, modifier: CancelButtonModifier(text: text, identifier: identifier, action: action))
     }
 }

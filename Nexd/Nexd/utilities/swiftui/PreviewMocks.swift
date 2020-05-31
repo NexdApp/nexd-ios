@@ -57,13 +57,13 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toCreateShoppingList")
     }
 
-    func toArticleInput(itemSelectionViewState: ItemSelectionViewState,
-                        with item: ItemSelectionViewState.Item?,
-                        onItemSaved: (ItemSelectionViewState.Item) -> Void) {
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: (HelpRequestCreationState.Item) -> Void) {
         log.debug("toArticleInput")
     }
 
-    func toRequestConfirmation(state: ItemSelectionViewState) {
+    func toRequestConfirmation(state: HelpRequestCreationState) {
         log.debug("toRequestConfirmation - items: \(state)")
     }
 

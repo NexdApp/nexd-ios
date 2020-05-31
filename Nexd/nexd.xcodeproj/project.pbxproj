@@ -45,11 +45,12 @@
 		AE7174CE242BE16C00EBF302 /* NexdApiClient+Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */; };
 		AE7CD520244A6B7300214E88 /* TranscribeEndView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */; };
 		AE818F982480232F00BAB034 /* SeekerArticleInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F972480232F00BAB034 /* SeekerArticleInputView.swift */; };
-		AE818F9A24802AB600BAB034 /* Article+Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9924802AB600BAB034 /* Article+Identifiable.swift */; };
-		AE818F9C2481B07900BAB034 /* ItemSelectionViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9B2481B07900BAB034 /* ItemSelectionViewState.swift */; };
+		AE818F9A24802AB600BAB034 /* NexdClient+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9924802AB600BAB034 /* NexdClient+Utilities.swift */; };
+		AE818F9C2481B07900BAB034 /* HelpRequestCreationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9B2481B07900BAB034 /* HelpRequestCreationState.swift */; };
 		AE818F9E2482574B00BAB034 /* NexdUI+DoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9D2482574B00BAB034 /* NexdUI+DoneButton.swift */; };
 		AE818FA0248258EA00BAB034 /* NexdUI+Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818F9F248258EA00BAB034 /* NexdUI+Modal.swift */; };
 		AE818FA2248263B800BAB034 /* NexdUI+CancelButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FA1248263B800BAB034 /* NexdUI+CancelButton.swift */; };
+		AE818FA62484120D00BAB034 /* NexdUI+ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */; };
 		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
 		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E23592462A7CB00AC261D /* Dialog.swift */; };
@@ -190,11 +191,12 @@
 		AE7174CD242BE16C00EBF302 /* NexdApiClient+Setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdApiClient+Setup.swift"; sourceTree = "<group>"; };
 		AE7CD51F244A6B7300214E88 /* TranscribeEndView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeEndView.swift; sourceTree = "<group>"; };
 		AE818F972480232F00BAB034 /* SeekerArticleInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeekerArticleInputView.swift; sourceTree = "<group>"; };
-		AE818F9924802AB600BAB034 /* Article+Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Identifiable.swift"; sourceTree = "<group>"; };
-		AE818F9B2481B07900BAB034 /* ItemSelectionViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemSelectionViewState.swift; sourceTree = "<group>"; };
+		AE818F9924802AB600BAB034 /* NexdClient+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdClient+Utilities.swift"; sourceTree = "<group>"; };
+		AE818F9B2481B07900BAB034 /* HelpRequestCreationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestCreationState.swift; sourceTree = "<group>"; };
 		AE818F9D2482574B00BAB034 /* NexdUI+DoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+DoneButton.swift"; sourceTree = "<group>"; };
 		AE818F9F248258EA00BAB034 /* NexdUI+Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Modal.swift"; sourceTree = "<group>"; };
 		AE818FA1248263B800BAB034 /* NexdUI+CancelButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+CancelButton.swift"; sourceTree = "<group>"; };
+		AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+ArticleList.swift"; sourceTree = "<group>"; };
 		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
 		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE8E23592462A7CB00AC261D /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				AE8E23592462A7CB00AC261D /* Dialog.swift */,
 				AE818F9F248258EA00BAB034 /* NexdUI+Modal.swift */,
 				AE818FA1248263B800BAB034 /* NexdUI+CancelButton.swift */,
+				AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -390,7 +393,7 @@
 				AE818F972480232F00BAB034 /* SeekerArticleInputView.swift */,
 				AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */,
 				AED2A968244058800082316F /* PhoneCallViewController.swift */,
-				AE818F9B2481B07900BAB034 /* ItemSelectionViewState.swift */,
+				AE818F9B2481B07900BAB034 /* HelpRequestCreationState.swift */,
 			);
 			path = seeker;
 			sourceTree = "<group>";
@@ -616,7 +619,7 @@
 				AE50F06F244902D700601DDF /* UIApplication+EndEditing.swift */,
 				AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */,
 				AED50B8F244BA69F00A51677 /* ValidationRuleSet+Nexd.swift */,
-				AE818F9924802AB600BAB034 /* Article+Identifiable.swift */,
+				AE818F9924802AB600BAB034 /* NexdClient+Utilities.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -1000,7 +1003,7 @@
 				AEF3D6532425A138005C77CE /* HelperRequestOverviewViewController.swift in Sources */,
 				AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */,
 				AE818F9E2482574B00BAB034 /* NexdUI+DoneButton.swift in Sources */,
-				AE818F9C2481B07900BAB034 /* ItemSelectionViewState.swift in Sources */,
+				AE818F9C2481B07900BAB034 /* HelpRequestCreationState.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */,
 				AED2A95C243F9A050082316F /* CoreAppModule.swift in Sources */,
@@ -1008,11 +1011,12 @@
 				AED5E52A2446232D00A3DFA1 /* NexdUI+TextField.swift in Sources */,
 				AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */,
 				AE510B8C2443C4550068DF60 /* CheckoutListView.swift in Sources */,
-				AE818F9A24802AB600BAB034 /* Article+Identifiable.swift in Sources */,
+				AE818F9A24802AB600BAB034 /* NexdClient+Utilities.swift in Sources */,
 				AE52A2762437B76500A1166F /* UserProfileView.swift in Sources */,
 				AEF3D65124259B2D005C77CE /* MainPageView.swift in Sources */,
 				AEB6AC7224423DC900823E7C /* HelperOptionsView.swift in Sources */,
 				AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */,
+				AE818FA62484120D00BAB034 /* NexdUI+ArticleList.swift in Sources */,
 				AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */,
 				AEEEDF17247EFE330007E961 /* AccessibilityIdentifiers.swift in Sources */,
 				AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */,

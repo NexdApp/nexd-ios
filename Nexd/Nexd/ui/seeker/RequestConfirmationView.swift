@@ -188,14 +188,14 @@ extension RequestConfirmationView {
 
         private var cancellableSet: Set<AnyCancellable>?
 
-        var state: ItemSelectionViewState
+        var state: HelpRequestCreationState
 
         private lazy var profile = userService.findMe().asObservable().share(replay: 1).publisher
 
         init(navigator: ScreenNavigating,
              userService: UserService,
              helpRequestsService: HelpRequestsService,
-             state: ItemSelectionViewState,
+             state: HelpRequestCreationState,
              onSuccess: (() -> Void)? = nil,
              onError: ((Error) -> Void)? = nil) {
             self.navigator = navigator
@@ -208,15 +208,7 @@ extension RequestConfirmationView {
 
         func onConfirmButtonTapped() {
             cancellableSet?.insert(
-                confirm(firstName: state.firstName,
-                        lastName: state.lastName,
-                        street: state.street,
-                        number: state.houseNumber,
-                        zipCode: state.zipCode,
-                        city: state.city,
-                        phoneNumber: state.phoneNumber,
-                        additionalRequest: state.information,
-                        deliveryComment: state.deliveryComment)
+                confirm()
                     .publisher
                     .sink(
                         receiveCompletion: { [weak self] completion in
@@ -291,32 +283,8 @@ extension RequestConfirmationView {
             cancellableSet = nil
         }
 
-        private func confirm(firstName: String?,
-                             lastName: String?,
-                             street: String?,
-                             number: String?,
-                             zipCode: String?,
-                             city: String?,
-                             phoneNumber: String?,
-                             additionalRequest: String?,
-                             deliveryComment: String?) -> Completable {
-            let articleDtos = state.items
-                .filter { $0.amount > 0 }
-                .map { $0.dto }
-
-            let dto = HelpRequestCreateDto(firstName: firstName,
-                                           lastName: lastName,
-                                           street: street,
-                                           number: number,
-                                           zipCode: zipCode,
-                                           city: city,
-                                           articles: articleDtos,
-                                           status: nil,
-                                           additionalRequest: additionalRequest,
-                                           deliveryComment: deliveryComment,
-                                           phoneNumber: phoneNumber)
-
-            return helpRequestsService.submitRequest(dto: dto)
+        private func confirm() -> Completable {
+            return helpRequestsService.submitRequest(dto: state.dto)
                 .asCompletable()
         }
     }
@@ -334,7 +302,7 @@ extension RequestConfirmationView {
             let viewModel = RequestConfirmationView.ViewModel(navigator: PreviewNavigator(),
                                                               userService: UserService(),
                                                               helpRequestsService: HelpRequestsService(),
-                                                              state: ItemSelectionViewState())
+                                                              state: HelpRequestCreationState())
             return Group {
                 RequestConfirmationView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)

@@ -140,16 +140,16 @@ extension SeekerArticleInputView {
 
             @Published var amount: String?
 
-            @Published var unit: ItemSelectionViewState.Unit?
+            @Published var unit: HelpRequestCreationState.Unit?
             @Published var isUnitsPickerVisible: Bool = false
 
-            func asItem() -> ItemSelectionViewState.Item {
+            func asItem() -> HelpRequestCreationState.Item {
                 let articleName: String = self.articleName ?? ""
                 let amount: String = self.amount ?? "0"
-                return ItemSelectionViewState.Item(article: nil, name: articleName, amount: Int64(amount) ?? 0, unit: unit)
+                return HelpRequestCreationState.Item(article: nil, name: articleName, amount: Int64(amount) ?? 0, unit: unit)
             }
 
-            static func from(item: ItemSelectionViewState.Item?) -> ViewState {
+            static func from(item: HelpRequestCreationState.Item?) -> ViewState {
                 let state = ViewState()
 
                 if let item = item {
@@ -164,16 +164,16 @@ extension SeekerArticleInputView {
 
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
-        private let onDone: ((ItemSelectionViewState.Item) -> Void)?
+        private let onDone: ((HelpRequestCreationState.Item) -> Void)?
         private let onCancel: (() -> Void)?
         private var cancellableSet = Set<AnyCancellable>()
         private var articleNameInput = PassthroughSubject<String?, Never>()
 
-        @Published var itemSelectionViewState: ItemSelectionViewState
+        @Published var itemSelectionViewState: HelpRequestCreationState
 
         var state: ViewState
 
-        var favoriteUnits: [ItemSelectionViewState.Unit]? {
+        var favoriteUnits: [HelpRequestCreationState.Unit]? {
             guard let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return nil }
 
             return unitIdOrder
@@ -181,7 +181,7 @@ extension SeekerArticleInputView {
                 .sorted { first, second in first.name < second.name }
         }
 
-        var otherUnits: [ItemSelectionViewState.Unit]? {
+        var otherUnits: [HelpRequestCreationState.Unit]? {
             return itemSelectionViewState.units?
                 .filter { unit in
                     guard let unitId = unit.id, let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return true }
@@ -193,9 +193,9 @@ extension SeekerArticleInputView {
 
         init(navigator: ScreenNavigating,
              articlesService: ArticlesService,
-             itemSelectionViewState: ItemSelectionViewState,
-             item: ItemSelectionViewState.Item?,
-             onDone: ((ItemSelectionViewState.Item) -> Void)? = nil,
+             itemSelectionViewState: HelpRequestCreationState,
+             item: HelpRequestCreationState.Item?,
+             onDone: ((HelpRequestCreationState.Item) -> Void)? = nil,
              onCancel: (() -> Void)? = nil) {
             self.navigator = navigator
             self.articlesService = articlesService
@@ -237,7 +237,7 @@ extension SeekerArticleInputView {
             state.isUnitsPickerVisible = true
         }
 
-        func unitSelected(unit: ItemSelectionViewState.Unit) {
+        func unitSelected(unit: HelpRequestCreationState.Unit) {
             state.unit = unit
             dismissUnitPicker()
         }
@@ -295,7 +295,7 @@ extension SeekerArticleInputView {
         static var previews: some View {
             let viewModel = SeekerArticleInputView.ViewModel(navigator: PreviewNavigator(),
                                                              articlesService: ArticlesService(),
-                                                             itemSelectionViewState: ItemSelectionViewState(),
+                                                             itemSelectionViewState: HelpRequestCreationState(),
                                                              item: nil)
             return Group {
                 SeekerArticleInputView(viewModel: viewModel)

@@ -148,6 +148,7 @@
 "transcribe_articles_error_message" = "Speichern fehlgeschlagen. Bitte überprüfe, dass die eingegebenen Daten korrekt und valide sind!";
 "transcribe_articles_error_title" = "Anfrage fehlgeschlagen!";
 "transcribe_articles_screen_title" = "Einkaufszettel";
+"transcribe_articles_selection_no_items_text" = "Benutze bitte den '+' Knopf um die Artikel aus dem aufgezeichneten Telefonanruf zur Liste hinzuzufügen";
 "transcribe_end_button_title_complete" = "Fertig";
 "transcribe_end_screen_title_ios" = "Vielen Dank für deine Hilfe zur Bearbeitung der Anfrage!";
 "transcribe_info_button_title_confirm" = "Info bestätigen";

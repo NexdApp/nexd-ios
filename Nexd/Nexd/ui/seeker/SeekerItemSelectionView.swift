@@ -10,24 +10,6 @@ import Combine
 import NexdClient
 import SwiftUI
 
-extension AvailableLanguages {
-    static var current: AvailableLanguages {
-        let currentLanguages = Bundle.main.preferredLocalizations
-            .compactMap { AvailableLanguages(rawValue: $0) }
-
-        return currentLanguages.first ?? .en
-    }
-}
-
-extension CreateHelpRequestArticleDto.Language {
-    static var current: CreateHelpRequestArticleDto.Language {
-        let currentLanguages = Bundle.main.preferredLocalizations
-            .compactMap { CreateHelpRequestArticleDto.Language(rawValue: $0) }
-
-        return currentLanguages.first ?? .en
-    }
-}
-
 struct SeekerItemSelectionView: View {
     @ObservedObject var viewModel: ViewModel
 
@@ -60,29 +42,10 @@ struct SeekerItemSelectionView: View {
                             .background(Circle().fill(Color.white))
                     }
                 } else {
-                    VStack(spacing: 12) {
-                        ForEach(viewModel.state.items) { item in
-                            NexdUI.Card {
-                                HStack {
-                                    Text(item.name)
-
-                                    Spacer()
-
-                                    Text(String(item.amount))
-
-                                    item.unit.map { unit in
-                                        Text(unit.nameShort)
-                                    }
-
-                                    NexdUI.Buttons.deleteButton {
-                                        self.viewModel.removeItem(item: item)
-                                    }
-                                }
-                            }
-                            .onTapGesture { self.viewModel.editItem(item: item) }
-                            .padding([.leading, .trailing], 35)
-                        }
-                    }
+                    NexdUI.EditableArticleList(items: viewModel.state.items,
+                                               onDelete: { self.viewModel.removeItem(item: $0) },
+                                               onEdit: { self.viewModel.editItem(item: $0) })
+                        .padding([.leading, .trailing], 35)
                 }
             }
 
@@ -109,7 +72,7 @@ extension SeekerItemSelectionView {
 
         private var cancellableSet = Set<AnyCancellable>()
 
-        var state: ItemSelectionViewState = ItemSelectionViewState()
+        var state: HelpRequestCreationState = HelpRequestCreationState()
 
         private var articleNameInput = PassthroughSubject<String?, Never>()
 
@@ -122,8 +85,8 @@ extension SeekerItemSelectionView {
             navigator.goBack()
         }
 
-        func editItem(item: ItemSelectionViewState.Item) {
-            navigator.toArticleInput(itemSelectionViewState: state, with: item) { [weak self] updatedtem in
+        func editItem(item: HelpRequestCreationState.Item) {
+            navigator.toArticleInput(helpRequestCreationState: state, with: item) { [weak self] updatedtem in
                 guard let self = self else { return }
 
                 log.debug("Item updated: \(updatedtem)")
@@ -136,12 +99,12 @@ extension SeekerItemSelectionView {
             }
         }
 
-        func removeItem(item: ItemSelectionViewState.Item) {
+        func removeItem(item: HelpRequestCreationState.Item) {
             state.items.removeAll { $0.id == item.id }
         }
 
         func addItemEntryTapped() {
-            navigator.toArticleInput(itemSelectionViewState: state, with: nil) { [weak self] item in
+            navigator.toArticleInput(helpRequestCreationState: state, with: nil) { [weak self] item in
                 self?.state.items.append(item)
             }
         }
@@ -170,7 +133,7 @@ extension SeekerItemSelectionView {
                     log.debug("Received units: \(units)")
                     self?.state.units = units
                         .sorted { first, second -> Bool in first.name < second.name }
-                        .map { unit in ItemSelectionViewState.Unit(id: unit.id, name: unit.name, nameShort: unit.nameShort) }
+                        .map { unit in HelpRequestCreationState.Unit(id: unit.id, name: unit.name, nameShort: unit.nameShort) }
                 })
                 .store(in: &cancellableSet)
 

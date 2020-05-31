@@ -8,7 +8,7 @@
 
 import NexdClient
 
-class HelpRequestCreationViewState: ObservableObject {
+class HelpRequestCreationState: ObservableObject {
     struct Unit: Identifiable {
         let id: Int64?
         let name: String

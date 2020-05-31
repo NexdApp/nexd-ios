@@ -26,10 +26,10 @@ protocol ScreenNavigating {
     func toProfileScreen()
     func toShoppingListOptions()
     func toCreateShoppingList()
-    func toArticleInput(itemSelectionViewState: ItemSelectionViewState,
-                        with item: ItemSelectionViewState.Item?,
-                        onItemSaved: @escaping ((ItemSelectionViewState.Item) -> Void))
-    func toRequestConfirmation(state: ItemSelectionViewState)
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: @escaping ((HelpRequestCreationState.Item) -> Void))
+    func toRequestConfirmation(state: HelpRequestCreationState)
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
@@ -163,12 +163,12 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toArticleInput(itemSelectionViewState: ItemSelectionViewState,
-                        with item: ItemSelectionViewState.Item?,
-                        onItemSaved: @escaping ((ItemSelectionViewState.Item) -> Void)) {
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: @escaping ((HelpRequestCreationState.Item) -> Void)) {
         let screen = SeekerArticleInputView.createScreen(viewModel: SeekerArticleInputView.ViewModel(navigator: self,
                                                                                                      articlesService: articlesService,
-                                                                                                     itemSelectionViewState: itemSelectionViewState,
+                                                                                                     itemSelectionViewState: helpRequestCreationState,
                                                                                                      item: item,
                                                                                                      onDone: { [weak self] item in
                                                                                                          onItemSaved(item)
@@ -179,7 +179,7 @@ extension Navigator: ScreenNavigating {
         present(screen: screen)
     }
 
-    func toRequestConfirmation(state: ItemSelectionViewState) {
+    func toRequestConfirmation(state: HelpRequestCreationState) {
         let viewModel = RequestConfirmationView.ViewModel(navigator: self,
                                                           userService: userService,
                                                           helpRequestsService: helpRequestsService,
