@@ -10,9 +10,6 @@ import Combine
 import NexdClient
 import SwiftUI
 
-// TODO: - order units, move "favorite" units to the top
-// TODO: - only use "approved" items as suggestions
-
 struct SeekerArticleInputView: View {
     @ObservedObject var viewModel: ViewModel
 
@@ -86,15 +83,30 @@ struct SeekerArticleInputView: View {
                                 .font(R.font.proximaNovaSoftBold.font(size: 35))
                                 .foregroundColor(R.color.greetingSubline.color)
 
-                            self.viewModel.itemSelectionViewState.units.map { units in
-                                List(units) { unit in
-                                    NexdUI.Texts.defaultDark(text: Text("\(unit.name) (\(unit.nameShort))"))
-                                        .frame(maxWidth: .infinity, minHeight: 40)
-                                        .contentShape(Rectangle())
-                                        .onTapGesture { self.viewModel.unitSelected(unit: unit) }
+                            ScrollView {
+                                self.viewModel.favoriteUnits.map { units in
+                                    ForEach(units) { unit in
+                                        NexdUI.Texts.matching("\(unit.name) (\(unit.nameShort))")
+                                            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture { self.viewModel.unitSelected(unit: unit) }
+                                    }
                                 }
-                                .frame(maxWidth: .infinity, maxHeight: 320)
+
+                                if !(self.viewModel.favoriteUnits?.isEmpty ?? true) {
+                                    Divider()
+                                }
+
+                                self.viewModel.otherUnits.map { units in
+                                    ForEach(units) { unit in
+                                        NexdUI.Texts.notMatching("\(unit.name) (\(unit.nameShort))")
+                                            .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
+                                            .contentShape(Rectangle())
+                                            .onTapGesture { self.viewModel.unitSelected(unit: unit) }
+                                    }
+                                }
                             }
+                            .frame(maxWidth: .infinity, maxHeight: 320)
                         }
                         .padding(8)
                         .background(Color.white)
@@ -120,6 +132,7 @@ extension SeekerArticleInputView {
         class ViewState: ObservableObject {
             @Published var articleName: String?
             @Published var suggestions: [Article]?
+            @Published var acceptedSuggestion: Article?
 
             @Published var amount: String?
 
@@ -149,14 +162,30 @@ extension SeekerArticleInputView {
         private let articlesService: ArticlesService
         private let onDone: ((ItemSelectionViewState.Item) -> Void)?
         private let onCancel: (() -> Void)?
+        private var cancellableSet = Set<AnyCancellable>()
+        private var articleNameInput = PassthroughSubject<String?, Never>()
 
         @Published var itemSelectionViewState: ItemSelectionViewState
 
-        private var cancellableSet = Set<AnyCancellable>()
-
         var state: ViewState
 
-        private var articleNameInput = PassthroughSubject<String?, Never>()
+        var favoriteUnits: [ItemSelectionViewState.Unit]? {
+            guard let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return nil }
+
+            return unitIdOrder
+                .compactMap { unitId in itemSelectionViewState.units?.first { unit in unit.id == unitId } }
+                .sorted { first, second in first.name < second.name }
+        }
+
+        var otherUnits: [ItemSelectionViewState.Unit]? {
+            return itemSelectionViewState.units?
+                .filter { unit in
+                    guard let unitId = unit.id, let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return true }
+
+                    return !unitIdOrder.contains(unitId)
+                }
+                .sorted { first, second in first.name < second.name }
+        }
 
         init(navigator: ScreenNavigating,
              articlesService: ArticlesService,
@@ -181,6 +210,7 @@ extension SeekerArticleInputView {
         }
 
         func articleNameChanged(text: String?) {
+            state.acceptedSuggestion = nil
             articleNameInput.send(text)
         }
 
@@ -189,6 +219,7 @@ extension SeekerArticleInputView {
         }
 
         func suggestionAccepted(suggestion: Article) {
+            state.acceptedSuggestion = suggestion
             state.articleName = suggestion.name
             state.suggestions = nil
 
@@ -231,7 +262,7 @@ extension SeekerArticleInputView {
                     return self.articlesService.allArticles(limit: 5,
                                                             startsWith: inputText,
                                                             language: self.itemSelectionViewState.language,
-                                                            onlyVerified: false)
+                                                            onlyVerified: true)
                         .map { articles -> [Article]? in articles }
                         .publisher
                         .replaceError(with: nil)

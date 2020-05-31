@@ -262,6 +262,14 @@ enum NexdUI {
                 + Text(match).matchingText()
                 + Text(suffix).notMatchingText()
         }
+
+        static func matching(_ text: String) -> Text {
+            Text(text).matchingText()
+        }
+
+        static func notMatching(_ text: String) -> Text {
+            Text(text).notMatchingText()
+        }
     }
 }
 
