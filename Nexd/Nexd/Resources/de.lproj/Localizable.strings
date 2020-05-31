@@ -111,7 +111,7 @@
 "role_selection_seeker" = "Ich brauche etwas!";
 "seeker_article_input_description" = "Bitte gib den Namen, Anzahl und Maßeinheit des Artikels an den du zur Liste hinzufügen möchtest.";
 "seeker_article_input_title" = "Artikel hinzufügen";
-"seeker_article_input_unit_picker_title" = "Unit";
+"seeker_article_input_unit_picker_title" = "Maßeinheit";
 "seeker_detail_placeholder_information" = "Zusätzliche Informationen";
 "seeker_detail_screen_title" = "Deine Anfrage";
 "seeker_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";

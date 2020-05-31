@@ -10,10 +10,9 @@ import Combine
 import NexdClient
 import SwiftUI
 
-// TODO: - send correct locale for backend requests
-// TODO: - check if automatic selection of unit works when a suggestion is accepted
 // TODO: - order units, move "favorite" units to the top
-// TODO: - check UI in english and german!
+// TODO: - only use "approved" items as suggestions
+// TODO: - use bold font in suggestions for parts of the strings which match exactly the string entered by the user
 
 struct SeekerArticleInputView: View {
     @ObservedObject var viewModel: ViewModel
@@ -30,6 +29,7 @@ struct SeekerArticleInputView: View {
                                              text: self.$viewModel.state.articleName,
                                              placeholder: R.string.localizable.seeker_item_selection_add_article_placeholer(),
                                              onChanged: { string in self.viewModel.articleNameChanged(text: string) },
+                                             onCommit: { _ in self.viewModel.articleNameLostFocus() },
                                              inputConfiguration: NexdUI.InputConfiguration(hasDone: true))
 
                             self.viewModel.state.suggestions.map { suggestions in
@@ -119,7 +119,6 @@ extension SeekerArticleInputView {
     class ViewModel: ObservableObject {
         class ViewState: ObservableObject {
             @Published var articleName: String?
-            @Published var acceptedSuggestion: Article?
             @Published var suggestions: [Article]?
 
             @Published var amount: String?
@@ -182,13 +181,15 @@ extension SeekerArticleInputView {
         }
 
         func articleNameChanged(text: String?) {
-            state.acceptedSuggestion = nil
             articleNameInput.send(text)
+        }
+
+        func articleNameLostFocus() {
+            state.suggestions = nil
         }
 
         func suggestionAccepted(suggestion: Article) {
             state.articleName = suggestion.name
-            state.acceptedSuggestion = suggestion
             state.suggestions = nil
 
             if let unitId = suggestion.unitIdOrder?.first {
