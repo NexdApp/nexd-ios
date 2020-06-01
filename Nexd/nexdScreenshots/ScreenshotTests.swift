@@ -11,10 +11,6 @@ import Swifter
 import XCTest
 
 class ScreenshotTests: XCTestCase {
-    enum Constants {
-        static let mockBackendPort: in_port_t = 9090
-    }
-
     let mockBackend = HttpServer()
     var app: XCUIApplication?
 
@@ -30,10 +26,10 @@ class ScreenshotTests: XCTestCase {
             return HttpResponse.notFound
         }
 
-        XCTAssertNoThrow(try? mockBackend.start(Constants.mockBackendPort))
+        XCTAssertNoThrow(try? mockBackend.start(mockBackendPort))
 
         app.enableUiTesting()
-        app.changeBaseUrl(to: "http://localhost:\(Constants.mockBackendPort)")
+        app.changeBaseUrl(to: "http://localhost:\(mockBackendPort)")
 
         self.app = app
     }
@@ -59,7 +55,7 @@ class ScreenshotTests: XCTestCase {
         snapshot("MainPage")
     }
 
-    func testHelperOverviewScreen() {
+    func testHelperOptions() {
         app?.login()
 
         mockBackend
@@ -69,7 +65,36 @@ class ScreenshotTests: XCTestCase {
 
         app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
 
-        snapshot("HelperOverview")
+        snapshot("HelperOptions")
+    }
+
+    func testHelperShoppingWorkflow() {
+        app?.login()
+
+        mockBackend
+            .withDefaultUserProfile()
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
+        app?.buttons[AccessibilityIdentifier.helperOptionsGoShoppingButton.rawValue].tap()
+
+        snapshot("HelperRequestOverview")
+    }
+
+    func testHelperCallTranscriptionWorkflow() {
+        app?.login()
+
+        mockBackend
+            .withDefaultUserProfile()
+            .withDefaultCalls()
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
+        app?.buttons[AccessibilityIdentifier.helperOptionsTranscribeCallButton.rawValue].tap()
+
+        snapshot("Call transcription")
     }
 
     func testCreateHelpRequestFlow() {
@@ -115,5 +140,18 @@ class ScreenshotTests: XCTestCase {
         doneButton?.tap()
 
         snapshot("SeekerItemSelection_one_item")
+    }
+
+    private var mockBackendPort: in_port_t {
+        // use a different mock backend port for each simulator to avoid conflicts when tests run in parallel
+        switch UIDevice.current.name {
+        case "iPhone 8":
+            return 9090
+        case "iPhone 11":
+            return 9091
+        default:
+            XCTFail("No mock backend port specified for iOS device: \(UIDevice.current.name)")
+            return 9999
+        }
     }
 }

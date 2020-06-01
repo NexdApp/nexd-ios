@@ -21,11 +21,13 @@ struct HelperOptionsView: View {
                 self.viewModel.transcribeCallTapped()
             }
             .padding([.leading, .trailing], 12)
+            .identified(by: .helperOptionsTranscribeCallButton)
 
             NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_shopping.text) {
                 self.viewModel.goShoppingTapped()
             }
             .padding([.leading, .trailing], 12)
+            .identified(by: .helperOptionsGoShoppingButton)
 
             Spacer()
         }

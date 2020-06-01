@@ -17,6 +17,8 @@ enum AccessibilityIdentifier: String {
     case seekerArticleInputNameSuggestion = "seeker_article_input_name_suggestion"
     case seekerArticleInputAmountTextField = "seeker_article_input_amount_text_field"
     case seekerArticleInputUnitButton = "seeker_article_input_unit_button"
+    case helperOptionsTranscribeCallButton = "helper_options_transcribe_call_button"
+    case helperOptionsGoShoppingButton = "helper_options_go_shopping_button"
     case cancelButton = "cancel_button"
     case doneButton = "done_button"
     case modalCancelButton = "modal_cancel_button"

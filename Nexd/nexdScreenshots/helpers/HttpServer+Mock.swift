@@ -61,12 +61,23 @@ extension HttpServer {
 
         return self
     }
+
+    @discardableResult
+    func onGetCalls(_ handler: @escaping () -> [Call]?) -> HttpServer {
+        GET["/phone/calls"] = { request in
+            guard let response = handler() else { return .notFound }
+
+            return .ok(.text(response.jsonString ?? ""))
+        }
+
+        return self
+    }
 }
 
 extension HttpServer {
     @discardableResult
     func withDefaultUserProfile(file: StaticString = #file, line: UInt = #line) -> HttpServer {
-        onGetProfile { User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil) }
+        onGetProfile { User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: "34032", city: nil, id: "", email: nil, role: nil, phoneNumber: nil) }
     }
 
     @discardableResult
@@ -125,6 +136,27 @@ extension HttpServer {
                 XCTFail("Unexpected language: \(language ?? "nil")", file: file, line: line)
                 return nil
             }
+        }
+    }
+
+    @discardableResult
+    func withDefaultCalls(file: StaticString = #file, line: UInt = #line, onCalled: (() -> Void)? = nil) -> HttpServer {
+        onGetCalls {
+            defer { onCalled?() }
+
+            return [
+                Call(convertedHelpRequestId: 0,
+                     sid: "sid",
+                     createdAt: Date(),
+                     updatedAt: Date(),
+                     recordingUrl: nil,
+                     phoneNumber: nil,
+                     country: nil,
+                     zip: nil,
+                     city: nil,
+                     converterId: nil,
+                     converter: nil)
+            ]
         }
     }
 }
