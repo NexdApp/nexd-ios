@@ -101,7 +101,7 @@ class PreviewNavigator: ScreenNavigating {
         return Single.never()
     }
 
-    func changingHelperRequestFilterSettings(zipCode: String?, onZipCodeChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
         log.debug("changingHelperRequestFilterSettings")
     }
 

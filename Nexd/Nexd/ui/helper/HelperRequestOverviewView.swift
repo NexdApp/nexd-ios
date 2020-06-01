@@ -8,6 +8,7 @@
 
 import Combine
 import NexdClient
+import RxSwift
 import SwiftUI
 
 struct OptionalView<Value, Content>: View where Content: View {
@@ -48,11 +49,11 @@ struct HelperRequestOverviewView: View {
             ScrollView {
                 NexdUI.Texts.sectionHeader(text: R.string.localizable.helper_request_overview_heading_accepted_section.text)
 
-                OptionalView(viewModel.helperViewState.acceptedHelpRequests) { acceptedHelpRequests in
+                OptionalView(viewModel.helperWorkflowState.acceptedHelpRequests) { acceptedHelpRequests in
                     Text("FIXME!")
                 }
                 .whenNil {
-                    NexdUI.Texts.detailsText(text: Text("No accepted requests found. Please pick requests from the list below."))
+                    NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_accepted_requests_list_placeholder.text)
                         .padding([.top, .bottom], 20)
                 }
 
@@ -77,11 +78,13 @@ struct HelperRequestOverviewView: View {
                     self.viewModel.onChangeZipCodePressed()
                 }
 
-                OptionalView(viewModel.helperViewState.acceptedHelpRequests) { acceptedHelpRequests in
-                    Text("FIXME!")
+                OptionalView(viewModel.helperWorkflowState.openHelpRequests as [HelpRequest]?) { openHelpRequests in
+                    ForEach(openHelpRequests) { request in
+                        Text(request.displayName)
+                    }
                 }
                 .whenNil {
-                    NexdUI.Texts.detailsText(text: Text("No open requests found. Please come back later."))
+                    NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_placeholder.text)
                         .padding([.top, .bottom], 20)
                 }
 
@@ -114,9 +117,8 @@ extension HelperRequestOverviewView {
         private let helpListsService: HelpListsService
         private var cancellableSet: Set<AnyCancellable>?
 
-        let test: String? = "TEST"
         fileprivate var state: ViewState = ViewState()
-        fileprivate let helperViewState: HelperWorkflowState = HelperWorkflowState()
+        fileprivate let helperWorkflowState: HelperWorkflowState = HelperWorkflowState()
 
         init(navigator: ScreenNavigating,
              userService: UserService,
@@ -133,8 +135,8 @@ extension HelperRequestOverviewView {
         }
 
         func onChangeZipCodePressed() {
-            navigator.changingHelperRequestFilterSettings(zipCode: state.zipCode) { zipCode in
-                log.debug("ZEFIX")
+            navigator.changingHelperRequestFilterSettings(zipCode: state.zipCode) { [weak self] result in
+                self?.state.zipCode = result?.zipCode
             }
         }
 
@@ -149,11 +151,37 @@ extension HelperRequestOverviewView {
                 .assign(to: \.zipCode, on: state)
                 .store(in: &cancellableSet)
 
+            helpListsService
+                .activeHelpList()
+                .map { list -> HelpList? in list }
+                .publisher
+                .replaceError(with: nil)
+                .assign(to: \.helpList, on: helperWorkflowState)
+                .store(in: &cancellableSet)
+
+            state.$zipCode
+                .asObservable()
+                .flatMap { [weak self] zip -> Single<[HelpRequest]> in
+                    guard let self = self else { return Single.never() }
+
+                    guard let zip = zip else {
+                        return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, status: [.pending])
+                    }
+
+                    return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, zipCode: [zip], status: [.pending])
+                }
+                .debug("ZEFIX")
+                .publisher
+                .map { requests -> [HelpRequest]? in requests }
+                .replaceError(with: nil)
+                .assign(to: \.helpRequests, on: helperWorkflowState)
+                .store(in: &cancellableSet)
+
             state.objectWillChange
                 .sink { [weak self] _ in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
 
-            helperViewState.objectWillChange
+            helperWorkflowState.objectWillChange
                 .sink { [weak self] _ in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
 

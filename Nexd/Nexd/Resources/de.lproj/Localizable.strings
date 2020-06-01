@@ -61,6 +61,8 @@
 "helper_request_overview_button_summary_title" = "Einkaufen";
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
 "helper_request_overview_button_title_start" = "Start";
+"helper_request_overview_empty_accepted_requests_list_placeholder" = "Bisher hast du noch keine Anfragen angenommen. Bitte tippe auf eine offene Anfrage um sie anzusehen und anzunehmen.";
+"helper_request_overview_empty_open_requests_list_placeholder" = "Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden. Bitte such in einer anderen Region in deiner Nähe oder hilf uns in dem du Telefonanrufe übersetzt.";
 "helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
 "helper_request_overview_filter_inactive" = "Alle offenen Anfragen";

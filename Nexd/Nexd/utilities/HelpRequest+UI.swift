@@ -8,7 +8,7 @@
 
 import NexdClient
 
-extension HelpRequest {
+extension HelpRequest: Identifiable {
     var displayName: String {
         guard let firstName = firstName else { return R.string.localizable.helper_request_overview_unknown_requester() }
 

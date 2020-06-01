@@ -32,6 +32,17 @@ class HelpListsService {
             .asSingle()
     }
 
+    func activeHelpList() -> Single<HelpList> {
+        fetchShoppingLists()
+            .flatMap { existingLists -> Single<HelpList> in
+                if let existingList = existingLists.filter({ $0.status == .active }).first {
+                    return Single.just(existingList)
+                }
+
+                return self.createShoppingList(requestIds: [])
+            }
+    }
+
     func completeHelpList(helpListId: Int64, helpRequestsIds: [Int64]?) -> Single<HelpList> {
         let dto = HelpListCreateDto(helpRequestsIds: helpRequestsIds, status: .completed)
         return HelpListsAPI.helpListsControllerUpdateHelpLists(helpListId: helpListId, helpListCreateDto: dto)

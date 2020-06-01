@@ -38,7 +38,7 @@ protocol ScreenNavigating {
     func toHelperOverview()
     func addingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList>
     func removingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList>
-    func changingHelperRequestFilterSettings(zipCode: String?, onZipCodeChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
@@ -281,14 +281,14 @@ extension Navigator: ScreenNavigating {
         }
     }
 
-    func changingHelperRequestFilterSettings(zipCode: String?, onZipCodeChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
         let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
                                                                                                                        zipCode: zipCode,
                                                                                                                        onCancelled: { [weak self] in
                                                                                                                            self?.dismiss(completion: nil)
                                                                                                                        },
                                                                                                                        onFinished: { [weak self] result in
-                                                                                                                           onZipCodeChanged?(result)
+                                                                                                                           onFilterChanged?(result)
                                                                                                                            self?.dismiss(completion: nil)
         }))
         present(screen: screen)

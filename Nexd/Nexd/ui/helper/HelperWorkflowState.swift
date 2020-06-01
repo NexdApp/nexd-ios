@@ -11,12 +11,21 @@ import SwiftUI
 
 class HelperWorkflowState: ObservableObject {
     @Published var helpList: HelpList?
+    @Published var helpRequests: [HelpRequest]?
 
-    var acceptedHelpRequests: [AcceptedRequestCell.Item]? {
-        return nil
+    var acceptedHelpRequests: [HelpRequest]? {
+        guard let helpList = helpList, !helpList.helpRequests.isEmpty else {
+            return nil
+        }
+
+        return helpList.helpRequests
     }
 
-    var openHelpRequests: [AcceptedRequestCell.Item]? {
-        return nil
+    var openHelpRequests: [HelpRequest]? {
+        guard let helpRequests = helpRequests, !helpRequests.isEmpty else {
+            return nil
+        }
+
+        return helpRequests
     }
 }
