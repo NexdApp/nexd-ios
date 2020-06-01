@@ -11,8 +11,18 @@ import NexdClient
 import RxSwift
 
 class ArticlesService {
-    func allArticles(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> Single<[Article]> {
-        return ArticlesAPI.articlesControllerFindAll(limit: limit, startsWith: startsWith, language: language, onlyVerified: onlyVerified)
+    func allArticles(limit: Double? = nil,
+                     startsWith: String? = nil,
+                     contains: String? = nil,
+                     orderByPopularity: Bool? = nil,
+                     language: AvailableLanguages? = nil,
+                     onlyVerified: Bool? = nil) -> Single<[Article]> {
+        return ArticlesAPI.articlesControllerFindAll(limit: limit,
+                                                     startsWith: startsWith,
+                                                     contains: contains,
+                                                     orderByPopularity: orderByPopularity,
+                                                     language: language,
+                                                     onlyVerified: onlyVerified)
             .asSingle()
     }
 

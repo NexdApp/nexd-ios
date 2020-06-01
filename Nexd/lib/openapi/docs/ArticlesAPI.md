@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 # **articlesControllerFindAll**
 ```swift
-    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> Observable<[Article]>
+    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, contains: String? = nil, orderByPopularity: Bool? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> Observable<[Article]>
 ```
 
 List articles
@@ -23,6 +23,8 @@ import NexdClient
 
 let limit = 987 // Double | Maximum number of articles  (optional)
 let startsWith = "startsWith_example" // String | Starts with the given string. Empty string does not filter. (optional)
+let contains = "contains_example" // String | Contains with the given string. Empty string does not filter. (optional)
+let orderByPopularity = true // Bool | If true, orders by the most frequent used articles first. Defaults to false. (optional)
 let language = AvailableLanguages() // AvailableLanguages |  (optional)
 let onlyVerified = true // Bool | true to only gets the list of curated articles (default: true) (optional)
 
@@ -35,6 +37,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Double** | Maximum number of articles  | [optional] 
  **startsWith** | **String** | Starts with the given string. Empty string does not filter. | [optional] 
+ **contains** | **String** | Contains with the given string. Empty string does not filter. | [optional] 
+ **orderByPopularity** | **Bool** | If true, orders by the most frequent used articles first. Defaults to false. | [optional] 
  **language** | [**AvailableLanguages**](.md) |  | [optional] 
  **onlyVerified** | **Bool** | true to only gets the list of curated articles (default: true) | [optional] 
 

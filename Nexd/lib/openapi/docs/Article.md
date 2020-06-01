@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **name** | **String** | Name of the article (without unit) | 
 **language** | **String** | Language key of this article | 
 **statusOverwritten** | **Bool** | The article status can be enforced by an admin (e.g. to remove profanity). | [optional] [default to false]
+**popularity** | **Int64** | Popularity of the article, the higher the more frequent used. | 
 **unitIdOrder** | **[Int64]** | Determined order of the units. If the array is empty, there is no order yet identified. | [optional] 
 **categoryId** | **Int64** |  | [optional] 
 **status** | **String** |  | [optional] 

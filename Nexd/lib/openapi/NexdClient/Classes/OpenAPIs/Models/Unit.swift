@@ -17,21 +17,30 @@ public struct Unit: Codable {
     }
     /** Auto-incremented ID of a unit. */
     public var id: Int64?
-    /** Name of the unit */
-    public var name: String
     /** Abbreviated name of the unit */
     public var nameShort: String
     /** Language key of this unit */
     public var language: Language
     /** Some default ordering, in case there is no automatic ordering for an article, no need in the frontend. */
     public var defaultOrder: Int64?
+    public var nameZero: String
+    public var nameOne: String
+    public var nameTwo: String
+    public var nameFew: String
+    public var nameMany: String
+    public var nameOther: String
 
-    public init(id: Int64?, name: String, nameShort: String, language: Language, defaultOrder: Int64?) {
+    public init(id: Int64?, nameShort: String, language: Language, defaultOrder: Int64?, nameZero: String, nameOne: String, nameTwo: String, nameFew: String, nameMany: String, nameOther: String) {
         self.id = id
-        self.name = name
         self.nameShort = nameShort
         self.language = language
         self.defaultOrder = defaultOrder
+        self.nameZero = nameZero
+        self.nameOne = nameOne
+        self.nameTwo = nameTwo
+        self.nameFew = nameFew
+        self.nameMany = nameMany
+        self.nameOther = nameOther
     }
 
 }

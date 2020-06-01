@@ -264,9 +264,10 @@ extension SeekerArticleInputView {
                     }
 
                     return self.articlesService.allArticles(limit: 5,
-                                                            startsWith: inputText,
+                                                            contains: inputText,
+                                                            orderByPopularity: true,
                                                             language: self.itemSelectionViewState.language,
-                                                            onlyVerified: true)
+                                                            onlyVerified: false)
                         .map { articles -> [Article]? in articles }
                         .publisher
                         .replaceError(with: nil)
