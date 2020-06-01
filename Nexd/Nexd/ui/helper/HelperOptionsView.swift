@@ -6,34 +6,30 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-//import Foundation
-//import RxCocoa
-//import RxSwift
-
 import SwiftUI
 
 struct HelperOptionsView: View {
     @ObservedObject var viewModel: ViewModel
 
-        var body: some View {
-            VStack(alignment: .leading, spacing: 30) {
-                NexdUI.Texts.title(text: R.string.localizable.helper_type_screen_title.text)
-                    .padding(.top, 70)
-                    .padding([.leading, .trailing], 20)
+    var body: some View {
+        VStack(alignment: .leading, spacing: 30) {
+            NexdUI.Texts.title(text: R.string.localizable.helper_type_screen_title.text)
+                .padding(.top, 70)
+                .padding([.leading, .trailing], 20)
 
-                NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_transcript.text) {
-                    self.viewModel.transcribeCallTapped()
-                }
-                .padding([.leading, .trailing], 12)
-
-                NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_shopping.text) {
-                    self.viewModel.goShoppingTapped()
-                }
-                .padding([.leading, .trailing], 12)
-
-                Spacer()
+            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_transcript.text) {
+                self.viewModel.transcribeCallTapped()
             }
-            .withBackButton { self.viewModel.backButtonTapped() }
+            .padding([.leading, .trailing], 12)
+
+            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_shopping.text) {
+                self.viewModel.goShoppingTapped()
+            }
+            .padding([.leading, .trailing], 12)
+
+            Spacer()
+        }
+        .withBackButton { self.viewModel.backButtonTapped() }
     }
 }
 

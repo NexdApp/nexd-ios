@@ -80,8 +80,11 @@ extension RequestDetailsView {
         fileprivate let type: ViewType
         private let navigator: ScreenNavigating
         private let helpListService: HelpListsService
+
         private let helpRequest: HelpRequest
         private var helpList: HelpList
+        private let units: [NexdClient.Unit]?
+
         private let onFinished: (HelpList) -> Void
 
         private var cancellableSet = Set<AnyCancellable>()
@@ -103,12 +106,14 @@ extension RequestDetailsView {
              helpListService: HelpListsService,
              helpRequest: HelpRequest,
              helpList: HelpList,
+             units: [NexdClient.Unit]?,
              onFinished: @escaping ((HelpList) -> Void)) {
             self.type = type
             self.navigator = navigator
             self.helpListService = helpListService
             self.helpRequest = helpRequest
             self.helpList = helpList
+            self.units = units
             self.onFinished = onFinished
         }
 

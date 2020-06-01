@@ -162,14 +162,6 @@ extension String {
                                   ])
     }
 
-    func asFilterButtonDetails() -> NSAttributedString {
-        return NSAttributedString(string: self,
-                                  attributes: [
-                                    .foregroundColor: R.color.filterButtonDetails()!,
-                                      .font: R.font.proximaNovaSoftRegular(size: 14)!
-                                  ])
-    }
-
     func parseHtml() -> NSAttributedString? {
         return try? NSAttributedString(
             data: data(using: String.Encoding.unicode, allowLossyConversion: true)!,

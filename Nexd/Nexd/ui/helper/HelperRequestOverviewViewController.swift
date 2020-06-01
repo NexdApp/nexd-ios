@@ -54,21 +54,22 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
 
                     return R.string.localizable.helper_request_overview_filter_selected_zip(zipCode)
                 }
-                .map { zipCode -> NSAttributedString in zipCode.asFilterButtonDetails() }
+                .map { zipCode -> NSAttributedString in zipCode.asTitle() }
                 .asDriver(onErrorJustReturn: nil)
         }
 
         func openRequestsFilterButtonTaps() -> Completable {
-            let navigator = self.navigator
-            return zipCode
-                .take(1)
-                .asSingle()
-                .flatMap { zipCode in navigator.changingHelperRequestFilterSettings(zipCode: zipCode) }
-                .flatMapCompletable { result -> Completable in
-                    Completable.from { [weak self] in
-                        self?.zipCodeChanges.accept(result?.zipCode)
-                    }
-                }
+            return Completable.empty()
+//            let navigator = self.navigator
+//            return zipCode
+//                .take(1)
+//                .asSingle()
+//                .flatMap { zipCode in navigator.changingHelperRequestFilterSettings(zipCode: zipCode) }
+//                .flatMapCompletable { result -> Completable in
+//                    Completable.from { [weak self] in
+//                        self?.zipCodeChanges.accept(result?.zipCode)
+//                    }
+//                }
         }
 
         private let helpListUpdates = PublishRelay<HelpList>()
@@ -102,7 +103,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .take(1)
                 .flatMap { [weak self] helpList -> Completable in
                     guard let self = self else { return Completable.empty() }
-                    return self.navigator.removingHelperRequest(request: helpList.helpRequests[indexPath.row], to: helpList)
+                    return self.navigator.removingHelperRequest(request: helpList.helpRequests[indexPath.row], to: helpList, units: nil)
                         .flatMapCompletable { [weak self] updatedHelpList in
                             Completable.from {
                                 self?.helpListUpdates.accept(updatedHelpList)
@@ -152,7 +153,7 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
                 .withLatestFrom(helpList) { ($0, $1) }
                 .flatMap { [weak self] helpRequest, helpList -> Completable in
                     guard let self = self else { return Completable.empty() }
-                    return self.navigator.addingHelperRequest(request: helpRequest, to: helpList)
+                    return self.navigator.addingHelperRequest(request: helpRequest, to: helpList, units: nil)
                         .flatMapCompletable { [weak self] updatedHelpList in
                             Completable.from {
                                 self?.helpListUpdates.accept(updatedHelpList)
@@ -200,29 +201,29 @@ class HelperRequestOverviewViewController: ViewController<HelperRequestOverviewV
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = R.string.localizable.helper_request_overview_screen_title()
-        view.backgroundColor = R.color.nexdGreen()
+//        title = R.string.localizable.helper_request_overview_screen_title()
+//        view.backgroundColor = R.color.nexdGreen()
 
-        view.addSubview(backButton)
-        backButton.snp.makeConstraints { make in
-            make.left.equalTo(view).offset(17)
-            make.right.equalTo(view).offset(-12)
-            make.top.equalTo(view).offset(26)
-            make.height.equalTo(132)
-        }
+//        view.addSubview(backButton)
+//        backButton.snp.makeConstraints { make in
+//            make.left.equalTo(view).offset(17)
+//            make.right.equalTo(view).offset(-12)
+//            make.top.equalTo(view).offset(26)
+//            make.height.equalTo(132)
+//        }
 
-        view.addSubview(currentItemsListButton)
-        currentItemsListButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(100)
-            make.left.right.equalTo(view).inset(19)
-            make.height.equalTo(74)
-        }
+//        view.addSubview(currentItemsListButton)
+//        currentItemsListButton.snp.makeConstraints { make in
+//            make.top.equalToSuperview().offset(100)
+//            make.left.right.equalTo(view).inset(19)
+//            make.height.equalTo(74)
+//        }
 
-        view.addSubview(acceptedRequestsHeadingLabel)
-        acceptedRequestsHeadingLabel.snp.makeConstraints { make in
-            make.top.equalTo(currentItemsListButton.snp.bottom).offset(11)
-            make.left.right.equalToSuperview().inset(19)
-        }
+//        view.addSubview(acceptedRequestsHeadingLabel)
+//        acceptedRequestsHeadingLabel.snp.makeConstraints { make in
+//            make.top.equalTo(currentItemsListButton.snp.bottom).offset(11)
+//            make.left.right.equalToSuperview().inset(19)
+//        }
 
         view.addSubview(acceptedRequestsCollectionView)
         acceptedRequestsCollectionView.snp.makeConstraints { make -> Void in

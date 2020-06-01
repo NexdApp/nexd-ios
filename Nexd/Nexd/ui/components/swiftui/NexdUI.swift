@@ -245,8 +245,22 @@ enum NexdUI {
         static func detailsText(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .font(R.font.proximaNovaSoftBold.font(size: 20))
                 .foregroundColor(R.color.darkHeadingText.color)
+        }
+
+        static func sectionHeader(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .foregroundColor(R.color.headingText.color)
+        }
+
+        static func filterButtonDetailsText(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftRegular.font(size: 14))
+                .foregroundColor(R.color.filterButtonDetails.color)
         }
 
         static func suggestion(text: String, highlight: String?) -> some View {

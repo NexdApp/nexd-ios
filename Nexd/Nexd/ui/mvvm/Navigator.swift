@@ -36,9 +36,9 @@ protocol ScreenNavigating {
     func toTranscribeListView(state: TranscribeViewState)
     func toTranscribeEndView()
     func toHelperOverview()
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
-    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?>
+    func addingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList>
+    func removingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList>
+    func changingHelperRequestFilterSettings(zipCode: String?, onZipCodeChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
     func toCurrentItemsList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
@@ -226,14 +226,14 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelperOverview() {
-        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
-                                                                                                                  userService: userService,
-                                                                                                                  helpRequestsService: helpRequestsService,
-                                                                                                                  helpListsService: helpListsService))
+        let screen = HelperRequestOverviewView.createScreen(viewModel: HelperRequestOverviewView.ViewModel(navigator: self,
+                                                                                                           userService: userService,
+                                                                                                           helpRequestsService: helpRequestsService,
+                                                                                                           helpListsService: helpListsService))
         push(screen: screen)
     }
 
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+    func addingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList> {
         return Single.create { [weak self] single -> Disposable in
             guard let self = self else {
                 single(.success(helpList))
@@ -245,6 +245,7 @@ extension Navigator: ScreenNavigating {
                                                                                                  helpListService: self.helpListsService,
                                                                                                  helpRequest: request,
                                                                                                  helpList: helpList,
+                                                                                                 units: units,
                                                                                                  onFinished: { [weak self] helpList in
                                                                                                      log.debug("helpList: \(helpList)")
                                                                                                      single(.success(helpList))
@@ -256,7 +257,7 @@ extension Navigator: ScreenNavigating {
         }
     }
 
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+    func removingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList> {
         return Single.create { [weak self] single -> Disposable in
             guard let self = self else {
                 single(.success(helpList))
@@ -268,6 +269,7 @@ extension Navigator: ScreenNavigating {
                                                                                                  helpListService: self.helpListsService,
                                                                                                  helpRequest: request,
                                                                                                  helpList: helpList,
+                                                                                                 units: units,
                                                                                                  onFinished: { [weak self] helpList in
                                                                                                      log.debug("helpList: \(helpList)")
                                                                                                      single(.success(helpList))
@@ -279,23 +281,17 @@ extension Navigator: ScreenNavigating {
         }
     }
 
-    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
-        return Single.create { [weak self] single -> Disposable in
-            guard let self = self else {
-                single(.success(nil))
-                return Disposables.create()
-            }
-
-            let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
-                                                                                                                           zipCode: zipCode,
-                                                                                                                           onFinished: { [weak self] result in
-                                                                                                                               single(.success(result))
-                                                                                                                               self?.dismiss(completion: nil)
-            }))
-            self.present(screen: screen)
-
-            return Disposables.create()
-        }
+    func changingHelperRequestFilterSettings(zipCode: String?, onZipCodeChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
+        let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
+                                                                                                                       zipCode: zipCode,
+                                                                                                                       onCancelled: { [weak self] in
+                                                                                                                           self?.dismiss(completion: nil)
+                                                                                                                       },
+                                                                                                                       onFinished: { [weak self] result in
+                                                                                                                           onZipCodeChanged?(result)
+                                                                                                                           self?.dismiss(completion: nil)
+        }))
+        present(screen: screen)
     }
 
     func toCurrentItemsList(helpList: HelpList) {
