@@ -60,16 +60,13 @@
 		AE8E235F2467E2B900AC261D /* RswiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E235D2467E28300AC261D /* RswiftTests.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
 		AEA2010F24362C0500BD6C1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA2010E24362C0500BD6C1B /* CustomView.swift */; };
-		AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */; };
 		AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */; };
 		AEB6AC69244139D500823E7C /* UIStackView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */; };
 		AEB6AC6B24413AA500823E7C /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6A24413AA500823E7C /* PickerView.swift */; };
 		AEB6AC6D24413BA600823E7C /* IntegerPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */; };
 		AEB6AC7224423DC900823E7C /* HelperOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */; };
 		AEB6AC75244249B300823E7C /* SubMenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC74244249B300823E7C /* SubMenuButton.swift */; };
-		AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */; };
 		AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */; };
-		AEB6AC7B24432E7F00823E7C /* OpenReqeustsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */; };
 		AEB6AC7D2443362300823E7C /* Date+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7C2443362300823E7C /* Date+Nexd.swift */; };
 		AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */; };
 		AEC5877F243D224800B6876C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEC5877E243D224800B6876C /* Colors.xcassets */; };
@@ -208,16 +205,13 @@
 		AE8E235D2467E28300AC261D /* RswiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RswiftTests.swift; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
 		AEA2010E24362C0500BD6C1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
-		AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleSelectionCell.swift; sourceTree = "<group>"; };
 		AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationView.swift; sourceTree = "<group>"; };
 		AEB6AC68244139D500823E7C /* UIStackView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Nexd.swift"; sourceTree = "<group>"; };
 		AEB6AC6A24413AA500823E7C /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		AEB6AC6C24413BA600823E7C /* IntegerPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegerPickerView.swift; sourceTree = "<group>"; };
 		AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperOptionsView.swift; sourceTree = "<group>"; };
 		AEB6AC74244249B300823E7C /* SubMenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMenuButton.swift; sourceTree = "<group>"; };
-		AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCell.swift; sourceTree = "<group>"; };
 		AEB6AC782443044400823E7C /* UICollectionView+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Nexd.swift"; sourceTree = "<group>"; };
-		AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenReqeustsCell.swift; sourceTree = "<group>"; };
 		AEB6AC7C2443362300823E7C /* Date+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Nexd.swift"; sourceTree = "<group>"; };
 		AEBB8A08244A7C3F00E657DF /* HelpRequest+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HelpRequest+UI.swift"; sourceTree = "<group>"; };
 		AEC5877E243D224800B6876C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -377,16 +371,6 @@
 				AEEEDF1B247F16930007E961 /* ObservableConvertibleType+OfType.swift */,
 			);
 			path = rx;
-			sourceTree = "<group>";
-		};
-		AEB6AC622440FEB600823E7C /* cells */ = {
-			isa = PBXGroup;
-			children = (
-				AEB6AC632440FF0600823E7C /* ArticleSelectionCell.swift */,
-				AEB6AC762442FB6300823E7C /* AcceptedRequestCell.swift */,
-				AEB6AC7A24432E7F00823E7C /* OpenReqeustsCell.swift */,
-			);
-			path = cells;
 			sourceTree = "<group>";
 		};
 		AEB6AC65244129B900823E7C /* seeker */ = {
@@ -578,7 +562,6 @@
 			children = (
 				AE13590E2444A22E0015D7AB /* swiftui */,
 				AEB6AC732442498700823E7C /* buttons */,
-				AEB6AC622440FEB600823E7C /* cells */,
 				AEA2010E24362C0500BD6C1B /* CustomView.swift */,
 				AE510B892443C2FA0068DF60 /* CustomControl.swift */,
 				AEB6AC6A24413AA500823E7C /* PickerView.swift */,
@@ -964,7 +947,6 @@
 				AED8818B24351174006065D2 /* String+Nexd.swift in Sources */,
 				AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */,
 				AEF3D66924263149005C77CE /* RegistrationView.swift in Sources */,
-				AEB6AC7B24432E7F00823E7C /* OpenReqeustsCell.swift in Sources */,
 				AE2A9A9A24278989006066B4 /* UserDetailsView.swift in Sources */,
 				AED2A95A243F99980082316F /* AppComponent.swift in Sources */,
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
@@ -981,7 +963,6 @@
 				AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */,
 				AED2A957243F820F0082316F /* Navigator.swift in Sources */,
 				AEEEDF06247E98DE0007E961 /* UiTestingArguments.swift in Sources */,
-				AEB6AC642440FF0600823E7C /* ArticleSelectionCell.swift in Sources */,
 				AE50F070244902D700601DDF /* UIApplication+EndEditing.swift in Sources */,
 				AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */,
 				AE818F982480232F00BAB034 /* SeekerArticleInputView.swift in Sources */,
@@ -1035,7 +1016,6 @@
 				AED50B90244BA69F00A51677 /* ValidationRuleSet+Nexd.swift in Sources */,
 				AEEEDF1C247F16930007E961 /* ObservableConvertibleType+OfType.swift in Sources */,
 				AE50F0722449048B00601DDF /* NexdUI+DismissingKeyboard.swift in Sources */,
-				AEB6AC772442FB6300823E7C /* AcceptedRequestCell.swift in Sources */,
 				AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */,
 				AED2A960243F9A440082316F /* RootWindowModule.swift in Sources */,
 				AEBB8A09244A7C3F00E657DF /* HelpRequest+UI.swift in Sources */,
