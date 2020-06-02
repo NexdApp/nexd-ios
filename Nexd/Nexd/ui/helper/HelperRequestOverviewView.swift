@@ -51,7 +51,7 @@ struct HelperRequestOverviewView: View {
 
                 OptionalView(viewModel.helperWorkflowState.acceptedHelpRequests) { acceptedHelpRequests in
                     NexdUI.RequestList(items: acceptedHelpRequests) { request in
-                        log.debug("ZEFIX")
+                        self.viewModel.onAcceptedHelpRequestTapped(item: request)
                     }
                 }
                 .whenNil {
@@ -82,7 +82,7 @@ struct HelperRequestOverviewView: View {
 
                 OptionalView(viewModel.helperWorkflowState.openHelpRequests as [HelpRequest]?) { openHelpRequests in
                     NexdUI.RequestList(items: openHelpRequests) { request in
-                        log.debug("ZEFIX")
+                        self.viewModel.onOpenHelpRequestTapped(item: request)
                     }
                 }
                 .whenNil {
@@ -142,6 +142,38 @@ extension HelperRequestOverviewView {
             }
         }
 
+        func onAcceptedHelpRequestTapped(item: HelpRequest) {
+            navigator.removingHelperRequest(request: item, in: helperWorkflowState) { [weak self] _ in
+                self?.refreshOpenHelpRequests()
+            }
+        }
+
+        func onOpenHelpRequestTapped(item: HelpRequest) {
+            navigator.addingHelperRequest(request: item, in: helperWorkflowState) { [weak self] _ in
+                self?.refreshOpenHelpRequests()
+            }
+        }
+
+        func refreshOpenHelpRequests() {
+            cancellableSet?.insert(
+                state.$zipCode
+                    .asObservable()
+                    .flatMap { [weak self] zip -> Single<[HelpRequest]> in
+                        guard let self = self else { return Single.never() }
+
+                        guard let zip = zip else {
+                            return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, status: [.pending])
+                        }
+
+                        return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, zipCode: [zip], status: [.pending])
+                    }
+                    .publisher
+                    .map { requests -> [HelpRequest]? in requests }
+                    .replaceError(with: nil)
+                    .assign(to: \.filteredHelpRequests, on: helperWorkflowState)
+            )
+        }
+
         func bind() {
             var cancellableSet = Set<AnyCancellable>()
 
@@ -161,23 +193,6 @@ extension HelperRequestOverviewView {
                 .assign(to: \.helpList, on: helperWorkflowState)
                 .store(in: &cancellableSet)
 
-            state.$zipCode
-                .asObservable()
-                .flatMap { [weak self] zip -> Single<[HelpRequest]> in
-                    guard let self = self else { return Single.never() }
-
-                    guard let zip = zip else {
-                        return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, status: [.pending])
-                    }
-
-                    return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, zipCode: [zip], status: [.pending])
-                }
-                .publisher
-                .map { requests -> [HelpRequest]? in requests }
-                .replaceError(with: nil)
-                .assign(to: \.helpRequests, on: helperWorkflowState)
-                .store(in: &cancellableSet)
-
             state.objectWillChange
                 .sink { [weak self] _ in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
@@ -187,6 +202,8 @@ extension HelperRequestOverviewView {
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet
+
+            refreshOpenHelpRequests()
         }
 
         func unbind() {

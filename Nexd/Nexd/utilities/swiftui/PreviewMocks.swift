@@ -91,14 +91,12 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toHelperOverview")
     }
 
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList> {
+    func addingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
         log.debug("toRequestDetails")
-        return Single.never()
     }
 
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList, units: [NexdClient.Unit]?) -> Single<HelpList> {
+    func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
         log.debug("removingHelperRequest")
-        return Single.never()
     }
 
     func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {

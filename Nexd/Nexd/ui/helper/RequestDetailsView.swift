@@ -82,10 +82,10 @@ extension RequestDetailsView {
         private let helpListService: HelpListsService
 
         private let helpRequest: HelpRequest
-        private var helpList: HelpList
-        private let units: [NexdClient.Unit]?
+        private var helperWorkflowState: HelperWorkflowState
 
         private let onFinished: (HelpList) -> Void
+        private let onCancelled: () -> Void
 
         private var cancellableSet = Set<AnyCancellable>()
 
@@ -105,21 +105,26 @@ extension RequestDetailsView {
              navigator: ScreenNavigating,
              helpListService: HelpListsService,
              helpRequest: HelpRequest,
-             helpList: HelpList,
-             units: [NexdClient.Unit]?,
-             onFinished: @escaping ((HelpList) -> Void)) {
+             helperWorkflowState: HelperWorkflowState,
+             onFinished: @escaping ((HelpList) -> Void),
+             onCancelled: @escaping (() -> Void)) {
             self.type = type
             self.navigator = navigator
             self.helpListService = helpListService
             self.helpRequest = helpRequest
-            self.helpList = helpList
-            self.units = units
+            self.helperWorkflowState = helperWorkflowState
             self.onFinished = onFinished
+            self.onCancelled = onCancelled
         }
 
         func confirmButtonTapped() {
             let helpListsService = helpListService
             guard let requestId = helpRequest.id else { return }
+
+            guard let helpList = helperWorkflowState.helpList else {
+                log.error("There is not helpList for this operation!")
+                return
+            }
 
             let publisher = type == .addRequestToHelpList ?
                 helpListsService.addRequest(withId: requestId, to: helpList.id).publisher :
@@ -138,7 +143,7 @@ extension RequestDetailsView {
         }
 
         fileprivate func onModalDismissed() {
-            onFinished(helpList)
+            onCancelled()
         }
     }
 

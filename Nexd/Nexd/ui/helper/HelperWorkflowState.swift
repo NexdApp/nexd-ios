@@ -11,7 +11,8 @@ import SwiftUI
 
 class HelperWorkflowState: ObservableObject {
     @Published var helpList: HelpList?
-    @Published var helpRequests: [HelpRequest]?
+    @Published var filteredHelpRequests: [HelpRequest]?
+    @Published var units: [NexdClient.Unit]?
 
     var acceptedHelpRequests: [HelpRequest]? {
         guard let helpList = helpList, !helpList.helpRequests.isEmpty else {
@@ -22,10 +23,10 @@ class HelperWorkflowState: ObservableObject {
     }
 
     var openHelpRequests: [HelpRequest]? {
-        guard let helpRequests = helpRequests, !helpRequests.isEmpty else {
+        guard let filteredHelpRequests = filteredHelpRequests, !filteredHelpRequests.isEmpty else {
             return nil
         }
 
-        return helpRequests
+        return filteredHelpRequests
     }
 }
