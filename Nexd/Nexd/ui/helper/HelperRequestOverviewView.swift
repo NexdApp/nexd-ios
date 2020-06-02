@@ -50,7 +50,9 @@ struct HelperRequestOverviewView: View {
                 NexdUI.Texts.sectionHeader(text: R.string.localizable.helper_request_overview_heading_accepted_section.text)
 
                 OptionalView(viewModel.helperWorkflowState.acceptedHelpRequests) { acceptedHelpRequests in
-                    Text("FIXME!")
+                    NexdUI.RequestList(items: acceptedHelpRequests) { request in
+                        log.debug("ZEFIX")
+                    }
                 }
                 .whenNil {
                     NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_accepted_requests_list_placeholder.text)
@@ -79,8 +81,8 @@ struct HelperRequestOverviewView: View {
                 }
 
                 OptionalView(viewModel.helperWorkflowState.openHelpRequests as [HelpRequest]?) { openHelpRequests in
-                    ForEach(openHelpRequests) { request in
-                        Text(request.displayName)
+                    NexdUI.RequestList(items: openHelpRequests) { request in
+                        log.debug("ZEFIX")
                     }
                 }
                 .whenNil {
@@ -170,7 +172,6 @@ extension HelperRequestOverviewView {
 
                     return self.helpRequestsService.openRequests(userId: "me", excludeUserId: true, zipCode: [zip], status: [.pending])
                 }
-                .debug("ZEFIX")
                 .publisher
                 .map { requests -> [HelpRequest]? in requests }
                 .replaceError(with: nil)

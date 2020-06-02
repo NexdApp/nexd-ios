@@ -53,6 +53,7 @@
 		AE818FA62484120D00BAB034 /* NexdUI+ArticleList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */; };
 		AE818FAA248463AA00BAB034 /* HelperRequestOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FA9248463AA00BAB034 /* HelperRequestOverviewView.swift */; };
 		AE818FAC24847EDA00BAB034 /* HelperWorkflowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FAB24847EDA00BAB034 /* HelperWorkflowState.swift */; };
+		AE818FAE248623E800BAB034 /* NexdUI+RequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */; };
 		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
 		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E23592462A7CB00AC261D /* Dialog.swift */; };
@@ -198,6 +199,7 @@
 		AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+ArticleList.swift"; sourceTree = "<group>"; };
 		AE818FA9248463AA00BAB034 /* HelperRequestOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperRequestOverviewView.swift; sourceTree = "<group>"; };
 		AE818FAB24847EDA00BAB034 /* HelperWorkflowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperWorkflowState.swift; sourceTree = "<group>"; };
+		AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+RequestList.swift"; sourceTree = "<group>"; };
 		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
 		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE8E23592462A7CB00AC261D /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				AE818F9F248258EA00BAB034 /* NexdUI+Modal.swift */,
 				AE818FA1248263B800BAB034 /* NexdUI+CancelButton.swift */,
 				AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */,
+				AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -978,6 +981,7 @@
 				AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */,
 				AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */,
 				AED2A954243F78030082316F /* ViewController.swift in Sources */,
+				AE818FAE248623E800BAB034 /* NexdUI+RequestList.swift in Sources */,
 				AE818FAC24847EDA00BAB034 /* HelperWorkflowState.swift in Sources */,
 				AE50F06E2448F76D00601DDF /* NexdUI+NumberInputView.swift in Sources */,
 				AE50F0682448C2CB00601DDF /* TranscribeListView.swift in Sources */,
