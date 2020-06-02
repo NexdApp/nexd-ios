@@ -11,33 +11,6 @@ import NexdClient
 import RxSwift
 import SwiftUI
 
-struct OptionalView<Value, Content>: View where Content: View {
-    var content: (Value) -> Content
-    var value: Value
-
-    init?(_ value: Value?, @ViewBuilder content: @escaping (Value) -> Content) {
-        guard let value = value else { return nil }
-
-        self.value = value
-        self.content = content
-    }
-
-    var body: some View {
-        content(value)
-    }
-}
-
-extension Optional where Wrapped: View {
-    func whenNil<T: View>(_ transform: () -> T) -> AnyView? {
-        switch self {
-        case .none:
-            return AnyView(transform())
-        case let .some(view):
-            return AnyView(view)
-        }
-    }
-}
-
 struct HelperRequestOverviewView: View {
     @ObservedObject var viewModel: ViewModel
 
@@ -94,7 +67,7 @@ struct HelperRequestOverviewView: View {
             }
 
             NexdUI.Buttons.default(text: R.string.localizable.helper_request_overview_button_title_current_items_list.text) {
-                log.debug("ZEFIX")
+                self.viewModel.onContinueButtonTapped()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
@@ -117,6 +90,7 @@ extension HelperRequestOverviewView {
         private let userService: UserService
         private let helpRequestsService: HelpRequestsService
         private let helpListsService: HelpListsService
+        private let articlesService: ArticlesService
         private var cancellableSet: Set<AnyCancellable>?
 
         fileprivate var state: ViewState = ViewState()
@@ -125,11 +99,13 @@ extension HelperRequestOverviewView {
         init(navigator: ScreenNavigating,
              userService: UserService,
              helpRequestsService: HelpRequestsService,
-             helpListsService: HelpListsService) {
+             helpListsService: HelpListsService,
+             articlesService: ArticlesService) {
             self.navigator = navigator
             self.userService = userService
             self.helpRequestsService = helpRequestsService
             self.helpListsService = helpListsService
+            self.articlesService = articlesService
         }
 
         func onBackButtonPressed() {
@@ -152,6 +128,14 @@ extension HelperRequestOverviewView {
             navigator.addingHelperRequest(request: item, in: helperWorkflowState) { [weak self] _ in
                 self?.refreshOpenHelpRequests()
             }
+        }
+
+        func onContinueButtonTapped() {
+            guard let helpList = helperWorkflowState.helpList else {
+                return
+            }
+
+            navigator.toShoppingList(helpList: helpList)
         }
 
         func refreshOpenHelpRequests() {
@@ -191,6 +175,13 @@ extension HelperRequestOverviewView {
                 .publisher
                 .replaceError(with: nil)
                 .assign(to: \.helpList, on: helperWorkflowState)
+                .store(in: &cancellableSet)
+
+            articlesService.allUnits()
+                .map { units -> [NexdClient.Unit]? in units }
+                .publisher
+                .replaceError(with: nil)
+                .assign(to: \.units, on: helperWorkflowState)
                 .store(in: &cancellableSet)
 
             state.objectWillChange

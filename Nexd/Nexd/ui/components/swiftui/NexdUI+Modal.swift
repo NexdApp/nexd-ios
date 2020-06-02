@@ -9,8 +9,11 @@
 import SwiftUI
 
 extension View {
-    func withModalButtons(onCancel: @escaping (() -> Void), onDone: @escaping (() -> Void)) -> some View {
-        withCancelButton(identifier: .modalCancelButton, action: onCancel)
-            .withDoneButton(identifier: .modalDoneButton, action: onDone)
+    func withModalButtons(cancelText: Text = R.string.localizable.cancel_button_title.text,
+                          doneText: Text = R.string.localizable.done_button_title.text,
+                          onCancel: @escaping (() -> Void),
+                          onDone: @escaping (() -> Void)) -> some View {
+        withCancelButton(text: cancelText, identifier: .modalCancelButton, action: onCancel)
+            .withDoneButton(text: doneText, identifier: .modalDoneButton, action: onDone)
     }
 }

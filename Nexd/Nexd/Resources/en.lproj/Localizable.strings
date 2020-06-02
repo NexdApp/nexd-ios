@@ -48,6 +48,9 @@
 "helper_request_detail_button_accepted" = "Request already accepted";
 "helper_request_detail_button_remove" = "Remove from shopping list!";
 "helper_request_detail_delivery_address_header" = "Delivery Address";
+"helper_request_detail_delivery_comment_header" = "Delivery comment";
+"helper_request_detail_empty_delivery_address_placeholder" = "The delivery address is not available.";
+"helper_request_detail_empty_list_placeholder" = "The shopping list is empty or failed to load.";
 "helper_request_detail_message_cancelled" = "Your request was deleted";
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";

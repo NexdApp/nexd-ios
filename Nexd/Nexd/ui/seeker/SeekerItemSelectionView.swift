@@ -132,8 +132,6 @@ extension SeekerItemSelectionView {
                 }, receiveValue: { [weak self] units in
                     log.debug("Received units: \(units)")
                     self?.state.units = units
-                        .sorted { first, second -> Bool in first.nameOne < second.nameOne }
-                        .map { unit in HelpRequestCreationState.Unit(id: unit.id, name: unit.nameOne, nameShort: unit.nameShort) }
                 })
                 .store(in: &cancellableSet)
 

@@ -9,12 +9,6 @@
 import NexdClient
 
 class HelpRequestCreationState: ObservableObject {
-    struct Unit: Identifiable {
-        let id: Int64?
-        let name: String
-        let nameShort: String
-    }
-
     struct Item: Identifiable {
         let id = UUID()
 

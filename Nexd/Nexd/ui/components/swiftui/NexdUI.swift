@@ -256,6 +256,25 @@ enum NexdUI {
                 .foregroundColor(R.color.headingText.color)
         }
 
+        static func cardSectionHeader(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .foregroundColor(R.color.darkListItemTitle.color)
+        }
+
+        static func cardText(text: Text) -> some View {
+            text
+                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .foregroundColor(R.color.listItemTitle.color)
+        }
+
+        static func cardPlaceholderText(text: Text) -> some View {
+            text
+                .font(R.font.proximaNovaSoftBold.font(size: 14))
+                .foregroundColor(R.color.listItemDetailsText.color)
+        }
+
         static func filterButtonDetailsText(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)

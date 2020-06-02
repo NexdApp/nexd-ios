@@ -10,6 +10,14 @@ import NexdClient
 
 extension Article: Identifiable {}
 
+extension NexdClient.Unit: Identifiable {}
+
+extension HelpRequestArticle: Identifiable {
+    public var id: Int64? {
+        articleId
+    }
+}
+
 extension AvailableLanguages {
     static var current: AvailableLanguages {
         let currentLanguages = Bundle.main.preferredLocalizations
@@ -25,5 +33,18 @@ extension CreateHelpRequestArticleDto.Language {
             .compactMap { CreateHelpRequestArticleDto.Language(rawValue: $0) }
 
         return currentLanguages.first ?? .en
+    }
+}
+
+extension HelpRequest {
+    var displayAddress: String? {
+        if street == nil, number == nil, zipCode == nil, city == nil {
+            return nil
+        }
+
+        return """
+        \(street ?? "") \(number ?? "")
+        \(zipCode ?? "") \(city ?? "")
+        """
     }
 }

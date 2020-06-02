@@ -90,7 +90,7 @@ struct SeekerArticleInputView: View {
                             ScrollView {
                                 self.viewModel.favoriteUnits.map { units in
                                     ForEach(units) { unit in
-                                        NexdUI.Texts.matching("\(unit.name) (\(unit.nameShort))")
+                                        NexdUI.Texts.matching("\(unit.nameOne) (\(unit.nameShort))")
                                             .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
                                             .contentShape(Rectangle())
                                             .onTapGesture { self.viewModel.unitSelected(unit: unit) }
@@ -103,7 +103,7 @@ struct SeekerArticleInputView: View {
 
                                 self.viewModel.otherUnits.map { units in
                                     ForEach(units) { unit in
-                                        NexdUI.Texts.notMatching("\(unit.name) (\(unit.nameShort))")
+                                        NexdUI.Texts.notMatching("\(unit.nameOne) (\(unit.nameShort))")
                                             .frame(maxWidth: .infinity, minHeight: 40, alignment: .leading)
                                             .contentShape(Rectangle())
                                             .onTapGesture { self.viewModel.unitSelected(unit: unit) }
@@ -140,7 +140,7 @@ extension SeekerArticleInputView {
 
             @Published var amount: String?
 
-            @Published var unit: HelpRequestCreationState.Unit?
+            @Published var unit: NexdClient.Unit?
             @Published var isUnitsPickerVisible: Bool = false
 
             func asItem() -> HelpRequestCreationState.Item {
@@ -173,22 +173,22 @@ extension SeekerArticleInputView {
 
         var state: ViewState
 
-        var favoriteUnits: [HelpRequestCreationState.Unit]? {
+        var favoriteUnits: [NexdClient.Unit]? {
             guard let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return nil }
 
             return unitIdOrder
                 .compactMap { unitId in itemSelectionViewState.units?.first { unit in unit.id == unitId } }
-                .sorted { first, second in first.name < second.name }
+                .sorted { first, second in first.nameOne < second.nameOne }
         }
 
-        var otherUnits: [HelpRequestCreationState.Unit]? {
+        var otherUnits: [NexdClient.Unit]? {
             return itemSelectionViewState.units?
                 .filter { unit in
                     guard let unitId = unit.id, let unitIdOrder = state.acceptedSuggestion?.unitIdOrder else { return true }
 
                     return !unitIdOrder.contains(unitId)
                 }
-                .sorted { first, second in first.name < second.name }
+                .sorted { first, second in first.nameOne < second.nameOne }
         }
 
         init(navigator: ScreenNavigating,
@@ -237,7 +237,7 @@ extension SeekerArticleInputView {
             state.isUnitsPickerVisible = true
         }
 
-        func unitSelected(unit: HelpRequestCreationState.Unit) {
+        func unitSelected(unit: NexdClient.Unit) {
             state.unit = unit
             dismissUnitPicker()
         }

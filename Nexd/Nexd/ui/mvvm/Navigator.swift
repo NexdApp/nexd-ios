@@ -39,7 +39,7 @@ protocol ScreenNavigating {
     func addingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void)
     func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void)
     func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
-    func toCurrentItemsList(helpList: HelpList)
+    func toShoppingList(helpList: HelpList)
     func toCheckoutScreen(helpList: HelpList)
     func toDeliveryConfirmationScreen(helpList: HelpList)
 }
@@ -229,7 +229,8 @@ extension Navigator: ScreenNavigating {
         let screen = HelperRequestOverviewView.createScreen(viewModel: HelperRequestOverviewView.ViewModel(navigator: self,
                                                                                                            userService: userService,
                                                                                                            helpRequestsService: helpRequestsService,
-                                                                                                           helpListsService: helpListsService))
+                                                                                                           helpListsService: helpListsService,
+                                                                                                           articlesService: articlesService))
         push(screen: screen)
     }
 
@@ -284,7 +285,7 @@ extension Navigator: ScreenNavigating {
         present(screen: screen)
     }
 
-    func toCurrentItemsList(helpList: HelpList) {
+    func toShoppingList(helpList: HelpList) {
         let screen = ShoppingListViewController(viewModel: ShoppingListViewController.ViewModel(navigator: self, helpList: helpList))
         push(screen: screen)
     }

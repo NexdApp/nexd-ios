@@ -48,6 +48,9 @@
 "helper_request_detail_button_accepted" = "Anfrage bereits angenommen";
 "helper_request_detail_button_remove" = "Von Einkafusliste entfernen!";
 "helper_request_detail_delivery_address_header" = "Lieferaddresse";
+"helper_request_detail_delivery_comment_header" = "Lieferhinweis";
+"helper_request_detail_empty_delivery_address_placeholder" = "The delivery address is not available.";
+"helper_request_detail_empty_list_placeholder" = "Die Einkaufsliste ist fehlerhaft oder enthält keine Einträge.";
 "helper_request_detail_message_cancelled" = "Anfrage wurde gelöscht";
 "helper_request_detail_message_error_on_cancellation" = "Anfrage konnte nicht gelöscht werden";
 "helper_request_detail_screen_title" = "Zu Einkaufen";

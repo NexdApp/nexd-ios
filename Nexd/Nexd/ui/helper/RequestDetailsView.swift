@@ -16,33 +16,67 @@ struct RequestDetailsView: View {
 
     var body: some View {
         VStack {
-            NexdUI.Texts.title(text: Text(viewModel.title))
+            NexdUI.Texts.title(text: Text(viewModel.helpRequest.displayName))
                 .padding([.leading, .trailing], 25)
                 .padding(.top, 70)
 
             ScrollView {
-                NexdUI.Card {
-                    VStack {
-                        ForEach(viewModel.articles) { item in
-                            HStack {
-                                Text(item.title)
-                                    .padding(.trailing, 8)
-                                    .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                    .foregroundColor(R.color.listItemTitle.color)
+                Group {
+                    NexdUI.Card {
+                        VStack(alignment: .leading) {
+                            NexdUI.Texts.cardSectionHeader(text: R.string.localizable.helper_request_detail_screen_title.text)
+                                .padding([.leading, .trailing, .bottom], 12)
 
-                                Spacer()
-
-                                Text("\(item.amount)x")
-                                    .font(R.font.proximaNovaSoftBold.font(size: 14))
-                                    .foregroundColor(R.color.listItemDetailsText.color)
+                            OptionalView(viewModel.articles) { articles in
+                                NexdUI.ShoppingList(items: articles, units: self.viewModel.units, onTapped: nil)
                             }
-                            .frame(height: 52)
+                            .whenNil {
+                                NexdUI.Texts.cardPlaceholderText(text: R.string.localizable.helper_request_detail_empty_list_placeholder.text)
+                            }
+                            .padding([.leading, .trailing], 24)
+
+                            OptionalView(viewModel.helpRequest.additionalRequest) { additionalRequest in
+                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.helper_request_detail_additional_request_header.text)
+                                    .padding(.top, 24)
+                                    .padding([.leading, .trailing, .bottom], 12)
+
+                                NexdUI.Texts.cardText(text: Text(additionalRequest))
+                                    .lineLimit(nil)
+                                    .padding([.leading, .trailing], 24)
+                            }
                         }
+                        .padding([.top, .bottom], 8)
+                    }
+                    .padding([.top, .bottom], 8)
+
+                    NexdUI.Card {
+                        VStack(alignment: .leading) {
+                            NexdUI.Texts.cardSectionHeader(text: R.string.localizable.helper_request_detail_delivery_address_header.text)
+                                .padding([.leading, .trailing, .bottom], 12)
+
+                            OptionalView(viewModel.helpRequest.displayAddress) { address in
+                                NexdUI.Texts.cardText(text: Text(address))
+                            }
+                            .whenNil {
+                                NexdUI.Texts.cardPlaceholderText(text: R.string.localizable.helper_request_detail_empty_delivery_address_placeholder.text)
+                            }
+                            .padding([.leading, .trailing], 24)
+
+                            OptionalView(viewModel.helpRequest.deliveryComment) { deliveryComment in
+                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.helper_request_detail_delivery_comment_header.text)
+                                    .padding(.top, 24)
+                                    .padding([.leading, .trailing, .bottom], 12)
+
+                                NexdUI.Texts.cardText(text: Text(deliveryComment))
+                                    .padding([.leading, .trailing], 24)
+                            }
+                        }
+                        .padding([.top, .bottom], 8)
                     }
                     .padding([.top, .bottom], 8)
                 }
-                .padding([.top, .bottom], 24)
                 .padding([.leading, .trailing], 12)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
 
             NexdUI.Buttons.lightButton(text: viewModel.type.buttonTitle) {
@@ -50,6 +84,9 @@ struct RequestDetailsView: View {
             }
             .padding([.leading, .trailing], 12)
             .padding(.bottom, 24)
+        }
+        .withCancelButton {
+            self.viewModel.cancelButtonTapped()
         }
     }
 }
@@ -81,7 +118,7 @@ extension RequestDetailsView {
         private let navigator: ScreenNavigating
         private let helpListService: HelpListsService
 
-        private let helpRequest: HelpRequest
+        fileprivate let helpRequest: HelpRequest
         private var helperWorkflowState: HelperWorkflowState
 
         private let onFinished: (HelpList) -> Void
@@ -89,16 +126,16 @@ extension RequestDetailsView {
 
         private var cancellableSet = Set<AnyCancellable>()
 
-        var title: String {
-            helpRequest.displayName
+        var articles: [HelpRequestArticle]? {
+            guard let articles = helpRequest.articles, !articles.isEmpty else {
+                return nil
+            }
+
+            return articles
         }
 
-        var articles: [ArticleItem] {
-            helpRequest.articles?.compactMap { helpRequestArticle -> ArticleItem? in
-                guard let id = helpRequestArticle.articleId, let article = helpRequestArticle.article, let amount = helpRequestArticle.articleCount else { return nil }
-
-                return ArticleItem(id: id, title: article.name, amount: amount)
-            } ?? []
+        var units: [NexdClient.Unit]? {
+            helperWorkflowState.units
         }
 
         init(type: ViewType,
@@ -115,6 +152,10 @@ extension RequestDetailsView {
             self.helperWorkflowState = helperWorkflowState
             self.onFinished = onFinished
             self.onCancelled = onCancelled
+        }
+
+        func cancelButtonTapped() {
+            onCancelled()
         }
 
         func confirmButtonTapped() {

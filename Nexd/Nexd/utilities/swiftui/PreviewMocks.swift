@@ -103,8 +103,8 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("changingHelperRequestFilterSettings")
     }
 
-    func toCurrentItemsList(helpList: HelpList) {
-        log.debug("toCurrentItemsList - helpList: \(helpList)")
+    func toShoppingList(helpList: HelpList) {
+        log.debug("toShoppingList - helpList: \(helpList)")
     }
 
     func toCheckoutScreen(helpList: HelpList) {
