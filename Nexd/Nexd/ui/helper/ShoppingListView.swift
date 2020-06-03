@@ -26,21 +26,12 @@ struct ShoppingListView: View {
                                     .padding([.leading, .trailing], 12)
                                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                                OptionalView(self.viewModel.requests(for: article)) { requests in
-                                    ForEach(requests) { request in
-                                        HStack {
-                                            OptionalView(request.articleCount) { articleCount in
-                                                NexdUI.Texts.cardPlaceholderText(text: Text(String(articleCount))
-                                                    .strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
-                                            }
-
-                                            OptionalView(self.viewModel.unit(for: request.unitId)) { unit in
-                                                NexdUI.Texts.cardPlaceholderText(text: Text(unit.nameOne)
-                                                    .strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
-                                            }
-                                        }
-                                        .padding([.leading, .trailing], 24)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                OptionalView(self.viewModel.amountItems(for: article)) { amountItems in
+                                    ForEach(amountItems) { amountItem in
+                                        NexdUI.Texts.cardPlaceholderText(text: Text(amountItem.description)
+                                            .strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
+                                            .padding([.leading, .trailing], 24)
+                                            .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
                             }
@@ -68,11 +59,42 @@ struct ShoppingListView: View {
 }
 
 extension ShoppingListView {
+    struct AmountItem: Identifiable, CustomStringConvertible {
+        let amount: Int64
+        let unit: NexdClient.Unit?
+
+        var id: String {
+            description
+        }
+
+        var description: String {
+            guard let unitString = unit?.displayString(for: amount) else {
+                return String(amount)
+            }
+
+            return "\(amount) \(unitString)"
+        }
+    }
+
     class ViewModel: ObservableObject {
         private let navigator: ScreenNavigating
         private let helperWorkflowState: HelperWorkflowState
 
         @Published var finishedArticles = [Article]()
+
+        var articles: [Article]? {
+            groupedArticles?.keys.compactMap { $0 }.sorted()
+        }
+
+        private var groupedArticles: [Article?: [NexdClient.HelpRequestArticle]]? {
+            guard let helpRequests = helperWorkflowState.helpList?.helpRequests else { return nil }
+
+            let articles = helpRequests
+                .compactMap { request -> [HelpRequestArticle]? in request.articles }
+                .flatMap { articles -> [HelpRequestArticle] in articles }
+
+            return Dictionary(grouping: articles, by: { $0.article })
+        }
 
         init(navigator: ScreenNavigating, helperWorkflowState: HelperWorkflowState) {
             self.navigator = navigator
@@ -89,37 +111,15 @@ extension ShoppingListView {
             navigator.toCheckoutScreen(helpList: helpList)
         }
 
-        private var groupedArticles: [Article?: [NexdClient.HelpRequestArticle]]? {
-            guard let helpRequests = helperWorkflowState.helpList?.helpRequests else { return nil }
-
-            let articles = helpRequests
-                .compactMap { request -> [HelpRequestArticle]? in request.articles }
-                .flatMap { articles -> [HelpRequestArticle] in articles }
-
-            return Dictionary(grouping: articles, by: { $0.article })
-        }
-
-        var articles: [Article]? {
-            groupedArticles?.keys.compactMap { $0 }.sorted()
-        }
-
-        func requests(for article: Article) -> [NexdClient.HelpRequestArticle]? {
-            groupedArticles?[article]
-        }
-
-        func requests(for article: Article) -> [String]? {
+        func amountItems(for article: Article) -> [AmountItem]? {
             let helpRequestArticles = groupedArticles?[article]
 
-            return helpRequestArticles?.compactMap { helpRequestArticle -> String? in
+            return helpRequestArticles?.compactMap { helpRequestArticle -> AmountItem? in
                 guard let articleCount = helpRequestArticle.articleCount else {
                     return nil
                 }
 
-                guard let unit = helpRequestArticle.unit else {
-                    return String(articleCount)
-                }
-
-                return unit.displayString(for: articleCount)
+                return AmountItem(amount: articleCount, unit: unit(for: helpRequestArticle.unitId))
             }
         }
 
