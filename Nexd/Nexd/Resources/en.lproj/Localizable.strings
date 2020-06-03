@@ -3,8 +3,9 @@
 "checkout_button_title_complete" = "Complete";
 "checkout_screen_title" = "Checkout";
 "confirm_button_title" = "Confirm";
-"delivery_confirmation_address_title" = "Postal Code / Town";
+"delivery_confirmation_address_title" = "Address";
 "delivery_confirmation_confirm_button_title" = "Finish shopping";
+"delivery_confirmation_delivery_comment" = "Delivery comment";
 "delivery_confirmation_phone_number_title" = "Telephone number";
 "delivery_confirmation_screen_title" = "Thank you for completing the orders!";
 "delivery_confirmation_section_header" = "%1$@'s contact information:";

@@ -355,11 +355,11 @@
 				AED5E5262445F0A200A3DFA1 /* transcription */,
 				AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */,
 				AE818FA9248463AA00BAB034 /* HelperRequestOverviewView.swift */,
+				AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */,
+				AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */,
 				AE818FB32486FFAB00BAB034 /* ShoppingListView.swift */,
 				AE6A6E5A24881131002A1E3E /* CheckoutView.swift */,
 				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
-				AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */,
-				AE15C14224575AD4006AEFCB /* HelperRequestFilterSettingsView.swift */,
 				AE818FAB24847EDA00BAB034 /* HelperWorkflowState.swift */,
 			);
 			path = helper;
