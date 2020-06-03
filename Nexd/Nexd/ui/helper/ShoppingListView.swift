@@ -59,23 +59,6 @@ struct ShoppingListView: View {
 }
 
 extension ShoppingListView {
-    struct AmountItem: Identifiable, CustomStringConvertible {
-        let amount: Int64
-        let unit: NexdClient.Unit?
-
-        var id: String {
-            description
-        }
-
-        var description: String {
-            guard let unitString = unit?.displayString(for: amount) else {
-                return String(amount)
-            }
-
-            return "\(amount) \(unitString)"
-        }
-    }
-
     class ViewModel: ObservableObject {
         private let navigator: ScreenNavigating
         private let helperWorkflowState: HelperWorkflowState
@@ -106,27 +89,15 @@ extension ShoppingListView {
         }
 
         func checkoutButtonTapped() {
-            guard let helpList = helperWorkflowState.helpList else { return }
-
-            navigator.toCheckoutScreen(helpList: helpList)
+            navigator.toCheckoutScreen(helperWorkflowState: helperWorkflowState)
         }
 
-        func amountItems(for article: Article) -> [AmountItem]? {
+        func amountItems(for article: Article) -> [HelperWorkflowState.AmountItem]? {
             let helpRequestArticles = groupedArticles?[article]
 
-            return helpRequestArticles?.compactMap { helpRequestArticle -> AmountItem? in
-                guard let articleCount = helpRequestArticle.articleCount else {
-                    return nil
-                }
-
-                return AmountItem(amount: articleCount, unit: unit(for: helpRequestArticle.unitId))
+            return helpRequestArticles?.compactMap { helpRequestArticle -> HelperWorkflowState.AmountItem? in
+                helperWorkflowState.amountItem(for: helpRequestArticle)
             }
-        }
-
-        func unit(for unitId: Int64?) -> NexdClient.Unit? {
-            guard let unitId = unitId else { return nil }
-
-            return helperWorkflowState.units?.first { $0.id == unitId }
         }
 
         func articleTapped(article: Article) {

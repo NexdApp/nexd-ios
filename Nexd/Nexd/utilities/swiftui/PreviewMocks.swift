@@ -104,15 +104,15 @@ class PreviewNavigator: ScreenNavigating {
     }
 
     func toShoppingList(helperWorkflowState: HelperWorkflowState) {
-        log.debug("toShoppingList - helpList: \(helperWorkflowState)")
+        log.debug("toShoppingList - helperWorkflowState: \(helperWorkflowState)")
     }
 
-    func toCheckoutScreen(helpList: HelpList) {
-        log.debug("toCheckoutScreen - helpList: \(helpList)")
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState) {
+        log.debug("toCheckoutScreen - helperWorkflowState: \(helperWorkflowState)")
     }
 
-    func toDeliveryConfirmationScreen(helpList: HelpList) {
-        log.debug("toDeliveryConfirmationScreen - helpList: \(helpList)")
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
+        log.debug("toDeliveryConfirmationScreen - helperWorkflowState: \(helperWorkflowState)")
     }
 }
 

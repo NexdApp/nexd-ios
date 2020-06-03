@@ -30,80 +30,89 @@ struct DeliveryConfirmationView: View {
 
     var body: some View {
         return
-            ScrollView {
-                VStack(alignment: .leading) {
-                    NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
-                        .padding(.top, 109)
-                        .padding([.leading, .trailing], 28)
+            VStack {
+                NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
+                    .padding(.top, 70)
 
-                    ForEach(viewModel.requests, id: \.requestId) { request in
-                        VStack {
-                            NexdUI.Texts.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
-                                .padding(.top, 26)
-                                .padding([.leading, .trailing], 28)
-
-                            NexdUI.Card {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        OptionalView(viewModel.requests) { requests in
+                            ForEach(requests, id: \.requestId) { request in
                                 VStack {
-                                    R.string.localizable.delivery_confirmation_phone_number_title.text
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                        .foregroundColor(R.color.darkListItemTitle.color)
+                                    NexdUI.Texts.sectionHeader(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
+                                        .padding(.top, 26)
 
-                                    Text(request.phoneNumber)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                        .foregroundColor(R.color.nexdGreen.color)
+                                    NexdUI.Card {
+                                        VStack {
+                                            R.string.localizable.delivery_confirmation_phone_number_title.text
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                                                .foregroundColor(R.color.darkListItemTitle.color)
 
-                                    Divider()
+                                            Text(request.phoneNumber)
+                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                .font(R.font.proximaNovaSoftRegular.font(size: 20))
+                                                .foregroundColor(R.color.nexdGreen.color)
 
-                                    R.string.localizable.delivery_confirmation_address_title.text
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                        .foregroundColor(R.color.darkListItemTitle.color)
+                                            Divider()
 
-                                    Text(request.address)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                        .foregroundColor(R.color.nexdGreen.color)
+                                            R.string.localizable.delivery_confirmation_address_title.text
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                                                .foregroundColor(R.color.darkListItemTitle.color)
+
+                                            Text(request.address)
+                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                .font(R.font.proximaNovaSoftRegular.font(size: 20))
+                                                .foregroundColor(R.color.nexdGreen.color)
+                                        }
+                                    }
+                                    .padding([.leading, .trailing], 12)
                                 }
                             }
-                            .padding([.leading, .trailing], 12)
                         }
-                    }
 
-                    NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
-                        self.viewModel.continueButtonTapped()
+                        NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
+                            self.viewModel.continueButtonTapped()
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 0)
+                        .padding(.bottom, 40)
                     }
-                    .padding(.top, 46)
-                    .padding(.bottom, 127)
-                    .padding([.leading, .trailing], 28)
                 }
-                .background(R.color.nexdGreen.color)
             }
+            .padding([.leading, .trailing], 20)
+            .withBackButton { self.viewModel.backButtonTapped() }
     }
 }
 
 extension DeliveryConfirmationView {
     class ViewModel: ObservableObject {
         let navigator: ScreenNavigating
-        let helpList: HelpList
+        let helpList: HelpList?
         let helpListsService: HelpListsService
 
         private var cancellableSet = Set<AnyCancellable>()
 
-        var requests: [Request] {
-            helpList.helpRequests.map { helpRequest -> Request in
+        var requests: [Request]? {
+            helpList?.helpRequests.map { helpRequest -> Request in
                 Request.from(helpRequest: helpRequest)
             }
         }
 
-        init(navigator: ScreenNavigating, helpList: HelpList, helpListsService: HelpListsService) {
+        init(navigator: ScreenNavigating, helperWorkflowState: HelperWorkflowState, helpListsService: HelpListsService) {
             self.navigator = navigator
-            self.helpList = helpList
+            helpList = helperWorkflowState.helpList
             self.helpListsService = helpListsService
         }
 
+        func backButtonTapped() {
+            navigator.goBack()
+        }
+
         func continueButtonTapped() {
+            guard let helpList = helpList else { return }
+
             cancellableSet.insert(
                 helpListsService.completeHelpList(helpListId: helpList.id,
                                                   helpRequestsIds: helpList.helpRequests.compactMap { $0.id })
@@ -127,27 +136,3 @@ extension DeliveryConfirmationView {
         return screen
     }
 }
-
-#if DEBUG
-    struct DeliveryConfirmationView_Previews: PreviewProvider {
-        static var previews: some View {
-            let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helpList: HelpList.with(), helpListsService: HelpListsService())
-            return Group {
-                DeliveryConfirmationView(viewModel: viewModel)
-                    .background(R.color.nexdGreen.color)
-                    .environment(\.locale, .init(identifier: "de"))
-
-                DeliveryConfirmationView(viewModel: viewModel)
-                    .background(R.color.nexdGreen.color)
-                    .environment(\.colorScheme, .light)
-                    .environment(\.locale, .init(identifier: "en"))
-
-                DeliveryConfirmationView(viewModel: viewModel)
-                    .background(R.color.nexdGreen.color)
-                    .environment(\.colorScheme, .dark)
-                    .environment(\.locale, .init(identifier: "en"))
-            }
-            .previewLayout(.sizeThatFits)
-        }
-    }
-#endif

@@ -40,8 +40,8 @@ protocol ScreenNavigating {
     func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void)
     func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
     func toShoppingList(helperWorkflowState: HelperWorkflowState)
-    func toCheckoutScreen(helpList: HelpList)
-    func toDeliveryConfirmationScreen(helpList: HelpList)
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState)
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState)
 }
 
 class Navigator {
@@ -201,8 +201,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toPhoneCall() {
-        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(phoneService: phoneService, navigator: self))
-        push(screen: screen)
+        log.debug("Implement ME!")
     }
 
     func toHelpOptions() {
@@ -290,14 +289,14 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCheckoutScreen(helpList: HelpList) {
-        let screen = CheckoutViewController(viewModel: CheckoutViewController.ViewModel(navigator: self, helpList: helpList))
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState) {
+        let screen = CheckoutView.createScreen(viewModel: CheckoutView.ViewModel(navigator: self, helperWorkflowState: helperWorkflowState))
         push(screen: screen)
     }
 
-    func toDeliveryConfirmationScreen(helpList: HelpList) {
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
         push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self,
-                                                                                                         helpList: helpList,
+                                                                                                         helperWorkflowState: helperWorkflowState,
                                                                                                          helpListsService: helpListsService)))
     }
 

@@ -64,7 +64,13 @@ extension CreateHelpRequestArticleDto.Language {
     }
 }
 
-extension HelpRequest {
+extension HelpRequest: Identifiable {
+    var displayName: String {
+        guard let firstName = firstName else { return R.string.localizable.helper_request_overview_unknown_requester() }
+
+        return firstName.isEmpty ? R.string.localizable.helper_request_overview_unknown_requester() : firstName
+    }
+
     var displayAddress: String? {
         if street == nil, number == nil, zipCode == nil, city == nil {
             return nil
