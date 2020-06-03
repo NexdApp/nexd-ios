@@ -8,9 +8,37 @@
 
 import NexdClient
 
-extension Article: Identifiable {}
+extension Article: Identifiable, Hashable, Equatable, Comparable {
+    public static func == (lhs: Article, rhs: Article) -> Bool {
+        lhs.id == rhs.id
+    }
 
-extension NexdClient.Unit: Identifiable {}
+    public static func < (lhs: Article, rhs: Article) -> Bool {
+        return lhs.name < rhs.name
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension NexdClient.Unit: Identifiable {
+    func displayString(for amount: Int64?) -> String {
+        switch amount {
+        case 0, nil:
+            return nameZero
+
+        case 1:
+            return nameOne
+
+        case 2:
+            return nameTwo
+
+        default:
+            return nameMany
+        }
+    }
+}
 
 extension HelpRequestArticle: Identifiable {
     public var id: Int64? {

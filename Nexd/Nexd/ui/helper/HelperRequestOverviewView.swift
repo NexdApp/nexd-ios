@@ -131,11 +131,7 @@ extension HelperRequestOverviewView {
         }
 
         func onContinueButtonTapped() {
-            guard let helpList = helperWorkflowState.helpList else {
-                return
-            }
-
-            navigator.toShoppingList(helpList: helpList)
+            navigator.toShoppingList(helperWorkflowState: helperWorkflowState)
         }
 
         func refreshOpenHelpRequests() {

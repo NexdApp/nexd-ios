@@ -19,7 +19,6 @@
 		AE26902224278BFC009A8892 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE26902124278BFC009A8892 /* UserService.swift */; };
 		AE2690242427A61D009A8892 /* HelpListsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690232427A61D009A8892 /* HelpListsService.swift */; };
 		AE2690262427B3BA009A8892 /* UILabel+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */; };
-		AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690272427BC46009A8892 /* ShoppingListViewController.swift */; };
 		AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2690292427E984009A8892 /* CheckoutViewController.swift */; };
 		AE2A9A872426D1D5006066B4 /* UIButton+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */; };
 		AE2A9A8B2426DF09006066B4 /* HelpRequestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */; };
@@ -55,7 +54,8 @@
 		AE818FAC24847EDA00BAB034 /* HelperWorkflowState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FAB24847EDA00BAB034 /* HelperWorkflowState.swift */; };
 		AE818FAE248623E800BAB034 /* NexdUI+RequestList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */; };
 		AE818FB02486FAAA00BAB034 /* OptionalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FAF2486FAAA00BAB034 /* OptionalView.swift */; };
-		AE818FB22486FB1100BAB034 /* NexdUI+ShoppintList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FB12486FB1100BAB034 /* NexdUI+ShoppintList.swift */; };
+		AE818FB22486FB1100BAB034 /* NexdUI+ShoppingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FB12486FB1100BAB034 /* NexdUI+ShoppingList.swift */; };
+		AE818FB42486FFAB00BAB034 /* ShoppingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE818FB32486FFAB00BAB034 /* ShoppingListView.swift */; };
 		AE8352EB2455CF6E00531228 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */; };
 		AE8352ED24562D1500531228 /* ModalScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8352EC24562D1500531228 /* ModalScreen.swift */; };
 		AE8E235A2462A7CB00AC261D /* Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E23592462A7CB00AC261D /* Dialog.swift */; };
@@ -165,7 +165,6 @@
 		AE26902124278BFC009A8892 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		AE2690232427A61D009A8892 /* HelpListsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListsService.swift; sourceTree = "<group>"; };
 		AE2690252427B3BA009A8892 /* UILabel+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Nexd.swift"; sourceTree = "<group>"; };
-		AE2690272427BC46009A8892 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
 		AE2690292427E984009A8892 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		AE2A9A862426D1D5006066B4 /* UIButton+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A8A2426DF09006066B4 /* HelpRequestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpRequestsService.swift; sourceTree = "<group>"; };
@@ -202,7 +201,8 @@
 		AE818FAB24847EDA00BAB034 /* HelperWorkflowState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperWorkflowState.swift; sourceTree = "<group>"; };
 		AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+RequestList.swift"; sourceTree = "<group>"; };
 		AE818FAF2486FAAA00BAB034 /* OptionalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalView.swift; sourceTree = "<group>"; };
-		AE818FB12486FB1100BAB034 /* NexdUI+ShoppintList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+ShoppintList.swift"; sourceTree = "<group>"; };
+		AE818FB12486FB1100BAB034 /* NexdUI+ShoppingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+ShoppingList.swift"; sourceTree = "<group>"; };
+		AE818FB32486FFAB00BAB034 /* ShoppingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListView.swift; sourceTree = "<group>"; };
 		AE8352EA2455CF6E00531228 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
 		AE8352EC24562D1500531228 /* ModalScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScreen.swift; sourceTree = "<group>"; };
 		AE8E23592462A7CB00AC261D /* Dialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialog.swift; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 				AE818FA1248263B800BAB034 /* NexdUI+CancelButton.swift */,
 				AE818FA52484120D00BAB034 /* NexdUI+ArticleList.swift */,
 				AE818FAD248623E800BAB034 /* NexdUI+RequestList.swift */,
-				AE818FB12486FB1100BAB034 /* NexdUI+ShoppintList.swift */,
+				AE818FB12486FB1100BAB034 /* NexdUI+ShoppingList.swift */,
 			);
 			path = swiftui;
 			sourceTree = "<group>";
@@ -399,7 +399,7 @@
 				AED5E5262445F0A200A3DFA1 /* transcription */,
 				AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */,
 				AE818FA9248463AA00BAB034 /* HelperRequestOverviewView.swift */,
-				AE2690272427BC46009A8892 /* ShoppingListViewController.swift */,
+				AE818FB32486FFAB00BAB034 /* ShoppingListView.swift */,
 				AE2690292427E984009A8892 /* CheckoutViewController.swift */,
 				AE510B8B2443C4550068DF60 /* CheckoutListView.swift */,
 				AE510B8D24445D1F0068DF60 /* DeliveryConfirmationView.swift */,
@@ -948,7 +948,6 @@
 				AE1359122444E5460015D7AB /* HTTPStatusCode.swift in Sources */,
 				AE1359182444E98E0015D7AB /* Single+Nexd.swift in Sources */,
 				AED2A95E243F9A210082316F /* ServicesModule.swift in Sources */,
-				AE2690282427BC46009A8892 /* ShoppingListViewController.swift in Sources */,
 				AEB6AC792443044400823E7C /* UICollectionView+Nexd.swift in Sources */,
 				AED8818B24351174006065D2 /* String+Nexd.swift in Sources */,
 				AE50F06A2448CB1C00601DDF /* NexdUI+Player.swift in Sources */,
@@ -958,6 +957,7 @@
 				AE26902A2427E985009A8892 /* CheckoutViewController.swift in Sources */,
 				AE1E0105243148E90006A490 /* KeyboardObserver.swift in Sources */,
 				AE510B8A2443C2FA0068DF60 /* CustomControl.swift in Sources */,
+				AE818FB42486FFAB00BAB034 /* ShoppingListView.swift in Sources */,
 				AED2A96524404AB80082316F /* NSAttribuedString+Nexd.swift in Sources */,
 				AEEEDF1A247EFF1D0007E961 /* View+Nexd.swift in Sources */,
 				AEF3D61C242584C9005C77CE /* AppDelegate.swift in Sources */,
@@ -983,7 +983,7 @@
 				AED8818924351129006065D2 /* UIImageView+Nexd.swift in Sources */,
 				AE510B882443ABF30068DF60 /* ShoppingListItemView.swift in Sources */,
 				AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */,
-				AE818FB22486FB1100BAB034 /* NexdUI+ShoppintList.swift in Sources */,
+				AE818FB22486FB1100BAB034 /* NexdUI+ShoppingList.swift in Sources */,
 				AED2A954243F78030082316F /* ViewController.swift in Sources */,
 				AE818FAE248623E800BAB034 /* NexdUI+RequestList.swift in Sources */,
 				AE818FAC24847EDA00BAB034 /* HelperWorkflowState.swift in Sources */,
