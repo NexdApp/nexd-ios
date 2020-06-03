@@ -5,6 +5,8 @@
 "confirm_button_title" = "Bestätigen";
 "delivery_confirmation_address_title" = "Postleitzahl / Ort";
 "delivery_confirmation_confirm_button_title" = "Einkauf beenden";
+"delivery_confirmation_delivery_comment" = "Lieferhinweis";
+"delivery_confirmation_full_name" = "Name";
 "delivery_confirmation_phone_number_title" = "Telefonnummer";
 "delivery_confirmation_screen_title" = "Vielen Dank für deine Hilfe!";
 "delivery_confirmation_section_header" = "Kontaktinformation für %1$@:";

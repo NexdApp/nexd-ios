@@ -71,6 +71,14 @@ extension HelpRequest: Identifiable {
         return firstName.isEmpty ? R.string.localizable.helper_request_overview_unknown_requester() : firstName
     }
 
+    var fullName: String? {
+        guard let firstName = firstName, let lastName = lastName else {
+            return nil
+        }
+
+        return "\(firstName) \(lastName)"
+    }
+
     var displayAddress: String? {
         if street == nil, number == nil, zipCode == nil, city == nil {
             return nil

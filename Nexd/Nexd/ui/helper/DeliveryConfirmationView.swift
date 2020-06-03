@@ -15,14 +15,18 @@ struct DeliveryConfirmationView: View {
     struct Request {
         let requestId: Int64
         let requester: String
-        let phoneNumber: String
-        let address: String
+        let name: String?
+        let phoneNumber: String?
+        let address: String?
+        let deliveryComment: String?
 
         static func from(helpRequest: HelpRequest) -> DeliveryConfirmationView.Request {
             Request(requestId: helpRequest.id ?? 0,
-                    requester: helpRequest.firstName ?? "-",
-                    phoneNumber: helpRequest.phoneNumber ?? "-",
-                    address: "\(helpRequest.zipCode ?? "-") / \(helpRequest.city ?? "-")")
+                    requester: helpRequest.displayName,
+                    name: helpRequest.fullName,
+                    phoneNumber: helpRequest.phoneNumber,
+                    address: helpRequest.displayAddress,
+                    deliveryComment: helpRequest.deliveryComment)
         }
     }
 
@@ -44,17 +48,39 @@ struct DeliveryConfirmationView: View {
 
                                     NexdUI.Card {
                                         VStack {
-                                            NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_phone_number_title.text)
+                                            OptionalView(request.name) { name in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_full_name.text)
 
-                                            NexdUI.Texts.cardPlaceholderText(text: Text(request.phoneNumber))
-                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(name))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
 
-                                            Divider()
+                                                Divider()
+                                            }
 
-                                            NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_address_title.text)
+                                            OptionalView(request.address) { address in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_address_title.text)
 
-                                            NexdUI.Texts.cardPlaceholderText(text: Text(request.address))
-                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(address))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                                                Divider()
+                                            }
+
+                                            OptionalView(request.phoneNumber) { phoneNumber in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_phone_number_title.text)
+
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(phoneNumber))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                                                Divider()
+                                            }
+
+                                            OptionalView(request.deliveryComment) { deliveryComment in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_delivery_comment.text)
+
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(deliveryComment))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                            }
                                         }
                                     }
                                     .padding(12)
