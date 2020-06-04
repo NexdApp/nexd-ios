@@ -17,14 +17,14 @@ extension NexdUI {
         var body: some View {
             NexdUI.Card {
                 HStack {
-                    Text(item.name)
+                    NexdUI.Texts.cardText(text: Text(item.name))
 
                     Spacer()
 
-                    Text(String(item.amount))
+                    NexdUI.Texts.cardPlaceholderText(text: Text(String(item.amount)))
 
                     item.unit.map { unit in
-                        Text(unit.nameShort)
+                        NexdUI.Texts.cardPlaceholderText(text: Text(unit.nameShort))
                     }
 
                     NexdUI.Buttons.deleteButton {

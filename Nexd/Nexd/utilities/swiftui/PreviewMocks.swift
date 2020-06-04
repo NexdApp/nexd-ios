@@ -25,6 +25,10 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("showError - title: \(title) - message: \(message)")
     }
 
+    func showErrorOverlay() {
+           log.debug("showErrorOverlay")
+       }
+
     func toStartAuthenticationFlow() {
         log.debug("toStartAuthenticationFlow")
     }
@@ -113,6 +117,10 @@ class PreviewNavigator: ScreenNavigating {
 
     func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
         log.debug("toDeliveryConfirmationScreen - helperWorkflowState: \(helperWorkflowState)")
+    }
+
+    func shareInvitation() {
+        log.debug("sendInvitation")
     }
 }
 
