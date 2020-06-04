@@ -59,8 +59,18 @@ struct HelperRequestOverviewView: View {
                     }
                 }
                 .whenNil {
-                    NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_placeholder.text)
-                        .padding([.top, .bottom], 20)
+                    VStack {
+                        NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_placeholder.text)
+                            .padding([.top, .bottom], 20)
+
+                        NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invitation_hint.text)
+                            .padding([.top, .bottom], 20)
+
+                        NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
+                                                   icon: R.image.baseline_share_black_24pt.image) {
+                            self.viewModel.onInviteTapped()
+                        }
+                    }
                 }
 
                 Spacer()
@@ -132,6 +142,10 @@ extension HelperRequestOverviewView {
 
         func onContinueButtonTapped() {
             navigator.toShoppingList(helperWorkflowState: helperWorkflowState)
+        }
+
+        func onInviteTapped() {
+            navigator.shareInvitation()
         }
 
         func refreshOpenHelpRequests() {

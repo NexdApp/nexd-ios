@@ -69,6 +69,8 @@
 "helper_request_overview_button_title_current_items_list" = "Einkaufsliste";
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_empty_accepted_requests_list_placeholder" = "Bisher hast du noch keine Anfragen angenommen. Bitte tippe auf eine offene Anfrage um sie anzusehen und anzunehmen.";
+"helper_request_overview_empty_open_requests_list_invitation_hint" = "Kennst du Leute die diese App gerne nutzen möchten? Dann erzähl ihnen von uns!";
+"helper_request_overview_empty_open_requests_list_invite_button_title" = "Weitersagen!";
 "helper_request_overview_empty_open_requests_list_placeholder" = "Für deine eingestellte Region sind derzeit keine offenen Anfragen vorhanden. Bitte such in einer anderen Region in deiner Nähe oder hilf uns in dem du Telefonanrufe übersetzt.";
 "helper_request_overview_error_message" = "Beim Absenden der Anfrage ist ein Problem aufgetreten. Bitte versuche es erneut.";
 "helper_request_overview_error_title" = "Fehler!";
@@ -89,6 +91,7 @@
 "helper_type_button_shopping" = "Ich möchte shoppen!";
 "helper_type_button_transcript" = "Einen Anruf übersetzen!";
 "helper_type_screen_title" = "Wie würdest du gerne helfen?";
+"invitation_message" = "Schau dir mal die nexd App an. Ich glaube die wäre was für dich...";
 "keyboard_accessory_text_done" = "Fertig";
 "loading_overlay_message" = "Wird geladen…";
 "login_button_title_login" = "Einloggen";

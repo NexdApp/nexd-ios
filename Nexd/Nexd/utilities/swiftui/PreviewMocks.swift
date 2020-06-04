@@ -118,6 +118,10 @@ class PreviewNavigator: ScreenNavigating {
     func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
         log.debug("toDeliveryConfirmationScreen - helperWorkflowState: \(helperWorkflowState)")
     }
+
+    func shareInvitation() {
+        log.debug("sendInvitation")
+    }
 }
 
 extension HelpList {
