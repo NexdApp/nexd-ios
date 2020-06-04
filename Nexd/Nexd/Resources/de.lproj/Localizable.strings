@@ -125,8 +125,8 @@
 "seeker_error_title" = "Fehler!";
 "seeker_item_selection_add_article_placeholer" = "Artikel Name";
 "seeker_item_selection_article_amount_placeholer" = "Menge";
-"seeker_item_selection_screen_title" = "Artikel";
 "seeker_item_selection_no_items_text" = "Benutze bitte den '+' Knopf um deinen ersten Artikel zur Liste hinzuzufügen.";
+"seeker_item_selection_screen_title" = "Artikel";
 "seeker_overview_empty_label" = "Du hast noch keine Anfrage aufgegeben. Klicke rechts unten, um deine erste Anfrage zu erstellen.";
 "seeker_overview_screen_title" = "Deine Anfragen:";
 
