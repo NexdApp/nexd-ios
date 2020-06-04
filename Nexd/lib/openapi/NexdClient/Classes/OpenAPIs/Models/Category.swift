@@ -12,8 +12,8 @@ public struct Category: Codable {
 
 
     public enum Language: String, Codable, CaseIterable {
-        case deDe = "de-DE"
-        case enUs = "en-US"
+        case de = "de"
+        case en = "en"
     }
     /** Auto-incremented ID of an category. */
     public var id: Int64

@@ -27,6 +27,7 @@ PODS:
     - RxSwift (~> 5)
   - RxSwift (5.0.1)
   - SnapKit (4.2.0)
+  - Swifter (1.4.7)
   - SwiftLint (0.39.1)
   - Validator (3.2.1)
   - XCGLogger (7.0.1):
@@ -44,6 +45,7 @@ DEPENDENCIES:
   - RxCombine
   - RxSwift
   - SnapKit
+  - Swifter
   - SwiftLint
   - Validator
   - XCGLogger
@@ -61,6 +63,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - SnapKit
+    - Swifter
     - SwiftLint
     - Validator
     - XCGLogger
@@ -82,10 +85,11 @@ SPEC CHECKSUMS:
   RxRelay: a168bd6caf712d00c676ac344e9295afc93b418e
   RxSwift: e2dc62b366a3adf6a0be44ba9f405efd4c94e0c4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Swifter: 2327ef5d872c638aebab79646ce494af508b0c8f
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   Validator: 80a6f567220c962dfd2d9928ae98a8c1d164f6f4
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: e0040e03b2f49f19ea31cc9fca3d6c6435f28792
+PODFILE CHECKSUM: 05cb17f81030c239e61d1a810a01c59f3fb9e6ac
 
 COCOAPODS: 1.9.1

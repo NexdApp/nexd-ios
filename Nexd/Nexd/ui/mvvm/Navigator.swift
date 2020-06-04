@@ -25,20 +25,23 @@ protocol ScreenNavigating {
     func toMainScreen()
     func toProfileScreen()
     func toShoppingListOptions()
-    func toCheckList()
-    func toRequestConfirmation(items: [RequestConfirmationView.Item])
+    func toCreateShoppingList()
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: @escaping ((HelpRequestCreationState.Item) -> Void))
+    func toRequestConfirmation(state: HelpRequestCreationState)
     func toPhoneCall()
     func toHelpOptions()
     func toTranscribeInfoView()
     func toTranscribeListView(state: TranscribeViewState)
     func toTranscribeEndView()
     func toHelperOverview()
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList>
-    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?>
-    func toCurrentItemsList(helpList: HelpList)
-    func toCheckoutScreen(helpList: HelpList)
-    func toDeliveryConfirmationScreen(helpList: HelpList)
+    func addingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void)
+    func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void)
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?)
+    func toShoppingList(helperWorkflowState: HelperWorkflowState)
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState)
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState)
 }
 
 class Navigator {
@@ -154,17 +157,33 @@ extension Navigator: ScreenNavigating {
         push(screen: screen)
     }
 
-    func toCheckList() {
-        let screen = SeekerItemSelectionViewController(viewModel: SeekerItemSelectionViewController.ViewModel(navigator: self,
-                                                                                                              articlesService: articlesService))
+    func toCreateShoppingList() {
+        let screen = SeekerItemSelectionView.createScreen(viewModel: SeekerItemSelectionView.ViewModel(navigator: self,
+                                                                                                       articlesService: articlesService))
         push(screen: screen)
     }
 
-    func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: @escaping ((HelpRequestCreationState.Item) -> Void)) {
+        let screen = SeekerArticleInputView.createScreen(viewModel: SeekerArticleInputView.ViewModel(navigator: self,
+                                                                                                     articlesService: articlesService,
+                                                                                                     itemSelectionViewState: helpRequestCreationState,
+                                                                                                     item: item,
+                                                                                                     onDone: { [weak self] item in
+                                                                                                         onItemSaved(item)
+                                                                                                         self?.dismiss()
+                                                                                                     },
+                                                                                                     onCancel: { [weak self] in self?.dismiss() }))
+
+        present(screen: screen)
+    }
+
+    func toRequestConfirmation(state: HelpRequestCreationState) {
         let viewModel = RequestConfirmationView.ViewModel(navigator: self,
                                                           userService: userService,
                                                           helpRequestsService: helpRequestsService,
-                                                          items: items,
+                                                          state: state,
                                                           onSuccess: { [weak self] in
                                                               self?.showError(title: R.string.localizable.seeker_success_title(),
                                                                               message: R.string.localizable.seeker_success_message(), handler: {
@@ -172,7 +191,8 @@ extension Navigator: ScreenNavigating {
                                                                                       self?.goBack()
                                                                                   }
                                                               })
-                                                          }, onError: { [weak self] _ in
+                                                          },
+                                                          onError: { [weak self] _ in
                                                               self?.showError(title: R.string.localizable.seeker_error_title(),
                                                                               message: R.string.localizable.seeker_error_message(), handler: nil)
         })
@@ -181,8 +201,7 @@ extension Navigator: ScreenNavigating {
     }
 
     func toPhoneCall() {
-        let screen = PhoneCallViewController(viewModel: PhoneCallViewController.ViewModel(phoneService: phoneService, navigator: self))
-        push(screen: screen)
+        log.debug("Implement ME!")
     }
 
     func toHelpOptions() {
@@ -206,91 +225,78 @@ extension Navigator: ScreenNavigating {
     }
 
     func toHelperOverview() {
-        let screen = HelperRequestOverviewViewController(viewModel: HelperRequestOverviewViewController.ViewModel(navigator: self,
-                                                                                                                  userService: userService,
-                                                                                                                  helpRequestsService: helpRequestsService,
-                                                                                                                  helpListsService: helpListsService))
+        let screen = HelperRequestOverviewView.createScreen(viewModel: HelperRequestOverviewView.ViewModel(navigator: self,
+                                                                                                           userService: userService,
+                                                                                                           helpRequestsService: helpRequestsService,
+                                                                                                           helpListsService: helpListsService,
+                                                                                                           articlesService: articlesService))
         push(screen: screen)
     }
 
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
-        return Single.create { [weak self] single -> Disposable in
-            guard let self = self else {
-                single(.success(helpList))
-                return Disposables.create()
-            }
-
-            let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .addRequestToHelpList,
-                                                                                                 navigator: self,
-                                                                                                 helpListService: self.helpListsService,
-                                                                                                 helpRequest: request,
-                                                                                                 helpList: helpList,
-                                                                                                 onFinished: { [weak self] helpList in
-                                                                                                     log.debug("helpList: \(helpList)")
-                                                                                                     single(.success(helpList))
-                                                                                                     self?.dismiss(completion: nil)
-            }))
-            self.present(screen: screen)
-
-            return Disposables.create()
-        }
+    func addingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
+        let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .addRequestToHelpList,
+                                                                                             navigator: self,
+                                                                                             helpListService: helpListsService,
+                                                                                             helpRequest: request,
+                                                                                             helperWorkflowState: state,
+                                                                                             onFinished: { [weak self] helpList in
+                                                                                                 state.helpList = helpList
+                                                                                                 self?.dismiss {
+                                                                                                     onFinished(state)
+                                                                                                 }
+                                                                                             }, onCancelled: { [weak self] in
+                                                                                                 self?.dismiss {
+                                                                                                     onFinished(state)
+                                                                                                 }
+        }))
+        present(screen: screen)
     }
 
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
-        return Single.create { [weak self] single -> Disposable in
-            guard let self = self else {
-                single(.success(helpList))
-                return Disposables.create()
-            }
-
-            let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .removeRequestFromHelpList,
-                                                                                                 navigator: self,
-                                                                                                 helpListService: self.helpListsService,
-                                                                                                 helpRequest: request,
-                                                                                                 helpList: helpList,
-                                                                                                 onFinished: { [weak self] helpList in
-                                                                                                     log.debug("helpList: \(helpList)")
-                                                                                                     single(.success(helpList))
-                                                                                                     self?.dismiss(completion: nil)
-            }))
-            self.present(screen: screen)
-
-            return Disposables.create()
-        }
+    func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
+        let screen = RequestDetailsView.createScreen(viewModel: RequestDetailsView.ViewModel(type: .removeRequestFromHelpList,
+                                                                                             navigator: self,
+                                                                                             helpListService: helpListsService,
+                                                                                             helpRequest: request,
+                                                                                             helperWorkflowState: state,
+                                                                                             onFinished: { [weak self] helpList in
+                                                                                                 state.helpList = helpList
+                                                                                                 self?.dismiss {
+                                                                                                     onFinished(state)
+                                                                                                 }
+                                                                                             }, onCancelled: { [weak self] in
+                                                                                                 self?.dismiss {
+                                                                                                     onFinished(state)
+                                                                                                 }
+        }))
+        present(screen: screen)
     }
 
-    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
-        return Single.create { [weak self] single -> Disposable in
-            guard let self = self else {
-                single(.success(nil))
-                return Disposables.create()
-            }
-
-            let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
-                                                                                                                           zipCode: zipCode,
-                                                                                                                           onFinished: { [weak self] result in
-                                                                                                                               single(.success(result))
-                                                                                                                               self?.dismiss(completion: nil)
-            }))
-            self.present(screen: screen)
-
-            return Disposables.create()
-        }
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
+        let screen = HelperRequestFilterSettingsView.createScreen(viewModel: HelperRequestFilterSettingsView.ViewModel(navigator: self,
+                                                                                                                       zipCode: zipCode,
+                                                                                                                       onCancelled: { [weak self] in
+                                                                                                                           self?.dismiss(completion: nil)
+                                                                                                                       },
+                                                                                                                       onFinished: { [weak self] result in
+                                                                                                                           onFilterChanged?(result)
+                                                                                                                           self?.dismiss(completion: nil)
+        }))
+        present(screen: screen)
     }
 
-    func toCurrentItemsList(helpList: HelpList) {
-        let screen = ShoppingListViewController(viewModel: ShoppingListViewController.ViewModel(navigator: self, helpList: helpList))
+    func toShoppingList(helperWorkflowState: HelperWorkflowState) {
+        let screen = ShoppingListView.createScreen(viewModel: ShoppingListView.ViewModel(navigator: self, helperWorkflowState: helperWorkflowState))
         push(screen: screen)
     }
 
-    func toCheckoutScreen(helpList: HelpList) {
-        let screen = CheckoutViewController(viewModel: CheckoutViewController.ViewModel(navigator: self, helpList: helpList))
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState) {
+        let screen = CheckoutView.createScreen(viewModel: CheckoutView.ViewModel(navigator: self, helperWorkflowState: helperWorkflowState))
         push(screen: screen)
     }
 
-    func toDeliveryConfirmationScreen(helpList: HelpList) {
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
         push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self,
-                                                                                                         helpList: helpList,
+                                                                                                         helperWorkflowState: helperWorkflowState,
                                                                                                          helpListsService: helpListsService)))
     }
 

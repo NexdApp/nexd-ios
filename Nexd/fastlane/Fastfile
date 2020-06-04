@@ -26,6 +26,13 @@ platform :ios do
     )
   end
 
+  desc "Create screenshots"
+  lane :create_screenshots do
+    bootstrap
+    snapshot(output_directory: "./fastlane/screenshots")
+    frameit(path: "./fastlane/screenshots")
+  end
+
   desc "Build for distribution (via App Store and TestFlight)"
   lane :testflight_beta do
     bootstrap

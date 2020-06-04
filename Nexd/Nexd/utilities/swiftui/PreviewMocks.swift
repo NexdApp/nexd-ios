@@ -53,12 +53,18 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toShoppingListOptions")
     }
 
-    func toCheckList() {
-        log.debug("toCheckList")
+    func toCreateShoppingList() {
+        log.debug("toCreateShoppingList")
     }
 
-    func toRequestConfirmation(items: [RequestConfirmationView.Item]) {
-        log.debug("toRequestConfirmation - items: \(items)")
+    func toArticleInput(helpRequestCreationState: HelpRequestCreationState,
+                        with item: HelpRequestCreationState.Item?,
+                        onItemSaved: (HelpRequestCreationState.Item) -> Void) {
+        log.debug("toArticleInput")
+    }
+
+    func toRequestConfirmation(state: HelpRequestCreationState) {
+        log.debug("toRequestConfirmation - items: \(state)")
     }
 
     func toPhoneCall() {
@@ -85,31 +91,28 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toHelperOverview")
     }
 
-    func addingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+    func addingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
         log.debug("toRequestDetails")
-        return Single.never()
     }
 
-    func removingHelperRequest(request: HelpRequest, to helpList: HelpList) -> Single<HelpList> {
+    func removingHelperRequest(request: HelpRequest, in state: HelperWorkflowState, onFinished: @escaping (HelperWorkflowState) -> Void) {
         log.debug("removingHelperRequest")
-        return Single.never()
     }
 
-    func changingHelperRequestFilterSettings(zipCode: String?) -> Single<HelperRequestFilterSettingsView.Result?> {
+    func changingHelperRequestFilterSettings(zipCode: String?, onFilterChanged: ((HelperRequestFilterSettingsView.Result?) -> Void)?) {
         log.debug("changingHelperRequestFilterSettings")
-        return Single.never()
     }
 
-    func toCurrentItemsList(helpList: HelpList) {
-        log.debug("toCurrentItemsList - helpList: \(helpList)")
+    func toShoppingList(helperWorkflowState: HelperWorkflowState) {
+        log.debug("toShoppingList - helperWorkflowState: \(helperWorkflowState)")
     }
 
-    func toCheckoutScreen(helpList: HelpList) {
-        log.debug("toCheckoutScreen - helpList: \(helpList)")
+    func toCheckoutScreen(helperWorkflowState: HelperWorkflowState) {
+        log.debug("toCheckoutScreen - helperWorkflowState: \(helperWorkflowState)")
     }
 
-    func toDeliveryConfirmationScreen(helpList: HelpList) {
-        log.debug("toDeliveryConfirmationScreen - helpList: \(helpList)")
+    func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState) {
+        log.debug("toDeliveryConfirmationScreen - helperWorkflowState: \(helperWorkflowState)")
     }
 }
 
@@ -165,7 +168,15 @@ extension HelpRequestArticle {
                            articleId: articleId,
                            unitId: nil,
                            articleCount: nil,
-                           article: Article(id: articleId, name: name, language: .deDe, categoryId: nil, status: nil, unitIdOrder: nil, category: nil),
+                           article: Article(id: articleId,
+                                            name: name,
+                                            language: .de,
+                                            statusOverwritten: nil,
+                                            popularity: 0,
+                                            unitIdOrder: nil,
+                                            categoryId: nil,
+                                            status: nil,
+                                            category: nil),
                            unit: nil,
                            articleDone: nil,
                            helpRequest: nil)

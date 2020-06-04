@@ -34,6 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         log.logAppDetails()
 
+        #if DEBUG
+            UITestingHelper.setupUiTestingIfNecessary()
+        #endif
+
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: .duckOthers)
         } catch {

@@ -11,6 +11,12 @@ import NexdClient
 import RxSwift
 
 class AuthenticationService {
+    private var storage: Storage
+
+    init(storage: Storage) {
+        self.storage = storage
+    }
+
     func register(email: String, firstName: String?, lastName: String?, password: String) -> Completable {
         let dto = RegisterDto(email: email, firstName: firstName, lastName: lastName, phoneNumber: nil, password: password)
         return AuthAPI.authControllerRegister(registerDto: dto)
@@ -31,14 +37,14 @@ class AuthenticationService {
     }
 
     private func userDidAuthenticate(accessToken: String) -> Completable {
-        Completable.from {
+        Completable.from { [weak self] in
             NexdClientAPI.setup(authorizationToken: accessToken)
-            PersistentStorage.shared.authorizationToken = accessToken
+            self?.storage.authorizationToken = accessToken
         }
     }
 
     func logout() {
-        PersistentStorage.shared.authorizationToken = nil
+        storage.authorizationToken = nil
         NexdClientAPI.setup(authorizationToken: nil)
     }
 }

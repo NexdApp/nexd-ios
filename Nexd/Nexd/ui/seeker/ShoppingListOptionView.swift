@@ -6,10 +6,6 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-// import Foundation
-// import RxCocoa
-// import RxSwift
-
 import SwiftUI
 
 struct ShoppingListOptionView: View {
@@ -26,13 +22,10 @@ struct ShoppingListOptionView: View {
             }
             .padding([.leading, .trailing], 12)
 
-            //        Make Phone Call Button will be reenabled as soon as the hotline is getting better
-            //        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
-            //        scrollView.addSubview(makePhonecallButton)
-//            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.seeker_type_button_phone_call.text) {
-//                self.viewModel.makePhoneCallTapped()
-//            }
-//            .padding([.leading, .trailing], 12)
+            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.seeker_type_button_phone_call.text) {
+                self.viewModel.makePhoneCallTapped()
+            }
+            .padding([.leading, .trailing], 12)
 
             Spacer()
         }
@@ -53,7 +46,7 @@ extension ShoppingListOptionView {
         }
 
         func selectItemsTapped() {
-            navigator.toCheckList()
+            navigator.toCreateShoppingList()
         }
 
         func makePhoneCallTapped() {
