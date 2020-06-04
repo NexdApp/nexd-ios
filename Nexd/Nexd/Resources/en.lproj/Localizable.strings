@@ -3,8 +3,10 @@
 "checkout_button_title_complete" = "Complete";
 "checkout_screen_title" = "Checkout";
 "confirm_button_title" = "Confirm";
-"delivery_confirmation_address_title" = "Postal Code / Town";
+"delivery_confirmation_address_title" = "Address";
 "delivery_confirmation_confirm_button_title" = "Finish shopping";
+"delivery_confirmation_delivery_comment" = "Delivery comment";
+"delivery_confirmation_full_name" = "Name";
 "delivery_confirmation_phone_number_title" = "Telephone number";
 "delivery_confirmation_screen_title" = "Thank you for completing the orders!";
 "delivery_confirmation_section_header" = "%1$@'s contact information:";
@@ -22,6 +24,7 @@
   Copyright © 2020 Tobias Schröpf. All rights reserved.*/
 "dialog_button_abort" = "Abort";
 "dialog_button_confirm" = "Confirm";
+"done_button_title" = "Done";
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "User authentication failed please try to login again.";
 "error_dialog_authentication_failed_title" = "Authentication failed!";
@@ -47,6 +50,9 @@
 "helper_request_detail_button_accepted" = "Request already accepted";
 "helper_request_detail_button_remove" = "Remove from shopping list!";
 "helper_request_detail_delivery_address_header" = "Delivery Address";
+"helper_request_detail_delivery_comment_header" = "Delivery comment";
+"helper_request_detail_empty_delivery_address_placeholder" = "The delivery address is not available.";
+"helper_request_detail_empty_list_placeholder" = "The shopping list is empty or failed to load.";
 "helper_request_detail_message_cancelled" = "Your request was deleted";
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
@@ -60,6 +66,9 @@
 "helper_request_overview_button_summary_title" = "Shopping";
 "helper_request_overview_button_title_current_items_list" = "Current Items List";
 "helper_request_overview_button_title_start" = "Start";
+"helper_request_overview_empty_accepted_requests_list_placeholder" = "No accepted requests found. Please chose requests from the list below.";
+"helper_request_overview_empty_open_requests_list_placeholder" = "No open requests found. Please come back later.";
+"helper_request_overview_empty_open_requests_list_placeholder" = "Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls.";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
 "helper_request_overview_filter_inactive" = "All open requests";
@@ -106,11 +115,17 @@
 "role_selection_helper" = "I can help";
 "role_selection_screen_title" = "Role";
 "role_selection_seeker" = "I need something";
+"seeker_article_input_description" = "To add a new article to the list provide its name, amount and unit.";
+"seeker_article_input_title" = "Add article";
+"seeker_article_input_unit_picker_title" = "Unit";
 "seeker_detail_placeholder_information" = "Additional information";
 "seeker_detail_screen_title" = "Your request";
 "seeker_error_message" = "Your request could not be sent! Please try again.";
 "seeker_error_title" = "Error!";
+"seeker_item_selection_add_article_placeholer" = "Add article";
+"seeker_item_selection_article_amount_placeholer" = "Amount";
 "seeker_item_selection_screen_title" = "Chose items";
+"seeker_item_selection_no_items_text" = "Press the '+' button to add your first item to the list.";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
 
@@ -139,6 +154,7 @@
 "transcribe_articles_error_message" = "Saving the help request failed. Please make sure the data is correct and valid!";
 "transcribe_articles_error_title" = "Request failed!";
 "transcribe_articles_screen_title" = "Shopping list";
+"transcribe_articles_selection_no_items_text" = "Press the '+' button to add the items ordered in the recorded voice call to the list.";
 "transcribe_end_button_title_complete" = "Done";
 "transcribe_end_screen_title_ios" = "Thank you for helping complete the request!";
 "transcribe_info_button_title_confirm" = "Confirm Info";

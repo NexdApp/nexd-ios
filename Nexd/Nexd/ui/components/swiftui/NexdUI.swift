@@ -24,6 +24,22 @@ enum NexdUI {
             }
         }
 
+        static func cancel(text: Text = R.string.localizable.cancel_button_title.text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftMedium.font(size: 23))
+                    .foregroundColor(R.color.darkButtonText.color)
+            }
+        }
+
+        static func done(text: Text = R.string.localizable.done_button_title.text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftBold.font(size: 23))
+                    .foregroundColor(R.color.darkButtonText.color)
+            }
+        }
+
         static func solidBackButton(action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 ZStack {
@@ -39,6 +55,38 @@ enum NexdUI {
                 }
             }
             .position(x: 28, y: 28)
+        }
+
+        static func addButton(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                ZStack {
+                    Circle()
+                        .fill(R.color.lightButtonBackground.color)
+                        .frame(width: 32, height: 32)
+                        .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
+
+                    R.image.baseline_add_black_24pt.image
+                        .resizable()
+                        .foregroundColor(R.color.lightButtonIcon.color)
+                        .frame(width: 24, height: 24)
+                }
+            }
+        }
+
+        static func deleteButton(action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                ZStack {
+                    Circle()
+                        .fill(R.color.solidButtonBackground.color)
+                        .frame(width: 32, height: 32)
+                        .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
+
+                    R.image.baseline_delete_black_24pt.image
+                        .resizable()
+                        .foregroundColor(R.color.solidButtonIcon.color)
+                        .frame(width: 24, height: 24)
+                }
+            }
         }
 
         static func `default`(text: Text, action: @escaping () -> Void) -> some View {
@@ -65,6 +113,20 @@ enum NexdUI {
                         .foregroundColor(R.color.positiveButtonText.color)
                 }
             }
+        }
+
+        static func darkButton(text: Text, action: @escaping () -> Void) -> some View {
+            Button(action: action) {
+                text
+                    .font(R.font.proximaNovaSoftBold.font(size: 28))
+                    .foregroundColor(R.color.darkButtonBorder.color)
+                    .padding([.leading, .trailing], 12)
+            }
+            .frame(maxHeight: .infinity)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(R.color.darkButtonBorder.color, lineWidth: 2)
+            )
         }
 
         static func lightButton(text: Text, action: @escaping () -> Void) -> some View {
@@ -179,6 +241,80 @@ enum NexdUI {
                 .font(R.font.proximaNovaSoftBold.font(size: 16))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
+
+        static func detailsText(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 20))
+                .foregroundColor(R.color.darkHeadingText.color)
+        }
+
+        static func sectionHeader(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .foregroundColor(R.color.headingText.color)
+        }
+
+        static func cardSectionHeader(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .foregroundColor(R.color.darkListItemTitle.color)
+        }
+
+        static func cardText(text: Text) -> some View {
+            text
+                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .foregroundColor(R.color.listItemTitle.color)
+        }
+
+        static func cardPlaceholderText(text: Text) -> some View {
+            text
+                .font(R.font.proximaNovaSoftBold.font(size: 14))
+                .foregroundColor(R.color.listItemDetailsText.color)
+        }
+
+        static func filterButtonDetailsText(text: Text) -> some View {
+            text
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(R.font.proximaNovaSoftRegular.font(size: 14))
+                .foregroundColor(R.color.filterButtonDetails.color)
+        }
+
+        static func suggestion(text: String, highlight: String?) -> some View {
+            guard let highlight = highlight, let highlightRange = text.range(of: highlight, options: .caseInsensitive), !highlightRange.isEmpty else {
+                return Text(text).notMatchingText()
+            }
+
+            let prefix = text[..<highlightRange.lowerBound]
+            let match = text[highlightRange.lowerBound ..< highlightRange.upperBound]
+            let suffix = text[highlightRange.upperBound ..< text.endIndex]
+
+            return Text(prefix).notMatchingText()
+                + Text(match).matchingText()
+                + Text(suffix).notMatchingText()
+        }
+
+        static func matching(_ text: String) -> Text {
+            Text(text).matchingText()
+        }
+
+        static func notMatching(_ text: String) -> Text {
+            Text(text).notMatchingText()
+        }
+    }
+}
+
+extension Text {
+    fileprivate func matchingText() -> Text {
+        font(R.font.proximaNovaSoftBold.font(size: 16))
+            .foregroundColor(R.color.matchingText.color)
+    }
+
+    fileprivate func notMatchingText() -> Text {
+        font(R.font.proximaNovaSoftMedium.font(size: 16))
+            .foregroundColor(R.color.notMatchingText.color)
     }
 }
 
@@ -194,6 +330,9 @@ enum NexdUI {
 
                 NexdUI.Buttons.confirm {}
                     .padding(8)
+
+//                NexdUI.Buttons.darkButton(text: Text("Dark Button"), action: {})
+//                    .padding(8)
 
                 NexdUI.Buttons.lightButton(text: Text("Light Button"), action: {})
                     .padding(8)

@@ -112,7 +112,7 @@ extension MainPageView {
             //        Make Phone Call Button will be reenabled as soon as the hotline is getting better
             //        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
 //            navigator.toShoppingListOptions()
-            navigator.toCheckList()
+            navigator.toCreateShoppingList()
         }
 
         func helperButtonTapped() {

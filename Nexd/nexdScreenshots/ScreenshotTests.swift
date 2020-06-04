@@ -11,10 +11,6 @@ import Swifter
 import XCTest
 
 class ScreenshotTests: XCTestCase {
-    enum Constants {
-        static let mockBackendPort: in_port_t = 9090
-    }
-
     let mockBackend = HttpServer()
     var app: XCUIApplication?
 
@@ -30,10 +26,10 @@ class ScreenshotTests: XCTestCase {
             return HttpResponse.notFound
         }
 
-        XCTAssertNoThrow(try? mockBackend.start(Constants.mockBackendPort))
+        XCTAssertNoThrow(try? mockBackend.start(mockBackendPort))
 
         app.enableUiTesting()
-        app.changeBaseUrl(to: "http://localhost:\(Constants.mockBackendPort)")
+        app.changeBaseUrl(to: "http://localhost:\(mockBackendPort)")
 
         self.app = app
     }
@@ -49,28 +45,117 @@ class ScreenshotTests: XCTestCase {
         snapshot("Initial")
     }
 
-    func testLoginScreen() {
+    func testMainScreen() {
         app?.login()
 
-        mockBackend.onGetProfile { () -> User? in
-            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
-        }
+        mockBackend
+            .withDefaultUserProfile()
 
         app?.launch()
-        snapshot("Login")
+        snapshot("MainPage")
     }
 
-    func testHelperOverviewScreen() {
+    func testHelperOptions() {
         app?.login()
 
-        mockBackend.onGetProfile { () -> User? in
-            User(firstName: "Maria", lastName: "Schultz", street: nil, number: nil, zipCode: nil, city: nil, id: "", email: nil, role: nil, phoneNumber: nil)
-        }
+        mockBackend
+            .withDefaultUserProfile()
 
         app?.launch()
 
         app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
 
-        snapshot("HelperOverview")
+        snapshot("HelperOptions")
+    }
+
+    func testHelperShoppingWorkflow() {
+        app?.login()
+
+        // TODO: mock meaningful requests
+        mockBackend
+            .withDefaultUserProfile()
+            .withDefaultUnits()
+            .onGetHelpLists { () -> [HelpList]? in return nil }
+            .onGetHelpRequests { () -> [HelpRequest]? in return nil }
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
+        app?.buttons[AccessibilityIdentifier.helperOptionsGoShoppingButton.rawValue].tap()
+
+        snapshot("HelperRequestOverview")
+    }
+
+    func testHelperCallTranscriptionWorkflow() {
+        app?.login()
+
+        mockBackend
+            .withDefaultUserProfile()
+            .withDefaultCalls()
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageHelperButton.rawValue].tap()
+        app?.buttons[AccessibilityIdentifier.helperOptionsTranscribeCallButton.rawValue].tap()
+
+        snapshot("Call transcription")
+    }
+
+    func testCreateHelpRequestFlow() {
+        let articlesCalled = expectation(description: "Articles REST call")
+
+        app?.login()
+
+        mockBackend
+            .withDefaultUserProfile()
+            .withDefaultUnits()
+            .withDefaultArticles { articlesCalled.fulfill() }
+
+        app?.launch()
+
+        app?.buttons[AccessibilityIdentifier.mainPageSeekerButton.rawValue].tap()
+
+        snapshot("SeekerItemSelection_empty")
+
+        app?.buttons[AccessibilityIdentifier.seekerItemSelectionAddButton.rawValue].tap()
+
+        snapshot("SeekerArticleInput_empty")
+
+        let nameTextField = app?.textFields[AccessibilityIdentifier.seekerArticleInputNameTextField.rawValue].firstMatch
+        nameTextField?.tap()
+        nameTextField?.typeText("Ap")
+
+        waitForExpectations(timeout: 2.0, handler: nil)
+
+        snapshot("SeekerArticleInput_suggestions")
+
+        app?.staticTexts[AccessibilityIdentifier.seekerArticleInputNameSuggestion.rawValue].firstMatch.tap()
+
+        let amountTextField = app?.textFields[AccessibilityIdentifier.seekerArticleInputAmountTextField.rawValue].firstMatch
+        amountTextField?.tap()
+        amountTextField?.typeText("5")
+
+        let unitButton = app?.buttons[AccessibilityIdentifier.seekerArticleInputUnitButton.rawValue].firstMatch
+        unitButton?.tap()
+
+        snapshot("SeekerArticleInput_unit_picker")
+
+        let doneButton = app?.buttons[AccessibilityIdentifier.modalDoneButton.rawValue].firstMatch
+        doneButton?.tap()
+
+        snapshot("SeekerItemSelection_one_item")
+    }
+
+    private var mockBackendPort: in_port_t {
+        // use a different mock backend port for each simulator to avoid conflicts when tests run in parallel
+        switch UIDevice.current.name {
+        case "iPhone 8":
+            return 9090
+        case "iPhone 11":
+            return 9091
+        default:
+            XCTFail("No mock backend port specified for iOS device: \(UIDevice.current.name)")
+            return 9999
+        }
     }
 }

@@ -12,8 +12,8 @@ public struct CreateHelpRequestArticleDto: Codable {
 
 
     public enum Language: String, Codable, CaseIterable {
-        case deDe = "de-DE"
-        case enUs = "en-US"
+        case de = "de"
+        case en = "en"
     }
     /** Article ID received from the article list */
     public var articleId: Int64?

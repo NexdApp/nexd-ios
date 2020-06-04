@@ -28,7 +28,7 @@ $ ./update_swagger_client.sh
 ## From staging backend
 
 ```
-$ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
+$ ./update_swagger_client.sh https://api-staging.nexd.app/api/v1
 ```
 
 ## From producton backend

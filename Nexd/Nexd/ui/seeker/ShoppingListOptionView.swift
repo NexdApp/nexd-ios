@@ -6,10 +6,6 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-// import Foundation
-// import RxCocoa
-// import RxSwift
-
 import SwiftUI
 
 struct ShoppingListOptionView: View {
@@ -50,7 +46,7 @@ extension ShoppingListOptionView {
         }
 
         func selectItemsTapped() {
-            navigator.toCheckList()
+            navigator.toCreateShoppingList()
         }
 
         func makePhoneCallTapped() {
