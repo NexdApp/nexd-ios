@@ -67,7 +67,6 @@
 "helper_request_overview_button_title_current_items_list" = "Current Items List";
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_empty_accepted_requests_list_placeholder" = "No accepted requests found. Please chose requests from the list below.";
-"helper_request_overview_empty_open_requests_list_placeholder" = "No open requests found. Please come back later.";
 "helper_request_overview_empty_open_requests_list_placeholder" = "Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls.";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
@@ -124,8 +123,8 @@
 "seeker_error_title" = "Error!";
 "seeker_item_selection_add_article_placeholer" = "Add article";
 "seeker_item_selection_article_amount_placeholer" = "Amount";
-"seeker_item_selection_screen_title" = "Chose items";
 "seeker_item_selection_no_items_text" = "Press the '+' button to add your first item to the list.";
+"seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
 "seeker_overview_screen_title" = "Your requests:";
 
