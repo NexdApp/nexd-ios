@@ -17,6 +17,7 @@ protocol ScreenNavigating {
     func goBack()
     func showSuccess(title: String, message: String, handler: (() -> Void)?)
     func showError(title: String, message: String, handler: (() -> Void)?)
+    func showErrorOverlay()
 
     func toStartAuthenticationFlow()
     func toLoginScreen()
@@ -42,6 +43,8 @@ protocol ScreenNavigating {
     func toShoppingList(helperWorkflowState: HelperWorkflowState)
     func toCheckoutScreen(helperWorkflowState: HelperWorkflowState)
     func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState)
+
+    func shareInvitation()
 }
 
 class Navigator {
@@ -104,6 +107,12 @@ extension Navigator: ScreenNavigating {
         }
 
         navigationController.topViewController?.showError(title: title, message: message, handler: handler)
+    }
+
+    func showErrorOverlay() {
+        let screen = ErrorOverlay.createScreen(viewModel: ErrorOverlay.ViewModel(navigator: self, userService: userService, onErrorVanished: { [weak self] in self?.dismiss() }))
+        screen.modalPresentationStyle = .fullScreen
+        present(screen: screen)
     }
 
     func toStartAuthenticationFlow() {
@@ -298,6 +307,12 @@ extension Navigator: ScreenNavigating {
         push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self,
                                                                                                          helperWorkflowState: helperWorkflowState,
                                                                                                          helpListsService: helpListsService)))
+    }
+
+    func shareInvitation() {
+        let items: [Any] = [R.string.localizable.invitation_message(), URL(string: "https://www.nexd.app")!]
+        let shareScreen = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(screen: shareScreen)
     }
 
     private func push(screen: UIViewController) {

@@ -40,6 +40,16 @@ extension NexdClient.Unit: Identifiable {
     }
 }
 
+extension User {
+    var initials: String {
+        "\(firstName?.first?.description ?? "")\(lastName?.first?.description ?? "")"
+    }
+
+    var displayName: String {
+        firstName ?? lastName ?? "???"
+    }
+}
+
 extension HelpRequestArticle: Identifiable {
     public var id: Int64? {
         articleId
