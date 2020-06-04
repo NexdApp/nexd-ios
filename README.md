@@ -1,7 +1,8 @@
-# Deployment status
+# CI status
 
-
-- develop to TestFlight: ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop)
+- ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop) (master)
+- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg?branch=master) (master)
+- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg) (develop)
 
 # Initial Setup
 
