@@ -30,20 +30,24 @@ import UIKit
 
 extension ProcessInfo {
     #if DEBUG
-    var isUiTestingEnabled: Bool {
-        ProcessInfo.processInfo.arguments.contains(UiTestingArguments.uiTestingEnabled.rawValue)
-    }
+        var isUiTestingEnabled: Bool {
+            ProcessInfo.processInfo.arguments.contains(UiTestingArguments.uiTestingEnabled.rawValue)
+        }
 
-    var isLoggedInForTesting: Bool {
-        ProcessInfo.processInfo.arguments.contains(UiTestingArguments.loginForTesting.rawValue)
-    }
+        var isLoggedInForTesting: Bool {
+            ProcessInfo.processInfo.arguments.contains(UiTestingArguments.loginForTesting.rawValue)
+        }
 
-    var isLoggedOutForTesting: Bool {
-        ProcessInfo.processInfo.arguments.contains(UiTestingArguments.logoutForTesting.rawValue)
-    }
+        var isLoggedOutForTesting: Bool {
+            ProcessInfo.processInfo.arguments.contains(UiTestingArguments.logoutForTesting.rawValue)
+        }
     #endif
 
     var baseUrl: String? {
-        ProcessInfo.processInfo.environment[UiTestingVariables.baseUrl.rawValue]
+        #if DEBUG
+            return ProcessInfo.processInfo.environment[UiTestingVariables.baseUrl.rawValue]
+        #else
+            return nil
+        #endif
     }
 }
