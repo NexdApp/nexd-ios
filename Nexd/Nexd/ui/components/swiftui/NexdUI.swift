@@ -129,7 +129,7 @@ enum NexdUI {
             )
         }
 
-        static func lightButton(text: Text, action: @escaping () -> Void) -> some View {
+        static func lightButton(text: Text, icon: Image? = R.image.chevron.image, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
                     text
@@ -140,9 +140,11 @@ enum NexdUI {
 
                     Spacer()
 
-                    R.image.chevron.image
-                        .foregroundColor(R.color.lightButtonIcon.color)
-                        .padding(.trailing, 27)
+                    OptionalView(icon) { image in
+                        image
+                            .foregroundColor(R.color.lightButtonIcon.color)
+                            .padding(.trailing, 27)
+                    }
                 }
                 .frame(height: 70)
                 .background(R.color.lightButtonBackground.color)

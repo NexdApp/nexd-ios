@@ -43,6 +43,8 @@ protocol ScreenNavigating {
     func toShoppingList(helperWorkflowState: HelperWorkflowState)
     func toCheckoutScreen(helperWorkflowState: HelperWorkflowState)
     func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState)
+
+    func shareInvitation()
 }
 
 class Navigator {
@@ -305,6 +307,12 @@ extension Navigator: ScreenNavigating {
         push(screen: DeliveryConfirmationView.createScreen(viewModel: DeliveryConfirmationView.ViewModel(navigator: self,
                                                                                                          helperWorkflowState: helperWorkflowState,
                                                                                                          helpListsService: helpListsService)))
+    }
+
+    func shareInvitation() {
+        let items: [Any] = [R.string.localizable.invitation_message(), URL(string: "https://www.nexd.app")!]
+        let shareScreen = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        present(screen: shareScreen)
     }
 
     private func push(screen: UIViewController) {

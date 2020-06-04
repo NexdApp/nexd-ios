@@ -69,6 +69,8 @@
 "helper_request_overview_button_title_current_items_list" = "Current Items List";
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_empty_accepted_requests_list_placeholder" = "No accepted requests found. Please chose requests from the list below.";
+"helper_request_overview_empty_open_requests_list_invitation_hint" = "You know people who might be interested in using this app? Let them know!";
+"helper_request_overview_empty_open_requests_list_invite_button_title" = "Tell your friends!";
 "helper_request_overview_empty_open_requests_list_placeholder" = "Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls.";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
@@ -87,6 +89,7 @@
 "helper_type_button_shopping" = "I'd like to shop!";
 "helper_type_button_transcript" = "Transcript a call!";
 "helper_type_screen_title" = "How would you like to help?";
+"invitation_message" = "Check out the nexd app.";
 "keyboard_accessory_text_done" = "Done";
 "loading_overlay_message" = "Loading…";
 "login_button_title_login" = "Login";
