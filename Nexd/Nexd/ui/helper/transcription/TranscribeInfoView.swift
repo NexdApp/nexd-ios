@@ -18,18 +18,18 @@ struct TranscribeInfoView: View {
     var body: some View {
         return VStack {
             Group {
-                NexdUI.Texts.title(text: R.string.localizable.transcribe_info_screen_title.text)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 70)
-
                 NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
                               progress: $viewModel.state.progress,
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
+                    .padding(.top, 70)
+
+                NexdUI.Texts.title(text: R.string.localizable.transcribe_info_screen_title.text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
                 ScrollView {
                     NexdUI.TextField(tag: 1,
-                                     text: $viewModel.state.firstName,
+                                     text: $viewModel.helpRequestCreationState.firstName,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_first_name(),
                                      inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
                                                                                    autocorrectionType: .no,
@@ -38,7 +38,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 2,
-                                     text: $viewModel.state.lastName,
+                                     text: $viewModel.helpRequestCreationState.lastName,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_last_name(),
                                      inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
                                                                                    autocorrectionType: .no,
@@ -48,7 +48,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.ValidatingTextField(tag: 3,
-                                               text: $viewModel.state.zipCode,
+                                               text: $viewModel.helpRequestCreationState.zipCode,
                                                placeholder: R.string.localizable.transcribe_info_input_text_title_postal_code(),
                                                validationRules: .zipCode,
                                                inputConfiguration: NexdUI.InputConfiguration(keyboardType: .numberPad,
@@ -60,7 +60,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 4,
-                                     text: $viewModel.state.city,
+                                     text: $viewModel.helpRequestCreationState.city,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_city(),
                                      inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
                                                                                    autocorrectionType: .no,
@@ -70,7 +70,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 5,
-                                     text: $viewModel.state.street,
+                                     text: $viewModel.helpRequestCreationState.street,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_street(),
                                      inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
                                                                                    autocorrectionType: .no,
@@ -80,7 +80,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.TextField(tag: 6,
-                                     text: $viewModel.state.streetNumber,
+                                     text: $viewModel.helpRequestCreationState.houseNumber,
                                      placeholder: R.string.localizable.transcribe_info_input_text_title_street_number(),
                                      inputConfiguration: NexdUI.InputConfiguration(autocapitalizationType: .none,
                                                                                    autocorrectionType: .no,
@@ -90,7 +90,7 @@ struct TranscribeInfoView: View {
                         .padding(.top, 12)
 
                     NexdUI.ValidatingTextField(tag: 7,
-                                               text: $viewModel.state.phoneNumber,
+                                               text: $viewModel.helpRequestCreationState.phoneNumber,
                                                placeholder: R.string.localizable.transcribe_info_input_text_title_phone_number(),
                                                validationRules: .phone,
                                                inputConfiguration: NexdUI.InputConfiguration(keyboardType: .phonePad,
@@ -106,8 +106,8 @@ struct TranscribeInfoView: View {
                     self.viewModel.onConfirmButtonTapped()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 33)
-                .padding(.bottom, 53)
+                .padding(.top, 0)
+                .padding(.bottom, 40)
             }
             .padding(.leading, 26)
             .padding(.trailing, 33)
@@ -131,7 +131,15 @@ extension TranscribeInfoView {
         private let phoneService: PhoneService
         private var cancellableSet: Set<AnyCancellable>?
 
-        var state: TranscribeViewState
+        fileprivate var state: TranscribeViewState
+        fileprivate var helpRequestCreationState: HelpRequestCreationState
+
+        init(navigator: ScreenNavigating, phoneService: PhoneService, state: TranscribeViewState = TranscribeViewState()) {
+            self.navigator = navigator
+            self.phoneService = phoneService
+            self.state = state
+            self.helpRequestCreationState = state.helpRequestCreationState
+        }
 
         func onBackButtonPressed() {
             navigator.goBack()
@@ -149,12 +157,6 @@ extension TranscribeInfoView {
             navigator.toTranscribeListView(state: state)
         }
 
-        init(navigator: ScreenNavigating, phoneService: PhoneService, state: TranscribeViewState = TranscribeViewState()) {
-            self.navigator = navigator
-            self.phoneService = phoneService
-            self.state = state
-        }
-
         func bind() {
             let navigator = self.navigator
             var cancellableSet = Set<AnyCancellable>()
@@ -164,15 +166,15 @@ extension TranscribeInfoView {
                 .share(replay: 1, scope: .whileConnected)
 
             call
-                .publisher
-                .replaceError(with: nil)
-                .assign(to: \.call, on: state)
-                .store(in: &cancellableSet)
+                .map { [weak self] call -> Call in
+                    guard let call = call else {
+                        throw TranscribeError.noCallsAvailable
+                    }
 
-            let player = call
-                .compactMap { $0?.recordingUrl }
-                .compactMap { URL(string: $0) }
-                .map { url in AudioPlayer(url: url) }
+                    self?.helpRequestCreationState.phoneNumber = call.phoneNumber
+
+                    return call
+                }
                 .catchError { error in
                     log.warning("Cannot download call information: \(error)")
                     return Completable.from {
@@ -183,6 +185,15 @@ extension TranscribeInfoView {
                     .asObservable()
                     .ofType()
                 }
+                .publisher
+                .replaceError(with: nil)
+                .assign(to: \.call, on: state)
+                .store(in: &cancellableSet)
+
+            let player = call
+                .compactMap { $0?.recordingUrl }
+                .compactMap { URL(string: $0) }
+                .map { url in AudioPlayer(url: url) }
                 .share(replay: 1, scope: .whileConnected)
 
             player
@@ -204,7 +215,8 @@ extension TranscribeInfoView {
                 .assign(to: \.isPlaying, on: state)
                 .store(in: &cancellableSet)
 
-            playerState.publisher
+            playerState
+                .publisher
                 .map { $0.progress ?? 0 }
                 .removeDuplicates()
                 .receive(on: RunLoop.main)
@@ -213,9 +225,11 @@ extension TranscribeInfoView {
                 .store(in: &cancellableSet)
 
             state.objectWillChange
-                .sink { [weak self] _ in
-                    self?.objectWillChange.send()
-                }
+                .sink { [weak self] _ in self?.objectWillChange.send() }
+                .store(in: &cancellableSet)
+
+            helpRequestCreationState.objectWillChange
+                .sink { [weak self] _ in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet

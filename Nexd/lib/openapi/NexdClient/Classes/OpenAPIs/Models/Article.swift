@@ -12,8 +12,8 @@ public struct Article: Codable {
 
 
     public enum Language: String, Codable, CaseIterable {
-        case deDe = "de-DE"
-        case enUs = "en-US"
+        case de = "de"
+        case en = "en"
     }
     public enum Status: String, Codable, CaseIterable {
         case deactivated = "deactivated"
@@ -26,18 +26,25 @@ public struct Article: Codable {
     public var name: String
     /** Language key of this article */
     public var language: Language
+    /** The article status can be enforced by an admin (e.g. to remove profanity). */
+    public var statusOverwritten: Bool? = false
+    /** Popularity of the article, the higher the more frequent used. */
+    public var popularity: Int64
+    /** Determined order of the units. If the array is empty, there is no order yet identified. */
+    public var unitIdOrder: [Int64]?
     public var categoryId: Int64?
     public var status: Status?
-    public var unitIdOrder: [Double]?
     public var category: Category?
 
-    public init(id: Int64, name: String, language: Language, categoryId: Int64?, status: Status?, unitIdOrder: [Double]?, category: Category?) {
+    public init(id: Int64, name: String, language: Language, statusOverwritten: Bool?, popularity: Int64, unitIdOrder: [Int64]?, categoryId: Int64?, status: Status?, category: Category?) {
         self.id = id
         self.name = name
         self.language = language
+        self.statusOverwritten = statusOverwritten
+        self.popularity = popularity
+        self.unitIdOrder = unitIdOrder
         self.categoryId = categoryId
         self.status = status
-        self.unitIdOrder = unitIdOrder
         self.category = category
     }
 

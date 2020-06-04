@@ -17,37 +17,36 @@ struct TranscribeListView: View {
     var body: some View {
         return VStack {
             Group {
-                NexdUI.Texts.title(text: R.string.localizable.transcribe_articles_screen_title.text)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 70)
-
                 NexdUI.Player(isPlaying: $viewModel.state.isPlaying,
                               progress: $viewModel.state.progress,
                               onPlayPause: { self.viewModel.onPlayPause() },
                               onProgressEdited: { progress in self.viewModel.onSliderMoved(to: progress) })
+                    .padding(.top, 70)
 
-                List(viewModel.state.listItems) { listItem in
-                    HStack {
-                        HStack {
-                            Text(listItem.title)
-                                .font(R.font.proximaNovaSoftMedium.font(size: 18))
-                                .foregroundColor(R.color.listItemTitle.color)
-                                .frame(maxWidth: .infinity, minHeight: 48, maxHeight: 48, alignment: .leading)
-                                .padding(.leading, 14)
-                        }
-                        .padding(.trailing, 14)
-                        .background(Color.white)
-                        .cornerRadius(10)
+                HStack {
+                    NexdUI.Texts.title(text: R.string.localizable.transcribe_articles_screen_title.text)
 
-                        NexdUI.NumberInputView(text: String(listItem.amount),
-                                               onValueConfirmed: { amount in
-                                                   self.viewModel.onAmountChanged(for: listItem, to: amount)
-                        })
-                            .font(R.font.proximaNovaSoftBold.font(size: 20))
-                            .foregroundColor(R.color.amountText.color)
-                            .frame(width: 37, height: 37, alignment: .center)
-                            .background(Color.white)
-                            .cornerRadius(18.5)
+                    Spacer()
+
+                    NexdUI.Buttons.addButton {
+                        self.viewModel.addItemEntryTapped()
+                    }
+                }
+
+                ScrollView {
+                    if viewModel.helpRequestCreationState.items.isEmpty {
+                        NexdUI.Texts.detailsText(text: R.string.localizable.transcribe_articles_selection_no_items_text.text)
+
+                        R.image.nexdIllustration3.image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 120)
+                            .padding(.top, 40)
+                            .background(Circle().fill(Color.white))
+                    } else {
+                        NexdUI.EditableArticleList(items: viewModel.helpRequestCreationState.items,
+                                                   onDelete: { self.viewModel.removeItem(item: $0) },
+                                                   onEdit: { self.viewModel.editItem(item: $0) })
                     }
                 }
 
@@ -55,8 +54,8 @@ struct TranscribeListView: View {
                     self.viewModel.onConfirmButtonPressed()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 33)
-                .padding(.bottom, 53)
+                .padding(.top, 0)
+                .padding(.bottom, 40)
             }
             .padding(.leading, 26)
             .padding(.trailing, 33)
@@ -80,9 +79,22 @@ extension TranscribeListView {
         private let navigator: ScreenNavigating
         private let articlesService: ArticlesService
         private let phoneService: PhoneService
+
         fileprivate var state: TranscribeViewState
+        fileprivate var helpRequestCreationState: HelpRequestCreationState
 
         private var cancellableSet: Set<AnyCancellable>?
+
+        init(navigator: ScreenNavigating,
+             articlesService: ArticlesService,
+             phoneService: PhoneService,
+             state: TranscribeViewState) {
+            self.navigator = navigator
+            self.articlesService = articlesService
+            self.phoneService = phoneService
+            self.state = state
+            self.helpRequestCreationState = state.helpRequestCreationState
+        }
 
         func onBackButtonPressed() {
             navigator.goBack()
@@ -96,11 +108,28 @@ extension TranscribeListView {
             state.player?.seekTo(progress: Float(progress))
         }
 
-        func onAmountChanged(for listItem: TranscribeViewState.ListItem, to amount: Int) {
-            state.listItems = state.listItems.map { item -> TranscribeViewState.ListItem in
-                guard listItem.id == item.id else { return item }
-                return TranscribeViewState.ListItem(id: item.id, title: item.title, amount: Int64(amount))
+        func addItemEntryTapped() {
+            navigator.toArticleInput(helpRequestCreationState: helpRequestCreationState, with: nil) { [weak self] item in
+                self?.helpRequestCreationState.items.append(item)
             }
+        }
+
+        func editItem(item: HelpRequestCreationState.Item) {
+            navigator.toArticleInput(helpRequestCreationState: helpRequestCreationState, with: item) { [weak self] updatedtem in
+                guard let self = self else { return }
+
+                log.debug("Item updated: \(updatedtem)")
+                guard let existingItem = self.helpRequestCreationState.items.firstIndex(where: { $0.id == item.id }) else {
+                    self.helpRequestCreationState.items.append(updatedtem)
+                    return
+                }
+
+                self.helpRequestCreationState.items[existingItem] = updatedtem
+            }
+        }
+
+        func removeItem(item: HelpRequestCreationState.Item) {
+            helpRequestCreationState.items.removeAll { $0.id == item.id }
         }
 
         func onConfirmButtonPressed() {
@@ -109,9 +138,7 @@ extension TranscribeListView {
                 return
             }
 
-            var dto = state.createDto()
-            dto.articles = state.listItems.filter { item in item.amount > 0 }
-                .map { CreateHelpRequestArticleDto(articleId: $0.id, articleName: nil, language: nil, articleCount: $0.amount, unitId: nil) }
+            let dto = helpRequestCreationState.dto
 
             cancellableSet?.insert(
                 phoneService.convertCallToHelpRequest(sid: call.sid, dto: dto)
@@ -133,35 +160,22 @@ extension TranscribeListView {
             )
         }
 
-        init(navigator: ScreenNavigating,
-             articlesService: ArticlesService,
-             phoneService: PhoneService,
-             state: TranscribeViewState) {
-            self.navigator = navigator
-            self.articlesService = articlesService
-            self.phoneService = phoneService
-            self.state = state
-        }
-
         func bind() {
             var cancellableSet = Set<AnyCancellable>()
-            articlesService.allArticles()
-                .asObservable()
-                .concat(Observable.never())
-                .share(replay: 1, scope: .whileConnected)
+
+            articlesService
+                .allUnits(language: helpRequestCreationState.language)
                 .publisher
-                .receive(on: RunLoop.main)
-                .replaceError(with: [])
-                .map { articles -> [TranscribeViewState.ListItem] in
-                    articles.map { [weak self] article in
-                        // reusse items from view state to avoid losing prefilled information when user left screen and returned back to it
-                        if let item = self?.state.listItems.first(where: { article.id == $0.id }) {
-                            return item
-                        }
-                        return TranscribeViewState.ListItem(id: article.id, title: article.name, amount: 0)
+                .sink(receiveCompletion: { completion in
+                    if case let .failure(error) = completion {
+                        log.error("Loading units failed: \(error)")
+                        return
                     }
-                }
-                .assign(to: \.listItems, on: state)
+                }, receiveValue: { [weak self] units in
+                    log.debug("Received units: \(units)")
+                    self?.helpRequestCreationState.units = units
+                        .sorted { first, second -> Bool in first.nameOne < second.nameOne }
+                })
                 .store(in: &cancellableSet)
 
             state.player?.state.publisher
@@ -181,9 +195,11 @@ extension TranscribeListView {
                 .store(in: &cancellableSet)
 
             state.objectWillChange
-                .sink { [weak self] in
-                    self?.objectWillChange.send()
-                }
+                .sink { [weak self] in self?.objectWillChange.send() }
+                .store(in: &cancellableSet)
+
+            helpRequestCreationState.objectWillChange
+                .sink { [weak self] _ in self?.objectWillChange.send() }
                 .store(in: &cancellableSet)
 
             self.cancellableSet = cancellableSet

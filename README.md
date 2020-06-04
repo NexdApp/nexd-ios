@@ -28,7 +28,7 @@ $ ./update_swagger_client.sh
 ## From staging backend
 
 ```
-$ ./update_swagger_client.sh https://nexd-backend-staging.herokuapp.com/api/v1
+$ ./update_swagger_client.sh https://api-staging.nexd.app/api/v1
 ```
 
 ## From producton backend
@@ -73,6 +73,14 @@ $ docker-compose up -d db
   - features are merged via [pull requests](https://github.com/NexdApp/nexd-ios/pulls) in github
   - releases are prepared in release branches (named something like `release/*`)
   - releae branches are merged into `master` and `master` will be deployed automatically to testflight
+
+# Creating screenshots
+
+```
+bundle exec fastlane create_screenshots
+```
+
+Screenshots can then be found in: `fastlane/screenshots`
 
 # FAQ:
 

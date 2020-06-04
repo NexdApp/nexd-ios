@@ -21,11 +21,12 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://nexd-backend.herokuapp.com:443/api/v1*
+All URIs are relative to *https://api-staging.nexd.app:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ArticlesAPI* | [**articlesControllerFindAll**](docs/ArticlesAPI.md#articlescontrollerfindall) | **GET** /article/articles | List articles
+*ArticlesAPI* | [**articlesControllerGetUnits**](docs/ArticlesAPI.md#articlescontrollergetunits) | **GET** /article/units | Get a list of units
 *ArticlesAPI* | [**articlesControllerInsertOne**](docs/ArticlesAPI.md#articlescontrollerinsertone) | **POST** /article/articles | Create an article
 *AuthAPI* | [**authControllerLogin**](docs/AuthAPI.md#authcontrollerlogin) | **POST** /auth/login | Login by email and password 
 *AuthAPI* | [**authControllerRefreshToken**](docs/AuthAPI.md#authcontrollerrefreshtoken) | **POST** /auth/refresh | Not yet implemented, token refresh

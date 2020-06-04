@@ -9,18 +9,19 @@
 import SwiftUI
 
 struct BackButtonModifier: ViewModifier {
+    let text: Text
     let action: () -> Void
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(NexdUI.Buttons.back(action: action)
+            .overlay(NexdUI.Buttons.back(text: text, action: action)
             .padding(20), alignment: .topLeading)
     }
 }
 
 extension View {
-    func withBackButton(action: @escaping (() -> Void)) -> some View {
-        ModifiedContent(content: self, modifier: BackButtonModifier(action: action))
+    func withBackButton(text: Text = R.string.localizable.back_button_title.text, action: @escaping (() -> Void)) -> some View {
+        ModifiedContent(content: self, modifier: BackButtonModifier(text: text, action: action))
     }
 }

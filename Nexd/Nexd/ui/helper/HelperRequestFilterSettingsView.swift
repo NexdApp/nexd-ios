@@ -35,16 +35,11 @@ struct HelperRequestFilterSettingsView: View {
                 .padding([.leading, .trailing], 12)
 
             Spacer()
-
-            NexdUI.Buttons.confirm {
-                self.viewModel.confirmButtonTapped()
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 25)
-            .padding(.bottom, 24)
         }
         .keyboardAdaptive()
         .dismissingKeyboard()
+        .withModalButtons(onCancel: { self.viewModel.onCancelPressed() },
+                          onDone: { self.viewModel.onDonePressed() })
     }
 }
 
@@ -57,18 +52,26 @@ extension HelperRequestFilterSettingsView {
         private let navigator: ScreenNavigating
 
         @Published fileprivate var zipCode: String?
+
+        private let onCancelled: () -> Void
         private let onFinished: (Result) -> Void
 
         init(navigator: ScreenNavigating,
              zipCode: String?,
+             onCancelled: @escaping (() -> Void),
              onFinished: @escaping ((Result) -> Void)) {
             self.navigator = navigator
             self.zipCode = zipCode
+            self.onCancelled = onCancelled
             self.onFinished = onFinished
         }
 
-        func confirmButtonTapped() {
+        func onDonePressed() {
             onFinished(Result(zipCode: zipCode))
+        }
+
+        func onCancelPressed() {
+            onCancelled()
         }
     }
 

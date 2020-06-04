@@ -16,14 +16,16 @@ open class ArticlesAPI {
      
      - parameter limit: (query) Maximum number of articles  (optional)
      - parameter startsWith: (query) Starts with the given string. Empty string does not filter. (optional)
+     - parameter contains: (query) Contains with the given string. Empty string does not filter. (optional)
+     - parameter orderByPopularity: (query) If true, orders by the most frequent used articles first. Defaults to false. (optional)
      - parameter language: (query)  (optional)
      - parameter onlyVerified: (query) true to only gets the list of curated articles (default: true) (optional)
      - parameter apiResponseQueue: The queue on which api response is dispatched.
      - returns: Observable<[Article]>
      */
-    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Article]> {
+    open class func articlesControllerFindAll(limit: Double? = nil, startsWith: String? = nil, contains: String? = nil, orderByPopularity: Bool? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Article]> {
         return Observable.create { observer -> Disposable in
-            articlesControllerFindAllWithRequestBuilder(limit: limit, startsWith: startsWith, language: language, onlyVerified: onlyVerified).execute(apiResponseQueue) { result -> Void in
+            articlesControllerFindAllWithRequestBuilder(limit: limit, startsWith: startsWith, contains: contains, orderByPopularity: orderByPopularity, language: language, onlyVerified: onlyVerified).execute(apiResponseQueue) { result -> Void in
                 switch result {
                 case let .success(response):
                     observer.onNext(response.body!)
@@ -39,13 +41,18 @@ open class ArticlesAPI {
     /**
      List articles
      - GET /article/articles
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter limit: (query) Maximum number of articles  (optional)
      - parameter startsWith: (query) Starts with the given string. Empty string does not filter. (optional)
+     - parameter contains: (query) Contains with the given string. Empty string does not filter. (optional)
+     - parameter orderByPopularity: (query) If true, orders by the most frequent used articles first. Defaults to false. (optional)
      - parameter language: (query)  (optional)
      - parameter onlyVerified: (query) true to only gets the list of curated articles (default: true) (optional)
      - returns: RequestBuilder<[Article]> 
      */
-    open class func articlesControllerFindAllWithRequestBuilder(limit: Double? = nil, startsWith: String? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> RequestBuilder<[Article]> {
+    open class func articlesControllerFindAllWithRequestBuilder(limit: Double? = nil, startsWith: String? = nil, contains: String? = nil, orderByPopularity: Bool? = nil, language: AvailableLanguages? = nil, onlyVerified: Bool? = nil) -> RequestBuilder<[Article]> {
         let path = "/article/articles"
         let URLString = NexdClientAPI.basePath + path
         let parameters: [String:Any]? = nil
@@ -54,11 +61,59 @@ open class ArticlesAPI {
         url?.queryItems = APIHelper.mapValuesToQueryItems([
             "limit": limit?.encodeToJSON(), 
             "startsWith": startsWith?.encodeToJSON(), 
+            "contains": contains?.encodeToJSON(), 
+            "orderByPopularity": orderByPopularity?.encodeToJSON(), 
             "language": language?.encodeToJSON(), 
             "onlyVerified": onlyVerified?.encodeToJSON()
         ])
 
         let requestBuilder: RequestBuilder<[Article]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
+
+        return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
+    }
+
+    /**
+     Get a list of units
+     
+     - parameter language: (query)  (optional)
+     - parameter apiResponseQueue: The queue on which api response is dispatched.
+     - returns: Observable<[Unit]>
+     */
+    open class func articlesControllerGetUnits(language: AvailableLanguages? = nil, apiResponseQueue: DispatchQueue = NexdClientAPI.apiResponseQueue) -> Observable<[Unit]> {
+        return Observable.create { observer -> Disposable in
+            articlesControllerGetUnitsWithRequestBuilder(language: language).execute(apiResponseQueue) { result -> Void in
+                switch result {
+                case let .success(response):
+                    observer.onNext(response.body!)
+                case let .failure(error):
+                    observer.onError(error)
+                }
+                observer.onCompleted()
+            }
+            return Disposables.create()
+        }
+    }
+
+    /**
+     Get a list of units
+     - GET /article/units
+     - BASIC:
+       - type: http
+       - name: bearer
+     - parameter language: (query)  (optional)
+     - returns: RequestBuilder<[Unit]> 
+     */
+    open class func articlesControllerGetUnitsWithRequestBuilder(language: AvailableLanguages? = nil) -> RequestBuilder<[Unit]> {
+        let path = "/article/units"
+        let URLString = NexdClientAPI.basePath + path
+        let parameters: [String:Any]? = nil
+        
+        var url = URLComponents(string: URLString)
+        url?.queryItems = APIHelper.mapValuesToQueryItems([
+            "language": language?.encodeToJSON()
+        ])
+
+        let requestBuilder: RequestBuilder<[Unit]>.Type = NexdClientAPI.requestBuilderFactory.getBuilder()
 
         return requestBuilder.init(method: "GET", URLString: (url?.string ?? URLString), parameters: parameters, isBody: false)
     }
@@ -88,6 +143,9 @@ open class ArticlesAPI {
     /**
      Create an article
      - POST /article/articles
+     - BASIC:
+       - type: http
+       - name: bearer
      - parameter createArticleDto: (body)  
      - returns: RequestBuilder<Article> 
      */

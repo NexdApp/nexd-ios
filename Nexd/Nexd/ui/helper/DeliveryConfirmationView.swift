@@ -15,14 +15,18 @@ struct DeliveryConfirmationView: View {
     struct Request {
         let requestId: Int64
         let requester: String
-        let phoneNumber: String
-        let address: String
+        let name: String?
+        let phoneNumber: String?
+        let address: String?
+        let deliveryComment: String?
 
-        static func from(helpRequest: HelpRequest) -> Request {
+        static func from(helpRequest: HelpRequest) -> DeliveryConfirmationView.Request {
             Request(requestId: helpRequest.id ?? 0,
-                    requester: helpRequest.firstName ?? "-",
-                    phoneNumber: helpRequest.phoneNumber ?? "-",
-                    address: "\(helpRequest.zipCode ?? "-") / \(helpRequest.city ?? "-")")
+                    requester: helpRequest.displayName,
+                    name: helpRequest.fullName,
+                    phoneNumber: helpRequest.phoneNumber,
+                    address: helpRequest.displayAddress,
+                    deliveryComment: helpRequest.deliveryComment)
         }
     }
 
@@ -30,80 +34,103 @@ struct DeliveryConfirmationView: View {
 
     var body: some View {
         return
-            ScrollView {
-                VStack(alignment: .leading) {
-                    NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
-                        .padding(.top, 109)
-                        .padding([.leading, .trailing], 28)
+            VStack {
+                NexdUI.Texts.title(text: R.string.localizable.delivery_confirmation_screen_title.text)
+                    .padding(.top, 70)
 
-                    ForEach(viewModel.requests, id: \.requestId) { request in
-                        VStack {
-                            NexdUI.Texts.h2Dark(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
-                                .padding(.top, 26)
-                                .padding([.leading, .trailing], 28)
-
-                            NexdUI.Card {
+                ScrollView {
+                    VStack(alignment: .leading) {
+                        OptionalView(viewModel.requests) { requests in
+                            ForEach(requests, id: \.requestId) { request in
                                 VStack {
-                                    R.string.localizable.delivery_confirmation_phone_number_title.text
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                        .foregroundColor(R.color.darkListItemTitle.color)
+                                    NexdUI.Texts.sectionHeader(text: Text(R.string.localizable.delivery_confirmation_section_header(request.requester)))
+                                        .padding(.top, 26)
 
-                                    Text(request.phoneNumber)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                        .foregroundColor(R.color.nexdGreen.color)
+                                    NexdUI.Card {
+                                        VStack {
+                                            OptionalView(request.name) { name in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_full_name.text)
 
-                                    Divider()
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(name))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
 
-                                    R.string.localizable.delivery_confirmation_address_title.text
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
-                                        .foregroundColor(R.color.darkListItemTitle.color)
+                                                Divider()
+                                            }
 
-                                    Text(request.address)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .font(R.font.proximaNovaSoftRegular.font(size: 20))
-                                        .foregroundColor(R.color.nexdGreen.color)
+                                            OptionalView(request.address) { address in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_address_title.text)
+
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(address))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                                                Divider()
+                                            }
+
+                                            OptionalView(request.phoneNumber) { phoneNumber in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_phone_number_title.text)
+
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(phoneNumber))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+
+                                                Divider()
+                                            }
+
+                                            OptionalView(request.deliveryComment) { deliveryComment in
+                                                NexdUI.Texts.cardSectionHeader(text: R.string.localizable.delivery_confirmation_delivery_comment.text)
+
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(deliveryComment))
+                                                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                            }
+                                        }
+                                    }
+                                    .padding(12)
                                 }
                             }
-                            .padding([.leading, .trailing], 12)
                         }
                     }
-
-                    NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
-                        self.viewModel.continueButtonTapped()
-                    }
-                    .padding(.top, 46)
-                    .padding(.bottom, 127)
-                    .padding([.leading, .trailing], 28)
                 }
-                .background(R.color.nexdGreen.color)
+
+                Spacer()
+
+                NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
+                    self.viewModel.continueButtonTapped()
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 0)
+                .padding(.bottom, 40)
             }
+            .padding([.leading, .trailing], 20)
+            .withBackButton { self.viewModel.backButtonTapped() }
     }
 }
 
 extension DeliveryConfirmationView {
     class ViewModel: ObservableObject {
         let navigator: ScreenNavigating
-        let helpList: HelpList
+        let helpList: HelpList?
         let helpListsService: HelpListsService
 
         private var cancellableSet = Set<AnyCancellable>()
 
-        var requests: [Request] {
-            helpList.helpRequests.map { helpRequest -> Request in
-                Request.from(helpRequest: helpRequest)
+        var requests: [DeliveryConfirmationView.Request]? {
+            helpList?.helpRequests.map { helpRequest -> DeliveryConfirmationView.Request in
+                DeliveryConfirmationView.Request.from(helpRequest: helpRequest)
             }
         }
 
-        init(navigator: ScreenNavigating, helpList: HelpList, helpListsService: HelpListsService) {
+        init(navigator: ScreenNavigating, helperWorkflowState: HelperWorkflowState, helpListsService: HelpListsService) {
             self.navigator = navigator
-            self.helpList = helpList
+            helpList = helperWorkflowState.helpList
             self.helpListsService = helpListsService
         }
 
+        func backButtonTapped() {
+            navigator.goBack()
+        }
+
         func continueButtonTapped() {
+            guard let helpList = helpList else { return }
+
             cancellableSet.insert(
                 helpListsService.completeHelpList(helpListId: helpList.id,
                                                   helpRequestsIds: helpList.helpRequests.compactMap { $0.id })
@@ -131,7 +158,34 @@ extension DeliveryConfirmationView {
 #if DEBUG
     struct DeliveryConfirmationView_Previews: PreviewProvider {
         static var previews: some View {
-            let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helpList: HelpList.with(), helpListsService: HelpListsService())
+            let helperWorkflowState = HelperWorkflowState()
+            helperWorkflowState.helpList = HelpList(id: 1,
+                                                    helpRequestsIds: [1, 2, 3],
+                                                    ownerId: nil,
+                                                    owner: nil,
+                                                    createdAt: Date(),
+                                                    updatedAt: Date(),
+                                                    status: nil,
+                                                    helpRequests: [HelpRequest(firstName: "First",
+                                                                               lastName: "Last",
+                                                                               street: "Street",
+                                                                               number: "Number",
+                                                                               zipCode: "ZIP code",
+                                                                               city: "City",
+                                                                               id: 1,
+                                                                               helpListId: nil,
+                                                                               createdAt: nil,
+                                                                               priority: nil,
+                                                                               additionalRequest: "Additional request",
+                                                                               deliveryComment: "Delivery Comment",
+                                                                               phoneNumber: "+4915112345678",
+                                                                               status: nil,
+                                                                               articles: nil,
+                                                                               requesterId: nil,
+                                                                               requester: nil,
+                                                                               helpList: nil,
+                                                                               callSid: nil)])
+            let viewModel = DeliveryConfirmationView.ViewModel(navigator: PreviewNavigator(), helperWorkflowState: helperWorkflowState, helpListsService: HelpListsService())
             return Group {
                 DeliveryConfirmationView(viewModel: viewModel)
                     .background(R.color.nexdGreen.color)
