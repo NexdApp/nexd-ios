@@ -72,6 +72,28 @@ extension HttpServer {
 
         return self
     }
+
+    @discardableResult
+    func onGetHelpLists(_ handler: @escaping () -> [HelpList]?) -> HttpServer {
+        GET["/help-lists"] = { request in
+            guard let response = handler() else { return .notFound }
+
+            return .ok(.text(response.jsonString ?? ""))
+        }
+
+        return self
+    }
+
+    @discardableResult
+    func onGetHelpRequests(_ handler: @escaping () -> [HelpRequest]?) -> HttpServer {
+        GET["/help-requests"] = { request in
+            guard let response = handler() else { return .notFound }
+
+            return .ok(.text(response.jsonString ?? ""))
+        }
+
+        return self
+    }
 }
 
 extension HttpServer {
@@ -104,8 +126,19 @@ extension HttpServer {
                 ]
 
             default:
-                XCTFail("Unexpected language: \(language ?? "nil")", file: file, line: line)
-                return nil
+                return [
+                    NexdClient.Unit(id: 0, nameShort: "kg", language: .en, defaultOrder: nil, nameZero: "kilogram", nameOne: "kilogram", nameTwo: "kilogram", nameFew: "kilogram", nameMany: "kilogram", nameOther: "kilogram"),
+                    NexdClient.Unit(id: 1, nameShort: "gr.", language: .en, defaultOrder: nil, nameZero: "grams", nameOne: "grams", nameTwo: "grams", nameFew: "grams", nameMany: "grams", nameOther: "grams"),
+                    NexdClient.Unit(id: 2, nameShort: "pc.", language: .en, defaultOrder: nil, nameZero: "piece", nameOne: "piece", nameTwo: "piece", nameFew: "piece", nameMany: "piece", nameOther: "piece"),
+                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package"),
+                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package"),
+                    NexdClient.Unit(id: 4, nameShort: "kg", language: .de, defaultOrder: nil, nameZero: "Kilogramm", nameOne: "Kilogramm", nameTwo: "Kilogramm", nameFew: "Kilogramm", nameMany: "Kilogramm", nameOther: "Kilogramm"),
+                    NexdClient.Unit(id: 5, nameShort: "g", language: .de, defaultOrder: nil, nameZero: "Gramm", nameOne: "Gramm", nameTwo: "Gramm", nameFew: "Gramm", nameMany: "Gramm", nameOther: "Gramm"),
+                    NexdClient.Unit(id: 6, nameShort: "Stk.", language: .de, defaultOrder: nil, nameZero: "Stück", nameOne: "Stück", nameTwo: "Stück", nameFew: "Stück", nameMany: "Stück", nameOther: "Stück"),
+                    NexdClient.Unit(id: 7, nameShort: "Pkg.", language: .de, defaultOrder: nil, nameZero: "Packung", nameOne: "Packung", nameTwo: "Packung", nameFew: "Packung", nameMany: "Packung", nameOther: "Packung"),
+                    NexdClient.Unit(id: 8, nameShort: "Fl.", language: .de, defaultOrder: nil, nameZero: "Flasche", nameOne: "Flasche", nameTwo: "Flasche", nameFew: "Flasche", nameMany: "Flasche", nameOther: "Flasche"),
+                    NexdClient.Unit(id: 9, nameShort: "l", language: .de, defaultOrder: nil, nameZero: "Liter", nameOne: "Liter", nameTwo: "Liter", nameFew: "Liter", nameMany: "Liter", nameOther: "Liter")
+                ]
             }
         }
     }

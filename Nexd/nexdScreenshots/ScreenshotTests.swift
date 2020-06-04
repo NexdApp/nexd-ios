@@ -71,8 +71,12 @@ class ScreenshotTests: XCTestCase {
     func testHelperShoppingWorkflow() {
         app?.login()
 
+        // TODO: mock meaningful requests
         mockBackend
             .withDefaultUserProfile()
+            .withDefaultUnits()
+            .onGetHelpLists { () -> [HelpList]? in return nil }
+            .onGetHelpRequests { () -> [HelpRequest]? in return nil }
 
         app?.launch()
 
