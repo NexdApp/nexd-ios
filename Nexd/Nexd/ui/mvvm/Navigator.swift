@@ -17,6 +17,7 @@ protocol ScreenNavigating {
     func goBack()
     func showSuccess(title: String, message: String, handler: (() -> Void)?)
     func showError(title: String, message: String, handler: (() -> Void)?)
+    func showErrorOverlay()
 
     func toStartAuthenticationFlow()
     func toLoginScreen()
@@ -104,6 +105,12 @@ extension Navigator: ScreenNavigating {
         }
 
         navigationController.topViewController?.showError(title: title, message: message, handler: handler)
+    }
+
+    func showErrorOverlay() {
+        let screen = ErrorOverlay.createScreen(viewModel: ErrorOverlay.ViewModel(navigator: self, userService: userService, onErrorVanished: { [weak self] in self?.dismiss() }))
+        screen.modalPresentationStyle = .fullScreen
+        present(screen: screen)
     }
 
     func toStartAuthenticationFlow() {

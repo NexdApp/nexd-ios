@@ -25,6 +25,10 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("showError - title: \(title) - message: \(message)")
     }
 
+    func showErrorOverlay() {
+           log.debug("showErrorOverlay")
+       }
+
     func toStartAuthenticationFlow() {
         log.debug("toStartAuthenticationFlow")
     }
