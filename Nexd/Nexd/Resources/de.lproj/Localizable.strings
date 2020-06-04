@@ -28,6 +28,8 @@
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
+"error_dialog_backend_communication_failed_message" = "Leider ist unser Dienst derzeit nicht verfügbar. Bitte versuch es später nochmal.";
+"error_dialog_backend_communication_failed_title" = "Dienst nicht verfügbar";
 "error_message_did_not_consent_privacy_policy" = "Bitte bestätigen sie unsere Datenschutzbestimmungen um fortzufahren.";
 "error_message_input_validation_phone_number_invalid" = "Telefonnummer ist nicht im gültigen Format: +4915112345678";
 "error_message_input_validation_zip_code_invalid" = "Bitte gib die korrekte Postleitzahl an";
@@ -95,6 +97,9 @@
 "login_placeholder_username" = "E-Mail";
 "login_screen_title" = "Login";
 "ok_button_title" = "OK";
+"overlay_backend_error_communication_failed_message" = "Leider ist unser Dienst derzeit nicht verfügbar. Bitte versuch es später nochmal.";
+"overlay_backend_error_communication_failed_retry" = "Wiederholen";
+"overlay_backend_error_communication_failed_title" = "Dienst nicht verfügbar";
 "registration_button_privacy_policy" = "Datenschutzhinweise";
 "registration_button_title_continue" = "Weiter";
 "registration_button_title_send" = "Bestätigen";

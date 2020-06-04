@@ -6,12 +6,6 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-// import NexdClient
-// import RxCocoa
-// import RxSwift
-// import SnapKit
-// import UIKit
-
 import Combine
 import NexdClient
 import SwiftUI
@@ -133,6 +127,11 @@ extension MainPageView {
                                 self?.authService.logout()
                                 self?.navigator.toStartAuthenticationFlow()
                             }
+                        } else {
+                            self?.navigator.showError(title: R.string.localizable.error_dialog_backend_communication_failed_title(),
+                                                      message: R.string.localizable.error_dialog_backend_communication_failed_message()) {
+                                                        self?.navigator.showErrorOverlay()
+                            }
                         }
                     }
                     .publisher
@@ -194,13 +193,3 @@ extension MainPageView {
         }
     }
 #endif
-
-extension User {
-    var initials: String {
-        "\(firstName?.first?.description ?? "")\(lastName?.first?.description ?? "")"
-    }
-
-    var displayName: String {
-        firstName ?? lastName ?? "???"
-    }
-}
