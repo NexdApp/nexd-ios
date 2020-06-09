@@ -11,16 +11,11 @@ import Foundation
 public struct CreateArticleDto: Codable { 
 
 
-    public enum Language: String, Codable, CaseIterable {
-        case de = "de"
-        case en = "en"
-    }
     /** Name of the article. If the name already exists, no new article will be added. */
     public var name: String
-    /** Language of the article, e.g. the user */
-    public var language: Language
+    public var language: AvailableLanguages
 
-    public init(name: String, language: Language) {
+    public init(name: String, language: AvailableLanguages) {
         self.name = name
         self.language = language
     }

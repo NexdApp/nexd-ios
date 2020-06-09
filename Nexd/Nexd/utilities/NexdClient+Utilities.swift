@@ -65,15 +65,6 @@ extension AvailableLanguages {
     }
 }
 
-extension CreateHelpRequestArticleDto.Language {
-    static var current: CreateHelpRequestArticleDto.Language {
-        let currentLanguages = Bundle.main.preferredLocalizations
-            .compactMap { CreateHelpRequestArticleDto.Language(rawValue: $0) }
-
-        return currentLanguages.first ?? .en
-    }
-}
-
 extension HelpRequest: Identifiable {
     var displayName: String {
         guard let firstName = firstName else { return R.string.localizable.helper_request_overview_unknown_requester() }

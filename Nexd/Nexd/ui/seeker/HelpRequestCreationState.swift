@@ -21,7 +21,7 @@ class HelpRequestCreationState: ObservableObject {
             guard let article = article else {
                 return CreateHelpRequestArticleDto(articleId: nil,
                                                    articleName: name,
-                                                   language: CreateHelpRequestArticleDto.Language.current,
+                                                   language: AvailableLanguages.current,
                                                    articleCount: amount,
                                                    unitId: unit?.id)
             }

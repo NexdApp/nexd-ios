@@ -5,7 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **Int64** | Auto-incremented ID of a unit. | [optional] 
 **nameShort** | **String** | Abbreviated name of the unit | 
-**language** | **String** | Language key of this unit | 
+**language** | [**AvailableLanguages**](AvailableLanguages.md) |  | 
 **defaultOrder** | **Int64** | Some default ordering, in case there is no automatic ordering for an article, no need in the frontend. | [optional] 
 **nameZero** | **String** |  | 
 **nameOne** | **String** |  | 

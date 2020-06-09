@@ -166,7 +166,7 @@ extension RequestConfirmationView {
             guard let article = article else {
                 return CreateHelpRequestArticleDto(articleId: nil,
                                                    articleName: name,
-                                                   language: CreateHelpRequestArticleDto.Language.current,
+                                                   language: AvailableLanguages.current,
                                                    articleCount: amount,
                                                    unitId: unitId)
             }
