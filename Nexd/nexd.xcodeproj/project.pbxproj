@@ -1006,7 +1006,7 @@
 			baseConfigurationReference = 96D812FD99B8F119E05497BE /* Pods-CommonPods-nexdScreenshots.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				DEVELOPMENT_TEAM = 53FHHM65J2;
 				INFOPLIST_FILE = nexdScreenshots/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1027,7 +1027,7 @@
 			baseConfigurationReference = 08C756D94BE444B5BFC4745F /* Pods-CommonPods-nexdScreenshots.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z69PDUT2Z9;
+				DEVELOPMENT_TEAM = 53FHHM65J2;
 				INFOPLIST_FILE = nexdScreenshots/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1216,7 +1216,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PXLNW4QQT3;
+				DEVELOPMENT_TEAM = 53FHHM65J2;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1238,7 +1238,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PXLNW4QQT3;
+				DEVELOPMENT_TEAM = 53FHHM65J2;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

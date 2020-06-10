@@ -57,7 +57,7 @@ platform :ios do
       scheme: "Nexd",
       export_options: {
         method: "app-store",
-        signingCertificate: "Apple Distribution: Tobias Schroepf",
+        signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
       }
     )
     upload_to_testflight(
