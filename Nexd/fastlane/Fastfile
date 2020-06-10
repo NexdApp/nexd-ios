@@ -41,20 +41,16 @@ platform :ios do
     )
     setup_ci
     match(
-      storage_mode: "git",
       type: "development",
       readonly: true,
-      git_url: "https://github.com/schroepf/next-ios-codesigning.git",
       git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.apple"
+      app_identifier: "app.nexd.ios"
     )
     match(
-      storage_mode: "git",
       type: "appstore",
       readonly: true,
-      git_url: "https://github.com/schroepf/next-ios-codesigning.git",
       git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.apple"
+      app_identifier: "app.nexd.ios"
     )
     build_app(
       workspace: "Nexd.xcworkspace",
@@ -65,9 +61,9 @@ platform :ios do
       }
     )
     upload_to_testflight(
-      username: "mista.tee.apps@gmail.com",
+      username: "mail@nexd.app",
       skip_waiting_for_build_processing: true,
-      apple_id: '1505194845',
+      apple_id: '1517808601',
       reject_build_waiting_for_review: true
     )
   end
