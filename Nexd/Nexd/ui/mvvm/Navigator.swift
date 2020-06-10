@@ -44,7 +44,7 @@ protocol ScreenNavigating {
     func toCheckoutScreen(helperWorkflowState: HelperWorkflowState)
     func toDeliveryConfirmationScreen(helperWorkflowState: HelperWorkflowState)
 
-    func shareInvitation()
+    func shareInvitation(for rect: CGRect?)
 }
 
 class Navigator {
@@ -309,9 +309,11 @@ extension Navigator: ScreenNavigating {
                                                                                                          helpListsService: helpListsService)))
     }
 
-    func shareInvitation() {
+    func shareInvitation(for rect: CGRect?) {
         let items: [Any] = [R.string.localizable.invitation_message(), URL(string: "https://www.nexd.app")!]
         let shareScreen = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        shareScreen.popoverPresentationController?.sourceView = navigationController.view
+        shareScreen.popoverPresentationController?.sourceRect = rect ?? .zero
         present(screen: shareScreen)
     }
 
