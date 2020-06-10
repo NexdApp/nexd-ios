@@ -66,9 +66,11 @@ struct HelperRequestOverviewView: View {
                         NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invitation_hint.text)
                             .padding([.top, .bottom], 20)
 
-                        NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
-                                                   icon: R.image.baseline_share_black_24pt.image) {
-                            self.viewModel.onInviteTapped()
+                        GeometryReader { proxy in
+                            NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
+                                                       icon: R.image.baseline_share_black_24pt.image) {
+                                                        self.viewModel.onInviteTapped(frame: proxy.frame(in: .global))
+                            }
                         }
                     }
                 }
@@ -144,8 +146,8 @@ extension HelperRequestOverviewView {
             navigator.toShoppingList(helperWorkflowState: helperWorkflowState)
         }
 
-        func onInviteTapped() {
-            navigator.shareInvitation()
+        func onInviteTapped(frame: CGRect) {
+            navigator.shareInvitation(for: frame)
         }
 
         func refreshOpenHelpRequests() {
