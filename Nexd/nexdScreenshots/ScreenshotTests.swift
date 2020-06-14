@@ -75,8 +75,8 @@ class ScreenshotTests: XCTestCase {
         mockBackend
             .withDefaultUserProfile()
             .withDefaultUnits()
-            .onGetHelpLists { () -> [HelpList]? in return nil }
-            .onGetHelpRequests { () -> [HelpRequest]? in return nil }
+            .onGetHelpLists { () -> [HelpList]? in nil }
+            .onGetHelpRequests { () -> [HelpRequest]? in nil }
 
         app?.launch()
 
@@ -153,6 +153,12 @@ class ScreenshotTests: XCTestCase {
             return 9090
         case "iPhone 11":
             return 9091
+        case "iPhone 11 Pro Max":
+            return 9092
+        case "iPad Pro (12.9-inch) (2nd generation)":
+            return 9093
+        case "iPad Pro (12.9-inch) (4th generation)":
+            return 9094
         default:
             XCTFail("No mock backend port specified for iOS device: \(UIDevice.current.name)")
             return 9999
