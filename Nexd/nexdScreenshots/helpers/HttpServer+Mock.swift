@@ -105,41 +105,7 @@ extension HttpServer {
     @discardableResult
     func withDefaultUnits(file: StaticString = #file, line: UInt = #line) -> HttpServer {
         onGetUnits { language -> [NexdClient.Unit]? in
-            switch language {
-            case "de":
-                return [
-                    NexdClient.Unit(id: 0, nameShort: "kg", language: .de, defaultOrder: nil, nameZero: "Kilogramm", nameOne: "Kilogramm", nameTwo: "Kilogramm", nameFew: "Kilogramm", nameMany: "Kilogramm", nameOther: "Kilogramm"),
-                    NexdClient.Unit(id: 1, nameShort: "g", language: .de, defaultOrder: nil, nameZero: "Gramm", nameOne: "Gramm", nameTwo: "Gramm", nameFew: "Gramm", nameMany: "Gramm", nameOther: "Gramm"),
-                    NexdClient.Unit(id: 2, nameShort: "Stk.", language: .de, defaultOrder: nil, nameZero: "Stück", nameOne: "Stück", nameTwo: "Stück", nameFew: "Stück", nameMany: "Stück", nameOther: "Stück"),
-                    NexdClient.Unit(id: 3, nameShort: "Pkg.", language: .de, defaultOrder: nil, nameZero: "Packung", nameOne: "Packung", nameTwo: "Packung", nameFew: "Packung", nameMany: "Packung", nameOther: "Packung"),
-                    NexdClient.Unit(id: 4, nameShort: "Fl.", language: .de, defaultOrder: nil, nameZero: "Flasche", nameOne: "Flasche", nameTwo: "Flasche", nameFew: "Flasche", nameMany: "Flasche", nameOther: "Flasche"),
-                    NexdClient.Unit(id: 5, nameShort: "l", language: .de, defaultOrder: nil, nameZero: "Liter", nameOne: "Liter", nameTwo: "Liter", nameFew: "Liter", nameMany: "Liter", nameOther: "Liter")
-                ]
-
-            case "en":
-                return [
-                    NexdClient.Unit(id: 0, nameShort: "kg", language: .en, defaultOrder: nil, nameZero: "kilogram", nameOne: "kilogram", nameTwo: "kilogram", nameFew: "kilogram", nameMany: "kilogram", nameOther: "kilogram"),
-                    NexdClient.Unit(id: 1, nameShort: "gr.", language: .en, defaultOrder: nil, nameZero: "grams", nameOne: "grams", nameTwo: "grams", nameFew: "grams", nameMany: "grams", nameOther: "grams"),
-                    NexdClient.Unit(id: 2, nameShort: "pc.", language: .en, defaultOrder: nil, nameZero: "piece", nameOne: "piece", nameTwo: "piece", nameFew: "piece", nameMany: "piece", nameOther: "piece"),
-                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package"),
-                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package")
-                ]
-
-            default:
-                return [
-                    NexdClient.Unit(id: 0, nameShort: "kg", language: .en, defaultOrder: nil, nameZero: "kilogram", nameOne: "kilogram", nameTwo: "kilogram", nameFew: "kilogram", nameMany: "kilogram", nameOther: "kilogram"),
-                    NexdClient.Unit(id: 1, nameShort: "gr.", language: .en, defaultOrder: nil, nameZero: "grams", nameOne: "grams", nameTwo: "grams", nameFew: "grams", nameMany: "grams", nameOther: "grams"),
-                    NexdClient.Unit(id: 2, nameShort: "pc.", language: .en, defaultOrder: nil, nameZero: "piece", nameOne: "piece", nameTwo: "piece", nameFew: "piece", nameMany: "piece", nameOther: "piece"),
-                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package"),
-                    NexdClient.Unit(id: 3, nameShort: "pack.", language: .en, defaultOrder: nil, nameZero: "package", nameOne: "package", nameTwo: "package", nameFew: "package", nameMany: "package", nameOther: "package"),
-                    NexdClient.Unit(id: 4, nameShort: "kg", language: .de, defaultOrder: nil, nameZero: "Kilogramm", nameOne: "Kilogramm", nameTwo: "Kilogramm", nameFew: "Kilogramm", nameMany: "Kilogramm", nameOther: "Kilogramm"),
-                    NexdClient.Unit(id: 5, nameShort: "g", language: .de, defaultOrder: nil, nameZero: "Gramm", nameOne: "Gramm", nameTwo: "Gramm", nameFew: "Gramm", nameMany: "Gramm", nameOther: "Gramm"),
-                    NexdClient.Unit(id: 6, nameShort: "Stk.", language: .de, defaultOrder: nil, nameZero: "Stück", nameOne: "Stück", nameTwo: "Stück", nameFew: "Stück", nameMany: "Stück", nameOther: "Stück"),
-                    NexdClient.Unit(id: 7, nameShort: "Pkg.", language: .de, defaultOrder: nil, nameZero: "Packung", nameOne: "Packung", nameTwo: "Packung", nameFew: "Packung", nameMany: "Packung", nameOther: "Packung"),
-                    NexdClient.Unit(id: 8, nameShort: "Fl.", language: .de, defaultOrder: nil, nameZero: "Flasche", nameOne: "Flasche", nameTwo: "Flasche", nameFew: "Flasche", nameMany: "Flasche", nameOther: "Flasche"),
-                    NexdClient.Unit(id: 9, nameShort: "l", language: .de, defaultOrder: nil, nameZero: "Liter", nameOne: "Liter", nameTwo: "Liter", nameFew: "Liter", nameMany: "Liter", nameOther: "Liter")
-                ]
-            }
+            MockData.shared.units
         }
     }
 
@@ -148,26 +114,25 @@ extension HttpServer {
         onGetArticles { language -> [Article]? in
             defer { onCalled?() }
 
-            switch language {
-            case "de":
-                return [
-                    Article(id: 0, name: "Apfel", language: .de, statusOverwritten: nil, popularity: 0, unitIdOrder: [2], categoryId: nil, status: nil, category: nil),
-                    Article(id: 3, name: "Apfelmuss", language: .de, statusOverwritten: nil, popularity: 1, unitIdOrder: [3], categoryId: nil, status: nil, category: nil),
-                    Article(id: 4, name: "Apfelsaft", language: .de, statusOverwritten: nil, popularity: 2, unitIdOrder: [4, 5], categoryId: nil, status: nil, category: nil),
-                    Article(id: 5, name: "Apfelringe", language: .de, statusOverwritten: nil, popularity: 3, unitIdOrder: [3], categoryId: nil, status: nil, category: nil)
-                ]
+            return MockData.shared.articles
+        }
+    }
 
-            case "en":
-                return [
-                    Article(id: 0, name: "Apple", language: .en, statusOverwritten: nil, popularity: 0, unitIdOrder: [2], categoryId: nil, status: nil, category: nil),
-                    Article(id: 1, name: "Apple juice", language: .en, statusOverwritten: nil, popularity: 1, unitIdOrder: [4, 5], categoryId: nil, status: nil, category: nil),
-                    Article(id: 1, name: "Apple pie", language: .en, statusOverwritten: nil, popularity: 2, unitIdOrder: [2], categoryId: nil, status: nil, category: nil)
-                ]
+    @discardableResult
+    func withDefaulHelpRequests(file: StaticString = #file, line: UInt = #line, onCalled: (() -> Void)? = nil) -> HttpServer {
+        onGetHelpRequests { () -> [HelpRequest]? in
+        defer { onCalled?() }
 
-            default:
-                XCTFail("Unexpected language: \(language ?? "nil")", file: file, line: line)
-                return nil
-            }
+        return MockData.shared.helpRequests
+        }
+    }
+
+    @discardableResult
+    func withDefaulHelpLists(file: StaticString = #file, line: UInt = #line, onCalled: (() -> Void)? = nil) -> HttpServer {
+        onGetHelpLists { () -> [HelpList]? in
+        defer { onCalled?() }
+
+        return MockData.shared.helpLists
         }
     }
 

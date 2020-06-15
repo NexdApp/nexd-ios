@@ -71,12 +71,11 @@ class ScreenshotTests: XCTestCase {
     func testHelperShoppingWorkflow() {
         app?.login()
 
-        // TODO: mock meaningful requests
         mockBackend
             .withDefaultUserProfile()
             .withDefaultUnits()
-            .onGetHelpLists { () -> [HelpList]? in nil }
-            .onGetHelpRequests { () -> [HelpRequest]? in nil }
+            .withDefaulHelpLists()
+            .withDefaulHelpRequests()
 
         app?.launch()
 

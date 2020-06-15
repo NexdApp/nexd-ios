@@ -76,6 +76,7 @@
 		AED5E52E2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */; };
 		AED8818B24351174006065D2 /* String+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED8818A24351174006065D2 /* String+Nexd.swift */; };
 		AEDEA69124797EA7006E92A7 /* TranscribeViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */; };
+		AEEBB2252497805F00DDF97E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEBB2242497805F00DDF97E /* MockData.swift */; };
 		AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */; };
 		AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDEFD247E68A60007E961 /* SnapshotHelper.swift */; };
 		AEEEDF02247E766E0007E961 /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEDF01247E766D0007E961 /* UITestingHelper.swift */; };
@@ -205,6 +206,7 @@
 		AED5E52D2446648F00A3DFA1 /* NexdUI+KeyboardAdaptive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+KeyboardAdaptive.swift"; sourceTree = "<group>"; };
 		AED8818A24351174006065D2 /* String+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Nexd.swift"; sourceTree = "<group>"; };
 		AEDEA69024797EA7006E92A7 /* TranscribeViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscribeViewState.swift; sourceTree = "<group>"; };
+		AEEBB2242497805F00DDF97E /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		AEEEDEF3247E67C40007E961 /* nexdScreenshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nexdScreenshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
 		AEEEDEF7247E67C40007E961 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -433,6 +435,7 @@
 				AEEEDF0C247EF84C0007E961 /* HttpRequest+Mock.swift */,
 				AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */,
 				AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */,
+				AEEBB2242497805F00DDF97E /* MockData.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				AEEEDF16247EFD520007E961 /* AccessibilityIdentifiers.swift in Sources */,
 				AEEEDF0A247E98F10007E961 /* UiTestingVariables.swift in Sources */,
 				AEEEDEF6247E67C40007E961 /* ScreenshotTests.swift in Sources */,
+				AEEBB2252497805F00DDF97E /* MockData.swift in Sources */,
 				AEEEDF07247E98DE0007E961 /* UiTestingArguments.swift in Sources */,
 				AEEEDF11247EF89D0007E961 /* HttpServer+Mock.swift in Sources */,
 				AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */,
