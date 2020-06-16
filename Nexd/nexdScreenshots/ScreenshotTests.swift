@@ -150,14 +150,16 @@ class ScreenshotTests: XCTestCase {
         switch UIDevice.current.name {
         case "iPhone 8":
             return 9090
-        case "iPhone 11":
+        case "iPhone 8 Plus":
             return 9091
-        case "iPhone 11 Pro Max":
+        case "iPhone 11":
             return 9092
-        case "iPad Pro (12.9-inch) (2nd generation)":
+        case "iPhone 11 Pro Max":
             return 9093
-        case "iPad Pro (12.9-inch) (4th generation)":
+        case "iPad Pro (12.9-inch) (2nd generation)":
             return 9094
+        case "iPad Pro (12.9-inch) (4th generation)":
+            return 9095
         default:
             XCTFail("No mock backend port specified for iOS device: \(UIDevice.current.name)")
             return 9999
