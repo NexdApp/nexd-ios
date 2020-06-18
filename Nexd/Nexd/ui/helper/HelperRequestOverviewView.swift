@@ -81,6 +81,7 @@ struct HelperRequestOverviewView: View {
             NexdUI.Buttons.default(text: R.string.localizable.helper_request_overview_button_title_current_items_list.text) {
                 self.viewModel.onContinueButtonTapped()
             }
+            .identified(by: .helperRequestOverviewContinueButton)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
             .padding(.bottom, 40)

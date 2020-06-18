@@ -21,6 +21,8 @@
 		AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2A9A932426FA50006066B4 /* Localizable.strings */; };
 		AE2A9A9624275E14006066B4 /* UITextField+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */; };
 		AE2A9A9A24278989006066B4 /* UserDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A9A9924278989006066B4 /* UserDetailsView.swift */; };
+		AE2FCF60249AAF4F00BA5DB8 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2FCF5F249AAF4F00BA5DB8 /* String+Localized.swift */; };
+		AE2FCF64249AB2A800BA5DB8 /* LocalizableMock.strings in Resources */ = {isa = PBXBuildFile; fileRef = AE2FCF66249AB2A800BA5DB8 /* LocalizableMock.strings */; };
 		AE3143DE24891EF2001A8798 /* ErrorOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3143DD24891EF2001A8798 /* ErrorOverlay.swift */; };
 		AE3143E024897728001A8798 /* NexdUI+Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3143DF24897728001A8798 /* NexdUI+Buttons.swift */; };
 		AE3143E2248979BC001A8798 /* NexdUI+Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3143E1248979BC001A8798 /* NexdUI+Texts.swift */; };
@@ -151,6 +153,9 @@
 		AE2A9A942426FA67006066B4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AE2A9A9524275E14006066B4 /* UITextField+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Nexd.swift"; sourceTree = "<group>"; };
 		AE2A9A9924278989006066B4 /* UserDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsView.swift; sourceTree = "<group>"; };
+		AE2FCF5F249AAF4F00BA5DB8 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		AE2FCF65249AB2A800BA5DB8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LocalizableMock.strings; sourceTree = "<group>"; };
+		AE2FCF67249AB30B00BA5DB8 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LocalizableMock.strings; sourceTree = "<group>"; };
 		AE3143DD24891EF2001A8798 /* ErrorOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorOverlay.swift; sourceTree = "<group>"; };
 		AE3143DF24897728001A8798 /* NexdUI+Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Buttons.swift"; sourceTree = "<group>"; };
 		AE3143E1248979BC001A8798 /* NexdUI+Texts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+Texts.swift"; sourceTree = "<group>"; };
@@ -347,6 +352,14 @@
 			path = rx;
 			sourceTree = "<group>";
 		};
+		AE2FCF61249AB17300BA5DB8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AE2FCF66249AB2A800BA5DB8 /* LocalizableMock.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		AEB6AC65244129B900823E7C /* seeker */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +421,7 @@
 		AEEEDEF4247E67C40007E961 /* nexdScreenshots */ = {
 			isa = PBXGroup;
 			children = (
+				AE2FCF61249AB17300BA5DB8 /* Resources */,
 				AEEEDF0B247EF8250007E961 /* helpers */,
 				AEEEDEF5247E67C40007E961 /* ScreenshotTests.swift */,
 				AEEEDF04247E8F760007E961 /* nexdScreenshots.xctestplan */,
@@ -436,6 +450,7 @@
 				AEEEDF10247EF89D0007E961 /* HttpServer+Mock.swift */,
 				AEEEDF12247EF8F40007E961 /* XCUIApplication+Mock.swift */,
 				AEEBB2242497805F00DDF97E /* MockData.swift */,
+				AE2FCF5F249AAF4F00BA5DB8 /* String+Localized.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -705,6 +720,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2FCF64249AB2A800BA5DB8 /* LocalizableMock.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -870,6 +886,7 @@
 				AEEEDEFE247E68A60007E961 /* SnapshotHelper.swift in Sources */,
 				AEEEDF0D247EF84C0007E961 /* HttpRequest+Mock.swift in Sources */,
 				AEEEDF0F247EF8800007E961 /* Encodable+JSON.swift in Sources */,
+				AE2FCF60249AAF4F00BA5DB8 /* String+Localized.swift in Sources */,
 				AEEEDF13247EF8F40007E961 /* XCUIApplication+Mock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -992,6 +1009,15 @@
 				AE2A9A942426FA67006066B4 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		AE2FCF66249AB2A800BA5DB8 /* LocalizableMock.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AE2FCF65249AB2A800BA5DB8 /* en */,
+				AE2FCF67249AB30B00BA5DB8 /* de */,
+			);
+			name = LocalizableMock.strings;
 			sourceTree = "<group>";
 		};
 		AEF3D626242584CC005C77CE /* LaunchScreen.storyboard */ = {

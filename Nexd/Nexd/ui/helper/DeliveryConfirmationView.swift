@@ -95,6 +95,7 @@ struct DeliveryConfirmationView: View {
                 NexdUI.Buttons.default(text: R.string.localizable.delivery_confirmation_confirm_button_title.text) {
                     self.viewModel.continueButtonTapped()
                 }
+                .identified(by: .deliveryConfirmationContinueButton)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 0)
                 .padding(.bottom, 40)
