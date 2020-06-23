@@ -100,10 +100,6 @@ class ScreenshotTests: XCTestCase {
         app?.buttons[AccessibilityIdentifier.checkoutViewContinueButton.rawValue].tap()
 
         snapshot("DeliveryConfirmationView")
-
-        app?.buttons[AccessibilityIdentifier.deliveryConfirmationContinueButton.rawValue].tap()
-
-        snapshot("DeliveryConfirmationView")
     }
 
     func testHelperCallTranscriptionWorkflow() {
