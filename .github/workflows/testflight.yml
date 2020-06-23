@@ -2,7 +2,9 @@ name: TestFlight
 
 on:
   push:
-    branches: [ master ]
+    branches-ignore:
+      - '**'
+    # branches: [ master ]
 
 jobs:
   testflight:
