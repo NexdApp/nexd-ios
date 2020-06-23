@@ -41,6 +41,11 @@ Create screenshots
 fastlane ios testflight_beta
 ```
 Build for distribution (via App Store and TestFlight)
+### ios build_release
+```
+fastlane ios build_release
+```
+Build for distribution (via App Store and TestFlight)
 
 ----
 
