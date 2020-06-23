@@ -33,43 +33,38 @@ platform :ios do
     # frameit(path: "./fastlane/screenshots")
   end
 
-  desc "Build for distribution (via App Store and TestFlight)"
-  lane :testflight_beta do
-    bootstrap
-    increment_build_number(
-      build_number: ENV['GITHUB_RUN_NUMBER']
-    )
-    setup_ci
-    match(
-      type: "development",
-      readonly: true,
-      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.ios"
-    )
-    match(
-      type: "appstore",
-      readonly: true,
-      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.ios"
-    )
-    build_app(
-      workspace: "Nexd.xcworkspace",
-      scheme: "nexd (Debug)",
-      export_options: {
-        method: "app-store",
-        signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
-      }
-    )
-    upload_to_testflight(
-      username: "mail@nexd.app",
-      skip_waiting_for_build_processing: true,
-      apple_id: '1517808601',
-      reject_build_waiting_for_review: true
-    )
-  end
+  # USES build_release instead
+  # desc "Build for distribution (via App Store and TestFlight)"
+  # lane :testflight_beta do
+  #   bootstrap
+  #   increment_build_number(
+  #     build_number: ENV['GITHUB_RUN_NUMBER']
+  #   )
+  #   setup_ci
+  #   match(
+  #     type: "development",
+  #     readonly: true,
+  #     git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+  #     app_identifier: "app.nexd.ios"
+  #   )
+  #   match(
+  #     type: "appstore",
+  #     readonly: true,
+  #     git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+  #     app_identifier: "app.nexd.ios"
+  #   )
+  #   build_app(
+  #     workspace: "Nexd.xcworkspace",
+  #     scheme: "nexd (Debug)",
+  #     export_options: {
+  #       method: "app-store",
+  #       signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
+  #     }
+  #   )
+  # end
 
   desc "Build for distribution (via App Store and TestFlight)"
-  lane :build_release do
+  lane :release do
     bootstrap
     increment_build_number(
       build_number: ENV['GITHUB_RUN_NUMBER']
@@ -94,6 +89,12 @@ platform :ios do
         method: "app-store",
         signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
       }
+    )
+    upload_to_testflight(
+      username: "mail@nexd.app",
+      skip_waiting_for_build_processing: true,
+      apple_id: '1517808601',
+      reject_build_waiting_for_review: false
     )
   end
 end
