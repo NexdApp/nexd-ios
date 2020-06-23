@@ -7,7 +7,7 @@
 import Foundation
 
 open class NexdClientAPI {
-    public static var basePath = "https://api-staging.nexd.app:443/api/v1"
+    public static var basePath = "https://api.nexd.app:443/api/v1"
     public static var credential: URLCredential?
     public static var customHeaders: [String:String] = [:]
     public static var requestBuilderFactory: RequestBuilderFactory = URLSessionRequestBuilderFactory()

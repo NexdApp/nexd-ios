@@ -44,7 +44,9 @@ extension ProcessInfo {
     #endif
 
     var baseUrl: String? {
-        #if DEBUG
+        #if STAGING
+            return "https://api-staging.nexd.app:443/api/v1"
+        #elseif DEBUG
             return ProcessInfo.processInfo.environment[UiTestingVariables.baseUrl.rawValue]
         #else
             return nil

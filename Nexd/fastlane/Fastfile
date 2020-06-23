@@ -27,7 +27,7 @@ platform :ios do
   end
 
   desc "Create screenshots"
-  lane :create_screenshots do
+    lane :create_screenshots do
     bootstrap
     snapshot(output_directory: "./fastlane/screenshots")
     frameit(path: "./fastlane/screenshots")
@@ -54,7 +54,7 @@ platform :ios do
     )
     build_app(
       workspace: "Nexd.xcworkspace",
-      scheme: "Nexd",
+      scheme: "nexd (Debug)",
       export_options: {
         method: "app-store",
         signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
@@ -65,6 +65,14 @@ platform :ios do
       skip_waiting_for_build_processing: true,
       apple_id: '1517808601',
       reject_build_waiting_for_review: true
+    )
+    build_app(
+      workspace: "Nexd.xcworkspace",
+      scheme: "nexd (Release)",
+      export_options: {
+        method: "app-store",
+        signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
+      }
     )
   end
 end
