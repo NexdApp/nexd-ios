@@ -57,6 +57,7 @@ struct CheckoutView: View {
             NexdUI.Buttons.default(text: R.string.localizable.checkout_button_title_complete.text) {
                 self.viewModel.completeButtonTapped()
             }
+            .identified(by: .checkoutViewContinueButton)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
             .padding(.bottom, 40)

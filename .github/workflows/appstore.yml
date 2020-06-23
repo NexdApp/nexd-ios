@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  testflight:
+    runs-on: macos-10.15
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      env:
+        MATCH_GIT_BASIC_AUTHORIZATION: ${{ secrets.MATCH_GIT_BASIC_AUTHORIZATION }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+        FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
+      run: |
+        cd Nexd
+        bundle install
+        bundle exec fastlane build_release
+    - name: Archive IPA
+      uses: actions/upload-artifact@v1
+      with:
+        name: ipa
+        path: Nexd/fastlane/

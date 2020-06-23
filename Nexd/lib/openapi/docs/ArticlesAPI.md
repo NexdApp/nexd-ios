@@ -1,6 +1,6 @@
 # ArticlesAPI
 
-All URIs are relative to *https://api-staging.nexd.app:443/api/v1*
+All URIs are relative to *https://api.nexd.app:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -107,7 +107,7 @@ Create an article
 // The following code samples are still beta. For any issue, please report via http://github.com/OpenAPITools/openapi-generator/issues/new
 import NexdClient
 
-let createArticleDto = CreateArticleDto(name: "name_example", language: "language_example") // CreateArticleDto | 
+let createArticleDto = CreateArticleDto(name: "name_example", language: AvailableLanguages()) // CreateArticleDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

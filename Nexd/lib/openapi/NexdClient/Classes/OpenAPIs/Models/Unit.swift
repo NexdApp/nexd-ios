@@ -11,16 +11,11 @@ import Foundation
 public struct Unit: Codable { 
 
 
-    public enum Language: String, Codable, CaseIterable {
-        case de = "de"
-        case en = "en"
-    }
     /** Auto-incremented ID of a unit. */
     public var id: Int64?
     /** Abbreviated name of the unit */
     public var nameShort: String
-    /** Language key of this unit */
-    public var language: Language
+    public var language: AvailableLanguages
     /** Some default ordering, in case there is no automatic ordering for an article, no need in the frontend. */
     public var defaultOrder: Int64?
     public var nameZero: String
@@ -30,7 +25,7 @@ public struct Unit: Codable {
     public var nameMany: String
     public var nameOther: String
 
-    public init(id: Int64?, nameShort: String, language: Language, defaultOrder: Int64?, nameZero: String, nameOne: String, nameTwo: String, nameFew: String, nameMany: String, nameOther: String) {
+    public init(id: Int64?, nameShort: String, language: AvailableLanguages, defaultOrder: Int64?, nameZero: String, nameOne: String, nameTwo: String, nameFew: String, nameMany: String, nameOther: String) {
         self.id = id
         self.nameShort = nameShort
         self.language = language

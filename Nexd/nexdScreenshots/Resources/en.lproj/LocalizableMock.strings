@@ -1,0 +1,66 @@
+/* 
+  LocalizableMock.strings
+  nexd
+
+  Created by Tobias Schröpf on 17.06.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved.
+ */
+
+// Default user
+"user_firstname" = "Maria";
+"user_lastname" = "Schulz";
+"user_zipcode" = "34032";
+
+"article_name_input" = "ap";
+"article_name_suggestion_1" = "Apple";
+"article_name_suggestion_2" = "Apple juice";
+"article_name_suggestion_3" = "Apple pie";
+"article_name_suggestion_4" = "Apple sauce";
+"article_name_suggestion_5" = "Pineapple";
+
+"article_name_banana" = "Banana";
+"article_name_milk" = "Milk";
+"article_name_coffee" = "Coffee";
+"article_name_banana" = "Banana";
+"article_name_water" = "Mineral water (still)";
+
+"unit_short_gram" = "gr.";
+"unit_name_gram" = "gram";
+"unit_short_kilogram" = "kg";
+"unit_name_kilogram" = "kilogram";
+"unit_short_piece" = "pc.";
+"unit_name_piece" = "piece";
+"unit_short_package" = "pack.";
+"unit_name_package" = "package";
+"unit_short_bottle" = "btl.";
+"unit_name_bottle" = "bottle";
+"unit_short_liter" = "L";
+"unit_name_liter" = "liter";
+
+"open_help_request_1_firstname" = "Heather";
+"open_help_request_2_firstname" = "Daniel";
+"open_help_request_3_firstname" = "Teresa";
+"open_help_request_4_firstname" = "Betty";
+"open_help_request_5_firstname" = "James";
+
+// generated from: https://de.fakenamegenerator.com/gen-random-gr-gr.php
+"accepted_help_request_1_firstname" = "Samuel";
+"accepted_help_request_1_lastname" = "Smith";
+"accepted_help_request_1_street" = "Memory Lane";
+"accepted_help_request_1_number" = "2133";
+"accepted_help_request_1_zipcode" = "60450";
+"accepted_help_request_1_city" = "Morris";
+"accepted_help_request_1_additional_request" = "Additional Request";
+"accepted_help_request_1_delivery_comment" = "Delivery Comment";
+"accepted_help_request_1_phonenumber" = "+1 815-942-0739";
+
+// generated from: https://de.fakenamegenerator.com/gen-random-gr-gr.php
+"accepted_help_request_2_firstname" = "Barbara";
+"accepted_help_request_2_lastname" = "Ogrady";
+"accepted_help_request_2_street" = "Poplar Street";
+"accepted_help_request_2_number" = "2117";
+"accepted_help_request_2_zipcode" = "60607";
+"accepted_help_request_2_city" = "Chicago";
+"accepted_help_request_2_additional_request" = "Additional Request";
+"accepted_help_request_2_delivery_comment" = "Delivery Comment";
+"accepted_help_request_2_phonenumber" = "+1 708-675-9187";

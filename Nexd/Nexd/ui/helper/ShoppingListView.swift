@@ -49,6 +49,7 @@ struct ShoppingListView: View {
             NexdUI.Buttons.default(text: R.string.localizable.shopping_list_button_title_checkout.text) {
                 self.viewModel.checkoutButtonTapped()
             }
+            .identified(by: .shoppingListContinueButton)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
             .padding(.bottom, 40)

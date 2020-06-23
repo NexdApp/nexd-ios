@@ -46,6 +46,7 @@
 "error_message_user_detail_field_missing" = "Please fill in";
 "error_title" = "Error";
 "helper_call_overview_screen_title" = "Open calls:";
+"helper_overview_error_empty_zip_code" = "Zip code not selected";
 "helper_overview_error_empty_zipcode" = "Zip code not selected";
 "helper_request_detail_additional_request_header" = "Additional Request";
 "helper_request_detail_button_accept" = "Will do!";
@@ -58,7 +59,9 @@
 "helper_request_detail_message_cancelled" = "Your request was deleted";
 "helper_request_detail_message_error_on_cancellation" = "Your request could not be deleted";
 "helper_request_detail_screen_title" = "To collect";
+"helper_request_filter_settings_heading_zip_code" = "Zip code for local search:";
 "helper_request_filter_settings_heading_zipcode" = "Zip code for local search:";
+"helper_request_filter_settings_placeholder_zip_code" = "Zip code";
 "helper_request_filter_settings_placeholder_zipcode" = "Zip code";
 "helper_request_filter_settings_screen_title" = "Filter settings";
 "helper_request_finished_screen_title" = "Completed requests:";
@@ -92,8 +95,10 @@
 "invitation_message" = "Check out the nexd app.";
 "keyboard_accessory_text_done" = "Done";
 "loading_overlay_message" = "Loading…";
+"login_background_shopping_bag_image_content_description" = "Background image shopping bag";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
+"login_logo_content_description" = "Nexd Logo";
 "login_placeholder_password" = "Password";
 "login_placeholder_username" = "E-mail";
 "login_screen_title" = "Login";
@@ -129,7 +134,9 @@
 "seeker_detail_screen_title" = "Your request";
 "seeker_error_message" = "Your request could not be sent! Please try again.";
 "seeker_error_title" = "Error!";
+"seeker_item_selection_add_article_placeholder" = "Add article";
 "seeker_item_selection_add_article_placeholer" = "Add article";
+"seeker_item_selection_article_amount_placeholder" = "Amount";
 "seeker_item_selection_article_amount_placeholer" = "Amount";
 "seeker_item_selection_no_items_text" = "Press the '+' button to add your first item to the list.";
 "seeker_item_selection_screen_title" = "Chose items";
@@ -175,14 +182,18 @@
 "transcribe_info_input_text_title_street" = "Street";
 "transcribe_info_input_text_title_street_number" = "Number";
 "transcribe_info_screen_title" = "Call Transcript";
+"transcribe_player_pause_button_content_description" = "Pause phone request playback";
+"transcribe_player_play_button_content_description" = "Play phone request playback";
 "transcript_error_empty_calls" = "There are no calls to transcript currently";
 "transcript_summary_button_transcript" = "Transcribe another call";
 "transcript_summary_title" = "Thank you for helping complete %1$s's order!";
 "user_input_details_confirm" = "Confirm";
 "user_input_details_explanation_text" = "Your account has been created. Additionally you may provide some personal information to make creating help requests easier. All fields are optional and can be left empty.";
 "user_input_details_placeholder_city" = "Place";
+"user_input_details_placeholder_first_name" = "First name";
 "user_input_details_placeholder_firstname" = "First name";
 "user_input_details_placeholder_houseNumber" = "No.";
+"user_input_details_placeholder_last_name" = "Last name";
 "user_input_details_placeholder_lastname" = "Last name";
 "user_input_details_placeholder_phoneNumber" = "Tel.";
 "user_input_details_placeholder_street" = "Street";

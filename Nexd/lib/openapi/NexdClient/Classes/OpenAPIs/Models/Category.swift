@@ -11,19 +11,14 @@ import Foundation
 public struct Category: Codable { 
 
 
-    public enum Language: String, Codable, CaseIterable {
-        case de = "de"
-        case en = "en"
-    }
     /** Auto-incremented ID of an category. */
     public var id: Int64
     /** Category name */
     public var name: String
-    /** Language key of this category */
-    public var language: Language
+    public var language: AvailableLanguages
     public var articles: [Article]?
 
-    public init(id: Int64, name: String, language: Language, articles: [Article]?) {
+    public init(id: Int64, name: String, language: AvailableLanguages, articles: [Article]?) {
         self.id = id
         self.name = name
         self.language = language

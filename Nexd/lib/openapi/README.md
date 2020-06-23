@@ -21,7 +21,7 @@ Run `pod install`
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api-staging.nexd.app:443/api/v1*
+All URIs are relative to *https://api.nexd.app:443/api/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
