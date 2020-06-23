@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  testflight:
+  appstore:
     runs-on: macos-10.15
 
     steps:
@@ -23,4 +23,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: ipa
-        path: Nexd/fastlane/
+        path: Nexd/*.ipa
