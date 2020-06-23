@@ -1,10 +1,10 @@
 name: Screenshots
 
-on:
-  push:
-    branches: [ master ]
-    paths-ignore:
-    - '**/Localizable.strings'  # ignore pushes with only Localizable.strings changes as they are ususally automated commits from PoEditor
+# on:
+#   push:
+#     branches: [ master ]
+#     paths-ignore:
+#     - '**/Localizable.strings'  # ignore pushes with only Localizable.strings changes as they are ususally automated commits from PoEditor
 
 jobs:
   screenshots:
