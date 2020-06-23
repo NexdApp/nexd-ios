@@ -22,7 +22,7 @@ platform :ios do
     lint
     scan(
       workspace: "Nexd.xcworkspace",
-      scheme: "Nexd"
+      scheme: "nexd (Debug)"
     )
   end
 
