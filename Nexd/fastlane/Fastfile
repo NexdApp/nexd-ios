@@ -22,7 +22,7 @@ platform :ios do
     lint
     scan(
       workspace: "Nexd.xcworkspace",
-      scheme: "Nexd"
+      scheme: "nexd (Debug)"
     )
   end
 
@@ -65,6 +65,27 @@ platform :ios do
       skip_waiting_for_build_processing: true,
       apple_id: '1517808601',
       reject_build_waiting_for_review: true
+    )
+  end
+
+  desc "Build for distribution (via App Store and TestFlight)"
+  lane :build_release do
+    bootstrap
+    increment_build_number(
+      build_number: ENV['GITHUB_RUN_NUMBER']
+    )
+    setup_ci
+    match(
+      type: "development",
+      readonly: true,
+      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+      app_identifier: "app.nexd.ios"
+    )
+    match(
+      type: "appstore",
+      readonly: true,
+      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+      app_identifier: "app.nexd.ios"
     )
     build_app(
       workspace: "Nexd.xcworkspace",
