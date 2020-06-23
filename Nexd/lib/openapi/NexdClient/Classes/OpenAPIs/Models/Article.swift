@@ -11,10 +11,6 @@ import Foundation
 public struct Article: Codable { 
 
 
-    public enum Language: String, Codable, CaseIterable {
-        case de = "de"
-        case en = "en"
-    }
     public enum Status: String, Codable, CaseIterable {
         case deactivated = "deactivated"
         case active = "active"
@@ -24,8 +20,7 @@ public struct Article: Codable {
     public var id: Int64
     /** Name of the article (without unit) */
     public var name: String
-    /** Language key of this article */
-    public var language: Language
+    public var language: AvailableLanguages
     /** The article status can be enforced by an admin (e.g. to remove profanity). */
     public var statusOverwritten: Bool? = false
     /** Popularity of the article, the higher the more frequent used. */
@@ -36,7 +31,7 @@ public struct Article: Codable {
     public var status: Status?
     public var category: Category?
 
-    public init(id: Int64, name: String, language: Language, statusOverwritten: Bool?, popularity: Int64, unitIdOrder: [Int64]?, categoryId: Int64?, status: Status?, category: Category?) {
+    public init(id: Int64, name: String, language: AvailableLanguages, statusOverwritten: Bool?, popularity: Int64, unitIdOrder: [Int64]?, categoryId: Int64?, status: Status?, category: Category?) {
         self.id = id
         self.name = name
         self.language = language

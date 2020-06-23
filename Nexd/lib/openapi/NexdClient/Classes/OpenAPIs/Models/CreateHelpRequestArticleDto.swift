@@ -11,22 +11,17 @@ import Foundation
 public struct CreateHelpRequestArticleDto: Codable { 
 
 
-    public enum Language: String, Codable, CaseIterable {
-        case de = "de"
-        case en = "en"
-    }
     /** Article ID received from the article list */
     public var articleId: Int64?
     /** Name of the article, in case a new one should be created */
     public var articleName: String?
-    /** Language of the article, e.g. the user */
-    public var language: Language?
+    public var language: AvailableLanguages?
     /** Number of items */
     public var articleCount: Int64
     /** Id of the unit */
     public var unitId: Int64?
 
-    public init(articleId: Int64?, articleName: String?, language: Language?, articleCount: Int64, unitId: Int64?) {
+    public init(articleId: Int64?, articleName: String?, language: AvailableLanguages?, articleCount: Int64, unitId: Int64?) {
         self.articleId = articleId
         self.articleName = articleName
         self.language = language

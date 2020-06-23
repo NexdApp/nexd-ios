@@ -1,0 +1,65 @@
+/* 
+  LocalizableMock.strings
+  nexd
+
+  Created by Tobias Schröpf on 17.06.20.
+  Copyright © 2020 Tobias Schröpf. All rights reserved.
+*/
+
+// Default user
+"user_firstname" = "Maria";
+"user_lastname" = "Schulz";
+"user_zipcode" = "34032";
+
+"article_name_input" = "Ap";
+"article_name_suggestion_1" = "Apfel";
+"article_name_suggestion_2" = "Apfelsaft";
+"article_name_suggestion_3" = "Apfelkuchen";
+"article_name_suggestion_4" = "Apfelmus";
+"article_name_suggestion_5" = "Apfelringe";
+
+"article_name_banana" = "Banane";
+"article_name_milk" = "Milch";
+"article_name_coffee" = "Kaffee";
+"article_name_water" = "Mineralwasser (still)";
+
+"unit_short_gram" = "gr.";
+"unit_name_gram" = "Gramm";
+"unit_short_kilogram" = "kg";
+"unit_name_kilogram" = "Kilogramm";
+"unit_short_piece" = "Stk.";
+"unit_name_piece" = "Stück";
+"unit_short_package" = "Pkg.";
+"unit_name_package" = "Packung";
+"unit_short_bottle" = "Fl.";
+"unit_name_bottle" = "Flasche";
+"unit_short_liter" = "l";
+"unit_name_liter" = "Liter";
+
+"open_help_request_1_firstname" = "Stephanie";
+"open_help_request_2_firstname" = "Erik";
+"open_help_request_3_firstname" = "Gabriele";
+"open_help_request_4_firstname" = "Christina";
+"open_help_request_5_firstname" = "Niklas";
+
+// generated from: https://de.fakenamegenerator.com/gen-random-gr-gr.php
+"accepted_help_request_1_firstname" = "Leon";
+"accepted_help_request_1_lastname" = "Faust";
+"accepted_help_request_1_street" = "Schillerstrasse";
+"accepted_help_request_1_number" = "48";
+"accepted_help_request_1_zipcode" = "86912";
+"accepted_help_request_1_city" = "Kaufering";
+"accepted_help_request_1_additional_request" = "Additional Request";
+"accepted_help_request_1_delivery_comment" = "Delivery Comment";
+"accepted_help_request_1_phonenumber" = "+49 8191 25 56 01";
+
+// generated from: https://de.fakenamegenerator.com/gen-random-gr-gr.php
+"accepted_help_request_2_firstname" = "Ute";
+"accepted_help_request_2_lastname" = "Bergmann";
+"accepted_help_request_2_street" = "Budapester Straße";
+"accepted_help_request_2_number" = "66";
+"accepted_help_request_2_zipcode" = "86912";
+"accepted_help_request_2_city" = "Kaufering";
+"accepted_help_request_2_additional_request" = "Additional Request";
+"accepted_help_request_2_delivery_comment" = "Delivery Comment";
+"accepted_help_request_2_phonenumber" = "+49 6461 94 26 67";

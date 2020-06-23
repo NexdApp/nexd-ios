@@ -15,34 +15,33 @@ struct MainPageView: View {
 
     var body: some View {
         GeometryReader { metrics in
-            ZStack {
+            ZStack(alignment: .bottom) {
                 // add white background of half screen height behind scrollview to avoid weird effects on overscroll
                 R.color.defaultBackground.color
                     .edgesIgnoringSafeArea(.bottom)
-                    .frame(width: metrics.size.width, height: 0.5 * metrics.size.height)
-                    .position(x: 0.5 * metrics.size.width, y: 0.75 * metrics.size.height)
+                    .frame(width: metrics.size.width, height: metrics.size.height - 140)
+
+                Button(
+                    action: {
+                        self.viewModel.profileButtonTapped()
+                    },
+                    label: {
+                        ZStack(alignment: .center) {
+                            Circle()
+                                .fill(R.color.profileImageBackground.color)
+                                .frame(width: 140, height: 140)
+
+                            Text(self.viewModel.state.initials)
+                                .font(R.font.proximaNovaSoftBold.font(size: 65))
+                                .foregroundColor(R.color.headingText.color)
+                        }
+                        .position(x: 0.5 * metrics.size.width, y: 140)
+                    }
+                )
+                .identified(by: .mainPageProfileButton)
 
                 ScrollView {
-                    VStack(spacing: 18) {
-                        Button(
-                            action: {
-                                self.viewModel.profileButtonTapped()
-                            },
-                            label: {
-                                ZStack(alignment: .center) {
-                                    Circle()
-                                        .fill(R.color.profileImageBackground.color)
-                                        .frame(width: 140, height: 140)
-
-                                    Text(self.viewModel.state.initials)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 65))
-                                        .foregroundColor(R.color.headingText.color)
-                                }
-                                .padding(.top, -70)
-                            }
-                        )
-                        .identified(by: .mainPageProfileButton)
-
+                    VStack(alignment: .leading, spacing: 18) {
                         Group {
                             Text(R.string.localizable.role_screen_title_ios(self.viewModel.state.displayName))
                                 .fixedSize(horizontal: false, vertical: true)
@@ -67,10 +66,8 @@ struct MainPageView: View {
                         }
                         .padding([.leading, .trailing], 25)
                     }
-                    .background(R.color.defaultBackground.color)
-                    .padding(.top, 115)
                 }
-//                .frame(height: metrics.size.height)
+                .frame(height: metrics.size.height  - 210)
             }
             .onAppear { self.viewModel.bind() }
             .onDisappear { self.viewModel.unbind() }
@@ -130,7 +127,7 @@ extension MainPageView {
                         } else {
                             self?.navigator.showError(title: R.string.localizable.error_dialog_backend_communication_failed_title(),
                                                       message: R.string.localizable.error_dialog_backend_communication_failed_message()) {
-                                                        self?.navigator.showErrorOverlay()
+                                self?.navigator.showErrorOverlay()
                             }
                         }
                     }

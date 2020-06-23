@@ -1,6 +1,6 @@
 # PhoneAPI
 
-All URIs are relative to *https://api-staging.nexd.app:443/api/v1*
+All URIs are relative to *https://api.nexd.app:443/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -22,7 +22,7 @@ Creates a new help request for a call and creates a user for the phoneNumber
 import NexdClient
 
 let sid = "sid_example" // String | call sid
-let helpRequestCreateDto = HelpRequestCreateDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleName: "articleName_example", language: "language_example", articleCount: 123, unitId: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
+let helpRequestCreateDto = HelpRequestCreateDto(firstName: "firstName_example", lastName: "lastName_example", street: "street_example", number: "number_example", zipCode: "zipCode_example", city: "city_example", articles: [CreateHelpRequestArticleDto(articleId: 123, articleName: "articleName_example", language: AvailableLanguages(), articleCount: 123, unitId: 123)], status: "status_example", additionalRequest: "additionalRequest_example", deliveryComment: "deliveryComment_example", phoneNumber: "phoneNumber_example") // HelpRequestCreateDto | 
 
 // TODO RxSwift sample code not yet implemented. To contribute, please open a ticket via http://github.com/OpenAPITools/openapi-generator/issues/new
 ```

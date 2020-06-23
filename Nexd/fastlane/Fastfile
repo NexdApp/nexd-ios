@@ -22,12 +22,12 @@ platform :ios do
     lint
     scan(
       workspace: "Nexd.xcworkspace",
-      scheme: "Nexd"
+      scheme: "nexd (Debug)"
     )
   end
 
   desc "Create screenshots"
-  lane :create_screenshots do
+    lane :create_screenshots do
     bootstrap
     snapshot(output_directory: "./fastlane/screenshots")
     frameit(path: "./fastlane/screenshots")
@@ -41,34 +41,59 @@ platform :ios do
     )
     setup_ci
     match(
-      storage_mode: "git",
       type: "development",
       readonly: true,
-      git_url: "https://github.com/schroepf/next-ios-codesigning.git",
       git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.apple"
+      app_identifier: "app.nexd.ios"
     )
     match(
-      storage_mode: "git",
       type: "appstore",
       readonly: true,
-      git_url: "https://github.com/schroepf/next-ios-codesigning.git",
       git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
-      app_identifier: "app.nexd.apple"
+      app_identifier: "app.nexd.ios"
     )
     build_app(
       workspace: "Nexd.xcworkspace",
-      scheme: "Nexd",
+      scheme: "nexd (Debug)",
       export_options: {
         method: "app-store",
-        signingCertificate: "Apple Distribution: Tobias Schroepf",
+        signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
       }
     )
     upload_to_testflight(
-      username: "mista.tee.apps@gmail.com",
+      username: "mail@nexd.app",
       skip_waiting_for_build_processing: true,
-      apple_id: '1505194845',
+      apple_id: '1517808601',
       reject_build_waiting_for_review: true
+    )
+  end
+
+  desc "Build for distribution (via App Store and TestFlight)"
+  lane :build_release do
+    bootstrap
+    increment_build_number(
+      build_number: ENV['GITHUB_RUN_NUMBER']
+    )
+    setup_ci
+    match(
+      type: "development",
+      readonly: true,
+      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+      app_identifier: "app.nexd.ios"
+    )
+    match(
+      type: "appstore",
+      readonly: true,
+      git_basic_authorization: Base64.strict_encode64("#{ENV['MATCH_GIT_BASIC_AUTHORIZATION']}"),
+      app_identifier: "app.nexd.ios"
+    )
+    build_app(
+      workspace: "Nexd.xcworkspace",
+      scheme: "nexd (Release)",
+      export_options: {
+        method: "app-store",
+        signingCertificate: "Apple Distribution: Gemeinnutziger Sozialfonds e.V.",
+      }
     )
   end
 end

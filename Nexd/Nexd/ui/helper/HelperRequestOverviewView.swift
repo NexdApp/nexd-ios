@@ -61,15 +61,20 @@ struct HelperRequestOverviewView: View {
                 .whenNil {
                     VStack {
                         NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_placeholder.text)
-                            .padding([.top, .bottom], 20)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .bottom], 10)
 
                         NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invitation_hint.text)
-                            .padding([.top, .bottom], 20)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .bottom], 10)
 
-                        NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
-                                                   icon: R.image.baseline_share_black_24pt.image) {
-                            self.viewModel.onInviteTapped()
+                        GeometryReader { proxy in
+                            NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
+                                                       icon: R.image.baseline_share_black_24pt.image) {
+                                self.viewModel.onInviteTapped(frame: proxy.frame(in: .global))
+                            }
                         }
+                        .frame(minHeight: 70)
                     }
                 }
 
@@ -79,6 +84,8 @@ struct HelperRequestOverviewView: View {
             NexdUI.Buttons.default(text: R.string.localizable.helper_request_overview_button_title_current_items_list.text) {
                 self.viewModel.onContinueButtonTapped()
             }
+            .disabled(viewModel.helperWorkflowState.acceptedHelpRequests?.isEmpty ?? true)
+            .identified(by: .helperRequestOverviewContinueButton)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
             .padding(.bottom, 40)
@@ -144,8 +151,8 @@ extension HelperRequestOverviewView {
             navigator.toShoppingList(helperWorkflowState: helperWorkflowState)
         }
 
-        func onInviteTapped() {
-            navigator.shareInvitation()
+        func onInviteTapped(frame: CGRect) {
+            navigator.shareInvitation(for: frame)
         }
 
         func refreshOpenHelpRequests() {

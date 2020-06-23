@@ -10,7 +10,9 @@ import Foundation
 
 extension Encodable {
     var jsonData: Data? {
-        return try? JSONEncoder().encode(self)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return try? encoder.encode(self)
     }
 
     var jsonString: String? {

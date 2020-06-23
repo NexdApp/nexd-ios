@@ -2,9 +2,11 @@ name: Screenshots
 
 on:
   push:
-    branches: [ master, develop ]
-    paths-ignore:
-    - '**/Localizable.strings'  # ignore pushes with only Localizable.strings changes as they are ususally automated commits from PoEditor
+    branches-ignore:
+      - '**'
+    # branches: [ master ]
+    # paths-ignore:
+    # - '**/Localizable.strings'  # ignore pushes with only Localizable.strings changes as they are ususally automated commits from PoEditor
 
 jobs:
   screenshots:

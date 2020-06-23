@@ -1,7 +1,8 @@
-# Deployment status
+# CI status
 
-
-- develop to TestFlight: ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop)
+- ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop) (master)
+- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg?branch=master) (master)
+- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg) (develop)
 
 # Initial Setup
 
@@ -34,7 +35,7 @@ $ ./update_swagger_client.sh https://api-staging.nexd.app/api/v1
 ## From producton backend
 
 ```
-$ ./update_swagger_client.sh https://nexd-backend.herokuapp.com/api/v1
+$ ./update_swagger_client.sh https://api.nexd.app/api/v1
 ```
 
 # Local backend

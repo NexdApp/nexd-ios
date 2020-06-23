@@ -119,7 +119,7 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toDeliveryConfirmationScreen - helperWorkflowState: \(helperWorkflowState)")
     }
 
-    func shareInvitation() {
+    func shareInvitation(for rect: CGRect?) {
         log.debug("sendInvitation")
     }
 }
