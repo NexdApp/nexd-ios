@@ -61,17 +61,20 @@ struct HelperRequestOverviewView: View {
                 .whenNil {
                     VStack {
                         NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_placeholder.text)
-                            .padding([.top, .bottom], 20)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .bottom], 10)
 
                         NexdUI.Texts.detailsText(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invitation_hint.text)
-                            .padding([.top, .bottom], 20)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .padding([.top, .bottom], 10)
 
                         GeometryReader { proxy in
                             NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
                                                        icon: R.image.baseline_share_black_24pt.image) {
-                                                        self.viewModel.onInviteTapped(frame: proxy.frame(in: .global))
+                                self.viewModel.onInviteTapped(frame: proxy.frame(in: .global))
                             }
                         }
+                        .frame(minHeight: 70)
                     }
                 }
 
