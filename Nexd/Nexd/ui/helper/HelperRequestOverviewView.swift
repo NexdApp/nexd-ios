@@ -84,6 +84,7 @@ struct HelperRequestOverviewView: View {
             NexdUI.Buttons.default(text: R.string.localizable.helper_request_overview_button_title_current_items_list.text) {
                 self.viewModel.onContinueButtonTapped()
             }
+            .disabled(viewModel.helperWorkflowState.acceptedHelpRequests?.isEmpty ?? true)
             .identified(by: .helperRequestOverviewContinueButton)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 0)
