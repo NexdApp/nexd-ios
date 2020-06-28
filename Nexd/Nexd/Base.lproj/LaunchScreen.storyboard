@@ -16,38 +16,39 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJW-KJ-b8D">
-                                <rect key="frame" x="41" y="364.5" width="332" height="177"/>
+                                <rect key="frame" x="8" y="52" width="398" height="802"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nexd_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="alB-We-F4v">
-                                        <rect key="frame" x="20" y="20" width="292" height="137"/>
+                                        <rect key="frame" x="53" y="332.5" width="292" height="137"/>
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="292" id="gBH-Ub-ua6"/>
                                             <constraint firstAttribute="height" constant="137" id="ln0-LD-avX"/>
                                         </constraints>
                                     </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wvv-solution_enabler" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-Jl-pQk">
+                                        <rect key="frame" x="0.0" y="742" width="398" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="i7g-k6-taU"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="alB-We-F4v" firstAttribute="top" secondItem="aJW-KJ-b8D" secondAttribute="top" constant="20" symbolic="YES" id="65B-6L-sWX"/>
-                                    <constraint firstAttribute="trailing" secondItem="alB-We-F4v" secondAttribute="trailing" constant="20" symbolic="YES" id="Yug-Lo-Dwp"/>
-                                    <constraint firstItem="alB-We-F4v" firstAttribute="leading" secondItem="aJW-KJ-b8D" secondAttribute="leading" constant="20" symbolic="YES" id="Zzz-mX-dhb"/>
-                                    <constraint firstAttribute="bottom" secondItem="alB-We-F4v" secondAttribute="bottom" constant="20" symbolic="YES" id="j7F-tl-blp"/>
+                                    <constraint firstAttribute="trailing" secondItem="lhv-Jl-pQk" secondAttribute="trailing" id="DRD-fH-bCd"/>
+                                    <constraint firstItem="lhv-Jl-pQk" firstAttribute="leading" secondItem="aJW-KJ-b8D" secondAttribute="leading" id="GTD-wK-XXt"/>
+                                    <constraint firstItem="alB-We-F4v" firstAttribute="centerY" secondItem="aJW-KJ-b8D" secondAttribute="centerY" id="The-MJ-Kzz"/>
+                                    <constraint firstItem="alB-We-F4v" firstAttribute="centerX" secondItem="aJW-KJ-b8D" secondAttribute="centerX" id="VRE-5k-zds"/>
+                                    <constraint firstAttribute="bottom" secondItem="lhv-Jl-pQk" secondAttribute="bottom" id="tx7-1h-h4W"/>
+                                    <constraint firstItem="lhv-Jl-pQk" firstAttribute="centerX" secondItem="aJW-KJ-b8D" secondAttribute="centerX" id="vYR-cu-SdQ"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wvv-solution_enabler" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-Jl-pQk">
-                                <rect key="frame" x="-8" y="810" width="430" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="i7g-k6-taU"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.74901960784313726" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="aJW-KJ-b8D" firstAttribute="centerX" secondItem="PkD-hS-Pad" secondAttribute="centerX" id="27z-xQ-4sV"/>
-                            <constraint firstItem="lhv-Jl-pQk" firstAttribute="trailing" secondItem="PkD-hS-Pad" secondAttribute="trailing" constant="8" id="AVm-Ri-TwS"/>
-                            <constraint firstItem="lhv-Jl-pQk" firstAttribute="bottom" secondItem="PkD-hS-Pad" secondAttribute="bottom" constant="8" id="HVe-Gs-S4M"/>
-                            <constraint firstItem="aJW-KJ-b8D" firstAttribute="centerY" secondItem="PkD-hS-Pad" secondAttribute="centerY" id="dZR-FN-ZeE"/>
-                            <constraint firstItem="PkD-hS-Pad" firstAttribute="leading" secondItem="lhv-Jl-pQk" secondAttribute="leading" constant="8" id="x0v-6q-6BA"/>
+                            <constraint firstItem="PkD-hS-Pad" firstAttribute="bottom" secondItem="aJW-KJ-b8D" secondAttribute="bottom" constant="8" id="3jn-dd-J2h"/>
+                            <constraint firstItem="PkD-hS-Pad" firstAttribute="trailing" secondItem="aJW-KJ-b8D" secondAttribute="trailing" constant="8" id="NEb-ET-fam"/>
+                            <constraint firstItem="aJW-KJ-b8D" firstAttribute="top" secondItem="PkD-hS-Pad" secondAttribute="top" constant="8" id="wgP-4F-Ci7"/>
+                            <constraint firstItem="aJW-KJ-b8D" firstAttribute="leading" secondItem="PkD-hS-Pad" secondAttribute="leading" constant="8" id="y3e-s7-7bE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PkD-hS-Pad"/>
                     </view>
@@ -58,7 +59,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="nexd_logo_white" width="2063" height="724"/>
+        <image name="nexd_logo_white" width="495" height="174"/>
         <image name="wvv-solution_enabler" width="1150" height="400"/>
     </resources>
 </document>

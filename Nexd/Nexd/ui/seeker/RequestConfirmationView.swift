@@ -29,18 +29,18 @@ struct RequestConfirmationView: View {
                                 HStack {
                                     Text(item.name)
                                         .padding(.trailing, 8)
-                                        .font(R.font.proximaNovaSoftBold.font(size: 18))
+                                        .font(R.font.proximaNovaBold.font(size: 18))
                                         .foregroundColor(R.color.listItemTitle.color)
 
                                     Spacer()
 
                                     Text(String(item.amount))
-                                        .font(R.font.proximaNovaSoftBold.font(size: 14))
+                                        .font(R.font.proximaNovaBold.font(size: 14))
                                         .foregroundColor(R.color.listItemDetailsText.color)
 
                                     item.unit.map { unit in
                                         Text(String(unit.nameShort))
-                                            .font(R.font.proximaNovaSoftBold.font(size: 14))
+                                            .font(R.font.proximaNovaBold.font(size: 14))
                                             .foregroundColor(R.color.listItemDetailsText.color)
                                     }
                                 }

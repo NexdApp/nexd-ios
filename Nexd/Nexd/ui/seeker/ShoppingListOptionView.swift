@@ -13,7 +13,7 @@ struct ShoppingListOptionView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 30) {
-            NexdUI.Texts.title(text: R.string.localizable.seeker_type_screen_title.text)
+            NexdUI.Texts.title(text: R.string.localizable.seeker_type_description.text)
                 .padding(.top, 70)
                 .padding([.leading, .trailing], 20)
 
@@ -22,8 +22,8 @@ struct ShoppingListOptionView: View {
             }
             .padding([.leading, .trailing], 12)
 
-            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.seeker_type_button_phone_call.text) {
-                self.viewModel.makePhoneCallTapped()
+            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.seeker_type_button_manage_help_requests.text) {
+                self.viewModel.manageHelpRequestsTapped()
             }
             .padding([.leading, .trailing], 12)
 
@@ -49,8 +49,8 @@ extension ShoppingListOptionView {
             navigator.toCreateShoppingList()
         }
 
-        func makePhoneCallTapped() {
-            navigator.toPhoneCall()
+        func manageHelpRequestsTapped() {
+            navigator.toEditOpenHelpRequests()
         }
     }
 

@@ -21,7 +21,7 @@ struct CheckoutView: View {
                     ForEach(requests, id: \.requestId) { request in
                         VStack(alignment: .leading) {
                             NexdUI.Texts.sectionHeader(text: Text(request.title))
-                                .font(R.font.proximaNovaSoftBold.font(size: 35))
+                                .font(R.font.proximaNovaBold.font(size: 35))
                                 .foregroundColor(.white)
 
                             NexdUI.Card {
@@ -29,7 +29,7 @@ struct CheckoutView: View {
                                     ForEach(request.articles, id: \.itemId) { article in
                                         HStack {
                                             NexdUI.Texts.cardText(text: Text(article.name))
-                                                .font(R.font.proximaNovaSoftRegular.font(size: 18))
+                                                .font(R.font.proximaNovaRegular.font(size: 18))
                                                 .foregroundColor(R.color.listItemTitle.color)
                                                 .frame(height: 52)
 
@@ -37,7 +37,7 @@ struct CheckoutView: View {
 
                                             article.amountItem.map { amountItem in
                                                 NexdUI.Texts.cardPlaceholderText(text: Text(amountItem.description))
-                                                    .font(R.font.proximaNovaSoftRegular.font(size: 14))
+                                                    .font(R.font.proximaNovaRegular.font(size: 14))
                                                     .foregroundColor(R.color.listItemDetailsText.color)
                                                     .frame(height: 52)
                                             }

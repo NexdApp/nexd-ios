@@ -32,7 +32,7 @@ struct MainPageView: View {
                                 .frame(width: 140, height: 140)
 
                             Text(self.viewModel.state.initials)
-                                .font(R.font.proximaNovaSoftBold.font(size: 65))
+                                .font(R.font.proximaNovaBold.font(size: 65))
                                 .foregroundColor(R.color.headingText.color)
                         }
                         .position(x: 0.5 * metrics.size.width, y: 140)
@@ -43,14 +43,14 @@ struct MainPageView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 18) {
                         Group {
-                            Text(R.string.localizable.role_screen_title_ios(self.viewModel.state.displayName))
+                            Text(R.string.localizable.role_screen_title_format(self.viewModel.state.displayName.cstring))
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(R.font.proximaNovaSoftBold.font(size: 48))
+                                .font(R.font.proximaNovaBold.font(size: 48))
                                 .foregroundColor(R.color.nexdGreen.color)
 
                             R.string.localizable.role_screen_subtitle.text
                                 .fixedSize(horizontal: false, vertical: true)
-                                .font(R.font.proximaNovaSoftBold.font(size: 35))
+                                .font(R.font.proximaNovaBold.font(size: 35))
                                 .foregroundColor(R.color.greetingSubline.color)
 
                             NexdUI.Buttons.lightMainMenuButton(text: R.string.localizable.role_selection_seeker.text) {
@@ -100,10 +100,7 @@ extension MainPageView {
         }
 
         func seekerButtonTapped() {
-            //        Make Phone Call Button will be reenabled as soon as the hotline is getting better
-            //        Check the issue: https://github.com/NexdApp/nexd-ios/issues/54
-//            navigator.toShoppingListOptions()
-            navigator.toCreateShoppingList()
+            navigator.toShoppingListOptions()
         }
 
         func helperButtonTapped() {

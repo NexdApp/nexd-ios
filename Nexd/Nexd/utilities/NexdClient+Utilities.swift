@@ -90,4 +90,22 @@ extension HelpRequest: Identifiable {
         \(zipCode ?? "") \(city ?? "")
         """
     }
+
+    var displayStatus: String? {
+        guard let status = status else { return nil }
+
+        switch status {
+        case .ongoing:
+            return R.string.localizable.help_request_status_value_ongoing()
+
+        case .pending:
+            return R.string.localizable.help_request_status_value_pending()
+
+        case .completed:
+            return R.string.localizable.help_request_status_value_completed()
+
+        case .deactivated:
+            return R.string.localizable.help_request_status_value_deactivated()
+        }
+    }
 }

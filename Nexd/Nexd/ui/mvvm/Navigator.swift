@@ -31,7 +31,7 @@ protocol ScreenNavigating {
                         with item: HelpRequestCreationState.Item?,
                         onItemSaved: @escaping ((HelpRequestCreationState.Item) -> Void))
     func toRequestConfirmation(state: HelpRequestCreationState)
-    func toPhoneCall()
+    func toEditOpenHelpRequests()
     func toHelpOptions()
     func toTranscribeInfoView()
     func toTranscribeListView(state: TranscribeViewState)
@@ -209,8 +209,9 @@ extension Navigator: ScreenNavigating {
         present(screen: screen)
     }
 
-    func toPhoneCall() {
-        log.debug("Implement ME!")
+    func toEditOpenHelpRequests() {
+        let screen = EditOpenHelpRequestsView.createScreen(viewModel: EditOpenHelpRequestsView.ViewModel(navigator: self, helpRequestsService: helpRequestsService))
+        push(screen: screen)
     }
 
     func toHelpOptions() {

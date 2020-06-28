@@ -33,7 +33,7 @@ extension NexdClientAPI {
     static func requestStarted<T>(request: RequestBuilder<T>) {
         if !NVActivityIndicatorPresenter.sharedInstance.isAnimating {
             NVActivityIndicatorPresenter.sharedInstance.startAnimating(ActivityData(message: R.string.localizable.loading_overlay_message(),
-                                                                                    messageFont: R.font.proximaNovaSoftBold(size: 24),
+                                                                                    messageFont: R.font.proximaNovaBold(size: 24),
                                                                                     type: .pacman,
                                                                                     color: R.color.darkButtonText(),
                                                                                     displayTimeThreshold: 500,

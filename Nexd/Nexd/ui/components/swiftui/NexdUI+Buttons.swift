@@ -16,7 +16,7 @@ extension NexdUI {
                     R.image.chevron_left.image
                         .foregroundColor(R.color.darkButtonText.color)
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 23))
+                        .font(R.font.proximaNovaBold.font(size: 23))
                         .foregroundColor(R.color.darkButtonText.color)
                 }
             }
@@ -25,7 +25,7 @@ extension NexdUI {
         static func cancel(text: Text = R.string.localizable.cancel_button_title.text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 text
-                    .font(R.font.proximaNovaSoftMedium.font(size: 23))
+                    .font(R.font.proximaNovaRegular.font(size: 23))
                     .foregroundColor(R.color.darkButtonText.color)
             }
         }
@@ -33,7 +33,7 @@ extension NexdUI {
         static func done(text: Text = R.string.localizable.done_button_title.text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 text
-                    .font(R.font.proximaNovaSoftBold.font(size: 23))
+                    .font(R.font.proximaNovaBold.font(size: 23))
                     .foregroundColor(R.color.darkButtonText.color)
             }
         }
@@ -91,7 +91,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 35))
+                        .font(R.font.proximaNovaBold.font(size: 35))
                         .foregroundColor(R.color.positiveButtonText.color)
 
                     R.image.chevron.image
@@ -104,7 +104,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     R.string.localizable.confirm_button_title.text
-                        .font(R.font.proximaNovaSoftBold.font(size: 35))
+                        .font(R.font.proximaNovaBold.font(size: 35))
                         .foregroundColor(R.color.positiveButtonText.color)
 
                     R.image.chevron.image
@@ -116,7 +116,7 @@ extension NexdUI {
         static func darkButton(text: Text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 text
-                    .font(R.font.proximaNovaSoftBold.font(size: 28))
+                    .font(R.font.proximaNovaBold.font(size: 28))
                     .foregroundColor(R.color.darkButtonBorder.color)
                     .padding([.leading, .trailing], 12)
             }
@@ -131,7 +131,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 25))
+                        .font(R.font.proximaNovaBold.font(size: 25))
                         .foregroundColor(R.color.lightButtonText.color)
                         .padding(.leading, 29)
                         .padding(.trailing, 8)
@@ -155,7 +155,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 28))
+                        .font(R.font.proximaNovaBold.font(size: 28))
                         .foregroundColor(R.color.darkButtonText.color)
                         .padding(.leading, 19)
                         .padding(.trailing, 8)
@@ -178,7 +178,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 28))
+                        .font(R.font.proximaNovaBold.font(size: 28))
                         .foregroundColor(R.color.lightButtonText.color)
                         .padding(.leading, 19)
                         .padding(.trailing, 8)
@@ -201,7 +201,7 @@ extension NexdUI {
             Button(action: action) {
                 HStack {
                     text
-                        .font(R.font.proximaNovaSoftBold.font(size: 25))
+                        .font(R.font.proximaNovaBold.font(size: 25))
                         .foregroundColor(R.color.solidButtonText.color)
                         .padding(.leading, 29)
                         .padding(.trailing, 8)

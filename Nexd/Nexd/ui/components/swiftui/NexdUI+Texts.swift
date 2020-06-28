@@ -13,61 +13,61 @@ extension NexdUI {
         static func title(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 35))
+                .font(R.font.proximaNovaBold.font(size: 35))
                 .foregroundColor(R.color.headingText.color)
         }
 
         static func h2Dark(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .font(R.font.proximaNovaBold.font(size: 25))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
 
         static func defaultDark(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 16))
+                .font(R.font.proximaNovaBold.font(size: 16))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
 
         static func detailsText(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 20))
+                .font(R.font.proximaNovaBold.font(size: 20))
                 .foregroundColor(R.color.darkHeadingText.color)
         }
 
         static func sectionHeader(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 25))
+                .font(R.font.proximaNovaBold.font(size: 25))
                 .foregroundColor(R.color.headingText.color)
         }
 
         static func cardSectionHeader(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .font(R.font.proximaNovaBold.font(size: 18))
                 .foregroundColor(R.color.darkListItemTitle.color)
         }
 
         static func cardText(text: Text) -> some View {
             text
-                .font(R.font.proximaNovaSoftBold.font(size: 18))
+                .font(R.font.proximaNovaBold.font(size: 18))
                 .foregroundColor(R.color.listItemTitle.color)
         }
 
         static func cardPlaceholderText(text: Text) -> some View {
             text
-                .font(R.font.proximaNovaSoftBold.font(size: 14))
+                .font(R.font.proximaNovaBold.font(size: 14))
                 .foregroundColor(R.color.listItemDetailsText.color)
         }
 
         static func filterButtonDetailsText(text: Text) -> some View {
             text
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(R.font.proximaNovaSoftRegular.font(size: 14))
+                .font(R.font.proximaNovaRegular.font(size: 14))
                 .foregroundColor(R.color.filterButtonDetails.color)
         }
 
@@ -97,12 +97,12 @@ extension NexdUI {
 
 extension Text {
     fileprivate func matchingText() -> Text {
-        font(R.font.proximaNovaSoftBold.font(size: 16))
+        font(R.font.proximaNovaBold.font(size: 16))
             .foregroundColor(R.color.matchingText.color)
     }
 
     fileprivate func notMatchingText() -> Text {
-        font(R.font.proximaNovaSoftMedium.font(size: 16))
+        font(R.font.proximaNovaRegular.font(size: 16))
             .foregroundColor(R.color.notMatchingText.color)
     }
 }
