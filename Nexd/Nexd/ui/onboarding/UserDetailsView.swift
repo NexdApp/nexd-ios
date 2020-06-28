@@ -15,7 +15,9 @@ struct UserDetailsView: View {
     var body: some View {
         ScrollView {
             VStack {
-                R.image.logo.image
+                R.image.nexd_logo_green.image
+                    .resizable()
+                    .scaledToFit()
                     .padding([.top, .leading, .trailing], 42)
 
                 Group {
@@ -142,10 +144,10 @@ extension UserDetailsView {
 
             cancellableSet?.insert(
                 userService.updateUserInformation(street: state.street,
-                                                         number: state.streetNumber,
-                                                         zipCode: state.zipCode,
-                                                         city: state.city,
-                                                         phoneNumber: state.phoneNumber)
+                                                  number: state.streetNumber,
+                                                  zipCode: state.zipCode,
+                                                  city: state.city,
+                                                  phoneNumber: state.phoneNumber)
                     .publisher
                     .sink(
                         receiveCompletion: { [weak self] completion in

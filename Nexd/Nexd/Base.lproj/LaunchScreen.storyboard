@@ -18,7 +18,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aJW-KJ-b8D">
                                 <rect key="frame" x="41" y="364.5" width="332" height="177"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="alB-We-F4v">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nexd_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="alB-We-F4v">
                                         <rect key="frame" x="20" y="20" width="292" height="137"/>
                                         <color key="tintColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -34,11 +34,20 @@
                                     <constraint firstAttribute="bottom" secondItem="alB-We-F4v" secondAttribute="bottom" constant="20" symbolic="YES" id="j7F-tl-blp"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wvv-solution_enabler" translatesAutoresizingMaskIntoConstraints="NO" id="lhv-Jl-pQk">
+                                <rect key="frame" x="-8" y="810" width="430" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="i7g-k6-taU"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.30588235294117649" green="0.74901960784313726" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="aJW-KJ-b8D" firstAttribute="centerX" secondItem="PkD-hS-Pad" secondAttribute="centerX" id="27z-xQ-4sV"/>
+                            <constraint firstItem="lhv-Jl-pQk" firstAttribute="trailing" secondItem="PkD-hS-Pad" secondAttribute="trailing" constant="8" id="AVm-Ri-TwS"/>
+                            <constraint firstItem="lhv-Jl-pQk" firstAttribute="bottom" secondItem="PkD-hS-Pad" secondAttribute="bottom" constant="8" id="HVe-Gs-S4M"/>
                             <constraint firstItem="aJW-KJ-b8D" firstAttribute="centerY" secondItem="PkD-hS-Pad" secondAttribute="centerY" id="dZR-FN-ZeE"/>
+                            <constraint firstItem="PkD-hS-Pad" firstAttribute="leading" secondItem="lhv-Jl-pQk" secondAttribute="leading" constant="8" id="x0v-6q-6BA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PkD-hS-Pad"/>
                     </view>
@@ -49,6 +58,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_white" width="292" height="137"/>
+        <image name="nexd_logo_white" width="2063" height="724"/>
+        <image name="wvv-solution_enabler" width="1150" height="400"/>
     </resources>
 </document>

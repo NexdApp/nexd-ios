@@ -18,7 +18,10 @@ struct StartAuthenticationFlowView: View {
                 .padding([.top, .leading], 0)
 
             VStack {
-                R.image.logo_white.image
+                R.image.nexd_logo_white.image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 292)
 
                 NexdUI.Buttons.lightButton(text: R.string.localizable.login_button_title_login.text) {
                     self.viewModel.onLoginTapped()
