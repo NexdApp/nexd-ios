@@ -25,12 +25,12 @@
 "dialog_button_abort" = "Abbrechen";
 "dialog_button_confirm" = "Bestätigen";
 "done_button_title" = "Fertig";
-"edit_open_help_requests_no_open_requests_placeholer" = "Derzeit liegen keine offenen Bestllungen für dich vor.";
 "edit_open_help_requests_cancel_request_button_title" = "Bestellung abbrechen";
 "edit_open_help_requests_cancel_request_error_message" = "Beim Abbrechen der Bestellung ist ein Fehler aufgetreten. Versuch es bitte später nochmal!";
 "edit_open_help_requests_cancel_request_error_title" = "Anfrage fehlgeschlagen!";
-"edit_open_help_requests_screen_title" = "Offene Bestellungen";
+"edit_open_help_requests_no_open_requests_placeholer" = "Derzeit liegen keine offenen Bestllungen für dich vor.";
 "edit_open_help_requests_request_status_title" = "Status";
+"edit_open_help_requests_screen_title" = "Offene Bestellungen";
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "Benutzerauthentifizierung fehlgeschlagen. Bitte logge dich erneut ein.";
 "error_dialog_authentication_failed_title" = "Authentifizierung fehlgeschlagen!";
@@ -110,7 +110,7 @@
 "login_background_shopping_bag_image_content_description" = "Hintergrundbild Einkaufstasche";
 "login_button_title_login" = "Einloggen";
 "login_button_title_register" = "Registrieren";
-"login_logo_content_description" = "NEXD Logo";
+"login_logo_content_description" = "Nexd Logo";
 "login_placeholder_password" = "Passwort";
 "login_placeholder_username" = "E-Mail";
 "login_screen_title" = "Login";
@@ -135,6 +135,7 @@
 "role_screen_subtitle" = "Was möchtest du heute tun?";
 "role_screen_title" = "Willkommen, ";
 "role_screen_title_format" = "Hallo, %s";
+"role_screen_title_ios" = "Willkommen, %@";
 "role_selection_button_logout" = "Ausloggen";
 "role_selection_helper" = "Ich kann helfen!";
 "role_selection_screen_title" = "Rolle";
