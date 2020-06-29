@@ -51,7 +51,7 @@ struct SeekerItemSelectionView: View {
 
             Spacer()
 
-            NexdUI.Buttons.confirm {
+            NexdUI.Buttons.confirm(text: R.string.localizable.seeker_item_selection_confirm_button_title.text) {
                 self.viewModel.confirmButtonTapped()
             }
             .frame(maxWidth: .infinity, alignment: .leading)

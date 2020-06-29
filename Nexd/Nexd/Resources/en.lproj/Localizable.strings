@@ -1,6 +1,6 @@
 "back_button_title" = "Back";
 "cancel_button_title" = "Cancel";
-"checkout_button_title_complete" = "Complete";
+"checkout_button_title_complete" = "Start delivery!";
 "checkout_screen_title" = "Checkout";
 "confirm_button_title" = "Confirm";
 "delivery_confirmation_address_title" = "Address";
@@ -61,7 +61,7 @@
 "helper_request_detail_additional_request_header" = "Additional Request";
 "helper_request_detail_button_accept" = "Will do!";
 "helper_request_detail_button_accepted" = "Request already accepted";
-"helper_request_detail_button_remove" = "Remove from shopping list!";
+"helper_request_detail_button_remove" = "Remove from my list!";
 "helper_request_detail_delivery_address_header" = "Delivery Address";
 "helper_request_detail_delivery_comment_header" = "Delivery comment";
 "helper_request_detail_empty_delivery_address_placeholder" = "The delivery address is not available.";
@@ -82,9 +82,9 @@
 "helper_request_overview_button_title_current_items_list" = "Current Items List";
 "helper_request_overview_button_title_start" = "Start";
 "helper_request_overview_empty_accepted_requests_list_placeholder" = "No accepted requests found. Please chose requests from the list below.";
-"helper_request_overview_empty_open_requests_list_invitation_hint" = "You know people who might be interested in using this app? Let them know!";
-"helper_request_overview_empty_open_requests_list_invite_button_title" = "Tell your friends!";
-"helper_request_overview_empty_open_requests_list_placeholder" = "Currently there are no open requests in your selected region. Please try to check other regions nearby for open requests or help us by translating phone calls.";
+"helper_request_overview_empty_open_requests_list_invitation_hint" = "You can change the search region (by tapping \"Available requests\" above) or invite some friends to join NEXD.";
+"helper_request_overview_empty_open_requests_list_invite_button_title" = "Invite your friends!";
+"helper_request_overview_empty_open_requests_list_placeholder" = "Currently there are no open requests in your selected region.";
 "helper_request_overview_error_message" = "Your request could not be sent! Please try again.";
 "helper_request_overview_error_title" = "Error!";
 "helper_request_overview_filter_inactive" = "All open requests";
@@ -137,6 +137,7 @@
 "role_selection_helper" = "I can help";
 "role_selection_screen_title" = "Role";
 "role_selection_seeker" = "I need something";
+"seeker_article_input_add_button_title" = "Add";
 "seeker_article_input_description" = "To add a new article to the list provide its name, amount and unit.";
 "seeker_article_input_title" = "Add article";
 "seeker_article_input_unit_picker_title" = "Unit";
@@ -148,6 +149,7 @@
 "seeker_item_selection_add_article_placeholer" = "Add article";
 "seeker_item_selection_article_amount_placeholder" = "Amount";
 "seeker_item_selection_article_amount_placeholer" = "Amount";
+"seeker_item_selection_confirm_button_title" = "Continue";
 "seeker_item_selection_no_items_text" = "Press the '+' button to add your first item to the list.";
 "seeker_item_selection_screen_title" = "Chose items";
 "seeker_overview_empty_label" = "You haven't sent any requests yet. Please click below right to create your first request.";
@@ -173,6 +175,7 @@
 "select_text_dialog_text_hint_default" = "Input";
 "shopping_list_button_checkout" = "Order Completed";
 "shopping_list_button_title_checkout" = "Checkout";
+"shopping_list_description_text" = "Tap the article once you found it to check it from the list. This way you will always have a great overview while you are shopping.";
 "shopping_list_overview_error_loading_failed_message" = "Shopping list could not be loaded. Please try again!";
 "shopping_list_overview_error_title" = "Error!";
 "shopping_list_screen_title" = "Shopping list";

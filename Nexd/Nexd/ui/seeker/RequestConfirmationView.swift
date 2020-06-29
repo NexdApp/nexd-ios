@@ -137,7 +137,7 @@ struct RequestConfirmationView: View {
                     .padding(.top, 8)
                     .padding([.leading, .trailing], 13)
 
-                    NexdUI.Buttons.confirm {
+                    NexdUI.Buttons.confirm(text: R.string.localizable.seeker_request_create_submit.text) {
                         self.viewModel.onConfirmButtonTapped()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)

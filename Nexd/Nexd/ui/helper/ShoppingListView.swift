@@ -18,41 +18,49 @@ struct ShoppingListView: View {
                 .padding(.top, 70)
 
             ScrollView {
-                NexdUI.Card {
-                    OptionalView(viewModel.articles) { articles in
-                        ForEach(articles) { article in
-                            VStack {
-                                NexdUI.Texts.cardText(text: Text(article.name).strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
-                                    .padding([.leading, .trailing], 12)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
+                VStack {
+                    NexdUI.Texts.detailsText(text: R.string.localizable.shopping_list_description_text.text)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .padding([.top, .bottom], 10)
 
-                                OptionalView(self.viewModel.amountItems(for: article)) { amountItems in
-                                    ForEach(amountItems) { amountItem in
-                                        NexdUI.Texts.cardPlaceholderText(text: Text(amountItem.description)
-                                            .strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
-                                            .padding([.leading, .trailing], 24)
+                    NexdUI.Card {
+                        VStack {
+                            OptionalView(viewModel.articles) { articles in
+                                ForEach(articles) { article in
+                                    VStack {
+                                        NexdUI.Texts.cardText(text: Text(article.name).strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
+                                            .padding([.leading, .trailing], 12)
                                             .frame(maxWidth: .infinity, alignment: .leading)
+
+                                        OptionalView(self.viewModel.amountItems(for: article)) { amountItems in
+                                            ForEach(amountItems) { amountItem in
+                                                NexdUI.Texts.cardPlaceholderText(text: Text(amountItem.description)
+                                                    .strikethrough(self.viewModel.isArticleFinished(article: article), color: .black))
+                                                    .padding([.leading, .trailing], 24)
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                            }
+                                        }
                                     }
+                                    .onTapGesture {
+                                        self.viewModel.articleTapped(article: article)
+                                    }
+
+                                    Divider()
                                 }
                             }
-                            .onTapGesture {
-                                self.viewModel.articleTapped(article: article)
-                            }
-
-                            Divider()
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
+
+                    NexdUI.Buttons.default(text: R.string.localizable.shopping_list_button_title_checkout.text) {
+                        self.viewModel.checkoutButtonTapped()
+                    }
+                    .identified(by: .shoppingListContinueButton)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 0)
+                    .padding(.bottom, 40)
                 }
             }
-
-            NexdUI.Buttons.default(text: R.string.localizable.shopping_list_button_title_checkout.text) {
-                self.viewModel.checkoutButtonTapped()
-            }
-            .identified(by: .shoppingListContinueButton)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 0)
-            .padding(.bottom, 40)
         }
         .padding([.leading, .trailing], 20)
         .withBackButton { self.viewModel.backButtonTapped() }

@@ -124,6 +124,7 @@ struct SeekerArticleInputView: View {
             .onAppear { self.viewModel.bind() }
             .onDisappear { self.viewModel.unbind() }
             .withModalButtons(
+                doneText: R.string.localizable.seeker_article_input_add_button_title.text,
                 onCancel: { self.viewModel.cancelButtonTapped() },
                 onDone: { self.viewModel.doneButtonTapped() }
             )

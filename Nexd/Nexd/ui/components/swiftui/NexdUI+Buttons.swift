@@ -100,10 +100,10 @@ extension NexdUI {
             }
         }
 
-        static func confirm(action: @escaping () -> Void) -> some View {
+        static func confirm(text: Text = R.string.localizable.confirm_button_title.text, action: @escaping () -> Void) -> some View {
             Button(action: action) {
                 HStack {
-                    R.string.localizable.confirm_button_title.text
+                    text
                         .font(R.font.proximaNovaBold.font(size: 35))
                         .foregroundColor(R.color.positiveButtonText.color)
 
