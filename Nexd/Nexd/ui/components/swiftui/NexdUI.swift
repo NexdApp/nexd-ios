@@ -25,7 +25,7 @@ enum NexdUI {}
                 NexdUI.Buttons.confirm {}
                     .padding(8)
 
-                NexdUI.Buttons.lightButton(text: Text("Light Button"), action: {})
+                NexdUI.Buttons.solidLightButton(text: Text("Light Button"), action: {})
                     .padding(8)
 
                 NexdUI.Buttons.darkMainMenuButton(text: Text("Dark Main Menu Button!"), action: {})

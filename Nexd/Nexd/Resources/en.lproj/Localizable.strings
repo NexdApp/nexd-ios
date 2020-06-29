@@ -26,6 +26,9 @@
 "dialog_button_confirm" = "Confirm";
 "done_button_title" = "Done";
 "edit_open_help_requests_no_open_requests_placeholer" = "There are no open requests for you at the moment.";
+"edit_open_help_requests_cancel_request_button_title" = "Cancel request";
+"edit_open_help_requests_cancel_request_error_message" = "An error occurred while trying to cancel the request. Please try again later!";
+"edit_open_help_requests_cancel_request_error_title" = "Request failed!";
 "edit_open_help_requests_screen_title" = "Open requests";
 "edit_open_help_requests_request_status_title" = "Status";
 "error_button_ok" = "OK";

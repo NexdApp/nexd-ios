@@ -144,11 +144,15 @@ extension NexdUI {
                             .padding(.trailing, 27)
                     }
                 }
+            }
+        }
+
+        static func solidLightButton(text: Text, icon: Image? = R.image.chevron.image, action: @escaping () -> Void) -> some View {
+            lightButton(text: text, action: action)
                 .frame(height: 70)
                 .background(R.color.lightButtonBackground.color)
                 .cornerRadius(10)
                 .shadow(color: R.color.shadow.color, radius: 4, x: 0, y: 4)
-            }
         }
 
         static func darkMainMenuButton(text: Text, action: @escaping () -> Void) -> some View {

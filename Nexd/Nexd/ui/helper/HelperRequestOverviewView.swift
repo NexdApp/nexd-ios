@@ -69,7 +69,7 @@ struct HelperRequestOverviewView: View {
                             .padding([.top, .bottom], 10)
 
                         GeometryReader { proxy in
-                            NexdUI.Buttons.lightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
+                            NexdUI.Buttons.solidLightButton(text: R.string.localizable.helper_request_overview_empty_open_requests_list_invite_button_title.text,
                                                        icon: R.image.baseline_share_black_24pt.image) {
                                 self.viewModel.onInviteTapped(frame: proxy.frame(in: .global))
                             }

@@ -210,7 +210,9 @@ extension Navigator: ScreenNavigating {
     }
 
     func toEditOpenHelpRequests() {
-        let screen = EditOpenHelpRequestsView.createScreen(viewModel: EditOpenHelpRequestsView.ViewModel(navigator: self, helpRequestsService: helpRequestsService))
+        let screen = EditOpenHelpRequestsView.createScreen(viewModel: EditOpenHelpRequestsView.ViewModel(navigator: self,
+                                                                                                         helpRequestsService: helpRequestsService,
+                                                                                                         articlesService: articlesService))
         push(screen: screen)
     }
 

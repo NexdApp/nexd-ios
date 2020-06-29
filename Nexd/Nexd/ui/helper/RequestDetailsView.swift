@@ -79,7 +79,7 @@ struct RequestDetailsView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
 
-            NexdUI.Buttons.lightButton(text: viewModel.type.buttonTitle) {
+            NexdUI.Buttons.solidLightButton(text: viewModel.type.buttonTitle) {
                 self.viewModel.confirmButtonTapped()
             }
             .padding([.leading, .trailing], 12)
