@@ -27,6 +27,11 @@ class HelpListsService {
             .asSingle()
     }
 
+    func fetchHelpList(helpListId: Int64) -> Single<HelpList> {
+        return HelpListsAPI.helpListsControllerFindOne(helpListId: helpListId)
+            .asSingle()
+    }
+
     func fetchShoppingLists() -> Single<[HelpList]> {
         return HelpListsAPI.helpListsControllerGetUserLists()
             .asSingle()

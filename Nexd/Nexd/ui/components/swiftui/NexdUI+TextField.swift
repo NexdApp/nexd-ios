@@ -16,7 +16,7 @@ extension NexdUI {
         case onboarding
 
         func apply(to textField: WrappableTextField) {
-            textField.font = R.font.proximaNovaSoftBold(size: 22.0)
+            textField.font = R.font.proximaNovaBold(size: 22.0)
             textField.tintColor = .black
             textField.textColor = .black
 
@@ -230,7 +230,7 @@ extension NexdUI {
                         errorMessage.map { errorMessage in
                             VStack {
                                 Text(errorMessage)
-                                    .font(R.font.proximaNovaSoftBold.font(size: 12))
+                                    .font(R.font.proximaNovaBold.font(size: 12))
                                     .foregroundColor(R.color.errorTint.color)
                                     .frame(maxWidth: .infinity, minHeight: 30, alignment: .bottomLeading)
                                     .padding([.leading, .trailing], 8)

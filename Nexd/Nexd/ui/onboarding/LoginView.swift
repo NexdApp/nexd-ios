@@ -16,7 +16,9 @@ struct LoginView: View {
     var body: some View {
         ZStack {
             VStack {
-                R.image.logo.image
+                R.image.nexd_logo_green.image
+                    .resizable()
+                    .scaledToFit()
                     .padding([.top, .leading, .trailing], 42)
 
                 Group {

@@ -105,13 +105,13 @@ struct UserProfileView: View {
 
                 Spacer()
 
-                NexdUI.Buttons.lightButton(text: R.string.localizable.confirm_button_title.text) {
+                NexdUI.Buttons.solidLightButton(text: R.string.localizable.confirm_button_title.text) {
                     self.viewModel.confirmButtonTapped()
                 }
                 .padding(.top, 34)
                 .padding([.leading, .trailing], 12)
 
-                NexdUI.Buttons.lightButton(text: R.string.localizable.user_profile_button_title_logout.text) {
+                NexdUI.Buttons.solidLightButton(text: R.string.localizable.user_profile_button_title_logout.text) {
                     self.viewModel.logoutButtonTapped()
                 }
                 .padding(12)

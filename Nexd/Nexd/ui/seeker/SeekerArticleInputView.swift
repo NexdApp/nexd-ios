@@ -84,7 +84,7 @@ struct SeekerArticleInputView: View {
                             R.string.localizable.seeker_article_input_unit_picker_title.text
                                 .padding(8)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                .font(R.font.proximaNovaSoftBold.font(size: 35))
+                                .font(R.font.proximaNovaBold.font(size: 35))
                                 .foregroundColor(R.color.greetingSubline.color)
 
                             ScrollView {
@@ -124,6 +124,7 @@ struct SeekerArticleInputView: View {
             .onAppear { self.viewModel.bind() }
             .onDisappear { self.viewModel.unbind() }
             .withModalButtons(
+                doneText: R.string.localizable.seeker_article_input_add_button_title.text,
                 onCancel: { self.viewModel.cancelButtonTapped() },
                 onDone: { self.viewModel.doneButtonTapped() }
             )

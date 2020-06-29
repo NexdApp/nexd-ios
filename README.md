@@ -1,8 +1,6 @@
 # CI status
 
-- ![TestFlight](https://github.com/NexdApp/nexd-ios/workflows/TestFlight/badge.svg?branch=develop) (master)
-- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg?branch=master) (master)
-- ![Screenshots](https://github.com/NexdApp/nexd-ios/workflows/Screenshots/badge.svg) (develop)
+- ![Release](https://github.com/NexdApp/nexd-ios/workflows/Release/badge.svg?branch=master)
 
 # Initial Setup
 
@@ -20,7 +18,7 @@ $ open Nexd.xcworkspace
 Needs to be done when the backend deployed changes.
 Make sure [openapi-generator](https://openapi-generator.tech/docs/faq-generators/) is installed on your mac
 
-## From local backend
+## From production backend
 
 ```
 $ ./update_swagger_client.sh
@@ -32,28 +30,11 @@ $ ./update_swagger_client.sh
 $ ./update_swagger_client.sh https://api-staging.nexd.app/api/v1
 ```
 
-## From producton backend
+# Build & Run
 
-```
-$ ./update_swagger_client.sh https://api.nexd.app/api/v1
-```
-
-# Local backend
-
-## Launch db
-
-```
-$ docker-compose up -d db
-```
-
-## Reset db
-
-```
-$ docker-compose down
-$ docker volume ls
-$ docker volume remove nearbuy-backend_data-volume
-$ docker-compose up -d db
-```
+- XCode scheme `nexd (Debug)`: `DEBUG` build of the app, connects to staging backend
+- XCode scheme `nexd (Release)`: Releas build of the app, connects to production backend
+- XCode scheme `nexdScreenshots`: a UI testing target which is used to automate screenshotting of the app, connects to a mocked backend which is controlled by the tests themselves
 
 # Architecture
 

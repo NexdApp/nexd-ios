@@ -59,6 +59,15 @@
 		AE8E235C2466ED7A00AC261D /* NexdUI+BackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E235B2466ED7A00AC261D /* NexdUI+BackButton.swift */; };
 		AE8E235F2467E2B900AC261D /* RswiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8E235D2467E28300AC261D /* RswiftTests.swift */; };
 		AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE9775B42445E1A200765324 /* PreviewMocks.swift */; };
+		AEA75BD824A5F7BB003F8450 /* EditOpenHelpRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA75BD724A5F7BB003F8450 /* EditOpenHelpRequestsView.swift */; };
+		AEA75BE124A8BA2F003F8450 /* Proxima Nova Alt Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDF24A8BA1D003F8450 /* Proxima Nova Alt Bold.otf */; };
+		AEA75BE224A8BA2F003F8450 /* Proxima Nova Alt Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDB24A8BA1D003F8450 /* Proxima Nova Alt Light.otf */; };
+		AEA75BE324A8BA2F003F8450 /* Proxima Nova Alt Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDD24A8BA1D003F8450 /* Proxima Nova Alt Thin.otf */; };
+		AEA75BE424A8BA2F003F8450 /* Proxima Nova Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDA24A8BA1D003F8450 /* Proxima Nova Black.otf */; };
+		AEA75BE524A8BA2F003F8450 /* Proxima Nova Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BE024A8BA1D003F8450 /* Proxima Nova Bold.otf */; };
+		AEA75BE624A8BA2F003F8450 /* Proxima Nova Extrabold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BD924A8BA1D003F8450 /* Proxima Nova Extrabold.otf */; };
+		AEA75BE724A8BA2F003F8450 /* Proxima Nova Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDC24A8BA1D003F8450 /* Proxima Nova Thin.otf */; };
+		AEA75BE824A8BA2F003F8450 /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AEA75BDE24A8BA1D003F8450 /* ProximaNova-Regular.otf */; };
 		AEB6AC67244129EE00823E7C /* RequestConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */; };
 		AEB6AC7224423DC900823E7C /* HelperOptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */; };
 		AEB6AC7D2443362300823E7C /* Date+Nexd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB6AC7C2443362300823E7C /* Date+Nexd.swift */; };
@@ -107,10 +116,6 @@
 		AEF3D6712426785C005C77CE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6702426785C005C77CE /* Storage.swift */; };
 		AEF3D6772426AD56005C77CE /* ArticlesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF3D6762426AD56005C77CE /* ArticlesService.swift */; };
 		E6914F55243FCAA400F0ACD2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6914F54243FCAA400F0ACD2 /* LoginView.swift */; };
-		E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */; };
-		E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */; };
-		E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */; };
-		E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -192,6 +197,15 @@
 		AE8E235B2466ED7A00AC261D /* NexdUI+BackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NexdUI+BackButton.swift"; sourceTree = "<group>"; };
 		AE8E235D2467E28300AC261D /* RswiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RswiftTests.swift; sourceTree = "<group>"; };
 		AE9775B42445E1A200765324 /* PreviewMocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewMocks.swift; sourceTree = "<group>"; };
+		AEA75BD724A5F7BB003F8450 /* EditOpenHelpRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOpenHelpRequestsView.swift; sourceTree = "<group>"; };
+		AEA75BD924A8BA1D003F8450 /* Proxima Nova Extrabold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Extrabold.otf"; sourceTree = "<group>"; };
+		AEA75BDA24A8BA1D003F8450 /* Proxima Nova Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Black.otf"; sourceTree = "<group>"; };
+		AEA75BDB24A8BA1D003F8450 /* Proxima Nova Alt Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Alt Light.otf"; sourceTree = "<group>"; };
+		AEA75BDC24A8BA1D003F8450 /* Proxima Nova Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Thin.otf"; sourceTree = "<group>"; };
+		AEA75BDD24A8BA1D003F8450 /* Proxima Nova Alt Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Alt Thin.otf"; sourceTree = "<group>"; };
+		AEA75BDE24A8BA1D003F8450 /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
+		AEA75BDF24A8BA1D003F8450 /* Proxima Nova Alt Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Alt Bold.otf"; sourceTree = "<group>"; };
+		AEA75BE024A8BA1D003F8450 /* Proxima Nova Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Proxima Nova Bold.otf"; sourceTree = "<group>"; };
 		AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestConfirmationView.swift; sourceTree = "<group>"; };
 		AEB6AC7124423DC900823E7C /* HelperOptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperOptionsView.swift; sourceTree = "<group>"; };
 		AEB6AC7C2443362300823E7C /* Date+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Nexd.swift"; sourceTree = "<group>"; };
@@ -227,7 +241,7 @@
 		AEEEDF15247EFD520007E961 /* AccessibilityIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityIdentifiers.swift; sourceTree = "<group>"; };
 		AEEEDF18247EFEBF0007E961 /* View+Nexd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Nexd.swift"; sourceTree = "<group>"; };
 		AEEEDF1B247F16930007E961 /* ObservableConvertibleType+OfType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableConvertibleType+OfType.swift"; sourceTree = "<group>"; };
-		AEF3D618242584C9005C77CE /* nexd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nexd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEF3D618242584C9005C77CE /* NEXD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NEXD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF3D61B242584C9005C77CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AEF3D61D242584C9005C77CE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AEF3D624242584CC005C77CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -249,10 +263,6 @@
 		DBE17CC4C8B2180DB2DCAAA2 /* Pods-NexdTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NexdTests.release.xcconfig"; path = "Target Support Files/Pods-NexdTests/Pods-NexdTests.release.xcconfig"; sourceTree = "<group>"; };
 		DFECF7180543182E731C90E4 /* libPods-nexdTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-nexdTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6914F54243FCAA400F0ACD2 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-medium-webfont.ttf"; sourceTree = "<group>"; };
-		E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-bold-webfont.ttf"; sourceTree = "<group>"; };
-		E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-regular-webfont.ttf"; sourceTree = "<group>"; };
-		E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "proxima-nova-soft-semibold-webfont.ttf"; sourceTree = "<group>"; };
 		F1E7BF07394EEF7D7982A0F9 /* Pods-nexdTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdTests.debug.xcconfig"; path = "Target Support Files/Pods-nexdTests/Pods-nexdTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F58378AA02318A86E3297036 /* Pods-nexdScreenshots.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-nexdScreenshots.release.xcconfig"; path = "Target Support Files/Pods-nexdScreenshots/Pods-nexdScreenshots.release.xcconfig"; sourceTree = "<group>"; };
 		F5C6625133D212FE18A22CCD /* Pods-Nexd.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nexd.release.xcconfig"; path = "Target Support Files/Pods-Nexd/Pods-Nexd.release.xcconfig"; sourceTree = "<group>"; };
@@ -368,6 +378,7 @@
 				AE818F972480232F00BAB034 /* SeekerArticleInputView.swift */,
 				AEB6AC66244129EE00823E7C /* RequestConfirmationView.swift */,
 				AE818F9B2481B07900BAB034 /* HelpRequestCreationState.swift */,
+				AEA75BD724A5F7BB003F8450 /* EditOpenHelpRequestsView.swift */,
 			);
 			path = seeker;
 			sourceTree = "<group>";
@@ -470,7 +481,7 @@
 		AEF3D619242584C9005C77CE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEF3D618242584C9005C77CE /* nexd.app */,
+				AEF3D618242584C9005C77CE /* NEXD.app */,
 				AEF3D62E242584CC005C77CE /* nexdTests.xctest */,
 				AEEEDEF3247E67C40007E961 /* nexdScreenshots.xctest */,
 			);
@@ -525,10 +536,14 @@
 		AEF3D64D24259AE5005C77CE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E6B8B248243BDA8800E50972 /* proxima-nova-soft-bold-webfont.ttf */,
-				E6B8B247243BDA8800E50972 /* proxima-nova-soft-medium-webfont.ttf */,
-				E6B8B249243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf */,
-				E6B8B24A243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf */,
+				AEA75BDF24A8BA1D003F8450 /* Proxima Nova Alt Bold.otf */,
+				AEA75BDB24A8BA1D003F8450 /* Proxima Nova Alt Light.otf */,
+				AEA75BDD24A8BA1D003F8450 /* Proxima Nova Alt Thin.otf */,
+				AEA75BDA24A8BA1D003F8450 /* Proxima Nova Black.otf */,
+				AEA75BE024A8BA1D003F8450 /* Proxima Nova Bold.otf */,
+				AEA75BD924A8BA1D003F8450 /* Proxima Nova Extrabold.otf */,
+				AEA75BDC24A8BA1D003F8450 /* Proxima Nova Thin.otf */,
+				AEA75BDE24A8BA1D003F8450 /* ProximaNova-Regular.otf */,
 				AE2A9A932426FA50006066B4 /* Localizable.strings */,
 			);
 			path = Resources;
@@ -649,7 +664,7 @@
 			);
 			name = nexd;
 			productName = NearBuy;
-			productReference = AEF3D618242584C9005C77CE /* nexd.app */;
+			productReference = AEF3D618242584C9005C77CE /* NEXD.app */;
 			productType = "com.apple.product-type.application";
 		};
 		AEF3D62D242584CC005C77CE /* nexdTests */ = {
@@ -728,14 +743,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6B8B24B243BDA8900E50972 /* proxima-nova-soft-medium-webfont.ttf in Resources */,
+				AEA75BE824A8BA2F003F8450 /* ProximaNova-Regular.otf in Resources */,
 				AEF3D628242584CC005C77CE /* LaunchScreen.storyboard in Resources */,
-				E6B8B24C243BDA8900E50972 /* proxima-nova-soft-bold-webfont.ttf in Resources */,
+				AEA75BE424A8BA2F003F8450 /* Proxima Nova Black.otf in Resources */,
+				AEA75BE224A8BA2F003F8450 /* Proxima Nova Alt Light.otf in Resources */,
+				AEA75BE624A8BA2F003F8450 /* Proxima Nova Extrabold.otf in Resources */,
 				AE2A9A912426FA50006066B4 /* Localizable.strings in Resources */,
-				E6B8B24D243BDA8900E50972 /* proxima-nova-soft-regular-webfont.ttf in Resources */,
+				AEA75BE724A8BA2F003F8450 /* Proxima Nova Thin.otf in Resources */,
+				AEA75BE524A8BA2F003F8450 /* Proxima Nova Bold.otf in Resources */,
 				AEC5877F243D224800B6876C /* Colors.xcassets in Resources */,
 				AEF3D625242584CC005C77CE /* Assets.xcassets in Resources */,
-				E6B8B24E243BDA8900E50972 /* proxima-nova-soft-semibold-webfont.ttf in Resources */,
+				AEA75BE324A8BA2F003F8450 /* Proxima Nova Alt Thin.otf in Resources */,
+				AEA75BE124A8BA2F003F8450 /* Proxima Nova Alt Bold.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -944,6 +963,7 @@
 				AED5E52C2446236500A3DFA1 /* NexdUI+Card.swift in Sources */,
 				AEF3D66C24263AA0005C77CE /* AuthenticationService.swift in Sources */,
 				AE818F9E2482574B00BAB034 /* NexdUI+DoneButton.swift in Sources */,
+				AEA75BD824A5F7BB003F8450 /* EditOpenHelpRequestsView.swift in Sources */,
 				AE818F9C2481B07900BAB034 /* HelpRequestCreationState.swift in Sources */,
 				AE52A2782437D30800A1166F /* Completable+From.swift in Sources */,
 				AE9775B52445E1A200765324 /* PreviewMocks.swift in Sources */,
@@ -1210,7 +1230,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
-				PRODUCT_NAME = nexd;
+				PRODUCT_NAME = NEXD;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1232,7 +1252,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = app.nexd.ios;
-				PRODUCT_NAME = nexd;
+				PRODUCT_NAME = NEXD;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development app.nexd.ios";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1257,7 +1277,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nexd.app/nexd";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEXD.app/NEXD";
 			};
 			name = Debug;
 		};
@@ -1279,7 +1299,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nexd.app/nexd";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NEXD.app/NEXD";
 			};
 			name = Release;
 		};

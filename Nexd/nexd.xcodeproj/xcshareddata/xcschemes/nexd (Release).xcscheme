@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AEF3D617242584C9005C77CE"
-               BuildableName = "nexd.app"
+               BuildableName = "NEXD.app"
                BlueprintName = "nexd"
                ReferencedContainer = "container:nexd.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
-            BuildableName = "nexd.app"
+            BuildableName = "NEXD.app"
             BlueprintName = "nexd"
             ReferencedContainer = "container:nexd.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AEF3D617242584C9005C77CE"
-            BuildableName = "nexd.app"
+            BuildableName = "NEXD.app"
             BlueprintName = "nexd"
             ReferencedContainer = "container:nexd.xcodeproj">
          </BuildableReference>
