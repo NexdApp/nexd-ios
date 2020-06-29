@@ -6,7 +6,7 @@
 //  Copyright © 2020 Tobias Schröpf. All rights reserved.
 //
 
-@testable import nexd
+@testable import NEXD
 import XCTest
 
 class RswiftTest: XCTestCase {
