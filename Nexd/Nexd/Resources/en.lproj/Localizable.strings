@@ -25,12 +25,12 @@
 "dialog_button_abort" = "Abort";
 "dialog_button_confirm" = "Confirm";
 "done_button_title" = "Done";
-"edit_open_help_requests_no_open_requests_placeholer" = "There are no open requests for you at the moment.";
 "edit_open_help_requests_cancel_request_button_title" = "Cancel request";
 "edit_open_help_requests_cancel_request_error_message" = "An error occurred while trying to cancel the request. Please try again later!";
 "edit_open_help_requests_cancel_request_error_title" = "Request failed!";
-"edit_open_help_requests_screen_title" = "Open requests";
+"edit_open_help_requests_no_open_requests_placeholer" = "There are no open requests for you at the moment.";
 "edit_open_help_requests_request_status_title" = "Status";
+"edit_open_help_requests_screen_title" = "Open requests";
 "error_button_ok" = "OK";
 "error_dialog_authentication_failed_message" = "User authentication failed please try to login again.";
 "error_dialog_authentication_failed_title" = "Authentication failed!";
@@ -108,7 +108,7 @@
 "login_background_shopping_bag_image_content_description" = "Background image shopping bag";
 "login_button_title_login" = "Login";
 "login_button_title_register" = "Register";
-"login_logo_content_description" = "NEXD Logo";
+"login_logo_content_description" = "Nexd Logo";
 "login_placeholder_password" = "Password";
 "login_placeholder_username" = "E-mail";
 "login_screen_title" = "Login";
@@ -133,6 +133,7 @@
 "role_screen_subtitle" = "What would you like to do today?";
 "role_screen_title" = "Welcome, ";
 "role_screen_title_format" = "Hi, %s";
+"role_screen_title_ios" = "Welcome, %@";
 "role_selection_button_logout" = "Log out";
 "role_selection_helper" = "I can help";
 "role_selection_screen_title" = "Role";
