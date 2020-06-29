@@ -64,6 +64,7 @@ struct EditOpenHelpRequestsView: View {
                                     }
                                 }
                             }
+                            .padding(20)
                         }
                     }
                     .whenNil {
@@ -157,7 +158,6 @@ extension EditOpenHelpRequestsView {
                 }
                 .map { requests -> [HelpRequest]? in
                     requests.isEmpty ? nil : requests
-
                 }
                 .publisher
                 .replaceError(with: nil)
