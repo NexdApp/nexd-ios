@@ -71,8 +71,8 @@ class PreviewNavigator: ScreenNavigating {
         log.debug("toRequestConfirmation - items: \(state)")
     }
 
-    func toPhoneCall() {
-        log.debug("toPhoneCall")
+    func toEditOpenHelpRequests() {
+        log.debug("toEditOpenHelpRequests")
     }
 
     func toHelpOptions() {

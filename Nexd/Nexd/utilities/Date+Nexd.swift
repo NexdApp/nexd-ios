@@ -23,4 +23,13 @@ extension Date {
 
         return formatter.string(from: self, to: targetDate)
     }
+
+    var displayString: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        dateFormatter.doesRelativeDateFormatting = true
+
+        return dateFormatter.string(from: self)
+    }
 }

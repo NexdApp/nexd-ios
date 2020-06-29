@@ -40,10 +40,14 @@
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>proxima-nova-soft-semibold-webfont.ttf</string>
-		<string>proxima-nova-soft-regular-webfont.ttf</string>
-		<string>proxima-nova-soft-medium-webfont.ttf</string>
-		<string>proxima-nova-soft-bold-webfont.ttf</string>
+		<string>Proxima Nova Alt Bold.otf</string>
+		<string>Proxima Nova Alt Light.otf</string>
+		<string>Proxima Nova Alt Thin.otf</string>
+		<string>Proxima Nova Black.otf</string>
+		<string>Proxima Nova Bold.otf</string>
+		<string>Proxima Nova Extrabold.otf</string>
+		<string>Proxima Nova Thin.otf</string>
+		<string>ProximaNova-Regular.otf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -17,17 +17,17 @@ struct HelperOptionsView: View {
                 .padding(.top, 70)
                 .padding([.leading, .trailing], 20)
 
-            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_transcript.text) {
-                self.viewModel.transcribeCallTapped()
-            }
-            .padding([.leading, .trailing], 12)
-            .identified(by: .helperOptionsTranscribeCallButton)
-
             NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_shopping.text) {
                 self.viewModel.goShoppingTapped()
             }
             .padding([.leading, .trailing], 12)
             .identified(by: .helperOptionsGoShoppingButton)
+
+            NexdUI.Buttons.darkMainMenuButton(text: R.string.localizable.helper_type_button_transcript.text) {
+                self.viewModel.transcribeCallTapped()
+            }
+            .padding([.leading, .trailing], 12)
+            .identified(by: .helperOptionsTranscribeCallButton)
 
             Spacer()
         }

@@ -26,13 +26,13 @@ extension HelpRequest {
             : R.string.localizable.helper_request_overview_item_type_recording()
         let details = R.string.localizable.helper_request_overview_open_request_item_details_format_ios(duration ?? "???", type)
         return Text(details)
-            .font(R.font.proximaNovaSoftRegular.font(size: 14))
+            .font(R.font.proximaNovaRegular.font(size: 14))
             .foregroundColor(R.color.requestListItemDetails.color)
     }
 
     var title: some View {
         return Text(displayName)
-            .font(R.font.proximaNovaSoftBold.font(size: 28))
+            .font(R.font.proximaNovaBold.font(size: 28))
             .foregroundColor(R.color.requestListItemTitle.color)
     }
 }

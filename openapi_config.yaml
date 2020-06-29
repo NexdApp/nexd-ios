@@ -1,0 +1,4 @@
+podHomepage: https://github.com/NexdApp/nexd-ios
+podSummary: OpenAPI Client
+responseAs: RxSwift
+projectName: NexdClient

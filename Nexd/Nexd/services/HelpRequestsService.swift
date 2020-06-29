@@ -33,4 +33,9 @@ class HelpRequestsService {
         return HelpRequestsAPI.helpRequestsControllerGetSingleRequest(helpRequestId: requestId)
             .asSingle()
     }
+
+    func updateRequest(requestId: Int64, dto: HelpRequestCreateDto) -> Single<HelpRequest> {
+        return HelpRequestsAPI.helpRequestsControllerUpdateRequest(helpRequestId: requestId, helpRequestCreateDto: dto)
+            .asSingle()
+    }
 }

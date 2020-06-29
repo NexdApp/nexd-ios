@@ -19,7 +19,7 @@ extension String {
 
     func asLink(range: Range<String.Index>?, target: String) -> NSAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: R.font.proximaNovaSoftRegular(size: 16)!
+            .font: R.font.proximaNovaRegular(size: 16)!
         ]
 
         let attributedString = NSMutableAttributedString(string: self, attributes: attributes)
@@ -27,5 +27,9 @@ extension String {
         guard let range = range else { return attributedString }
         attributedString.addAttribute(.link, value: target, range: NSRange(range, in: self))
         return attributedString
+    }
+
+    var cstring: UnsafePointer<CChar> {
+        (self as NSString).utf8String!
     }
 }
