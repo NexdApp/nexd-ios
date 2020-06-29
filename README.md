@@ -18,16 +18,16 @@ $ open Nexd.xcworkspace
 Needs to be done when the backend deployed changes.
 Make sure [openapi-generator](https://openapi-generator.tech/docs/faq-generators/) is installed on your mac
 
+## From production backend
+
+```
+$ ./update_swagger_client.sh
+```
+
 ## From staging backend
 
 ```
 $ ./update_swagger_client.sh https://api-staging.nexd.app/api/v1
-```
-
-## From producton backend
-
-```
-$ ./update_swagger_client.sh https://api.nexd.app/api/v1
 ```
 
 # Build & Run

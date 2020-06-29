@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST="http://localhost:3001"
+HOST="https://api.nexd.app/api/v1"
 
 if [ -n "$1" ]
 then
@@ -10,6 +10,6 @@ fi
 pushd Nexd
 echo "Updating Swagger client from host: ${HOST}"
 rm -rf lib/openapi
-openapi-generator generate --input-spec ${HOST}/docs-json --generator-name swift5 --output lib/openapi --additional-properties podHomepage="https://github.com/NexdApp/nexd-ios",podSummary="OpenAPI Client",responseAs=RxSwift,projectName=NexdClient --type-mappings integer=Int64
+openapi-generator generate --input-spec ${HOST}/docs-json --generator-name swift5 --output lib/openapi -c ../openapi_config.yaml --type-mappings integer=Int64
 pod install
 popd
