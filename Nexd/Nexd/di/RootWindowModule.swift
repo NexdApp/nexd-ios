@@ -12,7 +12,7 @@ struct RootWindowModule: Cleanse.Module {
     static func configure(binder: UnscopedBinder) {
         binder
             .bind()
-            .to { (scene: UIScene, navigator: ScreenNavigating) -> UIWindow in
+            .to(factory: { (scene: UIScene, navigator: ScreenNavigating) -> UIWindow in
                 guard let windowScene = scene as? UIWindowScene else {
                     fatalError("Missing scene!")
                 }
@@ -20,6 +20,6 @@ struct RootWindowModule: Cleanse.Module {
                 let window = UIWindow(windowScene: windowScene)
                 window.rootViewController = navigator.root
                 return window
-            }
+            })
     }
 }
